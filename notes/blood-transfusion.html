@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>🩸 獸醫輸血醫學 完整筆記</title>
+  <style>
+    :root {
+      --red:    #c0392b;
+      --red-lt: #f9ebea;
+      --blue:   #2980b9;
+      --blue-lt:#eaf4fb;
+      --green:  #27ae60;
+      --green-lt:#eafaf1;
+      --orange: #e67e22;
+      --orange-lt:#fef5e7;
+      --purple: #8e44ad;
+      --purple-lt:#f5eef8;
+      --gray:   #7f8c8d;
+      --gray-lt:#f2f3f4;
+      --dark:   #2c3e50;
+      --text:   #34495e;
+      --border: #dce1e7;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, "Segoe UI", "Noto Sans TC", sans-serif;
+      background: #f0f4f8;
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, #c0392b 0%, #8e44ad 100%);
+      color: #fff;
+      padding: 48px 32px 40px;
+      text-align: center;
+    }
+    header h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: .02em; }
+    header p  { margin-top: 10px; opacity: .88; font-size: 1.05rem; }
+    .header-meta {
+      display: flex; justify-content: center; gap: 24px;
+      flex-wrap: wrap; margin-top: 20px;
+    }
+    .header-meta span {
+      background: rgba(255,255,255,.2);
+      border-radius: 20px; padding: 4px 14px; font-size: .85rem;
+    }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 980px; margin: 0 auto; padding: 32px 20px 64px; }
+
+    /* ── TOC ── */
+    .toc {
+      background: #fff; border-radius: 14px;
+      border-left: 5px solid var(--red);
+      padding: 24px 28px; margin-bottom: 36px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+    .toc h2 { font-size: 1.05rem; color: var(--red); margin-bottom: 14px; text-transform: uppercase; letter-spacing: .06em; }
+    .toc ol  { padding-left: 20px; }
+    .toc li  { margin: 5px 0; }
+    .toc a   { color: var(--dark); text-decoration: none; font-weight: 500; }
+    .toc a:hover { color: var(--red); text-decoration: underline; }
+
+    /* ── SECTION ── */
+    .section {
+      background: #fff; border-radius: 14px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+      margin-bottom: 32px; overflow: hidden;
+    }
+    .section-header {
+      display: flex; align-items: center; gap: 14px;
+      padding: 20px 28px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.35rem; flex-shrink: 0;
+    }
+    .section-header h2 { font-size: 1.25rem; color: var(--dark); }
+    .section-body { padding: 24px 28px; }
+
+    /* colour themes */
+    .theme-red    .section-icon { background: var(--red-lt);    color: var(--red); }
+    .theme-blue   .section-icon { background: var(--blue-lt);   color: var(--blue); }
+    .theme-green  .section-icon { background: var(--green-lt);  color: var(--green); }
+    .theme-orange .section-icon { background: var(--orange-lt); color: var(--orange); }
+    .theme-purple .section-icon { background: var(--purple-lt); color: var(--purple); }
+
+    /* ── SUBSECTION ── */
+    .sub-title {
+      font-size: 1rem; font-weight: 700; color: var(--dark);
+      margin: 24px 0 12px; display: flex; align-items: center; gap: 8px;
+    }
+    .sub-title::before {
+      content: ""; display: block;
+      width: 4px; height: 18px; border-radius: 2px;
+      background: currentColor; flex-shrink: 0;
+    }
+
+    /* ── TABLES ── */
+    .table-wrap { overflow-x: auto; margin: 14px 0; }
+    table { width: 100%; border-collapse: collapse; font-size: .91rem; }
+    thead tr { background: var(--dark); color: #fff; }
+    thead th { padding: 10px 14px; text-align: left; font-weight: 600; white-space: nowrap; }
+    tbody tr:nth-child(odd)  { background: #fafbfc; }
+    tbody tr:nth-child(even) { background: #fff; }
+    tbody tr:hover { background: #edf2f7; }
+    td, th { padding: 9px 14px; border-bottom: 1px solid var(--border); }
+
+    /* ── CARDS ── */
+    .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; margin: 14px 0; }
+    .card {
+      border-radius: 10px; padding: 16px;
+      border: 1px solid var(--border);
+    }
+    .card-icon { font-size: 1.6rem; margin-bottom: 8px; }
+    .card-title { font-weight: 700; font-size: .92rem; color: var(--dark); margin-bottom: 4px; }
+    .card-desc  { font-size: .82rem; color: var(--gray); }
+
+    /* ── CALLOUT ── */
+    .callout {
+      border-radius: 10px; padding: 14px 18px;
+      margin: 14px 0; display: flex; gap: 12px; align-items: flex-start;
+    }
+    .callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+    .callout-body { flex: 1; font-size: .93rem; }
+    .callout-body strong { display: block; margin-bottom: 4px; }
+    .callout.warn   { background: #fef5e7; border-left: 4px solid var(--orange); }
+    .callout.info   { background: var(--blue-lt); border-left: 4px solid var(--blue); }
+    .callout.danger { background: #fdedec; border-left: 4px solid var(--red); }
+    .callout.tip    { background: var(--green-lt); border-left: 4px solid var(--green); }
+
+    /* ── FORMULA BOX ── */
+    .formula {
+      background: #1e293b; color: #e2e8f0;
+      border-radius: 10px; padding: 18px 22px;
+      font-family: "SF Mono", "Fira Code", monospace;
+      font-size: .88rem; line-height: 1.9; margin: 14px 0;
+      overflow-x: auto;
+    }
+    .formula .hl { color: #f6ad55; font-weight: 700; }
+    .formula .cm { color: #718096; }
+
+    /* ── TREE ── */
+    .tree {
+      background: #f8f9fb; border-radius: 10px;
+      padding: 18px 22px; font-family: monospace;
+      font-size: .88rem; line-height: 1.9; margin: 14px 0;
+      border: 1px solid var(--border);
+    }
+
+    /* ── TAG PILLS ── */
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+    .tag {
+      border-radius: 20px; padding: 3px 12px;
+      font-size: .8rem; font-weight: 600;
+    }
+    .tag-red    { background: var(--red-lt);    color: var(--red); }
+    .tag-blue   { background: var(--blue-lt);   color: var(--blue); }
+    .tag-green  { background: var(--green-lt);  color: var(--green); }
+    .tag-orange { background: var(--orange-lt); color: var(--orange); }
+    .tag-purple { background: var(--purple-lt); color: var(--purple); }
+    .tag-gray   { background: var(--gray-lt);   color: var(--gray); }
+
+    /* ── CHECKLIST ── */
+    .checklist { list-style: none; padding: 0; margin: 10px 0; }
+    .checklist li {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 6px 0; border-bottom: 1px solid var(--border); font-size: .92rem;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .chk { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+    .chk-yes  { color: var(--green); }
+    .chk-no   { color: var(--red); }
+
+    /* ── SUMMARY BAR ── */
+    .summary-bar {
+      background: linear-gradient(135deg, #2c3e50, #34495e);
+      color: #fff; border-radius: 14px;
+      padding: 28px 32px; margin-top: 40px;
+    }
+    .summary-bar h2 { font-size: 1.2rem; margin-bottom: 16px; }
+    .mnemo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+    .mnemo-item {
+      background: rgba(255,255,255,.1); border-radius: 8px;
+      padding: 12px 16px; font-size: .88rem;
+      border-left: 3px solid #f6ad55;
+    }
+    .mnemo-item strong { color: #f6ad55; display: block; margin-bottom: 3px; }
+
+    /* ── SOURCE ── */
+    .sources {
+      background: #fff; border-radius: 14px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+      padding: 22px 28px; margin-top: 24px;
+    }
+    .sources h3 { font-size: .95rem; color: var(--gray); margin-bottom: 14px; text-transform: uppercase; letter-spacing: .08em; }
+    .sources ul { list-style: none; padding: 0; }
+    .sources li { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: .88rem; }
+    .sources li:last-child { border-bottom: none; }
+    .sources a { color: var(--blue); text-decoration: none; }
+    .sources a:hover { text-decoration: underline; }
+    .src-icon { font-size: 1rem; flex-shrink: 0; }
+
+    /* ── HIGHLIGHT ROW ── */
+    .hl-row { background: #fef9e7 !important; font-weight: 600; }
+    .badge {
+      display: inline-block; border-radius: 4px;
+      padding: 1px 7px; font-size: .76rem; font-weight: 700; white-space: nowrap;
+    }
+    .badge-red    { background: var(--red-lt);    color: var(--red); }
+    .badge-green  { background: var(--green-lt);  color: var(--green); }
+    .badge-orange { background: var(--orange-lt); color: var(--orange); }
+
+    /* ── COLLAPSIBLE SECTIONS ── */
+    .section-header {
+      cursor: pointer;
+      user-select: none;
+    }
+    .section-header .toggle-icon {
+      margin-left: auto;
+      font-size: 1.1rem;
+      transition: transform .3s;
+      flex-shrink: 0;
+      color: var(--gray);
+    }
+    .section.collapsed .toggle-icon { transform: rotate(-90deg); }
+    .section.collapsed .section-body { display: none; }
+
+    /* ── FLOATING TOC BUTTON ── */
+    #toc-fab {
+      position: fixed;
+      bottom: 24px; right: 20px;
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c0392b, #8e44ad);
+      color: #fff; font-size: 1.3rem;
+      border: none; cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,.25);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 1000;
+      transition: transform .2s;
+    }
+    #toc-fab:active { transform: scale(.92); }
+
+    /* ── TOC DRAWER ── */
+    #toc-drawer {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.45);
+      z-index: 999;
+      display: none;
+      align-items: flex-end;
+    }
+    #toc-drawer.open { display: flex; }
+    #toc-inner {
+      background: #fff;
+      width: 100%; border-radius: 20px 20px 0 0;
+      padding: 20px 24px 36px;
+      max-height: 75vh; overflow-y: auto;
+    }
+    #toc-inner h3 {
+      font-size: 1rem; color: var(--red);
+      margin-bottom: 14px; text-transform: uppercase; letter-spacing: .06em;
+    }
+    #toc-inner ol { padding-left: 18px; }
+    #toc-inner li { margin: 10px 0; }
+    #toc-inner a {
+      color: var(--dark); text-decoration: none;
+      font-size: 1rem; font-weight: 500;
+      display: block; padding: 2px 0;
+    }
+    #toc-drawer-close {
+      float: right; background: none; border: none;
+      font-size: 1.4rem; cursor: pointer; color: var(--gray);
+      line-height: 1;
+    }
+
+    /* ── STICKY PROGRESS BAR ── */
+    #progress-bar {
+      position: fixed; top: 0; left: 0;
+      height: 3px; width: 0%;
+      background: linear-gradient(90deg, #c0392b, #8e44ad);
+      z-index: 1001;
+      transition: width .1s;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      header { padding: 36px 20px 28px; }
+      header h1 { font-size: 1.5rem; }
+      header p  { font-size: .92rem; }
+      .header-meta { gap: 8px; }
+      .header-meta span { font-size: .78rem; padding: 3px 10px; }
+
+      .container { padding: 16px 12px 80px; }
+
+      .toc { padding: 18px 16px; }
+      .toc ol { display: none; } /* 桌機才顯示，手機用浮動按鈕 */
+
+      .section { margin-bottom: 16px; border-radius: 12px; }
+      .section-header { padding: 16px 16px; }
+      .section-header h2 { font-size: 1.05rem; }
+      .section-icon { width: 38px; height: 38px; font-size: 1.1rem; }
+      .section-body { padding: 14px 14px; }
+
+      .sub-title { font-size: .95rem; margin: 18px 0 10px; }
+
+      table { font-size: .82rem; }
+      td, th { padding: 7px 10px; }
+
+      .cards { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .card { padding: 12px; }
+      .card-icon { font-size: 1.3rem; }
+
+      .formula { font-size: .78rem; padding: 14px 14px; }
+      .tree    { font-size: .78rem; padding: 14px 14px; }
+
+      .callout { padding: 12px 14px; gap: 8px; }
+      .callout-body { font-size: .86rem; }
+
+      .summary-bar { padding: 20px 16px; margin-top: 24px; }
+      .mnemo-grid { grid-template-columns: 1fr; }
+
+      .sources { padding: 16px; }
+
+      #toc-fab { bottom: 20px; right: 16px; }
+    }
+
+    @media (min-width: 641px) {
+      #toc-fab { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════ HEADER ════════════ -->
+<header>
+  <h1>🩸 獸醫輸血醫學 完整筆記</h1>
+  <p>Veterinary Transfusion Medicine &amp; Shock Resuscitation</p>
+  <div class="header-meta">
+    <span>📅 2026-05-17</span>
+    <span>👨‍⚕️ Dr. Andrew (UC Davis)</span>
+    <span>🏛 台灣獸醫骨科醫學會</span>
+    <span>🐾 犬・貓輸血醫學</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ════════ TOC ════════ -->
+  <nav class="toc">
+    <h2>📋 目錄</h2>
+    <ol>
+      <li><a href="#s1">體液生理學與休克基礎</a></li>
+      <li><a href="#s2">氧氣輸送系統（生命之樹）</a></li>
+      <li><a href="#s3">輸液治療策略與技術</a></li>
+      <li><a href="#s4">血液捐贈者與血製品種類</a></li>
+      <li><a href="#s5">血型鑑定與交叉配對</a></li>
+      <li><a href="#s6">輸血適應症與劑量計算</a></li>
+      <li><a href="#s7">輸血反應（監測與處理）</a></li>
+      <li><a href="#s8">最新研究前沿</a></li>
+    </ol>
+  </nav>
+
+  <!-- ════════ S1 體液生理學 ════════ -->
+  <div class="section theme-blue" id="s1">
+    <div class="section-header">
+      <div class="section-icon">💧</div>
+      <h2>1. 體液生理學與休克基礎</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="sub-title" style="color:var(--blue)">體內水分分布</div>
+      <div class="tree">
+全身總水量 (100%)
+├── 細胞內液 (ICF) ──────────── <span style="color:#f6ad55;font-weight:700">66%</span>
+└── 細胞外液 (ECF) ──────────── <span style="color:#f6ad55;font-weight:700">34%</span>
+        ├── 間質液 (Interstitial) ── 75%
+        └── 血管內液 (Intravascular) <span style="color:#e74c3c;font-weight:700">25%</span>  ← 輸血最有效留存處
+      </div>
+      <div class="callout info">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+          <strong>關鍵觀念</strong>
+          等張晶體液給予後，只有 <strong>25%</strong> 留在血管內；純水只有 <strong>8%</strong> 留在血管內。因此所有輸液效果都是暫時性的。
+        </div>
+      </div>
+
+      <div class="sub-title" style="color:var(--blue)">休克定義與分類</div>
+      <div class="callout danger">
+        <div class="callout-icon">🚨</div>
+        <div class="callout-body">
+          <strong>休克 = 細胞無法獲得足夠氧氣 → 能量不足 → 細胞死亡 → 器官衰竭</strong>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>休克類型</th><th>主要機制</th></tr></thead>
+          <tbody>
+            <tr><td>Hypovolemic（低血容）</td><td>血管內液體不足</td></tr>
+            <tr><td>Hemorrhagic（出血性）</td><td>急性失血</td></tr>
+            <tr><td>Cardiogenic（心因性）</td><td>心肌收縮力下降</td></tr>
+            <tr><td>Septic / Distributive（敗血/分布性）</td><td>血管擴張、通透性增加</td></tr>
+            <tr><td>Obstructive（阻塞性）</td><td>靜脈回流受阻</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sub-title" style="color:var(--blue)">⚠️ 六大灌流不良臨床表徵</div>
+      <div class="callout tip">
+        <div class="callout-icon">📌</div>
+        <div class="callout-body">這六項是<strong>血管收縮的結果</strong>，應作為治療前後的基準線評估，並在每次分次給液後重新評估。</div>
+      </div>
+      <div class="cards">
+        <div class="card" style="border-left:4px solid var(--blue)">
+          <div class="card-icon">🧠</div>
+          <div class="card-title">1. 精神狀態改變</div>
+          <div class="card-desc">Obtunded / Stuporous</div>
+        </div>
+        <div class="card" style="border-left:4px solid var(--red)">
+          <div class="card-icon">❤️</div>
+          <div class="card-title">2. 心搏過速</div>
+          <div class="card-desc">Tachycardia（貓可能過緩）</div>
+        </div>
+        <div class="card" style="border-left:4px solid var(--orange)">
+          <div class="card-icon">📉</div>
+          <div class="card-title">3. 脈搏品質下降</div>
+          <div class="card-desc">Decreased pulse quality</div>
+        </div>
+        <div class="card" style="border-left:4px solid var(--gray)">
+          <div class="card-icon">🤍</div>
+          <div class="card-title">4. 黏膜蒼白</div>
+          <div class="card-desc">Pale mucous membranes</div>
+        </div>
+        <div class="card" style="border-left:4px solid var(--purple)">
+          <div class="card-icon">⏱️</div>
+          <div class="card-title">5. CRT 延長</div>
+          <div class="card-desc">Prolonged capillary refill time</div>
+        </div>
+        <div class="card" style="border-left:4px solid var(--blue)">
+          <div class="card-icon">🥶</div>
+          <div class="card-title">6. 四肢冰冷</div>
+          <div class="card-desc">Cool extremities</div>
+        </div>
+      </div>
+
+      <div class="sub-title" style="color:var(--blue)">休克診斷檢測</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>檢測項目</th><th>異常值</th><th>臨床意義</th></tr></thead>
+          <tbody>
+            <tr><td>乳酸 (Lactate)</td><td>&gt; 8 mmol/L</td><td>最常用床邊檢測（機器測 L-乳酸）</td></tr>
+            <tr><td>中央靜脈壓 (CVP)</td><td>&lt; 0 mmHg</td><td>心臟病患優先看前負荷；可超音波評估</td></tr>
+            <tr><td>腔靜脈超音波 (POCUS)</td><td>塌陷</td><td>評估血管內容量與前負荷</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+          <strong>LRS 與酸血症</strong>
+          休克病患體內的是 L-乳酸（酸），而 LRS 中的是乳酸鈉（鹽）→ 經肝代謝後產生碳酸氫鹽 → <strong>實為鹼性</strong>。反而 0.9% NaCl 氯離子 150（血中正常 110）→ 偏酸！
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════ S2 氧氣輸送 ════════ -->
+  <div class="section theme-red" id="s2">
+    <div class="section-header">
+      <div class="section-icon">🌳</div>
+      <h2>2. 氧氣輸送系統（生命之樹）</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="sub-title" style="color:var(--red)">核心公式</div>
+      <div class="formula">
+<span class="hl">DO₂ = CO × CaO₂</span>   <span class="cm">← 氧氣輸送 = 心輸出量 × 動脈氧含量</span>
+
+CaO₂ = (<span class="hl">Hgb × 1.34 × SaO₂</span>) + (PaO₂ × 0.003)
+         ↑ 血紅素結合氧（主要貢獻）       ↑ 血漿溶解氧（貢獻極小）
+
+CO = SV × HR   <span class="cm">← 心搏出量 × 心跳速率</span>
+      </div>
+
+      <div class="sub-title" style="color:var(--red)">貧血 vs 缺氧：對氧氣輸送的影響</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>狀況</th><th>FiO₂</th><th>PO₂</th><th>SO₂</th><th>Hgb</th><th>CaO₂</th><th>結論</th></tr></thead>
+          <tbody>
+            <tr><td>正常</td><td>0.21</td><td>100</td><td>98%</td><td>15</td><td><strong>19.9</strong></td><td>—</td></tr>
+            <tr class="hl-row"><td>🔴 貧血</td><td>0.21</td><td>100</td><td>98%</td><td>5</td><td><strong style="color:var(--red)">6.9 ⬇️</strong></td><td>氧氣大幅下降！</td></tr>
+            <tr><td>缺氧</td><td>0.21</td><td>50</td><td>85%</td><td>15</td><td><strong>17.3</strong></td><td>尚可接受</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout danger">
+        <div class="callout-icon">🔑</div>
+        <div class="callout-body">
+          <strong>關鍵結論：貧血比缺氧對氧氣輸送傷害更大！</strong>
+          貧血動物單純補氧效果有限 → <strong>輸血才是根本解決</strong>。缺氧動物提高 FiO₂ 則有效。
+        </div>
+      </div>
+
+      <div class="sub-title" style="color:var(--red)">心輸出量影響因素</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>因素</th><th>定義</th><th>休克時狀態</th><th>處置</th></tr></thead>
+          <tbody>
+            <tr><td><strong>前負荷 (Preload)</strong></td><td>心舒張末期充盈程度</td><td>⬇️ 下降</td><td>給等張晶體液補充回心血量</td></tr>
+            <tr><td><strong>收縮力 (Contractility)</strong></td><td>心肌收縮強度</td><td>通常正常或更高</td><td>心因性休克才需處理</td></tr>
+            <tr><td><strong>後負荷 (Afterload)</strong></td><td>全身血管阻力</td><td>代償性增加</td><td>多數升壓藥物是增加後負荷</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════ S3 輸液策略 ════════ -->
+  <div class="section theme-green" id="s3">
+    <div class="section-header">
+      <div class="section-icon">💉</div>
+      <h2>3. 輸液治療策略與技術</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="sub-title" style="color:var(--green)">輸液種類比較</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>類型</th><th>代表藥物</th><th>優點</th><th>缺點</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="badge badge-green">等張晶體</span></td>
+              <td>LRS, Plasmalyte, 0.9% NaCl</td>
+              <td>便宜、可大量給予</td>
+              <td>只 25% 留血管；可能水腫、稀釋凝血因子</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-orange">高張晶體</span></td>
+              <td>高張鹽水</td>
+              <td>快速擴容、提升心輸出量</td>
+              <td>效果短暫、劑量有上限、易高血鈉</td>
+            </tr>
+            <tr>
+              <td><span class="badge" style="background:#e8d5f5;color:#8e44ad">合成膠體</span></td>
+              <td>Hetastarch, VetStarch, Voluven</td>
+              <td>更多留在血管；適用有水腫者</td>
+              <td>貴、影響凝血、干擾交叉配對</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-red">天然膠體</span></td>
+              <td>血漿、全血</td>
+              <td>最接近生理、維持膠體滲透壓</td>
+              <td>最貴；血品供應限制</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout warn">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body"><strong>特殊情境</strong>：敗血症血管通透性高 → 輸液速度應較慢，避免加劇滲漏。腎臟病患考慮使用 Voluven（可用於洗腎病患）。</div>
+      </div>
+
+      <div class="sub-title" style="color:var(--green)">輸液劑量</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>物種</th><th>晶體液（最大量）</th><th>膠體液</th><th>給法</th></tr></thead>
+          <tbody>
+            <tr><td>🐕 犬</td><td>80–90 ml/kg</td><td>10–20 ml/kg</td><td rowspan="2">分次給予（每次 ¼）→ 重新評估六大灌流參數</td></tr>
+            <tr><td>🐱 貓/小型犬</td><td>40–60 ml/kg（每次 60 ml 增量）</td><td>5–10 ml/kg</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sub-title" style="color:var(--green)">給藥途徑（泊肅葉定律）</div>
+      <div class="formula">
+阻力 ∝ 長度 × 黏度 / 半徑⁴
+
+<span class="hl">→ 導管越短、管徑越大，流速越快！</span>
+
+✓ 首選：短 + 粗的周邊靜脈導管
+✗ 骨髓內 (IO)：備選（疼痛；適用 &lt;1 kg 小貓或靜脈無法置放時）
+      </div>
+
+      <div class="sub-title" style="color:var(--green)">給液速率與終點</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>方法</th><th>速率</th></tr></thead>
+          <tbody>
+            <tr><td>加壓袋 (Pressure bag)</td><td>~8 分鐘 / 1 L</td></tr>
+            <tr><td>點滴機器</td><td>~30 分鐘 / 1 L</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout tip">
+        <div class="callout-icon">🎯</div>
+        <div class="callout-body"><strong>復甦終點</strong>：六大灌流參數恢復正常。若輸液後心率仍高 → 考慮疼痛控制不足或心律不整（建議做 ECG）。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════ S4 血製品 ════════ -->
+  <div class="section theme-orange" id="s4">
+    <div class="section-header">
+      <div class="section-icon">🧪</div>
+      <h2>4. 血液捐贈者與血製品種類</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="sub-title" style="color:var(--orange)">捐血者條件</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>物種</th><th>年齡</th><th>體重</th><th>捐血量</th></tr></thead>
+          <tbody>
+            <tr><td>🐕 犬</td><td>1–8 歲</td><td>&gt; 23 kg</td><td>450 ml / 次</td></tr>
+            <tr><td>🐱 貓</td><td>&lt; 10 歲</td><td>&gt; 4 kg</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sub-title" style="color:var(--orange)">血製品種類與特性</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>血製品</th><th>保存</th><th>主要成分</th><th>適應症</th><th>注意</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>新鮮全血 (Fresh WB)</strong></td>
+              <td>捐後 6 hr 內</td>
+              <td>RBC + 血小板 + 所有凝血因子</td>
+              <td>嚴重出血、血小板低下</td>
+              <td>最完整但保存期極短</td>
+            </tr>
+            <tr>
+              <td><strong>庫存全血 (Stored WB)</strong></td>
+              <td>4°C 冷藏</td>
+              <td>RBC（血小板及不穩定凝血因子已降解）</td>
+              <td>貧血</td>
+              <td>—</td>
+            </tr>
+            <tr class="hl-row">
+              <td><strong>濃縮紅血球 (pRBC)</strong></td>
+              <td>3–4 週</td>
+              <td>RBC（無血小板、無凝血因子；70% 存活）</td>
+              <td><span class="badge badge-red">貧血首選</span></td>
+              <td>儲存越久 storage lesion 越重</td>
+            </tr>
+            <tr class="hl-row">
+              <td><strong>新鮮冷凍血漿 (FFP)</strong></td>
+              <td>1 年</td>
+              <td>所有凝血因子</td>
+              <td><span class="badge badge-red">凝血病首選</span></td>
+              <td>解凍後儘速使用</td>
+            </tr>
+            <tr>
+              <td><strong>冷凍血漿 (FP)</strong></td>
+              <td>FFP &gt; 1 年後</td>
+              <td>穩定凝血因子（V、VIII 已降解）</td>
+              <td>維生素K拮抗劑（鼠藥）中毒</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td><strong>富含血小板血漿 (PRP)</strong></td>
+              <td><strong>6 hr 內使用</strong></td>
+              <td>高濃度血小板</td>
+              <td>血小板低下/功能異常</td>
+              <td>新鮮才有效</td>
+            </tr>
+            <tr>
+              <td><strong>血小板濃縮液</strong></td>
+              <td>室溫 20°C + 搖晃 5 天</td>
+              <td>血小板</td>
+              <td>血小板低下</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td><strong>冷凍沉澱品 (Cryo)</strong></td>
+              <td>—</td>
+              <td>vWF、FVIII、纖維蛋白原</td>
+              <td>類血友病、特定因子缺乏</td>
+              <td>多為機構自製；部分地區難取得</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout danger">
+        <div class="callout-icon">🚫</div>
+        <div class="callout-body">
+          <strong>血製品的非適應症</strong>
+          <ul style="margin-top:6px;padding-left:18px">
+            <li><strong>低蛋白血症</strong> → 不使用血製品</li>
+            <li><strong>初始復甦</strong> → 先用等張晶體液，不是直接用血</li>
+            <li><strong>胰臟炎</strong> → 目前無證據支持常規使用血漿</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════ S5 血型 ════════ -->
+  <div class="section theme-purple" id="s5">
+    <div class="section-header">
+      <div class="section-icon">🔬</div>
+      <h2>5. 血型鑑定與交叉配對</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="sub-title" style="color:var(--purple)">🐱 貓血型系統</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>血型</th><th>天生抗體</th><th>可接受血型</th><th>分布</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>A 型</strong></td>
+              <td>微弱抗 B 抗體</td>
+              <td>A 型</td>
+              <td>最常見（台灣多數家貓）</td>
+            </tr>
+            <tr>
+              <td><strong>B 型</strong></td>
+              <td><strong style="color:var(--red)">強烈抗 A 抗體（3 個月起）</strong></td>
+              <td>B 型</td>
+              <td>英國貓種較多</td>
+            </tr>
+            <tr>
+              <td><strong>AB 型</strong></td>
+              <td>無抗 A、抗 B 抗體</td>
+              <td>A 型 或 B 型（萬能受血者）</td>
+              <td>非常罕見（「神奇血型」）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout danger">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+          <strong>貓天生就有血型抗體！</strong> 不同於狗，即使<strong>第一次輸血</strong>也可能發生嚴重反應。B 型貓輸到 A 型血可能致命。<strong>輸前務必確認血型！</strong>
+        </div>
+      </div>
+
+      <div class="sub-title" style="color:var(--purple)">🐕 犬血型系統 (DEA)</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>抗原</th><th>臨床重要性</th><th>注意</th></tr></thead>
+          <tbody>
+            <tr><td><strong>DEA 1</strong></td><td>最重要！第二次輸血反應最強烈</td><td>優先選 DEA 1 陰性捐血犬</td></tr>
+            <tr><td><strong>Dal 抗原</strong></td><td>區域分布差異大</td><td>跨國捐血需注意</td></tr>
+            <tr><td>DEA 4</td><td>韓國族群略低於歐美</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout info">
+        <div class="callout-icon">🐕</div>
+        <div class="callout-body">
+          <strong>狗第一次輸血可以（無天生抗體）</strong>，第二次開始抗體已形成，反應更強烈！
+        </div>
+      </div>
+
+      <div class="sub-title" style="color:var(--purple)">交叉配對時機</div>
+      <div class="tree">
+同一組 donor → 受血者
+├── <span style="color:#27ae60;font-weight:700">3 天內輸血</span> → 不需重新 cross-match
+│     （輸血反應抗體需 4–7 天才出現）
+└── <span style="color:#c0392b;font-weight:700">超過 3 天</span>  → 需重新 cross-match
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════ S6 適應症劑量 ════════ -->
+  <div class="section theme-red" id="s6">
+    <div class="section-header">
+      <div class="section-icon">📊</div>
+      <h2>6. 輸血適應症與劑量計算</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="sub-title" style="color:var(--red)">輸血觸發點 (Transfusion Triggers)</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>情境</th><th>PCV 觸發點</th><th>說明</th></tr></thead>
+          <tbody>
+            <tr><td>一般急性貧血</td><td>&lt; 20–25%</td><td>以灌流參數判斷，非只看數字</td></tr>
+            <tr><td>心功能差</td><td>&lt; 25%</td><td>代償能力差，提早介入</td></tr>
+            <tr class="hl-row"><td>生理學臨界</td><td><strong>&lt; 12%</strong></td><td>氧氣輸送必然不足</td></tr>
+            <tr><td>術前/術後</td><td>&lt; 30%</td><td>目標稍高</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-icon">📌</div>
+        <div class="callout-body">
+          <strong>急性 vs 慢性貧血</strong>
+          <ul style="margin-top:6px;padding-left:18px">
+            <li>急性（1 小時內 PCV 45%→25%）→ ✅ 強烈建議輸血</li>
+            <li>慢性（3 年慢性腎衰竭 PCV 45%→25%）→ ❌ 動物已代償，未必需要</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sub-title" style="color:var(--red)">輸血劑量計算</div>
+      <div class="formula">
+pRBC：  <span class="hl">1 ml/kg</span> → 提升 PCV <span class="hl">1%</span>
+全血：  <span class="hl">2 ml/kg</span> → 提升 PCV <span class="hl">1%</span>
+
+目標 PCV：通常 20–25%；術前/術後 &gt; 30%
+      </div>
+
+      <div class="sub-title" style="color:var(--red)">依病症選擇血製品</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>臨床問題</th><th>首選血製品</th><th>備選</th></tr></thead>
+          <tbody>
+            <tr class="hl-row"><td>🔴 貧血</td><td><strong>pRBC</strong></td><td>新鮮全血</td></tr>
+            <tr class="hl-row"><td>🔵 凝血功能障礙</td><td><strong>FFP</strong></td><td>冷凍血漿（限維生素K拮抗劑）</td></tr>
+            <tr><td>鼠藥中毒</td><td>FFP 或冷凍血漿</td><td>Cryopoor 血漿</td></tr>
+            <tr><td>🟡 血小板低下/功能異常</td><td>PRP、血小板濃縮液</td><td>新鮮全血（目標控制出血非提升計數）</td></tr>
+            <tr><td>ITP（免疫媒介）</td><td>優先治療免疫病本身</td><td>—</td></tr>
+            <tr><td>類血友病（術前預防）</td><td>Cryoprecipitate</td><td>FFP、DDAVP</td></tr>
+            <tr><td>DIC</td><td>血漿製品＋積極治療原發病</td><td>—</td></tr>
+            <tr><td>低蛋白血症</td><td colspan="2"><span class="badge badge-red">❌ 不使用血製品</span></td></tr>
+            <tr><td>創傷性出血（無其他血品）</td><td>自體輸血</td><td>禁用於惡性腫瘤</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════ S7 輸血反應 ════════ -->
+  <div class="section theme-orange" id="s7">
+    <div class="section-header">
+      <div class="section-icon">🚨</div>
+      <h2>7. 輸血反應（監測與處理）</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="sub-title" style="color:var(--orange)">輸血速率與注意事項</div>
+      <div class="callout warn">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+          <strong>抗凝劑風險</strong>：血製品內含抗凝劑，大量輸血同時給予大量抗凝劑 →<strong> 低血鈣風險</strong>。<br/>
+          <strong>⚠️ 不要同時靜脈給予鈣！</strong>（鈣 + 抗凝劑 → 結晶沉澱）
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>項目</th><th>建議</th></tr></thead>
+          <tbody>
+            <tr><td>起始速率</td><td>慢慢給，觀察 15–30 分鐘後逐漸增速</td></tr>
+            <tr><td>穩定後速率</td><td>增加至 5–10 ml/kg/hr</td></tr>
+            <tr><td>血液加溫</td><td>非必要（文獻顯示不一定要加溫）</td></tr>
+            <tr><td>輸注容器</td><td>針筒搭配濾器（小體積輸注）；避免幫浦（可能加劇反應）</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sub-title" style="color:var(--orange)">貓輸血急性反應（前瞻性多國研究）</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>反應類型</th><th>發生率</th><th>說明</th></tr></thead>
+          <tbody>
+            <tr class="hl-row"><td>發燒性非溶血性 (FNHTR)</td><td><strong>~ 6%</strong></td><td>最常見</td></tr>
+            <tr><td>紅血球製品急性反應</td><td>~ 8%</td><td>—</td></tr>
+            <tr><td>血漿急性反應</td><td>~ 1%</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout info">
+        <div class="callout-icon">📖</div>
+        <div class="callout-body">研究規模：跨 3 國、2 年、400+ 隻貓、608 個血品前瞻性收案（TRACS 共識框架判定）</div>
+      </div>
+
+      <div class="callout danger">
+        <div class="callout-icon">🚫</div>
+        <div class="callout-body">
+          <strong>輸血期間禁止共管！</strong><br/>
+          嚴禁將任何藥物、輸液或營養液與血製品混入同一管路。術後止痛必須使用<strong>獨立導管</strong>施用。
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════ S8 研究前沿 ════════ -->
+  <div class="section theme-purple" id="s8">
+    <div class="section-header">
+      <div class="section-icon">🔭</div>
+      <h2>8. 最新研究前沿</h2>
+    </div>
+    <div class="section-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>研究主題</th><th>重點發現</th><th>臨床應用</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>異種輸血</strong>（犬血→貓）</td>
+              <td>14 隻貓小型回顧，部分有效</td>
+              <td>僅在無貓血漿且生命危急時考慮；<span class="badge badge-orange">屬實驗性</span></td>
+            </tr>
+            <tr class="hl-row">
+              <td><strong>血小板冷藏可行性</strong></td>
+              <td>4°C 冷藏 14 天，多數指標可接受</td>
+              <td>可能延長供應彈性；挑戰「不可冷藏」傳統</td>
+            </tr>
+            <tr>
+              <td><strong>Cryopoor 血漿治療鼠藥</strong></td>
+              <td>7 隻犬回顧，良好止血效果</td>
+              <td>可作為低成本凝血病替代方案</td>
+            </tr>
+            <tr>
+              <td><strong>減白 (Leukoreduction)</strong></td>
+              <td>非減白產品乳酸更多、氧化損傷更重</td>
+              <td>可改善血品儲存品質，但需在儲存前完成</td>
+            </tr>
+            <tr>
+              <td><strong>自體輸血（貓術後出血）</strong></td>
+              <td>高量機構 ~85% 存活至出院</td>
+              <td>可橋接至異體輸血，避免二次開腹</td>
+            </tr>
+            <tr>
+              <td><strong>快速輸血手持裝置</strong></td>
+              <td>平均 3.5 分鐘達 7.3 ml/kg</td>
+              <td>大量輸血情境選項；尚非標準設備</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ SUMMARY BAR ════════ -->
+  <div class="summary-bar">
+    <h2>🎯 臨床重點口訣</h2>
+    <div class="mnemo-grid">
+      <div class="mnemo-item">
+        <strong>輸血前</strong>
+        先確認六大灌流參數基準線，以灌流表現（而非單一數字）決定輸血時機
+      </div>
+      <div class="mnemo-item">
+        <strong>輸液策略</strong>
+        分次給（每次 ¼）→ 重新評估 → 再決定是否繼續
+      </div>
+      <div class="mnemo-item">
+        <strong>血品選擇</strong>
+        貧血 → pRBC｜凝血病 → FFP｜血小板低下 → PRP/濃縮液
+      </div>
+      <div class="mnemo-item">
+        <strong>貓血型</strong>
+        天生就有抗體！即使第一次也要確認血型，B 型貓輸 A 型血可能致命
+      </div>
+      <div class="mnemo-item">
+        <strong>狗第二次輸血</strong>
+        抗體已形成，反應更強烈，監測要更仔細
+      </div>
+      <div class="mnemo-item">
+        <strong>血製品不混藥</strong>
+        任何藥物都不能混入血製品共管，止痛需獨立管路
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ SOURCES ════════ -->
+  <div class="sources">
+    <h3>📁 資料來源（blood transfusion 資料夾）</h3>
+    <ul>
+      <li>
+        <span class="src-icon">📄</span>
+        <a href="https://drive.google.com/file/d/1w7mMVl8jpoP_vkWUPB7Iaq09Ur-nSsQ-/view" target="_blank">05-17 講座：獸醫輸血醫學與休克復甦-Summary.pdf</a>
+      </li>
+      <li>
+        <span class="src-icon">📄</span>
+        <a href="https://drive.google.com/file/d/1WUIIOxKUoWh8a36rjVoiaHgdk9niM_oo/view" target="_blank">05-17 醫學講座：獸醫輸血療法與血液製品應用-Summary.pdf</a>
+      </li>
+      <li>
+        <span class="src-icon">📄</span>
+        <a href="https://drive.google.com/file/d/1MReCudCnle_ROnDgvzm0M_NAP03tF6-D/view" target="_blank">05-17 小動物輸血醫學前沿（貓急性輸血反應、異種輸血…）-Summary.pdf</a>
+      </li>
+      <li>
+        <span class="src-icon">📄</span>
+        <a href="https://drive.google.com/file/d/14XLGnBFCm6_Fm-91vAV3JVg25RLMtNvs/view" target="_blank">05-17 Lecture: Veterinary Blood Transfusion Protocols for Dogs and Cats-Summary.pdf</a>
+      </li>
+      <li>
+        <span class="src-icon">📁</span>
+        <a href="https://drive.google.com/drive/folders/1EqvcC7By5D9Z0cx70GRxmO1FISAWoj_u" target="_blank">blood transfusion 資料夾（Google Drive）</a>
+      </li>
+    </ul>
+  </div>
+
+</div><!-- /container -->
+
+<!-- ════════ FLOATING TOC BUTTON ════════ -->
+<button id="toc-fab" aria-label="目錄">📋</button>
+
+<!-- ════════ TOC DRAWER ════════ -->
+<div id="toc-drawer" role="dialog" aria-modal="true">
+  <div id="toc-inner">
+    <button id="toc-drawer-close" aria-label="關閉">✕</button>
+    <h3>📋 目錄</h3>
+    <ol>
+      <li><a href="#s1" class="drawer-link">💧 體液生理學與休克基礎</a></li>
+      <li><a href="#s2" class="drawer-link">🌳 氧氣輸送系統（生命之樹）</a></li>
+      <li><a href="#s3" class="drawer-link">💉 輸液治療策略與技術</a></li>
+      <li><a href="#s4" class="drawer-link">🧪 血液捐贈者與血製品種類</a></li>
+      <li><a href="#s5" class="drawer-link">🔬 血型鑑定與交叉配對</a></li>
+      <li><a href="#s6" class="drawer-link">📊 輸血適應症與劑量計算</a></li>
+      <li><a href="#s7" class="drawer-link">🚨 輸血反應（監測與處理）</a></li>
+      <li><a href="#s8" class="drawer-link">🔭 最新研究前沿</a></li>
+    </ol>
+  </div>
+</div>
+
+<!-- ════════ PROGRESS BAR ════════ -->
+<div id="progress-bar"></div>
+
+<script>
+  // ── 閱讀進度條 ──
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const pct = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+    document.getElementById('progress-bar').style.width = pct + '%';
+  });
+
+  // ── 章節可收折 ──
+  document.querySelectorAll('.section-header').forEach(header => {
+    // 加入收折圖示
+    const icon = document.createElement('span');
+    icon.className = 'toggle-icon';
+    icon.textContent = '▾';
+    header.appendChild(icon);
+
+    header.addEventListener('click', () => {
+      header.closest('.section').classList.toggle('collapsed');
+    });
+  });
+
+  // ── 浮動目錄按鈕 ──
+  const fab    = document.getElementById('toc-fab');
+  const drawer = document.getElementById('toc-drawer');
+  const close  = document.getElementById('toc-drawer-close');
+
+  fab.addEventListener('click', () => drawer.classList.add('open'));
+  close.addEventListener('click', () => drawer.classList.remove('open'));
+  drawer.addEventListener('click', e => {
+    if (e.target === drawer) drawer.classList.remove('open');
+  });
+
+  // 點目錄後關閉 drawer
+  document.querySelectorAll('.drawer-link').forEach(a => {
+    a.addEventListener('click', () => {
+      drawer.classList.remove('open');
+      // 確保目標 section 展開
+      const id = a.getAttribute('href').slice(1);
+      const sec = document.getElementById(id);
+      if (sec) sec.classList.remove('collapsed');
+    });
+  });
+</script>
+</body>
+</html>
