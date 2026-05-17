@@ -8,22 +8,22 @@
     @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Noto+Sans+TC:wght@400;700;900&display=swap');
 
     :root {
-      --gold:    #c8a84b;
-      --gold-lt: #f0d080;
-      --gold-dk: #7a5f1a;
+      --gold:    #c8962a;
+      --gold-lt: #e8b84b;
+      --gold-dk: #8a6010;
       --red:     #c0392b;
       --red-glow:#e74c3c;
       --blue:    #1a6fa8;
-      --bg:      #0a0a0f;
-      --panel:   #0f1118;
-      --border:  #2a2010;
+      --bg:      #fdfaf2;
+      --panel:   #fff8e8;
+      --border:  #e8d5a0;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       background: var(--bg);
-      color: #d4c5a0;
+      color: #3a2800;
       font-family: "Noto Sans TC", sans-serif;
       min-height: 100vh;
       overflow-x: hidden;
@@ -34,7 +34,7 @@
       content: "";
       position: fixed; inset: 0;
       background:
-        radial-gradient(ellipse at 20% 50%, rgba(139,69,19,.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 50%, rgba(200,150,42,.06) 0%, transparent 60%),
         radial-gradient(ellipse at 80% 20%, rgba(184,134,11,.06) 0%, transparent 50%),
         radial-gradient(ellipse at 60% 80%, rgba(139,0,0,.08) 0%, transparent 50%);
       pointer-events: none; z-index: 0;
@@ -108,7 +108,7 @@
 
     /* ── PANEL ── */
     .panel {
-      background: linear-gradient(135deg, #0f1118 0%, #13161f 100%);
+      background: linear-gradient(135deg, #fff8e8 0%, #fdf3d0 100%);
       border: 1px solid var(--gold-dk);
       border-radius: 4px;
       padding: 20px;
@@ -142,7 +142,7 @@
     }
     .stat-card .icon { font-size: 1.6rem; margin-bottom: 6px; display: block; }
     .stat-card .label { font-size: .7rem; color: var(--gold); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 4px; }
-    .stat-card .value { font-size: .88rem; font-weight: 700; color: #e8dfc0; line-height: 1.4; }
+    .stat-card .value { font-size: .88rem; font-weight: 700; color: #2c1f00; line-height: 1.4; }
 
     /* ── TABLE ── */
     .lol-table { width: 100%; border-collapse: collapse; font-size: .83rem; }
@@ -160,8 +160,8 @@
       transition: background .15s;
     }
     .lol-table tbody tr:hover { background: rgba(200,168,75,.06); }
-    .lol-table td { padding: 9px 12px; color: #c8bfa0; vertical-align: top; }
-    .lol-table td:first-child { color: #e8dfc0; font-weight: 600; }
+    .lol-table td { padding: 9px 12px; color: #4a3800; vertical-align: top; }
+    .lol-table td:first-child { color: #2c1f00; font-weight: 600; }
     .hl-row td { color: var(--gold-lt) !important; background: rgba(200,168,75,.08); }
 
     /* ── SIX SIGNS ── */
@@ -182,17 +182,17 @@
       line-height: 1;
     }
     .sign-icon { font-size: 1.4rem; display: block; margin: 4px 0; }
-    .sign-text { font-size: .78rem; color: #c8bfa0; line-height: 1.3; }
+    .sign-text { font-size: .78rem; color: #4a3800; line-height: 1.3; }
 
     /* ── FORMULA ── */
     .formula-box {
-      background: rgba(0,0,0,.4);
+      background: rgba(200,150,42,.08);
       border: 1px solid rgba(200,168,75,.25);
       border-radius: 4px;
       padding: 16px 18px;
       font-family: "Courier New", monospace;
       font-size: .85rem;
-      color: #e8dfc0;
+      color: #2c1f00;
       line-height: 2;
       text-align: center;
     }
@@ -207,7 +207,7 @@
       padding: 12px 16px;
       margin: 12px 0;
       font-size: .85rem;
-      color: #c8bfa0;
+      color: #4a3800;
     }
     .callout-gold strong { color: var(--gold-lt); display: block; margin-bottom: 3px; }
 
@@ -218,7 +218,7 @@
       padding: 12px 16px;
       margin: 12px 0;
       font-size: .85rem;
-      color: #c8bfa0;
+      color: #4a3800;
     }
     .callout-red strong { color: #e87060; display: block; margin-bottom: 3px; }
 

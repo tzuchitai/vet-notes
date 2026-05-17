@@ -6,16 +6,14 @@
   <title>🐾 獸醫讀書筆記</title>
   <style>
     :root {
-      --red:    #c0392b;
-      --blue:   #2980b9;
-      --green:  #27ae60;
-      --orange: #e67e22;
-      --purple: #8e44ad;
-      --teal:   #16a085;
-      --dark:   #2c3e50;
-      --text:   #34495e;
-      --border: #dce1e7;
-      --bg:     #f0f4f8;
+      --gold:   #c8962a;
+      --gold-lt:#f0c84a;
+      --gold-dk:#8a6010;
+      --gold-bg:#fdf6e3;
+      --dark:   #2c1f00;
+      --text:   #4a3800;
+      --border: #e8d5a0;
+      --bg:     #fdfaf2;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -28,14 +26,15 @@
 
     /* ── HEADER ── */
     header {
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
-      color: #fff;
+      background: linear-gradient(135deg, #fff8e8 0%, #fdf0c8 100%);
+      border-bottom: 3px solid var(--gold);
+      color: var(--dark);
       padding: 52px 24px 44px;
       text-align: center;
     }
     .header-paw { font-size: 2.8rem; margin-bottom: 12px; }
-    header h1 { font-size: 2rem; font-weight: 800; letter-spacing: .02em; }
-    header p  { margin-top: 8px; opacity: .75; font-size: .97rem; }
+    header h1 { font-size: 2rem; font-weight: 800; letter-spacing: .02em; color: var(--gold-dk); }
+    header p  { margin-top: 8px; opacity: .6; font-size: .97rem; color: var(--text); }
     .search-wrap {
       margin: 24px auto 0;
       max-width: 420px;
@@ -45,18 +44,18 @@
       width: 100%;
       padding: 13px 20px 13px 46px;
       border-radius: 50px;
-      border: none;
+      border: 2px solid var(--border);
       font-size: 1rem;
-      background: rgba(255,255,255,.15);
-      color: #fff;
+      background: #fff;
+      color: var(--dark);
       outline: none;
-      backdrop-filter: blur(6px);
     }
-    .search-wrap input::placeholder { color: rgba(255,255,255,.55); }
+    .search-wrap input:focus { border-color: var(--gold); }
+    .search-wrap input::placeholder { color: #c8a850; opacity: .7; }
     .search-wrap .search-icon {
       position: absolute; left: 16px; top: 50%;
       transform: translateY(-50%);
-      font-size: 1rem; opacity: .7;
+      font-size: 1rem; opacity: .6;
     }
 
     /* ── CONTAINER ── */
@@ -107,7 +106,7 @@
 
     /* ── COMING SOON CARD ── */
     .card-soon {
-      background: #f8f9fb;
+      background: #fffdf5;
       border: 2px dashed var(--border);
       box-shadow: none;
       cursor: default;
@@ -125,7 +124,7 @@
     .add-card {
       background: #fff;
       border-radius: 16px;
-      border: 2px dashed #c8d0da;
+      border: 2px dashed var(--border);
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       padding: 32px 20px;
@@ -148,7 +147,7 @@
       box-shadow: 0 2px 8px rgba(0,0,0,.06);
       flex: 1; min-width: 120px; text-align: center;
     }
-    .stat-num  { font-size: 1.6rem; font-weight: 800; color: var(--dark); }
+    .stat-num  { font-size: 1.6rem; font-weight: 800; color: var(--gold); }
     .stat-label{ font-size: .75rem; opacity: .55; margin-top: 2px; }
 
     /* ── RESPONSIVE ── */
@@ -203,7 +202,7 @@
 
     <!-- ── 輸血醫學 ── -->
     <a class="card" href="notes/blood-transfusion.html" data-title="輸血醫學 休克 血液 transfusion">
-      <div class="card-top" style="background:linear-gradient(90deg,#c0392b,#8e44ad)"></div>
+      <div class="card-top" style="background:linear-gradient(90deg,#c8962a,#e8b84b)"></div>
       <div class="card-body">
         <div class="card-icon">🩸</div>
         <div class="card-title">輸血醫學與休克復甦</div>
@@ -211,7 +210,7 @@
       </div>
       <div class="card-footer">
         <span class="card-date">2026-05-17</span>
-        <span class="card-arrow" style="background:#c0392b">→</span>
+        <span class="card-arrow" style="background:#c8962a">→</span>
       </div>
     </a>
 
