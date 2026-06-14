@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>住院伴侶動物護理與監控技術 | 獸醫讀書筆記</title>
+<style>
+  :root {
+    --primary: #2563eb;
+    --primary-light: #dbeafe;
+    --secondary: #0891b2;
+    --accent: #7c3aed;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
+
+  /* Sidebar */
+  #sidebar {
+    width: var(--sidebar-w); min-height: 100vh; background: linear-gradient(160deg,#1e3a5f 0%,#0f4c81 100%);
+    color: #fff; position: fixed; top: 0; left: 0; overflow-y: auto; z-index: 100;
+    transition: transform .3s;
+  }
+  #sidebar .logo { padding: 24px 20px 16px; border-bottom: 1px solid rgba(255,255,255,.15); }
+  #sidebar .logo h1 { font-size: 15px; font-weight: 700; line-height: 1.4; }
+  #sidebar .logo p { font-size: 11px; color: rgba(255,255,255,.6); margin-top: 4px; }
+  #sidebar nav { padding: 12px 0; }
+  #sidebar nav a {
+    display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+    color: rgba(255,255,255,.75); text-decoration: none; font-size: 13px; font-weight: 500;
+    transition: all .2s; border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: rgba(255,255,255,.1); color: #fff; border-left-color: #60a5fa;
+  }
+  #sidebar nav .section-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: .1em;
+    color: rgba(255,255,255,.4); padding: 14px 20px 4px; font-weight: 600;
+  }
+  #sidebar nav .icon { font-size: 16px; width: 20px; text-align: center; flex-shrink: 0; }
+
+  /* Main */
+  #main { margin-left: var(--sidebar-w); flex: 1; }
+
+  /* Hero */
+  #hero {
+    background: linear-gradient(135deg,#1e40af 0%,#0891b2 60%,#0f766e 100%);
+    color: #fff; padding: 60px 48px; position: relative; overflow: hidden;
+  }
+  #hero::before {
+    content: '🐾'; position: absolute; right: 60px; top: 30px; font-size: 120px; opacity: .15;
+  }
+  #hero h1 { font-size: 32px; font-weight: 800; line-height: 1.25; margin-bottom: 12px; }
+  #hero p { font-size: 16px; opacity: .85; max-width: 520px; line-height: 1.6; }
+  #hero .tags { margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
+  #hero .tag { background: rgba(255,255,255,.2); border-radius: 20px; padding: 4px 14px; font-size: 12px; font-weight: 600; }
+
+  /* Sections */
+  section { padding: 40px 48px; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+  .section-title { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+  .section-subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; }
+
+  /* Cards */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 16px; margin-bottom: 24px; }
+  .card {
+    background: var(--card); border-radius: 12px; border: 1px solid var(--border);
+    padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    transition: box-shadow .2s, transform .2s;
+  }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.1); transform: translateY(-2px); }
+  .card .card-icon { font-size: 28px; margin-bottom: 10px; }
+  .card h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+  .card.blue { border-left: 4px solid var(--primary); }
+  .card.teal { border-left: 4px solid var(--secondary); }
+  .card.purple { border-left: 4px solid var(--accent); }
+  .card.green { border-left: 4px solid var(--success); }
+  .card.orange { border-left: 4px solid var(--warning); }
+  .card.red { border-left: 4px solid var(--danger); }
+
+  /* APIE Steps */
+  .steps { display: flex; gap: 0; margin-bottom: 32px; flex-wrap: wrap; }
+  .step {
+    flex: 1; min-width: 160px; background: var(--card); border: 1px solid var(--border);
+    padding: 20px; position: relative; cursor: pointer; transition: all .2s;
+    border-radius: 0;
+  }
+  .step:first-child { border-radius: 12px 0 0 12px; }
+  .step:last-child { border-radius: 0 12px 12px 0; }
+  .step:hover, .step.active { background: var(--primary); color: #fff; }
+  .step:hover .step-sub, .step.active .step-sub { color: rgba(255,255,255,.7); }
+  .step .step-num { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--primary); margin-bottom: 4px; }
+  .step.active .step-num, .step:hover .step-num { color: rgba(255,255,255,.7); }
+  .step h4 { font-size: 15px; font-weight: 700; }
+  .step .step-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .step-detail { display: none; background: var(--primary-light); border-radius: 12px; padding: 20px 24px; margin-bottom: 24px; border: 1px solid #bfdbfe; }
+  .step-detail.show { display: block; }
+  .step-detail h4 { color: var(--primary); font-size: 16px; margin-bottom: 8px; }
+  .step-detail p, .step-detail li { font-size: 14px; color: var(--text); line-height: 1.7; }
+  .step-detail ul { padding-left: 20px; }
+
+  /* Tables */
+  .table-wrap { overflow-x: auto; margin-bottom: 24px; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--card); }
+  thead th { background: var(--primary); color: #fff; padding: 10px 14px; text-align: left; font-weight: 600; }
+  thead th:first-child { border-radius: 12px 0 0 0; }
+  thead th:last-child { border-radius: 0 12px 0 0; }
+  tbody tr:nth-child(even) { background: #f8fafc; }
+  tbody td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .badge { display: inline-block; border-radius: 20px; padding: 2px 10px; font-size: 11px; font-weight: 700; }
+  .badge-normal { background: #dcfce7; color: #166534; }
+  .badge-abnormal { background: #fee2e2; color: #991b1b; }
+
+  /* Info boxes */
+  .info-box { border-radius: 10px; padding: 16px 20px; margin-bottom: 16px; font-size: 14px; line-height: 1.7; }
+  .info-box.blue { background: #eff6ff; border-left: 4px solid var(--primary); color: #1e40af; }
+  .info-box.green { background: #f0fdf4; border-left: 4px solid var(--success); color: #166534; }
+  .info-box.orange { background: #fffbeb; border-left: 4px solid var(--warning); color: #92400e; }
+  .info-box.red { background: #fef2f2; border-left: 4px solid var(--danger); color: #991b1b; }
+  .info-box strong { font-weight: 700; }
+
+  /* Quiz */
+  .quiz-box { background: linear-gradient(135deg,#f5f3ff,#ede9fe); border: 1px solid #c4b5fd; border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+  .quiz-box .quiz-q { font-size: 15px; font-weight: 600; color: var(--accent); margin-bottom: 16px; line-height: 1.5; }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+  .quiz-opt {
+    background: #fff; border: 2px solid #ddd6fe; border-radius: 8px; padding: 10px 16px;
+    cursor: pointer; font-size: 13px; transition: all .2s; text-align: left;
+  }
+  .quiz-opt:hover { border-color: var(--accent); background: #f5f3ff; }
+  .quiz-opt.correct { border-color: var(--success); background: #f0fdf4; color: #166534; font-weight: 600; }
+  .quiz-opt.wrong { border-color: var(--danger); background: #fef2f2; color: #991b1b; }
+  .quiz-result { margin-top: 12px; font-size: 13px; display: none; font-weight: 600; }
+  .quiz-result.show { display: block; }
+
+  /* Calculator */
+  .calc-box { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+  .calc-box h3 { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--text); }
+  .form-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 140px; }
+  .form-group label { font-size: 12px; font-weight: 600; color: var(--text-muted); }
+  .form-group select, .form-group input {
+    border: 1.5px solid var(--border); border-radius: 8px; padding: 8px 12px;
+    font-size: 14px; color: var(--text); transition: border-color .2s;
+  }
+  .form-group select:focus, .form-group input:focus { outline: none; border-color: var(--primary); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--primary); color: #fff; border: none; border-radius: 8px;
+    padding: 10px 20px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background .2s;
+  }
+  .btn:hover { background: #1d4ed8; }
+  .calc-result { background: var(--primary-light); border-radius: 8px; padding: 14px 16px; margin-top: 16px; display: none; }
+  .calc-result.show { display: block; }
+  .calc-result .result-val { font-size: 24px; font-weight: 800; color: var(--primary); }
+  .calc-result .result-label { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+  /* Pulse table */
+  .pulse-badge {
+    display: inline-block; border-radius: 6px; padding: 2px 8px; font-size: 11px; font-weight: 700;
+  }
+  .pulse-strong { background: #fef3c7; color: #92400e; }
+  .pulse-weak { background: #fce7f3; color: #9d174d; }
+  .pulse-absent { background: #fee2e2; color: #991b1b; }
+
+  /* CRT visual */
+  .crt-demo { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+  .crt-item { flex: 1; min-width: 120px; border-radius: 10px; padding: 14px; text-align: center; border: 2px solid; }
+  .crt-item .crt-time { font-size: 22px; font-weight: 800; }
+  .crt-item .crt-label { font-size: 11px; font-weight: 600; margin-top: 4px; }
+  .crt-normal { border-color: #86efac; background: #f0fdf4; color: #166534; }
+  .crt-warn { border-color: #fcd34d; background: #fffbeb; color: #92400e; }
+  .crt-danger { border-color: #fca5a5; background: #fef2f2; color: #991b1b; }
+
+  /* Mucosa colors */
+  .mucosa-grid { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+  .mucosa-item { flex: 1; min-width: 110px; border-radius: 10px; padding: 14px 12px; text-align: center; border: 1px solid var(--border); }
+  .mucosa-item .mucosa-color { width: 40px; height: 40px; border-radius: 50%; margin: 0 auto 8px; }
+  .mucosa-item .mucosa-label { font-size: 12px; font-weight: 700; }
+  .mucosa-item .mucosa-meaning { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+
+  /* Blood pressure gauge */
+  .bp-cards { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+  .bp-card { flex: 1; min-width: 200px; border-radius: 12px; padding: 20px; }
+  .bp-card .species { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; opacity: .7; margin-bottom: 8px; }
+  .bp-card .bp-val { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+  .bp-card .bp-unit { font-size: 12px; opacity: .7; }
+  .bp-dog { background: linear-gradient(135deg,#dbeafe,#bfdbfe); border: 1px solid #93c5fd; color: #1e40af; }
+  .bp-cat { background: linear-gradient(135deg,#fce7f3,#fbcfe8); border: 1px solid #f9a8d4; color: #831843; }
+
+  /* Route table colored */
+  .route-oral { color: #065f46; font-weight: 600; }
+  .route-sq { color: #1e40af; font-weight: 600; }
+  .route-iv { color: #7c3aed; font-weight: 600; }
+  .route-ip { color: #92400e; font-weight: 600; }
+  .route-io { color: #991b1b; font-weight: 600; }
+
+  /* Fluid calc */
+  #fluid-result-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  #fluid-result-table td { padding: 8px 12px; border-bottom: 1px solid #e0e7ff; }
+  #fluid-result-table td:first-child { font-weight: 600; color: var(--text-muted); width: 50%; }
+  #fluid-result-table td:last-child { font-weight: 700; color: var(--primary); font-size: 15px; }
+
+  /* Nav toggle mobile */
+  #nav-toggle { display: none; position: fixed; bottom: 20px; right: 20px; z-index: 200; background: var(--primary); color: #fff; border: none; border-radius: 50%; width: 48px; height: 48px; font-size: 20px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,.25); }
+
+  @media (max-width: 768px) {
+    :root { --sidebar-w: 260px; }
+    #sidebar { transform: translateX(-100%); }
+    #sidebar.open { transform: translateX(0); }
+    #main { margin-left: 0; }
+    section { padding: 28px 20px; }
+    #hero { padding: 40px 20px; }
+    #hero h1 { font-size: 22px; }
+    #nav-toggle { display: flex; align-items: center; justify-content: center; }
+    .steps { flex-direction: column; }
+    .step:first-child { border-radius: 12px 12px 0 0; }
+    .step:last-child { border-radius: 0 0 12px 12px; }
+  }
+
+  /* Back bar */
+  #back-bar {
+    position: sticky; top: 0; z-index: 200;
+    background: #fff8e8; border-bottom: 2px solid #c8962a;
+    padding: 10px 20px; display: flex; align-items: center; gap: 12px;
+  }
+  #back-bar a {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: #8a6010; text-decoration: none; font-size: 13px; font-weight: 600;
+    border: 1.5px solid #c8962a; border-radius: 20px; padding: 4px 12px;
+    transition: background .2s;
+  }
+  #back-bar a:hover { background: #fdf0c8; }
+  #back-bar .back-title { font-size: 13px; font-weight: 700; color: #4a3800; opacity: .6; }
+
+  /* Smooth scroll */
+  html { scroll-behavior: smooth; }
+
+  /* Highlight */
+  mark { background: #fef9c3; border-radius: 3px; padding: 1px 3px; }
+
+  /* Accordion */
+  .accordion { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 16px; }
+  .accordion-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 20px; cursor: pointer; font-weight: 600; font-size: 14px;
+    background: var(--card); transition: background .2s;
+  }
+  .accordion-header:hover { background: #f8fafc; }
+  .accordion-header .arrow { transition: transform .3s; font-size: 12px; }
+  .accordion-body { display: none; padding: 16px 20px; background: #fafbfc; font-size: 13px; line-height: 1.7; border-top: 1px solid var(--border); }
+  .accordion-body.open { display: block; }
+  .accordion-header.open .arrow { transform: rotate(90deg); }
+</style>
+</head>
+<body>
+
+<!-- Back bar -->
+<div id="back-bar">
+  <a href="../index.html">← 返回首頁</a>
+  <span class="back-title">獸醫讀書筆記 / 住院伴侶動物護理與監控技術</span>
+</div>
+
+<!-- Sidebar -->
+<nav id="sidebar">
+  <div class="logo">
+    <h1>住院伴侶動物<br>護理與監控技術</h1>
+    <p>戴子綺 醫師 · 聯盟動物醫院</p>
+  </div>
+  <nav>
+    <div class="section-label">課程導覽</div>
+    <a href="#home" class="active"><span class="icon">🏠</span>首頁</a>
+    <a href="#overview"><span class="icon">📋</span>課程大綱</a>
+
+    <div class="section-label">護理流程</div>
+    <a href="#nursing-process"><span class="icon">🔄</span>獸醫護理流程 APIE</a>
+    <a href="#assessment"><span class="icon">🔍</span>評估 Assessment</a>
+    <a href="#vital-signs"><span class="icon">❤️</span>生命徵象</a>
+    <a href="#mucosa"><span class="icon">👁️</span>黏膜與 CRT</a>
+    <a href="#gi-monitoring"><span class="icon">🫁</span>胃腸道監測</a>
+
+    <div class="section-label">臨床技術</div>
+    <a href="#nutrition"><span class="icon">🍽️</span>營養與餵食</a>
+    <a href="#medical-nursing"><span class="icon">💉</span>內科護理與監測</a>
+    <a href="#blood-pressure"><span class="icon">📊</span>血壓測量</a>
+    <a href="#venipuncture"><span class="icon">🩸</span>靜脈穿刺</a>
+    <a href="#drug-admin"><span class="icon">💊</span>給藥途徑</a>
+    <a href="#fluid-therapy"><span class="icon">🧴</span>輸液治療</a>
+    <a href="#blood-transfusion"><span class="icon">🩸</span>輸血療法</a>
+
+    <div class="section-label">計算工具</div>
+    <a href="#calculator"><span class="icon">🧮</span>RER 熱量計算機</a>
+    <a href="#fluid-calc"><span class="icon">💧</span>輸液量計算機</a>
+  </nav>
+</nav>
+
+<!-- Mobile toggle -->
+<button id="nav-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+
+<!-- Main Content -->
+<main id="main">
+
+  <!-- Hero -->
+  <div id="home" style="scroll-margin-top: 0;">
+    <div id="hero">
+      <h1>住院伴侶動物<br>護理與監控技術</h1>
+      <p>系統性整理住院動物護理的核心知識，從評估、計畫、執行到評估結果，涵蓋生命徵象監測、給藥途徑、輸液治療等關鍵技能。</p>
+      <div class="tags">
+        <span class="tag">獸醫護理流程</span>
+        <span class="tag">生命徵象監測</span>
+        <span class="tag">輸液治療</span>
+        <span class="tag">輸血療法</span>
+        <span class="tag">呼吸急救</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Instructor -->
+  <section>
+    <div class="section-title">👩‍⚕️ 講師介紹</div>
+    <div class="card-grid">
+      <div class="card blue">
+        <div class="card-icon">🏥</div>
+        <h3>現任職位</h3>
+        <p>聯盟動物醫院 桃園龜山萬壽分院 院長<br>專長：心臟科、內科、腹腔超音波</p>
+      </div>
+      <div class="card teal">
+        <div class="card-icon">🎓</div>
+        <h3>學術背景</h3>
+        <p>台灣大學獸醫學系<br>台灣大學臨床動物醫學研究所<br>台灣大學附設動物醫院 內科心臟科醫師</p>
+      </div>
+      <div class="card purple">
+        <div class="card-icon">✨</div>
+        <h3>核心服務</h3>
+        <p>心臟超音波・急慢性心衰竭控制<br>術前心肺評估・腸胃道/血液/皮膚/腎臟疾病</p>
+      </div>
+    </div>
+    <div class="info-box blue">
+      <strong>🤔 課程核心問題：</strong><br>
+      「如果一隻動物今天病治好了，但牠在住院期間一直很害怕、很痛苦、吃不好、睡不好，我們真的算照顧好牠了嗎？」
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section id="overview">
+    <div class="section-title">📋 課程大綱</div>
+    <div class="section-subtitle">本課程涵蓋七大主題，從護理流程到進階臨床技術</div>
+    <div class="card-grid">
+      <div class="card blue">
+        <div class="card-icon">🔄</div>
+        <h3>1. 獸醫護理流程</h3>
+        <p>The Veterinary Nursing Process<br>評估 → 計畫 → 執行 → 評估結果</p>
+      </div>
+      <div class="card teal">
+        <div class="card-icon">🌿</div>
+        <h3>2. 恢復正常生理狀態</h3>
+        <p>Establishing Normalcy<br>營養評估、餵食支持</p>
+      </div>
+      <div class="card purple">
+        <div class="card-icon">👶</div>
+        <h3>3. 新生與幼年動物照護</h3>
+        <p>Neonatal and Pediatric Care<br>特殊族群護理需求</p>
+      </div>
+      <div class="card green">
+        <div class="card-icon">🛏️</div>
+        <h3>4. 臥床病患照護</h3>
+        <p>Recumbent Patient Care<br>體位管理、皮膚護理</p>
+      </div>
+      <div class="card orange">
+        <div class="card-icon">🔬</div>
+        <h3>5. 內科護理</h3>
+        <p>Medical Nursing<br>血壓、ECG、血氣分析、CVP</p>
+      </div>
+      <div class="card blue">
+        <div class="card-icon">💧</div>
+        <h3>6. 輸液治療</h3>
+        <p>Fluid Therapy<br>脫水評估、輸液計算</p>
+      </div>
+      <div class="card red">
+        <div class="card-icon">🩸</div>
+        <h3>7. 輸血療法</h3>
+        <p>Blood Transfusions<br>血型、輸血適應症</p>
+      </div>
+      <div class="card teal">
+        <div class="card-icon">🫁</div>
+        <h3>8. 氧氣治療與呼吸急救</h3>
+        <p>Oxygen Therapy &amp; Respiratory Emergency<br>呼吸評估、氧療技術</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- APIE -->
+  <section id="nursing-process">
+    <div class="section-title">🔄 獸醫護理流程（APIE）</div>
+    <div class="section-subtitle">四步驟循環流程，持續優化住院動物照護品質</div>
+
+    <div class="steps">
+      <div class="step active" onclick="showStep(0)" id="step-0">
+        <div class="step-num">步驟一</div>
+        <h4>評估</h4>
+        <div class="step-sub">Assessment</div>
+      </div>
+      <div class="step" onclick="showStep(1)" id="step-1">
+        <div class="step-num">步驟二</div>
+        <h4>計畫</h4>
+        <div class="step-sub">Planning</div>
+      </div>
+      <div class="step" onclick="showStep(2)" id="step-2">
+        <div class="step-num">步驟三</div>
+        <h4>執行</h4>
+        <div class="step-sub">Implementation</div>
+      </div>
+      <div class="step" onclick="showStep(3)" id="step-3">
+        <div class="step-num">步驟四</div>
+        <h4>評估結果</h4>
+        <div class="step-sub">Evaluation</div>
+      </div>
+    </div>
+
+    <div class="step-detail show" id="detail-0">
+      <h4>步驟一：評估（Assessment）</h4>
+      <p>收集病患完整資訊，包括：</p>
+      <ul>
+        <li>主訴與病史詢問</li>
+        <li>理學檢查（脈搏、呼吸、體溫、黏膜、CRT）</li>
+        <li>排泄物監測（尿液、糞便、嘔吐物）</li>
+        <li>疼痛與行為評估</li>
+      </ul>
+    </div>
+    <div class="step-detail" id="detail-1">
+      <h4>步驟二：計畫（Planning）</h4>
+      <p>根據評估資料進行「技術人員評估」（Technician Evaluation）：</p>
+      <ul>
+        <li>辨識當前問題、潛在風險</li>
+        <li>包括病患心理／生理需求與飼主能力判斷</li>
+        <li>訂出優先順序與後續介入措施</li>
+      </ul>
+      <p style="margin-top:10px;"><strong>範例：</strong>若病患呈現呼吸急促、發紺、脈搏血氧下降，技術人員可評估為<mark>缺氧（hypoxia）</mark>，進而計畫吸氧介入。</p>
+    </div>
+    <div class="step-detail" id="detail-2">
+      <h4>步驟三：執行（Implementation）</h4>
+      <p>針對每一項評估設定期望結果與介入措施：</p>
+      <ul>
+        <li>缺氧 → 目標為回復正常血氧、呼吸順暢</li>
+        <li>評估黏膜顏色、血氧飽和度、呼吸型態是否改善</li>
+        <li>心臟衰竭肺水腫 → 給予利尿劑與吸氧</li>
+      </ul>
+    </div>
+    <div class="step-detail" id="detail-3">
+      <h4>步驟四：評估結果（Evaluation）</h4>
+      <p>持續監測病患對介入的反應，並根據病況調整護理計劃。若目標未達成，需：</p>
+      <ul>
+        <li>重新檢視措施是否合適</li>
+        <li>是否需增加檢查（如影像、實驗室數據）</li>
+        <li>是否需要新的技術人員評估項目</li>
+      </ul>
+      <p style="margin-top:10px;"><strong>範例：</strong>若判定為心衰竭肺水腫，但給予利尿劑後沒有良好反應，需再評估是否有其他肺臟疾病。</p>
+    </div>
+  </section>
+
+  <!-- Assessment -->
+  <section id="assessment">
+    <div class="section-title">🔍 評估（Assessment）</div>
+    <div class="section-subtitle">系統性收集病患資訊，建立完整臨床圖像</div>
+    <div class="card-grid">
+      <div class="card blue">
+        <div class="card-icon">💬</div>
+        <h3>主訴與病史</h3>
+        <p>了解動物就醫的主要原因、發病時間、用藥史、飲食狀況及飼主觀察到的異常行為。</p>
+      </div>
+      <div class="card teal">
+        <div class="card-icon">🩺</div>
+        <h3>理學檢查</h3>
+        <p>系統性評估各器官系統：心肺聽診、脈搏觸診、黏膜顏色、CRT、體溫、腹部觸診。</p>
+      </div>
+      <div class="card green">
+        <div class="card-icon">💧</div>
+        <h3>排泄物監測</h3>
+        <p>記錄尿液量、顏色，糞便性狀，嘔吐物顏色與成分，唾液量等所有分泌物。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vital Signs -->
+  <section id="vital-signs">
+    <div class="section-title">❤️ 生命徵象監測</div>
+    <div class="section-subtitle">脈搏、呼吸、體溫是評估住院動物最基本的三項指標</div>
+
+    <!-- Pulse -->
+    <h3 style="font-size:17px;font-weight:700;margin-bottom:12px;color:var(--text);">脈搏（Pulse）</h3>
+
+    <div class="info-box blue" style="margin-bottom:16px;">
+      <strong>股動脈血壓估算：</strong><br>
+      • 觸摸鼠蹊部脈搏可觸及 → 收縮壓至少 <strong>60 mmHg</strong><br>
+      • 觸摸腳掌脈搏可觸及 → 收縮壓至少 <strong>90 mmHg</strong>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>脈搏型態</th>
+            <th>特性說明</th>
+            <th>可能臨床意義</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="pulse-badge pulse-strong">Bounding / Hyperkinetic</span><br><small>強烈跳動</small></td>
+            <td>有力、快速上升下降</td>
+            <td>補償期；發燒、嚴重貧血、主動脈瓣逆流、代償性血管擴張性休克</td>
+          </tr>
+          <tr>
+            <td><span class="pulse-badge pulse-weak">Thready</span><br><small>脈弱如絲</small></td>
+            <td>脈搏微弱、細細一條，難以觸及</td>
+            <td>輕中度低血容量或早期去補償性休克</td>
+          </tr>
+          <tr>
+            <td><span class="pulse-badge pulse-weak">Weak</span><br><small>弱脈搏</small></td>
+            <td>快速、但脈搏觸感弱</td>
+            <td>心源性休克（DCM、CHF、心包填塞）或進展性低血容量/分布性休克</td>
+          </tr>
+          <tr>
+            <td><span class="pulse-badge pulse-absent">Absent</span><br><small>無脈搏</small></td>
+            <td>摸不到脈搏</td>
+            <td>循環崩潰、重度休克、主動脈栓塞或死亡（CPR 時不建議以此判斷）</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Respiration -->
+    <h3 style="font-size:17px;font-weight:700;margin:24px 0 12px;color:var(--text);">呼吸（Respiration）</h3>
+
+    <div class="card-grid">
+      <div class="card green">
+        <div class="card-icon">🌬️</div>
+        <h3>正常呼吸速率</h3>
+        <p>小型動物正常呼吸速率：<br><strong style="font-size:24px;color:var(--success);">18–30 次/分鐘</strong></p>
+      </div>
+      <div class="card blue">
+        <div class="card-icon">👂</div>
+        <h3>呼吸音</h3>
+        <p>• 刺耳音（harsh）<br>• 靜音（static）<br>• 爆裂音（crackle）</p>
+      </div>
+      <div class="card orange">
+        <div class="card-icon">⚠️</div>
+        <h3>異常呼吸模式</h3>
+        <p>• <strong>吸氣困難</strong>：吸氣時間較長<br>• <strong>呼氣困難</strong>：呼氣時間較長<br>• <strong>端坐呼吸</strong>：躺下困難，腹肌協助</p>
+      </div>
+    </div>
+
+    <!-- Interactive Quiz -->
+    <div class="quiz-box">
+      <div class="quiz-q">🤔 臨床情境：一隻住院動物看起來很安靜地躺著，但你發現牠呼吸比較快。你會觀察哪些事情來判斷牠是真的呼吸困難，還是只是緊張？（可複選）</div>
+      <div class="quiz-options" id="q1-options">
+        <button class="quiz-opt" onclick="toggleMulti(this,'q1')">A. 呼吸速率（Respiratory Rate）</button>
+        <button class="quiz-opt" onclick="toggleMulti(this,'q1')">B. 呼吸音（Respiratory Sounds）</button>
+        <button class="quiz-opt" onclick="toggleMulti(this,'q1')">C. 吸氣或呼氣是否費力</button>
+        <button class="quiz-opt" onclick="toggleMulti(this,'q1')">D. 是否有開口呼吸</button>
+        <button class="quiz-opt" onclick="toggleMulti(this,'q1')">E. 呼吸姿勢與呼吸模式</button>
+      </div>
+      <button class="btn" style="margin-top:12px;" onclick="checkMulti('q1')">確認答案</button>
+      <div class="quiz-result" id="q1-result"></div>
+    </div>
+  </section>
+
+  <!-- Mucosa & CRT -->
+  <section id="mucosa">
+    <div class="section-title">👁️ 黏膜顏色與 CRT</div>
+    <div class="section-subtitle">黏膜評估是快速判斷循環狀態的重要工具</div>
+
+    <div class="mucosa-grid">
+      <div class="mucosa-item">
+        <div class="mucosa-color" style="background:#f4a7b9;"></div>
+        <div class="mucosa-label">粉紅色</div>
+        <div class="mucosa-meaning">正常</div>
+      </div>
+      <div class="mucosa-item">
+        <div class="mucosa-color" style="background:#f0f0f0;border:1px solid #ccc;"></div>
+        <div class="mucosa-label">淺白/白色</div>
+        <div class="mucosa-meaning">體溫過低、貧血、心輸出量低</div>
+      </div>
+      <div class="mucosa-item">
+        <div class="mucosa-color" style="background:#c0392b;"></div>
+        <div class="mucosa-label">紅磚色</div>
+        <div class="mucosa-meaning">充血或高碳酸血症</div>
+      </div>
+      <div class="mucosa-item">
+        <div class="mucosa-color" style="background:#2c3e6b;"></div>
+        <div class="mucosa-label">發紺（青色）</div>
+        <div class="mucosa-meaning">去氧血紅蛋白增高、氧氣運輸問題</div>
+      </div>
+    </div>
+
+    <div class="info-box orange">
+      <strong>⚠️ 注意：</strong>健康的動物黏膜通常呈粉紅色，但這<strong>不代表血液灌流一定正常</strong>。需搭配 CRT 及其他生命徵象綜合判斷。
+    </div>
+
+    <h3 style="font-size:17px;font-weight:700;margin:24px 0 12px;">CRT（毛細血管回填時間）</h3>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">輕壓牙齦使其變白，然後計算恢復正常顏色所需時間。</p>
+
+    <div class="crt-demo">
+      <div class="crt-item crt-normal">
+        <div class="crt-time">1–2 秒</div>
+        <div class="crt-label">✅ 正常</div>
+      </div>
+      <div class="crt-item crt-warn">
+        <div class="crt-time">2–3 秒</div>
+        <div class="crt-label">⚠️ 警示</div>
+      </div>
+      <div class="crt-item crt-danger">
+        <div class="crt-time">&gt; 3 秒</div>
+        <div class="crt-label">🚨 異常</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span>CRT 延長的原因</span><span class="arrow">▶</span>
+      </div>
+      <div class="accordion-body">
+        <ul style="padding-left:20px;">
+          <li><strong>脫水</strong>：血液濃度增加，導致毛細血管回填時間延長</li>
+          <li><strong>貧血</strong>：降低血液中的紅細胞數，影響毛細血管回填</li>
+          <li><strong>休克</strong>：血液流動減少，導致 CRT 延長</li>
+          <li><strong>心臟疾病</strong>：影響血液流動和毛細血管回填</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- GI Monitoring -->
+  <section id="gi-monitoring">
+    <div class="section-title">🫁 胃腸道監測</div>
+    <div class="section-subtitle">系統性記錄所有分泌物，及早發現異常</div>
+
+    <div class="card-grid">
+      <div class="card blue">
+        <div class="card-icon">💧</div>
+        <h3>尿液監測</h3>
+        <p>正常尿液輸出：<strong>1–2 ml/kg/hr</strong><br>記錄排尿頻率與尿液量。臥床病患可使用尿布收集。</p>
+      </div>
+      <div class="card orange">
+        <div class="card-icon">🤢</div>
+        <h3>嘔吐 vs 食物逆流</h3>
+        <p><strong>嘔吐</strong>：主動且有推進力<br><strong>食物逆流</strong>：被動，與姿勢有關<br>兩者處置方式不同！</p>
+      </div>
+      <div class="card teal">
+        <div class="card-icon">💩</div>
+        <h3>糞便監測</h3>
+        <p>記錄顏色（黑色、紅色、含血）、質地（黏液狀、水狀）。水狀或帶血糞便是胃腸道出血危急徵兆。</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <span>分泌物描述要點</span><span class="arrow">▶</span>
+      </div>
+      <div class="accordion-body">
+        <p><strong>嘔吐物：</strong>顏色（黃色、綠色、咖啡色）+ 成分（部分消化食物、未消化食物、水狀、有無異味）</p>
+        <p style="margin-top:8px;"><strong>糞便：</strong>顏色（黑色、紅色、含血）+ 質地（黏液狀、水狀）</p>
+        <p style="margin-top:8px;"><strong>尿液：</strong>量（ml/hr）+ 顏色 + 氣味</p>
+      </div>
+    </div>
+
+    <div class="info-box green">
+      <strong>🔑 重要：</strong>對有嘔吐、腹瀉、食慾不振或臥病病史的病患，都必須監測腸音。將聽診器置於最後一根肋骨的腹側，監測胃是否發出氣體的咕嚕聲。
+    </div>
+
+    <div class="info-box orange">
+      <strong>⚠️ 安全提醒：</strong>處理尿液時務必戴上手套，特別是疑似患有<strong>鉤端螺旋體病</strong>的犬隻。
+    </div>
+  </section>
+
+  <!-- Nutrition -->
+  <section id="nutrition">
+    <div class="section-title">🍽️ 營養與餵食支持</div>
+    <div class="section-subtitle">住院動物的營養狀況直接影響康復速度</div>
+
+    <h3 style="font-size:16px;font-weight:700;margin-bottom:12px;">食慾低落的支持方式</h3>
+    <div class="card-grid">
+      <div class="card green">
+        <div class="card-icon">🍲</div>
+        <h3>改善進食意願</h3>
+        <p>• 改變食物型態或加熱餐食<br>• 移除伊麗莎白項圈<br>• 將食物遠離貓砂盆或尿墊</p>
+      </div>
+      <div class="card orange">
+        <div class="card-icon">📏</div>
+        <h3>灌食評估指標</h3>
+        <p>• 無法進食 &gt; 12 小時以上<br>• BCS &lt; 3/9 或體重持續下降<br>• 術後、口腔疼痛、神經異常</p>
+      </div>
+      <div class="card blue">
+        <div class="card-icon">🔧</div>
+        <h3>餵食工具</h3>
+        <p>• 經口灌食<br>• 鼻胃管（nasogastric tube）<br>• 食道餵管（esophageal tube）</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px;font-weight:700;margin:24px 0 12px;">犬熱量需求因子（Dog MER Factors）</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>生理狀態</th><th>熱量需求因子</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>絕育成犬（Neutered adult）</td><td>1.6 × RER</td></tr>
+          <tr><td>未絕育成犬（Intact adult）</td><td>1.8 × RER</td></tr>
+          <tr><td>活動力低 / 肥胖</td><td>1.2–1.4 × RER</td></tr>
+          <tr><td>減重</td><td>1.0 × RER</td></tr>
+          <tr><td>增重</td><td>1.2–1.8 × 目標體重 RER</td></tr>
+          <tr><td>懷孕（最後三週）</td><td>3.0 × RER</td></tr>
+          <tr><td>幼犬（4個月起至成年）</td><td>2.0 × RER</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:16px;font-weight:700;margin:24px 0 12px;">貓熱量需求因子（Cat MER Factors）</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>生理狀態</th><th>熱量需求因子</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>絕育成貓（Neutered adult）</td><td>1.2–1.4 × RER</td></tr>
+          <tr><td>未絕育成貓（Intact adult）</td><td>1.4–1.6 × RER</td></tr>
+          <tr><td>活動力低 / 易胖</td><td>1.0 × RER</td></tr>
+          <tr><td>減重</td><td>0.8 × RER</td></tr>
+          <tr><td>增重</td><td>1.2–1.8 × 目標體重 RER</td></tr>
+          <tr><td>熟齡貓（Senior）</td><td>1.1–1.4 × RER</td></tr>
+          <tr><td>高齡貓（Geriatric）</td><td>1.1–1.6 × RER</td></tr>
+          <tr><td>幼貓（Kitten）</td><td>2.5 × RER</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Medical Nursing -->
+  <section id="medical-nursing">
+    <div class="section-title">🔬 內科護理：病患監測</div>
+    <div class="section-subtitle">住院病患的監測是獸醫技術人員最關鍵的責任之一</div>
+    <div class="card-grid">
+      <div class="card blue"><div class="card-icon">📊</div><h3>血壓測量</h3><p>評估循環狀態，判斷低血壓或高血壓，計算 MAP 確保重要器官灌流。</p></div>
+      <div class="card teal"><div class="card-icon">🫀</div><h3>心電圖（ECG）</h3><p>監測心律、心率及心電圖異常波形，識別各種心律不整。</p></div>
+      <div class="card purple"><div class="card-icon">🔬</div><h3>血氣分析</h3><p>評估酸鹼狀態、氧合狀況及電解質，指導輸液與呼吸治療。</p></div>
+      <div class="card green"><div class="card-icon">📏</div><h3>中央靜脈壓（CVP）</h3><p>監測前負荷，評估靜脈回流與右心功能，指導輸液速度。</p></div>
+    </div>
+  </section>
+
+  <!-- Blood Pressure -->
+  <section id="blood-pressure">
+    <div class="section-title">📊 血壓測量與評估</div>
+    <div class="section-subtitle">MAP 至少需達 60 mmHg 才能有效灌流至心臟、腦部、腎臟</div>
+
+    <div class="info-box blue" style="margin-bottom:20px;">
+      <strong>💡 MAP 計算公式：</strong><br>
+      MAP = 舒張壓 + 1/3 × (收縮壓 − 舒張壓)<br>
+      <small>（心週期三分之二接近舒張期，故非單純平均值）</small>
+    </div>
+
+    <div class="bp-cards">
+      <div class="bp-card bp-dog">
+        <div class="species">🐕 犬（Canine）</div>
+        <div class="bp-val">收縮壓：90–140 mmHg</div>
+        <div class="bp-unit">舒張壓：60–85 mmHg</div>
+        <div class="bp-unit">MAP：80–105 mmHg</div>
+        <div style="margin-top:10px;font-size:12px;opacity:.8;">異常：收縮壓 &lt;90 或 &gt;140 mmHg</div>
+      </div>
+      <div class="bp-card bp-cat">
+        <div class="species">🐱 貓（Feline）</div>
+        <div class="bp-val">收縮壓：90–140 mmHg</div>
+        <div class="bp-unit">舒張壓：80–90 mmHg</div>
+        <div class="bp-unit">MAP：80–105 mmHg</div>
+        <div style="margin-top:10px;font-size:12px;opacity:.8;">異常：收縮壓 &lt;90 或 &gt;140 mmHg</div>
+      </div>
+    </div>
+
+    <div class="quiz-box">
+      <div class="quiz-q">❓ MAP 至少需達多少 mmHg，才能有效灌流至心臟、腦部、腎臟等重要器官？</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="checkSingle(this,'wrong')">A. 40 mmHg</button>
+        <button class="quiz-opt" onclick="checkSingle(this,'wrong')">B. 50 mmHg</button>
+        <button class="quiz-opt" onclick="checkSingle(this,'correct')">C. 60 mmHg</button>
+        <button class="quiz-opt" onclick="checkSingle(this,'wrong')">D. 80 mmHg</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Venipuncture -->
+  <section id="venipuncture">
+    <div class="section-title">🩸 靜脈穿刺與採血</div>
+    <div class="section-subtitle">熟悉各部位靜脈位置，提升穿刺成功率</div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>項目</th><th>說明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>部位準備</strong></td><td>使用 70% 酒精清潔皮膚並增加血管可視性；可少量剃毛輔助定位；血液培養需外科無菌術</td></tr>
+          <tr><td><strong>壓迫技巧</strong></td><td>數位壓迫靜脈使其充血與固定，利於觸診與穿刺</td></tr>
+          <tr><td><strong>觸診技巧</strong></td><td>橫向滑動手指，靜脈如繃緊鉛筆般滑動；輕敲法也可協助確認</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:16px;font-weight:700;margin-bottom:12px;">常用靜脈穿刺部位</h3>
+    <div class="card-grid">
+      <div class="card blue"><div class="card-icon">💪</div><h3>前肢頭側靜脈（Cephalic）</h3><p>最常用的靜脈穿刺部位，位於前肢內側，容易固定。</p></div>
+      <div class="card teal"><div class="card-icon">🦵</div><h3>外側隱靜脈（Lateral Saphenous）</h3><p>後肢外側，適合犬隻，貓較少使用。</p></div>
+      <div class="card purple"><div class="card-icon">🦵</div><h3>內側隱靜脈（Medial Saphenous）</h3><p>後肢內側，貓常用，需注意固定方式。</p></div>
+      <div class="card green"><div class="card-icon">🫀</div><h3>頸靜脈（Jugular）</h3><p>大血管，適合快速採血或需要大量血液，需謹慎操作。</p></div>
+    </div>
+  </section>
+
+  <!-- Drug Administration -->
+  <section id="drug-admin">
+    <div class="section-title">💊 給藥途徑</div>
+    <div class="section-subtitle">依病患狀況選擇最適合的給藥路徑</div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>途徑</th><th>適應症</th><th>可能併發症</th><th>注意事項</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong class="route-oral">口服 (Oral)</strong></td>
+            <td>輕微脫水、厭食初期、新生動物</td>
+            <td>意外氣管插管與吸入性肺炎（尤其新生動物）</td>
+            <td>禁忌：嘔吐、腹瀉、吞嚥困難、休克</td>
+          </tr>
+          <tr>
+            <td><strong class="route-sq">皮下 (SQ)</strong></td>
+            <td>輕至中度脫水、維持性輸液</td>
+            <td>注射部位感染（罕見）</td>
+            <td>液體須預熱至體溫；每處最多 10–20 ml/kg；禁忌：低體溫、重度脫水</td>
+          </tr>
+          <tr>
+            <td><strong class="route-iv">靜脈 (IV)</strong></td>
+            <td>嚴重脫水、手術前預防性補液、嘔吐</td>
+            <td>靜脈炎、敗血症、栓塞、輸液過量</td>
+            <td>須計算速率並密切監測；每 6–8 小時沖洗導管一次</td>
+          </tr>
+          <tr>
+            <td><strong class="route-ip">腹腔內 (IP)</strong></td>
+            <td>輕至中度脫水、無法取得靜脈通路時</td>
+            <td>腹膜炎、腹腔膿瘍</td>
+            <td>液體需預熱；吸收時間約 20 分鐘；禁忌：腹水、腹膜炎、胰臟炎</td>
+          </tr>
+          <tr>
+            <td><strong class="route-io">骨內 (IO)</strong></td>
+            <td>小型動物（&lt;5 kg）、新生動物或無法取得靜脈通路者</td>
+            <td>骨髓炎、骨折、骨骼生長板損傷</td>
+            <td>若未持續輸液，須每 6–8 小時沖洗；應儘速改為靜脈導管（24–72 小時內）</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:16px;font-weight:700;margin:20px 0 12px;">肌肉注射（IM）適用部位</h3>
+    <div class="card-grid">
+      <div class="card green"><div class="card-icon">✅</div><h3>適合注射部位</h3><p>• 腰椎 L3-5 節軸上肌（epaxial muscle）—小型病患<br>• 大腿前側四頭肌<br>• 肱骨後側三頭肌</p></div>
+      <div class="card red"><div class="card-icon">⛔</div><h3>避免注射部位</h3><p>• 大腿後側半膜肌與半腱肌<br>操作不當可能損傷<strong>坐骨神經</strong></p></div>
+    </div>
+  </section>
+
+  <!-- Fluid Therapy -->
+  <section id="fluid-therapy">
+    <div class="section-title">💧 輸液治療（Fluid Therapy）</div>
+    <div class="section-subtitle">依脫水程度、失水原因與身體狀態，制定個別化輸液計畫</div>
+
+    <div class="info-box blue">
+      <strong>適應症：</strong>脫水、休克、失血、手術、電解質失衡、酸鹼失衡等<br>
+      <strong>評估依據：</strong>脫水程度 · 灌流狀態（黏膜、CRT）· 體重與體況 · 疾病狀態<br>
+      <strong>目標：</strong>補充水分與電解質 · 恢復循環容積 · 維持或矯正酸鹼平衡
+    </div>
+
+    <div class="table-wrap" style="margin-top:20px;">
+      <table>
+        <thead>
+          <tr><th>目的</th><th>計算依據</th><th>建議劑量／速率</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>麻醉處置</td>
+            <td>維持輸液 + 每小時少於 10 ml/kg 的損失補充</td>
+            <td>貓：3 ml/kg/hr；狗：5 ml/kg/hr（視病患狀況調整）</td>
+          </tr>
+          <tr>
+            <td>術後補液</td>
+            <td>結合脫水補充、維持需求與持續性損失調整</td>
+            <td>與術前輸液計算相同；根據臨床情況評估重新調整</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Blood Transfusion -->
+  <section id="blood-transfusion">
+    <div class="section-title">🩸 輸血療法（Blood Transfusions）</div>
+    <div class="section-subtitle">輸血前須確認血型相容性，特別注意貓的血型系統</div>
+
+    <div class="card-grid">
+      <div class="card red">
+        <div class="card-icon">🐱</div>
+        <h3>貓 B 型血注意</h3>
+        <p>以下貓種常見 B 型血：<br>• Cornish Rex（柯尼斯卷毛貓）<br>• Devon Rex（德文卷毛貓）<br>• Sphynx（斯芬克斯貓）</p>
+      </div>
+      <div class="card orange">
+        <div class="card-icon">⚠️</div>
+        <h3>輸血前準備</h3>
+        <p>必須進行血型鑑定與交叉配血，避免急性溶血性輸血反應，特別是首次輸血後的二次輸血。</p>
+      </div>
+      <div class="card blue">
+        <div class="card-icon">👁️</div>
+        <h3>輸血監測</h3>
+        <p>輸血中持續監測：體溫、心率、呼吸、黏膜顏色、CRT，注意過敏或溶血反應徵兆。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RER Calculator -->
+  <section id="calculator">
+    <div class="section-title">🧮 RER 熱量計算機</div>
+    <div class="section-subtitle">計算動物每日靜息能量需求（Resting Energy Requirement）</div>
+
+    <div class="calc-box">
+      <h3>RER 計算器</h3>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">公式：RER = 70 × (體重 kg)^0.75</p>
+      <div class="form-row">
+        <div class="form-group">
+          <label>動物種類</label>
+          <select id="rer-species">
+            <option value="dog">狗（Dog）</option>
+            <option value="cat">貓（Cat）</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>體重（kg）</label>
+          <input type="number" id="rer-weight" placeholder="例：5.5" min="0.1" step="0.1">
+        </div>
+        <div class="form-group">
+          <label>生理狀態</label>
+          <select id="rer-status">
+            <option value="" disabled selected>選擇生理狀態</option>
+            <optgroup label="狗">
+              <option value="1.6">絕育成犬 ×1.6</option>
+              <option value="1.8">未絕育成犬 ×1.8</option>
+              <option value="1.3">活動力低/肥胖 ×1.3</option>
+              <option value="1.0">減重 ×1.0</option>
+              <option value="2.0">幼犬 ×2.0</option>
+              <option value="3.0">懷孕（最後三週）×3.0</option>
+            </optgroup>
+            <optgroup label="貓">
+              <option value="1.3">絕育成貓 ×1.3</option>
+              <option value="1.5">未絕育成貓 ×1.5</option>
+              <option value="1.0">活動力低/易胖 ×1.0</option>
+              <option value="0.8">減重 ×0.8</option>
+              <option value="2.5">幼貓 ×2.5</option>
+              <option value="1.25">熟齡/高齡貓 ×1.25</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+      <button class="btn" onclick="calcRER()">計算熱量需求</button>
+
+      <div class="calc-result" id="rer-result">
+        <table id="fluid-result-table">
+          <tr><td>RER（靜息能量需求）</td><td id="rer-val">–</td></tr>
+          <tr><td>MER（每日能量需求）</td><td id="mer-val">–</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fluid Calculator -->
+  <section id="fluid-calc">
+    <div class="section-title">💧 輸液量計算機</div>
+    <div class="section-subtitle">計算住院動物的每日維持輸液需求</div>
+
+    <div class="calc-box">
+      <h3>維持輸液量計算器</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>動物種類</label>
+          <select id="fluid-species">
+            <option value="dog">狗（Dog）- 5 ml/kg/hr</option>
+            <option value="cat">貓（Cat）- 3 ml/kg/hr</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>體重（kg）</label>
+          <input type="number" id="fluid-weight" placeholder="例：4.2" min="0.1" step="0.1">
+        </div>
+        <div class="form-group">
+          <label>脫水程度（%）</label>
+          <select id="fluid-dehydration">
+            <option value="0">無明顯脫水 (0%)</option>
+            <option value="5">輕微 (5%)</option>
+            <option value="8">中度 (8%)</option>
+            <option value="10">明顯 (10%)</option>
+            <option value="12">重度 (12%)</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" onclick="calcFluid()">計算輸液量</button>
+
+      <div class="calc-result" id="fluid-result">
+        <table id="fluid-result-table2">
+          <tr><td>維持速率</td><td id="fl-rate">–</td></tr>
+          <tr><td>24小時維持量</td><td id="fl-24h">–</td></tr>
+          <tr><td>脫水補充量</td><td id="fl-dehy">–</td></tr>
+          <tr><td>前6小時建議速率（含補充）</td><td id="fl-6h">–</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div style="padding:32px 48px;background:#f1f5f9;text-align:center;color:var(--text-muted);font-size:12px;">
+    本網站依據「住院伴侶動物護理與監控技術」課程講義製作 · 戴子綺 醫師 · 聯盟動物醫院<br>
+    僅供教育用途，臨床處置請依獸醫師判斷執行
+  </div>
+
+</main>
+
+<script>
+// Sidebar active link
+document.querySelectorAll('#sidebar nav a').forEach(link => {
+  link.addEventListener('click', function() {
+    document.querySelectorAll('#sidebar nav a').forEach(l => l.classList.remove('active'));
+    this.classList.add('active');
+    document.getElementById('sidebar').classList.remove('open');
+  });
+});
+
+// APIE Steps
+function showStep(i) {
+  for (let j = 0; j < 4; j++) {
+    document.getElementById('step-' + j).classList.remove('active');
+    document.getElementById('detail-' + j).classList.remove('show');
+  }
+  document.getElementById('step-' + i).classList.add('active');
+  document.getElementById('detail-' + i).classList.add('show');
+}
+
+// Quiz single answer
+function checkSingle(btn, result) {
+  const parent = btn.closest('.quiz-options');
+  parent.querySelectorAll('.quiz-opt').forEach(b => {
+    b.classList.remove('correct','wrong');
+    b.disabled = true;
+  });
+  btn.classList.add(result);
+}
+
+// Quiz multi answer
+function toggleMulti(btn, qid) {
+  if (btn.disabled) return;
+  btn.classList.toggle('selected');
+  btn.style.borderColor = btn.classList.contains('selected') ? '#7c3aed' : '';
+  btn.style.background = btn.classList.contains('selected') ? '#f5f3ff' : '';
+}
+
+function checkMulti(qid) {
+  const allCorrect = [0,1,2,3,4]; // all options are correct for this question
+  const opts = document.querySelectorAll('#' + qid + '-options .quiz-opt');
+  opts.forEach((btn, i) => {
+    btn.disabled = true;
+    if (allCorrect.includes(i)) {
+      btn.classList.add('correct');
+    }
+  });
+  const result = document.getElementById(qid + '-result');
+  result.textContent = '✅ 以上 A–E 皆為正確答案！評估呼吸困難時需要從多個面向綜合判斷。';
+  result.className = 'quiz-result show';
+  result.style.color = '#166534';
+}
+
+// Accordion
+function toggleAccordion(header) {
+  const body = header.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  header.classList.toggle('open', !isOpen);
+}
+
+// RER Calculator
+function calcRER() {
+  const weight = parseFloat(document.getElementById('rer-weight').value);
+  const factor = parseFloat(document.getElementById('rer-status').value);
+  if (!weight || isNaN(weight) || weight <= 0) { alert('請輸入有效體重'); return; }
+  if (!factor || isNaN(factor)) { alert('請選擇生理狀態'); return; }
+  const rer = 70 * Math.pow(weight, 0.75);
+  const mer = rer * factor;
+  document.getElementById('rer-val').textContent = rer.toFixed(1) + ' kcal/day';
+  document.getElementById('mer-val').textContent = mer.toFixed(1) + ' kcal/day';
+  document.getElementById('rer-result').classList.add('show');
+}
+
+// Fluid Calculator
+function calcFluid() {
+  const species = document.getElementById('fluid-species').value;
+  const weight = parseFloat(document.getElementById('fluid-weight').value);
+  const dehy = parseFloat(document.getElementById('fluid-dehydration').value);
+  if (!weight || isNaN(weight) || weight <= 0) { alert('請輸入有效體重'); return; }
+  const rate = species === 'dog' ? 5 : 3; // ml/kg/hr
+  const maintain24 = rate * weight * 24;
+  const dehyTotal = (dehy / 100) * weight * 1000; // ml
+  const first6h = ((dehyTotal / 2) / 6) + (rate * weight); // half deficit in 6h + maintenance
+  document.getElementById('fl-rate').textContent = (rate * weight).toFixed(1) + ' ml/hr';
+  document.getElementById('fl-24h').textContent = maintain24.toFixed(0) + ' ml/day';
+  document.getElementById('fl-dehy').textContent = dehyTotal.toFixed(0) + ' ml（建議分 12–24 小時補充）';
+  document.getElementById('fl-6h').textContent = first6h.toFixed(1) + ' ml/hr（前 6 小時）';
+  document.getElementById('fluid-result').classList.add('show');
+}
+</script>
+</body>
+</html>
