@@ -25,25 +25,26 @@
 
   /* Sidebar */
   #sidebar {
-    width: var(--sidebar-w); min-height: 100vh; background: linear-gradient(160deg,#1e3a5f 0%,#0f4c81 100%);
-    color: #fff; position: fixed; top: 0; left: 0; overflow-y: auto; z-index: 100;
-    transition: transform .3s;
+    width: var(--sidebar-w); min-height: 100vh; background: linear-gradient(160deg,#fff8e8 0%,#fdf0c8 100%);
+    color: #4a3800; position: fixed; top: 0; left: 0; overflow-y: auto; z-index: 100;
+    transition: transform .3s; border-right: 2px solid #e8d5a0;
   }
-  #sidebar .logo { padding: 24px 20px 16px; border-bottom: 1px solid rgba(255,255,255,.15); }
-  #sidebar .logo h1 { font-size: 15px; font-weight: 700; line-height: 1.4; }
-  #sidebar .logo p { font-size: 11px; color: rgba(255,255,255,.6); margin-top: 4px; }
+  #sidebar .logo { padding: 24px 20px 16px; border-bottom: 2px solid #e8d5a0; text-align: center; }
+  #sidebar .logo .logo-paw { font-size: 28px; margin-bottom: 6px; }
+  #sidebar .logo h1 { font-size: 14px; font-weight: 800; line-height: 1.4; color: #8a6010; }
+  #sidebar .logo p { font-size: 11px; color: #c8962a; margin-top: 4px; font-weight: 600; }
   #sidebar nav { padding: 12px 0; }
   #sidebar nav a {
     display: flex; align-items: center; gap: 10px; padding: 10px 20px;
-    color: rgba(255,255,255,.75); text-decoration: none; font-size: 13px; font-weight: 500;
+    color: #4a3800; text-decoration: none; font-size: 13px; font-weight: 500;
     transition: all .2s; border-left: 3px solid transparent;
   }
   #sidebar nav a:hover, #sidebar nav a.active {
-    background: rgba(255,255,255,.1); color: #fff; border-left-color: #60a5fa;
+    background: #fdf0c8; color: #8a6010; border-left-color: #c8962a;
   }
   #sidebar nav .section-label {
     font-size: 10px; text-transform: uppercase; letter-spacing: .1em;
-    color: rgba(255,255,255,.4); padding: 14px 20px 4px; font-weight: 600;
+    color: #c8962a; padding: 14px 20px 4px; font-weight: 700;
   }
   #sidebar nav .icon { font-size: 16px; width: 20px; text-align: center; flex-shrink: 0; }
 
@@ -273,6 +274,7 @@
 <!-- Sidebar -->
 <nav id="sidebar">
   <div class="logo">
+    <div class="logo-paw">🐾</div>
     <h1>住院伴侶動物<br>護理與監控技術</h1>
     <p>戴子綺 醫師 · 聯盟動物醫院</p>
   </div>
