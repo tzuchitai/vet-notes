@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小動物臨床病理學習筆記 2026/06</title>
+<style>
+  :root {
+    --primary: #2563eb;
+    --primary-light: #dbeafe;
+    --secondary: #0891b2;
+    --accent: #7c3aed;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #1e293b;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .logo {
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid #334155;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #94a3b8; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #334155;
+    color: #f1f5f9;
+    border-left-color: var(--primary);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #475569;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #1e40af 0%, #0891b2 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── SUPPLEMENT TAG ── */
+  .supplement {
+    font-size: 11px; font-weight: 600;
+    color: #0891b2;
+    background: #cffafe;
+    padding: 2px 7px; border-radius: 4px;
+    margin-left: 8px; vertical-align: middle;
+  }
+
+  /* ── FLOW ── */
+  .flow {
+    display: flex; align-items: stretch; gap: 0;
+    margin: 12px 0;
+    flex-wrap: wrap;
+  }
+  .flow-step {
+    flex: 1; min-width: 120px;
+    background: var(--primary-light);
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13px; font-weight: 600;
+    text-align: center; color: var(--primary);
+  }
+  .flow-arrow {
+    display: flex; align-items: center;
+    padding: 0 6px; color: var(--text-muted); font-size: 20px;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker { color: var(--primary); }
+
+  /* ── IRIS TABLE special ── */
+  .stage1 { background: #dcfce7; }
+  .stage2 { background: #fef9c3; }
+  .stage3 { background: #ffedd5; }
+  .stage4 { background: #fee2e2; }
+
+  /* ── PHOTO GRID ── */
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 14px 0;
+  }
+  .photo-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--card);
+    cursor: pointer;
+    transition: box-shadow .2s;
+  }
+  .photo-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.12); }
+  .photo-card img { width: 100%; height: 180px; object-fit: cover; display: block; }
+  .photo-card .caption {
+    padding: 9px 12px;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+  .photo-card .caption strong { display: block; color: var(--text); font-size: 13px; margin-bottom: 2px; }
+
+  /* ── LIGHTBOX ── */
+  #lightbox {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,.85);
+    z-index: 999;
+    align-items: center; justify-content: center;
+    flex-direction: column; gap: 12px;
+  }
+  #lightbox.open { display: flex; }
+  #lightbox img { max-width: 90vw; max-height: 80vh; border-radius: 8px; box-shadow: 0 8px 40px rgba(0,0,0,.5); }
+  #lightbox .lb-caption { color: #e2e8f0; font-size: 14px; text-align: center; max-width: 600px; }
+  #lightbox .lb-close {
+    position: absolute; top: 20px; right: 24px;
+    color: white; font-size: 32px; cursor: pointer; line-height: 1;
+    background: none; border: none;
+  }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+
+  /* ── SCROLLSPY ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<nav id="sidebar">
+  <div class="logo">
+    <h2>小動物臨床病理<br>學習筆記 2026/06</h2>
+    <p>Dr. Mary B. Nabity, Texas A&M</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s1">一、細胞學概論</a>
+    <a href="#s2">二、血液抹片判讀</a>
+    <a href="#s3">三、尿液分析</a>
+    <a href="#s4">四、腎臟生物標記</a>
+    <a href="#s5">五、蛋白尿評估</a>
+    <a href="#s6">六、CKD / AKI</a>
+    <a href="#s7">七、腎臟切片 IVRPS</a>
+    <a href="#s8">重點複習</a>
+    <a href="#s9">參考文獻</a>
+  </nav>
+</nav>
+
+<!-- ══════════ LIGHTBOX ══════════ -->
+<div id="lightbox" onclick="closeLightbox()">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <img id="lb-img" src="" alt="">
+  <div id="lb-caption" class="lb-caption"></div>
+</div>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <!-- Header -->
+  <div class="page-header">
+    <h1>小動物臨床病理學習筆記</h1>
+    <p>講師：Mary B. Nabity, DVM, PhD, DACVP（臨床病理專科）｜德州農工大學獸醫病理生物學系</p>
+    <p>課程日期：2026 年 6 月 27–28 日</p>
+    <div class="tags">
+      <span class="tag">細胞學</span>
+      <span class="tag">血液抹片</span>
+      <span class="tag">尿液分析</span>
+      <span class="tag">腎臟生物標記</span>
+      <span class="tag">蛋白尿</span>
+      <span class="tag">CKD / AKI</span>
+      <span class="tag">腎臟切片</span>
+    </div>
+  </div>
+
+  <!-- Key Points -->
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li>血液抹片無可取代——自動分析儀無法偵測形態異常</li>
+      <li>尿液分析嚴重不足——應積極推廣，尤其 7 歲以上</li>
+      <li>蛋白尿先確認來源——腎前→腎性→腎後，再做 UPC</li>
+      <li>小型犬肌酐基準值低——需與自身歷史值比較</li>
+      <li>SDMA 非萬能——分析變異大；SDMA 需上升 ≥40% 才具意義</li>
+      <li>FGF-23 是貓早期 CKD 的磷監測工具——Stage 1-2 最有用</li>
+      <li>CKD 應盡早診斷治療——Stage 1 即開始保護腎元</li>
+      <li>AKI 初始肌酐不預測預後——峰值肌酐才重要</li>
+    </ul>
+  </div>
+
+  <!-- ══ SECTION 1：細胞學 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dbeafe">🔬</div>
+      <h2>一、細胞學概論</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+
+      <div class="subsection">
+        <h3>細胞學流程（美國模式）</h3>
+        <ul class="notes">
+          <li>採樣：細針抽吸（FNA）、壓印抹片（Impression smear）</li>
+          <li>由一般開業或專科醫師採樣 → 臨床病理醫師解讀</li>
+          <li>樣本需有足夠細胞數；肉眼初評（細胞豐富 vs. 血樣）後仍需顯微鏡確認</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3>初步分類</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>類型</th><th>說明</th></tr>
+          <tr><td>發炎</td><td>中性球性、組織球性、淋巴球性、嗜酸球性</td></tr>
+          <tr><td>腫瘤</td><td>上皮性、間質性、圓形細胞性</td></tr>
+          <tr><td>其他</td><td>正常結構、囊腫、壞死</td></tr>
+        </table></div>
+      </div>
+
+      <div class="subsection">
+        <h3>發炎類型鑑別</h3>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>中性球性</h4>
+            <ul><li>細菌感染</li><li>急性/持續性損傷</li></ul>
+          </div>
+          <div class="card-mini">
+            <h4>組織球性（巨噬細胞性）</h4>
+            <ul><li>慢性發炎成分</li><li>真菌感染</li></ul>
+          </div>
+          <div class="card-mini">
+            <h4>淋巴球性</h4>
+            <ul><li>過敏、慢性刺激、淋巴液</li><li>某些真菌/寄生蟲</li></ul>
+          </div>
+          <div class="card-mini">
+            <h4>嗜酸球性</h4>
+            <ul><li>過敏、寄生蟲、真菌</li><li>副腫瘤症</li></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>腫瘤分類</h3>
+        <ul class="notes">
+          <li><strong>良性：</strong>細胞形態均一，外觀接近正常</li>
+          <li><strong>惡性：</strong>多項惡性標準（核仁明顯、核質比異常、多核等）</li>
+        </ul>
+
+        <h4>圓形細胞腫瘤（最常見）</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>腫瘤</th><th>特徵</th></tr>
+          <tr><td>淋巴瘤</td><td>大型淋巴球 > 嗜中性球、染色質不成熟、核仁可見</td></tr>
+          <tr><td>反應性淋巴結</td><td>多數為小淋巴球 ± 漿細胞、Mott 細胞</td></tr>
+          <tr><td>肥大細胞瘤（MCT）分化好</td><td>顆粒明顯（Wright's stain > Diff-Quik）</td></tr>
+          <tr><td>肥大細胞瘤（MCT）分化差</td><td>顆粒少 → 用 Wright's stain 確認</td></tr>
+          <tr><td>組織球瘤</td><td>良性，年輕犬常見</td></tr>
+          <tr><td>TVT（傳染性性病腫瘤）</td><td>細胞質有空泡</td></tr>
+          <tr><td>漿細胞瘤</td><td>—</td></tr>
+        </table></div>
+
+        <h4>皮膚腫瘤重點</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>腫瘤</th><th>特徵</th></tr>
+          <tr><td>毛母細胞瘤（Trichoblastoma）</td><td>含基底細胞、皮脂腺細胞等</td></tr>
+          <tr><td>黑色素瘤</td><td>皮膚/黏膜/趾，色素量不等</td></tr>
+          <tr><td>脂肪瘤</td><td>油性抹片、成熟脂肪細胞聚集</td></tr>
+          <tr><td>肛門周圍腺瘤</td><td>含肝樣細胞（hepatoid）+ 儲備細胞（reserve cells）</td></tr>
+          <tr><td>肛囊腺癌</td><td>神經內分泌外觀、常見高血鈣</td></tr>
+          <tr><td>軟組織肉瘤</td><td>含冠狀細胞（crown cells）</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 2：血液抹片 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🩸</div>
+      <h2>二、血液抹片判讀</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+
+      <div class="subsection">
+        <h3>抹片製作要點</h3>
+        <ul class="notes">
+          <li>推片角度約 30°、速度適中</li>
+          <li>推太快 → 白血球集中在邊緣；推太慢 → 細胞扁平</li>
+        </ul>
+        <h4>評估區域</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>區域</th><th>倍率</th><th>評估內容</th></tr>
+          <tr><td>羽毛緣（feathered edge）</td><td>10x、20x</td><td>血小板凝集、非典型細胞、寄生蟲</td></tr>
+          <tr><td>單層區（monolayer）</td><td>40x、100x oil</td><td>WBC 分類計數、血小板估計、WBC 形態</td></tr>
+        </table></div>
+      </div>
+
+      <div class="subsection">
+        <h3>血小板評估</h3>
+        <ul class="notes">
+          <li>自動計數低 → 先看抹片是否有凝集</li>
+          <li>少量小凝集 → 可能未影響計數；多量大凝集 → 確實影響（需重新採血）</li>
+          <li>估計方式：每 100x 視野平均血小板數 × 15,000–20,000</li>
+          <li>正常：每 100x 視野 ≥ 13 顆（> 200,000/μL）</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">ℹ️</span><span>ProCyte Dx 散點圖：大血小板凝集會出現在 WBC 雲端旁（橘色細胞延伸弧線）</span></div>
+      </div>
+
+      <div class="subsection">
+        <h3>白血球正常形態</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>細胞</th><th>特徵</th></tr>
+          <tr><td>中性球（N）</td><td>紫色分葉核、淡粉色胞質</td></tr>
+          <tr><td>淋巴球（L）</td><td>略大於 RBC、圓核、少量藍色胞質</td></tr>
+          <tr><td>單核球（M）</td><td>大於中性球、分葉核、灰藍色胞質 ± 空泡</td></tr>
+          <tr><td>嗜酸球（E）</td><td>大顆粒：犬圓形、貓梭形</td></tr>
+          <tr><td>嗜鹼球（B）</td><td>串珠狀核；犬少量紫色顆粒；貓多量薰衣草色桿狀顆粒</td></tr>
+        </table></div>
+      </div>
+
+      <div class="subsection">
+        <h3>中性球異常形態</h3>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>毒性變化（Toxic Change）<br><small>骨髓→血液，胞質受影響</small></h4>
+            <ul>
+              <li>Döhle 小體（淡藍灰色胞質包涵體）</li>
+              <li>嗜鹼性胞質</li>
+              <li>泡沫狀空泡</li>
+              <li>毒性顆粒</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>左移（Left Shift）<br><small>未成熟中性球增加</small></h4>
+            <ul>
+              <li>帶狀細胞（Band cells）</li>
+              <li>後中性球（Metamyelocyte）</li>
+              <li>中性球前（Myelocyte）</li>
+            </ul>
+          </div>
+        </div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><span>退化性變化（Degenerative Change）：組織內，細胞核受影響 → 核腫脹、核色淡</span></div>
+      </div>
+
+      <div class="subsection">
+        <h3>nRBC vs. 淋巴球鑑別</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>nRBC</th><th>淋巴球</th></tr>
+          <tr><td>胞質量</td><td>較多</td><td>較少</td></tr>
+          <tr><td>胞質色</td><td>紫灰色</td><td>藍色</td></tr>
+          <tr><td>染色質</td><td>緻密</td><td>細緻</td></tr>
+        </table></div>
+      </div>
+
+      <div class="subsection">
+        <h3>RBC 形態異常</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>異常</th><th>臨床意義</th></tr>
+          <tr><td>球形紅血球（Spherocytes）</td><td>IMHA</td></tr>
+          <tr><td>多染紅血球（Polychromatophils）</td><td>再生性反應</td></tr>
+          <tr><td>鬼魂細胞（Ghost cells）</td><td>血管內溶血</td></tr>
+          <tr><td>低色素（Hypochromasia）</td><td>缺鐵性貧血（細胞完整但血紅素少）</td></tr>
+          <tr><td>Heinz bodies + Eccentrocytes</td><td>氧化性損傷（如洋蔥中毒）</td></tr>
+          <tr><td>棘細胞（Acanthocytes）、裂片（Schistocytes）</td><td>微血管病變（心絲蟲、血管肉瘤、血管炎）</td></tr>
+        </table></div>
+
+        <h4>RBC 寄生蟲</h4>
+        <ul class="notes">
+          <li>Babesia canis（大型）vs. Babesia gibsoni（小型）</li>
+          <li>Mycoplasma haemofelis / haemocanis：需與染色沉澱物鑑別（沉澱物不在細胞上）</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3>散點圖（Dot Plot）判讀重點</h3>
+        <ul class="notes">
+          <li>嗜酸球/嗜鹼球增多：特定顏色雲端密度增加</li>
+          <li>白血球/中性球減少：中性球雲端消失</li>
+          <li>淋巴性白血病：各細胞群邊界模糊、連續性分布</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 3：尿液分析 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef9c3">🧪</div>
+      <h2>三、尿液分析概論</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+
+      <div class="alert alert-danger">
+        <span class="alert-icon">🚨</span>
+        <span><strong>尿液分析嚴重不足：</strong>7 歲以下做血液學 50–60%，但尿液分析僅 8%；7 歲以上做血液學 85–90%，尿液分析約 45–50%。應積極推廣！</span>
+      </div>
+
+      <div class="subsection">
+        <h3>樣本處理原則</h3>
+        <ul class="notes">
+          <li>立即處理（ASAP）</li>
+          <li>儲存後人工假象：pH 升高、細菌增殖、葡萄糖/酮體/膽紅素/細胞/管型下降</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3>物理性狀</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>顏色</th><th>可能原因</th></tr>
+          <tr><td>深黃至棕色</td><td>膽紅素</td></tr>
+          <tr><td>紅色</td><td>血尿（離心後上清液清澈）</td></tr>
+          <tr><td>紅棕色</td><td>血紅素或肌紅素（離心後仍混濁）</td></tr>
+          <tr><td>綠色</td><td>膽綠素</td></tr>
+        </table></div>
+
+        <h4>尿比重（USG）— 使用折射計（非試紙）</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>物種</th><th>正常水合</th><th>脫水時</th></tr>
+          <tr><td>犬</td><td>> 1.030</td><td>> 1.035</td></tr>
+          <tr><td>貓</td><td>> 1.035–1.040</td><td>> 1.040–1.045</td></tr>
+        </table></div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><span>脫水 + 腎功能標記升高 + USG 低於上表 → 懷疑腎臟疾病</span></div>
+      </div>
+
+      <div class="subsection">
+        <h3>化學特性（試紙）</h3>
+
+        <h4>蛋白質</h4>
+        <ul class="notes">
+          <li>正常：陰性；中等至高濃縮尿可有 Trace 至 1+（可為正常）</li>
+          <li>後續步驟：確認來源（腎前性 / 腎性 / 腎後性）</li>
+        </ul>
+
+        <h4>葡萄糖</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>物種</th><th>腎閾值</th></tr>
+          <tr><td>牛</td><td>100 mg/dL</td></tr>
+          <tr><td>馬</td><td>150 mg/dL</td></tr>
+          <tr><td>犬</td><td>180 mg/dL</td></tr>
+          <tr><td>貓</td><td>280 mg/dL</td></tr>
+          <tr><td>鳥</td><td>600 mg/dL</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li>高血糖 + 葡萄糖尿 → 糖尿病、短暫壓力</li>
+          <li>血糖正常 + 葡萄糖尿（Normoglycemic glucosuria）→ 近端腎小管功能異常</li>
+          <li>遺傳：Basenji 犬類 Fanconi 症候群；獲得性：鉤端螺旋體、毒物（Gentamycin、肉乾零食）</li>
+        </ul>
+
+        <h4>酮體</h4>
+        <ul class="notes">
+          <li>最常見：糖尿病、飢餓（過度脂肪分解）</li>
+          <li>亦可見於腎小管損傷</li>
+          <li>⚠ 亞硝基普魯士酸（Nitroprusside）反應 — 不偵測 β-羥基丁酸酯</li>
+        </ul>
+
+        <h4>膽紅素</h4>
+        <ul class="notes">
+          <li>只有結合型膽紅素可濾入尿液</li>
+          <li>腎前性：溶血性貧血 → ↑ALT、AST</li>
+          <li>肝臟性：肝細胞疾病；腎後性：→ ↑ALP、GGT</li>
+          <li>犬：輕度膽紅素尿可為正常（尤其高濃縮尿）；其他物種：不應出現膽紅素尿</li>
+        </ul>
+
+        <h4>血液（試紙）</h4>
+        <ul class="notes">
+          <li>偵測血紅素的類過氧化酶活性，無法區分：完整 RBC / 游離血紅素 / 肌紅素</li>
+          <li>假陽性：漂白劑汙染、某些細菌；假陰性：高濃縮尿、RBC 沉澱</li>
+        </ul>
+
+        <h4>尿液 pH</h4>
+        <ul class="notes">
+          <li>正常（犬貓）：6.0–7.5</li>
+          <li>腎小管酸中毒（RTA）：代謝性酸中毒 + 鹼性尿 → 懷疑</li>
+          <li>pH 影響結晶形成：鳥糞石（Struvite）傾向鹼性尿</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3>尿沉渣檢查</h3>
+        <div class="alert alert-info"><span class="alert-icon">ℹ️</span><span>標準流程：離心同等量尿液（低速）→ 留 0.5 mL → 30 分鐘內分析；低倍 10x，高倍 40x；降低聚光鏡增加對比度</span></div>
+
+        <h4>細胞正常值</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>正常值</th><th>異常意義</th></tr>
+          <tr><td>RBC</td><td>0–5/hpf</td><td>↑ → 出血、外傷、發炎、腫瘤</td></tr>
+          <tr><td>WBC</td><td>0–5/hpf</td><td>↑ → 感染或非感染性發炎</td></tr>
+          <tr><td>上皮細胞</td><td>少量</td><td>大量或非典型 → 腫瘤？</td></tr>
+          <tr><td>細菌</td><td>膀胱穿刺應為陰性</td><td>任何細菌 → 一定異常；桿菌比球菌更容易看到</td></tr>
+        </table></div>
+
+        <h4>管型（Casts）</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>管型類型</th><th>意義</th></tr>
+          <tr><td>透明管型</td><td>0–1/lpf 正常</td></tr>
+          <tr><td>顆粒管型</td><td>腎小管損傷</td></tr>
+          <tr><td>蠟狀管型</td><td>慢性/嚴重損傷</td></tr>
+          <tr><td>細胞管型</td><td>急性損傷</td></tr>
+        </table></div>
+
+        <h4>重要結晶</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>結晶</th><th>形態</th><th>臨床意義</th></tr>
+          <tr><td>鳥糞石（Struvite）</td><td>「棺蓋」形</td><td>常見；鹼性尿；UTI（產尿素酶細菌）</td></tr>
+          <tr><td>草酸鈣二水合物</td><td>信封形</td><td>常見，儲存尿液中多</td></tr>
+          <tr><td>草酸鈣一水合物</td><td>圍欄/啞鈴形</td><td>常病理性；乙二醇中毒</td></tr>
+          <tr><td>尿酸銨</td><td>「茄果」形</td><td>達爾馬提亞犬、英國鬥牛犬；門靜脈分流</td></tr>
+          <tr><td>胱胺酸（Cystine）</td><td>六邊形</td><td>永遠不正常；遺傳性腎小管缺陷</td></tr>
+          <tr><td>膽紅素</td><td>金色小麥穗</td><td>少量在犬（雄）可正常；膽汁淤積</td></tr>
+        </table></div>
+
+        <h4>尿液腫瘤篩查</h4>
+        <ul class="notes">
+          <li>尿道上皮癌（Urothelial Carcinoma）：非典型上皮細胞</li>
+          <li>CADET® BRAF 檢測：偵測 BRAF 基因突變</li>
+          <li>適應症：尿液沉渣見非典型細胞、高風險品種（Scottish Terrier 等）篩查</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 4：腎臟生物標記 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f0fdf4">🧬</div>
+      <h2>四、血清腎臟生物標記</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+
+      <div class="subsection">
+        <h3>傳統腎功能評估架構</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>類別</th><th>指標</th></tr>
+          <tr><td>GFR 標記</td><td>肌酐（Creatinine）、SDMA</td></tr>
+          <tr><td>尿素氮</td><td>BUN（僅參考，不用於 IRIS 分期）</td></tr>
+          <tr><td>磷代謝</td><td>磷、FGF-23</td></tr>
+          <tr><td>尿液</td><td>USG、UPC、管型、葡萄糖尿/酮體</td></tr>
+          <tr><td>蛋白尿類型</td><td>SDS-PAGE、Cystatin B</td></tr>
+        </table></div>
+      </div>
+
+      <div class="subsection">
+        <h3>肌酐（Creatinine）</h3>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><span>受肌肉量影響：年齡、體型/品種、肌肉萎縮。小型犬正常值偏低 → <strong>同一隻犬前後對比比絕對值更重要！</strong></span></div>
+        <ul class="notes">
+          <li>空腹建議 8 小時（依檢測方式不同有所差異）</li>
+          <li>Jaffe 法干擾：葡萄糖、蛋白質（假高）；膽紅素（假低）</li>
+          <li><strong>分析變異大：</strong>同一實驗室不同時間點可差 44%；不同實驗室更大（同樣品可測 1.7 vs. 2.9 mg/dL）</li>
+          <li>允許誤差標準：< 20%（但許多實驗室達不到）</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3>SDMA <span class="supplement">補充：講座逐字記錄</span></h3>
+        <ul class="notes">
+          <li>甲基化胺基酸，來自核蛋白水解 → 所有有核細胞產生</li>
+          <li>約 90% 腎臟排泄；優點：<strong>不受肌肉量影響</strong></li>
+        </ul>
+
+        <h4>SDMA 參考值（IDEXX）</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>等級</th><th>µg/dL</th></tr>
+          <tr class="stage1"><td>正常</td><td>0–14</td></tr>
+          <tr class="stage2"><td>輕度升高</td><td>15–19</td></tr>
+          <tr class="stage2"><td>中度升高</td><td>20–30</td></tr>
+          <tr class="stage3"><td>中重度</td><td>30–50</td></tr>
+          <tr class="stage4"><td>重度</td><td>> 50</td></tr>
+        </table></div>
+
+        <h4>SDMA 臨床應用</h4>
+        <ul class="notes">
+          <li>可疑腎病 / 肌酐漸升但仍在正常值內</li>
+          <li>持續低濃尿 / 多尿多渴</li>
+          <li>肌肉量差的患者</li>
+          <li>⚠ 已有明確氮血症時 → 不需要再驗 SDMA</li>
+        </ul>
+
+        <div class="alert alert-warn">
+          <span class="alert-icon">⚠️</span>
+          <div>
+            <strong>SDMA 使用注意事項</strong>
+            <ul class="notes" style="margin-top:6px">
+              <li>分析變異性（CV ≈ 13.5%）> 目標（< 10%）；<strong>SDMA 需上升 ≥40% 才具臨床意義</strong>（例如：基準 14 → 需升至 ≥ 20 才有意義）</li>
+              <li>院內機器（Catalyst）貓的 SDMA 與參考實驗室差異可達 20–50%</li>
+              <li>院內機器不建議冷凍樣本；需在 24 小時內檢驗</li>
+              <li>健康動物 SDMA 升高可能為偽陽性，勿單獨作為診斷依據</li>
+              <li>SDMA 升高亦可見於：幼犬、灰狗/緬甸貓（基因差異）、淋巴瘤（治療後可恢復正常）</li>
+              <li>老齡犬 SDMA 參考值應略高（老齡犬研究建議上限 15-17 µg/dL）</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="alert alert-success"><span class="alert-icon">✅</span><span>目前若有<strong>持續性</strong>的 SDMA 輕微上升，亦算是慢性腎病的診斷條件之一（IRIS 最新更新）</span></div>
+      </div>
+
+      <div class="subsection">
+        <h3>FGF-23（成纖維細胞生長因子-23）<span class="supplement">補充：講座逐字記錄</span></h3>
+        <ul class="notes">
+          <li>骨骼分泌的荷爾蒙（「排磷素」）→ 抑制磷的再吸收</li>
+          <li>在 CKD 早期即升高（磷代謝失調指標）</li>
+          <li>Ca × P > 70 → 死亡率提高（軟組織礦化）</li>
+        </ul>
+
+        <h4>FGF-23 在 CKD 的作用機轉</h4>
+        <div class="flow">
+          <div class="flow-step">腎元減少<br>GFR ↓</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">血磷 ↑</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">FGF-23 ↑<br>PTH ↑</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">磷排泄 ↑<br>Vit D 活化 ↓</div>
+        </div>
+        <ul class="notes" style="margin-top:8px">
+          <li>早期：Ca / P / VitD 仍正常，但 FGF-23 和 PTH 已上升</li>
+          <li>晚期：磷急遽升高、FGF-23 和 PTH 極高</li>
+        </ul>
+
+        <h4>FGF-23 參考值與建議（貓）</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>值</th><th>意義</th><th>建議</th></tr>
+          <tr class="stage1"><td>< 299 pg/mL</td><td>正常</td><td>—</td></tr>
+          <tr class="stage2"><td>300–399 pg/mL</td><td>邊界</td><td>密切監測</td></tr>
+          <tr class="stage4"><td>> 400 pg/mL</td><td>升高</td><td>建議減少磷負荷</td></tr>
+        </table></div>
+
+        <h4>臨床適應症（貓）</h4>
+        <ul class="notes">
+          <li>早期 CKD（Stage 1–2）且血磷 < 4.6 mg/dL（在正常範圍下半段）</li>
+          <li>若 FGF-23 升高且 Stage 1 → 腎臟處方飼料</li>
+          <li>若 FGF-23 升高且 Stage 2 → 腎臟飼料 + 額外磷結合劑</li>
+          <li>若血磷已超出正常範圍 → 不需驗 FGF-23，直接處理高磷</li>
+        </ul>
+
+        <h4>檢體處理</h4>
+        <ul class="notes">
+          <li>血清（1 小時內離心）；最少 1 mL</li>
+          <li>冷藏最多 14 天；可長期冷凍；隔夜冰袋運送</li>
+          <li>目前台灣尚無，韓國有提供</li>
+          <li>干擾：未控制甲亢、心臟病、全身性發炎、腫瘤、溶骨性骨病變、顯著貧血</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 5：蛋白尿 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">💧</div>
+      <h2>五、蛋白尿患者評估</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+
+      <div class="subsection">
+        <h3>蛋白尿來源定位</h3>
+        <div class="flow">
+          <div class="flow-step">腎前性<br><small>血紅素/肌紅素/<br>免疫球蛋白輕鏈</small></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">腎性<br><small>腎小球性 / 腎小管性<br>/ 功能性</small></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">腎後性<br><small>出血性 / 發炎性<br>（UTI）</small></div>
+        </div>
+        <div class="alert alert-danger"><span class="alert-icon">🚨</span><span>無氮血症 ≠ 排除腎臟疾病！犬腎小球疾病常先出現蛋白尿。</span></div>
+        <div class="alert alert-info"><span class="alert-icon">ℹ️</span><span>有活動性尿沉渣（↑WBC、RBC、細菌）→ 先治療發炎/感染，再評估 UPC（感染性蛋白尿不反映腎小球狀況）</span></div>
+      </div>
+
+      <div class="subsection">
+        <h3>UPC（尿蛋白：肌酐比）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>UPC</th><th>犬</th><th>貓</th><th>分類</th></tr>
+          <tr class="stage1"><td>非蛋白尿</td><td>< 0.2</td><td>< 0.2</td><td><span class="badge badge-green">正常</span></td></tr>
+          <tr class="stage2"><td>邊界蛋白尿</td><td>0.2–0.5</td><td>0.2–0.4</td><td><span class="badge badge-yellow">邊界</span></td></tr>
+          <tr class="stage4"><td>蛋白尿</td><td>> 0.5</td><td>> 0.4</td><td><span class="badge badge-red">異常</span></td></tr>
+        </table></div>
+
+        <h4>UPC 判讀</h4>
+        <ul class="notes">
+          <li>UPC > 2 → 多為腎小球損傷（值越高越可能）</li>
+          <li>UPC < 2 → 可能腎小球或腎小管損傷</li>
+          <li>治療目標：UPC < 0.5 或降低 > 50%</li>
+        </ul>
+
+        <h4>試紙蛋白與 UPC 的關係（犬）</h4>
+        <ul class="notes">
+          <li>USG ≥ 1.030 + Trace 或 1+ → UPC 不太會異常</li>
+          <li>USG ≤ 1.012 → UPC 很可能異常</li>
+          <li>2+ 以上 → UPC 多為異常</li>
+        </ul>
+
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><span>AKI 急性期不建議做 UPC（肌酐排泄減少 → 假性偏高）。接近閾值時建議 3 天平均值。應使用同一實驗室監測。</span></div>
+      </div>
+
+      <div class="subsection">
+        <h3>微量白蛋白尿（Microalbuminuria）</h3>
+        <ul class="notes">
+          <li>定義：1–30 mg/dL 白蛋白，低於試紙可偵測範圍</li>
+          <li>意義：早期腎臟疾病（特別是腎小球）、全身性疾病（內分泌/腫瘤/心血管）</li>
+          <li>老師認為：若 UPC 也驗了，微量白蛋白尿的附加意義不大（大多漏出來都是白蛋白）</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3>SDS-PAGE（尿蛋白電泳）<span class="supplement">補充</span></h3>
+        <h4>原理</h4>
+        <p>分離不同分子量蛋白質：高 MW（腎小球漏出）vs. 低 MW（腎小管未再吸收）</p>
+
+        <div class="tbl-wrap" style="margin-top:10px"><table>
+          <tr><th>類型</th><th>特徵</th><th>典型 UPC</th></tr>
+          <tr><td>腎小球性</td><td>中大分子量蛋白帶（含白蛋白以上）</td><td>通常 1–30</td></tr>
+          <tr><td>腎小管性</td><td>低分子量蛋白帶</td><td>通常 < 2</td></tr>
+          <tr><td>混合性</td><td>兩者均有</td><td>不定</td></tr>
+        </table></div>
+
+        <h4>臨床適應症</h4>
+        <ul class="notes">
+          <li>持續性、輕度蛋白尿（UPC < 3）：區分腎小球 vs. 腎小管來源</li>
+          <li>懷疑免疫複合物腎小球腎炎（ICGN）：多條 > 200 kDa 帶 → 特異性高（敏感性低）</li>
+          <li>監測治療反應：ICGN → 大分子帶消失</li>
+          <li>ICGN 判讀準確約 95%</li>
+        </ul>
+
+        <h4>SDS-PAGE 干擾因素</h4>
+        <ul class="notes">
+          <li>活動性發炎（UTI）、大量/明顯血尿（> 30/hpf）→ 不宜送檢</li>
+          <li>未結紮公犬：前列腺蛋白條帶位置固定，通常不致重大干擾</li>
+          <li>輕微血尿（20-30/hpf）仍可送，需備注說明</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3>尿液 Cystatin B（uCysB）<span class="supplement">補充</span></h3>
+        <ul class="notes">
+          <li>腎小管細胞死亡時釋放入尿液</li>
+          <li>IDEXX 自 2023 年提供（免疫凝集法）</li>
+          <li>≥ 100 ng/mL → 支持活動性腎小管損傷（ELISA 法：≥ 50 ng/mL）</li>
+          <li>⚠ 不可冷凍樣本；需盡快檢驗</li>
+        </ul>
+        <h4>應用</h4>
+        <ul class="notes">
+          <li>腎毒性暴露監測（氨基糖苷類、百合花中毒等）</li>
+          <li>AKI 事件後監測（麻醉手術後）</li>
+          <li>穩定 vs. 進展型 CKD 的輔助鑑別；預後輔助</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><span>全身性發炎、腫瘤、麻醉/手術也可能升高（非腎損傷性）</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 6：CKD / AKI ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fff1f2">🫀</div>
+      <h2>六、CKD、AKI 與腎小管病變</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+
+      <!-- CKD -->
+      <div class="subsection">
+        <h3>慢性腎病（CKD）</h3>
+        <ul class="notes">
+          <li>定義：慢性（> 3 個月）、不可逆、進行性腎功能喪失</li>
+          <li>症狀進展：無症狀 → 多尿/多渴/體重減輕 → 尿毒症候群 ± 貧血</li>
+        </ul>
+
+        <h4>IRIS CKD 分期系統</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>Stage</th><th>犬 Cr (mg/dL)</th><th>貓 Cr (mg/dL)</th><th>臨床</th></tr>
+          <tr class="stage1"><td><strong>1</strong></td><td>< 1.4</td><td>< 1.6</td><td>無氮血症（但可有早期症狀）</td></tr>
+          <tr class="stage2"><td><strong>2</strong></td><td>1.4–2.8</td><td>1.6–2.8</td><td>輕度氮血症</td></tr>
+          <tr class="stage3"><td><strong>3</strong></td><td>2.9–5.0</td><td>2.9–5.0</td><td>中度氮血症</td></tr>
+          <tr class="stage4"><td><strong>4</strong></td><td>> 5.0</td><td>> 5.0</td><td>重度氮血症</td></tr>
+        </table></div>
+        <div class="alert alert-info"><span class="alert-icon">ℹ️</span><span>分期原則：① 先確認 CKD；② 病患穩定且水合良好時分期；③ 肌酐與 SDMA 不一致 → 取較高分期；④ 理想以 ≥2 次（相隔 ≥2 週）肌酐確認。<strong>不使用 BUN 分期。</strong></span></div>
+
+        <h4>IRIS 亞分期（Sub-staging）</h4>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>蛋白尿</h4>
+            <ul>
+              <li>非蛋白尿：UPC < 0.2</li>
+              <li>邊界：0.2–0.5（犬）/ 0.2–0.4（貓）</li>
+              <li>蛋白尿：> 0.5（犬）/ > 0.4（貓）</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>血壓（mmHg）</h4>
+            <ul>
+              <li>正常：< 140</li>
+              <li>前期高血壓：140–159</li>
+              <li>高血壓：160–179</li>
+              <li>重度高血壓：≥ 180</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>CKD 流行病學 <span class="supplement">補充：英國大數據</span></h3>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>貓</h4>
+            <ul>
+              <li>患病率約 1–1.2%</li>
+              <li>中位診斷年齡 14.8–15 歲</li>
+              <li>多落於 Stage 2–3</li>
+              <li>中位存活 388 天（88–1042 天）</li>
+              <li>僅約 25% 量測血壓；其中約半數有高血壓</li>
+              <li>改善存活：低磷、磷結合劑、低 UPC、腎臟飼料</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>犬</h4>
+            <ul>
+              <li>患病率約 0.37–4%（不同資料來源）</li>
+              <li>> 12 歲佔 64%；診斷時多為 Stage 3–4</li>
+              <li>高風險品種：可卡犬（6.39x）、騎士查理王犬（5.57x）</li>
+              <li>共病：高血壓（OR 25.71）、心臟病（OR 3.88）、牙周病（30%）</li>
+              <li>兩年追蹤約 52% 死亡（多為安樂死）</li>
+              <li>有寵物保險的狗檢測率更高</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>CKD 進展因子與治療策略</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>目標</th><th>治療</th><th>備注</th></tr>
+          <tr><td>磷控制</td><td>腎臟飼料、磷結合劑</td><td>限磷可延長存活；腎臟飼料能降低 FGF-23</td></tr>
+          <tr><td>蛋白尿</td><td>ACEi（如 Benazepril）或 ARB（如 Telmisartan）</td><td>UPC > 0.4 → 死亡風險 4x；重度可加 Clopidogrel</td></tr>
+          <tr><td>高血壓</td><td>ACEi/ARB ± Amlodipine</td><td>犬：血壓升高與死亡率/尿毒風險相關</td></tr>
+          <tr><td>貧血</td><td>Darbepoetin 或 Vadadustat（Varenzin）</td><td>HCT < 30% 即開始介入（舊標準 < 20%）；Vadadustat 無抗體風險</td></tr>
+          <tr><td>水合</td><td>皮下輸液（謹慎）</td><td>僅短暫改善數值，過量有害，非主要治療</td></tr>
+          <tr><td>飲食</td><td>限磷、限鈉、限蛋白、優化 PUFA 比例</td><td>維持水合與食慾，避免肌肉流失</td></tr>
+        </table></div>
+      </div>
+
+      <!-- AKI -->
+      <div class="subsection">
+        <h3>急性腎損傷（AKI）<span class="supplement">補充</span></h3>
+        <div class="alert alert-info"><span class="alert-icon">ℹ️</span><span>CKD 用「Staging（分期）」；AKI 用「Grading（分級）」— 需先確認 AKI 才開始分級；級別可日內變化</span></div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><span>住院相關 AKI：48 小時內肌酐上升 ≥ 0.3 mg/dL；AKI 急性期不建議做 UPC</span></div>
+
+        <h4>AKI 臨床表現</h4>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>臨床症狀</h4>
+            <ul>
+              <li>嗜睡、厭食、嘔吐（多數）</li>
+              <li>腹瀉（約 40%）</li>
+              <li>無尿（約 25%）</li>
+              <li>多尿（約 20%）</li>
+              <li>乙二醇中毒 → 神經學症狀</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>尿液發現（膀胱穿刺）</h4>
+            <ul>
+              <li>濃縮能力下降（中位 USG 1.018）</li>
+              <li>蛋白尿（試紙，80%）</li>
+              <li>血尿 / 膿尿（各 50%）</li>
+              <li>細菌尿（30%）</li>
+              <li>血糖正常葡萄糖尿（25%）</li>
+              <li>管型（15%，敏感性不高）</li>
+            </ul>
+          </div>
+        </div>
+
+        <h4>AKI 常見病因</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>類別</th><th>比例</th><th>常見原因</th></tr>
+          <tr><td>缺血性/發炎性</td><td>~60%</td><td>胰臟炎、腹膜炎、子宮蓄膿、嚴重腸胃炎</td></tr>
+          <tr><td>感染性</td><td>~10%</td><td>鉤端螺旋體（預後最佳）</td></tr>
+          <tr><td>毒物</td><td>6%</td><td>葡萄/葡萄乾、NSAID 過量；貓：百合花、NSAIDs</td></tr>
+          <tr><td>其他</td><td>5%</td><td>高血鈣、腎小球病</td></tr>
+          <tr><td>不明原因</td><td>~25%</td><td>—</td></tr>
+        </table></div>
+
+        <h4>AKI 預後</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>指標</th><th>說明</th></tr>
+          <tr><td>短期存活率</td><td>40–60%（平均 50%）</td></tr>
+          <tr><td>初始肌酐</td><td><strong>不預測</strong>死亡；給予 1–2 天治療觀察反應，避免過早安樂死</td></tr>
+          <tr><td>峰值肌酐 + IRIS AKI 等級</td><td>與死亡率相關</td></tr>
+          <tr><td>長期（存活犬）</td><td>中位存活 3.6 年；約 75% 最終肌酐恢復正常</td></tr>
+          <tr><td>最佳長期預後</td><td>感染性病因（如鉤端螺旋體）</td></tr>
+        </table></div>
+      </div>
+
+      <!-- Tubulopathy -->
+      <div class="subsection">
+        <h3>腎小管病變（Tubulopathies）</h3>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>遺傳性</h4>
+            <ul>
+              <li>Fanconi 症候群（Basenji）</li>
+              <li>胱胺酸尿（Cystinuria）</li>
+              <li>腎小管酸中毒（RTA）</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>獲得性</h4>
+            <ul>
+              <li>毒物：NSAID、肉乾零食毒性</li>
+              <li>感染：鉤端螺旋體</li>
+              <li>小型犬：肉乾攝取過量</li>
+              <li>拉布拉多：肝銅儲積</li>
+            </ul>
+          </div>
+        </div>
+
+        <h4>臨床表現</h4>
+        <ul class="notes">
+          <li>血糖正常葡萄糖尿、酮體尿、蛋白尿/胺基酸尿</li>
+          <li>電解質異常：低鉀血症、低磷血症（需測 FE 確認腎性流失）</li>
+        </ul>
+
+        <h4>Fanconi 測試（尿液）</h4>
+        <ul class="notes">
+          <li>檢測：胺基酸、葡萄糖、乳酸、胱胺酸（PENGEN 套組）</li>
+          <li>⚠ 不穩定，室溫下快速降解；細菌感染 → 假陰性；磺胺類藥物 → 胱胺酸假陽性</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 7：腎臟切片 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f5f3ff">🏥</div>
+      <h2>七、腎臟切片與 IVRPS</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+
+      <div class="subsection">
+        <h3>腎切片適應症</h3>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>✅ 適合</h4>
+            <ul>
+              <li>懷疑腎小球疾病（ICGN vs. 非 ICGN）</li>
+              <li>考慮使用免疫抑制療法前</li>
+              <li>非典型或無反應的 AKI（透析決策）</li>
+              <li>重大蛋白尿（早期 vs. 試驗療法後）</li>
+              <li>特定育種計畫考量</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>❌ 不適合</h4>
+            <ul>
+              <li>末期腎病（治療無效）</li>
+              <li>慢性腎小管間質疾病（難以找到原因）</li>
+              <li>出血風險高、單腎患者須特別謹慎</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="alert alert-danger"><span class="alert-icon">🚨</span><span>任何不做切片的患者，約有 50% 機率用錯治療（使用或不使用免疫抑制劑）！ICGN vs. 非 ICGN 約各佔 50%，相當於拋硬幣。</span></div>
+      </div>
+
+      <div class="subsection">
+        <h3>為何需要 IVRPS 完整評估？</h3>
+        <ul class="notes">
+          <li>僅做光學顯微鏡（HE 染色）→ 約 25% 誤分類率</li>
+          <li>需要：光顯 + 免疫螢光（IF）+ 穿透電子顯微鏡（TEM）三管齊下</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3>犬腎小球疾病分布（n=501）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>類型</th><th>比例</th><th>存活（中位）</th></tr>
+          <tr><td>免疫複合物腎小球腎炎（ICGN）</td><td>48%</td><td>依 ICGN 亞型而異</td></tr>
+          <tr><td>腎小球硬化症</td><td>21%</td><td>—</td></tr>
+          <tr><td>澱粉樣變</td><td>15%</td><td><strong>76 天（最短）</strong></td></tr>
+          <tr><td>Podocytopathy</td><td>—</td><td>1709 天（最長）</td></tr>
+          <tr><td>幼年性腎病</td><td>—</td><td>1285 天</td></tr>
+          <tr><td>腎小管壞死</td><td>—</td><td>237 天</td></tr>
+          <tr><td>MPGN（膜增生性）</td><td>—</td><td>ICGN 中最短</td></tr>
+          <tr><td>膜性腎小球腎炎</td><td>—</td><td>ICGN 中最長</td></tr>
+        </table></div>
+      </div>
+
+      <div class="subsection">
+        <h3>切片操作要點</h3>
+        <ul class="notes">
+          <li>超音波導引；目標：<strong>皮質中段</strong>（所有腎小球在皮質，避免髓質）</li>
+          <li>針號：通常 16G（或 20G）；採集 ≥ 2 條皮質核心（最好 3 條）</li>
+          <li>用無菌生理食鹽水沖洗，保持濕潤</li>
+          <li>立即低倍顯微鏡確認皮質組織：看到「球狀點」= 皮質；直條狀 = 髓質</li>
+        </ul>
+
+        <h4>核心分配原則</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>用途</th><th>保存液</th><th>選擇</th></tr>
+          <tr><td>光學顯微鏡（HE/PAS/Masson）</td><td>福馬林（甲醛）</td><td>最長、品質最好的那條</td></tr>
+          <tr><td>免疫螢光（IF）</td><td><strong>Michel's buffer</strong></td><td>中間條或 ½ 條</td></tr>
+          <tr><td>穿透電子顯微鏡（TEM）</td><td>福馬林（後處理）</td><td>最短條或 ½ 條</td></tr>
+        </table></div>
+
+        <div class="alert alert-danger"><span class="alert-icon">🚨</span><span><strong>Michel's buffer 不是固定液！</strong>需冰在冰箱（4°C），絕對不可接觸福馬林。冰箱最多保存約一週，Michel's buffer 本身半年過期。</span></div>
+      </div>
+
+      <div class="subsection">
+        <h3>IVRPS 運送注意事項</h3>
+        <ul class="notes">
+          <li>強烈建議使用 FedEx 隔夜快遞（確認美國非假日；建議週間寄達）</li>
+          <li>保麗龍保冰盒 + 足夠冰袋；切片（Michel's）→ 冷藏；尿液上清液 → 冷凍</li>
+          <li>切片各部位分開裝袋，並加吸水材料</li>
+          <li>第一步：先聯絡 IVRPS 取得 kit，他們會寄給你</li>
+          <li>若無 Michel's buffer → 只能福馬林，但將失去免疫螢光染色的能力</li>
+        </ul>
+        <p style="font-size:13px;color:var(--text-muted);margin-top:4px">聯絡：Dr. J. Hakamp & Dr. M. Nabity｜VMTH Room 120, 4457 TAMU, College Station TX 77843｜979-862-3842｜ivrps@tamu.edu</p>
+      </div>
+
+      <div class="subsection">
+        <h3>📸 實體 IVRPS Kit 照片</h3>
+        <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">以下為講座現場示範的腎臟切片送檢 kit 實物。點擊照片可放大檢視。</p>
+        <div class="photo-grid">
+          <div class="photo-card" onclick="openLightbox('photos/IMG_0448.jpg','IVRPS 完整 Kit 袋內容：右側為福馬林容器（標示 PLEASE ADD 10% FORMALIN）+ Michel\'s Transport Media 試管 + 藍色吸水紙墊')">
+            <img src="photos/IMG_0448.jpg" alt="IVRPS Kit 全貌">
+            <div class="caption"><strong>IVRPS Kit 全貌</strong>福馬林容器 + Michel's 管 + 吸水墊</div>
+          </div>
+          <div class="photo-card" onclick="openLightbox('photos/IMG_0449.jpg','Michel\'s Transport Media 管近照：注意標籤上的過期日（Expiration Date），Michel\'s buffer 半年後過期，需冷藏保存')">
+            <img src="photos/IMG_0449.jpg" alt="Michel's Transport Media 近照">
+            <div class="caption"><strong>Michel's Transport Media 管</strong>注意過期日；需冷藏，不可接觸福馬林</div>
+          </div>
+          <div class="photo-card" onclick="openLightbox('photos/IMG_0450.jpg','IVRPS 使用說明卡：Michel\'s Transport Media 收到後請立即冷藏；收集切片後繼續冷藏運送；冰袋解凍後 Michel\'s 仍穩定可用')">
+            <img src="photos/IMG_0450.jpg" alt="IVRPS 使用說明卡">
+            <div class="caption"><strong>Michel's 使用說明卡</strong>收到即冷藏；冰袋可用於運送</div>
+          </div>
+          <div class="photo-card" onclick="openLightbox('photos/IMG_0452.jpg','Kit 袋中的 Fisherbrand 試管（藍色蓋）+ 藍色吸水墊，用於盛裝及保護 Michel\'s buffer 中的切片核心')">
+            <img src="photos/IMG_0452.jpg" alt="Kit 試管與吸水墊">
+            <div class="caption"><strong>Kit 試管（Fisherbrand）</strong>藍色蓋試管用於盛裝 Michel's 切片</div>
+          </div>
+          <div class="photo-card" onclick="openLightbox('photos/IMG_0451.jpg','SDS-PAGE 收集與運送說明表：包含 Urine/Biofluid 採集方式、Optional 血清/血漿送檢說明，以及 IVRPS 地址（Dr. Nabity, TAMU）。Parafilm M 貼紙用於密封容器。')">
+            <img src="photos/IMG_0451.jpg" alt="SDS-PAGE 送檢說明表">
+            <div class="caption"><strong>SDS-PAGE 送檢說明表</strong>含採樣、運送與 IVRPS 聯絡資訊</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 8：重點複習 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ecfdf5">📝</div>
+      <h2>重點複習彙整</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>臨床行動清單</h3>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>常規篩查（高齡犬貓）</h4>
+            <ul>
+              <li>完整尿液分析（USG、沉渣、蛋白）</li>
+              <li>UPC 測定（穩定且非活動性發炎時）</li>
+              <li>生化（肌酐、BUN、磷）</li>
+              <li>血壓量測</li>
+              <li>IRIS 分期（病患穩定、水合良好）</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>CKD 確診後</h4>
+            <ul>
+              <li>降磷策略（腎臟飼料 ± 磷結合劑）</li>
+              <li>監測血磷，Stage 1-2 低磷時考慮 FGF-23</li>
+              <li>制定降 UPC 計畫（ACEi/ARB）</li>
+              <li>增加血壓監測頻率</li>
+              <li>HCT < 30% 考慮貧血介入</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>AKI 流程</h4>
+            <ul>
+              <li>詳載飲食/用藥史</li>
+              <li>腹部超音波</li>
+              <li>鉤端螺旋體 MAT 或 PCR</li>
+              <li>急性期避免 UPC</li>
+              <li>動態每日重評 IRIS AKI 分級</li>
+              <li>嚴密靜脈輸液監控（輸入 vs. 尿量）</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>院內檢測品管</h4>
+            <ul>
+              <li>向廠商確認 UPC 稀釋 SOP 與線性範圍</li>
+              <li>SDS-PAGE 送檢前排除活躍感染與嚴重血尿</li>
+              <li>SDMA：院內機器定期維護/品管</li>
+              <li>同一隻動物使用同一實驗室追蹤</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>快速查閱：8 大必記原則</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>#</th><th>原則</th><th>重要細節</th></tr>
+          <tr><td>1</td><td>血液抹片無可取代</td><td>自動分析儀無法偵測：球形紅血球、Heinz body、寄生蟲</td></tr>
+          <tr><td>2</td><td>尿液分析嚴重不足</td><td>應積極推廣，特別是 7 歲以上患者</td></tr>
+          <tr><td>3</td><td>蛋白尿先確定來源</td><td>腎前 → 腎性 → 腎後；確認腎性後才做 UPC</td></tr>
+          <tr><td>4</td><td>小型犬肌酐基準值低</td><td>需與自身歷史值比較，而非僅看參考範圍</td></tr>
+          <tr><td>5</td><td>SDMA 需上升 ≥40% 才具意義</td><td>分析變異大；貓院內機器差異達 20–50%；淋巴瘤可假性升高</td></tr>
+          <tr><td>6</td><td>FGF-23 是貓早期 CKD 的磷監測工具</td><td>Stage 1–2 且血磷正常時最有用；> 400 pg/mL → 降磷治療</td></tr>
+          <tr><td>7</td><td>CKD 應盡早診斷治療</td><td>Stage 1 就要開始治療以保護剩餘腎元</td></tr>
+          <tr><td>8</td><td>AKI 初始肌酐不能預測預後</td><td>峰值肌酐和 AKI 等級才重要；給予 1–2 天觀察反應</td></tr>
+        </table></div>
+      </div>
+
+      <div class="alert alert-success" style="margin-top:16px">
+        <span class="alert-icon">📚</span>
+        <span>本筆記整合自 2026 年 6 月 27–28 日小動物臨床病理研討會，講師 Dr. Mary B. Nabity (Texas A&M University)。更多資訊請參閱 IRIS 官方網站 (iris-kidney.com)。</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══ SECTION 9：參考文獻 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f0f9ff">📖</div>
+      <h2>參考文獻</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="alert alert-info" style="margin-bottom:18px">
+        <span class="alert-icon">ℹ️</span>
+        <span>以下文獻為本次課程講師所引用或提及之主要參考資料。</span>
+      </div>
+      <div class="ref-list">
+
+        <div class="ref-item">Nabity MB. <em>Small Animal Clinical Pathology Workshop.</em> Texas A&M University, College of Veterinary Medicine & Biomedical Sciences; June 27–28, 2026. [Course lecture notes]</div>
+
+        <div class="ref-item">IRIS (International Renal Interest Society). <em>IRIS CKD Staging and Sub-staging Guidelines.</em> Available at: <a href="http://www.iris-kidney.com" target="_blank">www.iris-kidney.com</a>. Accessed June 2026.</div>
+
+        <div class="ref-item">IRIS (International Renal Interest Society). <em>IRIS AKI Grading System.</em> Available at: <a href="http://www.iris-kidney.com" target="_blank">www.iris-kidney.com</a>. Accessed June 2026.</div>
+
+        <div class="ref-item">Nabity MB, Lees GE, Boggess MM, et al. Symmetric dimethylarginine assay validation, stability, and evaluation as a marker for the early detection of chronic kidney disease in dogs. <em>J Vet Intern Med.</em> 2015;29(4):1036–1044.</div>
+
+        <div class="ref-item">Hall JA, Yerramilli M, Obare E, et al. Comparison of serum concentrations of symmetric dimethylarginine and creatinine as kidney function biomarkers in cats with chronic kidney disease. <em>J Vet Intern Med.</em> 2014;28(6):1676–1683.</div>
+
+        <div class="ref-item">Relford R, Robertson J, Clements C. Symmetric dimethylarginine: improving the diagnosis and staging of chronic kidney disease in small animals. <em>Vet Clin North Am Small Anim Pract.</em> 2016;46(6):941–960.</div>
+
+        <div class="ref-item">Prieto JM, Carney PC, Miller ML, et al. SDMA meta-analysis: variability in sensitivity and specificity for detecting renal disease; caution advised for routine monitoring in clinically healthy populations. <em>J Vet Intern Med.</em> [Year of publication as cited in lecture, 2024–2025]</div>
+
+        <div class="ref-item">Geddes RF, Biourge V, Chang Y, et al. Serum fibroblast growth factor 23 and symmetric dimethylarginine concentrations in cats with stable, chronic kidney disease. <em>J Vet Intern Med.</em> 2015;29(5):1274–1281.</div>
+
+        <div class="ref-item">Finch NC, Syme HM, Elliott J. Risk factors for development of chronic kidney disease in cats. <em>J Vet Intern Med.</em> 2016;30(2):602–610.</div>
+
+        <div class="ref-item">O'Neill DG, Elliott J, Church DB, et al. Chronic kidney disease in dogs in UK veterinary practices: prevalence, risk factors, and survival. <em>J Vet Intern Med.</em> 2013;27(4):814–821.</div>
+
+        <div class="ref-item">O'Neill DG, Brodbelt DC, Hodge R, et al. Prevalence and disease associations of chronic kidney disease in cats attending primary care veterinary practices in England. <em>Vet Rec.</em> 2022;191(5):e1413.</div>
+
+        <div class="ref-item">Segev G, Langston C, Cowgill LD, et al. Criteria for diagnosis of acute kidney injury in dogs: a prospective cohort study. <em>J Vet Intern Med.</em> 2016;30(6):1785–1793. [Israel AKI study, n=249]</div>
+
+        <div class="ref-item">Langston C, Cowgill LD, Spano J. Applications and outcome of hemodialysis in cats: a review of 29 cases. <em>J Vet Intern Med.</em> 1997;11(6):348–355.</div>
+
+        <div class="ref-item">Lees GE, Brown SA, Elliott J, et al. Assessment and management of proteinuria in dogs and cats: 2004 ACVIM Forum Consensus Statement (small animal). <em>J Vet Intern Med.</em> 2005;19(3):377–385.</div>
+
+        <div class="ref-item">Vaden SL, Pressler BM, Lappin MR, Jensen WA. Effects of urinary tract inflammation and sample blood contamination on urine albumin and total protein concentrations in dogs with glomerulonephritis. <em>Vet Clin Pathol.</em> 2004;33(1):14–19.</div>
+
+        <div class="ref-item">Lees GE, Cianciolo RE, Clubb FJ Jr. Renal biopsy and pathology. <em>Vet Clin North Am Small Anim Pract.</em> 2011;41(1):29–62.</div>
+
+        <div class="ref-item">Cianciolo RE, Mohr FC, Aresu L, et al. World Small Animal Veterinary Association Renal Pathology Initiative: classification of glomerular diseases in dogs. <em>Vet Pathol.</em> 2016;53(1):113–135.</div>
+
+        <div class="ref-item">IVRPS (International Veterinary Renal Pathology Service). <em>Biopsy Kit and Submission Guidelines.</em> Texas A&M University, VMTH Room 120, 4457 TAMU, College Station, TX 77843. Email: ivrps@tamu.edu. Tel: 979-862-3842.</div>
+
+        <div class="ref-item">Pressler BM. Clinical approach to advanced renal function testing in dogs and cats. <em>Vet Clin North Am Small Anim Pract.</em> 2013;43(6):1193–1210.</div>
+
+        <div class="ref-item">Vaden SL. Glomerular diseases. <em>Vet Clin North Am Small Anim Pract.</em> 2011;41(1):123–138.</div>
+
+        <div class="ref-item">Bartges JW. Chronic kidney disease in dogs and cats. <em>Vet Clin North Am Small Anim Pract.</em> 2012;42(4):669–692.</div>
+
+        <div class="ref-item">Polzin DJ. Chronic kidney disease in small animals. <em>Vet Clin North Am Small Anim Pract.</em> 2011;41(1):15–30.</div>
+
+        <div class="ref-item">IDEXX Laboratories. <em>SDMA Reference Ranges and Clinical Interpretation Guidelines.</em> IDEXX Laboratories, Inc.; 2023. Available at: www.idexx.com.</div>
+
+        <div class="ref-item">ACVNU (American College of Veterinary Nephrology and Urology). <em>Residency Training Program Overview.</em> Established 2022. Available at: www.acvnu.org.</div>
+
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Lightbox
+function openLightbox(src, caption) {
+  document.getElementById('lb-img').src = src;
+  document.getElementById('lb-caption').textContent = caption;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
