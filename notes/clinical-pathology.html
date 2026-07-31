@@ -38,8 +38,16 @@
     z-index: 100;
     padding: 0 0 24px;
   }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #94a3b8; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
   #sidebar .logo {
-    padding: 20px 20px 16px;
+    padding: 12px 20px 16px;
     border-bottom: 1px solid #334155;
     margin-bottom: 8px;
   }
@@ -311,19 +319,33 @@
     padding-top: 1px;
   }
 
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #1e293b; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #334155; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
   /* ── SCROLLSPY ── */
   @media (max-width: 900px) {
     #sidebar { display: none; }
     #main { margin-left: 0; padding: 20px 16px; }
     .grid2, .grid3 { grid-template-columns: 1fr; }
     .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
   }
 </style>
 </head>
 <body>
 
 <!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="../index.html">← 回首頁</a>
 <nav id="sidebar">
+  <a class="home-link" href="../index.html">← 回首頁</a>
   <div class="logo">
     <h2>小動物臨床病理<br>學習筆記 2026/06</h2>
     <p>Dr. Mary B. Nabity, Texas A&M</p>
