@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>貓慢性嘔吐：評估、鑑別診斷與處置｜梅醫師病例討論</title>
+<style>
+  :root{
+    --bg:#F5F7F4;
+    --surface:#FFFFFF;
+    --surface-2:#EEF2EC;
+    --ink:#1A2420;
+    --ink-soft:#465049;
+    --ink-faint:#7C8880;
+    --accent:#2B6E63;
+    --accent-strong:#1F5048;
+    --accent-soft-bg:#E3EFEA;
+    --accent-soft-border:#BFDAD0;
+    --supplement:#96632A;
+    --supplement-soft-bg:#F6EAD7;
+    --supplement-soft-border:#E3C99A;
+    --rule:#DCE3DC;
+    --table-head-bg:#EEF2EC;
+    --font-display:Georgia,"Noto Serif TC","Songti TC",serif;
+    --font-body:-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei","Segoe UI",sans-serif;
+    --font-mono:ui-monospace,"SF Mono","Cascadia Code","Roboto Mono",monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#121815;
+      --surface:#161E19;
+      --surface-2:#1D2620;
+      --ink:#E7EDE8;
+      --ink-soft:#B7C2BA;
+      --ink-faint:#7E8D84;
+      --accent:#6FBFA9;
+      --accent-strong:#8ED4BF;
+      --accent-soft-bg:#1C2B26;
+      --accent-soft-border:#2C443B;
+      --supplement:#D8A25C;
+      --supplement-soft-bg:#2C2213;
+      --supplement-soft-border:#4E3A20;
+      --rule:#28322B;
+      --table-head-bg:#1D2620;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121815; --surface:#161E19; --surface-2:#1D2620; --ink:#E7EDE8;
+    --ink-soft:#B7C2BA; --ink-faint:#7E8D84; --accent:#6FBFA9; --accent-strong:#8ED4BF;
+    --accent-soft-bg:#1C2B26; --accent-soft-border:#2C443B; --supplement:#D8A25C;
+    --supplement-soft-bg:#2C2213; --supplement-soft-border:#4E3A20; --rule:#28322B; --table-head-bg:#1D2620;
+  }
+  :root[data-theme="light"]{
+    --bg:#F5F7F4; --surface:#FFFFFF; --surface-2:#EEF2EC; --ink:#1A2420;
+    --ink-soft:#465049; --ink-faint:#7C8880; --accent:#2B6E63; --accent-strong:#1F5048;
+    --accent-soft-bg:#E3EFEA; --accent-soft-border:#BFDAD0; --supplement:#96632A;
+    --supplement-soft-bg:#F6EAD7; --supplement-soft-border:#E3C99A; --rule:#DCE3DC; --table-head-bg:#EEF2EC;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent-strong);}
+  a:focus-visible, button:focus-visible, summary:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:2px;
+  }
+
+  .page{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 24px 96px;
+  }
+
+  /* ---------- Breadcrumb ---------- */
+  .crumbs{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:6px;
+    padding:20px 0 0;
+    font-size:13px;
+    color:var(--ink-faint);
+    font-family:var(--font-mono);
+  }
+  .crumbs a{color:var(--ink-faint);text-decoration:none;}
+  .crumbs a:hover{color:var(--accent-strong);}
+  .crumbs .sep{opacity:.5;}
+  .crumbs .current{color:var(--ink-soft);}
+
+  /* ---------- Masthead ---------- */
+  .masthead{
+    padding:28px 0 32px;
+    border-bottom:1px solid var(--rule);
+    margin-bottom:8px;
+  }
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--accent-strong);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;
+    height:1px;
+    background:var(--accent);
+    display:inline-block;
+  }
+  h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(28px,4vw,42px);
+    line-height:1.3;
+    margin:0 0 14px;
+    text-wrap:balance;
+    letter-spacing:.01em;
+  }
+  .dek{
+    font-size:16px;
+    color:var(--ink-soft);
+    max-width:62ch;
+    margin:0 0 24px;
+  }
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 20px;
+    font-size:13px;
+    color:var(--ink-faint);
+  }
+  .legend-item{display:flex;align-items:center;gap:8px;}
+  .swatch{width:12px;height:12px;border-radius:3px;flex:none;}
+  .swatch.core{background:var(--surface);border:1.5px solid var(--rule);}
+  .swatch.lit{background:var(--supplement-soft-bg);border:1.5px solid var(--supplement);}
+
+  /* ---------- Layout: rail + content ---------- */
+  .layout{
+    display:grid;
+    grid-template-columns:200px minmax(0,1fr);
+    gap:48px;
+    margin-top:40px;
+    align-items:start;
+  }
+  @media (max-width:860px){
+    .layout{grid-template-columns:1fr;}
+  }
+
+  .rail{
+    position:sticky;
+    top:24px;
+    font-size:14px;
+  }
+  .rail-title{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin:0 0 12px;
+  }
+  .rail nav ol{
+    list-style:none;
+    margin:0;
+    padding:0;
+    border-left:1px solid var(--rule);
+  }
+  .rail nav li{margin:0;}
+  .rail nav a{
+    display:block;
+    padding:7px 0 7px 16px;
+    margin-left:-1px;
+    border-left:1px solid transparent;
+    color:var(--ink-soft);
+    text-decoration:none;
+    font-size:13.5px;
+  }
+  .rail nav a:hover{color:var(--accent-strong);border-left-color:var(--accent);}
+
+  main{min-width:0;}
+
+  /* ---------- Sections ---------- */
+  section.chapter{
+    padding-top:8px;
+    margin-bottom:56px;
+    scroll-margin-top:24px;
+  }
+  .chapter-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    padding-bottom:14px;
+    margin-bottom:28px;
+    border-bottom:2px solid var(--ink);
+  }
+  .chapter-num{
+    font-family:var(--font-display);
+    font-size:15px;
+    color:var(--accent-strong);
+    font-weight:700;
+  }
+  .chapter-head h2{
+    font-family:var(--font-display);
+    font-size:24px;
+    margin:0;
+    font-weight:700;
+  }
+
+  h3{
+    font-family:var(--font-display);
+    font-size:18px;
+    font-weight:700;
+    margin:32px 0 12px;
+    color:var(--ink);
+  }
+  h3 .sub-num{color:var(--accent-strong);margin-right:8px;font-family:var(--font-mono);font-size:15px;}
+  h4{
+    font-size:14.5px;
+    font-weight:700;
+    margin:22px 0 8px;
+    color:var(--ink-soft);
+  }
+
+  p{margin:0 0 14px;max-width:74ch;}
+  ul,ol{margin:0 0 16px;padding-left:22px;max-width:70ch;}
+  li{margin-bottom:6px;}
+  li::marker{color:var(--ink-faint);}
+  strong{color:var(--ink);font-weight:700;}
+
+  /* ---------- Literature supplement callouts ---------- */
+  .lit{
+    background:var(--supplement-soft-bg);
+    border:1px solid var(--supplement-soft-border);
+    border-left:3px solid var(--supplement);
+    border-radius:3px;
+    padding:14px 18px;
+    margin:16px 0 20px;
+    max-width:74ch;
+  }
+  .lit p{margin:0;font-size:14.5px;color:var(--ink-soft);}
+  .lit p + p{margin-top:8px;}
+  .lit-tag{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--supplement);
+    font-weight:700;
+    display:block;
+    margin-bottom:6px;
+  }
+
+  /* ---------- Tables ---------- */
+  .table-wrap{
+    overflow-x:auto;
+    margin:10px 0 22px;
+    border:1px solid var(--rule);
+    border-radius:4px;
+  }
+  table{
+    border-collapse:collapse;
+    width:100%;
+    min-width:340px;
+    font-size:14.5px;
+    background:var(--surface);
+  }
+  caption{
+    text-align:left;
+    font-size:12px;
+    color:var(--ink-faint);
+    padding:8px 14px 0;
+    font-family:var(--font-mono);
+  }
+  thead th{
+    background:var(--table-head-bg);
+    text-align:left;
+    font-weight:700;
+    padding:10px 14px;
+    border-bottom:1px solid var(--rule);
+    color:var(--ink-soft);
+    font-size:13px;
+    white-space:nowrap;
+  }
+  tbody td{
+    padding:9px 14px;
+    border-bottom:1px solid var(--rule);
+    font-variant-numeric:tabular-nums;
+    vertical-align:top;
+  }
+  tbody tr:last-child td{border-bottom:none;}
+  tbody td:first-child{color:var(--ink);}
+
+  /* ---------- Drug / dose block ---------- */
+  .dose{
+    font-family:var(--font-mono);
+    font-size:13.5px;
+    background:var(--surface-2);
+    border:1px solid var(--rule);
+    border-radius:4px;
+    padding:12px 16px;
+    margin:10px 0 18px;
+    max-width:60ch;
+  }
+  .dose div{display:flex;justify-content:space-between;gap:16px;padding:2px 0;}
+  .dose div + div{border-top:1px dashed var(--rule);}
+  .dose span:first-child{color:var(--ink-soft);}
+  .dose span:last-child{font-variant-numeric:tabular-nums;}
+
+  /* ---------- References ---------- */
+  .refs{
+    list-style:none;
+    padding:0;
+    margin:0;
+    counter-reset:refnum;
+  }
+  .refs li{
+    counter-increment:refnum;
+    display:flex;
+    gap:14px;
+    padding:14px 0;
+    border-bottom:1px solid var(--rule);
+    max-width:none;
+  }
+  .refs li::before{
+    content:counter(refnum);
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--accent-strong);
+    flex:none;
+    width:20px;
+  }
+  .refs li:last-child{border-bottom:none;}
+  .refs .ref-body{font-size:14.5px;}
+  .refs .ref-body p{margin:0 0 4px;color:var(--ink-soft);}
+  .refs a{word-break:break-all;font-size:13.5px;}
+
+  footer.note{
+    margin-top:64px;
+    padding-top:20px;
+    border-top:1px solid var(--rule);
+    font-size:12.5px;
+    color:var(--ink-faint);
+  }
+  footer.note a{color:var(--ink-faint);}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <p class="crumbs">
+    <a href="../index.html">🐾 獸醫讀書筆記</a>
+    <span class="sep">／</span>
+    <a href="index.html">梅醫師病例討論</a>
+    <span class="sep">／</span>
+    <span class="current">Case 01</span>
+  </p>
+
+  <header class="masthead">
+    <p class="eyebrow">梅醫師病例討論 · Case 01 · 小動物內科／消化系統</p>
+    <h1>貓慢性嘔吐：評估、鑑別診斷與處置</h1>
+    <p class="dek">以課堂口語內容整理成的完整架構，依病史、檢驗判讀、鑑別診斷與治療排序；治療統一置於文末。與所附文獻數字或近年資料有出入之處，另以「文獻補充」標示，不與課堂原始紀錄混寫。</p>
+    <div class="legend">
+      <span class="legend-item"><span class="swatch core"></span>課堂筆記原始內容</span>
+      <span class="legend-item"><span class="swatch lit"></span>文獻補充／需再確認</span>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="rail">
+      <p class="rail-title">目錄</p>
+      <nav>
+        <ol>
+          <li><a href="#s1">一、病史詢問</a></li>
+          <li><a href="#s2">二、基礎檢驗與判讀</a></li>
+          <li><a href="#s3">三、TLI 與貓 EPI</a></li>
+          <li><a href="#s4">四、鑑別診斷架構</a></li>
+          <li><a href="#s5">五、Treatment</a></li>
+          <li><a href="#s6">六、參考資料</a></li>
+        </ol>
+      </nav>
+    </aside>
+
+    <main>
+
+      <!-- 一 -->
+      <section class="chapter" id="s1">
+        <div class="chapter-head"><span class="chapter-num">01</span><h2>病史詢問</h2></div>
+
+        <h3><span class="sub-num">1</span>飲食史（Diet history）</h3>
+        <p>慢性嘔吐病例應追溯至嘔吐開始前後的飲食內容，不要只記錄最近幾天。</p>
+        <p>記錄完整飲食資訊：</p>
+        <ul>
+          <li>品牌與品項</li>
+          <li>乾糧、罐頭、零食、保健品及人類食物</li>
+          <li>蛋白質與肉類來源</li>
+          <li>是否近期更換飲食</li>
+          <li>每日餵食量、頻率及餵食方式</li>
+        </ul>
+        <p>成貓若食用生肉或含生肉成分的產品，需記錄品牌、成分、肉類來源與食用頻率；必要時查詢原廠網站確認完整成分。</p>
+        <p>生食需考慮 <em>Salmonella</em> 等病原暴露。若飼主堅持餵食，也應說明禽流感等潛在風險，尤其須留意美國等地生食產品相關疫情資訊。</p>
+
+        <h3><span class="sub-num">2</span>嘔吐症狀（Vomiting history）</h3>
+        <p>頻率需具體描述，不只寫「偶爾」或「常常」：</p>
+        <ul>
+          <li>每天或每週幾次</li>
+          <li>每次連續嘔吐幾次</li>
+          <li>是否逐漸增加</li>
+          <li>已持續多久</li>
+        </ul>
+        <p>精確記錄內容物：</p>
+        <ul>
+          <li>未消化或已消化食物</li>
+          <li>透明液體、泡沫或膽汁</li>
+          <li>毛球</li>
+          <li>鮮血或咖啡渣樣物質</li>
+          <li>異物或其他內容物</li>
+        </ul>
+        <p>確認與進食的時間關係，但避免只靠時間判斷疾病位置。詢問是否有噁心、流涎、舔嘴、乾嘔及腹部用力。</p>
+        <p>區分真正的 vomiting、regurgitation、咳嗽及 gagging；無法確認時，可請飼主錄影。</p>
+        <p>同時記錄體重、食慾、飲水、排尿、糞便形態、活動力及伴隨症狀。</p>
+      </section>
+
+      <!-- 二 -->
+      <section class="chapter" id="s2">
+        <div class="chapter-head"><span class="chapter-num">02</span><h2>基礎檢驗與判讀</h2></div>
+
+        <h3><span class="sub-num">1</span>Albumin</h3>
+        <p>臨床上只要 albumin 低於實驗室參考區間，即應持續監控；課堂筆記可先以 &lt;3.0 g/dL 提醒注意。</p>
+        <p>課堂判讀分級：</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>程度</th><th>Albumin</th></tr></thead>
+            <tbody>
+              <tr><td>Mild</td><td>2.5–2.9 g/dL</td></tr>
+              <tr><td>Moderate</td><td>2.0–2.5 g/dL</td></tr>
+              <tr><td>Severe</td><td>&lt;2.0 g/dL</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>貓的 albumin 相較之下較少降至 &lt;2.0 g/dL；若出現明顯下降，需積極尋找原因。</p>
+        <p>若胸水或腹水單純由低白蛋白造成，albumin 通常需低於約 1.5 g/dL，常可能低至 1.0 g/dL 左右；仍須排除其他積液機轉。Albumin 是貓的 negative acute-phase protein，發炎本身也可能使其下降。</p>
+
+        <h4>2024 年貓低白蛋白研究的分級</h4>
+        <div class="lit">
+          <span class="lit-tag">文獻補充</span>
+          <p>研究使用的定義與上述課堂分級不同，不應混用：</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <caption>Fong KYM, et al. J Small Anim Pract. 2024</caption>
+            <thead><tr><th>研究分級</th><th>Albumin</th></tr></thead>
+            <tbody>
+              <tr><td>Hypoalbuminaemia</td><td>&lt;2.8 g/dL</td></tr>
+              <tr><td>Mild</td><td>2.4–2.79 g/dL</td></tr>
+              <tr><td>Moderate</td><td>2.0–2.39 g/dL</td></tr>
+              <tr><td>Severe</td><td>≤1.99 g/dL</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul>
+          <li>五年間低白蛋白血症的發生率為 32.7%（533/1632）。</li>
+          <li>最常見的疾病類別為 GI disease：154/533（28.9%）。</li>
+          <li>GI disease 病例中，76/154（49.4%）為 GI neoplasia。</li>
+          <li>常見病因分類為 neoplastic disease（29.8%）與 inflammatory disease（29.6%）。</li>
+          <li>中度與重度低白蛋白血症與較長住院時間、較高治療費用及較高死亡風險相關：死亡 OR 分別為 2.4 與 3.2。</li>
+        </ul>
+        <p><strong>臨床意義：</strong>貓出現低 albumin 時，除肝臟合成不足與腎臟流失外，也應仔細評估 GI neoplasia 與 protein-losing enteropathy（PLE）；albumin 亦可作為預後指標之一。</p>
+
+        <h3><span class="sub-num">2</span>Cholesterol</h3>
+        <p>低 cholesterol 可能反映脂肪吸收不良，較支持腸胃道疾病或 PLE。Albumin 與 cholesterol 可協助初步區分蛋白流失來源：</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>檢驗組合</th><th>較支持的方向</th></tr></thead>
+            <tbody>
+              <tr><td>Albumin 低、cholesterol 也低</td><td>GI loss／PLE</td></tr>
+              <tr><td>Albumin 低、cholesterol 正常或升高</td><td>Renal loss／PLN</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>此判讀僅供方向判斷，不能取代 urinalysis、UPC、肝功能與腸胃道評估。</p>
+
+        <h3><span class="sub-num">3</span>Bilirubin 與肝膽評估</h3>
+        <p>貓相較於狗較少出現真正的 liver failure，但仍需評估肝膽疾病。Bilirubin 偏高時應考慮膽道疾病、膽管炎、膽道阻塞、溶血及感染性疾病等。</p>
+        <p>初期 bilirubin 升高時，皮膚與黏膜可能尚未出現肉眼可見的黃疸。有 GI 症狀的貓，即使肝酵素仍在參考區間，bilirubin 仍是重要的檢驗項目。</p>
+
+        <h3><span class="sub-num">4</span>CBC 與 GI bleeding</h3>
+        <p>Leukocytosis 不一定代表感染，也不等於一定需要抗生素；需結合體溫、分類計數、影像及臨床表現判讀。</p>
+        <p>慢性 GI bleeding 可能造成 reactive thrombocytosis，因此 platelet 可能上升。懷疑 GI bleeding 時，應同時評估 hematemesis、melena、PCV／HCT、BUN 及凝血狀態。</p>
+
+        <h3><span class="sub-num">5</span>Urinalysis、UPC 與血壓</h3>
+        <p>尿液檢查是慢性嘔吐與低 albumin 病例的重要基礎檢驗，即使沒有明顯泌尿道症狀也應考慮進行。低 albumin 時需以 urinalysis 與 UPC 評估是否存在 renal protein loss／PLN。</p>
+        <p>建議測量 systemic blood pressure，尤其是懷疑腎臟病、PLN 或持續性 proteinuria 的病例。</p>
+      </section>
+
+      <!-- 三 -->
+      <section class="chapter" id="s3">
+        <div class="chapter-head"><span class="chapter-num">03</span><h2>進一步檢驗：TLI 與貓 EPI</h2></div>
+
+        <h3><span class="sub-num">1</span>fTLI 檢驗</h3>
+        <p>懷疑 exocrine pancreatic insufficiency（EPI）時，檢驗 feline trypsin-like immunoreactivity（fTLI）。建議使用禁食 8–12 小時的血清檢體。</p>
+        <div class="table-wrap">
+          <table>
+            <caption>Texas A&M GI Lab 判讀</caption>
+            <thead><tr><th>fTLI</th><th>判讀</th></tr></thead>
+            <tbody>
+              <tr><td>≤8.0 μg/L</td><td>符合 EPI</td></tr>
+              <tr><td>8.1–11.9 μg/L</td><td>灰色區域；以禁食檢體複檢</td></tr>
+              <tr><td>12–82 μg/L</td><td>參考區間</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>課堂重點是：腎臟病通常不會造成診斷 EPI 所需的 fTLI 低值。</p>
+        <div class="lit">
+          <span class="lit-tag">文獻補充</span>
+          <p>腎臟病可能因清除下降而使 fTLI 升高，因此不宜寫成「fTLI 完全不受腎臟病影響」。低 fTLI 仍支持 EPI；高值則需同時考量腎功能及 pancreatitis。</p>
+        </div>
+
+        <h3><span class="sub-num">2</span>貓 EPI 的臨床表現</h3>
+        <p>貓 EPI 與犬 EPI 的表現不同，不一定有典型的多食與明顯腹瀉。2016 年 150 隻貓的回溯研究中，臨床表現為：</p>
+        <div class="table-wrap">
+          <table>
+            <caption>Xenoulis PG, et al. J Vet Intern Med. 2016（n=150）</caption>
+            <thead><tr><th>臨床表現</th><th>比例</th></tr></thead>
+            <tbody>
+              <tr><td>Weight loss</td><td>91%</td></tr>
+              <tr><td>Unformed feces</td><td>62%</td></tr>
+              <tr><td>Poor hair coat</td><td>50%</td></tr>
+              <tr><td>Anorexia</td><td>45%</td></tr>
+              <tr><td>Increased appetite</td><td>42%</td></tr>
+              <tr><td>Lethargy</td><td>40%</td></tr>
+              <tr><td>Vomiting</td><td>19%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>課堂重點是：vomiting 在貓 EPI 中相對少見，約 10%–15%；也可能沒有明顯 diarrhea 或 soft stool。</p>
+        <div class="lit">
+          <span class="lit-tag">文獻補充</span>
+          <p>所附 150 隻貓研究的 vomiting 比例為 19%，unformed feces 為 62%。因此並非所有貓都有軟便，但也不宜直接寫成「腹瀉很少見」。</p>
+        </div>
+        <p>貓 EPI 常被認為與慢性胰臟炎造成的胰腺腺泡組織流失有關；相較於狗，貓更可能出現 anorexia。</p>
+        <p>貓的 intrinsic factor 主要由胰臟產生，因此 EPI 常合併 cobalamin deficiency；建議同時檢驗 cobalamin（B12）與 folate。</p>
+      </section>
+
+      <!-- 四 -->
+      <section class="chapter" id="s4">
+        <div class="chapter-head"><span class="chapter-num">04</span><h2>鑑別診斷架構</h2></div>
+
+        <h3><span class="sub-num">1</span>GI 與 non-GI causes</h3>
+        <p>慢性嘔吐不能直接等同原發性 GI disease，應同步區分：</p>
+        <ul>
+          <li>Primary GI disease</li>
+          <li>Metabolic、renal、hepatobiliary、endocrine、neurologic 及其他 non-GI causes</li>
+          <li>Infectious disease</li>
+          <li>Neoplasia</li>
+        </ul>
+        <p>Infectious disease 可放在 non-GI／systemic causes 內整理，但部分病原也可能直接侵犯 GI tract。</p>
+
+        <h3><span class="sub-num">2</span>Infectious disease</h3>
+        <p>即使是完全 indoor 的貓，也不能完全排除 infectious disease；仍需依年齡、旅遊、食物、獵食、寄生蟲與免疫狀態評估。</p>
+        <ul>
+          <li>Toxoplasmosis 可能伴隨 bilirubin 上升。</li>
+          <li>Histoplasmosis 可伴隨低 albumin；有慢性 GI signs 或全身性異常時應列入鑑別診斷。</li>
+          <li>Mycobacterial infection 亦可在慢性嘔吐或浸潤性 GI disease 的鑑別診斷中考慮。</li>
+        </ul>
+
+        <h3><span class="sub-num">3</span>Lymphoma</h3>
+        <p>Large-cell lymphoma 可能伴隨 eosinophilia；其中一個可能機轉為 IL-5 增加。</p>
+        <p>若取得足夠且品質適當的細胞或組織，可考慮 PARR 協助評估 lymphocyte clonality；仍須結合 cytology、histopathology、immunophenotyping 及臨床資訊。</p>
+        <p>出現 anisocoria 或 Horner syndrome 時，除眼科與神經病變外，也應考慮 cranial mediastinal mass／mediastinal lymphoma。Mediastinal lymphoma 較常見 T-cell phenotype，且多為 high-grade／large-cell disease。懷疑 lymphoma 時建議檢驗 FIV／FeLV。</p>
+
+        <h4>Renal lymphoma 與 CNS</h4>
+        <p>Feline renal lymphoma 與 CNS involvement 有已知關聯，可同時或後續侵犯腦、脊髓或其他神經系統。對 lymphoma 建議使用「CNS involvement／侵犯或波及 CNS」，比「轉移」更精確。</p>
+        <p>出現行為改變、癲癇、共濟失調、後肢無力、輕癱或其他神經症狀時，應考慮 MRI 與 CSF evaluation。</p>
+        <div class="lit">
+          <span class="lit-tag">文獻補充</span>
+          <p>早期文獻曾認為 CNS 風險高；但較新的 27 例研究僅有 1 例確認 CNS involvement，並認為未必需要常規 CNS prophylaxis。因此較適合寫成「具有臨床關聯，需提高警覺」，而非一定會發生。</p>
+        </div>
+      </section>
+
+      <!-- 五 -->
+      <section class="chapter" id="s5">
+        <div class="chapter-head"><span class="chapter-num">05</span><h2>Treatment</h2></div>
+
+        <h3><span class="sub-num">1</span>一般治療原則</h3>
+        <p>治療計畫應放在病歷後段：先完整記錄病史、症狀、檢查與 assessment，再列出治療。</p>
+        <p>先處理脫水、電解質、酸鹼失衡、疼痛與營養問題，同時尋找並處理原發病因。止吐藥可先選擇一種，例如 Maropitant（Cerenia）或 Ondansetron。止吐治療不應取代對慢性嘔吐原因的完整調查。</p>
+
+        <h3><span class="sub-num">2</span>GI drugs 與胃黏膜保護劑</h3>
+
+        <h4>Omeprazole</h4>
+        <p>若懷疑 acid-related disease、gastroduodenal ulceration 或 reflux esophagitis，可考慮 omeprazole 1 mg/kg BID，以達到較適當的 gastric pH control。omeprazole 並非所有慢性嘔吐病例的常規止吐藥；使用前應確認適應症。</p>
+
+        <h4>Sucralfate</h4>
+        <p>貓使用 sucralfate 後，有時反而可能加重嘔吐。現有共識對 sucralfate 預防或治療 esophageal injury 的支持證據偏弱；與 PPI 或 H2RA 併用也未證實具有額外效益。不建議把 sucralfate 當成所有慢性嘔吐病例的常規用藥。</p>
+
+        <h4>Barium（課堂用藥紀錄）</h4>
+        <div class="dose">
+          <div><span>劑量</span><span>1–2 mL/kg PO，每 8–12 小時一次</span></div>
+          <div><span>Cat</span><span>約 5 mL</span></div>
+          <div><span>Dog 10 kg</span><span>約 10–20 mL</span></div>
+          <div><span>Dog 30 kg</span><span>約 30 mL</span></div>
+        </div>
+        <div class="lit">
+          <span class="lit-tag">待確認</span>
+          <p>此處為講課用藥紀錄，使用目的、製劑濃度、適應症與停藥標準需再向講師確認；所附 ACVIM GI protectants 共識並未把 barium 列為慢性嘔吐的常規治療。</p>
+        </div>
+
+        <h4>Metronidazole</h4>
+        <p>現在應儘量避免無明確適應症的經驗性使用。除非有具體證據或高度懷疑，例如特定 Clostridium-related disease，或懷疑 ascending bacterial cholangitis，才考慮使用。Leukocytosis 本身不足以作為使用 metronidazole 或其他抗生素的唯一依據。</p>
+
+        <h4>其他</h4>
+        <ul>
+          <li>Cyproheptadine：可依食慾狀況考慮作為 appetite stimulant。</li>
+          <li>Pancreatic enzyme：主要適應症為確認或高度懷疑 EPI，不建議對一般慢性嘔吐常規給予。</li>
+        </ul>
+        <div class="lit">
+          <span class="lit-tag">待確認</span>
+          <p>GI bleeding 的改善速度應依病因與治療反應判斷；課堂提到部分病例第三至第四次給藥後開始改善、多數約一週改善，但原始紀錄未清楚對應特定藥物，正式使用前需再確認。課堂另提到「不一定要等到症狀完全正常才停藥」，但原始紀錄未清楚對應 barium、metronidazole 或其他藥物；停藥條件需再向講師確認。</p>
+        </div>
+
+        <h3><span class="sub-num">3</span>低白蛋白與抗血栓治療</h3>
+        <p>不能只因 albumin 偏低就一律給予抗血栓藥；需判斷蛋白流失來源、凝血狀態及個別血栓風險。</p>
+        <ul>
+          <li><strong>PLN／renal protein loss：</strong>可考慮 clopidogrel 等 antithrombotic therapy。</li>
+          <li><strong>PLE／GI protein loss：</strong>貓通常不會只因低 albumin 常規給予抗血栓藥，除非另有血栓高風險或臨床證據。</li>
+        </ul>
+        <div class="lit">
+          <span class="lit-tag">文獻補充</span>
+          <p>目前貓 PLN 的證據有限。2024 年 37 隻貓的回溯研究中，62% 接受抗血栓治療，但未證實與較佳短期存活相關；作者仍認為血栓可能被低估，可依個案考慮。</p>
+        </div>
+        <p>同步監測 blood pressure、UPC、albumin、creatinine 及臨床水腫／積液變化。</p>
+
+        <h3><span class="sub-num">4</span>Albumin 與 plasma products</h3>
+
+        <h4>Human albumin</h4>
+        <p>臨床原則：若貓只是 albumin 偏低，但整體狀況並未非常危重，通常不常規給予 human albumin。Human albumin 是異種蛋白，仍有輸注反應、免疫反應及容量負荷等潛在風險。雖然部分貓的研究未觀察到明顯即時或延遲過敏反應，仍不能視為完全沒有風險。</p>
+        <p>一般內科病例較少使用；可保留在：</p>
+        <ul>
+          <li>需要重大手術且低白蛋白可能影響圍手術期風險</li>
+          <li>嚴重燒傷</li>
+          <li>嚴重低白蛋白且已造成明確臨床後果</li>
+          <li>其他危重、常規治療無效的病例</li>
+        </ul>
+        <p>是否補充 albumin 應以臨床狀況、oncotic support 需求及預期效益判斷，而非只追求實驗室數值正常化。</p>
+
+        <h4>Cryoprecipitate-poor plasma（CPP／cryo-poor plasma）</h4>
+        <p>若病患除低白蛋白外，也需要補充循環容量，可考慮 CPP。CPP 含 albumin 與部分凝血因子，可提供一定程度的 oncotic support。</p>
+        <p>若目標是明顯提高 serum albumin，通常需要較大輸注量；貓需特別注意 volume overload 及輸血反應。</p>
+        <div class="lit">
+          <span class="lit-tag">文獻補充</span>
+          <p>CPP 用於 albumin replacement 的研究主要來自狗，套用於貓時需保守評估。</p>
+        </div>
+      </section>
+
+      <!-- 六 -->
+      <section class="chapter" id="s6">
+        <div class="chapter-head"><span class="chapter-num">06</span><h2>參考資料</h2></div>
+        <ol class="refs">
+          <li>
+            <div class="ref-body">
+              <p>Xenoulis PG, et al. Feline Exocrine Pancreatic Insufficiency: A Retrospective Study of 150 Cases. <em>J Vet Intern Med.</em> 2016.</p>
+              <a href="https://pubmed.ncbi.nlm.nih.gov/27641602/" target="_blank" rel="noopener">pubmed.ncbi.nlm.nih.gov/27641602</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Texas A&amp;M Gastrointestinal Laboratory. Serum Trypsin-Like Immunoreactivity (TLI).</p>
+              <a href="https://vetmed.tamu.edu/gilab/service/assays/tli/" target="_blank" rel="noopener">vetmed.tamu.edu/gilab/service/assays/tli</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Fong KYM, et al. Hypoalbuminaemia and its association with disease and clinical outcomes in cats. <em>J Small Anim Pract.</em> 2024.</p>
+              <a href="https://pubmed.ncbi.nlm.nih.gov/39228101/" target="_blank" rel="noopener">pubmed.ncbi.nlm.nih.gov/39228101</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Marks SL, et al. ACVIM consensus statement: Support for rational administration of gastrointestinal protectants to dogs and cats. <em>J Vet Intern Med.</em> 2018.</p>
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6271318/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov/articles/PMC6271318</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Williams AG, et al. Incidence and treatment of feline renal lymphoma: 27 cases. <em>J Feline Med Surg.</em> 2021.</p>
+              <a href="https://pubmed.ncbi.nlm.nih.gov/33464143/" target="_blank" rel="noopener">pubmed.ncbi.nlm.nih.gov/33464143</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Sugar N, et al. Clinical findings, prognostic factors, and outcome of protein-losing nephropathy caused by primary glomerular disease in cats. <em>J Vet Intern Med.</em> 2024.</p>
+              <a href="https://academic.oup.com/jvim/article/38/6/3111/8448480" target="_blank" rel="noopener">academic.oup.com/jvim/article/38/6/3111/8448480</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>AAHA. 2024 AAHA Fluid Therapy Guidelines for Dogs and Cats: Questions and Controversies in Fluid Therapy.</p>
+              <a href="https://www.aaha.org/resources/2024-aaha-fluid-therapy-guidelines-for-dogs-and-cats/section-7-questions-and-controversies-in-fluid-therapy/" target="_blank" rel="noopener">aaha.org/resources/2024-aaha-fluid-therapy-guidelines</a>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="note">
+    整理自課堂口語筆記，供個人臨床參考使用，非正式發表文獻；用藥劑量與停藥條件請以原始講師確認及最新指引為準。回到<a href="index.html">梅醫師病例討論</a>列表。
+  </footer>
+
+</div>
+</body>
+</html>
