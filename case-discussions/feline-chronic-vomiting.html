@@ -78,13 +78,35 @@
     padding:0 24px 96px;
   }
 
+  /* ---------- Back link ---------- */
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    margin-top:20px;
+    padding:7px 14px 7px 10px;
+    border:1px solid var(--rule);
+    border-radius:20px;
+    background:var(--surface);
+    color:var(--ink-soft);
+    text-decoration:none;
+    font-size:13px;
+    font-weight:600;
+  }
+  .back-link:hover{
+    color:var(--accent-strong);
+    border-color:var(--accent-soft-border);
+    background:var(--accent-soft-bg);
+  }
+  .back-link .arrow{font-size:15px;line-height:1;}
+
   /* ---------- Breadcrumb ---------- */
   .crumbs{
     display:flex;
     align-items:center;
     flex-wrap:wrap;
     gap:6px;
-    padding:20px 0 0;
+    padding:10px 0 0;
     font-size:13px;
     color:var(--ink-faint);
     font-family:var(--font-mono);
@@ -357,6 +379,8 @@
 </head>
 <body>
 <div class="page">
+
+  <a class="back-link" href="index.html"><span class="arrow">←</span>回上一頁：梅醫師病例討論</a>
 
   <p class="crumbs">
     <a href="../index.html">🐾 獸醫讀書筆記</a>
