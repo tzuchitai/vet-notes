@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>貓慢性腹瀉：評估、鑑別診斷與處置｜梅醫師病例討論</title>
+<style>
+  :root{
+    --bg:#F5F7F4;
+    --surface:#FFFFFF;
+    --surface-2:#EEF2EC;
+    --ink:#1A2420;
+    --ink-soft:#465049;
+    --ink-faint:#7C8880;
+    --accent:#2B6E63;
+    --accent-strong:#1F5048;
+    --accent-soft-bg:#E3EFEA;
+    --accent-soft-border:#BFDAD0;
+    --supplement:#96632A;
+    --supplement-soft-bg:#F6EAD7;
+    --supplement-soft-border:#E3C99A;
+    --rule:#DCE3DC;
+    --table-head-bg:#EEF2EC;
+    --font-display:Georgia,"Noto Serif TC","Songti TC",serif;
+    --font-body:-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei","Segoe UI",sans-serif;
+    --font-mono:ui-monospace,"SF Mono","Cascadia Code","Roboto Mono",monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#121815;
+      --surface:#161E19;
+      --surface-2:#1D2620;
+      --ink:#E7EDE8;
+      --ink-soft:#B7C2BA;
+      --ink-faint:#7E8D84;
+      --accent:#6FBFA9;
+      --accent-strong:#8ED4BF;
+      --accent-soft-bg:#1C2B26;
+      --accent-soft-border:#2C443B;
+      --supplement:#D8A25C;
+      --supplement-soft-bg:#2C2213;
+      --supplement-soft-border:#4E3A20;
+      --rule:#28322B;
+      --table-head-bg:#1D2620;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121815; --surface:#161E19; --surface-2:#1D2620; --ink:#E7EDE8;
+    --ink-soft:#B7C2BA; --ink-faint:#7E8D84; --accent:#6FBFA9; --accent-strong:#8ED4BF;
+    --accent-soft-bg:#1C2B26; --accent-soft-border:#2C443B; --supplement:#D8A25C;
+    --supplement-soft-bg:#2C2213; --supplement-soft-border:#4E3A20; --rule:#28322B; --table-head-bg:#1D2620;
+  }
+  :root[data-theme="light"]{
+    --bg:#F5F7F4; --surface:#FFFFFF; --surface-2:#EEF2EC; --ink:#1A2420;
+    --ink-soft:#465049; --ink-faint:#7C8880; --accent:#2B6E63; --accent-strong:#1F5048;
+    --accent-soft-bg:#E3EFEA; --accent-soft-border:#BFDAD0; --supplement:#96632A;
+    --supplement-soft-bg:#F6EAD7; --supplement-soft-border:#E3C99A; --rule:#DCE3DC; --table-head-bg:#EEF2EC;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent-strong);}
+  a:focus-visible, button:focus-visible, summary:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:2px;
+  }
+
+  .page{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 24px 96px;
+  }
+
+  /* ---------- Back link ---------- */
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    margin-top:20px;
+    padding:7px 14px 7px 10px;
+    border:1px solid var(--rule);
+    border-radius:20px;
+    background:var(--surface);
+    color:var(--ink-soft);
+    text-decoration:none;
+    font-size:13px;
+    font-weight:600;
+  }
+  .back-link:hover{
+    color:var(--accent-strong);
+    border-color:var(--accent-soft-border);
+    background:var(--accent-soft-bg);
+  }
+  .back-link .arrow{font-size:15px;line-height:1;}
+
+  /* ---------- Breadcrumb ---------- */
+  .crumbs{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:6px;
+    padding:10px 0 0;
+    font-size:13px;
+    color:var(--ink-faint);
+    font-family:var(--font-mono);
+  }
+  .crumbs a{color:var(--ink-faint);text-decoration:none;}
+  .crumbs a:hover{color:var(--accent-strong);}
+  .crumbs .sep{opacity:.5;}
+  .crumbs .current{color:var(--ink-soft);}
+
+  /* ---------- Masthead ---------- */
+  .masthead{
+    padding:28px 0 32px;
+    border-bottom:1px solid var(--rule);
+    margin-bottom:8px;
+  }
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--accent-strong);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;
+    height:1px;
+    background:var(--accent);
+    display:inline-block;
+  }
+  h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(28px,4vw,42px);
+    line-height:1.3;
+    margin:0 0 14px;
+    text-wrap:balance;
+    letter-spacing:.01em;
+  }
+  .dek{
+    font-size:16px;
+    color:var(--ink-soft);
+    max-width:62ch;
+    margin:0 0 24px;
+  }
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 20px;
+    font-size:13px;
+    color:var(--ink-faint);
+  }
+  .legend-item{display:flex;align-items:center;gap:8px;}
+  .swatch{width:12px;height:12px;border-radius:3px;flex:none;}
+  .swatch.core{background:var(--surface);border:1.5px solid var(--rule);}
+  .swatch.lit{background:var(--supplement-soft-bg);border:1.5px solid var(--supplement);}
+
+  /* ---------- Layout: rail + content ---------- */
+  .layout{
+    display:grid;
+    grid-template-columns:200px minmax(0,1fr);
+    gap:48px;
+    margin-top:40px;
+    align-items:start;
+  }
+  @media (max-width:860px){
+    .layout{grid-template-columns:1fr;}
+  }
+
+  .rail{
+    position:sticky;
+    top:24px;
+    font-size:14px;
+  }
+  .rail-title{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin:0 0 12px;
+  }
+  .rail nav ol{
+    list-style:none;
+    margin:0;
+    padding:0;
+    border-left:1px solid var(--rule);
+  }
+  .rail nav li{margin:0;}
+  .rail nav a{
+    display:block;
+    padding:7px 0 7px 16px;
+    margin-left:-1px;
+    border-left:1px solid transparent;
+    color:var(--ink-soft);
+    text-decoration:none;
+    font-size:13.5px;
+  }
+  .rail nav a:hover{color:var(--accent-strong);border-left-color:var(--accent);}
+
+  main{min-width:0;}
+
+  /* ---------- Sections ---------- */
+  section.chapter{
+    padding-top:8px;
+    margin-bottom:56px;
+    scroll-margin-top:24px;
+  }
+  .chapter-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    padding-bottom:14px;
+    margin-bottom:28px;
+    border-bottom:2px solid var(--ink);
+  }
+  .chapter-num{
+    font-family:var(--font-display);
+    font-size:15px;
+    color:var(--accent-strong);
+    font-weight:700;
+  }
+  .chapter-head h2{
+    font-family:var(--font-display);
+    font-size:24px;
+    margin:0;
+    font-weight:700;
+  }
+
+  h3{
+    font-family:var(--font-display);
+    font-size:18px;
+    font-weight:700;
+    margin:32px 0 12px;
+    color:var(--ink);
+  }
+  h3 .sub-num{color:var(--accent-strong);margin-right:8px;font-family:var(--font-mono);font-size:15px;}
+  h4{
+    font-size:14.5px;
+    font-weight:700;
+    margin:22px 0 8px;
+    color:var(--ink-soft);
+  }
+
+  p{margin:0 0 14px;max-width:74ch;}
+  ul,ol{margin:0 0 16px;padding-left:22px;max-width:70ch;}
+  li{margin-bottom:6px;}
+  li::marker{color:var(--ink-faint);}
+  strong{color:var(--ink);font-weight:700;}
+
+  /* ---------- Literature supplement callouts ---------- */
+  .lit{
+    background:var(--supplement-soft-bg);
+    border:1px solid var(--supplement-soft-border);
+    border-left:3px solid var(--supplement);
+    border-radius:3px;
+    padding:14px 18px;
+    margin:16px 0 20px;
+    max-width:74ch;
+  }
+  .lit p{margin:0;font-size:14.5px;color:var(--ink-soft);}
+  .lit p + p{margin-top:8px;}
+  .lit-tag{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--supplement);
+    font-weight:700;
+    display:block;
+    margin-bottom:6px;
+  }
+
+  /* ---------- Tables ---------- */
+  .table-wrap{
+    overflow-x:auto;
+    margin:10px 0 22px;
+    border:1px solid var(--rule);
+    border-radius:4px;
+  }
+  table{
+    border-collapse:collapse;
+    width:100%;
+    min-width:340px;
+    font-size:14.5px;
+    background:var(--surface);
+  }
+  caption{
+    text-align:left;
+    font-size:12px;
+    color:var(--ink-faint);
+    padding:8px 14px 0;
+    font-family:var(--font-mono);
+  }
+  thead th{
+    background:var(--table-head-bg);
+    text-align:left;
+    font-weight:700;
+    padding:10px 14px;
+    border-bottom:1px solid var(--rule);
+    color:var(--ink-soft);
+    font-size:13px;
+    white-space:nowrap;
+  }
+  tbody td{
+    padding:9px 14px;
+    border-bottom:1px solid var(--rule);
+    font-variant-numeric:tabular-nums;
+    vertical-align:top;
+  }
+  tbody tr:last-child td{border-bottom:none;}
+  tbody td:first-child{color:var(--ink);}
+
+  /* ---------- Drug / dose block ---------- */
+  .dose{
+    font-family:var(--font-mono);
+    font-size:13.5px;
+    background:var(--surface-2);
+    border:1px solid var(--rule);
+    border-radius:4px;
+    padding:12px 16px;
+    margin:10px 0 18px;
+    max-width:60ch;
+  }
+  .dose div{display:flex;justify-content:space-between;gap:16px;padding:2px 0;}
+  .dose div + div{border-top:1px dashed var(--rule);}
+  .dose span:first-child{color:var(--ink-soft);}
+  .dose span:last-child{font-variant-numeric:tabular-nums;}
+
+  /* ---------- Stat strip (case snapshot) ---------- */
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+    gap:12px;
+    margin:16px 0 22px;
+  }
+  .stat-box{
+    background:var(--surface);
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:14px 16px;
+    text-align:center;
+  }
+  .stat-box .num{
+    font-family:var(--font-display);
+    font-size:22px;
+    font-weight:700;
+    color:var(--accent-strong);
+    display:block;
+  }
+  .stat-box .lbl{font-size:12px;color:var(--ink-faint);margin-top:4px;}
+
+  /* ---------- References ---------- */
+  .refs{
+    list-style:none;
+    padding:0;
+    margin:0;
+    counter-reset:refnum;
+  }
+  .refs li{
+    counter-increment:refnum;
+    display:flex;
+    gap:14px;
+    padding:14px 0;
+    border-bottom:1px solid var(--rule);
+    max-width:none;
+  }
+  .refs li::before{
+    content:counter(refnum);
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--accent-strong);
+    flex:none;
+    width:20px;
+  }
+  .refs li:last-child{border-bottom:none;}
+  .refs .ref-body{font-size:14.5px;}
+  .refs .ref-body p{margin:0 0 4px;color:var(--ink-soft);}
+  .refs a{word-break:break-all;font-size:13.5px;}
+
+  footer.note{
+    margin-top:64px;
+    padding-top:20px;
+    border-top:1px solid var(--rule);
+    font-size:12.5px;
+    color:var(--ink-faint);
+  }
+  footer.note a{color:var(--ink-faint);}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <a class="back-link" href="index.html"><span class="arrow">←</span>回上一頁：梅醫師病例討論</a>
+
+  <p class="crumbs">
+    <a href="../index.html">🐾 獸醫讀書筆記</a>
+    <span class="sep">／</span>
+    <a href="index.html">梅醫師病例討論</a>
+    <span class="sep">／</span>
+    <span class="current">Case 02</span>
+  </p>
+
+  <header class="masthead">
+    <p class="eyebrow">梅醫師病例討論 · Case 02 · 小動物內科／消化系統</p>
+    <h1>貓慢性腹瀉：評估、鑑別診斷與處置</h1>
+    <p class="dek">以課堂口語內容整理成的完整架構，依病史、檢驗判讀、飲食試驗、鑑別診斷到後續追蹤排序；並附上課堂實際討論病例（Mochi）的完整病程作為對照。與所附文獻數字或近年資料有出入之處，另以「文獻補充」標示，不與課堂原始紀錄混寫。</p>
+    <div class="legend">
+      <span class="legend-item"><span class="swatch core"></span>課堂筆記原始內容</span>
+      <span class="legend-item"><span class="swatch lit"></span>文獻補充／需再確認</span>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="rail">
+      <p class="rail-title">目錄</p>
+      <nav>
+        <ol>
+          <li><a href="#s1">一、病史詢問與大小腸區分</a></li>
+          <li><a href="#s2">二、基礎檢驗判讀</a></li>
+          <li><a href="#s3">三、飲食試驗：時間與陷阱</a></li>
+          <li><a href="#s4">四、Fiber：機轉與應用</a></li>
+          <li><a href="#s5">五、鑑別診斷：Non-GI與EPI／B12</a></li>
+          <li><a href="#s6">六、Biopsy時機與病理判讀</a></li>
+          <li><a href="#s7">七、實際病例：Mochi的完整病程</a></li>
+          <li><a href="#s8">八、原始課堂錄音</a></li>
+          <li><a href="#s9">九、參考資料</a></li>
+        </ol>
+      </nav>
+    </aside>
+
+    <main>
+
+      <!-- 一 -->
+      <section class="chapter" id="s1">
+        <div class="chapter-head"><span class="chapter-num">01</span><h2>病史詢問與大小腸區分</h2></div>
+
+        <h3><span class="sub-num">1</span>血便先別急著恐慌</h3>
+        <p>看到 hematochezia（鮮血便）時，第一個問題永遠是：有沒有 melena（黑便）？黑便代表上消化道出血，情況遠比鮮血便嚴重。大腸壁比胃與小腸薄，糞便通過時只要輕微摩擦就可能流血，不需要很大的 trauma；所以看到 frank blood 時，臨床上不會太緊張，但主人看到通常會很害怕。</p>
+        <p>建議每一隻動物都做直腸指診（rectal exam），並把糞便放在白色背景（例如白色衛生紙）上拍照記錄。深咖啡色與真正的黑色很難用肉眼分辨，固定拍照存檔，除了幫助自己判讀，也能避免主人把正常深色糞便過度解讀成 melena。</p>
+
+        <h3><span class="sub-num">2</span>如何精確描述臨床表現</h3>
+        <p>如何描述 clinical signs 會直接影響之後選擇哪一種飲食。常見的迷思是：只要是慢性 GI signs，就在 GI diet、hydrolyzed diet、novel diet 之間選一種；但這三者處理的問題並不完全相同。若醫師說「已經用過 hydrolyzed diet 還是沒有改善，所以不是 diet responsive，應該要上 steroid」，這個推論可能過早，也可能只是還沒試到對的那一種飲食，卻讓動物不必要地暴露在 steroid 之下。</p>
+
+        <h3><span class="sub-num">3</span>Small bowel vs. large bowel：不是二分法而是光譜</h3>
+        <p>Mixed bowel pattern 很常見；區分大小腸的目的是排列鑑別診斷與選擇飲食方向，不是把每隻貓塞進單一分類。判斷時要把多個線索一起 interpret，並逐項記錄：</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>特徵</th><th>Small bowel</th><th>Large bowel</th></tr></thead>
+            <tbody>
+              <tr><td>每次糞便量</td><td>較多</td><td>較少</td></tr>
+              <tr><td>排便頻率</td><td>正常至輕度增加，通常次數較少</td><td>明顯增加，少量多次</td></tr>
+              <tr><td>體重下降</td><td>較常見</td><td>單純大腸疾病較少見</td></tr>
+              <tr><td>Mucus／tenesmus</td><td>較少（mucus gland 主要在大腸）</td><td>較常見</td></tr>
+              <tr><td>血液</td><td>Melena 較支持上段 GI 出血</td><td>Hematochezia 較常見</td></tr>
+              <tr><td>食慾（appetite）</td><td>較常受影響</td><td>通常較不受影響</td></tr>
+              <tr><td>糞便性狀</td><td>可能量大、鬆軟或水樣，類比「食物中毒後急性腹瀉」</td><td>少量、帶黏液，常有急迫感（一天可達 8–9 次，每次一點點）</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>若一隻動物只有 hematochezia、mucus，沒有其他描述，但同時有 weight loss，仍應傾向懷疑合併 small bowel involvement；appetite 受影響也是同樣道理。判斷時要把 fecal score（Purina 量表，1–7 分制）、每日次數、weight、appetite 一起放進同一份紀錄比較，而不是單看某一次的糞便照片。</p>
+
+        <h3><span class="sub-num">4</span>Fiber 對 upper GI 的潛在副作用</h3>
+        <p>大腸型腹瀉常想到用 fiber 讓糞便成形，但 fiber 會降低 gastric transit time；若動物本身有 delayed gastric emptying（狗較常見），fiber 反而可能讓 vomiting／regurgitation 惡化。若同時存在明顯的 gastric motility issue 與 large-bowel diarrhea，治療會變得相當棘手。</p>
+
+        <h3><span class="sub-num">5</span>主人每日紀錄</h3>
+        <ul>
+          <li>食慾：吃完比例、吃完時間、是否需要誘食。</li>
+          <li>嘔吐：每天次數、與進食間隔、內容物。</li>
+          <li>糞便：次數、每次量、水分、mucus、hematochezia／melena、tenesmus，並比對 Purina fecal score。</li>
+          <li>體重：固定秤、固定時段，至少每週一次；體重持續下降比單次食慾正常更重要。</li>
+          <li>每日實際攝取熱量：貓常是多貓家庭或主人未細看，容易高估攝取量。若動物需要 1.5–1.8 倍 RER 才能維持體重，而實際只吃到七成，即使「有在吃」仍會持續 lose weight；若攝取足夠仍持續變瘦，才需要懷疑某程度的 malabsorption。</li>
+        </ul>
+      </section>
+
+      <!-- 二 -->
+      <section class="chapter" id="s2">
+        <div class="chapter-head"><span class="chapter-num">02</span><h2>基礎檢驗判讀</h2></div>
+
+        <h3><span class="sub-num">1</span>Albumin：用 3 g/dL 當自己的提醒線</h3>
+        <p>貓的 albumin 參考區間下限常常偏低（有些實驗室低到 2.2），但課堂建議不要完全依賴那個下限；把 3 g/dL 當作自己的 cut off，即使數值仍落在「正常」範圍內，也提醒自己要繼續 monitor。貓的正常 albumin 大致落在 3.3–3.5（mid three）；一旦接近 3，就該留意。</p>
+        <div class="lit">
+          <span class="lit-tag">文獻補充</span>
+          <p>不同機器與實驗室的 reference range 本來就難以完全標準化；用固定的臨床 cut off（而非只看是否落在紅字外）來早期攔截如老年犬慢性腎絲球病變（non-azotemic PLN）等個案，是課堂反覆強調的實務習慣，但仍應搭配該實驗室 RI、總蛋白與個體趨勢一併判讀。</p>
+        </div>
+
+        <h3><span class="sub-num">2</span>Globulin：High normal 也要標記</h3>
+        <p>Albumin 與 globulin 課堂經驗上通常都落在 3 左右的區間（約 3–3.9）；若 globulin 已接近或超過 5，即使仍在 reference range 內，也要視為 high normal 並標記起來。急性情況下 high globulin 較可能指向 infection；若病程已相當 chronic，則較偏向 chronic inflammation（但不能完全排除 chronic infection）。</p>
+
+        <h3><span class="sub-num">3</span>BUN 下降合併體重下降</h3>
+        <p>BUN 偏低合併 weight loss，可能反映 protein intake 不足，也可能是 GI disease 造成的 PUPD（多飲多尿）稀釋所致。狗的 GI disease 有時會伴隨原因不明的 PUPD（idiopathic PUPD），機轉不明，但腸道問題改善後 PUPD 也會跟著改善；貓是否有類似現象，課堂認為值得懷疑但沒有定論。同時，低血鉀除了 GI loss 外，也應考慮是否合併 urinary loss。</p>
+
+        <h3><span class="sub-num">4</span>Cholesterol 與 Bilirubin／Triaditis</h3>
+        <p>懷疑 GI disease 時建議一併檢查 cholesterol。低 cholesterol 較支持腸胃道吸收不良或 PLE 方向。Bilirubin 升高需考慮 hepatic lipidosis、cholangitis／膽道問題；貓的 pancreatic duct 與 common bile duct 常在 duodenum 出口處匯合，這也是「貓的 triad（triaditis）」概念的解剖基礎：pancreatitis 可能造成 common bile duct 部分阻塞或發炎，進而使 bilirubin 上升。</p>
+        <div class="lit">
+          <span class="lit-tag">文獻補充</span>
+          <p>2024 年 124 隻剖檢貓的研究顯示，84% 呈現 complex conjoined ductular anatomy（common bile duct 與 major pancreatic duct 於 major duodenal papilla 附近匯合）；但這是剖檢族群的比例，不能直接當作一般貓群的盛行率。[4]</p>
+        </div>
+        <p>Bilirubin 升高早期，皮膚黏膜可能尚未出現肉眼可見黃疸；主人常常「沒有很 pay attention」動物實際進食量，尤其貓本身表現不適時相當 subtle，這也是為什麼即使 clinical signs 看似穩定，仍建議把 cholesterol、bilirubin 一併放進判讀。</p>
+      </section>
+
+      <!-- 三 -->
+      <section class="chapter" id="s3">
+        <div class="chapter-head"><span class="chapter-num">03</span><h2>飲食試驗：時間與陷阱</h2></div>
+
+        <h3><span class="sub-num">1</span>正確起算方式</h3>
+        <p>換食期建議 7–10 天，逐步增加新食、減少舊食；正式試驗的 <strong>Day 1</strong> 是從「100% 只吃新處方」的第一天才開始算，換食期本身不算在內。整個流程加起來，往往要 3–4 週才能真正 evaluate response，這一點必須先讓主人明白。</p>
+        <p>一般內科（medicine）給的觀察期通常是兩週：不會期待兩週內症狀完全消失，但期待若只吃這個飼料，兩週內應該會看到方向；若改善達五成以上，可以延長到一個月再看；若只有一點點或完全沒改善，通常就在兩週時考慮換一個新的飲食。皮膚科（derm）的 trial period 通常較長（約兩三個月），因為皮膚反應本來就比腸胃慢，兩者不能用同一套時間框架。</p>
+        <div class="lit">
+          <span class="lit-tag">文獻補充</span>
+          <p>研究中慢性嘔吐病例在完全換食後的顯著改善常見於第 2–4 週；病況穩定但僅部分改善時，可持續觀察到 2–4 週再決定下一步。[1]</p>
+        </div>
+
+        <h3><span class="sub-num">2</span>Strict trial 的定義</h3>
+        <ul>
+          <li>只餵選定處方；不混原飼料、零食、人食、肉泥、營養膏或其他蛋白來源。</li>
+          <li>檢查 flavored medication、pill pocket、牙膏、保健品，以及是否偷吃到其他寵物的食物——多貓家庭尤其容易在這裡漏掉。</li>
+          <li>需要 fiber 或 B12 時，試驗期間種類與劑量固定，避免同時改動太多變項。</li>
+          <li>若同時開始 steroid、抗生素、益生菌與新飲食，之後會很難判斷究竟是哪一項真正有效。</li>
+        </ul>
+        <p>對於「之前吃過都沒事的食物，能不能再吃」這類提問，可以用 immune dysregulation 的角度解釋：diet-responsive enteropathy 常見於成年後才發生，是因為身體已經「看過」某個 antigen 並 develop 出免疫反應，之後才會對曾經耐受的食物產生不良反應；對食物過敏而言，抗原負荷不需要很大，極少量的暴露就足以誘發反應（可用人類的食物／環境過敏經驗類比說明，幫助主人理解「吃到一點點也會有影響」）。</p>
+
+        <h3><span class="sub-num">3</span>Hydrolyzed diet 的長期蛋白疑慮</h3>
+        <p>Hydrolyzed diet 是否適合長期使用，是課堂上實際討論到的爭議點：有皮膚科醫師認為 hydrolyzed diet（如 AN24）對貓來說蛋白偏低，長期使用可能造成 muscle wasting。這個說法本身沒有錯，但「符合 FEDIAF／AAFCO 等 minimal 標準」不等於「對所有貓都足夠」——對年輕、活動量較高的貓，蛋白量可能剛好卡在最低標準邊緣。</p>
+        <p>實務上的因應方式：若家中多貓一起吃乾糧（free feed），可以全家統一換成 hydrolyzed 乾糧，避免 GI 貓吃到別的食物；同時額外搭配一份 higher-protein 的罐頭，由主人可控制份量地補足蛋白，藉此平衡長期偏低蛋白造成的 muscle wasting 風險。</p>
+
+        <h3><span class="sub-num">4</span>處方食物選項與配方陷阱</h3>
+        <div class="table-wrap">
+          <table>
+            <caption>版本提醒：以下成分依 2026 年 8 月可查得之美國官方頁面整理；台灣配方、供貨與品名可能不同，臨床使用前應以實際包裝為準</caption>
+            <thead><tr><th>產品</th><th>蛋白概念</th><th>Strict trial 注意</th></tr></thead>
+            <tbody>
+              <tr><td>Royal Canin Feline PR</td><td>兔肉＋豌豆蛋白＋水解大豆</td><td>不是單純兔肉單一蛋白。[13]</td></tr>
+              <tr><td>Royal Canin Feline PD</td><td>鴨肉＋豌豆蛋白＋水解大豆</td><td>不是單純鴨肉單一蛋白。[14]</td></tr>
+              <tr><td>Royal Canin Feline HP</td><td>水解大豆</td><td>含 chicken fat；是否適合排除雞蛋白需看臨床問題與製程，不能只看品名。[15]</td></tr>
+              <tr><td>Hill's d/d venison 乾糧</td><td>鹿肉＋豌豆</td><td>現行美國成分列有 chicken liver flavor；懷疑雞蛋白時需特別核對。[16][17]</td></tr>
+              <tr><td>Hill's d/d duck 乾糧</td><td>鴨肉＋豌豆</td><td>現行美國成分列有 chicken liver flavor。[16]</td></tr>
+              <tr><td>Hill's d/d duck 罐頭</td><td>鴨肉／鴨肝</td><td>現行美國成分未列雞肉蛋白，可作 intact novel protein 選項。[18]</td></tr>
+              <tr><td>Hill's z/d</td><td>水解雞肝蛋白</td><td>屬 hydrolyzed diet；不等於完全沒有雞來源。[19]</td></tr>
+              <tr><td>Hill's m/d 罐頭</td><td>豬肝／豬副產品＋雞脂</td><td>設計目的為血糖與體重管理，不是標準診斷性排除飲食。[20]</td></tr>
+              <tr><td>Rayne Nutrition</td><td>待確認實際品項</td><td>課堂提到有 hydrolyzed fish 乾糧但無罐頭；canned food 多含 chicken，須逐一核對包裝，不能套用通則。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>其他可考慮的 novel protein 選項：Hill's 的 m/d（豬肉來源，非標準排除飲食）、國外品牌 Ring／Farmina 等（是否有台灣代理需另行確認）。適口性不佳時，可先提供小份試吃樣本，避免主人一次買一箱卻不吃的浪費。</p>
+      </section>
+
+      <!-- 四 -->
+      <section class="chapter" id="s4">
+        <div class="chapter-head"><span class="chapter-num">04</span><h2>Fiber：機轉與應用</h2></div>
+
+        <h3><span class="sub-num">1</span>Soluble 不完全等於 fermentable</h3>
+        <p>許多可溶性纖維具有較高可發酵性，可被大腸菌群轉換為 short-chain fatty acids（SCFAs），主要包括 acetate、propionate 與 butyrate；但不同纖維的溶解度、黏度與發酵速度不同，不能把 soluble 與 fermentable 完全視為同義詞。Butyrate 是 colonocyte 的重要能量來源之一，與黏膜屏障、局部免疫調節相關。</p>
+        <div class="lit">
+          <span class="lit-tag">文獻補充</span>
+          <p>貓糞菌體外發酵研究顯示，pectin 與 inulin 產生的總 SCFA（含 acetate、propionate、butyrate）高於 acacia fiber 與 cellulose；這支持「不同 fiber 不能只用可溶／不可溶二分」的觀念，但體外結果不能直接等同臨床療效。[2]</p>
+        </div>
+        <p>市面上多數 fiber supplement 其實是 soluble 與 insoluble 的混合物；insoluble 比例較高的產品有助於 fecal bulking（讓糞便較成形），soluble 比例較高則較偏向促進發酵、產生 SCFA。選擇時應理解自己給的是哪一種比例，而不是只看「高纖維」三個字。</p>
+
+        <h3><span class="sub-num">2</span>何時較可能受益、何時要小心</h3>
+        <ul>
+          <li>Large-bowel diarrhea：少量多次、mucus、tenesmus、糞便含水量不穩，是 fiber 較可能有幫助的族群。</li>
+          <li>Fiber 會降低 caloric density；對合併明顯體重下降或食慾不佳的病例，加太多 fiber 可能讓動物「吃得下但吃不夠熱量」——這也是為什麼許多減重或糖尿病處方飼料（如 WD、Purina OM、Hill's R/D）刻意做成高纖維。</li>
+          <li>Fiber 也會降低 gastric transit time；若動物合併 upper GI 問題（delayed gastric emptying、嘔吐），可能讓症狀惡化。</li>
+        </ul>
+
+        <h3><span class="sub-num">3</span>劑量調整：可以比藥物更寬鬆地 titrate</h3>
+        <p>Fiber 不是藥物，劑量上可以較寬鬆地調整。常見起始劑量約 1/4 茶匙，觀察幾天若沒有明顯改變，可請主人將劑量加倍（例如改成早晚各給一次），再觀察幾天看反應。若不小心給多了，可能出現便秘；一旦超過一到兩天沒有排便，先暫停 fiber，再回到先前有效的劑量重新開始。</p>
+        <div class="lit">
+          <span class="lit-tag">待確認</span>
+          <p>課堂提到的兩款產品：Proviable Fiber（含 microcrystalline cellulose、apple fiber、psyllium、β-glucans 與 gum arabic）[3]，以及另一款口感較佳、insoluble 比例較高的粉紅色罐裝纖維補充品（口語提及但確切品名不易還原，可能為 Nutramax Pro-Pectalin 系列）；若納入 diet trial，需固定品項與劑量並記錄反應。</p>
+        </div>
+      </section>
+
+      <!-- 五 -->
+      <section class="chapter" id="s5">
+        <div class="chapter-head"><span class="chapter-num">05</span><h2>鑑別診斷：Non-GI causes 與 EPI／B12</h2></div>
+
+        <h3><span class="sub-num">1</span>Addison's disease（Feline hypoadrenocorticism）</h3>
+        <p>貓的 Addison's disease 罕見，但仍是慢性 GI signs、尤其合併「壓力會誘發腹瀉惡化」時值得列入的鑑別診斷。Baseline cortisol 檢測相對簡單、便宜（教學醫院常在 50 美金以內，但送到一般 private lab 可能較貴，部分診所可用 in-house 試片檢測），可作初步篩檢；若病患正在使用 steroid，則無法檢測 baseline cortisol，須等停藥後再考慮。若懷疑 Addison's 但已用 prednisolone，也可反向觀察：若對 pred 反應非常好，可能支持 Addison's；若沒有明顯反應，則較不支持。</p>
+        <div class="lit">
+          <span class="lit-tag">待確認</span>
+          <p>Na／K ratio 的判讀是一個 spectrum、非絕對切點；課堂提到臨床上聽過的 cut off 從 22 到 35 不等，越低機率越高，但單一數值不能單獨確診，仍建議搭配整體電解質、脫水狀態與臨床表現，高度懷疑時以 ACTH stimulation test 確診。In-house 試片若數值落在切點附近（例如 cut off 為 2 時得到 2.5、1.8 這類邊界值），建議送外部 reference lab 複驗。</p>
+        </div>
+
+        <h3><span class="sub-num">2</span>Hyperthyroidism</h3>
+        <p>好發年齡通常較大；若病患相對年輕、沒有 polyphagia、肝指數正常、沒有嘔吐，臨床上較不像 hyperthyroidism。即使貓確診 hyperthyroidism 又同時有 diarrhea，也應假設是「兩種病同時存在」而非單純用 hyperthyroidism 解釋腹瀉——因為 hyperthyroid 貓中，diarrhea 並非高比例的常見表現。處理順序建議先治療 hyperthyroidism（較 urgent），再觀察腹瀉是否隨之改善；若沒有明顯好轉，才同時處理其他 GI 鑑別診斷，避免同時更動太多治療變項（例如同時給 methylprednisolone、抗甲狀腺藥物與換 hydrolyzed diet），導致之後無法判斷是藥物副作用還是飲食不耐受。</p>
+
+        <h3><span class="sub-num">3</span>Pancreatitis：用詞要謹慎</h3>
+        <p>Pancreatitis 是一個容易被「濫用」的診斷詞：較舊的研究顯示相當高比例（課堂提及約四成）因非 GI 原因死亡的貓，剖檢時胰臟仍可見 histologic evidence of pancreatitis，但這些貓終其一生可能完全沒有相關 GI signs。因此在沒有明確 ultrasound 變化或急性臨床表現前，建議用「clinical signs compatible with pancreatitis」這種較保守的說法，而非直接寫「pancreatitis」。對於病程已持續一整年的慢性腹瀉病例，若真的合併胰臟發炎，也應視為 secondary to 原發 GI 問題，而非把一年的腹瀉直接歸因於慢性胰臟炎本身。</p>
+
+        <h3><span class="sub-num">4</span>Feline EPI 與 cobalamin 策略</h3>
+        <p>貓 EPI 的臨床表現與犬不同：狗通常食慾旺盛、甚至暴食，並有明顯 steatorrhea（油亮、顏色偏白的糞便）；貓則常以 weight loss 為主要甚至唯一表現。</p>
+        <div class="lit">
+          <span class="lit-tag">文獻補充</span>
+          <p>150 隻貓的回溯研究：weight loss 91%、unformed feces 62%、poor hair coat 50%、hyporexia／anorexia 約 45%、polyphagia 42%、lethargy 40%、vomiting 19%、watery diarrhea 28%、hypocobalaminemia 77%、concurrent disease 58%。[5]</p>
+        </div>
+        <p>懷疑 EPI 時建議檢驗 fTLI，並同時送 cobalamin（B12）與 folate（合稱 full GI panel）。貓的 intrinsic factor 主要由胰臟產生，EPI 常合併 cobalamin deficiency；低 B12 本身也可能造成 hyporexia 與 lethargy。即使主人不想先驗，補充 B12 的成本相對低，可以考慮先經驗性補充：貓建議優先採 parenteral（注射）途徑，因為長期每天餵藥對貓並不容易。</p>
+        <div class="lit">
+          <span class="lit-tag">文獻補充</span>
+          <p>慢性腸病貓每日口服 cyanocobalamin 250 μg 可使血中濃度上升，研究支持口服是可行選項，但仍需依個案病因與依從性決定給藥途徑。[6]「<500 算低、正常 800–1000」必須連同單位、檢驗所 RI 與是否已補充一起判讀；若已規律口服補充仍偏低，應停藥約一週再抽血複驗，並確認劑量、途徑、依從性，以及是否合併 EPI 或持續性小腸疾病。</p>
+        </div>
+
+        <h3><span class="sub-num">5</span>類固醇反應不佳時的監控時程</h3>
+        <p>使用 steroid 後多久該複驗血糖，沒有絕對固定的時間表，取決於對主人觀察 clinical signs 的信任程度，以及起始血糖的嚴重度。一般建議不超過一個月，同時評估對治療的整體反應（體重、albumin、cholesterol）；但若起始血糖已達兩百多且無法確認尿液是否有 glucosuria，則建議縮短到約兩週內複查，不要等太久。</p>
+      </section>
+
+      <!-- 六 -->
+      <section class="chapter" id="s6">
+        <div class="chapter-head"><span class="chapter-num">06</span><h2>Biopsy 時機與病理判讀</h2></div>
+
+        <h3><span class="sub-num">1</span>什麼情況會提高懷疑、傾向立刻切片</h3>
+        <ul>
+          <li>短期內快速大幅減重（例如體重在短時間內掉了將近一半），此時不會再花時間做 diet trial，會直接安排 biopsy 並開始 steroid，評估是否為較 aggressive 的腫瘤。</li>
+          <li>食慾很好、甚至吃很多，卻持續變瘦，同時已排除 hyperthyroidism——這種型態在經驗上常對應到 small-cell lymphoma。</li>
+        </ul>
+        <p>相對地，病程已拖了一兩年、且尚未真正完整執行過 strict diet trial 的慢性個案，biopsy 的急迫性較低：無論結果是 IBD 還是 small-cell lymphoma，起始治療骨架通常都是 steroid，實際處置不會因為多一個病理標籤而有太大改變，因此會優先把飲食、B12、fiber 等非侵入性項目做完，再視治療反應決定是否升級。</p>
+
+        <h3><span class="sub-num">2</span>Endoscopic vs. full-thickness／surgical biopsy</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>面向</th><th>Endoscopic mucosal biopsy</th><th>Surgical／full-thickness biopsy</th></tr></thead>
+            <tbody>
+              <tr><td>優點</td><td>較低侵入性；可視黏膜並多點取樣</td><td>可取得全層、jejunum 及影像異常部位；可同時取淋巴結／肝／胰臟</td></tr>
+              <tr><td>限制</td><td>多限胃、duodenum 及／或 ileum 黏膜；樣本淺、方向不佳會降低判讀力</td><td>侵入性與術後風險較高；需要手術與營養規劃</td></tr>
+              <tr><td>與 feeding tube</td><td>若營養風險高，可在同次麻醉另行放置 E-tube，但非固定步驟</td><td>若已明顯變瘦、hyporexia 或預期術後攝取不足，可在同次麻醉放 E-tube</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>貓的麻醉時間是重要考量：只做 upper GI 內視鏡，順利的話約 15 分鐘即可完成；若同時做 lower（大腸鏡），麻醉時間會明顯拉長，對貓的負荷也更大。只做 upper 仍可能漏掉 lymphoma，但機率不高，這也是臨床上常只做 upper 的原因之一。</p>
+        <div class="lit">
+          <span class="lit-tag">文獻補充</span>
+          <p>2024 年 needle-core full-thickness biopsy 研究中，有 7 隻貓由外科醫師裁量在同次麻醉放置 esophagostomy tube；支持「可以同步規劃」，但不代表所有 biopsy 病例都必須放管。[7]</p>
+        </div>
+
+        <h3><span class="sub-num">3</span>Histopathology、IHC 與 PARR：為什麼不同病理醫師會有不同答案</h3>
+        <p>近年愈來愈多研究指出，不同病理醫師看同一份 GI biopsy，可能給出不同結論——A 說是 lymphoma、B 說只是 IBD、C 說是 IBD 但不排除 lymphoma，三種答案都可能出現。因此建議 GI biopsy 例行同時送 PARR，作為較客觀的輔助證據：若 PARR 陽性，代表確有 lymphoma（可能是較 mild 的型態），但最終治療強度仍取決於臨床症狀嚴重度，而非「有 lymphoma」這個標籤本身。</p>
+        <div class="lit">
+          <span class="lit-tag">文獻補充</span>
+          <p>2002 年五位病理醫師評估犬貓腸道組織時出現明顯 interobserver variation。[8] PARR 的 clonal result 支持單一淋巴球族群，但 clonality 不必然等於 neoplasia，慢性抗原刺激也可能造成 restricted／oligoclonal expansion；polyclonal 或 negative result 也不能完全排除 lymphoma，可能受取樣誤差、DNA 品質等因素影響，應在 histopathology 與 IHC 之後或同步解讀，而非取代兩者。[9][10]</p>
+        </div>
+        <p>Small-cell 與 large-cell lymphoma 並非固定不變的兩個分類：曾有病例 biopsy 確診 small-cell lymphoma、對 pred 有反應，卻在一個月後 lymph node 明顯變大，再次 FNA 才發現已轉變為 large-cell lymphoma。因此若病患整體狀況不理想，即使先前確診 small-cell，仍建議跟主人說明「同一隻貓可能同時或先後出現 small-cell 與 large-cell 病灶」的可能性，並保持追蹤的彈性。</p>
+
+        <h3><span class="sub-num">4</span>治療決策與追蹤：IBD 與 lymphoma 的界線正在模糊</h3>
+        <p>課堂觀點是：IBD 與 small-cell lymphoma 的治療骨架高度重疊——部分 IBD 貓需要 pred 甚至加 cyclosporine 才能控制，治療強度不亞於治療 lymphoma；部分 small-cell lymphoma 貓只需要 pred 即可維持多年良好生活品質，甚至有不需要吃 steroid、只需處理牙科問題就能維持穩定的個案。因此對於慢性、進展緩慢的病例，臨床上更在意的是「長期未被控制的發炎是否會逐漸演變成較 aggressive 的 large-cell 腫瘤」，而非糾結於當下的病理分類標籤。</p>
+        <div class="lit">
+          <span class="lit-tag">文獻補充</span>
+          <p>28 隻 GI small-cell lymphoma 回溯研究中，27 隻（96%）達臨床緩解，首次緩解中位數 786 天；為回溯資料，不能保證個案結果。[11] FCEAI（feline chronic enteropathy activity index）研究顯示，治療反應會伴隨 clinical activity score 下降，支持以症狀、體重與實驗室趨勢追蹤，而非期待短期內重複 biopsy 證明組織完全正常。[12]</p>
+        </div>
+      </section>
+
+      <!-- 七 -->
+      <section class="chapter" id="s7">
+        <div class="chapter-head"><span class="chapter-num">07</span><h2>實際病例：Mochi 的完整病程</h2></div>
+        <p>本節整理自課堂提供的病例摘要（SOAP format）與 08-06 課堂逐字稿中針對本病例的實際討論，作為前六節理論架構的具體對照。</p>
+
+        <h3><span class="sub-num">1</span>病患基本資料</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>項目</th><th>內容</th></tr></thead>
+            <tbody>
+              <tr><td>Species</td><td>Feline</td></tr>
+              <tr><td>Sex</td><td>Female</td></tr>
+              <tr><td>Age</td><td>約 5 歲 4 個月（DOB 2021/03/10）</td></tr>
+              <tr><td>主治</td><td>戴子綺醫師（Dr. Tai, Tzu-Chi）</td></tr>
+              <tr><td>紀錄期間</td><td>2026/03/12 – 2026/08/01</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Chief complaint：</strong>慢性、時好時壞的腹瀉（約 1 年），間歇性 hematochezia、mucoid stool、輕度體重下降，對飲食試驗與藥物僅有部分反應。</p>
+        <div class="stat-strip">
+          <div class="stat-box"><span class="num">7</span><span class="lbl">Clinic Visits</span></div>
+          <div class="stat-box"><span class="num">~5</span><span class="lbl">Months Follow-up</span></div>
+          <div class="stat-box"><span class="num">1 yr+</span><span class="lbl">Chronic Diarrhea Duration</span></div>
+          <div class="stat-box"><span class="num">−9.9%</span><span class="lbl">Body Weight Change</span></div>
+        </div>
+
+        <h3><span class="sub-num">2</span>環境與病史背景</h3>
+        <ul>
+          <li>約 1–2 年前：軟便開始出現，先前排便正常，沒有更早的 GI 病史。</li>
+          <li>約 1 年前：家中新貓加入——但軟便其實在新貓來之前就已開始，這點主人記憶並不十分確定。</li>
+          <li>去年：同住貓咪曾確診 FIP（現已完全康復）；目前家中共 3 隻貓，multi-cat 環境支持過去曾有 FCoV 循環。</li>
+          <li>糞便表現：fecal score 6–7／9，偶有鮮血絲、氣味重、肛門周圍較脆弱／敏感。</li>
+          <li>誘發因子：壓力（如訪客）會讓軟便惡化；暈車／焦慮會誘發嘔吐。</li>
+          <li>飲食習慣：挑食，拒吃 Hill's GI，接受 Royal Canin；曾自製鮮蝦餵食後誘發腹瀉——這點課堂特別肯定為間接支持「對食物蛋白質有 sensitivity」的重要病史。</li>
+        </ul>
+
+        <h3><span class="sub-num">3</span>臨床病程與飲食試驗時間軸</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>日期</th><th>飲食</th><th>臨床狀況</th></tr></thead>
+            <tbody>
+              <tr><td>2026/03/12</td><td>Pre-March：Royal Canin S33＋GI32（S33 為罐頭，主要蛋白疑似為雞）</td><td>初診。腹瀉與嘔吐</td></tr>
+              <tr><td>2026/03/14 起</td><td>轉 Hill's GI Biome</td><td>纖維較高，起初期待改善</td></tr>
+              <tr><td>2026/03/28</td><td>Hill's GI Biome</td><td>Fecal score 改善至 5–6，攝取量 80%+</td></tr>
+              <tr><td>2026/04/18</td><td>Hill's GI Biome</td><td>超音波檢查；出現 diet fatigue（吃膩）</td></tr>
+              <tr><td>2026/05/16</td><td>Hill's GI Biome</td><td>出遊後腹瀉復發（post-travel flare）</td></tr>
+              <tr><td>2026/06 起</td><td>轉 Hydrolyzed AN24</td><td>逐步換食</td></tr>
+              <tr><td>2026/07/18</td><td>Hydrolyzed AN24</td><td>飲食試驗約進行兩週左右；出現新鮮血絲</td></tr>
+              <tr><td>2026/08/01</td><td>Hydrolyzed AN24</td><td>軟便持續（score 7）；開始類固醇試驗（steroid trial）</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>課堂討論指出，Hill's GI Biome 換食是先試偏高纖維方向（希望改善 large-bowel signs），但因反應不完全、加上貓吃膩，才改採 hydrolyzed 方向；這種先後順序與治療反應的完整記錄，正是課堂反覆強調的「document treatment response」的範例——換了治療沒有寫下反應，其他人（或未來的自己）就只能用猜的。也特別提醒需要向主人再三確認家中是否餵過其他食物：本例後續追問才確認曾額外餵過 Royal Canin S33 罐頭（GI 敏感罐頭，但主蛋白可能為雞），顯示「主人說『有乖乖照吃』」時仍需要更仔細地追問細節。</p>
+        <div class="lit">
+          <span class="lit-tag">待確認</span>
+          <p>逐字稿中對照 2026/07/18 到 2026/08/01 的换食完成時間點說法不完全一致（醫師回憶約一個月內逐步換成，未有精確記錄），此處依課堂原始討論保留為約略區間，未強行對齊精確日期。</p>
+        </div>
+
+        <h3><span class="sub-num">4</span>體重趨勢</h3>
+        <div class="table-wrap">
+          <table>
+            <caption>Body Weight Trend (kg)</caption>
+            <thead><tr><th>日期</th><th>體重</th><th>備註</th></tr></thead>
+            <tbody>
+              <tr><td>03/12</td><td>4.15 kg</td><td>初診</td></tr>
+              <tr><td>03/28</td><td>4.20 kg</td><td></td></tr>
+              <tr><td>04/18</td><td>4.00 kg</td><td></td></tr>
+              <tr><td>05/16</td><td>4.06 kg（39.0℃）</td><td>Post-travel flare</td></tr>
+              <tr><td>07/18</td><td>3.87 kg（39.1℃）</td><td>On hydrolyzed diet</td></tr>
+              <tr><td>08/01</td><td>3.74 kg（39.4℃）</td><td>Steroid trial started</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>五個月間體重下降約 9.9%。</p>
+
+        <h3><span class="sub-num">5</span>血液檢驗</h3>
+        <div class="table-wrap">
+          <table>
+            <caption>Complete Blood Count（IDEXX ProCyte One）</caption>
+            <thead><tr><th>Parameter</th><th>Reference Range</th><th>3/12/26</th><th>7/18/26</th></tr></thead>
+            <tbody>
+              <tr><td>HCT (%)</td><td>30.3–52.3</td><td>53.2（↑）</td><td>48.7</td></tr>
+              <tr><td>MCV (fL)</td><td>35.9–53.1</td><td>53.4（↑）</td><td>51.6</td></tr>
+              <tr><td>WBC (K/µL)</td><td>2.87–17.02</td><td>12.21</td><td>10.96</td></tr>
+              <tr><td>PLT (K/µL)</td><td>151–600</td><td>228</td><td>219</td></tr>
+              <tr><td>MPV (fL)</td><td>11.4–21.6</td><td>22.0（↑）</td><td>21.7（↑）</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>重點：3/12 有 borderline hemoconcentration／macrocytosis，7/18 大致緩解，僅 MPV 持續偏高。</p>
+        <div class="table-wrap">
+          <table>
+            <caption>Serum Chemistry（IDEXX Catalyst One）</caption>
+            <thead><tr><th>Parameter</th><th>Ref. Range</th><th>3/12/26</th><th>7/18/26</th></tr></thead>
+            <tbody>
+              <tr><td>GLU (mg/dL)</td><td>74–159</td><td>161（↑）</td><td>170（↑）</td></tr>
+              <tr><td>BUN (mg/dL)</td><td>16–36</td><td>16</td><td>9（↓）</td></tr>
+              <tr><td>ALB (g/dL)</td><td>2.2–4.0</td><td>3.0</td><td>3.2</td></tr>
+              <tr><td>GLOB (g/dL)</td><td>2.8–5.1</td><td>4.9</td><td>4.3</td></tr>
+              <tr><td>ALT (U/L)</td><td>12–130</td><td>30</td><td>&lt;10（↓）</td></tr>
+              <tr><td>K (mmol/L)</td><td>3.5–5.8</td><td>3.7</td><td>3.3（↓）</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>整體判讀：多為輕微、非特異性變化。低血鉀與偏低 BUN 可能反映持續 GI 流失與攝取減少；高血糖較可能是壓力性（stress-induced），仍需在使用 steroid 期間常規追蹤，避免忽略誘發糖尿病的風險。</p>
+
+        <h3><span class="sub-num">6</span>感染性疾病篩檢</h3>
+        <p>2026/03/12 SNAP DX：FeLV／FIV／Heartworm 均為陰性。2026/07/18 送檢 PCR panel：FPV 陰性、<em>Giardia duodenalis</em> 陰性、<em>Tritrichomonas foetus</em> 陰性、<em>Cryptosporidium</em> spp. 陰性；<strong>Feline Coronavirus（FCoV）：陽性（Ct 31）</strong>。課堂判讀：FCoV 陽性代表腸道有 enteric coronavirus 排出，在有 FIP 病史的多貓環境中屬預期範圍，本身不能單獨診斷 FIP，僅視為 contributing factor 之一；曾嘗試 molnupiravir 10 mg/kg BID×7 天作為經驗性抗病毒試驗，但未觀察到明顯臨床改善。</p>
+        <div class="lit">
+          <span class="lit-tag">課堂重點</span>
+          <p>對 fecal PCR panel 而言，臨床上真正重視的是 <em>Giardia</em> 與 <em>Tritrichomonas</em>；Coronavirus 結果除非高度懷疑 FIP，否則不作為主要決策依據。建議同時加做傳統糞便鏡檢／漂浮，以排除 tapeworm、roundworm 等大型寄生蟲。</p>
+        </div>
+
+        <h3><span class="sub-num">7</span>腹部超音波</h3>
+        <p>發現 jejunal corrugation（約 0.22–0.24 cm，常見於 chronic enteritis 或 IBD）與輕度反應性腸繫膜淋巴結腫大（約 0.34 cm，符合慢性 GI 刺激）；肝、腎、脾、膽囊等其餘腹腔器官無異常。整體評估：優先考慮 chronic GI inflammatory disease（IBD）。</p>
+
+        <h3><span class="sub-num">8</span>問題清單與鑑別診斷矩陣</h3>
+        <ol>
+          <li>慢性間歇性混合型腹瀉（大小腸皆可能受累）超過一年：間歇性 hematochezia／mucoid stool，對飲食部分反應（待釐清 GI vs. non-GI）。</li>
+          <li>體重下降與食慾不振：4.15 kg → 3.74 kg（5 個月，−9.9%），基礎食慾即偏挑食。</li>
+          <li>輕微檢驗異常：低血鉀、低 BUN、低 ALT、壓力性高血糖，較可能續發於慢性 GI 流失。</li>
+          <li>間歇性嘔吐：需排除是否與 GI 相關，或單純為已知的暈車／緊張誘發。</li>
+        </ol>
+        <div class="table-wrap">
+          <table>
+            <caption>Differential Diagnosis Matrix</caption>
+            <thead><tr><th>鑑別診斷</th><th>超音波證據</th><th>Lab／PCR 證據</th><th>對治療反應</th><th>目前狀態</th></tr></thead>
+            <tbody>
+              <tr><td>IBD（Chronic Inflammatory Enteropathy）</td><td>Corrugation／淋巴結腫大</td><td>續發性低血鉀</td><td>對 steroid／飲食部分反應</td><td>最可能</td></tr>
+              <tr><td>Alimentary Lymphoma</td><td>Corrugation／淋巴結腫大</td><td>N/A</td><td>待評估</td><td>待 biopsy 排除</td></tr>
+              <tr><td>Food-Responsive Enteropathy</td><td>Corrugation</td><td>N/A</td><td>AN24 部分反應</td><td>有支持證據</td></tr>
+              <tr><td>FCoV Enteritis</td><td>N/A</td><td>PCR 陽性（Ct 31）</td><td>抗病毒治療無效</td><td>可能為 contributing factor</td></tr>
+              <tr><td>寄生蟲（Tritrichomonas／Giardia）</td><td>正常</td><td>PCR 陰性</td><td>N/A</td><td>已排除</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3><span class="sub-num">9</span>治療歷程</h3>
+        <div class="dose">
+          <div><span>症狀緩解</span><span>止瀉組合（KBT、berberine、sucralfate）＋ psyllium 纖維補充</span></div>
+          <div><span>食慾與支持性治療</span><span>Cyproheptadine＋B12＋Tranexamic acid；鉀補充（KPlus 2 mL SID）</span></div>
+          <div><span>抗病毒試驗（7/25）</span><span>Molnupiravir 10 mg/kg BID×7 天（經驗性，針對 FCoV，未見臨床改善）</span></div>
+          <div><span>目前類固醇試驗（8/1）</span><span>Prednisolone 5 mg（0.764 mg/kg）SID＋Vitamin B12 0.5 mg SID＋AN24＋腸道支持；尚未使用抗生素</span></div>
+        </div>
+        <p><strong>待完成診斷：</strong>Serum B12／Folate／TLI panel（評估吸收不良與 EPI）。<strong>下一步觸發點：</strong>若 steroid trial 反應不佳，下一步為升級至 biopsy（內視鏡或手術取樣），以區分 IBD 與 alimentary lymphoma，而非持續更換經驗性藥物。</p>
+
+        <h3><span class="sub-num">10</span>課堂針對本病例的具體討論重點</h3>
+        <ul>
+          <li>雖然主人記憶不完全確定，但軟便似乎在新貓來臨前就已存在，因此新貓加入較可能只是巧合或壓力誘因，而非直接病因。</li>
+          <li>本例同時有 hematochezia（偏大腸）與 weight loss（偏小腸）的線索，判斷為大小腸皆可能受累的 mixed pattern，這也是選擇同時兼顧兩者的飲食與監控策略的原因。</li>
+          <li>Fecal score 從初診的 7 分（帶鮮血）在換食後改善至 4–5 分，但潛血反應仍為陽性，說明「外觀看起來沒有血」不等於「真的沒有出血」，仍建議搭配潛血試劑追蹤。</li>
+          <li>家中自製鮮蝦誘發腹瀉的病史，被課堂視為支持「對食物蛋白質有 sensitivity」的重要間接證據，可用來向主人解釋為何需要嚴格轉換蛋白來源。</li>
+          <li>因病患本身挑食，換食策略需要在「嚴格」與「貓願意吃」之間取得平衡；建議可提供多種小份樣品讓貓咪試吃，而非一次性大量採購。</li>
+          <li>類固醇治療期間，需與主人明確溝通糖尿病風險，並安排常規血糖複查；若一週後對類固醇反應仍不佳，不建議直接提高劑量，而應重新檢視診斷方向。</li>
+          <li>驗 FCoV 的原因是家中曾有貓確診 FIP，主人希望篩檢；但課堂立場是除非高度懷疑 FIP，否則此項結果不影響臨床決策方向。</li>
+        </ul>
+      </section>
+
+      <!-- 八 -->
+      <section class="chapter" id="s8">
+        <div class="chapter-head"><span class="chapter-num">08</span><h2>原始課堂錄音</h2></div>
+        <p>本篇整理的依據，是 2026-08-06 課堂錄音「08-06 個案討論：貓慢性腸病與鑑別診斷」（約 1 小時 52 分）。以下摘錄逐字稿中尚未寫進前七節、但仍值得記錄的補充重點。</p>
+        <div class="dose">
+          <div><span>錄音</span><span><a href="https://web.plaud.ai/s/pub_5190c31e-58af-444c-8485-be7950893989::SEW1VDTDj6zvrGeXvZP55rSVen3fUlkJ_gZhMipAegWkzMTs3bie4H3SEL6XpziUjqnpJ66hjHo2YZ3jjVHtIwI" target="_blank" rel="noopener">web.plaud.ai（Plaud AI 逐字稿與摘要）</a></span></div>
+          <div><span>日期</span><span>2026-08-06 22:12</span></div>
+          <div><span>下次會議</span><span>2026-08-20 22:00，由李醫師主講</span></div>
+        </div>
+
+        <h3><span class="sub-num">1</span>Preventative care 的價值</h3>
+        <p>課堂強調 routine screening 的重要性：即使動物沒有明顯 clinical signs，例如 10 歲狗只是來打疫苗、順便驗血，albumin 落在 2.7（仍在 reference range 內、沒有紅字），若沒有主動留意，很容易被忽略；但這類輕微異常若持續追蹤，有機會提早攔截如 non-azotemic PLN（stage 1 CKD 合併 glomerulus 受損但尚無 azotemia）等問題。同樣地，糖尿病患者的 routine glucose check 花費遠低於處理 DKA 的成本，這也是課堂反覆用來說服主人接受 routine screening 的論述角度。</p>
+
+        <h3><span class="sub-num">2</span>Panleukopenia／Parvo 快篩陽性但臨床輕微時的處置</h3>
+        <p>若貓的 parvo／panleukopenia SNAP 快篩陽性，但臨床症狀輕微（例如僅輕微精神不濟），建議仍需謹慎看待疾病本身的嚴重性：可用狗的 SNAP test 覆驗一次以排除 false positive，並完成 CBC 確認是否有 fever 或其他系統性變化；同時建議以高風險規格採取隔離措施，因為 panleukopenia／parvo 一旦真的發生，病程可能非常快，體型小的動物甚至可能在一個晚上內就急轉直下。課堂以自身學生時期照顧一隻幼貓因低估腹瀉嚴重性、隔天即死亡的經驗，說明「不能預期一般主人自行判斷這類疾病的嚴重程度」，因此獸醫師需要主動把風險說清楚、追蹤得更緊。</p>
+
+        <h3><span class="sub-num">3</span>階梯式診斷（stepwise approach）與超音波的定位</h3>
+        <p>若腹部超音波完全正常，仍可以跟主人解釋：疾病初期可能尚未反映在影像上，且超音波本身也具有「排除其他病灶」與建立 baseline 的價值。對於較年輕（課堂提及約 3–5 歲以下）的 GI 病例，即使 clinical signs 不輕，也不一定要在第一次就診就急著安排超音波；可以先做血檢與飲食試驗，真的沒有反應再回頭安排影像檢查。年紀較大的動物則應提高影像檢查的優先順序，以利排除腫瘤性病灶。這種「不必第一次就診就把所有 diagnostic 做完」的階梯式做法，也是課堂鼓勵年輕獸醫師學習「放手」的重點之一。</p>
+
+        <h3><span class="sub-num">4</span>Feeding tube 與 biopsy 的同步規劃</h3>
+        <p>若貓因持續 hyporexia 已放置 feeding tube 較長時間（課堂提及以 HA 灌食數月的案例，之後貓自行恢復進食），可以視情況同時嘗試 mirtazapine／cyproheptadine 等食慾促進策略；若病患本來就已規劃因營養不足而放置 feeding tube，人已在麻醉狀態下，也是順道取一些 biopsy 樣本的合理時機。</p>
+        <div class="lit">
+          <span class="lit-tag">待確認</span>
+          <p>逐字稿中部分藥物名稱因語音辨識產生明顯錯誤（如「Necroptosis」、「Mercaptopine」等），推測應為 mirtazapine 或其他食慾促進劑／化療藥物，正式引用前需與主講醫師確認正確藥名。</p>
+        </div>
+      </section>
+
+      <!-- 九 -->
+      <section class="chapter" id="s9">
+        <div class="chapter-head"><span class="chapter-num">09</span><h2>參考資料</h2></div>
+        <ol class="refs">
+          <li>
+            <div class="ref-body">
+              <p>08-06 個案討論：貓慢性腸病與鑑別診斷（課堂錄音逐字稿與摘要，Plaud AI）。2026-08-06。</p>
+              <a href="https://web.plaud.ai/s/pub_5190c31e-58af-444c-8485-be7950893989::SEW1VDTDj6zvrGeXvZP55rSVen3fUlkJ_gZhMipAegWkzMTs3bie4H3SEL6XpziUjqnpJ66hjHo2YZ3jjVHtIwI" target="_blank" rel="noopener">web.plaud.ai/s/pub_5190c31e-58af-444c-8485...</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Perea SC, et al. Evaluation of two dry commercial therapeutic diets for feline chronic gastroenteropathy. <em>Front Vet Sci.</em> 2017;4:69.</p>
+              <a href="https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2017.00069/full" target="_blank" rel="noopener">frontiersin.org/.../fvets.2017.00069/full</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>De La Guardia-Hidrogo VM, et al. In vitro fermentation characteristics of acacia fiber using feline fecal inoculum. 2025.</p>
+              <a href="https://pubmed.ncbi.nlm.nih.gov/40407823/" target="_blank" rel="noopener">pubmed.ncbi.nlm.nih.gov/40407823</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Nutramax. Proviable Fiber Powder — official product information.</p>
+              <a href="https://www.proviable.com/proviable-fiber-powder" target="_blank" rel="noopener">proviable.com/proviable-fiber-powder</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Schreeg ME, et al. Histologic characterization of the major duodenal papilla and association with concurrent biliary, pancreatic, and intestinal pathology in cats. <em>Vet Pathol.</em> 2024.</p>
+              <a href="https://journals.sagepub.com/doi/10.1177/03009858231189450" target="_blank" rel="noopener">journals.sagepub.com/doi/10.1177/03009858231189450</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Xenoulis PG, et al. Feline exocrine pancreatic insufficiency: a retrospective study of 150 cases. <em>J Feline Med Surg.</em> 2016.</p>
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5115185/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov/articles/PMC5115185</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Toresson L, et al. Oral cobalamin supplementation in cats with hypocobalaminaemia: a retrospective study. <em>J Feline Med Surg.</em> 2017.</p>
+              <a href="https://pubmed.ncbi.nlm.nih.gov/28128683/" target="_blank" rel="noopener">pubmed.ncbi.nlm.nih.gov/28128683</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Maggiar A, et al. Intestinal full-thickness needle-core biopsy via laparotomy in dogs and cats. <em>JAVMA.</em> 2024;262(4).</p>
+              <a href="https://avmajournals.avma.org/view/journals/javma/262/4/javma.23.09.0521.xml" target="_blank" rel="noopener">avmajournals.avma.org/.../javma.23.09.0521</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Willard MD, et al. Interobserver variation among histopathologic evaluations of intestinal tissues from dogs and cats. <em>JAVMA.</em> 2002;220(8):1177-1182.</p>
+              <a href="https://pubmed.ncbi.nlm.nih.gov/11990964/" target="_blank" rel="noopener">pubmed.ncbi.nlm.nih.gov/11990964</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Marsilio S, et al. ACVIM consensus statement guidelines on diagnosing and distinguishing low-grade neoplastic from inflammatory lymphocytic chronic enteropathies in cats. <em>JVIM.</em> 2023.</p>
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10229359/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov/articles/PMC10229359</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Freiche V, et al. Clinical, laboratory, ultrasonographic, histologic, immunohistochemical, and clonality features in feline LGITL versus LPE. <em>JVIM.</em> 2021;35(6):2673-2686.</p>
+              <a href="https://academic.oup.com/jvim/article/35/6/2673/8448621" target="_blank" rel="noopener">academic.oup.com/jvim/article/35/6/2673</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Stein TJ, et al. Treatment of feline gastrointestinal small-cell lymphoma with chlorambucil and glucocorticoids. <em>JVIM.</em> 2010/2011.</p>
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3092124/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov/articles/PMC3092124</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Jergens AE, et al. A clinical index for disease activity in cats with chronic enteropathy. <em>JVIM.</em> 2010;24(5):1027-1033.</p>
+              <a href="https://pubmed.ncbi.nlm.nih.gov/20584141/" target="_blank" rel="noopener">pubmed.ncbi.nlm.nih.gov/20584141</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Royal Canin Feline Selected Protein PR — official US formula.</p>
+              <a href="https://www.royalcanin.com/us/cats/products/vet-products/selected-protein-pr-1284" target="_blank" rel="noopener">royalcanin.com/.../selected-protein-pr-1284</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Royal Canin Feline Selected Protein PD — official US formula.</p>
+              <a href="https://www.royalcanin.com/us/cats/products/vet-products/selected-protein-pd-1280" target="_blank" rel="noopener">royalcanin.com/.../selected-protein-pd-1280</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Royal Canin Feline Hydrolyzed Protein HP — official US formula.</p>
+              <a href="https://www.royalcanin.com/us/cats/products/vet-products/hydrolyzed-protein-hp-3902" target="_blank" rel="noopener">royalcanin.com/.../hydrolyzed-protein-hp-3902</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Hill's Prescription Diet d/d Duck &amp; Green Pea dry cat food — official US formula.</p>
+              <a href="https://www.hillspet.com/cat-food/prescription-diet-dd-duck-green-pea-skin-care-dry" target="_blank" rel="noopener">hillspet.com/.../prescription-diet-dd-duck-green-pea-skin-care-dry</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Hill's Prescription Diet d/d Venison &amp; Green Pea dry cat food — official US formula.</p>
+              <a href="https://www.hillspet.com/cat-food/prescription-diet-dd-venison-green-pea-skin-care-dry" target="_blank" rel="noopener">hillspet.com/.../prescription-diet-dd-venison-green-pea-skin-care-dry</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Hill's Prescription Diet d/d Duck wet cat food — official US formula.</p>
+              <a href="https://www.hillspet.com/cat-food/prescription-diet-dd-duck-skin-care-canned" target="_blank" rel="noopener">hillspet.com/.../prescription-diet-dd-duck-skin-care-canned</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Hill's Prescription Diet z/d Hydrolyzed Chicken cat food — official US formula.</p>
+              <a href="https://www.hillspet.com/cat-food/prescription-diet-zd-food-sensitivities-dry" target="_blank" rel="noopener">hillspet.com/.../prescription-diet-zd-food-sensitivities-dry</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Hill's Prescription Diet m/d GlucoSupport wet cat food — official US formula.</p>
+              <a href="https://www.hillspet.com/cat-food/prescription-diet-md-glucose-management-canned" target="_blank" rel="noopener">hillspet.com/.../prescription-diet-md-glucose-management-canned</a>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="note">
+    整理自課堂口語筆記與課堂實際病例（Mochi）病歷摘要，供個人臨床參考使用，非正式發表文獻；用藥劑量與停藥條件請以原始講師確認及最新指引為準。回到<a href="index.html">梅醫師病例討論</a>列表。
+  </footer>
+
+</div>
+</body>
+</html>
