@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>知菌知藥 Part 1｜抗菌藥物選擇與泌尿道感染筆記</title>
+<style>
+  :root {
+    --primary: #5B3EBD;
+    --primary-light: #EDE9FE;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #1e1533;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #a89cc8; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #392a5c;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #a89cc8; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #a89cc8;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #392a5c;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #6b5c8f;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #4c2f9e 0%, #7c3aed 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #1e1533; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #392a5c; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="../index.html">← 回首頁</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 知菌知藥系列</a>
+  <div class="logo">
+    <h2>知菌知藥 Part 1<br>抗菌藥物選擇與泌尿道感染</h2>
+    <p>梅醫師｜2026 年 8 月 27 日</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s1">一、核心觀念</a>
+    <a href="#s2">二、採樣與培養前評估</a>
+    <a href="#s3">三、MIC 是什麼</a>
+    <a href="#s4">四、為何MIC還不夠</a>
+    <a href="#s5">五、Breakpoint 與 S/I/R</a>
+    <a href="#s6">六、部位差異的重要校正</a>
+    <a href="#s7">七、抗生素選擇原則</a>
+    <a href="#s8">八、SODAPOP 架構</a>
+    <a href="#s9">九、泌尿道感染選藥</a>
+    <a href="#s10">十、療程要多久</a>
+    <a href="#s11">十一、TMS 與品種風險</a>
+    <a href="#s12">十二、無症狀菌尿</a>
+    <a href="#s13">十三、臨床決策流程</a>
+    <a href="#s14">參考資料</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <!-- Header -->
+  <div class="page-header">
+    <h1>知菌知藥 Part 1｜抗菌藥物選擇與泌尿道感染筆記</h1>
+    <p>主講：梅醫師｜抗菌藥物感受性測試 (AST) 解讀與臨床應用研討會</p>
+    <p>2026 年 8 月 27 日｜知菌知藥系列 1 / 3</p>
+    <div class="tags">
+      <span class="tag">MIC</span>
+      <span class="tag">Breakpoint</span>
+      <span class="tag">S / I / R</span>
+      <span class="tag">SODAPOP</span>
+      <span class="tag">泌尿道感染</span>
+      <span class="tag">無症狀菌尿</span>
+      <span class="tag">TMS</span>
+    </div>
+  </div>
+
+  <!-- Key Points -->
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li>培養陽性不等於一定需要抗生素</li>
+      <li>MIC 只是體外實驗室結果，不等於臨床療效</li>
+      <li>MIC 越低，只能說明同一菌株對同一藥物的體外敏感性較高——不同藥物的 MIC 不能互相比較</li>
+      <li>不同感染部位影響的是 breakpoint 與藥物可達濃度，不是細菌的 MIC 本身</li>
+      <li>選藥需同時考量細菌、感染部位、病患、藥物及飼主合作度</li>
+      <li>散發性細菌性膀胱炎通常治療 3–5 天，但不能套用到所有感染</li>
+      <li>Pyuria 不能單獨作為使用抗生素的依據</li>
+      <li>無症狀菌尿即使為多重抗藥菌，通常也不需要治療</li>
+      <li>最重要的原則：治療具有臨床感染的病患，而不是治療培養報告</li>
+    </ul>
+  </div>
+
+  <!-- ══ SECTION 1：核心觀念 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">🎯</div>
+      <h2>一、抗菌治療的核心觀念</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>選擇抗生素前，先回答這 7 個問題</h3>
+        <ol class="notes">
+          <li>檢出的細菌是否真正造成臨床症狀？</li>
+          <li>這個病患是否需要接受抗菌治療？</li>
+          <li>該細菌可能對哪些抗生素有效？</li>
+          <li>藥物能否在感染部位達到足夠濃度？</li>
+          <li>這個藥物是否適合該病患？</li>
+          <li>劑量、頻率與療程應如何安排？</li>
+          <li>飼主能否確實完成治療與追蹤？</li>
+        </ol>
+        <div class="quote">治療病患，而不是治療培養報告。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 2：採樣與培養前的評估 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#cffafe">🧪</div>
+      <h2>二、採樣與培養前的評估</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+
+      <div class="subsection">
+        <h3>先確認檢體是否具有臨床意義</h3>
+        <p style="font-size:14px; margin-bottom:8px;">送檢前需要考量：</p>
+        <ul class="notes">
+          <li>檢出的菌是否可能只是污染或正常定植菌</li>
+          <li>採樣位置是否確實來自疑似感染部位</li>
+          <li>採樣方式是否容易受到環境或表面菌叢污染</li>
+          <li>是否已經使用過抗生素，影響培養結果</li>
+          <li>檢體量與品質是否足夠</li>
+        </ul>
+        <div class="alert alert-info">
+          <span class="alert-icon">💧</span>
+          <span>若為液體檢體，應盡可能提供足量，至少約 1 mL；實際需求仍應依檢體種類及實驗室規範調整。若能取得組織、抽吸液或體液，通常比表面拭子更能反映真正感染部位。</span>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>檢體保存原則</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>檢體類型</th><th>建議保存條件</th></tr>
+          <tr><td>好氧培養 (aerobic culture)</td><td>冷藏，約 4°C</td></tr>
+          <tr><td>厭氧培養 (anaerobic culture)</td><td>室溫 20–25°C，使用厭氧運送系統</td></tr>
+          <tr><td>血液培養（好氧＋厭氧培養瓶）</td><td>室溫，不冷藏</td></tr>
+        </table></div>
+        <div class="alert alert-warn">
+          <span class="alert-icon">⚠️</span>
+          <span>採血管應避免使用含有 EDTA 或 heparin 者，這類抗凝劑可能抑制細菌生長，影響培養結果。應盡快送檢，避免細菌死亡、過度增殖或受到污染。</span>
+        </div>
+        <div class="alert alert-info">
+          <span class="alert-icon">📞</span>
+          <span>最關鍵的一步是與合作實驗室溝通——每個實驗室（如 Cornell Lab、IDEXX、Antech）對檢體條件都有各自的要求與流程，送檢前應主動確認採集、儲存與運送規範。</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ SECTION 3：MIC是什麼 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dbeafe">🔬</div>
+      <h2>三、MIC 是什麼？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+
+      <div class="subsection">
+        <div class="quote">MIC（Minimum Inhibitory Concentration，最低抑菌濃度）：在體外環境中，能夠抑制該細菌生長的最低抗生素濃度，單位通常為 μg/mL。</div>
+        <p style="font-size:14px; margin:10px 0 6px;">實驗室通常利用標準化微量肉湯稀釋盤，以連續二倍稀釋濃度進行測試：</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>0.25</th><th>0.5</th><th>1</th><th>2</th><th>4</th><th>8</th><th>16 μg/mL</th></tr>
+        </table></div>
+        <p style="font-size:13.5px; color:var(--text-muted); margin-top:6px;">觀察細菌在哪一個最低濃度下停止生長，即為該菌株對該藥物的 MIC。</p>
+      </div>
+
+      <div class="subsection">
+        <h3>MIC 的正確解讀</h3>
+        <p style="font-size:14px; margin-bottom:8px;">對於<strong>同一菌株與同一抗生素</strong>：</p>
+        <ul class="notes">
+          <li>MIC 越低，代表該菌株在體外的敏感性越高</li>
+          <li>MIC 越高，代表需要更高藥物濃度才能抑制細菌</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>菌株</th><th>藥物</th><th>MIC</th></tr>
+          <tr><td>E. coli A</td><td>Ampicillin</td><td>1 μg/mL</td></tr>
+          <tr><td>E. coli B</td><td>Ampicillin</td><td>8 μg/mL</td></tr>
+        </table></div>
+        <p style="font-size:13.5px; color:var(--text-muted); margin-top:6px;">因此，E. coli A 在體外對 ampicillin 的敏感性高於 E. coli B。</p>
+        <div class="alert alert-danger">
+          <span class="alert-icon">🚫</span>
+          <span>但不能直接用<strong>不同抗生素</strong>的 MIC 數字大小比較哪一種藥比較有效——不同藥物有不同的 breakpoint、給藥劑量與 PK/PD 特性。MIC 低不代表臨床治療一定成功，它只是體外檢驗結果，不能取代臨床判斷。</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ SECTION 4：為何MIC還不夠 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef9c3">❓</div>
+      <h2>四、為什麼只有 MIC 還不夠？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p style="font-size:14px; margin-bottom:8px;">MIC 只能回答：「這個藥物在實驗室中，需要多高的濃度才能抑制這株細菌？」但無法單獨回答：</p>
+      <ul class="notes">
+        <li>這株菌是否真的造成病患症狀</li>
+        <li>病患是否需要治療</li>
+        <li>藥物是否能被吸收、能否到達感染部位</li>
+        <li>感染部位能否達到足夠濃度</li>
+        <li>病患是否有免疫抑制或其他共病</li>
+        <li>是否存在膿瘍、異物、結石或壞死組織，需要感染源控制</li>
+        <li>飼主能否完成給藥與療程</li>
+        <li>臨床上是否真的會治療成功</li>
+      </ul>
+      <div class="alert alert-info">
+        <span class="alert-icon">💡</span>
+        <span>MIC 應與臨床症狀、感染部位、PK/PD、病患狀況及感染源控制一起判讀，缺一不可。</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 5：Breakpoint與S/I/R ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">📊</div>
+      <h2>五、Breakpoint 與 S / I / R</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+
+      <div class="subsection">
+        <h3>三種判讀結果</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>判讀</th><th>意義</th></tr>
+          <tr><td><span class="badge badge-green">S 敏感</span></td><td>使用建議劑量時，通常可期待治療成功</td></tr>
+          <tr><td><span class="badge badge-yellow">I 中介</span></td><td>治療反應較難預測；臨床上建議避免使用，除非沒有其他選擇，或需要較高暴露量、特定劑量、藥物能高度濃縮的部位</td></tr>
+          <tr><td><span class="badge badge-red">R 抗藥</span></td><td>一般劑量下難以達到足夠濃度，臨床失敗風險較高</td></tr>
+        </table></div>
+      </div>
+
+      <div class="subsection">
+        <h3>範例：S. aureus 對 cefazolin</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>MIC</th><th>判讀</th></tr>
+          <tr><td>≤2 μg/mL</td><td><span class="badge badge-green">S</span></td></tr>
+          <tr><td>4 μg/mL</td><td><span class="badge badge-yellow">I</span></td></tr>
+          <tr><td>≥8 μg/mL</td><td><span class="badge badge-red">R</span></td></tr>
+        </table></div>
+      </div>
+
+      <div class="subsection">
+        <h3>Breakpoint 不是固定不變的數字</h3>
+        <p style="font-size:14px; margin-bottom:6px;">Breakpoint 與以下條件有關：</p>
+        <ul class="notes">
+          <li>細菌種類、抗生素種類</li>
+          <li>動物物種</li>
+          <li>給藥劑量與頻率、PK/PD</li>
+          <li>感染部位、可達到的局部藥物濃度</li>
+        </ul>
+        <p style="font-size:13.5px; color:var(--text-muted); margin-top:6px;">因此，同一個 MIC 在不同感染部位的臨床意義可能不同。</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ SECTION 6：重要校正 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">⚠️</div>
+      <h2>六、重要校正：不是每個部位的 MIC 不同</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+
+      <div class="quote">MIC 是該菌株與該抗生素在體外測得的數值；不同感染部位可能有不同的 breakpoint 與臨床判讀。</div>
+
+      <div class="subsection">
+        <h3>範例：ampicillin 的全身性 vs. 泌尿道 breakpoint</h3>
+        <p style="font-size:14px; margin-bottom:8px;">Amoxicillin／ampicillin 可在尿液中達到很高的濃度，因此泌尿道感染的 breakpoint 遠高於全身性感染：</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>感染類型</th><th>Ampicillin breakpoint（S）</th></tr>
+          <tr><td>全身性感染 (systemic)</td><td>≤0.25 μg/mL</td></tr>
+          <tr><td>泌尿道感染 (urinary)</td><td>≤8 μg/mL</td></tr>
+        </table></div>
+        <div class="alert alert-warn">
+          <span class="alert-icon">🐕</span>
+          <span>這代表一株在全身性感染判讀為「R」的菌株，若以泌尿道 breakpoint 判讀，對單純下泌尿道感染可能實際上是「S」。但同樣的藥物不一定能在腎臟實質或前列腺中達到足夠濃度——適用於膀胱炎的藥物，不一定適用於腎盂腎炎或前列腺炎。</span>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>範例：E. coli 對 amoxicillin 與 enrofloxacin 皆敏感</h3>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>散發性單純膀胱炎</h4>
+            <ul><li>優先考慮 amoxicillin</li><li>尿液濃度高，窄效、影響正常菌叢較小</li></ul>
+          </div>
+          <div class="card-mini">
+            <h4>腎盂腎炎或前列腺炎</h4>
+            <ul><li>可能因組織穿透性考慮 enrofloxacin</li><li>需藥物能到達腎臟實質／前列腺</li></ul>
+          </div>
+        </div>
+        <p style="font-size:13.5px; color:var(--text-muted); margin-top:8px;">這也代表：不能看到藥敏報告上有許多「S」，就直接選擇最廣效或最高階的抗生素。</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ SECTION 7：抗生素選擇原則 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">🧭</div>
+      <h2>七、抗生素選擇原則</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+
+      <div class="subsection">
+        <h3>1. 先確認細菌是否造成疾病</h3>
+        <ul class="notes">
+          <li>是否有符合感染部位的臨床症狀</li>
+          <li>細菌種類是否符合該疾病常見病原</li>
+          <li>採樣來源是否可靠，是否可能為污染或定植</li>
+          <li>細胞學、尿沉渣或影像檢查是否支持感染</li>
+          <li>病患是否有全身性發炎或器官受影響的證據</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3>2. 優先選擇第一線、較窄效的藥物</h3>
+        <p style="font-size:14px; margin-bottom:8px;">即使藥敏報告顯示多種藥物皆為 S，也應優先考慮：</p>
+        <ul class="notes">
+          <li>第一線抗生素、抗菌範圍較窄的藥物</li>
+          <li>對正常菌叢影響較小的藥物</li>
+          <li>可在感染部位達到有效濃度的藥物</li>
+          <li>對病患較安全且飼主能確實給藥的藥物</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3>3. 評估病患本身</h3>
+        <ul class="notes">
+          <li>年齡與品種</li>
+          <li>腎功能與肝功能</li>
+          <li>是否懷孕或哺乳</li>
+          <li>是否有神經疾病、關節疾病或乾眼症</li>
+          <li>過去是否曾有藥物不良反應</li>
+          <li>是否正在使用可能交互作用的藥物</li>
+          <li>給藥途徑、頻率與飼主配合度</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3>常見迷思澄清</h3>
+
+        <h4>迷思一：應選擇 MIC 值最低的抗生素</h4>
+        <div class="alert alert-danger">
+          <span class="alert-icon">✗</span>
+          <span><strong>錯誤。</strong>比較不同種類抗生素的 MIC 值沒有意義，如同比較「1 毫升的咖啡和 1 毫升的茶」。唯一有意義的比較，是將單一藥物的 MIC 值與其自身的 breakpoint 相比。MIC 遠低於 breakpoint 只代表敏感性邊際較大，不代表它是更優選擇——藥物穿透性等藥理特性更重要。</span>
+        </div>
+
+        <h4>迷思二：顯著核左轉嗜中性球增多症，必須使用抗生素</h4>
+        <div class="alert alert-danger">
+          <span class="alert-icon">✗</span>
+          <span><strong>錯誤。</strong>炎性血象僅表示存在炎症，不能確定是細菌感染所致。胰腺炎、免疫介導性多發性關節炎（IMPA）或非細菌性感染（如真菌、病毒）都可能引起相似的血象變化。</span>
+        </div>
+
+        <h4>迷思三：更高等級的抗生素更能清除感染</h4>
+        <div class="alert alert-danger">
+          <span class="alert-icon">✗</span>
+          <span><strong>錯誤。</strong>應避免使用「第幾線」的分級語言，改用 WHO 的 <strong>Access / Watch / Reserve（AWaRe）</strong>分類法——「Reserve」級藥物通常指抗菌譜更廣，而非效力更強。例如腸球菌（<em>Enterococcus</em>）對 amoxicillin 反應良好，卻對許多廣效頭孢菌素具有內在抗藥性。用藥原則：應盡可能選擇窄譜抗生素。</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ SECTION 8：SODAPOP ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#cffafe">🅰️</div>
+      <h2>八、SODAPOP 抗生素選擇架構</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:10px;">由 Dr. Stephen Cole 提出的決策架構，可用來快速整理臨床思考：</p>
+      <div class="tbl-wrap"><table>
+        <tr><th>步驟</th><th>臨床問題</th></tr>
+        <tr><td><strong>S — Source</strong></td><td>檢體來源是否正確？採樣方式是否可靠？是否可能污染？</td></tr>
+        <tr><td><strong>O — Organism</strong></td><td>培養出什麼細菌？它是否符合該感染部位的常見病原？</td></tr>
+        <tr><td><strong>D — Decide to treat</strong></td><td>病患是否真的需要抗菌治療？</td></tr>
+        <tr><td><strong>A — Antimicrobials</strong></td><td>哪些藥物有效？第一線、最低階且較窄效的選項是什麼？</td></tr>
+        <tr><td><strong>P — Patient</strong></td><td>病患是否有禁忌、共病、品種或藥物不良反應風險？</td></tr>
+        <tr><td><strong>O — Options</strong></td><td>是否還有局部治療、感染源控制或非抗生素選項？</td></tr>
+        <tr><td><strong>P — Plan</strong></td><td>劑量、途徑、頻率、療程、追蹤方式及成功標準是什麼？</td></tr>
+      </table></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 9：泌尿道感染的抗生素選擇 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dbeafe">💧</div>
+      <h2>九、泌尿道感染的抗生素選擇</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+
+      <div class="subsection">
+        <h3>散發性細菌性膀胱炎</h3>
+        <ul class="notes">
+          <li>Amoxicillin 通常可作為第一線選項；TMS 也可能是第一線選項之一</li>
+          <li>一般不應因藥敏報告中有更廣效的藥物為 S，就直接使用第三代 cephalosporin、fluoroquinolone 或 carbapenem</li>
+          <li>Amoxicillin 在尿液中可達高濃度，部分下泌尿道感染可能不一定需要加入 clavulanate</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3>腎盂腎炎或前列腺炎</h3>
+        <p style="font-size:14px; margin-bottom:8px;">此時不能只看尿液中的濃度，需要考量：</p>
+        <ul class="notes">
+          <li>腎臟實質或前列腺的組織穿透性</li>
+          <li>是否有菌血症或全身性感染</li>
+          <li>病患腎功能、細菌培養與藥敏結果</li>
+          <li>是否存在膿瘍、結石或其他持續感染源</li>
+        </ul>
+        <p style="font-size:13.5px; color:var(--text-muted); margin-top:6px;">即使 amoxicillin 對單純膀胱炎有效，也不代表適合治療腎盂腎炎或前列腺炎。</p>
+      </div>
+
+      <div class="subsection">
+        <h3>案例示範：Benny（North Terrier）</h3>
+        <div class="grid3">
+          <div class="card-mini">
+            <h4>單純下泌尿道感染</h4>
+            <ul><li>血尿、排尿困難</li><li>Amoxicillin 報告 R → 次選 TMS（S），療程 3–5 天</li><li>若以泌尿道 breakpoint 判讀，ampicillin 其實是 S</li></ul>
+          </div>
+          <div class="card-mini">
+            <h4>細菌性前列腺炎</h4>
+            <ul><li>感染部位轉移至前列腺</li><li>需考慮組織穿透性</li><li>Enrofloxacin（S）可被考慮，療程需個體化</li></ul>
+          </div>
+          <div class="card-mini">
+            <h4>無症狀菌尿</h4>
+            <ul><li>健檢意外培養陽性，無症狀</li><li>不建議治療，即使為 MDR 菌株</li></ul>
+          </div>
+        </div>
+        <p style="font-size:12.5px; color:var(--text-muted); margin-top:8px;">同一隻犬、同一株 E. coli，在三種不同臨床情境下的選藥邏輯完全不同——這正是「治療病患而非治療報告」的具體體現。</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ SECTION 10：抗生素要用多久 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef9c3">⏱️</div>
+      <h2>十、抗生素要用多久？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+
+      <div class="subsection">
+        <h3>散發性細菌性膀胱炎</h3>
+        <div class="quote">建議療程通常為 3–5 天</div>
+        <p style="font-size:13.5px; color:var(--text-muted);">但這僅適用於散發性、單純細菌性膀胱炎，不能套用到所有細菌感染。</p>
+      </div>
+
+      <div class="subsection">
+        <h3>複雜性或深部感染</h3>
+        <p style="font-size:14px; margin-bottom:8px;">較複雜的感染不一定能使用固定療程，需要依據：</p>
+        <ul class="notes">
+          <li>感染部位、是否有感染源控制</li>
+          <li>疾病嚴重度、臨床改善速度</li>
+          <li>是否有結石、異物、膿瘍或結構異常</li>
+          <li>是否為復發或再感染、病患免疫狀態</li>
+          <li>飼主給藥合作度</li>
+        </ul>
+        <div class="alert alert-info">
+          <span class="alert-icon">📋</span>
+          <span>以細菌性前列腺炎為例：急性前列腺炎過去通常建議約 4 週，慢性前列腺炎可能需要 4–6 週。但相關研究資料有限（limited data），實際療程仍需依病患反應、影像學追蹤與感染源控制動態調整，並與飼主保持密切溝通。</span>
+        </div>
+        <p style="font-size:13.5px; color:var(--text-muted); margin-top:8px;">因此，不應只因為是「複雜性感染」就自動延長抗生素，也不能在尚未處理感染源時只依靠延長療程。</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ SECTION 11：TMS ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">💊</div>
+      <h2>十一、TMS 的使用與品種風險</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+
+      <div class="subsection">
+        <p style="font-size:14px; margin-bottom:8px;">TMS 指 trimethoprim-sulfonamide，例如 trimethoprim-sulfadiazine、trimethoprim-sulfamethoxazole，可作為部分泌尿道感染的第一線選項，但較容易出現藥物不良反應：</p>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>可能不良反應</h4>
+            <ul>
+              <li>發燒、血小板低下</li>
+              <li>肝病變、嗜中性球低下</li>
+              <li>溶血、多發性關節病</li>
+              <li>乾性角結膜炎、葡萄膜炎</li>
+              <li>皮膚或黏膜病灶</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>較需留意的品種</h4>
+            <ul>
+              <li>薩摩耶犬</li>
+              <li>迷你雪納瑞</li>
+              <li>杜賓犬——尤其磺胺類相關多發性關節病</li>
+            </ul>
+          </div>
+        </div>
+        <div class="alert alert-warn">
+          <span class="alert-icon">⚠️</span>
+          <span>短期 3–5 天療程的不良反應風險通常低於長期使用，但並非完全沒有風險。若病患品種對 sulfa 藥物有高敏感性反應（如 Doberman），amoxicillin 會是更合理的選擇。</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ SECTION 12：無症狀菌尿 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🚱</div>
+      <h2>十二、無症狀菌尿</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+
+      <div class="subsection">
+        <h3>定義</h3>
+        <div class="quote">Subclinical bacteriuria：尿液培養出細菌，但病患沒有相符的泌尿道或全身性臨床症狀。</div>
+        <p style="font-size:14px; margin:10px 0 8px;">遇到這種病例，應進一步詢問：</p>
+        <ul class="notes">
+          <li>是否真的完全沒有頻尿、排尿困難、血尿或尿失禁？</li>
+          <li>是否有行為改變、疼痛或在不適當位置排尿？</li>
+          <li>是否有發燒、食慾下降或精神變差？</li>
+          <li>是否可能存在腎盂腎炎？</li>
+          <li>是否有導尿管、尿路結石、腫瘤或結構異常？</li>
+          <li>尿液如何取得？是否可能污染？</li>
+          <li>是否即將接受泌尿道侵入性處置？</li>
+        </ul>
+        <div class="alert alert-info">
+          <span class="alert-icon">ℹ️</span>
+          <span>依 ISCAID 指引，在沒有臨床症狀的情況下，通常不建議進行尿液培養。</span>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>Pyuria 不等於一定需要抗生素</h3>
+        <p style="font-size:14px; margin-bottom:8px;">Pyuria 表示尿液中存在白血球，代表泌尿道有發炎反應，但：</p>
+        <ul class="notes">
+          <li>不等於細菌一定是造成症狀的原因</li>
+          <li>不等於病患一定有需要治療的細菌感染</li>
+          <li>不能單獨作為開立抗生素的依據</li>
+        </ul>
+        <p style="font-size:13.5px; color:var(--text-muted); margin-top:6px;">如果病患沒有臨床症狀，即使同時有陽性尿液培養、pyuria、高菌落數、多重抗藥菌，通常仍不一定需要抗菌治療。</p>
+      </div>
+
+      <div class="subsection">
+        <h3>為什麼無症狀菌尿通常不治療？</h3>
+        <p style="font-size:14px; margin-bottom:8px;">因為治療可能：</p>
+        <ul class="notes">
+          <li>無法改善病患的臨床狀況</li>
+          <li>無法長期清除菌尿，停藥後仍可能再次培養陽性</li>
+          <li>造成藥物副作用、增加飼主與病患的給藥負擔</li>
+          <li>篩選出更具抗藥性的細菌</li>
+          <li>破壞原本相對低致病性的定植菌叢，讓更難治療的細菌取代原有菌株</li>
+        </ul>
+        <div class="alert alert-success">
+          <span class="alert-icon">✓</span>
+          <span>即使培養出多重抗藥菌，也不代表一定需要治療。是否治療取決於病患是否存在感染所造成的臨床疾病，而不是抗藥性看起來有多嚴重。與畜主溝通時，重點是「我們不是什麼都不做，而是採取監控與支持性照護」——明尼蘇達大學 Antimicrobial Resistance and Leadership Initiative 提供的衛教單張可作為溝通輔助。</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ SECTION 13：臨床決策流程 ══ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">🧩</div>
+      <h2>十三、臨床決策流程</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p style="font-size:14px; margin-bottom:8px;">遇到培養陽性結果時，可以依序思考：</p>
+      <ol class="notes">
+        <li>檢體可靠嗎？</li>
+        <li>這個菌可能是污染、定植，還是真正病原？</li>
+        <li>病患有符合感染部位的臨床症狀嗎？</li>
+        <li>病患真的需要抗生素嗎？</li>
+        <li>藥敏結果使用的是哪一種 breakpoint？</li>
+        <li>藥物能否到達感染部位？</li>
+        <li>是否有更窄效、較低階的第一線選擇？</li>
+        <li>病患是否有品種、器官功能或藥物禁忌？</li>
+        <li>感染源是否需要另外處理？</li>
+        <li>療程多久、如何評估成功、何時需要重新採樣？</li>
+        <li>飼主能否確實完成給藥與追蹤？</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 14：參考資料 ══ -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📚</div>
+      <h2>參考資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="ref-list">
+        <div class="ref-item">ISCAID (International Society for Companion Animal Infectious Diseases). <em>Guidelines for the Diagnosis and Management of Bacterial Urinary Tract Infections in Dogs and Cats.</em> 2019. <a href="https://www.vdl.ndsu.edu/wp-content/uploads/2022/02/ISCAID-Urinary-Guidelines-2019.pdf" target="_blank" rel="noopener">連結</a></div>
+        <div class="ref-item">磺胺類藥物過敏反應病例研究。<em>J Vet Intern Med.</em> <a href="https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1939-1676.2003.tb02495.x" target="_blank" rel="noopener">連結</a></div>
+        <div class="ref-item">University of Minnesota. <em>Antimicrobial Resistance and Leadership Initiative</em>——提供無症狀菌尿相關的畜主衛教資源。</div>
+        <div class="ref-item">ENOVAT（European Network for Optimization of Veterinary Antimicrobial Treatment）。手術預防性用藥與急性腹瀉相關指引。</div>
+        <div class="ref-item">梅醫師．抗菌藥物感受性測試 (AST) 解讀與臨床應用研討會。知菌知藥系列 Part 1．2026 年 8 月 27 日。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>知菌知藥系列還有 Part 2、Part 3，將陸續整理課堂內容更新於此。</p>
+    <a href="index.html">回到系列列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
