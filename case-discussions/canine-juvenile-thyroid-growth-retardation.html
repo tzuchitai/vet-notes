@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>幼犬生長遲滯與甲狀腺數值異常：Problem-Oriented 病例討論｜梅醫師病例討論</title>
+<style>
+  :root{
+    --bg:#F5F7F4;
+    --surface:#FFFFFF;
+    --surface-2:#EEF2EC;
+    --ink:#1A2420;
+    --ink-soft:#465049;
+    --ink-faint:#7C8880;
+    --accent:#2B6E63;
+    --accent-strong:#1F5048;
+    --accent-soft-bg:#E3EFEA;
+    --accent-soft-border:#BFDAD0;
+    --supplement:#96632A;
+    --supplement-soft-bg:#F6EAD7;
+    --supplement-soft-border:#E3C99A;
+    --rule:#DCE3DC;
+    --table-head-bg:#EEF2EC;
+    --font-display:Georgia,"Noto Serif TC","Songti TC",serif;
+    --font-body:-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei","Segoe UI",sans-serif;
+    --font-mono:ui-monospace,"SF Mono","Cascadia Code","Roboto Mono",monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#121815;
+      --surface:#161E19;
+      --surface-2:#1D2620;
+      --ink:#E7EDE8;
+      --ink-soft:#B7C2BA;
+      --ink-faint:#7E8D84;
+      --accent:#6FBFA9;
+      --accent-strong:#8ED4BF;
+      --accent-soft-bg:#1C2B26;
+      --accent-soft-border:#2C443B;
+      --supplement:#D8A25C;
+      --supplement-soft-bg:#2C2213;
+      --supplement-soft-border:#4E3A20;
+      --rule:#28322B;
+      --table-head-bg:#1D2620;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121815; --surface:#161E19; --surface-2:#1D2620; --ink:#E7EDE8;
+    --ink-soft:#B7C2BA; --ink-faint:#7E8D84; --accent:#6FBFA9; --accent-strong:#8ED4BF;
+    --accent-soft-bg:#1C2B26; --accent-soft-border:#2C443B; --supplement:#D8A25C;
+    --supplement-soft-bg:#2C2213; --supplement-soft-border:#4E3A20; --rule:#28322B; --table-head-bg:#1D2620;
+  }
+  :root[data-theme="light"]{
+    --bg:#F5F7F4; --surface:#FFFFFF; --surface-2:#EEF2EC; --ink:#1A2420;
+    --ink-soft:#465049; --ink-faint:#7C8880; --accent:#2B6E63; --accent-strong:#1F5048;
+    --accent-soft-bg:#E3EFEA; --accent-soft-border:#BFDAD0; --supplement:#96632A;
+    --supplement-soft-bg:#F6EAD7; --supplement-soft-border:#E3C99A; --rule:#DCE3DC; --table-head-bg:#EEF2EC;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent-strong);}
+  a:focus-visible, button:focus-visible, summary:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:2px;
+  }
+
+  .page{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 24px 96px;
+  }
+
+  /* ---------- Back link ---------- */
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    margin-top:20px;
+    padding:7px 14px 7px 10px;
+    border:1px solid var(--rule);
+    border-radius:20px;
+    background:var(--surface);
+    color:var(--ink-soft);
+    text-decoration:none;
+    font-size:13px;
+    font-weight:600;
+  }
+  .back-link:hover{
+    color:var(--accent-strong);
+    border-color:var(--accent-soft-border);
+    background:var(--accent-soft-bg);
+  }
+  .back-link .arrow{font-size:15px;line-height:1;}
+
+  /* ---------- Breadcrumb ---------- */
+  .crumbs{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:6px;
+    padding:10px 0 0;
+    font-size:13px;
+    color:var(--ink-faint);
+    font-family:var(--font-mono);
+  }
+  .crumbs a{color:var(--ink-faint);text-decoration:none;}
+  .crumbs a:hover{color:var(--accent-strong);}
+  .crumbs .sep{opacity:.5;}
+  .crumbs .current{color:var(--ink-soft);}
+
+  /* ---------- Masthead ---------- */
+  .masthead{
+    padding:28px 0 32px;
+    border-bottom:1px solid var(--rule);
+    margin-bottom:8px;
+  }
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--accent-strong);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;
+    height:1px;
+    background:var(--accent);
+    display:inline-block;
+  }
+  h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(28px,4vw,42px);
+    line-height:1.3;
+    margin:0 0 14px;
+    text-wrap:balance;
+    letter-spacing:.01em;
+  }
+  .dek{
+    font-size:16px;
+    color:var(--ink-soft);
+    max-width:62ch;
+    margin:0 0 24px;
+  }
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 20px;
+    font-size:13px;
+    color:var(--ink-faint);
+  }
+  .legend-item{display:flex;align-items:center;gap:8px;}
+  .swatch{width:12px;height:12px;border-radius:3px;flex:none;}
+  .swatch.core{background:var(--surface);border:1.5px solid var(--rule);}
+  .swatch.lit{background:var(--supplement-soft-bg);border:1.5px solid var(--supplement);}
+
+  /* ---------- Layout: rail + content ---------- */
+  .layout{
+    display:grid;
+    grid-template-columns:210px minmax(0,1fr);
+    gap:48px;
+    margin-top:40px;
+    align-items:start;
+  }
+  @media (max-width:860px){
+    .layout{grid-template-columns:1fr;}
+  }
+
+  .rail{
+    position:sticky;
+    top:24px;
+    font-size:14px;
+    max-height:calc(100vh - 48px);
+    overflow-y:auto;
+  }
+  .rail-title{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin:0 0 12px;
+  }
+  .rail nav ol{
+    list-style:none;
+    margin:0;
+    padding:0;
+    border-left:1px solid var(--rule);
+  }
+  .rail nav li{margin:0;}
+  .rail nav a{
+    display:block;
+    padding:6px 0 6px 16px;
+    margin-left:-1px;
+    border-left:1px solid transparent;
+    color:var(--ink-soft);
+    text-decoration:none;
+    font-size:13px;
+  }
+  .rail nav a:hover{color:var(--accent-strong);border-left-color:var(--accent);}
+
+  main{min-width:0;}
+
+  /* ---------- Sections ---------- */
+  section.chapter{
+    padding-top:8px;
+    margin-bottom:56px;
+    scroll-margin-top:24px;
+  }
+  .chapter-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    padding-bottom:14px;
+    margin-bottom:28px;
+    border-bottom:2px solid var(--ink);
+  }
+  .chapter-num{
+    font-family:var(--font-display);
+    font-size:15px;
+    color:var(--accent-strong);
+    font-weight:700;
+  }
+  .chapter-head h2{
+    font-family:var(--font-display);
+    font-size:24px;
+    margin:0;
+    font-weight:700;
+  }
+
+  h3{
+    font-family:var(--font-display);
+    font-size:18px;
+    font-weight:700;
+    margin:32px 0 12px;
+    color:var(--ink);
+  }
+  h3 .sub-num{color:var(--accent-strong);margin-right:8px;font-family:var(--font-mono);font-size:15px;}
+  h4{
+    font-size:14.5px;
+    font-weight:700;
+    margin:22px 0 8px;
+    color:var(--ink-soft);
+  }
+
+  p{margin:0 0 14px;max-width:74ch;}
+  ul,ol{margin:0 0 16px;padding-left:22px;max-width:70ch;}
+  li{margin-bottom:6px;}
+  li::marker{color:var(--ink-faint);}
+  strong{color:var(--ink);font-weight:700;}
+
+  /* ---------- Literature supplement callouts ---------- */
+  .lit{
+    background:var(--supplement-soft-bg);
+    border:1px solid var(--supplement-soft-border);
+    border-left:3px solid var(--supplement);
+    border-radius:3px;
+    padding:14px 18px;
+    margin:16px 0 20px;
+    max-width:74ch;
+  }
+  .lit p{margin:0;font-size:14.5px;color:var(--ink-soft);}
+  .lit p + p{margin-top:8px;}
+  .lit-tag{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--supplement);
+    font-weight:700;
+    display:block;
+    margin-bottom:6px;
+  }
+
+  /* ---------- Caution callout ---------- */
+  .caution{
+    background:var(--accent-soft-bg);
+    border:1px solid var(--accent-soft-border);
+    border-left:3px solid var(--accent);
+    border-radius:3px;
+    padding:14px 18px;
+    margin:16px 0 20px;
+    max-width:74ch;
+  }
+  .caution p{margin:0;font-size:14.5px;color:var(--ink-soft);}
+  .caution p + p{margin-top:8px;}
+  .caution-tag{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--accent-strong);
+    font-weight:700;
+    display:block;
+    margin-bottom:6px;
+  }
+
+  /* ---------- Tables ---------- */
+  .table-wrap{
+    overflow-x:auto;
+    margin:10px 0 22px;
+    border:1px solid var(--rule);
+    border-radius:4px;
+  }
+  table{
+    border-collapse:collapse;
+    width:100%;
+    min-width:340px;
+    font-size:14.5px;
+    background:var(--surface);
+  }
+  caption{
+    text-align:left;
+    font-size:12px;
+    color:var(--ink-faint);
+    padding:8px 14px 0;
+    font-family:var(--font-mono);
+  }
+  thead th{
+    background:var(--table-head-bg);
+    text-align:left;
+    font-weight:700;
+    padding:10px 14px;
+    border-bottom:1px solid var(--rule);
+    color:var(--ink-soft);
+    font-size:13px;
+    white-space:nowrap;
+  }
+  tbody td{
+    padding:9px 14px;
+    border-bottom:1px solid var(--rule);
+    font-variant-numeric:tabular-nums;
+    vertical-align:top;
+  }
+  tbody tr:last-child td{border-bottom:none;}
+  tbody td:first-child{color:var(--ink);}
+
+  /* ---------- Drug / dose block ---------- */
+  .dose{
+    font-family:var(--font-mono);
+    font-size:13.5px;
+    background:var(--surface-2);
+    border:1px solid var(--rule);
+    border-radius:4px;
+    padding:12px 16px;
+    margin:10px 0 18px;
+    max-width:60ch;
+  }
+  .dose div{display:flex;justify-content:space-between;gap:16px;padding:2px 0;}
+  .dose div + div{border-top:1px dashed var(--rule);}
+  .dose span:first-child{color:var(--ink-soft);}
+  .dose span:last-child{font-variant-numeric:tabular-nums;text-align:right;}
+
+  /* ---------- Stat strip (case snapshot) ---------- */
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+    gap:12px;
+    margin:16px 0 22px;
+  }
+  .stat-box{
+    background:var(--surface);
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:14px 16px;
+    text-align:center;
+  }
+  .stat-box .num{
+    font-family:var(--font-display);
+    font-size:22px;
+    font-weight:700;
+    color:var(--accent-strong);
+    display:block;
+  }
+  .stat-box .lbl{font-size:12px;color:var(--ink-faint);margin-top:4px;}
+
+  /* ---------- Timeline ---------- */
+  .tl{list-style:none;margin:16px 0 24px;padding:0;border-left:2px solid var(--rule);max-width:74ch;}
+  .tl li{position:relative;padding:0 0 26px 24px;}
+  .tl li:last-child{padding-bottom:0;}
+  .tl li::before{
+    content:"";
+    position:absolute; left:-6.5px; top:4px;
+    width:11px; height:11px; border-radius:50%;
+    background:var(--surface); border:2px solid var(--accent);
+  }
+  .tl-date{
+    font-family:var(--font-mono); font-size:12.5px; font-weight:700;
+    color:var(--accent-strong); letter-spacing:.03em; margin-bottom:4px;
+  }
+  .tl-title{font-weight:700; color:var(--ink); margin-bottom:4px;}
+  .tl p{margin:0 0 6px; font-size:14.5px;}
+
+  /* ---------- Questions block ---------- */
+  .qa{margin:16px 0 22px; max-width:76ch;}
+  .qa-item{
+    background:var(--surface);
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:14px 18px;
+    margin-bottom:12px;
+  }
+  .qa-item .q-num{
+    font-family:var(--font-mono); font-size:12px; font-weight:700;
+    color:var(--accent-strong); margin-right:6px;
+  }
+  .qa-item .q-title{font-weight:700; color:var(--ink);}
+  .qa-item p{margin:6px 0 0; font-size:14.5px;}
+
+  /* ---------- References ---------- */
+  .refs{
+    list-style:none;
+    padding:0;
+    margin:0;
+    counter-reset:refnum;
+  }
+  .refs li{
+    counter-increment:refnum;
+    display:flex;
+    gap:14px;
+    padding:14px 0;
+    border-bottom:1px solid var(--rule);
+    max-width:none;
+  }
+  .refs li::before{
+    content:counter(refnum);
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--accent-strong);
+    flex:none;
+    width:20px;
+  }
+  .refs li:last-child{border-bottom:none;}
+  .refs .ref-body{font-size:14.5px;}
+  .refs .ref-body p{margin:0 0 4px;color:var(--ink-soft);}
+  .refs a{word-break:break-all;font-size:13.5px;}
+
+  footer.note{
+    margin-top:64px;
+    padding-top:20px;
+    border-top:1px solid var(--rule);
+    font-size:12.5px;
+    color:var(--ink-faint);
+  }
+  footer.note a{color:var(--ink-faint);}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <a class="back-link" href="index.html"><span class="arrow">←</span>回上一頁：梅醫師病例討論</a>
+
+  <p class="crumbs">
+    <a href="../index.html">🐾 獸醫讀書筆記</a>
+    <span class="sep">／</span>
+    <a href="index.html">梅醫師病例討論</a>
+    <span class="sep">／</span>
+    <span class="current">Case 04</span>
+  </p>
+
+  <header class="masthead">
+    <p class="eyebrow">梅醫師病例討論 · Case 04 · 小動物內科／內分泌學・血液學</p>
+    <h1>幼犬生長遲滯與甲狀腺數值異常：Problem-Oriented 病例討論</h1>
+    <p class="dek">主角為4.5月齡母犬邊境牧羊犬「Money」，因呼吸道症狀就診時意外觸診到頸部腫大，理學檢查同時發現體型偏小、四肢偏短粗，一度懷疑先天性甲狀腺低能症；但完整甲狀腺 panel 卻呈現 TT4／fT4 明顯升高、cTSH 被抑制的甲狀腺毒症型態，與原始臨床懷疑完全矛盾，病程中又併發發燒、貧血與無法站立的急性惡化。全文以 Money 的實際病程為主軸，貫穿 problem-oriented 的鑑別診斷架構——生長遲滯的體型比例判斷、甲狀腺數值的正確讀法、頸部腫大的獨立評估、貧血機轉分析，以及 Border Collie 品種特有的 IGS／cobalamin malabsorption 考量，最後附上提交專科醫師討論的問題清單。</p>
+    <div class="legend">
+      <span class="legend-item"><span class="swatch core"></span>Money 病歷原始內容</span>
+      <span class="legend-item"><span class="swatch lit"></span>文獻補充／教學延伸</span>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="rail">
+      <p class="rail-title">目錄</p>
+      <nav>
+        <ol>
+          <li><a href="#s1">一、病例摘要與 Problem List</a></li>
+          <li><a href="#s2">二、病史時間軸</a></li>
+          <li><a href="#s3">三、待補病史與有意義的陰性結果</a></li>
+          <li><a href="#s4">四、理學檢查必填項目</a></li>
+          <li><a href="#s5">五、生長遲滯：先看體型比例</a></li>
+          <li><a href="#s6">六、甲狀腺數值判讀與 Money 的矛盾結果</a></li>
+          <li><a href="#s7">七、Thyroid Panel 與 Autoantibody 的意義</a></li>
+          <li><a href="#s8">八、頸部腫大：不能只看甲狀腺數值</a></li>
+          <li><a href="#s9">九、兩種不同的免疫性甲狀腺炎</a></li>
+          <li><a href="#s10">十、PCV／HCT 下降：三大機轉</a></li>
+          <li><a href="#s11">十一、系統性發炎與感染性 Trigger</a></li>
+          <li><a href="#s12">十二、品種特別鑑別：IGS 與 PSS</a></li>
+          <li><a href="#s13">十三、分階段 Diagnostic Plan 與治療原則</a></li>
+          <li><a href="#s14">十四、提交專科醫師討論的問題</a></li>
+          <li><a href="#s15">十五、Take-home Messages</a></li>
+          <li><a href="#s16">十六、參考資料</a></li>
+        </ol>
+      </nav>
+    </aside>
+
+    <main>
+
+      <!-- 一 -->
+      <section class="chapter" id="s1">
+        <div class="chapter-head"><span class="chapter-num">01</span><h2>病例摘要與 Problem List</h2></div>
+
+        <h3><span class="sub-num">1</span>Money 的基本資料</h3>
+        <p>Money，邊境牧羊犬，母犬未絕育，出生於 2026-04-02。首診時 4 個月又 7 天大，體重 3.5 kg，因呼吸道症狀就診，理學檢查時另外觸診到頸部腫大。幼年犬合併體型較同齡與品種預期小、BCS 偏低、全身 muscle condition score 下降，再加上甲狀腺檢驗異常及輕度紅血球變化——臨床上必須避免只聚焦甲狀腺，而是同步評估內分泌、肝血管、遺傳性 cobalamin malabsorption、營養／腸道疾病與感染性疾病。</p>
+        <div class="stat-strip">
+          <div class="stat-box"><span class="num">4m7d</span><span class="lbl">首診年齡</span></div>
+          <div class="stat-box"><span class="num">3.5 kg</span><span class="lbl">首診體重</span></div>
+          <div class="stat-box"><span class="num">TT4 10.7↑</span><span class="lbl">µg/dL（ref 1.0–4.0）</span></div>
+          <div class="stat-box"><span class="num">cTSH &lt;0.01↓</span><span class="lbl">ng/mL（ref 0.05–0.42）</span></div>
+        </div>
+
+        <h3><span class="sub-num">2</span>最重要的起點</h3>
+        <div class="caution">
+          <span class="caution-tag">核心提醒</span>
+          <p>不要先把病例命名為 hypoT 或 hyperT。先記錄 TT4、fT4、TT3、cTSH 的實際數值與參考區間；「TSH 高」與「T4 高」代表完全不同的路徑。Money 一開始因頸部腫大而懷疑先天性甲狀腺低能症，但完整 panel 卻呈現相反方向的結果，這正是本篇整理的出發點。</p>
+        </div>
+
+        <h3><span class="sub-num">3</span>完整 Problem List</h3>
+        <ul>
+          <li>生長遲滯／體型小於年齡與品種預期；需判斷 proportionate 或 disproportionate。</li>
+          <li>Undercondition／BCS 偏低（Money 首診 BCS 4/9）。</li>
+          <li>Generalized decreased muscle condition score。</li>
+          <li>甲狀腺檢驗異常：TT4、fT4 明顯升高，cTSH 被抑制——與原始「先天性甲低」懷疑方向相反。</li>
+          <li>頸部腫大／甲狀腺腫大（goiter），超音波右側甲狀腺葉 1.32×1.68 cm。</li>
+          <li>輕度貧血：首診 RBC／HCT／HGB 下降合併 reticulocytosis；病程中再度出現 HCT 下降。</li>
+          <li>急性系統性發炎：發燒、CRP 明顯升高、TP／ALB 下降、無法站立。</li>
+          <li>疫苗、驅蟲、飲食、生食／頸肉暴露與 levothyroxine exposure 尚待完整確認。</li>
+        </ul>
+      </section>
+
+      <!-- 二 -->
+      <section class="chapter" id="s2">
+        <div class="chapter-head"><span class="chapter-num">02</span><h2>病史時間軸</h2></div>
+        <p>以下時間軸整理自課堂病例簡報，逐步呈現「呼吸道主訴 → 意外發現頸部腫大 → 甲狀腺 panel 矛盾結果 → 急性全身性惡化」的完整病程。</p>
+
+        <ol class="tl">
+          <li>
+            <div class="tl-date">2026-08-09　首診</div>
+            <div class="tl-title">呼吸道症狀為原始就診原因</div>
+            <p>約一週前領養；活動與食慾正常，BCS 4/9。打噴嚏合併水樣至黏液性鼻分泌物、咳嗽及氣管敏感。聽診無明顯異常。觸診到頸部腫塊，鑑別為 retropharyngeal lymph node 或甲狀腺。</p>
+            <div class="dose">
+              <div><span>初始治療</span><span>Doxycycline、bromhexine、cyproheptadine、aminophylline、maropitant</span></div>
+              <div><span>08-15 電話回診</span><span>咳嗽與鼻分泌物已略有改善</span></div>
+            </div>
+          </li>
+          <li>
+            <div class="tl-date">2026-08-18　外觀與骨骼評估</div>
+            <div class="tl-title">體型表現型記錄</div>
+            <p>外頸寬度 28.6 mm。觀察到頭身比例相對較大、四肢偏短粗，並可觸及頸部腫大。同日拍攝口腔照片（正面、左右側齒列）作為發育評估的一部分，並取得四肢／胸廓及骨盆／後肢外側投影 X 光；這些影像可記錄骨骼未成熟與四肢比例，但單靠這些投影無法單獨確認骨化延遲。</p>
+          </li>
+          <li>
+            <div class="tl-date">2026-08-18　篩檢檢驗</div>
+            <div class="tl-title">CBC 呈現輕度貧血合併 reticulocytosis</div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>項目</th><th>數值</th><th>方向</th></tr></thead>
+                <tbody>
+                  <tr><td>RBC</td><td>5.31 M/µL</td><td>↓</td></tr>
+                  <tr><td>HCT</td><td>33.7 %</td><td>↓</td></tr>
+                  <tr><td>HGB</td><td>12.3 g/dL</td><td>↓</td></tr>
+                  <tr><td>Reticulocytes</td><td>191.9 K/µL</td><td>↑</td></tr>
+                  <tr><td>Monocytes</td><td>1.78 K/µL</td><td>↑</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>生化學檢驗未見明顯異常。</p>
+          </li>
+          <li>
+            <div class="tl-date">2026-08-18　頸部超音波</div>
+            <div class="tl-title">雙側甲狀腺葉評估</div>
+            <p>右側甲狀腺葉測得 1.32 × 1.68 cm，左側甲狀腺葉亦有記錄。當下印象懷疑甲狀腺腫大（thyroid enlargement suspected）。</p>
+          </li>
+          <li>
+            <div class="tl-date">2026-08-24　IDEXX Thyroid Panel 4 報告</div>
+            <div class="tl-title">結果與原始臨床懷疑方向相反</div>
+            <p>採樣日期 08-18，Accession 8208726508。</p>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>項目</th><th>結果</th><th>參考區間</th></tr></thead>
+                <tbody>
+                  <tr><td>Total T4</td><td>10.7 ↑</td><td>1.0–4.0 µg/dL</td></tr>
+                  <tr><td>Free T4</td><td>&gt;6.0 ↑</td><td>0.6–3.7 ng/dL</td></tr>
+                  <tr><td>cTSH</td><td>&lt;0.01 ↓</td><td>0.05–0.42 ng/mL</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>檢驗型態為甲狀腺荷爾蒙明顯升高合併 cTSH 被抑制，與原始「幼犬先天性甲低」的臨床懷疑完全不符。</p>
+          </li>
+          <li>
+            <div class="tl-date">2026-08-25　急性惡化</div>
+            <div class="tl-title">甲狀腺工作評估後出現新的全身性疾病</div>
+            <p>BW 4.2 kg，體溫 40.1°C，呼吸速率 68/分。發燒、活動力與食慾下降、喘氣合併全身無力。胸腔 X 光未見明顯肺炎，但支氣管紋理增加。</p>
+            <div class="dose">
+              <div><span>HCT</span><span>25.9 %</span></div>
+              <div><span>HGB</span><span>9.9 g/dL</span></div>
+              <div><span>CRP</span><span>&gt;10.0 mg/dL</span></div>
+              <div><span>TP</span><span>5.9 g/dL</span></div>
+              <div><span>ALB</span><span>2.7 g/dL</span></div>
+            </div>
+          </li>
+          <li>
+            <div class="tl-date">2026-08-26　複診</div>
+            <div class="tl-title">系統性狀況改善，但無法站立持續</div>
+            <p>BW 4.1 kg，體溫 39.6°C。活動力改善、有食慾，仍持續喘氣，且依然無法站立。Paw replacement：RF 0／LF 0／RH 1／LH 1；deep pain 反應為 +/-。給予 Ringer solution 120 mL SC。</p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- 三 -->
+      <section class="chapter" id="s3">
+        <div class="chapter-head"><span class="chapter-num">03</span><h2>待補病史與有意義的陰性結果</h2></div>
+        <p>Money 領養不到一週即就診，許多病史細節仍待補齊。以下項目為 problem-oriented 病史詢問應涵蓋的範圍，並提醒有意義的陰性結果必須明確寫出，而非留白。</p>
+        <ul>
+          <li><strong>飲食：</strong>是否為完整均衡飼料；每日熱量；生食、頸肉、氣管、頭肉、牛肉製品、肉乾或內臟零食。</li>
+          <li><strong>藥物：</strong>是否曾使用 levothyroxine；家中其他動物或家人是否使用甲狀腺素。</li>
+          <li><strong>生長史：</strong>何時開始落後、同胎犬與父母體型、完整 growth curve。</li>
+          <li><strong>腸胃與神經：</strong>食慾、餐後不適、嘔吐、腹瀉、PU/PD、抽搐、stupor、步態。</li>
+          <li><strong>感染風險：</strong>疫苗、驅蟲、蜱蟲、旅遊、繁殖／進口來源、其他犬接觸。</li>
+          <li><strong>頸部症狀：</strong>吞嚥困難、gagging、regurgitation、咳嗽、stridor、呼吸困難、吠聲改變。</li>
+        </ul>
+        <div class="caution">
+          <span class="caution-tag">紀錄原則</span>
+          <p>有意義的陰性結果必須明確寫出，例如 no raw/gullet exposure、no levothyroxine exposure、no respiratory/GI/neuro signs——而不是完全略過未提及的項目。</p>
+        </div>
+      </section>
+
+      <!-- 四 -->
+      <section class="chapter" id="s4">
+        <div class="chapter-head"><span class="chapter-num">04</span><h2>理學檢查必填項目</h2></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>面向</th><th>必填內容</th></tr></thead>
+            <tbody>
+              <tr><td>生命徵象</td><td>體溫、HR、心律、脈搏、RR、血壓；hypoT 與 thyrotoxicosis 的方向相反。</td></tr>
+              <tr><td>生長與營養</td><td>BW、BCS、MCS、身高／肢長、growth curve，與同胎犬或品種預期比較。</td></tr>
+              <tr><td>皮膚被毛</td><td>Puppy coat、guard hair、對稱性脫毛、色素沉著、皮脂漏。</td></tr>
+              <tr><td>頭頸與口腔</td><td>甲狀腺／頸部腫大、可動性、單／雙側、換牙延遲、macroglossia。</td></tr>
+              <tr><td>神經與骨骼</td><td>Mentation、gait、生長板、關節、脊椎痛、cervical rigidity、myoclonus。</td></tr>
+              <tr><td>感染線索</td><td>鼻眼分泌物、鼻鏡／腳墊角化、發燒、淋巴結、黏膜蒼白／黃疸／出血點。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>對照 Money 已記錄的項目：BCS 4/9、外頸寬度 28.6 mm、頸部可觸及腫大、鼻分泌物與咳嗽（感染線索）、後續發燒與 CRP 上升（感染線索）；尚待補齊的是完整 growth curve、皮膚被毛細節，以及神經與骨骼系統的系統性評估（結合 08-26 的站立與 paw replacement 異常）。</p>
+      </section>
+
+      <!-- 五 -->
+      <section class="chapter" id="s5">
+        <div class="chapter-head"><span class="chapter-num">05</span><h2>生長遲滯：先看體型比例</h2></div>
+        <p>Money 外觀「頭身比例相對較大、四肢偏短粗」，這個描述同時符合 disproportionate dwarfism 的方向；但體型比例的判斷必須先於甲狀腺數值解讀，因為不同鑑別診斷對應的檢查路徑完全不同。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>鑑別</th><th>體型與典型表現</th><th>建議檢查</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>GH deficiency／pituitary dwarfism</td>
+                <td>Proportionate dwarfism；正常犬的縮小版。常有 fox／coyote-like 外觀、柔軟 puppy coat、缺乏 guard hair、換牙及生長板閉合延遲。</td>
+                <td>IGF-1、LHX3 genetic test、完整 pituitary axes；MRI pituitary 優於 CT 評估軟組織。</td>
+              </tr>
+              <tr>
+                <td>Congenital hypothyroidism</td>
+                <td>較典型為 disproportionate dwarfism；可見短肢／軀幹比例異常、macroglossia、精神遲鈍、便祕、低體溫、bradycardia、epiphyseal dysgenesis。</td>
+                <td>TT4、fT4 by equilibrium dialysis、cTSH；甲狀腺超音波／scintigraphy；骨骼 X-ray。</td>
+              </tr>
+              <tr>
+                <td>PSS</td>
+                <td>生長遲滯、poor muscle development，可能餐後神經症狀；不屬典型內分泌侏儒。</td>
+                <td>BUN、glucose、albumin、cholesterol、UA、paired bile acids／NH3、腹超／CTA。</td>
+              </tr>
+              <tr>
+                <td>IGS／cobalamin malabsorption</td>
+                <td>Border Collie 幼年 failure to thrive、undercondition、食慾不佳、腸胃或神經症狀；可合併非再生性貧血及 proteinuria。</td>
+                <td>Cobalamin、MMA、UA／UPC、CUBN genetic test。</td>
+              </tr>
+              <tr>
+                <td>營養／腸道／寄生蟲</td>
+                <td>BCS 與 MCS 下降常比單純 hypoT 更明顯。</td>
+                <td>Diet calculation、糞檢、TLI、腸道檢查、蛋白與吸收指標。</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="lit">
+          <span class="lit-tag">影像選擇</span>
+          <p>懷疑 pituitary dwarfism 時，MRI 較適合評估 pituitary hypoplasia、Rathke pouch cyst 或 craniopharyngioma；CT 可作替代。骨骼 X-ray 用於觀察 delayed epiphyseal closure／dysgenesis——這也是 Money 08-18 拍攝四肢／胸廓與骨盆／後肢 X 光的目的，但單獨這些投影尚不足以確認骨化延遲。</p>
+        </div>
+      </section>
+
+      <!-- 六 -->
+      <section class="chapter" id="s6">
+        <div class="chapter-head"><span class="chapter-num">06</span><h2>甲狀腺數值判讀與 Money 的矛盾結果</h2></div>
+
+        <h3><span class="sub-num">1</span>甲狀腺數值的基本判讀</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>TT4／fT4</th><th>cTSH</th><th>優先考慮</th></tr></thead>
+            <tbody>
+              <tr><td>低</td><td>高</td><td>Primary hypothyroidism；先天性 dysgenesis／dyshormonogenesis，或後天 lymphocytic thyroiditis。</td></tr>
+              <tr><td>低</td><td>低或不適當地正常</td><td>Secondary／central hypothyroidism、pituitary hormone deficiency；亦需考慮 non-thyroidal illness。</td></tr>
+              <tr><td>高</td><td>被抑制</td><td>Thyrotoxicosis：飲食／外源性甲狀腺素、功能性甲狀腺組織或腫瘤。</td></tr>
+              <tr><td>TT4 極高但臨床不符合</td><td>可變</td><td>T4AA／T3AA 或 assay interference；送 fT4 by equilibrium dialysis。</td></tr>
+              <tr><td>低</td><td>正常或偶爾略高</td><td>Non-thyroidal illness；低 TT4 單獨不能診斷 hypoT。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Money 的結果（TT4 10.7↑、fT4 &gt;6.0↑、cTSH &lt;0.01↓）落在「高、被抑制」這一列，屬於 thyrotoxicosis 型態，而不是原始懷疑的 primary hypothyroidism。</p>
+
+        <h3><span class="sub-num">2</span>甲狀腺腫大不等於甲狀腺功能異常</h3>
+        <p>Goiter 可以發生在先天性甲狀腺低能症——甲狀腺荷爾蒙合成受阻，造成慢性 TSH 刺激，進而使甲狀腺結構性腫大；此時腫大反映的是「甲狀腺被過度刺激試圖代償」，而非荷爾蒙輸出偏高。因此結構性腫大本身無法判斷荷爾蒙輸出是低、正常或高，甲狀腺型態與甲狀腺功能必須分開解讀。</p>
+        <div class="caution">
+          <span class="caution-tag">Money 的矛盾之處</span>
+          <p>Money 觸診與超音波都支持頸部／甲狀腺腫大，理學外觀也帶有生長遲滯的線索，兩者共同指向「先天性甲低＋goiter」的臨床印象；但實際 panel 卻是 T4／fT4 顯著升高、TSH 被抑制的甲狀腺毒症型態。這個不一致正是需要先「驗證」再「下診斷」的關鍵理由。</p>
+        </div>
+
+        <h3><span class="sub-num">3</span>驗證優先於下診斷</h3>
+        <p>面對這類矛盾結果，下一步不是直接命名一個罕見的甲狀腺疾病，而是先系統性排除操作面與檢驗面的干擾：</p>
+        <ol>
+          <li><strong>確認檢體身分：</strong>核對病患／檢體標籤，若原始檢體仍可取得，考慮重測。</li>
+          <li><strong>換一份新檢體重測：</strong>在標記罕見甲狀腺疾病之前，先複驗 Total T4 與 cTSH。</li>
+          <li><strong>使用確認性甲狀腺檢查：</strong>考慮 free T4 by equilibrium dialysis 及甲狀腺自體抗體檢測。</li>
+          <li><strong>排查外源性暴露：</strong>檢視用藥、保健品與飲食中是否有甲狀腺荷爾蒙暴露的可能。</li>
+          <li><strong>標準化影像評估：</strong>以三維方式重新測量甲狀腺，並記錄回音性與血管分布。</li>
+        </ol>
+        <div class="lit">
+          <span class="lit-tag">病歷紀錄提醒</span>
+          <p>IDEXX 技術服務已被諮詢，但正式的實驗室回覆應另行記錄，而非由臨床端推測。</p>
+        </div>
+      </section>
+
+      <!-- 七 -->
+      <section class="chapter" id="s7">
+        <div class="chapter-head"><span class="chapter-num">07</span><h2>Thyroid Panel 與 Autoantibody 的意義</h2></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>檢查</th><th>臨床意義</th></tr></thead>
+            <tbody>
+              <tr><td>TT4／TT3</td><td>反映循環總荷爾蒙，但會受疾病、藥物、營養、蛋白結合及 autoantibody 干擾。</td></tr>
+              <tr><td>fT4 by equilibrium dialysis</td><td>較能排除 T4 autoantibody 干擾；特別適用於 TT4 異常高但臨床不符。</td></tr>
+              <tr><td>cTSH</td><td>高 TSH 支持 primary hypoT，但不可單獨診斷；部分真正甲低犬的 TSH 仍正常。</td></tr>
+              <tr><td>TgAA</td><td>支持 autoimmune／lymphocytic thyroiditis；不代表目前甲狀腺功能，也不適合用來調整 levothyroxine。</td></tr>
+              <tr><td>T3AA／T4AA</td><td>可能使 TT3／TT4 出現假性升高或異常結果；本身不等於 Graves disease。</td></tr>
+              <tr><td>TSH-receptor Ab／TRAb／TSI</td><td>人類 Graves disease 的核心檢查；犬隻罕見，需確認實驗室是否有經犬隻驗證的 assay。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="lit">
+          <span class="lit-tag">Graves 概念</span>
+          <p>Graves disease 是 TSH-receptor–stimulating antibody 模擬 TSH，造成 T4／T3 升高、TSH 被抑制及 diffuse goiter。TgAA、T3AA、T4AA 並不能直接診斷 Graves——Money 目前尚未取得這些 autoantibody 結果，這也是第六節「驗證優先於下診斷」清單中的下一步。</p>
+        </div>
+      </section>
+
+      <!-- 八 -->
+      <section class="chapter" id="s8">
+        <div class="chapter-head"><span class="chapter-num">08</span><h2>頸部腫大：不能只看甲狀腺數值</h2></div>
+        <ul>
+          <li><strong>Aerodigestive signs：</strong>dysphagia、odynophagia、gagging、regurgitation、咳嗽、stridor、dyspnea、dysphonia／吠聲改變。</li>
+          <li><strong>觸診：</strong>單側／雙側、diffuse／nodular、可動／固定、是否隨吞嚥移動、是否遮蔽頸部解剖標誌。</li>
+          <li><strong>鑑別：</strong>goiter、thyroid neoplasia、lymphadenopathy、sialocele、deep cervical infection／foreign body、其他頸部腫塊。</li>
+          <li><strong>影像：</strong>cervical ultrasound；若有壓迫、侵犯或腫瘤疑慮，進一步 neck／thorax CT。</li>
+          <li><strong>Scintigraphy：</strong>確認 functional thyroid tissue、ectopic tissue、可能的 functional metastasis，並評估 I-131 治療可行性。</li>
+        </ul>
+        <p>Money 首診時頸部腫塊的鑑別即列出 retropharyngeal lymph node 與甲狀腺兩種可能，後續超音波支持甲狀腺腫大的方向；但呼吸道症狀（咳嗽、鼻分泌物、氣管敏感）與頸部腫大是否為同一 process 的一部分，仍需要以 aerodigestive signs 為主軸重新確認，而不是預設兩者必然相關。</p>
+      </section>
+
+      <!-- 九 -->
+      <section class="chapter" id="s9">
+        <div class="chapter-head"><span class="chapter-num">09</span><h2>兩種不同的免疫性甲狀腺炎</h2></div>
+
+        <h3><span class="sub-num">1</span>典型慢性 lymphocytic thyroiditis</h3>
+        <p>教學檢驗範例：TT4＝0、TT3＝0、fT4 低、TSH＝1.13↑、TgAA＝172%↑、T4AA＝60%↑、T3AA＝83%↑。此組合支持 autoimmune lymphocytic thyroiditis 造成 overt primary hypothyroidism。病理核心為淋巴球／漿細胞浸潤，逐漸破壞 thyroid follicles，最終纖維化或萎縮；治療核心為補充 levothyroxine，已破壞的濾泡不會因 prednisolone 恢復。一般不以 prednisolone 壓低 TgAA，類固醇也會干擾 TT4、TT3 與 TSH 判讀；TgAA 陽性支持病因，但治療監測仍以臨床反應、TT4 與 TSH 為主。</p>
+        <p>這個典型型態的方向與 Money 目前結果（TT4／fT4 升高、TSH 被抑制）相反，僅作為對照參考，提醒臨床上「甲狀腺腫大」不能直接與「甲狀腺低能」畫上等號。</p>
+
+        <h3><span class="sub-num">2</span>特殊病例：Steroid-responsive immune-mediated thyroiditis（SRIMT）</h3>
+        <p>文獻中一例 2025 年病例為 3 歲犬，急性雙側頸部腫大、stridor／dysphonia、肺結節及 lymphadenopathy；TT4／TT3 及 fT4 極低、TSH 與 TgAA 極高。甲狀腺、肺與淋巴結呈 sterile pyogranulomatous inflammation，抗生素反應不佳，之後對 prednisolone＋levothyroxine 快速改善。</p>
+        <div class="lit">
+          <span class="lit-tag">不可外推</span>
+          <p>這是單一、作者暫定命名的特殊 phenotype。Prednisolone 是為了治療急性、多器官、疑似免疫介導的發炎，而不是一般 canine autoimmune hypothyroidism 的常規治療；也不適合直接套用到 Money 目前以甲狀腺荷爾蒙升高為主的表現。</p>
+        </div>
+      </section>
+
+      <!-- 十 -->
+      <section class="chapter" id="s10">
+        <div class="chapter-head"><span class="chapter-num">10</span><h2>PCV／HCT 下降：三大機轉</h2></div>
+        <div class="caution">
+          <span class="caution-tag">先確認是否真的貧血</span>
+          <p>比較同一儀器與相近 hydration 狀態；住院輸液、脫水改善及反覆採血都可能造成 HCT 下降，而非新的溶血。Money 08-18 首診 HCT 33.7%，08-25 急性惡化時降至 25.9%，中間病程須排除單純稀釋或反覆採血造成的下降。</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>機轉</th><th>線索</th><th>檢查</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Increased loss／出血</td>
+                <td>外出血、melena、hematuria、體腔出血；TP／albumin 可能一起下降。</td>
+                <td>黏膜、糞便／UA、AFAST／TFAST、platelet、PT／aPTT、寄生蟲。</td>
+              </tr>
+              <tr>
+                <td>Increased destruction／hemolysis</td>
+                <td>Icterus、bilirubin↑、hemoglobinemia／uria、spherocytes、ghost cells、splenomegaly。</td>
+                <td>Smear、saline agglutination、DAT／Coombs、bilirubin、UA、reticulocyte。</td>
+              </tr>
+              <tr>
+                <td>Decreased production</td>
+                <td>持續 nonregenerative；可能合併其他 cell line 異常。</td>
+                <td>Reticulocyte、renal／inflammatory／endocrine 評估；必要時 bone marrow。</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Money 08-18 已有 reticulocytosis（191.9 K/µL↑），代表骨髓有反應性，傾向 loss 或 destruction 而非單純 production 不足；但 reticulocyte 上升需要時間，急性出血或溶血的前數日可能尚未出現，因此不能單靠早期 nonregenerative 結果排除 loss／destruction。Hypothyroidism 較典型造成 mild、normocytic normochromic、nonregenerative anemia，不太能單獨解釋 Money 08-25 快速下降的貧血；IGS／嚴重 B12 缺乏則可造成 ineffective hematopoiesis 及 nonregenerative anemia。</p>
+
+        <h3><span class="sub-num">1</span>何時可以診斷 IMHA？</h3>
+        <p>依 ACVIM 診斷概念，需要同時具備 anemia、hemolysis evidence，以及 immune-mediated RBC destruction evidence。Saline agglutination 或 Coombs 單獨陽性不足以完成整體判讀。</p>
+        <ul>
+          <li><strong>Blood smear：</strong>spherocytes、ghost cells、parasites、RBC morphology。</li>
+          <li><strong>Saline agglutination test：</strong>區分持續 autoagglutination 與 rouleaux，但需注意 false positive。</li>
+          <li><strong>Direct antiglobulin test／Coombs：</strong>偵測 RBC 表面抗體／補體；須與 hemolysis evidence 合併。</li>
+          <li><strong>Bilirubin、plasma color、UA：</strong>找 hemoglobinemia／hemoglobinuria／bilirubinuria。</li>
+        </ul>
+        <p>Money 目前病歷尚未記錄 smear morphology、saline agglutination 或 Coombs 結果，這些是釐清 08-25 貧血機轉的下一步。</p>
+      </section>
+
+      <!-- 十一 -->
+      <section class="chapter" id="s11">
+        <div class="chapter-head"><span class="chapter-num">11</span><h2>系統性發炎與感染性 Trigger</h2></div>
+        <p>Money 08-25 出現發燒 40.1°C、CRP &gt;10.0 mg/dL、TP／ALB 下降，合併全身無力與無法站立，屬於明顯的系統性發炎表現，應獨立列入 problem list，而非直接歸因於甲狀腺異常。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>檢查／疾病</th><th>何時考慮</th><th>重要限制</th></tr></thead>
+            <tbody>
+              <tr><td>SNAP 4Dx</td><td>蜱蟲／旅遊暴露、系統性發炎或疑 secondary IMHA。</td><td>涵蓋 Ehrlichia、Anaplasma、Borrelia 及 heartworm；不包含 Babesia。</td></tr>
+              <tr><td>Babesia／hemoplasma PCR</td><td>溶血、血小板下降、蜱蟲風險、smear 可疑。</td><td>依地區與暴露選擇，不宜只靠 smear 排除。</td></tr>
+              <tr><td>Parvovirus</td><td>幼犬合併腸胃症狀、leukopenia 或疫苗史不完整。</td><td>單純生長遲滯／貧血不是充分理由；但 Money 疫苗史尚待確認。</td></tr>
+              <tr><td>Brucella canis</td><td>繁殖／進口犬、生殖異常、流產、不孕、discospondylitis。</td><td>具 zoonotic risk；安排適當採樣與防護。</td></tr>
+              <tr><td>Neospora</td><td>幼犬 progressive paresis、後肢 rigid hyperextension、myositis／neuro signs。</td><td>不是一般 anemia panel；但 Money 08-26 的無法站立與 paw replacement 異常值得留意。</td></tr>
+              <tr><td>Discospondylitis</td><td>脊椎疼痛、發燒、神經缺損。</td><td>Spinal imaging、urine／blood culture、Brucella testing。</td></tr>
+              <tr><td>SRMA</td><td>年輕犬、發燒、明顯 cervical pain／rigidity、neutrophilic inflammation。</td><td>在排除感染後以 CSF 等建立診斷；不是 thyroid storm。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="caution">
+          <span class="caution-tag">Lymphadenopathy／系統性發炎的獨立性</span>
+          <p>淋巴結腫大不是典型 hypothyroidism 表現，也不能直接命名為 autoimmune crisis。應獨立列入 problem list：安排 lymph node FNA cytology（視結果安排 bacterial、fungal、mycobacterial culture／PCR）、CBC、smear、biochemistry、globulin、albumin 及發炎指標；若疑 immune-complex renal involvement，加做 UA＋UPC、creatinine／SDMA、albumin、BP；若有發燒、跛行或關節腫痛，安排多關節 arthrocentesis 排除 IMPA／septic arthritis。TgAA 陽性本身不能證明 immune-complex nephritis 或 polyarthritis。</p>
+        </div>
+      </section>
+
+      <!-- 十二 -->
+      <section class="chapter" id="s12">
+        <div class="chapter-head"><span class="chapter-num">12</span><h2>品種特別鑑別：IGS 與 PSS</h2></div>
+
+        <h3><span class="sub-num">1</span>Border Collie 特別鑑別：Imerslund–Gräsbeck Syndrome</h3>
+        <p>IGS 是遺傳性 selective cobalamin malabsorption。Border Collie 常見 CUBN mutation，造成 terminal ileum 的 Cubam receptor 無法正常吸收 vitamin B12；也可能影響腎小管蛋白再吸收。Money 身為 Border Collie 幼犬，合併生長遲滯與 undercondition，是必須主動排除 IGS 的關鍵理由。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>面向</th><th>重點</th></tr></thead>
+            <tbody>
+              <tr><td>臨床表現</td><td>6–12 週後至第一年出現 failure to thrive、食慾差、餐後不適、lethargy、weakness、嘔吐／腹瀉、神經症狀。</td></tr>
+              <tr><td>血液變化</td><td>Nonregenerative anemia、neutropenia／leukopenia，嚴重時 pancytopenia；犬隻未必 macrocytic。</td></tr>
+              <tr><td>腎臟線索</td><td>Proteinuria 可能出現，且補充 B12 後仍可能持續；應檢查 UA／UPC。</td></tr>
+              <tr><td>代謝線索</td><td>Cobalamin 缺乏造成 methylmalonic acid（MMA）累積；血清或尿 MMA 可反映 cellular deficiency。</td></tr>
+              <tr><td>確診方向</td><td>Serum cobalamin＋MMA＋CUBN genetic test；同時排除 EPI、chronic enteropathy 及 ileal disease。</td></tr>
+              <tr><td>治療</td><td>通常需要規律、長期 parenteral cobalamin；治療與監測需依病患反應調整。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="lit">
+          <span class="lit-tag">為什麼 IGS 可能使 NH3 升高？</span>
+          <p>嚴重 B12 缺乏使 MMA 累積；MMA 可干擾 urea cycle，導致少數病例出現 secondary hyperammonemia 與 encephalopathy。Border Collie 已有病例報告，但此表現並不常見。</p>
+        </div>
+        <div class="caution">
+          <span class="caution-tag">臨床提醒</span>
+          <p>NH3 升高不能直接等同 PSS，也不能因懷疑 IGS 就省略 PSS workup。兩者應以 paired bile acids、肝功能相關數值、UA 及腹部影像並行區分。</p>
+        </div>
+
+        <h3><span class="sub-num">2</span>PSS Workup</h3>
+        <ul>
+          <li><strong>CBC：</strong>microcytosis、可能 mild nonregenerative anemia。</li>
+          <li><strong>Biochemistry：</strong>BUN、glucose、albumin、cholesterol；liver enzymes 正常不能排除。</li>
+          <li><strong>UA：</strong>低比重、ammonium biurate crystals／uroliths。</li>
+          <li><strong>Paired bile acids 或 fasting ammonia：</strong>注意 IGS 也可能造成少見的 secondary hyperammonemia。</li>
+          <li><strong>Abdominal ultrasound；</strong>疑慮高時 CTA。</li>
+        </ul>
+      </section>
+
+      <!-- 十三 -->
+      <section class="chapter" id="s13">
+        <div class="chapter-head"><span class="chapter-num">13</span><h2>分階段 Diagnostic Plan 與治療原則</h2></div>
+
+        <h3><span class="sub-num">1</span>第一階段：確認穩定度與重新建立資料</h3>
+        <ul>
+          <li>重新量體溫、HR／rhythm、RR、BP、BW、BCS、MCS，描述 proportionate／disproportionate。</li>
+          <li>CBC＋absolute reticulocyte＋smear；chemistry、bilirubin、cholesterol、CK、glucose、BUN、albumin。</li>
+          <li>UA＋UPC；若懷疑感染，先留 culture sample。</li>
+          <li>完整 thyroid panel：TT4、TT3、fT4 by equilibrium dialysis、cTSH、TgAA、T3AA／T4AA。</li>
+          <li>Serum cobalamin、folate；若低或高度懷疑 IGS，加做 MMA。</li>
+          <li>若疫苗不完整且有相容 respiratory／GI／neuro signs：isolation 並進行犬瘟熱／parvo 評估。</li>
+        </ul>
+
+        <h3><span class="sub-num">2</span>第二階段：依初步結果選擇</h3>
+        <ul>
+          <li>生長比例＋IGF-1／pituitary axes 異常：LHX3 test、pituitary MRI。</li>
+          <li>B12 低＋MMA 高＋Border Collie：CUBN genetic test；排除 EPI／CE。</li>
+          <li>NH3／bile acids 異常：腹超／CTA 排除 PSS。</li>
+          <li>頸部腫大／aerodigestive signs：neck ultrasound、FNA／culture、CT neck＋thorax。</li>
+          <li>真正 thyrotoxicosis：排除外源性來源與 antibody interference 後，安排 scintigraphy／oncology 或 nuclear medicine 評估——這正是 Money 目前最需要走的下一步。</li>
+          <li>疑 IMHA：完成 hemolysis evidence、saline agglutination／DAT 及 symptom-directed infectious panel。</li>
+        </ul>
+
+        <h3><span class="sub-num">3</span>治療原則：先分清楚是哪一條路徑</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>情境</th><th>主要治療</th><th>注意事項</th></tr></thead>
+            <tbody>
+              <tr><td>典型 primary hypothyroidism／lymphocytic thyroiditis</td><td>Levothyroxine replacement。</td><td>通常終身治療；一般不以 prednisolone 壓制 TgAA。</td></tr>
+              <tr><td>Pituitary dwarfism</td><td>依缺乏軸補充；可能需 thyroid hormone 及 GH 相關治療。</td><td>先確認 diagnosis；progestagen 可能造成 insulin resistance、pyometra 等副作用。</td></tr>
+              <tr><td>IGS</td><td>長期 parenteral cobalamin。</td><td>追蹤臨床、CBC、cobalamin／MMA；proteinuria 可能持續。</td></tr>
+              <tr><td>Dietary／exogenous thyrotoxicosis</td><td>移除來源並追蹤 thyroid panel。</td><td>T4 非常高仍不能排除飲食性；含 thyroid tissue 食物可使數值升高數倍。</td></tr>
+              <tr><td>Functional hyperthyroidism／thyroid tumor</td><td>Methimazole 作暫時控制；依病例考慮 surgery、I-131 或 oncology。</td><td>犬隻 methimazole 用法高度 off-label 且資料有限；不能套用固定劑量。</td></tr>
+              <tr><td>SRIMT 特殊病例</td><td>Prednisolone＋levothyroxine；同時排除感染。</td><td>單一病例 phenotype，不可當成一般 autoimmune hypoT 標準療法。</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3><span class="sub-num">4</span>Methimazole 與 I-131</h3>
+        <p>Methimazole 只有在真正 hyperthyroidism／thyrotoxicosis 時使用，不能用於 GH deficiency、hypoT 或 IGS。劑量記載中的「1 mg/kg／5 mg」必須先確認是每次或每日總量，以及 q12h 或 q24h；1 mg/kg 來自 severe thyrotoxicosis／probable thyroid storm 病例的外推，屬偏高、非一般犬隻起始劑量。文獻中曾有 juvenile hyperthyroidism 病例使用 2.5 mg PO q12h，但仍不能直接套用到 Money。治療前後至少應監測 CBC、liver values、TT4／fT4／TSH、體重、HR／ECG、BP、renal values、UA／UPC。</p>
+        <p>Scintigraphy 可協助判斷 functional tissue 與 I-131 可行性；個別中心可能依 T4／T3、thyroid volume、uptake 與 iodine retention 計算治療量。Methimazole 會影響 uptake，掃描／I-131 前停藥時間依核醫中心 protocol。</p>
+
+        <h3><span class="sub-num">5</span>Thyrotoxicosis vs. Thyroid Storm</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>名詞</th><th>定義與使用方式</th></tr></thead>
+            <tbody>
+              <tr><td>Thyrotoxicosis</td><td>體內甲狀腺荷爾蒙過多並造成臨床效應；是較安全、較廣義的描述。</td></tr>
+              <tr><td>Thyroid storm</td><td>極罕見、危及生命的失代償性 thyrotoxicosis；可能有 marked tachycardia、hyperthermia、tachypnea、GI／neuro signs 及 organ dysfunction。犬隻尚無充分驗證的診斷標準。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="caution">
+          <span class="caution-tag">避免誤用</span>
+          <p>若 TT4／TT3／fT4 極低、TSH 很高，同時低體溫或心率不高，這是 severe hypothyroidism，不符合 thyrotoxicosis 或 thyroid storm。反之，Money 目前 T4／fT4 升高、TSH 被抑制，方向上符合 thyrotoxicosis 的檢驗型態，但臨床上尚未出現 marked tachycardia 或 hyperthermia 等失代償表現，08-25 的發燒與無力目前更傾向與系統性發炎相關，是否與甲狀腺異常有關聯仍待釐清，不宜貿然稱為 thyroid storm。</p>
+        </div>
+      </section>
+
+      <!-- 十四 -->
+      <section class="chapter" id="s14">
+        <div class="chapter-head"><span class="chapter-num">14</span><h2>提交專科醫師討論的問題</h2></div>
+        <p>以下問題整理自課堂簡報最後一頁，作為與專科醫師討論時的核對清單。</p>
+        <div class="qa">
+          <div class="qa-item">
+            <p><span class="q-num">1</span><span class="q-title">甲狀腺鑑別診斷</span></p>
+            <p>對於一隻 4.5 月齡、雙側甲狀腺腫大，但 T4／fT4 顯著偏高且 cTSH 被抑制的犬隻，你會如何排序鑑別診斷的優先順序？</p>
+          </div>
+          <div class="qa-item">
+            <p><span class="q-num">2</span><span class="q-title">確認性檢查</span></p>
+            <p>在開始治療前，你會先安排哪些甲狀腺相關檢查：複驗檢體、free T4 by equilibrium dialysis、甲狀腺自體抗體、scintigraphy，或其他檢查？</p>
+          </div>
+          <div class="qa-item">
+            <p><span class="q-num">3</span><span class="q-title">超音波判讀</span></p>
+            <p>這個年齡與體型的幼犬，雙側甲狀腺腫大應如何解讀？依年齡或體型調整的超音波參考值，在臨床上是否有實用價值？</p>
+          </div>
+          <div class="qa-item">
+            <p><span class="q-num">4</span><span class="q-title">骨骼成熟度</span></p>
+            <p>這些 X 光片是否提示骨骼成熟延遲或 epiphyseal dysgenesis？你會建議加做專門的骨科投影或特定測量嗎？</p>
+          </div>
+          <div class="qa-item">
+            <p><span class="q-num">5</span><span class="q-title">與後續疾病的關聯</span></p>
+            <p>後續出現的發燒、貧血、全身無力與無法站立，是否可能與甲狀腺異常相關，或應視為獨立的疾病歷程來處理？</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 十五 -->
+      <section class="chapter" id="s15">
+        <div class="chapter-head"><span class="chapter-num">15</span><h2>Take-home Messages</h2></div>
+        <div class="lit">
+          <span class="lit-tag">One-line Summary</span>
+          <p>Juvenile Border Collie with growth retardation, underconditioning, generalized muscle loss, thyroid test abnormality and mild anemia／microcytosis. Priorities are to define body proportionality, verify the exact thyroid pattern, evaluate inherited cobalamin malabsorption and PSS, and investigate anemia by regeneration and mechanism before attributing all findings to thyroid disease.</p>
+        </div>
+        <ul>
+          <li>先建立完整 problem list，再把每一個 problem 連到鑑別診斷。</li>
+          <li>GH deficiency 通常 proportionate 且 fox-like；congenital hypoT 較常 disproportionate。</li>
+          <li>TT4 低不能單獨診斷 hypoT；TSH、fT4 及臨床脈絡要一起看——Money 的情況則是反向提醒：甲狀腺腫大不能單獨診斷 hypoT，仍要看實際的 TT4／fT4／cTSH 組合。</li>
+          <li>TgAA＝autoimmune thyroiditis marker；T3AA／T4AA＝可能 assay interference；TRAb／TSI 才是 Graves 概念。</li>
+          <li>典型 canine lymphocytic thyroiditis 補充 T4，不常規使用 prednisolone。</li>
+          <li>頸部腫大合併 lymphadenopathy 或肺部病灶時，要擴大到感染、腫瘤及 systemic immune-mediated disease。</li>
+          <li>Border Collie 幼犬的 failure to thrive＋B12 低，必須想到 IGS；MMA 累積少數可造成高 NH3。</li>
+          <li>PCV 下降需分 loss、destruction、production；reticulocyte 時間軸非常重要。</li>
+          <li>Methimazole 與 I-131 只屬於確定 thyrotoxicosis 路徑；1 mg/kg 不是可普遍套用的犬隻起始劑量。</li>
+        </ul>
+      </section>
+
+      <!-- 十六 -->
+      <section class="chapter" id="s16">
+        <div class="chapter-head"><span class="chapter-num">16</span><h2>參考資料</h2></div>
+        <ol class="refs">
+          <li>
+            <div class="ref-body">
+              <p>Money – Clinical Case Presentation：Juvenile Border Collie with cervical enlargement and an abnormal thyroid profile（課堂病例簡報，Alliance Veterinary Hospital）。2026-08。</p>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Arias ML, et al. 甲狀腺腫大與先天性甲狀腺低能症相關文獻，2018（課堂簡報引用）。</p>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Fyfe JC, et al. 犬先天性甲狀腺低能症相關文獻，2003（課堂簡報引用）。</p>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>AAHA 2023：甲狀腺檢驗判讀與臨床指引相關共識（課堂簡報引用）。</p>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Randolph JF, et al. 甲狀腺檢驗判讀相關文獻，2015（課堂簡報引用）。</p>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Piechotta M, et al. 甲狀腺檢驗判讀相關文獻，2010（課堂簡報引用）。</p>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Merck Veterinary Manual. Hypothyroidism in Animals.</p>
+              <a href="https://www.merckvetmanual.com/endocrine-system/the-thyroid-gland/hypothyroidism-in-animals" target="_blank" rel="noopener">merckvetmanual.com/.../hypothyroidism-in-animals</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>MSD Veterinary Manual. Juvenile-Onset Panhypopituitarism in Dogs.</p>
+              <a href="https://www.msdvetmanual.com/endocrine-system/the-pituitary-gland/juvenile-onset-panhypopituitarism-in-dogs" target="_blank" rel="noopener">msdvetmanual.com/.../juvenile-onset-panhypopituitarism-in-dogs</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Michigan State University VDL. Thyroid Function in Dogs.</p>
+              <a href="https://cvm.msu.edu/vdl/laboratory-sections/endocrinology/thyroid-function-in-dogs-1" target="_blank" rel="noopener">cvm.msu.edu/.../thyroid-function-in-dogs-1</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Garden OA, et al. ACVIM consensus statement on the diagnosis of immune-mediated hemolytic anemia in dogs and cats. 2019.</p>
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6430921/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov/articles/PMC6430921</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Owczarek-Lipska M, et al. A Frameshift Mutation in CUBN in Border Collies with Imerslund-Gräsbeck Syndrome. 2013.</p>
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3628801/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov/articles/PMC3628801</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Battersby IA, et al. Hyperammonaemic encephalopathy secondary to selective cobalamin malabsorption in a juvenile Border Collie. 2005.</p>
+              <a href="https://pubmed.ncbi.nlm.nih.gov/16035451/" target="_blank" rel="noopener">pubmed.ncbi.nlm.nih.gov/16035451</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Köhler B, et al. Dietary hyperthyroidism in dogs. 2012.</p>
+              <a href="https://pubmed.ncbi.nlm.nih.gov/22931400/" target="_blank" rel="noopener">pubmed.ncbi.nlm.nih.gov/22931400</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Maunder C, et al. Juvenile hyperthyroidism in a dog. 2018.</p>
+              <a href="https://research-information.bris.ac.uk/en/publications/juvenile-hyperthyroidism-in-a-dog/" target="_blank" rel="noopener">research-information.bris.ac.uk/.../juvenile-hyperthyroidism-in-a-dog</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Beverly J, et al. Long-term survival in a dog with probable thyroid storm. 2023.</p>
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10229745/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov/articles/PMC10229745</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Granger KL Jr, et al. Steroid-responsive immune-mediated thyroiditis in a young dog with multi-systemic pyogranulomatous inflammation. 2025.</p>
+              <a href="https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2025.1662178/full" target="_blank" rel="noopener">frontiersin.org/.../fvets.2025.1662178</a>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="note">
+    整理自課堂病例簡報（Money – Clinical Case Presentation）與病例討論教學筆記，供個人臨床參考使用，非正式發表文獻；病患未填入或標示「待確認」的數值應以原始病歷與實驗室報告補齊，治療劑量需依個別病患及專科／核醫中心 protocol 決定。回到<a href="index.html">梅醫師病例討論</a>列表。
+  </footer>
+
+</div>
+</body>
+</html>
