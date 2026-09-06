@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>09 PW/CW 都卜勒技術參數 | 心臟超音波系列 | 獸醫讀書筆記</title>
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <a class="back" href="../index.html">← 返回首頁</a>
+  <span class="nav-title">獸醫讀書筆記 / 心臟超音波 / 09 PW/CW 都卜勒技術參數</span>
+</nav>
+
+<div id="hero">
+  <p class="hero-kicker">ESAVS Echocardiography · Chapter 09</p>
+  <div class="hero-paw">🎚️</div>
+  <h1>PW/CW 都卜勒技術參數</h1>
+  <p>PW 與 CW 都卜勒的差異、Nyquist limit 與 aliasing 現象、各項增益與濾波設定，以及心律不整對都卜勒測量的影響。</p>
+  <div class="tags">
+    <span class="tag">PW vs CW</span>
+    <span class="tag">Nyquist limit</span>
+    <span class="tag">Aliasing</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="chap-nav">
+    <a href="08-rv-evaluation.html">← 上一節：右心室評估</a>
+    <span class="spacer"></span>
+    <a class="idx" href="index.html">📚 目錄</a>
+    <span class="spacer"></span>
+    <a href="10-doppler-measurements.html">下一節：都卜勒測量：部位與判讀 →</a>
+  </div>
+  <div class="chap-progress">第 9 / 18 節　·　原始講義：Technical Aspects and Influence Factors Affecting PW- and CW Doppler</div>
+
+  <div class="section" id="tech">
+    <div class="section-title">🎚️ PW 與 CW 的差異</div>
+    <div class="card-grid">
+      <div class="card"><div class="ci">🌊</div><h3>PW（脈衝波）</h3><p>可測方向與位置精準，但受 Nyquist limit 限制，流速過快（&gt; 3 m/s）會發生 aliasing（訊號折返）</p></div>
+      <div class="card c-teal"><div class="ci">📡</div><h3>CW（連續波）</h3><p>可測極高流速不受 aliasing 限制，但缺乏空間定位精準度（沿整條光束都會收到訊號）</p></div>
+    </div>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 560 210" xmlns="http://www.w3.org/2000/svg">
+        <text x="130" y="24" text-anchor="middle" font-size="14" font-weight="700" fill="#0891b2">PW（脈衝波）</text>
+        <path d="M130,175 L60,40 L200,40 Z" fill="#0891b2" opacity=".08"/>
+        <rect x="115" y="70" width="30" height="18" fill="#0891b2" opacity=".85" stroke="#155e75" stroke-width="1.5"/>
+        <text x="130" y="65" text-anchor="middle" font-size="11" fill="#155e75" font-weight="700">取樣容積</text>
+        <rect x="115" y="168" width="30" height="16" rx="3" fill="#155e75"/>
+        <text x="130" y="200" text-anchor="middle" font-size="11" fill="#155e75">精準定位深度，但流速過快會 aliasing</text>
+
+        <line x1="280" y1="10" x2="280" y2="190" stroke="#e8d5a0" stroke-width="2" stroke-dasharray="4 4"/>
+
+        <text x="425" y="24" text-anchor="middle" font-size="14" font-weight="700" fill="#7c3aed">CW（連續波）</text>
+        <path d="M425,175 L355,40 L495,40 Z" fill="#7c3aed" opacity=".38"/>
+        <text x="425" y="65" text-anchor="middle" font-size="11" fill="#4c1d95" font-weight="700">全光束皆敏感</text>
+        <rect x="410" y="168" width="30" height="16" rx="3" fill="#4c1d95"/>
+        <text x="425" y="200" text-anchor="middle" font-size="11" fill="#4c1d95">可測極高流速，但無法定位深度</text>
+      </svg>
+      <div class="diagram-cap">PW 都卜勒僅偵測「取樣容積」所在深度的訊號，定位精準但受 Nyquist limit 限制；CW 都卜勒沿整條光束皆敏感，可測極高流速但無法判斷訊號來自哪個深度</div>
+    </div>
+
+    <div class="info-box gold">
+      <strong>Nyquist limit（乃奎斯特極限）：</strong>PW 都卜勒能準確測量的最大頻移為 PRF（Pulse Repetition Frequency）的一半。血流速度快時容易超過此極限而產生 aliasing，此時應改用 CW 都卜勒測量。
+    </div>
+    <div class="info-box teal">
+      <strong>處理 Aliasing 的方法：</strong>移動基準線（baseline）、提高 PRF、改用較淺的切面（降低深度）、改用較低頻率探頭、或直接改用 CW 都卜勒。HPRF（High PRF）模式可提高 PRF 上限以減少 aliasing。
+    </div>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 480 210" xmlns="http://www.w3.org/2000/svg">
+        <rect x="20" y="15" width="440" height="170" rx="8" fill="#0a1628"/>
+        <line x1="20" y1="100" x2="460" y2="100" stroke="#475569" stroke-width="1" stroke-dasharray="4 3"/>
+        <text x="465" y="104" font-size="10" fill="#94a3b8">0</text>
+        <line x1="20" y1="28" x2="460" y2="28" stroke="#7c3aed" stroke-width="1" stroke-dasharray="2 4"/>
+        <text x="465" y="32" font-size="9" fill="#a78bfa">+Nyquist</text>
+        <line x1="20" y1="172" x2="460" y2="172" stroke="#7c3aed" stroke-width="1" stroke-dasharray="2 4"/>
+        <text x="465" y="176" font-size="9" fill="#a78bfa">−Nyquist</text>
+
+        <path d="M240,100 Q270,35 300,100" fill="none" stroke="#2dd4bf" stroke-width="2.5"/>
+        <text x="270" y="55" text-anchor="middle" font-size="10" fill="#2dd4bf">正常波形（未超過極限）</text>
+
+        <path d="M80,100 Q105,28 130,28" fill="none" stroke="#f87171" stroke-width="2.5"/>
+        <path d="M130,172 Q150,172 165,100" fill="none" stroke="#f87171" stroke-width="2.5"/>
+        <path d="M128,28 L167,28 M128,172 L167,172" stroke="#f87171" stroke-width="1" stroke-dasharray="2 2" opacity=".6"/>
+        <text x="120" y="195" text-anchor="middle" font-size="11" fill="#f87171" font-weight="700">Aliasing：訊號超出範圍，從另一側「折返」出現</text>
+        <path d="M180,60 L165,60" stroke="#f87171" stroke-width="1.3" marker-end="url(#arrA)"/>
+        <defs><marker id="arrA" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#f87171"/></marker></defs>
+      </svg>
+      <div class="diagram-cap">Aliasing 示意：當流速超過 Nyquist limit（PRF 的一半），頻譜訊號會被「切斷」並從顯示範圍的另一側折返出現，造成判讀混淆</div>
+    </div>
+  </div>
+
+  <div class="section" id="controls">
+    <div class="section-title">🎛️ 都卜勒相關控制項</div>
+    <div class="card-grid">
+      <div class="card c-blue"><div class="ci">📶</div><h3>Doppler Gain</h3><p>增益過高 → 背景雜訊多、易「mirroring／crosstalk」（訊號滲入對側通道）；增益過低 → 頻譜顯示不完整</p></div>
+      <div class="card c-teal"><div class="ci">🎚️</div><h3>Wall Filter</h3><p>濾除心臟壁運動造成的低頻訊號干擾，避免遮蔽血流訊號；設定過低會讓低頻雜訊殘留</p></div>
+      <div class="card c-purple"><div class="ci">📏</div><h3>Scale（速度量尺）</h3><p>調整頻譜顯示的速度範圍，應設定到能完整顯示最高流速波峰</p></div>
+      <div class="card c-green"><div class="ci">↕️</div><h3>Baseline</h3><p>調整零速度基準線位置；若訊號 aliasing，可移動基準線讓完整波形顯示出來</p></div>
+    </div>
+    <div class="info-box gold">
+      <strong>取樣深度（Sample Depth）：</strong>PW 取樣位置越深，Nyquist limit 會自動降低（更容易 aliasing）。<strong>角度校正（Angle Correction）：</strong>雖然機器可依假設的流向角度校正流速估計，但更好的做法是把探頭盡量調整到與血流方向平行，而非仰賴角度校正計算。
+    </div>
+    <div class="info-box teal">
+      <strong>光束方向：</strong>都卜勒訊號在光束盡量與血流方向平行時最強；標準 2D／M-Mode 切面不一定是最佳都卜勒角度，必要時可嘗試其他切面（例如以劍突下切面測主動脈血流）。
+    </div>
+  </div>
+
+  <div class="section" id="arrhythmia">
+    <div class="section-title">💓 心律不整對都卜勒測量的影響</div>
+    <div class="card-grid">
+      <div class="card c-orange"><div class="ci">⚡</div><h3>VPC（心室早期收縮）</h3><p>提早收縮使充盈時間縮短 → 心輸出量降低，當下測得的血流速度可能不具代表性</p></div>
+      <div class="card c-red"><div class="ci">🌀</div><h3>心房顫動</h3><p>充盈時間隨每次心跳不規則變化 → 心輸出量降低且變異大，建議多取幾個心動週期平均</p></div>
+    </div>
+    <div class="info-box gold">
+      <strong>遇到 aliasing 或訊號不佳時的處理順序：</strong>移動基準線 → 提高 PRF → 改用較淺、需要較少深度的切面 → 改用較低頻率的探頭 → 改用 CW 都卜勒。
+    </div>
+    <div class="info-box teal">
+      <strong>小結：</strong>PW 與 CW 最主要的差異在於 PW 只能測量較低流速；PW 取樣窗的擺放位置非常關鍵，位置不對可能完全漏看病灶（詳見第 10 節的實際案例）。
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  心臟超音波系列筆記 · 整理自 ESAVS 課程講義（Dr. Gerhard Wess，Dipl. ACVIM／ECVIM-CA Cardiology，LMU Munich）<br>
+  本頁面僅供教育用途，臨床處置請依獸醫師判斷執行
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

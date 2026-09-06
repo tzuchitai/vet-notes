@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>03 探頭操作與 Knobology | 心臟超音波系列 | 獸醫讀書筆記</title>
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <a class="back" href="../index.html">← 返回首頁</a>
+  <span class="nav-title">獸醫讀書筆記 / 心臟超音波 / 03 探頭操作與 Knobology</span>
+</nav>
+
+<div id="hero">
+  <p class="hero-kicker">ESAVS Echocardiography · Chapter 03</p>
+  <div class="hero-paw">🎛️</div>
+  <h1>探頭操作與 Knobology</h1>
+  <p>探頭旋轉與傾斜的基本手法、常見取像問題的修正方式，以及機器上重要操作旋鈕的功能。</p>
+  <div class="tags">
+    <span class="tag">探頭操作</span>
+    <span class="tag">呼吸偽影</span>
+    <span class="tag">Knobology</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="chap-nav">
+    <a href="02-standard-views.html">← 上一節：病患準備與標準切面</a>
+    <span class="spacer"></span>
+    <a class="idx" href="index.html">📚 目錄</a>
+    <span class="spacer"></span>
+    <a href="04-mmode-measurements.html">下一節：M-Mode 測量與體重指標化 →</a>
+  </div>
+  <div class="chap-progress">第 3 / 18 節　·　原始講義：Echocardiography – Probe Placement, Manipulation and Knobology</div>
+
+  <div class="section" id="manip">
+    <div class="section-title">🔄 探頭旋轉與傾斜</div>
+    <div class="card-grid">
+      <div class="card"><div class="ci">🔃</div><h3>旋轉（Rotating）</h3><p>順時針或逆時針旋轉探頭，例如由長軸旋轉到短軸</p></div>
+      <div class="card c-teal"><div class="ci">📐</div><h3>傾斜（Tilting）</h3><p>沿探頭長軸方向傾斜纜線角度，可左右移動畫面中的構造位置</p></div>
+      <div class="card c-blue"><div class="ci">↕️</div><h3>滑動（Sliding）</h3><p>沿肋間往頭尾側滑動（換肋間），或往背側／胸骨側滑動</p></div>
+    </div>
+    <div class="info-box gold">
+      <strong>長軸畫面左右移動技巧：</strong>停留在同一肋間，讓纜線沿著探頭長邊方向左右傾斜即可移動畫面；也可以改成在同一肋間內上下滑動探頭位置。長軸切面中纜線是朝向或遠離操作者移動，探頭本身則停留在原位。
+    </div>
+  </div>
+
+  <div class="section" id="troubleshoot">
+    <div class="section-title">🩹 常見問題與修正</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>問題</th><th>修正方式</th></tr></thead>
+        <tbody>
+          <tr><td>呼吸偽影明顯</td><td>探頭往前移一個肋間，並往後角度傾斜</td></tr>
+          <tr><td>Hard way 旋轉到短軸時心臟跑到畫面邊緣</td><td>常見錯誤是旋轉時忘記持續「向後看」而讓纜線角度掉回去——探頭往前移，角度往後傾</td></tr>
+          <tr><td>畫面太陡（不夠水平）</td><td>探頭離胸骨太近；保持同一肋間，改往背側移動</td></tr>
+          <tr><td>心臟太小</td><td>調整 Depth（深度）旋鈕</td></tr>
+          <tr><td>畫面太暗</td><td>加更多耦合劑；提高 Gain（增益）</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section" id="knobology">
+    <div class="section-title">🎛️ 重要操作旋鈕</div>
+    <div class="card-grid">
+      <div class="card"><div class="ci">📏</div><h3>Depth</h3><p>調整顯示深度</p></div>
+      <div class="card c-teal"><div class="ci">💡</div><h3>Gain（2D）</h3><p>調整畫面明暗</p></div>
+      <div class="card c-blue"><div class="ci">🎨</div><h3>Compression</h3><p>對比度：低對比較柔和、高對比較銳利</p></div>
+      <div class="card c-purple"><div class="ci">🖼️</div><h3>Sector width</h3><p>心臟科建議窄扇形 → 提高影像更新率（frame rate）</p></div>
+      <div class="card c-green"><div class="ci">🔍</div><h3>Zoom / HR Zoom</h3><p>放大感興趣區域，HR Zoom 為高解析度放大</p></div>
+      <div class="card c-orange"><div class="ci">💾</div><h3>Freeze / Store</h3><p>Freeze 凍結畫面（仍可在記憶體中逐格捲動）；Store 儲存整段 Loop</p></div>
+    </div>
+
+    <div class="info-box teal">
+      <strong>Frame rate（更新率）：</strong>指每秒形成的影像張數，取決於回波返回探頭所需時間——顯示深度越深、扇形越寬，更新率越低。要提高更新率：使用窄、淺、單焦點的影像設定。
+    </div>
+
+    <h3 class="sub-h">Gain 與 Compression 調整</h3>
+    <div class="info-box gold">
+      <strong>畫面太暗：</strong>先加更多耦合劑，再提高 Gain（增益）。<strong>Time-Gain Control：</strong>可針對畫面中不同深度區域個別調整增益強弱。<strong>Compression（對比度）：</strong>低對比畫面較柔和平滑，高對比則較銳利分明，依個人判讀習慣調整。
+    </div>
+
+    <h3 class="sub-h">其他常用按鍵</h3>
+    <div class="card-grid">
+      <div class="card"><div class="ci">〰️</div><h3>MM / PW / CW / Color</h3><p>切換 M-Mode、脈衝波、連續波、彩色都卜勒模式</p></div>
+      <div class="card c-blue"><div class="ci">🖱️</div><h3>Tracking ball</h3><p>移動取樣位置或選取測量點</p></div>
+      <div class="card c-purple"><div class="ci">📏</div><h3>Measurements</h3><p>開啟測量選單，進行各項腔室與都卜勒測量</p></div>
+      <div class="card c-teal"><div class="ci">💓</div><h3>TVI</h3><p>Tissue Doppler Imaging（組織都卜勒）</p></div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  心臟超音波系列筆記 · 整理自 ESAVS 課程講義（Dr. Gerhard Wess，Dipl. ACVIM／ECVIM-CA Cardiology，LMU Munich）<br>
+  本頁面僅供教育用途，臨床處置請依獸醫師判斷執行
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

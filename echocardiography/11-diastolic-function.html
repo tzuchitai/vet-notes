@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>11 舒張功能評估 | 心臟超音波系列 | 獸醫讀書筆記</title>
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <a class="back" href="../index.html">← 返回首頁</a>
+  <span class="nav-title">獸醫讀書筆記 / 心臟超音波 / 11 舒張功能評估</span>
+</nav>
+
+<div id="hero">
+  <p class="hero-kicker">ESAVS Echocardiography · Chapter 11</p>
+  <div class="hero-paw">💓</div>
+  <h1>舒張功能評估</h1>
+  <p>舒張期的四個階段、E/A 比值三級分類、IVRT 判讀，以及舒張功能評估的實務判讀原則。</p>
+  <div class="tags">
+    <span class="tag">E/A ratio</span>
+    <span class="tag">IVRT</span>
+    <span class="tag">舒張分級</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="chap-nav">
+    <a href="10-doppler-measurements.html">← 上一節：都卜勒測量：部位與判讀</a>
+    <span class="spacer"></span>
+    <a class="idx" href="index.html">📚 目錄</a>
+    <span class="spacer"></span>
+    <a href="12-pulmonary-hypertension.html">下一節：肺高壓 →</a>
+  </div>
+  <div class="chap-progress">第 11 / 18 節　·　原始講義：Basic Assessment of Diastolic Function</div>
+
+  <div class="section" id="diastolic">
+    <div class="section-title">💓 舒張期的四個階段</div>
+    <div class="section-sub">等容舒張期（IVRT）→ 快速充盈期（E 波）→ 舒張間歇期（diastasis）→ 心房收縮充盈期（A 波）</div>
+
+    <div class="card-grid">
+      <div class="card"><div class="ci">⏱️</div><h3>IVRT</h3><p>主動脈瓣關閉到二尖瓣開啟之間，LV 壓力下降但容積不變的期間</p></div>
+      <div class="card c-teal"><div class="ci">🌊</div><h3>早期充盈（E 波）</h3><p>LV 壓力降至低於 LA 壓力，二尖瓣開啟，血液快速流入</p></div>
+      <div class="card c-purple"><div class="ci">💗</div><h3>心房收縮（A 波）</h3><p>LA 收縮產生第二波正向壓力差，帶來舒張晚期的額外充盈</p></div>
+    </div>
+
+    <h3 class="sub-h">如何評估舒張功能</h3>
+    <div class="card-grid">
+      <div class="card c-blue"><div class="ci">📈</div><h3>二尖瓣流入頻譜</h3><p>PW 都卜勒：E 波、A 波、E/A 比值、減速時間（DT）、A 波持續時間</p></div>
+      <div class="card c-green"><div class="ci">⏱️</div><h3>IVRT</h3><p>PW 或 CW 都卜勒，需同時記錄二尖瓣流入與主動脈瓣關閉聲響</p></div>
+      <div class="card c-orange"><div class="ci">🫧</div><h3>肺靜脈血流</h3><p>S 波、D 波、A 逆流波（AR）與其持續時間</p></div>
+      <div class="card c-purple"><div class="ci">🎯</div><h3>組織都卜勒（TDI）</h3><p>e'、a' 速度與 E/e' 比值，較不受前負荷影響</p></div>
+    </div>
+
+    <h3 class="sub-h">二尖瓣流入頻譜測量技巧</h3>
+    <div class="info-box gold">
+      使用左心尖 4 腔切面，PW 取樣容積（1–2 mm）置於二尖瓣瓣尖最窄處；增益與濾波設定盡量調低；掃描速度建議 50–100 mm/sec。<strong>E/A 正常比值約 1.0–1.5</strong>（依研究與物種略有不同）；貓 E/A 正常多 &gt; 1。
+    </div>
+
+    <div class="steps">
+      <div class="step active" onclick="showStep(0,3)" id="s0"><div class="step-num">Grade I</div><h4>鬆弛障礙</h4><div class="step-en">Impaired Relaxation</div></div>
+      <div class="step" onclick="showStep(1,3)" id="s1"><div class="step-num">Grade II</div><h4>假性正常化</h4><div class="step-en">Pseudonormal</div></div>
+      <div class="step" onclick="showStep(2,3)" id="s2"><div class="step-num">Grade III</div><h4>限制型充盈</h4><div class="step-en">Restrictive</div></div>
+    </div>
+
+    <div class="step-detail show" id="d0">
+      <h4>Grade I：鬆弛障礙（Impaired Relaxation）</h4>
+      <ul>
+        <li>早期舒張充盈變慢、E 波速度下降</li>
+        <li>Deceleration time（減速時間）延長</li>
+        <li>IVRT 延長</li>
+        <li>A 波變大，<strong>E/A &lt; 0.8</strong></li>
+      </ul>
+    </div>
+    <div class="step-detail" id="d1">
+      <h4>Grade II：假性正常化（Pseudonormal）</h4>
+      <ul>
+        <li>E/A 比值看似正常，容易誤判</li>
+        <li>因 LA 壓力慢性升高，E 波速度其實是被墊高的</li>
+        <li>Deceleration time 仍偏慢</li>
+        <li>IVRT 因 LA 壓力高、二尖瓣提早開啟而縮短</li>
+      </ul>
+    </div>
+    <div class="step-detail" id="d2">
+      <h4>Grade III：限制型充盈（Restrictive Filling Pattern）</h4>
+      <ul>
+        <li>LA 與 LV 充盈壓力明顯升高、LV 順應性下降</li>
+        <li>IVRT 明顯縮短，E 波速度增加</li>
+        <li>Deceleration time 縮短</li>
+        <li>LV 舒張早期已幾乎填滿，A 波反而變小</li>
+      </ul>
+    </div>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 600 210" xmlns="http://www.w3.org/2000/svg">
+        <text x="100" y="22" text-anchor="middle" font-size="13" font-weight="700" fill="#7c3aed">Grade I 鬆弛障礙</text>
+        <line x1="20" y1="160" x2="180" y2="160" stroke="#e8d5a0" stroke-width="1.5"/>
+        <path d="M20,160 Q45,110 70,160" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+        <path d="M90,160 Q120,80 150,160" fill="none" stroke="#7c3aed" stroke-width="2.5" opacity=".6"/>
+        <text x="45" y="175" text-anchor="middle" font-size="10" fill="#4a3800">E</text>
+        <text x="120" y="175" text-anchor="middle" font-size="10" fill="#4a3800">A</text>
+        <text x="100" y="195" text-anchor="middle" font-size="11" font-weight="700" fill="#5b3ebd">E/A &lt; 0.8</text>
+
+        <line x1="200" y1="10" x2="200" y2="195" stroke="#e8d5a0" stroke-width="1.5" stroke-dasharray="3 3"/>
+
+        <text x="300" y="22" text-anchor="middle" font-size="13" font-weight="700" fill="#d97706">Grade II 假性正常化</text>
+        <line x1="220" y1="160" x2="380" y2="160" stroke="#e8d5a0" stroke-width="1.5"/>
+        <path d="M220,160 Q248,58 276,160" fill="none" stroke="#d97706" stroke-width="2.5"/>
+        <path d="M296,160 Q322,102 348,160" fill="none" stroke="#d97706" stroke-width="2.5" opacity=".7"/>
+        <text x="248" y="175" text-anchor="middle" font-size="10" fill="#4a3800">E</text>
+        <text x="322" y="175" text-anchor="middle" font-size="10" fill="#4a3800">A</text>
+        <text x="300" y="195" text-anchor="middle" font-size="11" font-weight="700" fill="#92400e">E/A 看似正常（易誤判）</text>
+
+        <line x1="400" y1="10" x2="400" y2="195" stroke="#e8d5a0" stroke-width="1.5" stroke-dasharray="3 3"/>
+
+        <text x="500" y="22" text-anchor="middle" font-size="13" font-weight="700" fill="#dc2626">Grade III 限制型充盈</text>
+        <line x1="420" y1="160" x2="580" y2="160" stroke="#e8d5a0" stroke-width="1.5"/>
+        <path d="M420,160 Q450,30 480,160" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+        <path d="M500,160 Q515,148 530,160" fill="none" stroke="#dc2626" stroke-width="2.5" opacity=".6"/>
+        <text x="450" y="175" text-anchor="middle" font-size="10" fill="#4a3800">E</text>
+        <text x="515" y="175" text-anchor="middle" font-size="10" fill="#4a3800">A</text>
+        <text x="500" y="195" text-anchor="middle" font-size="11" font-weight="700" fill="#991b1b">E/A &gt; 2.0</text>
+      </svg>
+      <div class="diagram-cap">二尖瓣流入頻譜（E 波、A 波）示意：Grade I 的 E 波矮小、A 波相對高；Grade III 則 E 波明顯拔高、A 波幾乎消失；Grade II 外觀「看似正常」是最容易誤判的一型</div>
+    </div>
+
+    <div class="info-box gold">
+      <strong>常識判讀：</strong>若 LA 大小仍正常，通常不需擔心臨床上有意義的舒張功能障礙；若 LA 或 LV 已擴大，才需要進一步評估舒張功能分級——先看 LA 大小，再決定要不要深入分析舒張功能。
+    </div>
+
+    <h3 class="sub-h">IVRT 參考值與 CHF 相關切點</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>族群</th><th>數值</th></tr></thead>
+        <tbody>
+          <tr><td>犬正常範圍</td><td>40 – 80 ms</td></tr>
+          <tr><td>貓正常範圍</td><td>37 – 60 ms</td></tr>
+          <tr><td>貓 HCM，CHF 相關切點</td><td>&lt; 40 ms</td></tr>
+          <tr><td>犬 MMVD，CHF 相關切點</td><td>&lt; 46 ms</td></tr>
+          <tr><td>犬 DCM，CHF 相關切點</td><td>&lt; 43 ms</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="info-box orange">
+      ⚠️ IVRT 會隨年齡增長而延長（正常老化現象），判讀時需將年齡納入考量；同時 IVRT 受心室鬆弛、主動脈與左心房末期收縮壓等多重因素影響，單一數值不宜過度解讀。E:IVRT 是預測 DCM 或 MMVD 犬 CHF 的較佳參數之一。
+    </div>
+
+    <h3 class="sub-h">舒張功能評估總結流程</h3>
+    <div class="info-box teal">
+      1️⃣ 是否有鬆弛障礙？（IVRT、E/A、TVI e'）　2️⃣ LV 順應性是否異常？（早期減速時間 DTE、晚期 Adur:ARdur）　3️⃣ LV 充盈壓是否偏高？（E/e'、E:IVRT、E/A）。組織都卜勒成像（TVI）是評估舒張功能的另一種有效方式，較不受前負荷影響，但需要更多臨床經驗累積。
+    </div>
+  </div>
+
+  <div class="section" id="calc">
+    <div class="section-title">🧮 互動計算機</div>
+
+    <div class="calc-box">
+      <h3>E/A 舒張功能分級小工具</h3>
+      <div class="calc-sub">輸入 E 波與 A 波峰值流速（m/s），並可選填 IVRT 輔助判讀。此為粗略篩檢工具，正式分級仍需綜合 LA 大小、TVI 等多項參數。</div>
+      <div class="form-row">
+        <div class="form-group"><label>E 波（m/s）</label><input type="number" id="ea-e" step="0.01"></div>
+        <div class="form-group"><label>A 波（m/s）</label><input type="number" id="ea-a" step="0.01"></div>
+        <div class="form-group"><label>IVRT（ms，選填）</label><input type="number" id="ea-ivrt" step="1"></div>
+      </div>
+      <button class="btn" onclick="calcEA()">評估舒張功能分級</button>
+      <div class="calc-result" id="ea-res">
+        <table>
+          <tr><td>E/A 比值</td><td id="ea-v1">–</td></tr>
+          <tr><td>初步判讀</td><td id="ea-v2">–</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="calc-box">
+      <h3>IVRT 判讀小工具</h3>
+      <div class="calc-sub">依物種與疾病背景比對 IVRT 切點。</div>
+      <div class="form-row">
+        <div class="form-group"><label>IVRT（ms）</label><input type="number" id="ivrt-v" step="1"></div>
+        <div class="form-group">
+          <label>族群 / 疾病背景</label>
+          <select id="ivrt-ctx">
+            <option value="dog-normal">犬（一般正常範圍 40–80 ms）</option>
+            <option value="cat-normal">貓（一般正常範圍 37–60 ms）</option>
+            <option value="cat-hcm">貓 HCM（CHF 相關切點 &lt;40 ms）</option>
+            <option value="dog-mmvd">犬 MMVD（CHF 相關切點 &lt;46 ms）</option>
+            <option value="dog-dcm">犬 DCM（CHF 相關切點 &lt;43 ms）</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" onclick="calcIVRT()">判讀 IVRT</button>
+      <div class="calc-result" id="ivrt-res">
+        <table><tr><td>判讀結果</td><td id="ivrt-v1">–</td></tr></table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  心臟超音波系列筆記 · 整理自 ESAVS 課程講義（Dr. Gerhard Wess，Dipl. ACVIM／ECVIM-CA Cardiology，LMU Munich）<br>
+  計算結果僅供教育與參考用途，臨床處置請依獸醫師判斷執行
+</footer>
+
+<script src="shared.js"></script>
+<script>
+function calcEA() {
+  const e = parseFloat(document.getElementById('ea-e').value);
+  const a = parseFloat(document.getElementById('ea-a').value);
+  const ivrt = parseFloat(document.getElementById('ea-ivrt').value);
+  if (!e || !a || a <= 0) { alert('請輸入有效的 E 波與 A 波流速'); return; }
+  const ratio = e / a;
+  let note;
+  if (ratio < 0.8) note = '偏低，提示可能為 Grade I 鬆弛障礙（需搭配 IVRT／DT 確認，注意心跳過快時 E、A 波易融合造成誤判）';
+  else if (ratio > 2.0) note = '⚠️ 明顯偏高（>2.0），提示可能為 Grade III 限制型充盈（貓為 CHF/ATE 高風險徵象之一）';
+  else note = '落於一般正常範圍附近，但仍可能是 Grade II 假性正常化——請務必搭配 LA 大小、IVRT、TVI-E\' 綜合判讀，不可單獨用 E/A 診斷';
+  if (!isNaN(ivrt) && ivrt) note += `；IVRT ${ivrt} ms 請對照下方 IVRT 判讀小工具`;
+  document.getElementById('ea-v1').textContent = ratio.toFixed(2);
+  document.getElementById('ea-v2').textContent = note;
+  document.getElementById('ea-res').classList.add('show');
+}
+
+function calcIVRT() {
+  const v = parseFloat(document.getElementById('ivrt-v').value);
+  const ctx = document.getElementById('ivrt-ctx').value;
+  if (!v || v <= 0) { alert('請輸入有效的 IVRT'); return; }
+  let note;
+  if (ctx === 'dog-normal') note = (v >= 40 && v <= 80) ? '落於犬正常範圍（40–80 ms）' : (v < 40 ? '低於一般正常範圍下限' : '高於一般正常範圍上限（提示鬆弛障礙）');
+  else if (ctx === 'cat-normal') note = (v >= 37 && v <= 60) ? '落於貓正常範圍（37–60 ms）' : (v < 37 ? '低於一般正常範圍下限' : '高於一般正常範圍上限（提示鬆弛障礙）');
+  else if (ctx === 'cat-hcm') note = v < 40 ? '⚠️ 低於 40 ms，與 HCM 貓 CHF 風險相關' : '未低於 40 ms 切點';
+  else if (ctx === 'dog-mmvd') note = v < 46 ? '⚠️ 低於 46 ms，與 MMVD 犬 CHF 風險相關' : '未低於 46 ms 切點';
+  else if (ctx === 'dog-dcm') note = v < 43 ? '⚠️ 低於 43 ms，與 DCM 犬 CHF 風險相關' : '未低於 43 ms 切點';
+  document.getElementById('ivrt-v1').textContent = note;
+  document.getElementById('ivrt-res').classList.add('show');
+}
+</script>
+</body>
+</html>

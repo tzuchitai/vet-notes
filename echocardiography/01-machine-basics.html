@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>01 機器與探頭選購考量 | 心臟超音波系列 | 獸醫讀書筆記</title>
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <a class="back" href="../index.html">← 返回首頁</a>
+  <span class="nav-title">獸醫讀書筆記 / 心臟超音波 / 01 機器與探頭選購考量</span>
+</nav>
+
+<div id="hero">
+  <p class="hero-kicker">ESAVS Echocardiography · Chapter 01</p>
+  <div class="hero-paw">🖥️</div>
+  <h1>機器與探頭選購考量</h1>
+  <p>選購超音波機器前的決策考量、心臟科機器最低規格需求、探頭頻率選擇，以及數位影像儲存與歸檔建議。</p>
+  <div class="tags">
+    <span class="tag">機器需求</span>
+    <span class="tag">探頭頻率</span>
+    <span class="tag">影像儲存</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="chap-nav">
+    <span></span>
+    <span class="spacer"></span>
+    <a class="idx" href="index.html">📚 目錄</a>
+    <span class="spacer"></span>
+    <a href="02-standard-views.html">下一節：病患準備與標準切面 →</a>
+  </div>
+  <div class="chap-progress">第 1 / 18 節　·　原始講義：Technical basics of Ultrasound</div>
+
+  <div class="section" id="machine">
+    <div class="section-title">🖥️ 機器選購的第一步：先想清楚使用情境</div>
+    <div class="section-sub">只在一個診間用？要跨科別使用（ICU、馬）？只做心臟科還是也做腹腔？價格考量？這些問題會影響探頭與機型選擇。</div>
+
+    <h3 class="sub-h first">做心臟超音波，機器至少要有</h3>
+    <div class="card-grid">
+      <div class="card"><div class="ci">📐</div><h3>2D 灰階影像</h3><p>Two-dimensional (2D) 即時影像</p></div>
+      <div class="card c-teal"><div class="ci">📈</div><h3>M-Mode</h3><p>單維度、高時間解析度的動態測量</p></div>
+      <div class="card c-blue"><div class="ci">🎚️</div><h3>頻譜都卜勒</h3><p>PW（脈衝波）與 CW（連續波）都卜勒</p></div>
+      <div class="card c-purple"><div class="ci">🌈</div><h3>彩色都卜勒</h3><p>Color Flow Doppler 血流方向與亂流顯示</p></div>
+    </div>
+    <div class="info-box gold">
+      <strong>其他建議規格：</strong>多頻寬（multi-frequency broadband）探頭、電子相位陣列（phased array）、3 個以上探頭插孔、螢幕 &gt; 15 吋、Cine-loop／Zoom／測量程式等易用軟體、良好的售後服務與獸醫專業支援（購機時建議先實際試用，留意常用按鍵是否好找——有些機器把按鍵藏在很多層選單裡，會拖慢檢查速度）。
+    </div>
+    <div class="info-box teal">
+      <strong>Duplex／Triplex 模式：</strong>Duplex＝同時顯示 2D 與 PW 都卜勒；Triplex＝同時顯示 2D、彩色都卜勒與頻譜都卜勒（三者同時顯示）。
+    </div>
+
+    <h3 class="sub-h">依體型建議探頭頻率</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>動物體型</th><th>建議探頭頻率</th></tr></thead>
+        <tbody>
+          <tr><td>貓與犬 &lt; 5 kg</td><td>8–12 MHz</td></tr>
+          <tr><td>犬 &lt; 10 kg</td><td>8 MHz</td></tr>
+          <tr><td>犬 &gt; 10 kg</td><td>5 或 3 MHz</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="info-box orange">
+      💓 <strong>建議全程掛 ECG：</strong>方便日後儲存、判讀與測量時間點對照。小型犬貓建議使用「鱷魚夾」而非黏貼片導極——夾力太緊會造成不適，建議先夾自己手指測試力道。
+    </div>
+
+    <h3 class="sub-h">數位影像儲存與歸檔建議</h3>
+    <div class="accordion">
+      <div class="acc-head" onclick="toggleAcc(this)"><span>存檔方式與長期歸檔要點</span><span class="acc-arrow">▶</span></div>
+      <div class="acc-body">
+        <ul style="padding-left:18px;">
+          <li>盡量以 <strong>Loop（連續心動週期）</strong>取代單張定格畫面存檔——單張畫面看不出收縮力好壞、亂流程度與影像品質，只有動態影像才能做外部覆閱（second opinion）</li>
+          <li>建議每次存檔約 3 個心動週期，而非固定 5 秒，可大幅節省儲存空間（機器容量填滿的速度比想像中快）</li>
+          <li>常見存檔格式：Raw data（可日後再處理）、DICOM（可跨系統讀取）、AVI/MPEG（方便分享案例）</li>
+          <li>回顧舊檢查的便利性很重要，甚至可能有法律意義：購機時可詢問「點選病患姓名就能叫出舊檢查」是否容易做到，或是否得在錄影帶裡慢慢找時間點</li>
+          <li>歸檔媒介：機器內建硬碟、外接硬碟、院內伺服器、CD/DVD、MOD 光碟皆可，但都需要及早規劃容量</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  心臟超音波系列筆記 · 整理自 ESAVS 課程講義（Dr. Gerhard Wess，Dipl. ACVIM／ECVIM-CA Cardiology，LMU Munich）<br>
+  本頁面僅供教育用途，臨床處置請依獸醫師判斷執行
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

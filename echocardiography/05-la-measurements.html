@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>05 左心房測量 | 心臟超音波系列 | 獸醫讀書筆記</title>
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+<nav id="topnav">
+  <a class="back" href="../index.html">← 返回首頁</a>
+  <span class="nav-title">獸醫讀書筆記 / 心臟超音波 / 05 左心房測量</span>
+</nav>
+
+<div id="hero">
+  <p class="hero-kicker">ESAVS Echocardiography · Chapter 05</p>
+  <div class="hero-paw">💗</div>
+  <h1>左心房測量</h1>
+  <p>LA/Ao 比值、LA 長軸內徑、LA-FS%／LA-EF%，以及 Biplane 面積長度法測量 LA 體積，是評估左側心臟病嚴重度的核心指標。</p>
+  <div class="tags">
+    <span class="tag">LA/Ao</span>
+    <span class="tag">LA-FS%</span>
+    <span class="tag">LA volume</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="chap-nav">
+    <a href="04-mmode-measurements.html">← 上一節：M-Mode 測量與體重指標化</a>
+    <span class="spacer"></span>
+    <a class="idx" href="index.html">📚 目錄</a>
+    <span class="spacer"></span>
+    <a href="06-shunts.html">下一節：先天性分流 →</a>
+  </div>
+  <div class="chap-progress">第 5 / 18 節　·　原始講義：Left Atrium Measurements</div>
+
+  <div class="section" id="la">
+    <div class="section-title">💗 左心房測量的重要性</div>
+    <div class="section-sub">LA 大小是左側心臟病嚴重程度與慢性度的重要指標，也是心血管事件的強力預測因子；LA 的主要功能包括儲存（reservoir）、通道（conduit）與收縮（contractile）三種功能。</div>
+
+    <div class="card-grid">
+      <div class="card"><div class="ci">🔵</div><h3>LA/Ao 比值（短軸）</h3><p>獸醫最常用的一維線性方法，短軸切面測量</p></div>
+      <div class="card c-teal"><div class="ci">📏</div><h3>LA 長軸內徑（LAD）</h3><p>Maximum LAD：於二尖瓣開啟前 1–2 個影格、腔室中段測量，取平行二尖瓣環的線段</p></div>
+      <div class="card c-blue"><div class="ci">🧮</div><h3>LA-FS% / LA-EF%</h3><p>以 LA 直徑或體積變化評估左心房功能，常用於貓</p></div>
+      <div class="card c-purple"><div class="ci">📐</div><h3>Biplane 面積長度法</h3><p>取自左心尖 4 腔與 2 腔切面，計算 LA 體積（人醫的 gold standard 方法之一）</p></div>
+    </div>
+
+    <div class="info-box gold">
+      <strong>LA/Ao 短軸測量技巧：</strong>由 LV 短軸（hard way）往尾端移一個肋間，維持在胸廓正中央；聚焦讓主動脈保持圓形。
+    </div>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="200" cy="150" rx="130" ry="95" fill="#f3ecfb" stroke="#7c3aed" stroke-width="2"/>
+        <circle cx="200" cy="130" r="62" fill="#fdf0f3" stroke="#C81E45" stroke-width="2.5"/>
+        <path d="M200,68 L200,192 M200,130 L253,98 M200,130 L147,98" stroke="#C81E45" stroke-width="2"/>
+        <line x1="152" y1="130" x2="248" y2="130" stroke="#4a3800" stroke-width="1.6" marker-start="url(#arrM)" marker-end="url(#arrM)"/>
+        <text x="200" y="118" text-anchor="middle" font-size="12" font-weight="700" fill="#7A0F2C">Ao 內徑</text>
+        <line x1="90" y1="215" x2="310" y2="215" stroke="#4a3800" stroke-width="1.6" marker-start="url(#arrM)" marker-end="url(#arrM)"/>
+        <text x="200" y="232" text-anchor="middle" font-size="12" font-weight="700" fill="#5b3ebd">LA 內徑</text>
+        <text x="200" y="150" text-anchor="middle" font-size="11" fill="#7A0F2C" opacity=".7">主動脈瓣</text>
+        <text x="200" y="80" text-anchor="middle" font-size="11" fill="#5b3ebd" opacity=".85">左心房（鯨魚狀）</text>
+        <defs><marker id="arrM" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#4a3800"/></marker></defs>
+      </svg>
+      <div class="diagram-cap">短軸 LA/Ao 測量示意：主動脈瓣呈「賓士星形」（三片瓣葉），左心房環繞於後方呈「鯨魚狀」；LA/Ao ＝ LA 內徑 ÷ Ao 內徑</div>
+    </div>
+
+    <div class="info-box teal">
+      <strong>案例小提醒（Saluki「Kahn」）：</strong>6 歲、26 kg 的沙魯基獵犬因配種健檢就診，聽診無雜音。以 Cornell 公式計算 LVIDd-N 為 1.92（&gt;1.7 一般切點），若照搬公式會誤判為心臟擴大——但沙魯基屬於視覺獵犬（Sighthound），心臟本來就比一般品種大，<mark>必須使用品種專屬參考值</mark>才能正確判讀，而非直接套用一般化公式。
+    </div>
+
+    <h3 class="sub-h">長軸法參考區間（80 隻健康犬，95% 參考區間）</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>指標</th><th>參考區間</th></tr></thead>
+        <tbody>
+          <tr><td>LV/Ao（長軸）</td><td>1.83 – 2.56</td></tr>
+          <tr><td>LA/Ao（長軸）</td><td>1.84 – 2.38</td></tr>
+          <tr><td>LA/LV（長軸）</td><td>0.90 – 1.10</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="info-box teal">
+      💡 長軸法與短軸法測量方式與時相不同，<strong>參考區間不能互相套用</strong>——短軸法沿用的是 ACVIM 2019 B2 切點 LA/Ao ≥ 1.6；長軸法常模區間則落在 1.8–2.4 附近。犬 LA 長軸內徑（LAD）另有指標化公式：LAD (cm/kg<sup>0.324</sup>) 上限約 1.57。長軸測量時，Ao 未包含遠場的 sinus of Valsalva，所以數值會比短軸法略小。
+    </div>
+
+    <h3 class="sub-h">貓的左心房測量</h3>
+    <div class="info-box gold">
+      貓建議以長軸測量 LAD：於收縮末期（二尖瓣開啟前 1–2 個影格）、腔室中段測量。<strong>正常 LAD &lt; 16 mm</strong>；LA-min（最小容積）是診斷 CHF 的最佳單一參數，體積法在貓身上未必優於線性測量。
+    </div>
+
+    <h3 class="sub-h">LA-FS% 與 LA-EF%</h3>
+    <div class="card-grid">
+      <div class="card c-blue"><div class="ci">📉</div><h3>LA-FS%</h3><p>LA-FS(%) = (LADmax − LADmin) / LADmax × 100，可用 M-Mode 或 2D 長軸、或短軸的 anatomic M-Mode 測量；正常 &gt; 30%，數值下降預後較差</p></div>
+      <div class="card c-purple"><div class="ci">📊</div><h3>LA-EF%</h3><p>LA-EF(%) = (LAVmax − LAVmin) / LAVmax × 100，以 Simpson 法測得的 LA 體積計算；同一研究中 LA-EF 判斷力優於 LA-FS%，正常 &gt; 30%</p></div>
+    </div>
+
+    <h3 class="sub-h">Biplane 面積長度法（LA Volume）</h3>
+    <p style="font-size:13.5px;line-height:1.8;margin-bottom:12px;">取自左心尖 4 腔（A1、L1）與 2 腔（A2、L2）切面：LA volume = 0.85 × A1 × A2 ÷ ((L1+L2)/2)。可測得 LA-max（二尖瓣開啟前）、LA-P-volume（ECG P 波起始）與 LA-min（二尖瓣關閉時）三個時間點的體積。</p>
+    <div class="info-box gold">
+      <strong>參考切點：</strong>LA volume 建議以體重指標化（mL/kg）。一般犬最大 LA 體積 &lt; 0.92 mL/kg 屬正常；MMVD 犬若最大 LA 體積 &lt; 2.25 mL/kg，可高信心排除 CHF（敏感度 96%、特異度 100%）。3D LA 體積測量目前仍需特殊軟體與探頭，尚未普及。
+    </div>
+  </div>
+
+  <div class="section" id="calc">
+    <div class="section-title">🧮 互動計算機</div>
+
+    <div class="calc-box">
+      <h3>LA/Ao 比值計算機</h3>
+      <div class="calc-sub">LA 與 Ao 請用同一單位測量（cm 或 mm 皆可，比值不受影響）。</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>測量方法</label>
+          <select id="laao-method">
+            <option value="short">短軸法（Short-axis，ACVIM 2019 B2 切點）</option>
+            <option value="long">長軸法（Long-axis，Wess 參考區間）</option>
+          </select>
+        </div>
+        <div class="form-group"><label>LA</label><input type="number" id="laao-la" step="0.01" placeholder="例：1.9"></div>
+        <div class="form-group"><label>Ao</label><input type="number" id="laao-ao" step="0.01" placeholder="例：1.1"></div>
+      </div>
+      <button class="btn" onclick="calcLAAo()">計算 LA/Ao</button>
+      <div class="calc-result" id="laao-res">
+        <table>
+          <tr><td>LA/Ao 比值</td><td id="laao-v1">–</td></tr>
+          <tr><td>判讀</td><td id="laao-v2">–</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="calc-box">
+      <h3>LA-FS% / LA-EF% 計算機</h3>
+      <div class="calc-sub">LA-FS 以長軸／M-Mode 直徑計算；LA-EF 以 Simpson 法體積計算，兩者正常值皆 &gt; 30%（貓）。</div>
+      <div class="form-row">
+        <div class="form-group"><label>LADmax（mm）</label><input type="number" id="lafs-max" step="0.1" placeholder="例：18.0"></div>
+        <div class="form-group"><label>LADmin（mm）</label><input type="number" id="lafs-min" step="0.1" placeholder="例：12.0"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>LAVmax（mL，選填）</label><input type="number" id="laef-max" step="0.01" placeholder="選填"></div>
+        <div class="form-group"><label>LAVmin（mL，選填）</label><input type="number" id="laef-min" step="0.01" placeholder="選填"></div>
+      </div>
+      <button class="btn" onclick="calcLAFS()">計算 LA-FS% / LA-EF%</button>
+      <div class="calc-result" id="lafs-res">
+        <table>
+          <tr><td>LA-FS%</td><td id="lafs-v1">–</td></tr>
+          <tr><td>LA-EF%</td><td id="lafs-v2">–</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="calc-box">
+      <h3>LA 體積（Biplane Area-Length）計算機</h3>
+      <div class="calc-sub">公式：LA volume (mL) = 0.85 × A1 × A2 ÷ ((L1+L2)/2)，取自左心尖 4 腔（A1,L1）與 2 腔（A2,L2）切面。</div>
+      <div class="form-row">
+        <div class="form-group"><label>A1（4-CH 面積，cm²）</label><input type="number" id="lavol-a1" step="0.01"></div>
+        <div class="form-group"><label>L1（4-CH 長度，cm）</label><input type="number" id="lavol-l1" step="0.01"></div>
+        <div class="form-group"><label>A2（2-CH 面積，cm²）</label><input type="number" id="lavol-a2" step="0.01"></div>
+        <div class="form-group"><label>L2（2-CH 長度，cm）</label><input type="number" id="lavol-l2" step="0.01"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>體重（kg，選填以指標化）</label><input type="number" id="lavol-w" step="0.1"></div>
+      </div>
+      <button class="btn" onclick="calcLAVol()">計算 LA 體積</button>
+      <div class="calc-result" id="lavol-res">
+        <table>
+          <tr><td>LA 體積</td><td id="lavol-v1">–</td></tr>
+          <tr><td>指標化（mL/kg）</td><td id="lavol-v2">–</td></tr>
+          <tr><td>判讀</td><td id="lavol-v3">–</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  心臟超音波系列筆記 · 整理自 ESAVS 課程講義（Dr. Gerhard Wess，Dipl. ACVIM／ECVIM-CA Cardiology，LMU Munich）<br>
+  計算結果僅供教育與參考用途，臨床處置請依獸醫師判斷執行
+</footer>
+
+<script src="shared.js"></script>
+<script>
+function calcLAAo() {
+  const method = document.getElementById('laao-method').value;
+  const la = parseFloat(document.getElementById('laao-la').value);
+  const ao = parseFloat(document.getElementById('laao-ao').value);
+  if (!la || !ao || ao <= 0) { alert('請輸入有效的 LA / Ao'); return; }
+  const ratio = la / ao;
+  let note = '';
+  if (method === 'short') {
+    if (ratio >= 1.6) note = '⚠️ ≥1.6，符合 ACVIM 2019 MMVD Stage B2 心臟擴大切點（需搭配 LVIDd-N 綜合判讀）';
+    else if (ratio >= 1.3) note = '灰區，介於正常與擴大之間，建議追蹤或搭配其他參數';
+    else note = '正常範圍（短軸法一般 <1.3）';
+  } else {
+    if (ratio >= 1.84 && ratio <= 2.38) note = '落於長軸法 95% 參考區間（1.84–2.38）內';
+    else if (ratio > 2.38) note = '⚠️ 高於長軸法參考區間上限（2.38），提示 LA 擴大';
+    else note = '低於長軸法參考區間下限（1.84）';
+  }
+  document.getElementById('laao-v1').textContent = ratio.toFixed(2);
+  document.getElementById('laao-v2').textContent = note;
+  document.getElementById('laao-res').classList.add('show');
+}
+
+function calcLAFS() {
+  const max = parseFloat(document.getElementById('lafs-max').value);
+  const min = parseFloat(document.getElementById('lafs-min').value);
+  const vmax = parseFloat(document.getElementById('laef-max').value);
+  const vmin = parseFloat(document.getElementById('laef-min').value);
+  let out1 = '–', out2 = '–';
+  if (max && !isNaN(min) && max > 0) {
+    const fs = (max - min) / max * 100;
+    out1 = fs.toFixed(1) + ' % ' + (fs > 30 ? '(正常 >30%)' : '(<30%，預後較差)');
+  }
+  if (vmax && !isNaN(vmin) && vmax > 0) {
+    const ef = (vmax - vmin) / vmax * 100;
+    out2 = ef.toFixed(1) + ' % ' + (ef > 30 ? '(正常 >30%)' : '(<30%，功能不良)');
+  }
+  if (out1 === '–' && out2 === '–') { alert('請至少輸入一組 LADmax/LADmin 或 LAVmax/LAVmin'); return; }
+  document.getElementById('lafs-v1').textContent = out1;
+  document.getElementById('lafs-v2').textContent = out2;
+  document.getElementById('lafs-res').classList.add('show');
+}
+
+function calcLAVol() {
+  const a1 = parseFloat(document.getElementById('lavol-a1').value);
+  const l1 = parseFloat(document.getElementById('lavol-l1').value);
+  const a2 = parseFloat(document.getElementById('lavol-a2').value);
+  const l2 = parseFloat(document.getElementById('lavol-l2').value);
+  const w  = parseFloat(document.getElementById('lavol-w').value);
+  if (!a1 || !l1 || !a2 || !l2) { alert('請輸入完整的 A1、L1、A2、L2'); return; }
+  const vol = 0.85 * a1 * a2 / ((l1 + l2) / 2);
+  document.getElementById('lavol-v1').textContent = vol.toFixed(2) + ' mL';
+  if (w && w > 0) {
+    const idx = vol / w;
+    document.getElementById('lavol-v2').textContent = idx.toFixed(2) + ' mL/kg';
+    let note;
+    if (idx < 0.92) note = '低於 0.92 mL/kg（多數健康犬常見範圍）';
+    else if (idx < 2.25) note = '介於 0.92–2.25 mL/kg，建議搭配其他 LA 指標綜合判讀';
+    else note = '⚠️ ≥2.25 mL/kg，無法排除 CHF（研究切點：<2.25 mL/kg 排除 CHF 敏感度 96%／特異度 100%）';
+    document.getElementById('lavol-v3').textContent = note;
+  } else {
+    document.getElementById('lavol-v2').textContent = '（未輸入體重）';
+    document.getElementById('lavol-v3').textContent = '—';
+  }
+  document.getElementById('lavol-res').classList.add('show');
+}
+</script>
+</body>
+</html>

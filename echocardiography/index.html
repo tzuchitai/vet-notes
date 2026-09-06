@@ -59,34 +59,42 @@
   .stat-num  { font-size: 1.6rem; font-weight: 800; color: var(--accent); }
   .stat-label{ font-size: .75rem; opacity: .55; margin-top: 2px; }
 
+  .search-wrap { position: relative; margin-bottom: 28px; }
+  .search-wrap input {
+    width: 100%; padding: 12px 18px 12px 42px; border-radius: 50px;
+    border: 2px solid var(--border); font-size: .95rem; background: #fff; color: var(--dark); outline: none;
+  }
+  .search-wrap input:focus { border-color: var(--accent); }
+  .search-wrap .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); opacity: .5; }
+
   .section-label {
     font-size: .78rem; font-weight: 700; letter-spacing: .1em;
-    text-transform: uppercase; color: var(--text); opacity: .55; margin: 28px 0 14px;
+    text-transform: uppercase; color: var(--text); opacity: .55; margin: 30px 0 14px;
+    display: flex; align-items: center; gap: 8px;
   }
+  .section-label:first-of-type { margin-top: 0; }
 
-  .cases { display: flex; flex-direction: column; gap: 14px; }
+  .cases { display: flex; flex-direction: column; gap: 12px; }
   .case-card {
     background: #fff; border-radius: 14px; box-shadow: 0 2px 12px rgba(122,15,44,.06);
-    text-decoration: none; color: inherit; display: flex; gap: 18px;
-    padding: 20px 22px; border: 1px solid var(--border);
+    text-decoration: none; color: inherit; display: flex; gap: 16px;
+    padding: 16px 20px; border: 1px solid var(--border);
     transition: transform .16s, box-shadow .16s;
   }
   .case-card:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(122,15,44,.14); }
+  .case-card[hidden] { display: none; }
   .case-num {
-    font-family: ui-monospace, "SF Mono", monospace; font-size: .8rem; font-weight: 700;
+    font-family: ui-monospace, "SF Mono", monospace; font-size: .78rem; font-weight: 700;
     color: var(--accent); background: var(--accent-bg); border: 1px solid var(--border);
-    border-radius: 8px; width: 42px; height: 42px;
+    border-radius: 8px; width: 38px; height: 38px;
     display: flex; align-items: center; justify-content: center; flex: none;
   }
   .case-body { flex: 1; min-width: 0; }
-  .case-tag { font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent-dk); opacity: .7; margin-bottom: 4px; }
-  .case-title { font-size: 1.05rem; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
-  .case-desc  { font-size: .85rem; color: var(--text); opacity: .75; line-height: 1.55; }
-  .case-meta { flex: none; display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; gap: 10px; }
-  .case-date { font-size: .76rem; color: var(--text); opacity: .5; white-space: nowrap; }
+  .case-title { font-size: .98rem; font-weight: 700; color: var(--dark); margin-bottom: 3px; }
+  .case-desc  { font-size: .82rem; color: var(--text); opacity: .72; line-height: 1.5; }
   .case-arrow {
-    font-size: .85rem; color: #fff; width: 28px; height: 28px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center; background: var(--accent);
+    font-size: .8rem; color: #fff; width: 26px; height: 26px; border-radius: 50%; flex: none;
+    display: flex; align-items: center; justify-content: center; background: var(--accent); align-self: center;
   }
 
   .info-card {
@@ -99,8 +107,7 @@
     header h1 { font-size: 1.5rem; }
     .header-icon { font-size: 2rem; }
     .container { padding: 20px 14px 60px; }
-    .case-card { flex-direction: column; gap: 12px; }
-    .case-meta { flex-direction: row; align-items: center; width: 100%; }
+    .case-desc { display: none; }
   }
 </style>
 </head>
@@ -114,15 +121,15 @@
   <div class="header-icon">🫀</div>
   <p class="kicker">ESAVS · Echocardiography Series</p>
   <h1>心臟超音波系列筆記</h1>
-  <p class="dek">整理自 ESAVS 心臟超音波專題課程講義（Dr. Gerhard Wess，Dipl. ACVIM／ECVIM-CA Cardiology，LMU Munich），從基礎操作到常見病理判讀，共四部曲，並將常用計算公式做成互動計算機。</p>
+  <p class="dek">整理自 ESAVS 心臟超音波專題課程講義（Dr. Gerhard Wess，Dipl. ACVIM／ECVIM-CA Cardiology，LMU Munich），依原始 18 份講義逐一對應成 18 個小節，從基礎操作到常見病理判讀，並將常用計算公式做成互動計算機。</p>
 </header>
 
 <div class="container">
 
   <div class="stats">
     <div class="stat">
-      <div class="stat-num" id="case-count">4</div>
-      <div class="stat-label">已更新篇數</div>
+      <div class="stat-num">18</div>
+      <div class="stat-label">章節數</div>
     </div>
     <div class="stat">
       <div class="stat-num">心臟科</div>
@@ -134,70 +141,139 @@
     </div>
   </div>
 
-  <div class="section-label">📋 系列文章</div>
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="search-input" placeholder="搜尋章節，例如：肺高壓、E/A、DCM…">
+  </div>
 
+  <div class="section-label">🖥️ 基礎技術</div>
   <div class="cases">
-
-    <a class="case-card" href="part1-basics-views.html">
+    <a class="case-card" href="01-machine-basics.html" data-title="機器 探頭 頻率 儲存 machine transducer">
       <div class="case-num">01</div>
-      <div class="case-body">
-        <div class="case-tag">機器 · 探頭操作 · 標準切面</div>
-        <div class="case-title">超音波基礎與標準切面</div>
-        <div class="case-desc">機器與探頭選購考量、鎮靜給藥選擇、探頭操作與 knobology、右側長軸／短軸與左心尖各切面取得技巧</div>
-      </div>
-      <div class="case-meta">
-        <span class="case-date">2026-09-06</span>
-        <span class="case-arrow">→</span>
-      </div>
+      <div class="case-body"><div class="case-title">機器與探頭選購考量</div><div class="case-desc">機型需求、探頭頻率選擇、影像儲存與歸檔建議</div></div>
+      <span class="case-arrow">→</span>
     </a>
-
-    <a class="case-card" href="part2-measurements.html">
+    <a class="case-card" href="02-standard-views.html" data-title="病患準備 鎮靜 標準切面 長軸 短軸 心尖 views sedation">
       <div class="case-num">02</div>
-      <div class="case-body">
-        <div class="case-tag">M-Mode · 左心房 · 右心室</div>
-        <div class="case-title">腔室測量與常模值</div>
-        <div class="case-desc">M-Mode 測量、FS/EF、LA/Ao、LA-FS%、LA volume、體重指標化公式、右心室評估參數，附 6 個互動計算機</div>
-      </div>
-      <div class="case-meta">
-        <span class="case-date">2026-09-06</span>
-        <span class="case-arrow">→</span>
-      </div>
+      <div class="case-body"><div class="case-title">病患準備與標準切面</div><div class="case-desc">鎮靜方案、右側長軸／短軸、左心尖窗口取得技巧</div></div>
+      <span class="case-arrow">→</span>
     </a>
-
-    <a class="case-card" href="part3-doppler-diastolic.html">
+    <a class="case-card" href="03-probe-manipulation.html" data-title="探頭操作 knobology 呼吸偽影 旋鈕">
       <div class="case-num">03</div>
-      <div class="case-body">
-        <div class="case-tag">PW/CW · 舒張功能 · 壓力估算</div>
-        <div class="case-title">都卜勒技術與舒張功能評估</div>
-        <div class="case-desc">PW/CW 都卜勒技術參數、各瓣膜正常流速、Modified Bernoulli 壓力差計算、E/A 舒張功能分級、IVRT 判讀，附 5 個互動計算機</div>
-      </div>
-      <div class="case-meta">
-        <span class="case-date">2026-09-06</span>
-        <span class="case-arrow">→</span>
-      </div>
+      <div class="case-body"><div class="case-title">探頭操作與 Knobology</div><div class="case-desc">旋轉傾斜手法、常見取像問題修正、操作旋鈕功能</div></div>
+      <span class="case-arrow">→</span>
     </a>
+  </div>
 
-    <a class="case-card" href="part4-pathology.html">
+  <div class="section-label">📏 腔室測量</div>
+  <div class="cases">
+    <a class="case-card" href="04-mmode-measurements.html" data-title="M-Mode FS EPSS 體重指標化 normalization">
       <div class="case-num">04</div>
-      <div class="case-body">
-        <div class="case-tag">分流 · 肺高壓 · MMVD · DCM · HCM</div>
-        <div class="case-title">常見心臟病理判讀</div>
-        <div class="case-desc">先天性分流（PDA/VSD/ASD）、肺高壓分級、心包膜積液鑑別、MMVD 與 ACVIM 分期、犬 DCM 診斷準則、貓心肌病判讀技巧，附多個互動小工具</div>
-      </div>
-      <div class="case-meta">
-        <span class="case-date">2026-09-06</span>
-        <span class="case-arrow">→</span>
-      </div>
+      <div class="case-body"><div class="case-title">M-Mode 測量與體重指標化</div><div class="case-desc">LVIDd/LVIDs、FS、EPSS，Cornell 與 Esser/Wess 指標化公式</div></div>
+      <span class="case-arrow">→</span>
     </a>
+    <a class="case-card" href="05-la-measurements.html" data-title="左心房 LA/Ao LA-FS LA volume biplane">
+      <div class="case-num">05</div>
+      <div class="case-body"><div class="case-title">左心房測量</div><div class="case-desc">LA/Ao 比值、LA-FS%/LA-EF%、Biplane 面積長度法</div></div>
+      <span class="case-arrow">→</span>
+    </a>
+    <a class="case-card" href="06-shunts.html" data-title="先天性分流 PDA VSD ASD shunt">
+      <div class="case-num">06</div>
+      <div class="case-body"><div class="case-title">先天性分流</div><div class="case-desc">PDA、VSD、ASD 病理生理與典型 Echo 特徵，含真實案例</div></div>
+      <span class="case-arrow">→</span>
+    </a>
+    <a class="case-card" href="07-volume-status.html" data-title="Teichholz Simpson 3D 容積 volume status">
+      <div class="case-num">07</div>
+      <div class="case-body"><div class="case-title">心室容積評估</div><div class="case-desc">Teichholz vs Simpson vs 3D 容積測量比較與犬隻常模</div></div>
+      <span class="case-arrow">→</span>
+    </a>
+    <a class="case-card" href="08-rv-evaluation.html" data-title="右心室 RV TAPSE FAC">
+      <div class="case-num">08</div>
+      <div class="case-body"><div class="case-title">右心室評估</div><div class="case-desc">優化 RV 切面、RV-EDA/ESA、TAPSE、FAC 等定量參數</div></div>
+      <span class="case-arrow">→</span>
+    </a>
+  </div>
 
+  <div class="section-label">🎚️ 都卜勒與功能評估</div>
+  <div class="cases">
+    <a class="case-card" href="09-pw-cw-technical.html" data-title="PW CW Nyquist aliasing 技術參數">
+      <div class="case-num">09</div>
+      <div class="case-body"><div class="case-title">PW/CW 都卜勒技術參數</div><div class="case-desc">Nyquist limit、aliasing、增益濾波設定、心律不整影響</div></div>
+      <span class="case-arrow">→</span>
+    </a>
+    <a class="case-card" href="10-doppler-measurements.html" data-title="都卜勒測量 正常流速 Bernoulli 主動脈瓣狹窄">
+      <div class="case-num">10</div>
+      <div class="case-body"><div class="case-title">都卜勒測量：部位與判讀</div><div class="case-desc">各瓣膜正常流速、Bernoulli 壓力差、瓣膜狹窄分級，含誤判案例</div></div>
+      <span class="case-arrow">→</span>
+    </a>
+    <a class="case-card" href="11-diastolic-function.html" data-title="舒張功能 E/A IVRT diastolic">
+      <div class="case-num">11</div>
+      <div class="case-body"><div class="case-title">舒張功能評估</div><div class="case-desc">E/A 三級分類、IVRT 判讀、舒張功能評估流程</div></div>
+      <span class="case-arrow">→</span>
+    </a>
+    <a class="case-card" href="12-pulmonary-hypertension.html" data-title="肺高壓 RVSP rPADI pulmonary hypertension">
+      <div class="case-num">12</div>
+      <div class="case-body"><div class="case-title">肺高壓</div><div class="case-desc">Echo 特徵、RVSP 都卜勒估算、嚴重度分級與治療原則</div></div>
+      <span class="case-arrow">→</span>
+    </a>
+    <a class="case-card" href="13-color-doppler.html" data-title="彩色都卜勒 color flow PRF gain">
+      <div class="case-num">13</div>
+      <div class="case-body"><div class="case-title">彩色都卜勒</div><div class="case-desc">色彩判讀原則、增益與 PRF 調整、各瓣膜血流型態</div></div>
+      <span class="case-arrow">→</span>
+    </a>
+  </div>
+
+  <div class="section-label">🩺 病理判讀</div>
+  <div class="cases">
+    <a class="case-card" href="14-pericardial-effusion.html" data-title="心包膜積液 心包填塞 血管肉瘤 pericardial">
+      <div class="case-num">14</div>
+      <div class="case-body"><div class="case-title">心包膜積液</div><div class="case-desc">心包填塞、常見腫瘤鑑別（血管肉瘤／心底腫瘤／間皮瘤）與預後</div></div>
+      <span class="case-arrow">→</span>
+    </a>
+    <a class="case-card" href="15-mmvd.html" data-title="MMVD 二尖瓣 ACVIM 分期 Stage B2">
+      <div class="case-num">15</div>
+      <div class="case-body"><div class="case-title">黏液瘤性二尖瓣疾病（MMVD）</div><div class="case-desc">ACVIM 分期、Stage B2 判定、收縮功能評估陷阱、CHF 風險因子</div></div>
+      <span class="case-arrow">→</span>
+    </a>
+    <a class="case-card" href="16-feline-cardiomyopathy.html" data-title="貓心肌病 HCM SAM 假腱索 feline">
+      <div class="case-num">16</div>
+      <div class="case-body"><div class="case-title">貓心肌病判讀技巧</div><div class="case-desc">SAM／DR VOTO、LV 壁厚分類、假腱索陷阱、CHF/ATE 高風險徵象</div></div>
+      <span class="case-arrow">→</span>
+    </a>
+    <a class="case-card" href="17-dcm-guidelines.html" data-title="DCM 擴張型心肌病 ESVC 杜賓犬 Doberman">
+      <div class="case-num">17</div>
+      <div class="case-body"><div class="case-title">犬 DCM 診斷準則</div><div class="case-desc">ESVC 診斷積分、杜賓犬專屬切點、篩檢建議</div></div>
+      <span class="case-arrow">→</span>
+    </a>
+    <a class="case-card" href="18-reference-values.html" data-title="常模值 reference values 指標化公式速查表">
+      <div class="case-num">18</div>
+      <div class="case-body"><div class="case-title">常模值總表與指標化公式</div><div class="case-desc">全系列切點與指標化公式速查表，附品種特異性提醒</div></div>
+      <span class="case-arrow">→</span>
+    </a>
   </div>
 
   <div class="info-card">
-    <strong>📖 資料來源說明：</strong>本系列內容整理自 ESAVS（European School for Advanced Veterinary Studies）心臟超音波課程講義，原講師為 Dr. Gerhard Wess（Dipl. ACVIM Cardiology、Dipl. ECVIM-CA Cardiology／Internal Medicine，LMU Munich）。文中互動計算機均依講義中明確列出的公式與切點值製作，供學習與臨床參考；部分講義中的大型體重／品種分層常模表格，因版面關係僅摘錄關鍵切點值，完整數值請對照原始講義。<br><br>
+    <strong>📖 資料來源說明：</strong>本系列內容整理自 ESAVS（European School for Advanced Veterinary Studies）心臟超音波課程講義，原講師為 Dr. Gerhard Wess（Dipl. ACVIM Cardiology、Dipl. ECVIM-CA Cardiology／Internal Medicine，LMU Munich）。文中互動計算機均依講義中明確列出的公式與切點值製作，供學習與臨床參考；部分講義中的大型體重／品種分層常模表格，因版面關係僅摘錄關鍵切點值於第 18 節，完整數值請對照原始講義。<br><br>
     <strong>⚠️ 使用提醒：</strong>所有計算結果僅供教育與參考用途，實際臨床判讀與治療決策仍須由獸醫師依完整病史、理學檢查與多項檢查結果綜合判斷。
   </div>
 
 </div>
+
+<script>
+  const input = document.getElementById('search-input');
+  input.addEventListener('input', () => {
+    const q = input.value.toLowerCase();
+    document.querySelectorAll('.case-card').forEach(card => {
+      const text = (card.dataset.title || '') + ' ' + (card.textContent || '');
+      card.hidden = q.length > 0 && !text.toLowerCase().includes(q);
+    });
+    document.querySelectorAll('.section-label').forEach(label => {
+      const group = label.nextElementSibling;
+      const anyVisible = group && Array.from(group.children).some(c => !c.hidden);
+      label.hidden = q.length > 0 && !anyVisible;
+    });
+  });
+</script>
 
 </body>
 </html>
