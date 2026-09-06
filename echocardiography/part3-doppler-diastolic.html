@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心臟超音波（三）都卜勒與舒張功能評估 | 獸醫讀書筆記</title>
+<style>
+  :root {
+    --gold:    #c8962a;
+    --gold-lt: #f0c84a;
+    --gold-dk: #8a6010;
+    --gold-bg: #fdf6e3;
+    --gold-border: #e8d5a0;
+    --dark:    #2c1f00;
+    --text:    #4a3800;
+    --bg:      #fdfaf2;
+    --white:   #ffffff;
+    --teal:    #0891b2;
+    --blue:    #2563eb;
+    --green:   #059669;
+    --orange:  #d97706;
+    --red:     #dc2626;
+    --purple:  #7c3aed;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: -apple-system, 'Noto Sans TC', 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); }
+
+  #topnav {
+    position: sticky; top: 0; z-index: 100;
+    background: linear-gradient(135deg, #fff8e8 0%, #fdf0c8 100%);
+    border-bottom: 3px solid var(--gold);
+    padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; min-height: 52px;
+  }
+  #topnav .back {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--gold-dk); text-decoration: none; font-size: 13px; font-weight: 700;
+    border: 2px solid var(--gold); border-radius: 20px; padding: 5px 14px;
+    transition: background .2s; white-space: nowrap;
+  }
+  #topnav .back:hover { background: #fdf0c8; }
+  #topnav .nav-title { font-size: 13px; font-weight: 700; color: var(--text); opacity: .55; }
+  #topnav .nav-links { display: flex; gap: 4px; flex-wrap: wrap; }
+  #topnav .nav-links a {
+    font-size: 12px; font-weight: 600; color: var(--gold-dk);
+    text-decoration: none; padding: 4px 10px; border-radius: 14px;
+    transition: background .15s;
+  }
+  #topnav .nav-links a:hover { background: var(--gold-border); }
+  @media (max-width: 760px) {
+    #topnav .nav-links { display: none; }
+    #topnav .nav-title { display: none; }
+  }
+
+  #hero {
+    background: linear-gradient(135deg, #fff8e8 0%, #fdf0c8 60%, #fce89a 100%);
+    border-bottom: 3px solid var(--gold);
+    padding: 56px 24px 48px; text-align: center;
+  }
+  #hero .hero-paw { font-size: 48px; margin-bottom: 12px; }
+  #hero h1 { font-size: 28px; font-weight: 800; color: var(--gold-dk); line-height: 1.3; margin-bottom: 12px; }
+  #hero p { font-size: 15px; color: var(--text); opacity: .75; max-width: 560px; margin: 0 auto 20px; line-height: 1.7; }
+  #hero .tags { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+  #hero .tag {
+    background: var(--white); border: 2px solid var(--gold); border-radius: 20px;
+    padding: 4px 14px; font-size: 12px; font-weight: 700; color: var(--gold-dk);
+  }
+
+  .container { max-width: 860px; margin: 0 auto; padding: 40px 20px 80px; }
+
+  .series-nav { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+  .series-nav a, .series-nav span {
+    font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 20px;
+    border: 2px solid var(--gold-border); color: var(--gold-dk); text-decoration: none;
+  }
+  .series-nav .current { background: var(--gold); color: #fff; border-color: var(--gold); }
+
+  .section { margin-bottom: 48px; }
+  .section-title {
+    font-size: 20px; font-weight: 800; color: var(--gold-dk);
+    margin-bottom: 4px; display: flex; align-items: center; gap: 10px;
+    border-bottom: 2px solid var(--gold-border); padding-bottom: 10px; margin-bottom: 16px;
+  }
+  .section-sub { font-size: 13px; color: var(--text); opacity: .6; margin-bottom: 20px; margin-top: -10px; }
+
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 14px; margin-bottom: 20px; }
+  .card {
+    background: var(--white); border-radius: 14px;
+    border: 1px solid var(--gold-border); border-top: 4px solid var(--gold);
+    padding: 18px; box-shadow: 0 2px 8px rgba(200,150,42,.1);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(200,150,42,.2); }
+  .card.c-teal { border-top-color: var(--teal); }
+  .card.c-blue { border-top-color: var(--blue); }
+  .card.c-green { border-top-color: var(--green); }
+  .card.c-orange { border-top-color: var(--orange); }
+  .card.c-red { border-top-color: var(--red); }
+  .card.c-purple { border-top-color: var(--purple); }
+  .card .ci { font-size: 26px; margin-bottom: 8px; }
+  .card h3 { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+  .card p { font-size: 13px; color: var(--text); opacity: .8; line-height: 1.6; }
+
+  .info-box { border-radius: 10px; padding: 14px 18px; margin-bottom: 14px; font-size: 13.5px; line-height: 1.7; }
+  .info-box.gold  { background: #fffbeb; border-left: 4px solid var(--gold); color: var(--gold-dk); }
+  .info-box.teal  { background: #ecfeff; border-left: 4px solid var(--teal); color: #155e75; }
+  .info-box.green { background: #f0fdf4; border-left: 4px solid var(--green); color: #166534; }
+  .info-box.orange{ background: #fffbeb; border-left: 4px solid var(--orange); color: #92400e; }
+  .info-box.red   { background: #fef2f2; border-left: 4px solid var(--red); color: #991b1b; }
+  .info-box strong { font-weight: 700; }
+
+  .table-wrap { overflow-x: auto; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(200,150,42,.1); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--white); }
+  thead th {
+    background: linear-gradient(135deg, var(--gold-dk), var(--gold));
+    color: #fff; padding: 10px 14px; text-align: left; font-weight: 700;
+  }
+  thead th:first-child { border-radius: 12px 0 0 0; }
+  thead th:last-child  { border-radius: 0 12px 0 0; }
+  tbody tr:nth-child(even) { background: #fffdf5; }
+  tbody td { padding: 10px 14px; border-bottom: 1px solid var(--gold-border); vertical-align: top; }
+
+  .steps { display: flex; gap: 0; margin-bottom: 16px; border-radius: 12px; overflow: hidden; border: 2px solid var(--gold-border); }
+  .step {
+    flex: 1; background: var(--white); padding: 16px 12px; cursor: pointer;
+    text-align: center; transition: all .2s; border-right: 1px solid var(--gold-border);
+  }
+  .step:last-child { border-right: none; }
+  .step:hover, .step.active { background: linear-gradient(135deg, var(--gold-dk), var(--gold)); color: #fff; }
+  .step .step-num { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--gold); margin-bottom: 4px; }
+  .step.active .step-num, .step:hover .step-num { color: rgba(255,255,255,.7); }
+  .step h4 { font-size: 14px; font-weight: 700; color: var(--dark); }
+  .step.active h4, .step:hover h4 { color: #fff; }
+  .step .step-en { font-size: 11px; color: var(--text); opacity: .5; margin-top: 2px; }
+  .step.active .step-en, .step:hover .step-en { color: rgba(255,255,255,.6); opacity: 1; }
+  .step-detail { display: none; background: #fffbeb; border: 2px solid var(--gold-border); border-radius: 12px; padding: 20px 22px; margin-bottom: 16px; }
+  .step-detail.show { display: block; }
+  .step-detail h4 { color: var(--gold-dk); font-size: 15px; margin-bottom: 8px; }
+  .step-detail p, .step-detail li { font-size: 13.5px; line-height: 1.7; color: var(--text); }
+  .step-detail ul { padding-left: 20px; }
+  @media (max-width: 600px) {
+    .steps { flex-direction: column; }
+    .step { border-right: none; border-bottom: 1px solid var(--gold-border); }
+    .step:last-child { border-bottom: none; }
+  }
+
+  .calc-box { background: var(--white); border: 2px solid var(--gold-border); border-radius: 14px; padding: 24px; margin-bottom: 20px; }
+  .calc-box h3 { font-size: 16px; font-weight: 800; color: var(--gold-dk); margin-bottom: 6px; }
+  .calc-box .calc-sub { font-size: 12px; color: var(--text); opacity: .6; margin-bottom: 16px; }
+  .form-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+  .form-group { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 130px; }
+  .form-group label { font-size: 12px; font-weight: 700; color: var(--gold-dk); }
+  .form-group select, .form-group input {
+    border: 2px solid var(--gold-border); border-radius: 8px; padding: 8px 12px;
+    font-size: 13px; color: var(--dark); background: var(--white); transition: border-color .2s;
+  }
+  .form-group select:focus, .form-group input:focus { outline: none; border-color: var(--gold); }
+  .calc-result { background: #fffbeb; border: 2px solid var(--gold-border); border-radius: 10px; padding: 14px 16px; margin-top: 14px; display: none; }
+  .calc-result.show { display: block; }
+  .calc-result table { width: 100%; }
+  .calc-result td { padding: 6px 8px; font-size: 13px; }
+  .calc-result td:first-child { font-weight: 600; color: var(--text); opacity: .7; width: 55%; }
+  .calc-result td:last-child { font-weight: 800; color: var(--gold-dk); font-size: 15px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: linear-gradient(135deg, var(--gold-dk), var(--gold));
+    color: #fff; border: none; border-radius: 20px;
+    padding: 9px 20px; font-size: 13px; font-weight: 700; cursor: pointer;
+    margin-top: 10px; transition: opacity .2s;
+  }
+  .btn:hover { opacity: .88; }
+
+  footer { background: linear-gradient(135deg,#fff8e8,#fdf0c8); border-top: 3px solid var(--gold); padding: 28px 20px; text-align: center; font-size: 12px; color: var(--text); opacity: .65; line-height: 1.8; }
+  mark { background: #fef9c3; border-radius: 3px; padding: 1px 3px; }
+</style>
+</head>
+<body>
+
+<nav id="topnav">
+  <a class="back" href="../index.html">← 返回首頁</a>
+  <span class="nav-title">獸醫讀書筆記 / 心臟超音波（三）都卜勒與舒張功能</span>
+  <div class="nav-links">
+    <a href="#tech">技術參數</a>
+    <a href="#velocities">正常流速</a>
+    <a href="#diastolic">舒張功能</a>
+    <a href="#calc">計算機</a>
+  </div>
+</nav>
+
+<div id="hero">
+  <div class="hero-paw">🫀</div>
+  <h1>心臟超音波（三）<br>都卜勒與舒張功能評估</h1>
+  <p>PW/CW 都卜勒技術參數、各瓣膜正常流速、Modified Bernoulli 壓力差計算、舒張功能分級評估，附 5 個互動計算機。</p>
+  <div class="tags">
+    <span class="tag">PW/CW Doppler</span>
+    <span class="tag">Bernoulli</span>
+    <span class="tag">E/A ratio</span>
+    <span class="tag">IVRT</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="series-nav">
+    <a href="part1-basics-views.html">01 基礎與標準切面</a>
+    <a href="part2-measurements.html">02 腔室測量與常模值</a>
+    <span class="current">03 都卜勒與舒張功能</span>
+    <a href="part4-pathology.html">04 常見病理判讀</a>
+  </div>
+
+  <div class="section" id="tech">
+    <div class="section-title">🎚️ PW/CW 都卜勒技術參數</div>
+    <div class="card-grid">
+      <div class="card"><div class="ci">🌊</div><h3>PW（脈衝波）</h3><p>可測方向與位置精準，但受 Nyquist limit 限制，流速過快（&gt; 3 m/s）會發生 aliasing（訊號折返）</p></div>
+      <div class="card c-teal"><div class="ci">📡</div><h3>CW（連續波）</h3><p>可測極高流速不受 aliasing 限制，但缺乏空間定位精準度（沿整條光束都會收到訊號）</p></div>
+      <div class="card c-blue"><div class="ci">🎛️</div><h3>Wall Filter</h3><p>濾除心臟壁運動造成的低頻訊號干擾，避免遮蔽血流訊號</p></div>
+      <div class="card c-purple"><div class="ci">📶</div><h3>Gain</h3><p>增益過高 → 背景雜訊多、易「mirroring／crosstalk」；增益過低 → 頻譜顯示不完整</p></div>
+    </div>
+    <div class="info-box gold">
+      <strong>Nyquist limit（乃奎斯特極限）：</strong>PW 都卜勒能準確測量的最大頻移為 PRF 的一半。血流速度快時容易超過此極限而產生 aliasing，此時應改用 CW 都卜勒測量。
+    </div>
+    <div class="info-box teal">
+      <strong>處理 Aliasing 的方法：</strong>移動基準線（baseline）、提高 PRF、改用較淺的切面（降低深度）、改用較低頻率探頭、或直接改用 CW 都卜勒。
+    </div>
+
+    <h3 style="font-size:15px;font-weight:800;color:var(--gold-dk);margin:20px 0 12px;">彩色都卜勒基本觀念</h3>
+    <div class="card-grid">
+      <div class="card c-red"><div class="ci">🔴</div><h3>紅色</h3><p>血流朝向探頭</p></div>
+      <div class="card c-blue"><div class="ci">🔵</div><h3>藍色</h3><p>血流遠離探頭</p></div>
+      <div class="card c-purple"><div class="ci">🌈</div><h3>馬賽克花色</h3><p>亂流（turbulence）— 常見於瓣膜逆流、狹窄、分流</p></div>
+    </div>
+    <div class="info-box gold">
+      <strong>Color Gain 調整技巧：</strong>每次檢查先把彩色增益調高到滿版都是雜訊像素，再慢慢調低直到雜訊剛好消失——這是最快找到正確增益的方法。
+    </div>
+  </div>
+
+  <div class="section" id="velocities">
+    <div class="section-title">📏 各瓣膜正常流速參考</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>位置</th><th>正常流速</th></tr></thead>
+        <tbody>
+          <tr><td>主動脈／肺動脈收縮期流速</td><td>≤ 2.0 m/s（拳師犬可達 2.4 m/s）</td></tr>
+          <tr><td>二尖瓣 E 波</td><td>≈ 1.2 m/s</td></tr>
+          <tr><td>二尖瓣 A 波</td><td>≈ 0.9 m/s</td></tr>
+          <tr><td>三尖瓣逆流（正常變異）</td><td>可達 3.0 m/s</td></tr>
+          <tr><td>二尖瓣逆流（MR）</td><td>常見 5.0–6.0 m/s（高血壓病患可 &gt; 6.5 m/s）</td></tr>
+          <tr><td>肺動脈瓣閉鎖不全（正常）</td><td>&lt; 1.8 m/s</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:15px;font-weight:800;color:var(--gold-dk);margin:20px 0 12px;">主動脈瓣狹窄嚴重度分級</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>嚴重度</th><th>峰值流速</th><th>瞬時壓力差</th></tr></thead>
+        <tbody>
+          <tr><td>輕度</td><td>2.5 – 3.5 m/s</td><td>25 – 50 mmHg</td></tr>
+          <tr><td>中度</td><td>3.5 – 4.5 m/s</td><td>50 – 80 mmHg</td></tr>
+          <tr><td>重度</td><td>&gt; 4.5 m/s</td><td>&gt; 80 mmHg</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section" id="diastolic">
+    <div class="section-title">💓 舒張功能評估</div>
+    <div class="section-sub">舒張期分為四個階段：等容舒張期（IVRT）→ 快速充盈期（E 波）→ 舒張間歇期（diastasis）→ 心房收縮充盈期（A 波）</div>
+
+    <div class="steps">
+      <div class="step active" onclick="showStep(0)" id="s0"><div class="step-num">Grade I</div><h4>鬆弛障礙</h4><div class="step-en">Impaired Relaxation</div></div>
+      <div class="step" onclick="showStep(1)" id="s1"><div class="step-num">Grade II</div><h4>假性正常化</h4><div class="step-en">Pseudonormal</div></div>
+      <div class="step" onclick="showStep(2)" id="s2"><div class="step-num">Grade III</div><h4>限制型充盈</h4><div class="step-en">Restrictive</div></div>
+    </div>
+
+    <div class="step-detail show" id="d0">
+      <h4>Grade I：鬆弛障礙（Impaired Relaxation）</h4>
+      <ul>
+        <li>早期舒張充盈變慢、E 波速度下降</li>
+        <li>Deceleration time（減速時間）延長</li>
+        <li>IVRT 延長</li>
+        <li>A 波變大，<strong>E/A &lt; 0.8</strong></li>
+      </ul>
+    </div>
+    <div class="step-detail" id="d1">
+      <h4>Grade II：假性正常化（Pseudonormal）</h4>
+      <ul>
+        <li>E/A 比值看似正常，容易誤判</li>
+        <li>因 LA 壓力慢性升高，E 波速度其實是被墊高的</li>
+        <li>Deceleration time 仍偏慢</li>
+        <li>IVRT 因 LA 壓力高、二尖瓣提早開啟而縮短</li>
+      </ul>
+    </div>
+    <div class="step-detail" id="d2">
+      <h4>Grade III：限制型充盈（Restrictive Filling Pattern）</h4>
+      <ul>
+        <li>LA 與 LV 充盈壓力明顯升高、LV 順應性下降</li>
+        <li>IVRT 明顯縮短，E 波速度增加</li>
+        <li>Deceleration time 縮短</li>
+        <li>LV 舒張早期已幾乎填滿，A 波反而變小</li>
+      </ul>
+    </div>
+
+    <div class="info-box gold">
+      <strong>常識判讀：</strong>若 LA 大小仍正常，通常不需擔心臨床上有意義的舒張功能障礙；若 LA 或 LV 已擴大，才需要進一步評估舒張功能分級。
+    </div>
+
+    <h3 style="font-size:15px;font-weight:800;color:var(--gold-dk);margin:20px 0 12px;">IVRT 參考值與 CHF 相關切點</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>族群</th><th>數值</th></tr></thead>
+        <tbody>
+          <tr><td>犬正常範圍</td><td>40 – 80 ms</td></tr>
+          <tr><td>貓正常範圍</td><td>37 – 60 ms</td></tr>
+          <tr><td>貓 HCM，CHF 相關切點</td><td>&lt; 40 ms</td></tr>
+          <tr><td>犬 MMVD，CHF 相關切點</td><td>&lt; 46 ms</td></tr>
+          <tr><td>犬 DCM，CHF 相關切點</td><td>&lt; 43 ms</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="info-box orange">
+      ⚠️ IVRT 會隨年齡增長而延長（正常老化現象），判讀時需將年齡納入考量；同時 IVRT 受心室鬆弛、主動脈與左心房末期收縮壓等多重因素影響，單一數值不宜過度解讀。
+    </div>
+  </div>
+
+  <div class="section" id="calc">
+    <div class="section-title">🧮 互動計算機</div>
+
+    <div class="calc-box">
+      <h3>① Modified Bernoulli 壓力差計算機</h3>
+      <div class="calc-sub">公式：ΔP (mmHg) = 4 × V²（V 為都卜勒測得流速，單位 m/s）</div>
+      <div class="form-row">
+        <div class="form-group"><label>都卜勒峰值流速（m/s）</label><input type="number" id="bern-v" step="0.01" placeholder="例：5.0"></div>
+      </div>
+      <button class="btn" onclick="calcBernoulli()">計算壓力差</button>
+      <div class="calc-result" id="bern-res">
+        <table><tr><td>壓力差 ΔP</td><td id="bern-v1">–</td></tr></table>
+      </div>
+    </div>
+
+    <div class="calc-box">
+      <h3>② 肺高壓（PH）嚴重度計算機</h3>
+      <div class="calc-sub">公式：RVSP = 4 × (三尖瓣逆流流速)² + RAP（右心房壓，正常約 0 mmHg，CHF 時可達 &gt;15 mmHg）</div>
+      <div class="form-row">
+        <div class="form-group"><label>TR 峰值流速（m/s）</label><input type="number" id="ph-v" step="0.01" placeholder="例：4.2"></div>
+        <div class="form-group">
+          <label>估計 RAP（mmHg）</label>
+          <select id="ph-rap">
+            <option value="0">正常（0 mmHg）</option>
+            <option value="5">輕度升高（5 mmHg）</option>
+            <option value="10">中度升高（10 mmHg）</option>
+            <option value="15">明顯升高／CHF（15 mmHg）</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" onclick="calcPH()">計算 RVSP 與分級</button>
+      <div class="calc-result" id="ph-res">
+        <table>
+          <tr><td>估計 RVSP（收縮期肺動脈壓）</td><td id="ph-v1">–</td></tr>
+          <tr><td>肺高壓嚴重度分級</td><td id="ph-v2">–</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="calc-box">
+      <h3>③ 瓣膜狹窄嚴重度計算機（主動脈／肺動脈瓣）</h3>
+      <div class="calc-sub">依峰值流速換算瞬時壓力差並分級（適用主動脈瓣或肺動脈瓣狹窄）。</div>
+      <div class="form-row">
+        <div class="form-group"><label>峰值流速（m/s）</label><input type="number" id="as-v" step="0.01" placeholder="例：3.9"></div>
+      </div>
+      <button class="btn" onclick="calcAS()">計算嚴重度</button>
+      <div class="calc-result" id="as-res">
+        <table>
+          <tr><td>瞬時壓力差</td><td id="as-v1">–</td></tr>
+          <tr><td>嚴重度分級</td><td id="as-v2">–</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="calc-box">
+      <h3>④ E/A 舒張功能分級小工具</h3>
+      <div class="calc-sub">輸入 E 波與 A 波峰值流速（m/s），並可選填 IVRT 輔助判讀。此為粗略篩檢工具，正式分級仍需綜合 LA 大小、TVI 等多項參數。</div>
+      <div class="form-row">
+        <div class="form-group"><label>E 波（m/s）</label><input type="number" id="ea-e" step="0.01"></div>
+        <div class="form-group"><label>A 波（m/s）</label><input type="number" id="ea-a" step="0.01"></div>
+        <div class="form-group"><label>IVRT（ms，選填）</label><input type="number" id="ea-ivrt" step="1"></div>
+      </div>
+      <button class="btn" onclick="calcEA()">評估舒張功能分級</button>
+      <div class="calc-result" id="ea-res">
+        <table>
+          <tr><td>E/A 比值</td><td id="ea-v1">–</td></tr>
+          <tr><td>初步判讀</td><td id="ea-v2">–</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="calc-box">
+      <h3>⑤ IVRT 判讀小工具</h3>
+      <div class="calc-sub">依物種與疾病背景比對 IVRT 切點。</div>
+      <div class="form-row">
+        <div class="form-group"><label>IVRT（ms）</label><input type="number" id="ivrt-v" step="1"></div>
+        <div class="form-group">
+          <label>族群 / 疾病背景</label>
+          <select id="ivrt-ctx">
+            <option value="dog-normal">犬（一般正常範圍 40–80 ms）</option>
+            <option value="cat-normal">貓（一般正常範圍 37–60 ms）</option>
+            <option value="cat-hcm">貓 HCM（CHF 相關切點 &lt;40 ms）</option>
+            <option value="dog-mmvd">犬 MMVD（CHF 相關切點 &lt;46 ms）</option>
+            <option value="dog-dcm">犬 DCM（CHF 相關切點 &lt;43 ms）</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" onclick="calcIVRT()">判讀 IVRT</button>
+      <div class="calc-result" id="ivrt-res">
+        <table><tr><td>判讀結果</td><td id="ivrt-v1">–</td></tr></table>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  心臟超音波系列筆記 · 整理自 ESAVS 課程講義（Dr. Gerhard Wess）<br>
+  計算結果僅供教育與參考用途，臨床處置請依獸醫師判斷執行
+</footer>
+
+<script>
+function showStep(i) {
+  for (let j = 0; j < 3; j++) {
+    document.getElementById('s'+j).classList.remove('active');
+    document.getElementById('d'+j).classList.remove('show');
+  }
+  document.getElementById('s'+i).classList.add('active');
+  document.getElementById('d'+i).classList.add('show');
+}
+
+function calcBernoulli() {
+  const v = parseFloat(document.getElementById('bern-v').value);
+  if (!v || v <= 0) { alert('請輸入有效流速'); return; }
+  const dp = 4 * v * v;
+  document.getElementById('bern-v1').textContent = dp.toFixed(1) + ' mmHg';
+  document.getElementById('bern-res').classList.add('show');
+}
+
+function calcPH() {
+  const v = parseFloat(document.getElementById('ph-v').value);
+  const rap = parseFloat(document.getElementById('ph-rap').value);
+  if (!v || v <= 0) { alert('請輸入有效的 TR 流速'); return; }
+  const rvsp = 4 * v * v + rap;
+  let grade;
+  if (rvsp >= 75) grade = '重度肺高壓（≥75 mmHg）';
+  else if (rvsp >= 50) grade = '中度肺高壓（50–<75 mmHg）';
+  else if (rvsp >= 35) grade = '輕度肺高壓（35–<50 mmHg）';
+  else grade = '未達肺高壓切點（<35 mmHg，仍建議綜合其他徵象判讀）';
+  document.getElementById('ph-v1').textContent = rvsp.toFixed(1) + ' mmHg';
+  document.getElementById('ph-v2').textContent = grade;
+  document.getElementById('ph-res').classList.add('show');
+}
+
+function calcAS() {
+  const v = parseFloat(document.getElementById('as-v').value);
+  if (!v || v <= 0) { alert('請輸入有效流速'); return; }
+  const dp = 4 * v * v;
+  let grade;
+  if (v > 4.5) grade = '重度（>4.5 m/s，>80 mmHg）';
+  else if (v >= 3.5) grade = '中度（3.5–4.5 m/s，50–80 mmHg）';
+  else if (v >= 2.5) grade = '輕度（2.5–3.5 m/s，25–50 mmHg）';
+  else grade = '低於分級門檻（<2.5 m/s）';
+  document.getElementById('as-v1').textContent = dp.toFixed(1) + ' mmHg';
+  document.getElementById('as-v2').textContent = grade;
+  document.getElementById('as-res').classList.add('show');
+}
+
+function calcEA() {
+  const e = parseFloat(document.getElementById('ea-e').value);
+  const a = parseFloat(document.getElementById('ea-a').value);
+  const ivrt = parseFloat(document.getElementById('ea-ivrt').value);
+  if (!e || !a || a <= 0) { alert('請輸入有效的 E 波與 A 波流速'); return; }
+  const ratio = e / a;
+  let note;
+  if (ratio < 0.8) note = '偏低，提示可能為 Grade I 鬆弛障礙（需搭配 IVRT／DT 確認，注意心跳過快時 E、A 波易融合造成誤判）';
+  else if (ratio > 2.0) note = '⚠️ 明顯偏高（>2.0），提示可能為 Grade III 限制型充盈（貓為 CHF/ATE 高風險徵象之一）';
+  else note = '落於一般正常範圍附近，但仍可能是 Grade II 假性正常化——請務必搭配 LA 大小、IVRT、TVI-E\' 綜合判讀，不可單獨用 E/A 診斷';
+  if (!isNaN(ivrt) && ivrt) note += `；IVRT ${ivrt} ms 請對照下方 IVRT 判讀小工具`;
+  document.getElementById('ea-v1').textContent = ratio.toFixed(2);
+  document.getElementById('ea-v2').textContent = note;
+  document.getElementById('ea-res').classList.add('show');
+}
+
+function calcIVRT() {
+  const v = parseFloat(document.getElementById('ivrt-v').value);
+  const ctx = document.getElementById('ivrt-ctx').value;
+  if (!v || v <= 0) { alert('請輸入有效的 IVRT'); return; }
+  let note;
+  if (ctx === 'dog-normal') note = (v >= 40 && v <= 80) ? '落於犬正常範圍（40–80 ms）' : (v < 40 ? '低於一般正常範圍下限' : '高於一般正常範圍上限（提示鬆弛障礙）');
+  else if (ctx === 'cat-normal') note = (v >= 37 && v <= 60) ? '落於貓正常範圍（37–60 ms）' : (v < 37 ? '低於一般正常範圍下限' : '高於一般正常範圍上限（提示鬆弛障礙）');
+  else if (ctx === 'cat-hcm') note = v < 40 ? '⚠️ 低於 40 ms，與 HCM 貓 CHF 風險相關' : '未低於 40 ms 切點';
+  else if (ctx === 'dog-mmvd') note = v < 46 ? '⚠️ 低於 46 ms，與 MMVD 犬 CHF 風險相關' : '未低於 46 ms 切點';
+  else if (ctx === 'dog-dcm') note = v < 43 ? '⚠️ 低於 43 ms，與 DCM 犬 CHF 風險相關' : '未低於 43 ms 切點';
+  document.getElementById('ivrt-v1').textContent = note;
+  document.getElementById('ivrt-res').classList.add('show');
+}
+</script>
+</body>
+</html>

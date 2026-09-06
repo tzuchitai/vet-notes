@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心臟超音波系列：ESAVS Echocardiography｜獸醫讀書筆記</title>
+<style>
+  :root {
+    --accent:    #C81E45;
+    --accent-lt: #E8607F;
+    --accent-dk: #7A0F2C;
+    --accent-bg: #FDF0F3;
+    --dark:      #2E1219;
+    --text:      #4A2530;
+    --border:    #F2D9DF;
+    --bg:        #FDFAFB;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, "Segoe UI", "Noto Sans TC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  .home-bar { padding: 16px 24px 0; max-width: 900px; margin: 0 auto; }
+  .home-bar a {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--text); opacity: .55; text-decoration: none;
+    font-size: .85rem; font-weight: 600;
+  }
+  .home-bar a:hover { opacity: .9; }
+
+  header {
+    background: linear-gradient(135deg, #fdf0f3 0%, #f9dbe2 100%);
+    border-bottom: 3px solid var(--accent);
+    color: var(--dark);
+    padding: 40px 24px 44px;
+    text-align: center;
+  }
+  .header-icon { font-size: 2.6rem; margin-bottom: 12px; }
+  header .kicker {
+    font-family: ui-monospace, "SF Mono", monospace;
+    font-size: .75rem; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent-dk); opacity: .75; margin-bottom: 10px;
+  }
+  header h1 { font-size: 2rem; font-weight: 800; letter-spacing: .02em; color: var(--accent-dk); }
+  header p.dek { margin: 10px auto 0; max-width: 560px; opacity: .68; font-size: .95rem; line-height: 1.65; color: var(--text); }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 36px 20px 80px; }
+
+  .stats { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 32px; }
+  .stat {
+    background: #fff; border-radius: 12px; padding: 14px 20px;
+    box-shadow: 0 2px 8px rgba(122,15,44,.06);
+    flex: 1; min-width: 120px; text-align: center; border: 1px solid var(--border);
+  }
+  .stat-num  { font-size: 1.6rem; font-weight: 800; color: var(--accent); }
+  .stat-label{ font-size: .75rem; opacity: .55; margin-top: 2px; }
+
+  .section-label {
+    font-size: .78rem; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--text); opacity: .55; margin: 28px 0 14px;
+  }
+
+  .cases { display: flex; flex-direction: column; gap: 14px; }
+  .case-card {
+    background: #fff; border-radius: 14px; box-shadow: 0 2px 12px rgba(122,15,44,.06);
+    text-decoration: none; color: inherit; display: flex; gap: 18px;
+    padding: 20px 22px; border: 1px solid var(--border);
+    transition: transform .16s, box-shadow .16s;
+  }
+  .case-card:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(122,15,44,.14); }
+  .case-num {
+    font-family: ui-monospace, "SF Mono", monospace; font-size: .8rem; font-weight: 700;
+    color: var(--accent); background: var(--accent-bg); border: 1px solid var(--border);
+    border-radius: 8px; width: 42px; height: 42px;
+    display: flex; align-items: center; justify-content: center; flex: none;
+  }
+  .case-body { flex: 1; min-width: 0; }
+  .case-tag { font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent-dk); opacity: .7; margin-bottom: 4px; }
+  .case-title { font-size: 1.05rem; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+  .case-desc  { font-size: .85rem; color: var(--text); opacity: .75; line-height: 1.55; }
+  .case-meta { flex: none; display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; gap: 10px; }
+  .case-date { font-size: .76rem; color: var(--text); opacity: .5; white-space: nowrap; }
+  .case-arrow {
+    font-size: .85rem; color: #fff; width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; background: var(--accent);
+  }
+
+  .info-card {
+    background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--accent);
+    border-radius: 12px; padding: 18px 20px; margin-top: 28px; font-size: .85rem; line-height: 1.75; color: var(--text);
+  }
+  .info-card strong { color: var(--accent-dk); }
+
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.5rem; }
+    .header-icon { font-size: 2rem; }
+    .container { padding: 20px 14px 60px; }
+    .case-card { flex-direction: column; gap: 12px; }
+    .case-meta { flex-direction: row; align-items: center; width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="home-bar">
+  <a href="../index.html">← 🐾 獸醫讀書筆記</a>
+</div>
+
+<header>
+  <div class="header-icon">🫀</div>
+  <p class="kicker">ESAVS · Echocardiography Series</p>
+  <h1>心臟超音波系列筆記</h1>
+  <p class="dek">整理自 ESAVS 心臟超音波專題課程講義（Dr. Gerhard Wess，Dipl. ACVIM／ECVIM-CA Cardiology，LMU Munich），從基礎操作到常見病理判讀，共四部曲，並將常用計算公式做成互動計算機。</p>
+</header>
+
+<div class="container">
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num" id="case-count">4</div>
+      <div class="stat-label">已更新篇數</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">心臟科</div>
+      <div class="stat-label">主要領域</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">🐕🐈</div>
+      <div class="stat-label">犬貓心臟超音波</div>
+    </div>
+  </div>
+
+  <div class="section-label">📋 系列文章</div>
+
+  <div class="cases">
+
+    <a class="case-card" href="part1-basics-views.html">
+      <div class="case-num">01</div>
+      <div class="case-body">
+        <div class="case-tag">機器 · 探頭操作 · 標準切面</div>
+        <div class="case-title">超音波基礎與標準切面</div>
+        <div class="case-desc">機器與探頭選購考量、鎮靜給藥選擇、探頭操作與 knobology、右側長軸／短軸與左心尖各切面取得技巧</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">2026-09-06</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="case-card" href="part2-measurements.html">
+      <div class="case-num">02</div>
+      <div class="case-body">
+        <div class="case-tag">M-Mode · 左心房 · 右心室</div>
+        <div class="case-title">腔室測量與常模值</div>
+        <div class="case-desc">M-Mode 測量、FS/EF、LA/Ao、LA-FS%、LA volume、體重指標化公式、右心室評估參數，附 6 個互動計算機</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">2026-09-06</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="case-card" href="part3-doppler-diastolic.html">
+      <div class="case-num">03</div>
+      <div class="case-body">
+        <div class="case-tag">PW/CW · 舒張功能 · 壓力估算</div>
+        <div class="case-title">都卜勒技術與舒張功能評估</div>
+        <div class="case-desc">PW/CW 都卜勒技術參數、各瓣膜正常流速、Modified Bernoulli 壓力差計算、E/A 舒張功能分級、IVRT 判讀，附 5 個互動計算機</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">2026-09-06</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="case-card" href="part4-pathology.html">
+      <div class="case-num">04</div>
+      <div class="case-body">
+        <div class="case-tag">分流 · 肺高壓 · MMVD · DCM · HCM</div>
+        <div class="case-title">常見心臟病理判讀</div>
+        <div class="case-desc">先天性分流（PDA/VSD/ASD）、肺高壓分級、心包膜積液鑑別、MMVD 與 ACVIM 分期、犬 DCM 診斷準則、貓心肌病判讀技巧，附多個互動小工具</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">2026-09-06</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="info-card">
+    <strong>📖 資料來源說明：</strong>本系列內容整理自 ESAVS（European School for Advanced Veterinary Studies）心臟超音波課程講義，原講師為 Dr. Gerhard Wess（Dipl. ACVIM Cardiology、Dipl. ECVIM-CA Cardiology／Internal Medicine，LMU Munich）。文中互動計算機均依講義中明確列出的公式與切點值製作，供學習與臨床參考；部分講義中的大型體重／品種分層常模表格，因版面關係僅摘錄關鍵切點值，完整數值請對照原始講義。<br><br>
+    <strong>⚠️ 使用提醒：</strong>所有計算結果僅供教育與參考用途，實際臨床判讀與治療決策仍須由獸醫師依完整病史、理學檢查與多項檢查結果綜合判斷。
+  </div>
+
+</div>
+
+</body>
+</html>
