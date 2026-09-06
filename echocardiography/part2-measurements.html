@@ -111,6 +111,13 @@
   .info-box.red   { background: #fef2f2; border-left: 4px solid var(--red); color: #991b1b; }
   .info-box strong { font-weight: 700; }
 
+  .diagram-wrap {
+    background: var(--white); border: 2px solid var(--gold-border); border-radius: 14px;
+    padding: 18px 20px 14px; margin-bottom: 18px; text-align: center;
+  }
+  .diagram-wrap svg { max-width: 100%; height: auto; }
+  .diagram-cap { font-size: 12px; color: var(--text); opacity: .65; margin-top: 8px; line-height: 1.6; }
+
   .table-wrap { overflow-x: auto; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(200,150,42,.1); }
   table { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--white); }
   thead th {
@@ -211,6 +218,30 @@
       <div class="card c-purple"><div class="ci">🎯</div><h3>EPSS</h3><p>E-point to Septal Separation：二尖瓣 E 點到室中膈的距離，DCM 篩檢重要參數</p></div>
     </div>
 
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg">
+        <rect x="20" y="20" width="440" height="180" rx="8" fill="#0a1628"/>
+        <path d="M40,170 C110,170 110,145 180,145 C250,145 250,170 340,170 C390,170 390,160 440,160 L440,200 L40,200 Z" fill="#f0c84a" opacity=".12"/>
+        <path d="M40,70 C110,70 110,95 180,95 C250,95 250,70 340,70 C390,70 390,80 440,80" fill="none" stroke="#2dd4bf" stroke-width="2.5"/>
+        <path d="M40,170 C110,170 110,145 180,145 C250,145 250,170 340,170 C390,170 390,160 440,160" fill="none" stroke="#f0c84a" stroke-width="2.5"/>
+        <g stroke="#64748b" stroke-width="1" stroke-dasharray="3 3">
+          <line x1="60" y1="55" x2="60" y2="185"/>
+          <line x1="180" y1="55" x2="180" y2="185"/>
+          <line x1="340" y1="55" x2="340" y2="185"/>
+        </g>
+        <path d="M50,205 L54,205 L57,195 L61,213 L64,205 L70,205" fill="none" stroke="#94a3b8" stroke-width="1.3"/>
+        <path d="M330,205 L334,205 L337,195 L341,213 L344,205 L350,205" fill="none" stroke="#94a3b8" stroke-width="1.3"/>
+        <line x1="80" y1="70" x2="80" y2="170" stroke="#fff" stroke-width="1.3" marker-start="url(#dotS)" marker-end="url(#dotS)"/>
+        <text x="88" y="123" font-size="13" fill="#fff" font-weight="700">EDD</text>
+        <line x1="200" y1="95" x2="200" y2="145" stroke="#fff" stroke-width="1.3" marker-start="url(#dotS)" marker-end="url(#dotS)"/>
+        <text x="208" y="123" font-size="13" fill="#fff" font-weight="700">ESD</text>
+        <text x="30" y="40" font-size="12" fill="#2dd4bf" font-weight="700">室中膈 IVS</text>
+        <text x="30" y="215" font-size="12" fill="#f0c84a" font-weight="700">左心室後壁 LVPW</text>
+        <defs><marker id="dotS" markerWidth="6" markerHeight="6" refX="3" refY="3"><circle cx="3" cy="3" r="2.5" fill="#fff"/></marker></defs>
+      </svg>
+      <div class="diagram-cap">M-Mode 示意圖：舒張末期（左，室中膈與後壁距離最大）量得 EDD；收縮末期（中，室中膈往下、後壁往上移動，腔室最窄）量得 ESD。FS(%) = (EDD−ESD)/EDD×100</div>
+    </div>
+
     <div class="info-box red">
       <strong>⚠️ 臨床案例提醒（Labrador「Buddy」）：</strong>3 歲拉不拉多因暈厥被前獸醫測得 FS 13%，判斷為重度 DCM 並建議安樂死。第二意見重新測量後 FS 實為 34%，LVIDd/LVIDs 皆在正常範圍——原因是 M-Mode 游標未垂直對準腔室造成測量誤差。<mark>單一測量數字不能只看一次，務必核對測量角度與參考值</mark>，暈厥原因後來發現是牽繩拉扯頸部所致。
     </div>
@@ -248,6 +279,26 @@
 
     <div class="info-box gold">
       <strong>LA/Ao 短軸測量技巧：</strong>由 LV 短軸（hard way）往尾端移一個肋間，維持在胸廓正中央；聚焦讓主動脈保持圓形。
+    </div>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="200" cy="150" rx="130" ry="95" fill="#f3ecfb" stroke="#7c3aed" stroke-width="2"/>
+        <circle cx="200" cy="130" r="62" fill="#fdf0f3" stroke="#C81E45" stroke-width="2.5"/>
+        <path d="M200,68 L200,192 M200,130 L253,98 M200,130 L147,98" stroke="#C81E45" stroke-width="2"/>
+        <line x1="152" y1="130" x2="248" y2="130" stroke="#4a3800" stroke-width="1.6" marker-start="url(#arrM)" marker-end="url(#arrM)"/>
+        <text x="200" y="118" text-anchor="middle" font-size="12" font-weight="700" fill="#7A0F2C">Ao 內徑</text>
+        <line x1="90" y1="215" x2="310" y2="215" stroke="#4a3800" stroke-width="1.6" marker-start="url(#arrM)" marker-end="url(#arrM)"/>
+        <text x="200" y="232" text-anchor="middle" font-size="12" font-weight="700" fill="#5b3ebd">LA 內徑</text>
+        <text x="200" y="150" text-anchor="middle" font-size="11" fill="#7A0F2C" opacity=".7">主動脈瓣</text>
+        <text x="200" y="80" text-anchor="middle" font-size="11" fill="#5b3ebd" opacity=".85">左心房（鯨魚狀）</text>
+        <defs><marker id="arrM" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#4a3800"/></marker></defs>
+      </svg>
+      <div class="diagram-cap">短軸 LA/Ao 測量示意：主動脈瓣呈「賓士星形」（三片瓣葉），左心房環繞於後方呈「鯨魚狀」；LA/Ao ＝ LA 內徑 ÷ Ao 內徑</div>
+    </div>
+
+    <div class="info-box teal">
+      <strong>案例小提醒（Saluki「Kahn」）：</strong>6 歲、26 kg 的沙魯基獵犬因配種健檢就診，聽診無雜音。以 Cornell 公式計算 LVIDd-N 為 1.92（&gt;1.7 一般切點），若照搬公式會誤判為心臟擴大——但沙魯基屬於視覺獵犬（Sighthound），心臟本來就比一般品種大，<mark>必須使用品種專屬參考值</mark>才能正確判讀，而非直接套用一般化公式。
     </div>
 
     <h3 style="font-size:15px;font-weight:800;color:var(--gold-dk);margin:20px 0 12px;">長軸法參考區間（80 隻健康犬，95% 參考區間）</h3>

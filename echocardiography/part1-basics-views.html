@@ -111,6 +111,13 @@
   .info-box.red   { background: #fef2f2; border-left: 4px solid var(--red); color: #991b1b; }
   .info-box strong { font-weight: 700; }
 
+  .diagram-wrap {
+    background: var(--white); border: 2px solid var(--gold-border); border-radius: 14px;
+    padding: 18px 20px 14px; margin-bottom: 18px; text-align: center;
+  }
+  .diagram-wrap svg { max-width: 100%; height: auto; }
+  .diagram-cap { font-size: 12px; color: var(--text); opacity: .65; margin-top: 8px; line-height: 1.6; }
+
   .table-wrap { overflow-x: auto; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(200,150,42,.1); }
   table { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--white); }
   thead th {
@@ -286,6 +293,40 @@
       <div class="card c-orange"><div class="ci">💪</div><h3>Hard way（進階法，較佳）</h3><p>探頭朝肋骨前一格、向後看，畫面心尖較圓，呼吸偽影較少；旋轉至短軸時也要記得持續「向後看」</p></div>
     </div>
 
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 620 210" xmlns="http://www.w3.org/2000/svg">
+        <line x1="310" y1="10" x2="310" y2="185" stroke="#e8d5a0" stroke-width="2" stroke-dasharray="4 4"/>
+        <text x="155" y="26" text-anchor="middle" font-size="15" font-weight="700" fill="#059669">Easy way（簡易法）</text>
+        <circle cx="35" cy="90" r="20" fill="#fff8e8" stroke="#e8d5a0" stroke-width="2"/>
+        <rect x="45" y="48" width="240" height="84" rx="42" fill="#fff8e8" stroke="#e8d5a0" stroke-width="2"/>
+        <g stroke="#e8d5a0" stroke-width="1.5"><line x1="95" y1="48" x2="95" y2="132"/><line x1="135" y1="48" x2="135" y2="132"/><line x1="175" y1="48" x2="175" y2="132"/><line x1="215" y1="48" x2="215" y2="132"/><line x1="255" y1="48" x2="255" y2="132"/></g>
+        <ellipse cx="175" cy="88" rx="38" ry="26" fill="#f9dbe2" stroke="#C81E45" stroke-width="2"/>
+        <text x="175" y="93" text-anchor="middle" font-size="14">🫀</text>
+        <rect x="163" y="132" width="26" height="14" rx="3" fill="#059669"/>
+        <path d="M176 132 L110 50 M176 132 L215 50" stroke="#059669" stroke-width="1.5" stroke-dasharray="3 3" fill="none"/>
+        <path d="M100 90 L60 90" stroke="#059669" stroke-width="2" marker-end="url(#arrE)" />
+        <text x="155" y="165" text-anchor="middle" font-size="12" fill="#166534">探頭朝肩膀方向 → 子彈型影像</text>
+        <text x="155" y="182" text-anchor="middle" font-size="11" fill="#166534" opacity=".75">取得快，但較易受呼吸偽影干擾</text>
+
+        <text x="465" y="26" text-anchor="middle" font-size="15" font-weight="700" fill="#d97706">Hard way（進階法）</text>
+        <circle cx="345" cy="90" r="20" fill="#fff8e8" stroke="#e8d5a0" stroke-width="2"/>
+        <rect x="355" y="48" width="240" height="84" rx="42" fill="#fff8e8" stroke="#e8d5a0" stroke-width="2"/>
+        <g stroke="#e8d5a0" stroke-width="1.5"><line x1="405" y1="48" x2="405" y2="132"/><line x1="445" y1="48" x2="445" y2="132"/><line x1="485" y1="48" x2="485" y2="132"/><line x1="525" y1="48" x2="525" y2="132"/><line x1="565" y1="48" x2="565" y2="132"/></g>
+        <ellipse cx="485" cy="88" rx="38" ry="26" fill="#f9dbe2" stroke="#C81E45" stroke-width="2"/>
+        <text x="485" y="93" text-anchor="middle" font-size="14">🫀</text>
+        <rect x="413" y="132" width="26" height="14" rx="3" fill="#d97706"/>
+        <path d="M426 132 L455 50 M426 132 L520 50" stroke="#d97706" stroke-width="1.5" stroke-dasharray="3 3" fill="none"/>
+        <path d="M450 90 L500 90" stroke="#d97706" stroke-width="2" marker-end="url(#arrH)" />
+        <text x="465" y="165" text-anchor="middle" font-size="12" fill="#92400e">探頭前移一格、朝後看</text>
+        <text x="465" y="182" text-anchor="middle" font-size="11" fill="#92400e" opacity=".75">心尖較圓，呼吸偽影較少</text>
+        <defs>
+          <marker id="arrE" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#059669"/></marker>
+          <marker id="arrH" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#d97706"/></marker>
+        </defs>
+      </svg>
+      <div class="diagram-cap">探頭沿肋間往前移一格、角度轉向後看，取得的長軸影像心尖會更圓、呼吸偽影更少（Hard way）</div>
+    </div>
+
     <h3 style="font-size:15px;font-weight:800;color:var(--gold-dk);margin:20px 0 12px;">右側短軸（Right Parasternal Short-axis）— 由心尖往心底依序</h3>
     <div class="table-wrap">
       <table>
@@ -304,6 +345,47 @@
       <strong>LA/AO 短軸小訣竅：</strong>從 LV 短軸（hard way）往尾端移一個肋間，維持在胸廓正中央（不要偏向胸骨），聚焦讓主動脈保持圓形——此切面看不到肺動脈瓣。
     </div>
 
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 640 175" xmlns="http://www.w3.org/2000/svg">
+        <path d="M45 20 L595 20" stroke="#8a6010" stroke-width="2" marker-end="url(#arrSweep)"/>
+        <text x="320" y="14" text-anchor="middle" font-size="12" font-weight="700" fill="#8a6010">探頭由心尖往心底掃描（傾斜纜線角度）</text>
+
+        <g>
+          <circle cx="60" cy="90" r="38" fill="#fffdf5" stroke="#e8d5a0" stroke-width="2"/>
+          <circle cx="60" cy="90" r="5" fill="#C81E45"/>
+          <text x="60" y="140" text-anchor="middle" font-size="11" fill="#4a3800">心尖 Apex</text>
+        </g>
+        <g>
+          <circle cx="172" cy="90" r="38" fill="#fffdf5" stroke="#e8d5a0" stroke-width="2"/>
+          <circle cx="163" cy="96" r="7" fill="#d97706"/><circle cx="183" cy="84" r="7" fill="#d97706"/>
+          <text x="172" y="140" text-anchor="middle" font-size="11" fill="#4a3800">乳突肌</text>
+        </g>
+        <g>
+          <circle cx="284" cy="90" r="38" fill="#fffdf5" stroke="#e8d5a0" stroke-width="2"/>
+          <path d="M260 78 L284 90 L260 102 M308 78 L284 90 L308 102" stroke="#0891b2" stroke-width="2" fill="none"/>
+          <text x="284" y="140" text-anchor="middle" font-size="11" fill="#4a3800">腱索</text>
+        </g>
+        <g>
+          <circle cx="396" cy="90" r="38" fill="#fffdf5" stroke="#e8d5a0" stroke-width="2"/>
+          <path d="M372 90 Q396 72 420 90 Q396 108 372 90 Z" fill="none" stroke="#2563eb" stroke-width="2"/>
+          <text x="396" y="140" text-anchor="middle" font-size="11" fill="#4a3800">二尖瓣</text>
+        </g>
+        <g>
+          <circle cx="508" cy="90" r="38" fill="#fffdf5" stroke="#e8d5a0" stroke-width="2"/>
+          <path d="M508 68 L522 100 L494 100 Z" fill="#fdf0f3" stroke="#C81E45" stroke-width="2"/>
+          <path d="M470 100 A38 30 0 0 1 546 100" fill="none" stroke="#7c3aed" stroke-width="2"/>
+          <text x="508" y="140" text-anchor="middle" font-size="11" fill="#4a3800">LA/AO</text>
+        </g>
+        <g>
+          <circle cx="590" cy="90" r="38" fill="#fffdf5" stroke="#e8d5a0" stroke-width="2"/>
+          <path d="M572 100 Q590 68 608 100 Z" fill="none" stroke="#059669" stroke-width="2"/>
+          <text x="590" y="140" text-anchor="middle" font-size="11" fill="#4a3800">肺動脈</text>
+        </g>
+        <defs><marker id="arrSweep" markerWidth="9" markerHeight="9" refX="5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#8a6010"/></marker></defs>
+      </svg>
+      <div class="diagram-cap">右側短軸由心尖依序掃描到心底：心尖 → 乳突肌（蕈菇狀）→ 腱索 → 二尖瓣（魚口狀）→ LA/AO（賓士星形主動脈＋鯨魚狀 LA）→ 肺動脈</div>
+    </div>
+
     <h3 style="font-size:15px;font-weight:800;color:var(--gold-dk);margin:20px 0 12px;">左心尖切面（Left Apical Window）</h3>
     <div class="table-wrap">
       <table>
@@ -315,6 +397,35 @@
           <tr><td>3-Chamber view</td><td>約 3 點鐘方向</td><td>持續逆時針旋轉至主動脈出現在 LV 右側</td></tr>
         </tbody>
       </table>
+    </div>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="150" cy="150" r="100" fill="#fffdf5" stroke="#e8d5a0" stroke-width="2"/>
+        <g stroke="#e8d5a0" stroke-width="2">
+          <line x1="150" y1="50" x2="150" y2="62"/><line x1="250" y1="150" x2="238" y2="150"/>
+          <line x1="150" y1="250" x2="150" y2="238"/><line x1="50" y1="150" x2="62" y2="150"/>
+        </g>
+        <text x="150" y="42" text-anchor="middle" font-size="12" fill="#8a6010" opacity=".7">12</text>
+        <circle cx="150" cy="150" r="4" fill="#8a6010"/>
+
+        <circle cx="100" cy="236.6" r="8" fill="#7c3aed"/>
+        <circle cx="200" cy="236.6" r="8" fill="#0891b2"/>
+        <circle cx="250" cy="150" r="8" fill="#059669"/>
+
+        <path d="M100,236.6 Q150,200 200,236.6 Q235,205 250,150" fill="none" stroke="#8a6010" stroke-width="2.5" marker-end="url(#arrClock)"/>
+
+        <text x="80" y="265" text-anchor="middle" font-size="12" font-weight="700" fill="#5b3ebd">7 點</text>
+        <text x="80" y="280" text-anchor="middle" font-size="11" fill="#5b3ebd">5-CH／4-CH</text>
+        <text x="220" y="265" text-anchor="middle" font-size="12" font-weight="700" fill="#0891b2">5 點</text>
+        <text x="220" y="280" text-anchor="middle" font-size="11" fill="#0891b2">2-CH</text>
+        <text x="272" y="135" text-anchor="middle" font-size="12" font-weight="700" fill="#059669">3 點</text>
+        <text x="272" y="118" text-anchor="middle" font-size="11" fill="#059669">3-CH</text>
+
+        <text x="150" y="150" text-anchor="middle" font-size="20">🫀</text>
+        <defs><marker id="arrClock" markerWidth="9" markerHeight="9" refX="5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#8a6010"/></marker></defs>
+      </svg>
+      <div class="diagram-cap">左心尖窗口以「時鐘方位」描述 Marker 位置：由 7 點鐘（5-CH／4-CH）逆時針旋轉經 5 點鐘（2-CH）到 3 點鐘（3-CH）</div>
     </div>
 
     <h3 style="font-size:15px;font-weight:800;color:var(--gold-dk);margin:20px 0 12px;">其他重要切面</h3>
