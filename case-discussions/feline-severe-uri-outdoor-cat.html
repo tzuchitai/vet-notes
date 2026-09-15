@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>戶外米克斯貓重症上呼吸道疾病住院病例｜梅醫師病例討論</title>
+<style>
+  :root{
+    --bg:#F5F7F4;
+    --surface:#FFFFFF;
+    --surface-2:#EEF2EC;
+    --ink:#1A2420;
+    --ink-soft:#465049;
+    --ink-faint:#7C8880;
+    --accent:#2B6E63;
+    --accent-strong:#1F5048;
+    --accent-soft-bg:#E3EFEA;
+    --accent-soft-border:#BFDAD0;
+    --supplement:#96632A;
+    --supplement-soft-bg:#F6EAD7;
+    --supplement-soft-border:#E3C99A;
+    --rule:#DCE3DC;
+    --table-head-bg:#EEF2EC;
+    --font-display:Georgia,"Noto Serif TC","Songti TC",serif;
+    --font-body:-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei","Segoe UI",sans-serif;
+    --font-mono:ui-monospace,"SF Mono","Cascadia Code","Roboto Mono",monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#121815;
+      --surface:#161E19;
+      --surface-2:#1D2620;
+      --ink:#E7EDE8;
+      --ink-soft:#B7C2BA;
+      --ink-faint:#7E8D84;
+      --accent:#6FBFA9;
+      --accent-strong:#8ED4BF;
+      --accent-soft-bg:#1C2B26;
+      --accent-soft-border:#2C443B;
+      --supplement:#D8A25C;
+      --supplement-soft-bg:#2C2213;
+      --supplement-soft-border:#4E3A20;
+      --rule:#28322B;
+      --table-head-bg:#1D2620;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121815; --surface:#161E19; --surface-2:#1D2620; --ink:#E7EDE8;
+    --ink-soft:#B7C2BA; --ink-faint:#7E8D84; --accent:#6FBFA9; --accent-strong:#8ED4BF;
+    --accent-soft-bg:#1C2B26; --accent-soft-border:#2C443B; --supplement:#D8A25C;
+    --supplement-soft-bg:#2C2213; --supplement-soft-border:#4E3A20; --rule:#28322B; --table-head-bg:#1D2620;
+  }
+  :root[data-theme="light"]{
+    --bg:#F5F7F4; --surface:#FFFFFF; --surface-2:#EEF2EC; --ink:#1A2420;
+    --ink-soft:#465049; --ink-faint:#7C8880; --accent:#2B6E63; --accent-strong:#1F5048;
+    --accent-soft-bg:#E3EFEA; --accent-soft-border:#BFDAD0; --supplement:#96632A;
+    --supplement-soft-bg:#F6EAD7; --supplement-soft-border:#E3C99A; --rule:#DCE3DC; --table-head-bg:#EEF2EC;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent-strong);}
+  a:focus-visible, button:focus-visible, summary:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:2px;
+  }
+
+  .page{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 24px 96px;
+  }
+
+  /* ---------- Back link ---------- */
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    margin-top:20px;
+    padding:7px 14px 7px 10px;
+    border:1px solid var(--rule);
+    border-radius:20px;
+    background:var(--surface);
+    color:var(--ink-soft);
+    text-decoration:none;
+    font-size:13px;
+    font-weight:600;
+  }
+  .back-link:hover{
+    color:var(--accent-strong);
+    border-color:var(--accent-soft-border);
+    background:var(--accent-soft-bg);
+  }
+  .back-link .arrow{font-size:15px;line-height:1;}
+
+  /* ---------- Breadcrumb ---------- */
+  .crumbs{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:6px;
+    padding:10px 0 0;
+    font-size:13px;
+    color:var(--ink-faint);
+    font-family:var(--font-mono);
+  }
+  .crumbs a{color:var(--ink-faint);text-decoration:none;}
+  .crumbs a:hover{color:var(--accent-strong);}
+  .crumbs .sep{opacity:.5;}
+  .crumbs .current{color:var(--ink-soft);}
+
+  /* ---------- Masthead ---------- */
+  .masthead{
+    padding:28px 0 32px;
+    border-bottom:1px solid var(--rule);
+    margin-bottom:8px;
+  }
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--accent-strong);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;
+    height:1px;
+    background:var(--accent);
+    display:inline-block;
+  }
+  h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(28px,4vw,42px);
+    line-height:1.3;
+    margin:0 0 14px;
+    text-wrap:balance;
+    letter-spacing:.01em;
+  }
+  .dek{
+    font-size:16px;
+    color:var(--ink-soft);
+    max-width:62ch;
+    margin:0 0 24px;
+  }
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 20px;
+    font-size:13px;
+    color:var(--ink-faint);
+  }
+  .legend-item{display:flex;align-items:center;gap:8px;}
+  .swatch{width:12px;height:12px;border-radius:3px;flex:none;}
+  .swatch.core{background:var(--surface);border:1.5px solid var(--rule);}
+  .swatch.lit{background:var(--supplement-soft-bg);border:1.5px solid var(--supplement);}
+
+  /* ---------- Layout: rail + content ---------- */
+  .layout{
+    display:grid;
+    grid-template-columns:210px minmax(0,1fr);
+    gap:48px;
+    margin-top:40px;
+    align-items:start;
+  }
+  @media (max-width:860px){
+    .layout{grid-template-columns:1fr;}
+  }
+
+  .rail{
+    position:sticky;
+    top:24px;
+    font-size:14px;
+    max-height:calc(100vh - 48px);
+    overflow-y:auto;
+  }
+  .rail-title{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin:0 0 12px;
+  }
+  .rail nav ol{
+    list-style:none;
+    margin:0;
+    padding:0;
+    border-left:1px solid var(--rule);
+  }
+  .rail nav li{margin:0;}
+  .rail nav a{
+    display:block;
+    padding:6px 0 6px 16px;
+    margin-left:-1px;
+    border-left:1px solid transparent;
+    color:var(--ink-soft);
+    text-decoration:none;
+    font-size:13px;
+  }
+  .rail nav a:hover{color:var(--accent-strong);border-left-color:var(--accent);}
+
+  main{min-width:0;}
+
+  /* ---------- Sections ---------- */
+  section.chapter{
+    padding-top:8px;
+    margin-bottom:56px;
+    scroll-margin-top:24px;
+  }
+  .chapter-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    padding-bottom:14px;
+    margin-bottom:28px;
+    border-bottom:2px solid var(--ink);
+  }
+  .chapter-num{
+    font-family:var(--font-display);
+    font-size:15px;
+    color:var(--accent-strong);
+    font-weight:700;
+  }
+  .chapter-head h2{
+    font-family:var(--font-display);
+    font-size:24px;
+    margin:0;
+    font-weight:700;
+  }
+
+  h3{
+    font-family:var(--font-display);
+    font-size:18px;
+    font-weight:700;
+    margin:32px 0 12px;
+    color:var(--ink);
+  }
+  h3 .sub-num{color:var(--accent-strong);margin-right:8px;font-family:var(--font-mono);font-size:15px;}
+  h4{
+    font-size:14.5px;
+    font-weight:700;
+    margin:22px 0 8px;
+    color:var(--ink-soft);
+  }
+
+  p{margin:0 0 14px;max-width:74ch;}
+  ul,ol{margin:0 0 16px;padding-left:22px;max-width:70ch;}
+  li{margin-bottom:6px;}
+  li::marker{color:var(--ink-faint);}
+  strong{color:var(--ink);font-weight:700;}
+
+  /* ---------- Literature / preference supplement callouts ---------- */
+  .lit{
+    background:var(--supplement-soft-bg);
+    border:1px solid var(--supplement-soft-border);
+    border-left:3px solid var(--supplement);
+    border-radius:3px;
+    padding:14px 18px;
+    margin:16px 0 20px;
+    max-width:74ch;
+  }
+  .lit p{margin:0;font-size:14.5px;color:var(--ink-soft);}
+  .lit p + p{margin-top:8px;}
+  .lit-tag{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--supplement);
+    font-weight:700;
+    display:block;
+    margin-bottom:6px;
+  }
+
+  /* ---------- Caution callout ---------- */
+  .caution{
+    background:var(--accent-soft-bg);
+    border:1px solid var(--accent-soft-border);
+    border-left:3px solid var(--accent);
+    border-radius:3px;
+    padding:14px 18px;
+    margin:16px 0 20px;
+    max-width:74ch;
+  }
+  .caution p{margin:0;font-size:14.5px;color:var(--ink-soft);}
+  .caution p + p{margin-top:8px;}
+  .caution-tag{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--accent-strong);
+    font-weight:700;
+    display:block;
+    margin-bottom:6px;
+  }
+
+  /* ---------- Tables ---------- */
+  .table-wrap{
+    overflow-x:auto;
+    margin:10px 0 22px;
+    border:1px solid var(--rule);
+    border-radius:4px;
+  }
+  table{
+    border-collapse:collapse;
+    width:100%;
+    min-width:340px;
+    font-size:14.5px;
+    background:var(--surface);
+  }
+  caption{
+    text-align:left;
+    font-size:12px;
+    color:var(--ink-faint);
+    padding:8px 14px 0;
+    font-family:var(--font-mono);
+  }
+  thead th{
+    background:var(--table-head-bg);
+    text-align:left;
+    font-weight:700;
+    padding:10px 14px;
+    border-bottom:1px solid var(--rule);
+    color:var(--ink-soft);
+    font-size:13px;
+    white-space:nowrap;
+  }
+  tbody td{
+    padding:9px 14px;
+    border-bottom:1px solid var(--rule);
+    font-variant-numeric:tabular-nums;
+    vertical-align:top;
+  }
+  tbody tr:last-child td{border-bottom:none;}
+  tbody td:first-child{color:var(--ink);}
+
+  /* ---------- Drug / dose block ---------- */
+  .dose{
+    font-family:var(--font-mono);
+    font-size:13.5px;
+    background:var(--surface-2);
+    border:1px solid var(--rule);
+    border-radius:4px;
+    padding:12px 16px;
+    margin:10px 0 18px;
+    max-width:60ch;
+  }
+  .dose div{display:flex;justify-content:space-between;gap:16px;padding:2px 0;}
+  .dose div + div{border-top:1px dashed var(--rule);}
+  .dose span:first-child{color:var(--ink-soft);}
+  .dose span:last-child{font-variant-numeric:tabular-nums;text-align:right;}
+
+  /* ---------- Stat strip (case snapshot) ---------- */
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+    gap:12px;
+    margin:16px 0 22px;
+  }
+  .stat-box{
+    background:var(--surface);
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:14px 16px;
+    text-align:center;
+  }
+  .stat-box .num{
+    font-family:var(--font-display);
+    font-size:22px;
+    font-weight:700;
+    color:var(--accent-strong);
+    display:block;
+  }
+  .stat-box .lbl{font-size:12px;color:var(--ink-faint);margin-top:4px;}
+
+  /* ---------- Timeline ---------- */
+  .tl{list-style:none;margin:16px 0 24px;padding:0;border-left:2px solid var(--rule);max-width:74ch;}
+  .tl li{position:relative;padding:0 0 26px 24px;}
+  .tl li:last-child{padding-bottom:0;}
+  .tl li::before{
+    content:"";
+    position:absolute; left:-6.5px; top:4px;
+    width:11px; height:11px; border-radius:50%;
+    background:var(--surface); border:2px solid var(--accent);
+  }
+  .tl-date{
+    font-family:var(--font-mono); font-size:12.5px; font-weight:700;
+    color:var(--accent-strong); letter-spacing:.03em; margin-bottom:4px;
+  }
+  .tl-title{font-weight:700; color:var(--ink); margin-bottom:4px;}
+  .tl p{margin:0 0 6px; font-size:14.5px;}
+
+  /* ---------- References ---------- */
+  .refs{
+    list-style:none;
+    padding:0;
+    margin:0;
+    counter-reset:refnum;
+  }
+  .refs li{
+    counter-increment:refnum;
+    display:flex;
+    gap:14px;
+    padding:14px 0;
+    border-bottom:1px solid var(--rule);
+    max-width:none;
+  }
+  .refs li::before{
+    content:counter(refnum);
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--accent-strong);
+    flex:none;
+    width:20px;
+  }
+  .refs li:last-child{border-bottom:none;}
+  .refs .ref-body{font-size:14.5px;}
+  .refs .ref-body p{margin:0 0 4px;color:var(--ink-soft);}
+  .refs a{word-break:break-all;font-size:13.5px;}
+
+  footer.note{
+    margin-top:64px;
+    padding-top:20px;
+    border-top:1px solid var(--rule);
+    font-size:12.5px;
+    color:var(--ink-faint);
+  }
+  footer.note a{color:var(--ink-faint);}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <a class="back-link" href="index.html"><span class="arrow">←</span>回上一頁：梅醫師病例討論</a>
+
+  <p class="crumbs">
+    <a href="../index.html">🐾 獸醫讀書筆記</a>
+    <span class="sep">／</span>
+    <a href="index.html">梅醫師病例討論</a>
+    <span class="sep">／</span>
+    <span class="current">Case 05</span>
+  </p>
+
+  <header class="masthead">
+    <p class="eyebrow">梅醫師病例討論 · Case 05 · 小動物內科／急重症・上呼吸道疾病</p>
+    <h1>戶外米克斯貓重症上呼吸道疾病住院病例</h1>
+    <p class="dek">主角為一隻兩三歲、未規律接種與驅蟲的戶外米克斯母貓，因精神食慾下降約一週、黃綠色眼鼻分泌物入院，入院時已合併低體溫、嚴重脫水、電解質失衡（含異常高血鉀）。全文以「Assessment → Stabilization → GI/Nutrition → Infection」的順序整理梅醫師對本病例的臨床思路：完整理學檢查與陰性發現、脫水與低血容休克的區分、體重導向的輸液監測、鼻胃管與胃殘餘量管理、噁心優先於促食的順序，以及結構性病變（鼻咽狹窄、息肉、中耳積液）的診斷。病例最終不幸離世，本篇同時保留資深醫師對病歷呈現、決策邏輯與預後反思的教學回饋。文中許多劑量與判斷屬於本病例的 case-specific decision 與梅醫師個人臨床偏好，並非放諸四海皆準的絕對準則。</p>
+    <div class="legend">
+      <span class="legend-item"><span class="swatch core"></span>課堂病例討論原始內容</span>
+      <span class="legend-item"><span class="swatch lit"></span>個人臨床偏好／Case-specific・文獻補充</span>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="rail">
+      <p class="rail-title">目錄</p>
+      <nav>
+        <ol>
+          <li><a href="#s1">一、病例摘要與入院評估</a></li>
+          <li><a href="#s2">二、MCS／理學檢查：不要只看流鼻水</a></li>
+          <li><a href="#s3">三、脫水、低血容與休克：輸液策略</a></li>
+          <li><a href="#s4">四、監測與影像：TFAST／FastScan 與 UA</a></li>
+          <li><a href="#s5">五、電解質與高血鉀警示</a></li>
+          <li><a href="#s6">六、鼻胃管與胃殘餘量管理</a></li>
+          <li><a href="#s7">七、噁心處理優先於促食</a></li>
+          <li><a href="#s8">八、制酸劑選擇</a></li>
+          <li><a href="#s9">九、抗生素策略：梅醫師的 case preference</a></li>
+          <li><a href="#s10">十、血小板 70–80K 的處理原則</a></li>
+          <li><a href="#s11">十一、霧化、抗病毒與 Antiviral Stewardship</a></li>
+          <li><a href="#s12">十二、結構性病變：CT 與鼻腔鏡</a></li>
+          <li><a href="#s13">十三、病歷呈現與品質保證</a></li>
+          <li><a href="#s14">十四、病程與預後反思</a></li>
+          <li><a href="#s15">十五、Take-home Messages</a></li>
+          <li><a href="#s16">十六、參考資料</a></li>
+        </ol>
+      </nav>
+    </aside>
+
+    <main>
+
+      <!-- 一 -->
+      <section class="chapter" id="s1">
+        <div class="chapter-head"><span class="chapter-num">01</span><h2>病例摘要與入院評估</h2></div>
+
+        <h3><span class="sub-num">1</span>病史與入院表現</h3>
+        <p>兩三歲戶外米克斯母貓，未規律接種疫苗與驅蟲。約一週精神食慾下降，合併黃綠色眼鼻分泌物就診。入院時已呈現低體溫、消瘦、明顯脫水。</p>
+        <div class="stat-strip">
+          <div class="stat-box"><span class="num">2.4 kg</span><span class="lbl">入院體重</span></div>
+          <div class="stat-box"><span class="num">8%</span><span class="lbl">估計脫水程度</span></div>
+          <div class="stat-box"><span class="num">K 6.5</span><span class="lbl">高血鉀（消瘦、食慾差卻偏高）</span></div>
+          <div class="stat-box"><span class="num">10 天</span><span class="lbl">住院病程</span></div>
+        </div>
+
+        <h3><span class="sub-num">2</span>初步檢驗與影像</h3>
+        <ul>
+          <li>PCV↑（脫水相關）、WBC↑、輕度血小板低（約 70–80 K/µL）。</li>
+          <li>血糖↑、BUN↑（傾向腎前性）、電解質失衡（含高血鉀 6.5）、磷↑、總蛋白／Globulin↑、FSAA↑。</li>
+          <li>快篩（FeLV／FIV）陰性。</li>
+          <li>X 光：心臟影像偏小（與脫水相符）、肺部無明顯異常。</li>
+        </ul>
+
+        <h3><span class="sub-num">3</span>鑑別診斷方向</h3>
+        <p>上呼吸道感染需同時考量病毒／細菌合併感染、真菌、結構性病變（鼻咽狹窄、息肉、顎裂）、牙齒疾病、腫瘤與異物；慢性發炎也可能造成鼻咽纖維化狹窄，不是單一病因就能解釋全部表現。</p>
+      </section>
+
+      <!-- 二 -->
+      <section class="chapter" id="s2">
+        <div class="chapter-head"><span class="chapter-num">02</span><h2>MCS／理學檢查：不要只看流鼻水</h2></div>
+        <p>梅醫師特別強調：URI 病患的理學檢查不能只停留在「有沒有流鼻水」，而應系統性檢查鼻腔、眼睛、口腔與淋巴結，並把肌肉狀況評分（MCS）與陰性發現一併記錄。</p>
+
+        <h3><span class="sub-num">1</span>鼻腔</h3>
+        <ul>
+          <li>Nasal bridge：有無 defect、腫脹、疼痛、骨性 destruction。</li>
+          <li>Nasal discharge：unilateral／bilateral；serous、mucoid、purulent、bloody。</li>
+          <li>分別測左右 nasal airflow，確認是否有 reduced／negative airflow。</li>
+          <li>Chronic inflammation 可能造成 mucosal thickening，不一定代表 neoplasia。</li>
+        </ul>
+        <div class="caution">
+          <span class="caution-tag">判讀提醒</span>
+          <p>Purulent、黃綠色 discharge 會提高 secondary bacterial infection 的懷疑，但不能只靠分泌物顏色就確認是細菌感染。</p>
+        </div>
+
+        <h3><span class="sub-num">2</span>眼睛</h3>
+        <ul>
+          <li>評估 globe firmness、疼痛、retraction、third eyelid protrusion。</li>
+          <li>URI 合併 ocular signs 時應積極考慮 fluorescein staining。</li>
+          <li>FHV-1：注意 conjunctivitis、corneal ulcer，尤其 dendritic／geographic ulcer。</li>
+          <li>Third eyelid protrusion 可能反映 ocular pain／globe retraction。</li>
+        </ul>
+
+        <h3><span class="sub-num">3</span>口腔</h3>
+        <ul>
+          <li>FCV：特別檢查 lingual／oral ulcer。</li>
+          <li>檢查 hard／soft palate，包含 cleft palate 或其他 oronasal communication。</li>
+        </ul>
+
+        <h3><span class="sub-num">4</span>Lymph node</h3>
+        <ul>
+          <li>觸診 mandibular／retropharyngeal LN。</li>
+          <li>Enlargement、pain、asymmetry 都可能提供線索；必要時 FNA／cytology。</li>
+        </ul>
+      </section>
+
+      <!-- 三 -->
+      <section class="chapter" id="s3">
+        <div class="chapter-head"><span class="chapter-num">03</span><h2>脫水、低血容與休克：輸液策略</h2></div>
+
+        <h3><span class="sub-num">1</span>三個容易混用的概念</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>名詞</th><th>定義</th></tr></thead>
+            <tbody>
+              <tr><td>Dehydration</td><td>Interstitial fluid deficit（組織間液不足）。</td></tr>
+              <tr><td>Hypovolemia</td><td>Circulating volume（循環血量）減少。</td></tr>
+              <tr><td>Hypovolemic shock</td><td>Volume loss 已經造成 inadequate tissue perfusion（組織灌流不足）。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>因此不能只寫「8% dehydrated」，還應一起評估：MM／CRT、HR、pulse quality、extremity temperature、mentation、BP、± lactate。危急、可能 hypotensive 的病患，梅醫師偏好使用 Doppler BP 測量。</p>
+
+        <h3><span class="sub-num">2</span>本病例的輸液計算</h3>
+        <div class="dose">
+          <div><span>BW</span><span>2.4 kg</span></div>
+          <div><span>估計脫水程度</span><span>8%</span></div>
+          <div><span>Fluid deficit</span><span>2.4 × 0.08 = 0.192 L ≈ 192 mL</span></div>
+          <div><span>Current BW</span><span>2.40 kg</span></div>
+          <div><span>Euhydrated BW（估）</span><span>約 2.59 kg</span></div>
+          <div><span>過補上限（euhydrated +5%）</span><span>約 2.70–2.72 kg</span></div>
+        </div>
+        <p>因此可以用 serial body weight（連續體重）作為住院輸液平衡的重要監測工具——以體重為核心監測指標，設定目標體重與過補上限，寧可稍乾也不要過補。</p>
+        <div class="lit">
+          <span class="lit-tag">個人臨床偏好／本病例輸液速率</span>
+          <p>穩定／maintenance 階段：約 2 mL/hr；明顯乾燥時：約 4 mL/hr；後續依 perfusion、urine output、體重、腎功能與 POCUS 結果調整。危重病患建議入院第一小時即積極輸液 bolus 快速穩定，夜間降速、早晨再視狀況補回——這是梅醫師針對本病例的處置節奏，實際速率仍需依個別病患的心肺與腎臟狀況調整，不是固定套用的公式。</p>
+        </div>
+      </section>
+
+      <!-- 四 -->
+      <section class="chapter" id="s4">
+        <div class="chapter-head"><span class="chapter-num">04</span><h2>監測與影像：TFAST／FastScan 與 UA</h2></div>
+
+        <h3><span class="sub-num">1</span>重複 TFAST／FastScan</h3>
+        <p>建議每 6–8 小時重複 TFAST／FastScan，評估 LA/Ao 比值與膀胱大小，並動態追蹤血鉀與尿量變化。</p>
+        <div class="caution">
+          <span class="caution-tag">提醒</span>
+          <p>心臟影像偏小不等於沒有心臟病；補液前後應重複檢視，以防隱性 HCM（肥厚性心肌病）在補液後才顯現。本病例入院 X 光心臟偏小、肺部無明顯異常，仍需持續動態監測而非單次判讀定案。</p>
+        </div>
+
+        <h3><span class="sub-num">2</span>Urinalysis 的重要性</h3>
+        <p>UA 是優先補強的檢查項目：高 USG 支持腎前性；低 USG 合併脫水時，需擔心腎小管損傷或腎盂腎炎。同時應檢視尿糖與酮體——若病患同時有高血糖，建議驗尿確認 glucosuria、ketonuria，必要時進一步評估糖尿病或 DKA 風險。</p>
+        <p>住院期間 azotemia 不能只追蹤 BUN／Cre，每天應確認：有沒有 urine production、是否 oliguria／anuria、必要時實際測量 urine output，並搭配 UA（USG、沉渣、糖、酮體）與 FAST／POCUS（膀胱、腎臟、free fluid）綜合判讀。</p>
+      </section>
+
+      <!-- 五 -->
+      <section class="chapter" id="s5">
+        <div class="chapter-head"><span class="chapter-num">05</span><h2>電解質與高血鉀警示</h2></div>
+        <p>食慾差、體型消瘦的貓卻合併高血鉀（本病例 6.5），是一個不尋常的組合，應提高警覺是否存在腎性或腎後性（阻塞）問題，建議以快速超音波重複掃描評估腎臟與泌尿道。</p>
+      </section>
+
+      <!-- 六 -->
+      <section class="chapter" id="s6">
+        <div class="chapter-head"><span class="chapter-num">06</span><h2>鼻胃管與胃殘餘量管理</h2></div>
+
+        <h3><span class="sub-num">1</span>胃擴張與功能性腸阻塞</h3>
+        <p>住院病患可能因疾病本身、壓力、籠內侷限活動、opioid 用藥或活動量下降，出現 functional ileus／delayed gastric emptying。本病例胃部影像即明顯擴大。犬住院時梅醫師常習慣把管路放到胃內，除了灌食，也可同時評估胃內容物，必要時進行減壓。</p>
+
+        <h3><span class="sub-num">2</span>Gastric Residual Volume（GRV）</h3>
+        <div class="dose">
+          <div><span>正常參考值</span><span>約 2 mL/kg</span></div>
+          <div><span>本病例（2.4 kg）預期值</span><span>2 × 2.4 = 4.8 mL ≈ 5 mL</span></div>
+          <div><span>暫停餵食閾值（本病例）</span><span>約 8 mL（≈ 3.3 mL/kg），較支持 poor gastric emptying</span></div>
+          <div><span>梅醫師絕對上限</span><span>8 mL/kg，超過即不餵食、先減壓</span></div>
+        </div>
+        <p>灌食前先抽吸 GRV：約 5 mL 左右，可搭配其他臨床狀態評估是否繼續餵食；接近或超過閾值則應先暫停、減壓，重新評估後再考慮餵食，避免持續撐大胃部導致收縮力進一步下降。將鼻胃管置入胃內定期抽氣／抽殘留，可降低腸麻痺風險、改善營養支持。</p>
+        <div class="caution">
+          <span class="caution-tag">GRV 的定位</span>
+          <p>GRV 是輔助判斷工具，不應是唯一的 feeding cutoff，仍須整合腹脹程度、噁心／嘔吐表現與整體臨床狀態一起決定是否餵食。</p>
+        </div>
+
+        <h3><span class="sub-num">3</span>促動力藥物</h3>
+        <p>Metoclopramide 口服效果在梅醫師經驗中不理想；住院病患若希望達到 prokinetic effect，較建議 CRI 或皮下／注射途徑給藥。同時不要忽略：讓病患放鬆、減少壓力本身也是腸胃管理的一部分。</p>
+        <div class="lit">
+          <span class="lit-tag">個人臨床偏好／off-label 使用</span>
+          <p>Azithromycin 3.5 mg/kg PO q24h 可作為 Erythromycin 之外的促動力替代選擇，屬於潛在／off-label 應用，不應直接當作 routine first-line therapy 使用。</p>
+        </div>
+      </section>
+
+      <!-- 七 -->
+      <section class="chapter" id="s7">
+        <div class="chapter-head"><span class="chapter-num">07</span><h2>噁心處理優先於促食</h2></div>
+        <div class="caution">
+          <span class="caution-tag">今天最重要的概念之一</span>
+          <p>Treat nausea first → appetite stimulant later. 病患還在噁心時直接給促食藥，可能讓牠「想吃，但吃了更不舒服」，反而強化對食物的負面連結。沒有吐≠沒有噁心，因此只要臨床懷疑 nausea／GI discomfort，即使沒有明顯嘔吐，梅醫師也會比較積極給予 Maropitant（Cerenia）。</p>
+        </div>
+        <p>Ondansetron 與 Maropitant 是本病例使用的止吐選擇；急性期採「前期積極、後期減藥」的節奏。Cyproheptadine 在梅醫師目前美國臨床實務中相對不是主要選擇。</p>
+      </section>
+
+      <!-- 八 -->
+      <section class="chapter" id="s8">
+        <div class="chapter-head"><span class="chapter-num">08</span><h2>制酸劑選擇</h2></div>
+        <div class="lit">
+          <span class="lit-tag">個人臨床偏好</span>
+          <p>Famotidine 1 mg/kg 的 acid suppression 效果，在梅醫師經驗中可能不夠理想。若確實有 acid suppression 的適應症，較傾向使用 Omeprazole 1 mg/kg。但要強調：不是單純 anorexia／nausea 就一定需要制酸劑，仍應有明確適應症才使用。</p>
+        </div>
+        <p>低劑量 Acetaminophen 在本病例的使用則屬於視個體狀況決定的選項，並非常規用藥。</p>
+      </section>
+
+      <!-- 九 -->
+      <section class="chapter" id="s9">
+        <div class="chapter-head"><span class="chapter-num">09</span><h2>抗生素策略：梅醫師的 case preference</h2></div>
+        <p>黃綠色分泌物提高了細菌感染的懷疑，需要抗生素治療；重症且腸胃道脆弱的病患，優先考慮 IV 途徑（氟喹諾酮＋β-內醯胺，依風險評估）。</p>
+        <div class="lit">
+          <span class="lit-tag">本病例的用藥選擇</span>
+          <p>本病例梅醫師傾向 Augmentin＋IV Baytril，希望先避免口服 Doxycycline，尤其是腸胃耐受度不好的病患。這是針對本病例腸胃脆弱狀態的選擇，不代表 Doxycycline 在所有 URI 病例都應被避免。</p>
+        </div>
+        <p>若確實需要使用 Doxycycline：透過 feeding tube 給藥較容易確保後續充分 flush；貓咪需特別注意 pill-induced esophagitis／esophageal stricture 的風險，且 Doxycycline 可能進一步造成 GI adverse effects。若使用 injectable doxycycline，梅醫師偏向透過 central line 給藥，並避免 Doxycycline 與 β-內醯胺類藥物重疊使用。</p>
+        <p>黴漿菌（Mycoplasma）方面，小貓的呼吸道 Mycoplasma 感染可能需要較長療程；梅醫師筆記中 Doxycycline 約使用 3 週，再依臨床反應調整。</p>
+      </section>
+
+      <!-- 十 -->
+      <section class="chapter" id="s10">
+        <div class="chapter-head"><span class="chapter-num">10</span><h2>血小板 70–80K 的處理原則</h2></div>
+        <div class="lit">
+          <span class="lit-tag">個人臨床判斷</span>
+          <p>梅醫師認為：Platelet 落在 70–80K/µL 左右，如果沒有 bleeding、也沒有立即安排 invasive procedure，不一定單純因為數字本身就需要介入處理。需要一併評估：blood smear／platelet clumping（排除 clumping 造成的假性偏低）、數值趨勢（trend）、是否有 spontaneous bleeding，以及是否即將進行 invasive procedure——這是個案判斷邏輯，而非固定的介入切點。</p>
+        </div>
+      </section>
+
+      <!-- 十一 -->
+      <section class="chapter" id="s11">
+        <div class="chapter-head"><span class="chapter-num">11</span><h2>霧化、抗病毒與 Antiviral Stewardship</h2></div>
+
+        <h3><span class="sub-num">1</span>霧化治療</h3>
+        <p>住院首日即開始霧化：使用無菌生理食鹽水，避免加入麻醉藥物，每日 2–3 次執行。</p>
+        <div class="lit">
+          <span class="lit-tag">個人臨床偏好</span>
+          <p>梅醫師傾向不需要 routine 加入 acetylcysteine（NAC）；若沒有明確 indication，可以先拿掉 NAC。NAC 的劑量需依 indication 區分（例如 10 mg/kg 與 70 mg/kg 是不同用途的劑量），不能直接把兩者當作同一用途的低、高劑量互換使用。</p>
+        </div>
+
+        <h3><span class="sub-num">2</span>病毒鑑別與 PCR</h3>
+        <p>可能同時存在 primary viral infection＋secondary bacterial infection，並非只能二選一。PCR 在群體管理（例如收容所、多貓環境）或需要快速臨床導引時價值較高；單一病患多採取經驗性療程，不一定每次都需要送 PCR。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>病原</th><th>核酸類型</th><th>典型表現</th><th>相關抗病毒考量</th></tr></thead>
+            <tbody>
+              <tr><td>FHV-1</td><td>DNA virus</td><td>Conjunctivitis、corneal ulcer（尤其 dendritic／geographic ulcer）</td><td>Famciclovir 可作為 antiviral consideration。</td></tr>
+              <tr><td>FCV</td><td>RNA virus</td><td>Lingual／oral ulcer；少數嚴重 virulent systemic FCV 可出現 systemic inflammation、edema、skin lesions、vasculitis／multiorgan involvement</td><td>可考慮 Molnupiravir，但需要更多文獻與劑量證據支持。</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3><span class="sub-num">3</span>Molnupiravir 與 Antiviral Stewardship</h3>
+        <p>Molnupiravir 是貓科抗病毒治療較新的應用方向，部分 stomatitis／疑似 FCV 相關病例使用後有改善的經驗或報告，但「有反應」不等於「已證明是標準 FCV／stomatitis treatment」。</p>
+        <div class="caution">
+          <span class="caution-tag">Antiviral Stewardship</span>
+          <p>Scott Weese 特別提醒，新型抗病毒藥物若開始廣泛、不適當使用，可能造成 selection for antiviral resistance（篩選出具抗藥性的病毒株）。在缺乏充分劑量與文獻證據前，應審慎評估使用時機，而非常規套用。</p>
+        </div>
+      </section>
+
+      <!-- 十二 -->
+      <section class="chapter" id="s12">
+        <div class="chapter-head"><span class="chapter-num">12</span><h2>結構性病變：CT 與鼻腔鏡</h2></div>
+        <p>CT 與鼻腔鏡／內視鏡回答的問題不同，兩者常互補而非互相取代。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>檢查</th><th>主要用途</th></tr></thead>
+            <tbody>
+              <tr><td>CT</td><td>評估 nasal cavity、turbinate destruction、mass、慢性發炎變化，以及 middle ear／tympanic bulla 的骨性結構。</td></tr>
+              <tr><td>Rhinoscopy／Endoscopy</td><td>直接看 lesion 並可同時採樣：mucosa、nasopharynx、mass／polyp、foreign body、biopsy／culture；也可即時治療（擴張、清理分泌物）。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>尤其鼻咽息肉（nasopharyngeal polyp）常需要同時注意 middle-ear involvement——息肉常源於中耳，需處理源頭才能降低復發。中耳有 fluid accumulation 不一定所有病例都需要處理，但部分有症狀的病患，清除／引流後舒適度可能改善，連帶改善食慾。清洗鼻腔可短期內顯著改善舒適度，但屬於症狀緩解，不能取代找出並處理結構性病灶本身。</p>
+        <p>與飼主溝通時，CT 與鼻腔鏡兩者互補、診斷與治療兼具，需要一併釐清檢查成本與效益、預後與復發率。</p>
+      </section>
+
+      <!-- 十三 -->
+      <section class="chapter" id="s13">
+        <div class="chapter-head"><span class="chapter-num">13</span><h2>病歷呈現與品質保證</h2></div>
+        <p>梅醫師對病歷呈現方式提出的教學回饋：</p>
+        <ul>
+          <li>報告應加入 MCS、詳述物理檢查（眼球後推、鼻骨觸診、淋巴結），陰性結果同樣關鍵，不應只記錄陽性發現。</li>
+          <li>建議以「問題—鑑別—治療」（Problem–Differential–Treatment）的邏輯呈現病歷，更易於教學與推理過程的檢視。</li>
+          <li>核心監測檢查（電解質、UA）應納入住院基本費，以保障照護品質，避免因成本考量而省略關鍵監測。</li>
+          <li>在資源有限的情況下，應提前設定檢查與治療的優先順序，避免補充品或非核心項目造成資源浪費。</li>
+          <li>完整紀錄有助於降低醫療糾紛風險；若使用 AI 協助生成病歷內容，仍需要人工校正。</li>
+        </ul>
+      </section>
+
+      <!-- 十四 -->
+      <section class="chapter" id="s14">
+        <div class="chapter-head"><span class="chapter-num">14</span><h2>病程與預後反思</h2></div>
+        <p>本病例住院約 10 天，病程後期白血球持續偏高、腸蠕動不佳且反覆嘔吐，最終不幸離世。</p>
+        <div class="caution">
+          <span class="caution-tag">可能的死因方向</span>
+          <p>推測可能與持續低血容及血管舒張（傾向敗血症的病程）有關，也需要警惕是否合併 FIP，或隱性、系統性的 Calici 病程（如前述 virulent systemic FCV 可造成 multiorgan involvement）——這些屬於回顧性推測，並非最終確診結論。</p>
+        </div>
+        <p>資深醫師建議的反思與改進方向：</p>
+        <ul>
+          <li>更早期介入腸道動力管理與霧化治療，而非等到病程後期才加強處置。</li>
+          <li>持續以動態影像（TFAST／FastScan）與 UA 監測病程變化，而非依賴單次檢查結果。</li>
+          <li>避免過度用藥與補充品，將有限資源集中在關鍵檢查與核心支持療法上。</li>
+        </ul>
+      </section>
+
+      <!-- 十五 -->
+      <section class="chapter" id="s15">
+        <div class="chapter-head"><span class="chapter-num">15</span><h2>Take-home Messages</h2></div>
+        <div class="lit">
+          <span class="lit-tag">今天最值得留下來的臨床思考</span>
+          <p>這堂討論的核心不是單純「URI 要用什麼藥」，而是一套完整的評估與處置順序：URI → 做完整 MCS → 找出 obstruction／ocular／oral／ear involvement → 判斷 dehydration vs. hypovolemia vs. shock → monitoring urine 與體重 → control nausea → 評估 gastric motility → 才決定 nutrition → 最後依 viral／bacterial／Mycoplasma evidence 選擇 antimicrobial／antiviral。對重症 URI 貓而言，不要只處理鼻水，而是把牠當成一個 systemic hospitalized patient 來管理。</p>
+        </div>
+        <ul>
+          <li>理學檢查與病歷紀錄要涵蓋鼻、眼、口腔、淋巴結與 MCS，陰性發現與陽性發現同樣重要。</li>
+          <li>脫水、低血容與休克是三個不同層次的概念，需要分別評估、分別處置。</li>
+          <li>以連續體重作為住院輸液平衡的核心監測工具；寧可稍乾，不要過補。</li>
+          <li>食慾差卻高血鉀的消瘦病患，要提高警覺腎性／腎後性問題。</li>
+          <li>GRV 是輔助工具而非唯一 feeding cutoff；持續排空、避免胃部持續擴張是重點。</li>
+          <li>先處理噁心，再考慮促食；沒有嘔吐不代表沒有噁心。</li>
+          <li>血小板、制酸劑與抗生素的選擇都需要依個案風險與腸胃耐受度判斷，而非套用單一公式。</li>
+          <li>新型抗病毒藥物的使用要考量 antiviral stewardship，避免不當使用造成抗藥性篩選。</li>
+          <li>結構性病變（鼻咽狹窄、息肉、中耳積液）需要 CT 與鼻腔鏡互補評估，並處理源頭以降低復發。</li>
+          <li>重症病例即使結局不理想，完整的監測紀錄與病程回顧仍是重要的教學資產。</li>
+        </ul>
+      </section>
+
+      <!-- 十六 -->
+      <section class="chapter" id="s16">
+        <div class="chapter-head"><span class="chapter-num">16</span><h2>參考資料</h2></div>
+        <ol class="refs">
+          <li>
+            <div class="ref-body">
+              <p>09-14 病例討論：戶外米克斯母貓重症上呼吸道疾病（課堂討論錄音逐字稿與摘要，Plaud AI）。2026-09-14。</p>
+              <a href="https://web.plaud.ai/s/pub_cc6d8e56-e7da-476d-8631-6181fc9087f6::JUBpx6vHgkVGi6VxX3xMhBGRBXr2AsilQ7Fxd5gznxxMpZqlF-KWc1mgPE83hPN7YiFx3RVS4aufSrYanVNaqwI" target="_blank" rel="noopener">web.plaud.ai/s/pub_cc6d8e56-e7da-476d-8631-6181fc9087f6...</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Weese S. Antiviral resistance in cats: let's not screw up our game-changing drugs. Worms &amp; Germs Blog.</p>
+              <a href="https://www.wormsandgermsblog.com/2026/03/articles/animals/cats/antiviral-resistance-in-cats-lets-not-screw-up-our-game-changing-drugs/" target="_blank" rel="noopener">wormsandgermsblog.com/.../antiviral-resistance-in-cats</a>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="note">
+    整理自 2026-09-14 課堂病例討論逐字稿與摘要，供個人臨床參考使用，非正式發表文獻；文中標示為個人臨床偏好／case-specific decision 的劑量與處置節奏，僅反映本病例情境下梅醫師的判斷邏輯，不應直接當作固定不變的通則套用於所有病患。回到<a href="index.html">梅醫師病例討論</a>列表。
+  </footer>
+
+</div>
+</body>
+</html>
