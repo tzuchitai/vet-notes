@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>貓下泌尿道症狀與原發性高血鈣：從結石到鈣磷調控機制｜梅醫師病例討論</title>
+<style>
+  :root{
+    --bg:#F5F7F4;
+    --surface:#FFFFFF;
+    --surface-2:#EEF2EC;
+    --ink:#1A2420;
+    --ink-soft:#465049;
+    --ink-faint:#7C8880;
+    --accent:#2B6E63;
+    --accent-strong:#1F5048;
+    --accent-soft-bg:#E3EFEA;
+    --accent-soft-border:#BFDAD0;
+    --supplement:#96632A;
+    --supplement-soft-bg:#F6EAD7;
+    --supplement-soft-border:#E3C99A;
+    --rule:#DCE3DC;
+    --table-head-bg:#EEF2EC;
+    --font-display:Georgia,"Noto Serif TC","Songti TC",serif;
+    --font-body:-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei","Segoe UI",sans-serif;
+    --font-mono:ui-monospace,"SF Mono","Cascadia Code","Roboto Mono",monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#121815;
+      --surface:#161E19;
+      --surface-2:#1D2620;
+      --ink:#E7EDE8;
+      --ink-soft:#B7C2BA;
+      --ink-faint:#7E8D84;
+      --accent:#6FBFA9;
+      --accent-strong:#8ED4BF;
+      --accent-soft-bg:#1C2B26;
+      --accent-soft-border:#2C443B;
+      --supplement:#D8A25C;
+      --supplement-soft-bg:#2C2213;
+      --supplement-soft-border:#4E3A20;
+      --rule:#28322B;
+      --table-head-bg:#1D2620;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121815; --surface:#161E19; --surface-2:#1D2620; --ink:#E7EDE8;
+    --ink-soft:#B7C2BA; --ink-faint:#7E8D84; --accent:#6FBFA9; --accent-strong:#8ED4BF;
+    --accent-soft-bg:#1C2B26; --accent-soft-border:#2C443B; --supplement:#D8A25C;
+    --supplement-soft-bg:#2C2213; --supplement-soft-border:#4E3A20; --rule:#28322B; --table-head-bg:#1D2620;
+  }
+  :root[data-theme="light"]{
+    --bg:#F5F7F4; --surface:#FFFFFF; --surface-2:#EEF2EC; --ink:#1A2420;
+    --ink-soft:#465049; --ink-faint:#7C8880; --accent:#2B6E63; --accent-strong:#1F5048;
+    --accent-soft-bg:#E3EFEA; --accent-soft-border:#BFDAD0; --supplement:#96632A;
+    --supplement-soft-bg:#F6EAD7; --supplement-soft-border:#E3C99A; --rule:#DCE3DC; --table-head-bg:#EEF2EC;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent-strong);}
+  a:focus-visible, button:focus-visible, summary:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:2px;
+  }
+
+  .page{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 24px 96px;
+  }
+
+  /* ---------- Back link ---------- */
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    margin-top:20px;
+    padding:7px 14px 7px 10px;
+    border:1px solid var(--rule);
+    border-radius:20px;
+    background:var(--surface);
+    color:var(--ink-soft);
+    text-decoration:none;
+    font-size:13px;
+    font-weight:600;
+  }
+  .back-link:hover{
+    color:var(--accent-strong);
+    border-color:var(--accent-soft-border);
+    background:var(--accent-soft-bg);
+  }
+  .back-link .arrow{font-size:15px;line-height:1;}
+
+  /* ---------- Breadcrumb ---------- */
+  .crumbs{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:6px;
+    padding:10px 0 0;
+    font-size:13px;
+    color:var(--ink-faint);
+    font-family:var(--font-mono);
+  }
+  .crumbs a{color:var(--ink-faint);text-decoration:none;}
+  .crumbs a:hover{color:var(--accent-strong);}
+  .crumbs .sep{opacity:.5;}
+  .crumbs .current{color:var(--ink-soft);}
+
+  /* ---------- Masthead ---------- */
+  .masthead{
+    padding:28px 0 32px;
+    border-bottom:1px solid var(--rule);
+    margin-bottom:8px;
+  }
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--accent-strong);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;
+    height:1px;
+    background:var(--accent);
+    display:inline-block;
+  }
+  h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(28px,4vw,42px);
+    line-height:1.3;
+    margin:0 0 14px;
+    text-wrap:balance;
+    letter-spacing:.01em;
+  }
+  .dek{
+    font-size:16px;
+    color:var(--ink-soft);
+    max-width:62ch;
+    margin:0 0 24px;
+  }
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 20px;
+    font-size:13px;
+    color:var(--ink-faint);
+  }
+  .legend-item{display:flex;align-items:center;gap:8px;}
+  .swatch{width:12px;height:12px;border-radius:3px;flex:none;}
+  .swatch.core{background:var(--surface);border:1.5px solid var(--rule);}
+  .swatch.lit{background:var(--supplement-soft-bg);border:1.5px solid var(--supplement);}
+
+  /* ---------- Layout: rail + content ---------- */
+  .layout{
+    display:grid;
+    grid-template-columns:200px minmax(0,1fr);
+    gap:48px;
+    margin-top:40px;
+    align-items:start;
+  }
+  @media (max-width:860px){
+    .layout{grid-template-columns:1fr;}
+  }
+
+  .rail{
+    position:sticky;
+    top:24px;
+    font-size:14px;
+  }
+  .rail-title{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin:0 0 12px;
+  }
+  .rail nav ol{
+    list-style:none;
+    margin:0;
+    padding:0;
+    border-left:1px solid var(--rule);
+  }
+  .rail nav li{margin:0;}
+  .rail nav a{
+    display:block;
+    padding:7px 0 7px 16px;
+    margin-left:-1px;
+    border-left:1px solid transparent;
+    color:var(--ink-soft);
+    text-decoration:none;
+    font-size:13.5px;
+  }
+  .rail nav a:hover{color:var(--accent-strong);border-left-color:var(--accent);}
+
+  main{min-width:0;}
+
+  /* ---------- Sections ---------- */
+  section.chapter{
+    padding-top:8px;
+    margin-bottom:56px;
+    scroll-margin-top:24px;
+  }
+  .chapter-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    padding-bottom:14px;
+    margin-bottom:28px;
+    border-bottom:2px solid var(--ink);
+  }
+  .chapter-num{
+    font-family:var(--font-display);
+    font-size:15px;
+    color:var(--accent-strong);
+    font-weight:700;
+  }
+  .chapter-head h2{
+    font-family:var(--font-display);
+    font-size:24px;
+    margin:0;
+    font-weight:700;
+  }
+
+  h3{
+    font-family:var(--font-display);
+    font-size:18px;
+    font-weight:700;
+    margin:32px 0 12px;
+    color:var(--ink);
+  }
+  h3 .sub-num{color:var(--accent-strong);margin-right:8px;font-family:var(--font-mono);font-size:15px;}
+  h4{
+    font-size:14.5px;
+    font-weight:700;
+    margin:22px 0 8px;
+    color:var(--ink-soft);
+  }
+
+  p{margin:0 0 14px;max-width:74ch;}
+  ul,ol{margin:0 0 16px;padding-left:22px;max-width:70ch;}
+  li{margin-bottom:6px;}
+  li::marker{color:var(--ink-faint);}
+  strong{color:var(--ink);font-weight:700;}
+
+  /* ---------- Literature supplement callouts ---------- */
+  .lit{
+    background:var(--supplement-soft-bg);
+    border:1px solid var(--supplement-soft-border);
+    border-left:3px solid var(--supplement);
+    border-radius:3px;
+    padding:14px 18px;
+    margin:16px 0 20px;
+    max-width:74ch;
+  }
+  .lit p{margin:0;font-size:14.5px;color:var(--ink-soft);}
+  .lit p + p{margin-top:8px;}
+  .lit-tag{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--supplement);
+    font-weight:700;
+    display:block;
+    margin-bottom:6px;
+  }
+
+  /* ---------- Tables ---------- */
+  .table-wrap{
+    overflow-x:auto;
+    margin:10px 0 22px;
+    border:1px solid var(--rule);
+    border-radius:4px;
+  }
+  table{
+    border-collapse:collapse;
+    width:100%;
+    min-width:340px;
+    font-size:14.5px;
+    background:var(--surface);
+  }
+  caption{
+    text-align:left;
+    font-size:12px;
+    color:var(--ink-faint);
+    padding:8px 14px 0;
+    font-family:var(--font-mono);
+  }
+  thead th{
+    background:var(--table-head-bg);
+    text-align:left;
+    font-weight:700;
+    padding:10px 14px;
+    border-bottom:1px solid var(--rule);
+    color:var(--ink-soft);
+    font-size:13px;
+    white-space:nowrap;
+  }
+  tbody td{
+    padding:9px 14px;
+    border-bottom:1px solid var(--rule);
+    font-variant-numeric:tabular-nums;
+    vertical-align:top;
+  }
+  tbody tr:last-child td{border-bottom:none;}
+  tbody td:first-child{color:var(--ink);}
+
+  /* ---------- Drug / dose block ---------- */
+  .dose{
+    font-family:var(--font-mono);
+    font-size:13.5px;
+    background:var(--surface-2);
+    border:1px solid var(--rule);
+    border-radius:4px;
+    padding:12px 16px;
+    margin:10px 0 18px;
+    max-width:60ch;
+  }
+  .dose div{display:flex;justify-content:space-between;gap:16px;padding:2px 0;}
+  .dose div + div{border-top:1px dashed var(--rule);}
+  .dose span:first-child{color:var(--ink-soft);}
+  .dose span:last-child{font-variant-numeric:tabular-nums;text-align:right;}
+
+  /* ---------- Stat strip (case snapshot) ---------- */
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+    gap:12px;
+    margin:16px 0 22px;
+  }
+  .stat-box{
+    background:var(--surface);
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:14px 16px;
+    text-align:center;
+  }
+  .stat-box .num{
+    font-family:var(--font-display);
+    font-size:22px;
+    font-weight:700;
+    color:var(--accent-strong);
+    display:block;
+  }
+  .stat-box .lbl{font-size:12px;color:var(--ink-faint);margin-top:4px;}
+
+  /* ---------- Timeline ---------- */
+  .tl{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+    margin:10px 0 22px;
+    border-left:2px solid var(--accent-soft-border);
+    padding-left:20px;
+  }
+  .tl-item{position:relative;padding:0 0 22px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:"";
+    position:absolute;
+    left:-25.5px;
+    top:4px;
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:var(--accent);
+    border:2px solid var(--surface);
+  }
+  .tl-date{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    color:var(--accent-strong);
+    font-weight:700;
+    margin-bottom:3px;
+  }
+  .tl-body{font-size:14.5px;color:var(--ink-soft);}
+  .tl-body strong{color:var(--ink);}
+
+  /* ---------- References ---------- */
+  .refs{
+    list-style:none;
+    padding:0;
+    margin:0;
+    counter-reset:refnum;
+  }
+  .refs li{
+    counter-increment:refnum;
+    display:flex;
+    gap:14px;
+    padding:14px 0;
+    border-bottom:1px solid var(--rule);
+    max-width:none;
+  }
+  .refs li::before{
+    content:counter(refnum);
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--accent-strong);
+    flex:none;
+    width:20px;
+  }
+  .refs li:last-child{border-bottom:none;}
+  .refs .ref-body{font-size:14.5px;}
+  .refs .ref-body p{margin:0 0 4px;color:var(--ink-soft);}
+  .refs a{word-break:break-all;font-size:13.5px;}
+
+  footer.note{
+    margin-top:64px;
+    padding-top:20px;
+    border-top:1px solid var(--rule);
+    font-size:12.5px;
+    color:var(--ink-faint);
+  }
+  footer.note a{color:var(--ink-faint);}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <a class="back-link" href="index.html"><span class="arrow">←</span>回上一頁：梅醫師病例討論</a>
+
+  <p class="crumbs">
+    <a href="../index.html">🐾 獸醫讀書筆記</a>
+    <span class="sep">／</span>
+    <a href="index.html">梅醫師病例討論</a>
+    <span class="sep">／</span>
+    <span class="current">Case 06</span>
+  </p>
+
+  <header class="masthead">
+    <p class="eyebrow">梅醫師病例討論 · Case 06 · 小動物內科／泌尿系統・內分泌代謝</p>
+    <h1>貓下泌尿道症狀與原發性高血鈣：從結石到鈣磷調控機制</h1>
+    <p class="dek">主角為3歲絕育英國短毛貓「BUBU」，因反覆下泌尿道症狀（頻尿、排尿困難、血尿）就診，影像學確認膀胱／尿道草酸鈣結石，血檢意外發現持續性高血鈣。全文以BUBU的實際病程貫穿：從Hypercalcemia of Malignancy Profile的判讀邏輯（iCa↑、PTH↓、PTHrP陰性）鎖定原發性高血鈣，延伸至鈣的生理恆定機制（骨／腎／腸三角、PTH／Vitamin D／Calcitonin）、高血鈣造成下泌尿道症狀的病理機轉，最後整理成可臨床操作的營養矯正與追蹤策略。</p>
+    <div class="legend">
+      <span class="legend-item"><span class="swatch core"></span>病例簡報原始內容</span>
+      <span class="legend-item"><span class="swatch lit"></span>生理機制／文獻補充</span>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="rail">
+      <p class="rail-title">目錄</p>
+      <nav>
+        <ol>
+          <li><a href="#s1">一、病例摘要與病程時間軸</a></li>
+          <li><a href="#s2">二、影像學：結石動態與腎臟評估</a></li>
+          <li><a href="#s3">三、血液學與生化學檢查</a></li>
+          <li><a href="#s4">四、高血鈣鑑別診斷套組解讀</a></li>
+          <li><a href="#s5">五、鈣的生理恆定機制</a></li>
+          <li><a href="#s6">六、高血鈣的臨床面貌與泌尿道併發症</a></li>
+          <li><a href="#s7">七、風險評估與緊急介入警戒線</a></li>
+          <li><a href="#s8">八、立即處置與治療</a></li>
+          <li><a href="#s9">九、營養矯正策略：鈣磷調控筆記</a></li>
+          <li><a href="#s10">十、追蹤監測與病程反思</a></li>
+          <li><a href="#s11">十一、參考資料</a></li>
+        </ol>
+      </nav>
+    </aside>
+
+    <main>
+
+      <!-- 一 -->
+      <section class="chapter" id="s1">
+        <div class="chapter-head"><span class="chapter-num">01</span><h2>病例摘要與病程時間軸</h2></div>
+
+        <h3><span class="sub-num">1</span>病例摘要</h3>
+        <p>BUBU，3歲絕育公貓，英國短毛貓，體重6.0–6.3 kg，未規律施打疫苗，FIV／FeLV未檢測。2026年1月31日因急性排尿異常就診：頻尿（pollakiuria）、努責排尿（stranguria）、血尿／龜頭出血（hematuria），合併食慾不振。理學檢查與病史詢問後，以下泌尿道症狀為主訴展開評估。</p>
+        <div class="stat-strip">
+          <div class="stat-box"><span class="num">3歲</span><span class="lbl">英短・絕育公貓</span></div>
+          <div class="stat-box"><span class="num">11.7</span><span class="lbl">Total Ca mg/dL（持續↑）</span></div>
+          <div class="stat-box"><span class="num">1.41</span><span class="lbl">iCa mmol/L（確診高血鈣）</span></div>
+          <div class="stat-box"><span class="num">&lt;0.50</span><span class="lbl">PTH pmol/L（被抑制）</span></div>
+        </div>
+
+        <h3><span class="sub-num">2</span>臨床病程：症狀反覆波動</h3>
+        <p>下泌尿道症狀並非單向惡化或單向改善，而是呈現「危機—緩解—穩定—復發」的波動曲線，這種反覆性本身就是高血鈣相關結石病的重要臨床線索：只要血鈣持續偏高，尿鈣就持續偏高，結石的形成與刺激就難以單靠飲食稀釋完全壓制。</p>
+        <div class="tl">
+          <div class="tl-item">
+            <div class="tl-date">2026-01-31（初次危機）</div>
+            <div class="tl-body"><strong>嚴重頻尿</strong>：週四11次、週五7次、週六14次，合併食慾不振。當日X光可見膀胱區多發礦物質不透光影像。</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">2026-02-02（改善）</div>
+            <div class="tl-body">頻尿降至每日2次，單次尿量增加，努責排尿改善。腹部超音波確認膀胱多顆結石（0.3×0.2 cm、0.3×0.2 cm沉積中、0.3×0.3 cm貼附膀胱壁），另見尿道結石0.16×0.26 cm；雙側腎臟大小正常、無腎盂擴張。</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">2026-02-09（穩定）</div>
+            <div class="tl-body">排尿頻率3–5次／日，食慾與活動力正常。複查超音波：原本貼附膀胱壁的結石已脫離，目前為兩顆獨立結石（背側0.31×0.22 cm、腹側0.31×0.30 cm）。同日複驗血鈣仍偏高（11.7 mg/dL）、血磷降至4.1 mg/dL。</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">2026-02-23（復發）</div>
+            <div class="tl-body">2天內頻尿再度上升至4–6次／日，此時已改餵Royal Canin泌尿道處方飼料。超音波顯示結石融合為0.69×0.31 cm，最新單顆測量0.58×0.28 cm，體積較初診時明顯增大。同日抽血送驗Hypercalcemia of Malignancy Profile（後述第四節）。</div>
+          </div>
+        </div>
+        <div class="lit">
+          <span class="lit-tag">臨床解讀</span>
+          <p>值得注意的是，即使已轉換為泌尿道處方飼料，結石仍持續增大、症狀仍復發——這提示單純針對「泌尿道保健」的飲食策略，若未同時處理背後的高血鈣，效果會受限。這也是本篇整理把診斷邏輯延伸到「為什麼會高血鈣」而非停在「有結石就用泌尿道飼料」的原因。</p>
+        </div>
+      </section>
+
+      <!-- 二 -->
+      <section class="chapter" id="s2">
+        <div class="chapter-head"><span class="chapter-num">02</span><h2>影像學：結石動態與腎臟評估</h2></div>
+
+        <h3><span class="sub-num">1</span>膀胱與尿道結石的動態變化</h3>
+        <p>三次超音波追蹤呈現同一組結石的形態演變，而非新發結石：初診時膀胱內至少三顆小結石（含一顆貼附膀胱壁、一顆沉積中），另有一顆獨立尿道結石；一週後貼附壁的結石脫離、與另一顆各自游離；三週後兩顆結石融合為單一較大結石。這種「貼壁→脫離→融合變大」的動態過程，反映結石在膀胱內持續有新的礦物質沉積、而非單純靜止的異物。</p>
+        <div class="table-wrap">
+          <table>
+            <caption>膀胱／尿道結石測量追蹤（cm）</caption>
+            <thead><tr><th>檢查日期</th><th>發現</th></tr></thead>
+            <tbody>
+              <tr><td>2026-01-31（X光）</td><td>膀胱區可見多發礦物質不透光影像</td></tr>
+              <tr><td>2026-02-02（超音波）</td><td>膀胱：0.3×0.2 cm、0.3×0.2 cm（沉積中）、0.3×0.3 cm（貼附膀胱壁）；尿道：0.16×0.26 cm</td></tr>
+              <tr><td>2026-02-09（超音波）</td><td>原貼壁結石已脫離；現為背側0.31×0.22 cm、腹側0.31×0.30 cm兩顆獨立結石</td></tr>
+              <tr><td>2026-02-23（超音波）</td><td>兩顆結石融合，測得0.69×0.31 cm；另一觀察角度測得0.58×0.28 cm</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3><span class="sub-num">2</span>腎臟型態：穩定、無腎盂擴張</h3>
+        <p>左腎由4.14 cm追蹤至4.0 cm，右腎由3.84 cm追蹤至3.9 cm，兩側大小穩定，全程未見腎盂擴張。這項發現在後續鑑別診斷中相當關鍵：若高血鈣是由慢性腎臟病（CKD）續發性副甲狀腺亢進所導致，通常會合併腎臟結構性變化或腎指數異常；BUBU的腎臟型態穩定，加上後續血檢BUN／Creatinine皆在正常範圍，使腎因性高血鈣的可能性降低。</p>
+
+        <h3><span class="sub-num">3</span>結石成分的初步研判：草酸鈣為主要懷疑</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>鑑別</th><th>研判</th><th>依據</th></tr></thead>
+            <tbody>
+              <tr><td>草酸鈣（Calcium Oxalate）</td><td>主要懷疑</td><td>英短品種好發、年輕成貓、公貓、合併持續性高血鈣</td></tr>
+              <tr><td>Struvite</td><td>次要、可能性較低</td><td>公貓、無明顯泌尿道感染證據、合併高血鈣（高血鈣本身較不支持struvite的形成機轉）</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="lit">
+          <span class="lit-tag">文獻補充</span>
+          <p>草酸鈣結石與struvite結石最大的臨床差異在於「能否透過飲食溶解」：struvite在適當處方飲食下有機會逐步溶解，但草酸鈣一旦形成即無法以飲食溶解，只能靠預防（稀釋尿液、降低尿鈣、調整尿液pH）減少復發，必要時手術移除。明尼蘇達大學一項50隻犬的回溯性研究顯示，struvite膀胱結石以溶解飲食治療的成功率為58%，且若1個月內結石大小或數量無縮小，即應懷疑非struvite成分、改採其他處置；此原則同樣適用於判斷貓的結石是否適合先嘗試飲食溶解，或應直接朝預防與手術方向規劃。<a href="https://doi.org/10.1111/jvim.16252" target="_blank" rel="noopener">Wingert AM, et al. J Vet Intern Med. 2024（犬struvite膀胱結石溶解成效）</a></p>
+        </div>
+      </section>
+
+      <!-- 三 -->
+      <section class="chapter" id="s3">
+        <div class="chapter-head"><span class="chapter-num">03</span><h2>血液學與生化學檢查</h2></div>
+
+        <h3><span class="sub-num">1</span>血球計數：輕度嗜中性球低下</h3>
+        <p>2026-01-31全血球計數（CBC）中，紅血球系列（RBC、HCT、HGB、MCV、MCH、MCHC、RDW、網狀紅血球）與血小板皆正常。唯一異常為嗜中性球2.27 K/µL（參考範圍2.30–10.29 K/µL），屬輕度嗜中性球低下，其餘白血球分類（淋巴球、單核球、嗜酸性球、嗜鹼性球）皆正常，臨床意義不大，但仍建議後續追蹤是否為偶發或持續性變化。</p>
+
+        <h3><span class="sub-num">2</span>生化學：磷正常、鈣持續偏高</h3>
+        <div class="table-wrap">
+          <table>
+            <caption>血液生化學追蹤（單位：mg/dL）</caption>
+            <thead><tr><th>項目</th><th>2026-01-31</th><th>2026-02-09</th><th>參考範圍</th></tr></thead>
+            <tbody>
+              <tr><td>Phosphorus</td><td>5.2</td><td>4.1</td><td>3.1–7.5</td></tr>
+              <tr><td>Total Calcium</td><td>11.5 ↑</td><td>11.7 ↑</td><td>7.8–11.3</td></tr>
+              <tr><td>Glucose</td><td>89</td><td>—</td><td>74–159</td></tr>
+              <tr><td>Creatinine</td><td>1.2</td><td>—</td><td>0.8–2.4</td></tr>
+              <tr><td>BUN</td><td>21</td><td>—</td><td>16–36</td></tr>
+              <tr><td>Total Protein</td><td>6.9</td><td>—</td><td>5.7–8.9</td></tr>
+              <tr><td>Albumin</td><td>3.3</td><td>—</td><td>2.2–4.0</td></tr>
+              <tr><td>ALT／ALKP／GGT／T.Bili</td><td>皆正常</td><td>—</td><td>—</td></tr>
+              <tr><td>Na／K／Cl</td><td>皆正常</td><td>—</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>兩次追蹤總鈣皆超出正常上限（11.3），且血磷正常偏中間值（未偏低、也未偏高），腎指數（BUN、Creatinine）、肝指數與電解質皆正常，白蛋白正常代表總鈣偏高不是白蛋白偏高造成的假性上升。這個「高鈣＋磷正常＋腎指數正常」的組合，正是本篇第五、九節反覆強調的判讀關鍵：磷的位置決定了高血鈣的可能病因方向。</p>
+      </section>
+
+      <!-- 四 -->
+      <section class="chapter" id="s4">
+        <div class="chapter-head"><span class="chapter-num">04</span><h2>高血鈣鑑別診斷套組解讀</h2></div>
+
+        <h3><span class="sub-num">1</span>Hypercalcemia of Malignancy Profile（IDEXX，轉送Michigan State University）</h3>
+        <p>因總鈣持續偏高，於2026-02-23採檢送驗完整的高血鈣鑑別套組，2026-03-05出具報告：</p>
+        <div class="dose">
+          <div><span>Ionized Calcium</span><span>1.41 mmol/L（H）／參考1.00–1.40</span></div>
+          <div><span>Parathyroid Hormone（PTH）</span><span>&lt;0.50 pmol/L（L）／參考0.70–3.40</span></div>
+          <div><span>PTH-related Protein（PTHrP）</span><span>0.0 pmol/L／參考0.0–1.0（陰性）</span></div>
+        </div>
+        <p>游離鈣（iCa）是唯一具生物活性、也是確診高血鈣的黃金標準；1.41略高於上限，確認BUBU為真性、輕度高血鈣，而非總鈣受蛋白濃度干擾的假性上升。PTH被抑制到偵測極限以下，PTHrP為陰性。</p>
+
+        <h3><span class="sub-num">2</span>判讀邏輯：PTH-independent hypercalcemia</h3>
+        <p>「iCa上升＋PTH被抑制＋PTHrP陰性」三項合併，指向PTH-independent（副甲狀腺素非依賴性）高血鈣：</p>
+        <ul>
+          <li><strong>排除原發性副甲狀腺機能亢進</strong>：若為原發性PTH腫瘤，PTH應偏高或落在正常範圍內，而非被抑制到測不到。</li>
+          <li><strong>排除惡性腫瘤引發的體液性高血鈣（HHM）</strong>：PTHrP為腫瘤（尤其淋巴瘤、肛門腺腫瘤）分泌的擬PTH因子，此處為陰性，降低惡性腫瘤造成高血鈣的可能性（但陰性不能100%排除腫瘤存在）。</li>
+        </ul>
+        <p>排除以上兩者後，剩餘的鑑別診斷依可能性排序為：</p>
+        <ol>
+          <li><strong>原發性高血鈣（Idiopathic Hypercalcemia）</strong>——貓最常見的高血鈣病因</li>
+          <li>草酸鈣泌尿道結石相關性高血鈣</li>
+          <li>維生素D中毒</li>
+          <li>腫瘤（如淋巴瘤，依現有影像與PTHrP陰性判斷可能性較低）</li>
+        </ol>
+        <p>結合BUBU年輕成貓、英短品種、腎指數正常、影像未見腫塊、病史排除滅鼠藥／營養品過量攝取等背景，本病例最終判讀為<strong>原發性高血鈣，合併草酸鈣泌尿道結石</strong>。</p>
+
+        <h3><span class="sub-num">3</span>高血鈣造成下泌尿道症狀的病理機轉</h3>
+        <p>四步驟串連起「高血鈣」與「反覆LUTS」之間的因果關係：</p>
+        <ol>
+          <li>全身性高血鈣（Systemic Hypercalcemia）</li>
+          <li>尿鈣排出增加（Increased Urinary Calcium Excretion）——決定尿鈣濃度的最大因素就是血鈣濃度</li>
+          <li>膀胱內草酸鈣結晶／結石形成（Calcium Oxalate Stone Formation）</li>
+          <li>膀胱壁受刺激，產生持續性下泌尿道症狀（頻尿、努責排尿、血尿）</li>
+        </ol>
+        <p>這條路徑說明了為何BUBU即使已使用泌尿道處方飼料，症狀仍在2月23日復發：只要上游的血鈣沒有被矯正，下游的尿鈣、結石與膀胱刺激就會持續補充燃料。</p>
+      </section>
+
+      <!-- 五 -->
+      <section class="chapter" id="s5">
+        <div class="chapter-head"><span class="chapter-num">05</span><h2>鈣的生理恆定機制</h2></div>
+        <div class="lit">
+          <span class="lit-tag">文獻補充</span>
+          <p>本節內容整理自Dr. Audrey K Cook的臨床講座，聚焦貓的鈣生理與高血鈣機制，作為判讀BUBU檢驗數據的生理學基礎。</p>
+        </div>
+
+        <h3><span class="sub-num">1</span>為什麼「總血鈣」會騙人</h3>
+        <p>全身超過99%的鈣儲存在骨骼（以氫氧基磷灰石形式），僅不到0.1%存在於細胞外液，而這正是常規生化檢驗測到的「總血鈣（tCa）」。總血鈣又可再分為三種型態：游離鈣（iCa，約52%，唯一具生物活性）、與蛋白質結合（約40%）、與其他物質複合（約8%）。</p>
+        <p><strong>臨床鐵則：</strong>總血鈣無法準確反映真實狀態（推估約有40%的誤差率）。當游離鈣iCa &gt; 1.4 mmol/L時，才確診為真正的「高血鈣症」；游離鈣永遠是判讀的黃金標準，這也是為什麼BUBU即使總鈣只略高於上限，仍必須加驗iCa才能確診。</p>
+
+        <h3><span class="sub-num">2</span>鈣平衡的三大核心器官（The Homeostatic Triad）</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>器官</th><th>角色</th><th>機制重點</th></tr></thead>
+            <tbody>
+              <tr><td>骨骼（Bone）</td><td>動態緩衝水槽</td><td>絕非靜止不動，破骨細胞（osteoclasts，屬巨噬細胞家族）透過「啃食」骨質釋放儲存的鈣</td></tr>
+              <tr><td>腎臟（Kidneys）</td><td>精準的微調閥</td><td>透過過濾與再吸收微調血鈣；近端腎小管的鈣吸收機制主要「模仿鈉離子」，並受腎絲球濾過率（GFR）影響</td></tr>
+              <tr><td>腸胃道（GI Tract）</td><td>關鍵的輸入口</td><td>平均僅吸收食物中約10%的鈣，高度依賴維生素D；缺乏維生素D時，鈣質會直接排出體外，甚至造成淨流失</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3><span class="sub-num">3</span>三大內分泌調節矩陣（The Hormonal Regulators）</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>激素</th><th>核心任務</th><th>觸發機制</th><th>作用途徑</th></tr></thead>
+            <tbody>
+              <tr><td>副甲狀腺素（PTH）</td><td>提升血鈣</td><td>低游離鈣解除抑制；細胞預設為「持續分泌」</td><td>強烈活化破骨細胞；促進腎小管鈣重吸收</td></tr>
+              <tr><td>維生素D（Calcitriol）</td><td>建立強健骨骼</td><td>依賴腎臟酵素活化路徑，受PTH刺激</td><td>絕對必要於腸道鈣／磷吸收；生理劑量抑制破骨細胞，但中毒劑量會反向活化破骨細胞</td></tr>
+              <tr><td>降鈣素（Calcitonin）</td><td>降低血鈣／保護骨骼</td><td>飯後血鈣突升時觸發，由甲狀腺C細胞分泌</td><td>快速剝奪破骨細胞的刷狀緣，阻止其分解骨質；非維持生命所必須（雙側甲狀腺切除貓仍可存活）</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3><span class="sub-num">4</span>維生素D的活化藍圖：從飲食到關鍵酵素</h3>
+        <p>貓無法透過日照合成維生素D，完全依賴飲食攝入膽鈣化醇（cholecalciferol）。第一站在肝臟自動轉換為25-OH膽鈣化醇（此步驟不受血鈣濃度影響）；第二站、也是關鍵步驟在腎臟，必須透過1α-hydroxylase轉換為具生物活性的骨化三醇（calcitriol）。此酵素受PTH強烈刺激（加速器），但受高血磷或高游離鈣抑制（煞車），避免過度活化。</p>
+
+        <h3><span class="sub-num">5</span>影響鈣平衡的關鍵微環境（The Unsung Cofactors）</h3>
+        <ul>
+          <li><strong>鎂（Magnesium）：</strong>副甲狀腺細胞需要鎂才能「看見」血鈣濃度。低血鎂會使腺體對低血鈣「視而不見」，導致PTH分泌受損；若有嚴重腸胃道蛋白質流失，必須先校正低血鎂。</li>
+          <li><strong>鈉（Sodium）：</strong>腎小管中鈣的重吸收會緊緊跟隨鈉。給予鈉負荷會增加腎絲球濾過率（GFR），從而減少鈣的重吸收，是促進「鈣泌尿（calciuresis）」的臨床降鈣策略之一。</li>
+          <li><strong>酸鹼值（pH／H<sup>+</sup>）：</strong>血液鹼化會促使白蛋白結合更多游離鈣，使測得的iCa偏低。這也是為何抽血樣本「絕對不能接觸空氣」——二氧化碳逸失會使樣本偏鹼，導致測量出假性偏低的游離鈣。</li>
+        </ul>
+      </section>
+
+      <!-- 六 -->
+      <section class="chapter" id="s6">
+        <div class="chapter-head"><span class="chapter-num">06</span><h2>高血鈣的臨床面貌與泌尿道併發症</h2></div>
+
+        <h3><span class="sub-num">1</span>高血鈣貓咪的四種臨床面貌</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>面貌</th><th>特徵</th><th>重點</th></tr></thead>
+            <tbody>
+              <tr><td>① 結石貓（The Urolithiasis Cat）</td><td>因泌尿道結石就診（排尿困難、血尿）</td><td>高血鈣直接導致尿鈣增加；急性輸尿管阻塞有時是高血鈣的第一個線索。BUBU即屬此類</td></tr>
+              <tr><td>② ADR貓（The Ain't Doing Right Cat）</td><td>症狀模糊，主要表現為腸胃道問題（食慾不振、體重減輕）</td><td>理學檢查常無特異性，極易被誤診，必須測量iCa才能揪出真凶</td></tr>
+              <tr><td>③ 虛弱病貓（The Sick Cat）</td><td>症狀直接與潛在的嚴重疾病（腫瘤、感染）相關</td><td>常伴隨發燒、器官腫大，高血鈣只是全身性疾病的併發症</td></tr>
+              <tr><td>④ 無症狀貓（The Well Cat）</td><td>完全無臨床症狀，例行健檢時的偶然發現</td><td>個體可能對高血鈣有較高耐受度，或結石處於臨床靜止期</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3><span class="sub-num">2</span>腸胃道系統的隱性危機</h3>
+        <p>高血鈣造成的腸胃道影響在貓身上同樣常見，即使BUBU本次以泌尿道症狀為主，仍需留意這條併發症路徑：</p>
+        <ul>
+          <li><strong>食慾不振（Anorexia）</strong>——發生率可達50%。機轉：鈣是胃酸分泌的強效促泌劑（secretagogue），高血鈣可能導致胃酸過多與潛在的胃黏膜刺激或潰瘍，進而引發噁心與拒食。</li>
+          <li><strong>嘔吐與便秘</strong>——約27%的貓咪會出現明顯腸胃道症狀。便秘可能延長食糜在腸道的停留時間，反而「增加」飲食中鈣質的吸收，形成惡性循環。</li>
+        </ul>
+        <div class="lit">
+          <span class="lit-tag">臨床迷思破解</span>
+          <p>在狗或其他物種中，高血鈣常被認為會引發胰臟炎；但在貓咪身上，目前缺乏任何明確證據指出高血鈣會導致貓胰臟炎，判讀時不宜直接套用犬的邏輯。</p>
+        </div>
+
+        <h3><span class="sub-num">3</span>泌尿系統的代價：草酸鈣結石的病理機制</h3>
+        <p>決定尿液中鈣含量的最大因素，就是血液中的鈣濃度。高血鈣必然導致高尿鈣，促使草酸鈣結晶沉積——這正是BUBU反覆結石的核心機轉。草酸鈣結石帶來的臨床併發症相當可觀：尿道／輸尿管致命性阻塞、反覆發作的泌尿道感染、繼發性腎臟功能受損。流行病學上，草酸鈣結石與貓原發性高血鈣症高度關聯；文獻亦指出，接受腎臟移植且帶有草酸鈣結石的貓咪中，有相當比例患有未被察覺的高血鈣症。</p>
+
+        <h3><span class="sub-num">4</span>腎臟損傷的評估指標：貓與狗不同</h3>
+        <p>貓對高血鈣的腎臟耐受度與狗完全不同。大多數患有輕度至中度高血鈣的貓咪，仍能維持正常的腎臟濃縮功能，尿比重（USG）通常維持在1.035以上（常規維持）。但如果在確診高血鈣的同時，發現USG低於1.035，這是一個強烈的臨床警訊，暗示高血鈣已經造成實質的潛在腎功能不全（危險警報）。BUBU目前尚無USG追蹤紀錄，建議納入下一次複診的常規項目。</p>
+      </section>
+
+      <!-- 七 -->
+      <section class="chapter" id="s7">
+        <div class="chapter-head"><span class="chapter-num">07</span><h2>風險評估與緊急介入警戒線</h2></div>
+
+        <h3><span class="sub-num">1</span>當平衡被打破：高血鈣的骨牌效應</h3>
+        <p>臨床症狀的嚴重程度並非僅看鈣數值高低，而是由四個核心要素共同決定：</p>
+        <ul>
+          <li><strong>高血鈣的絕對數值（Magnitude）：</strong>數值越高，細胞生理干擾越嚴重</li>
+          <li><strong>攀升的速度（Rate of Increase）：</strong>急性飆高（如中毒）的破壞力遠大於慢性適應</li>
+          <li><strong>血磷濃度（Phosphorus Levels）：</strong>高鈣合併高磷是極危險信號，極易導致組織（尤其是腎臟）的不可逆礦物質沉積</li>
+          <li><strong>潛在病因（Underlying Cause）：</strong>如淋巴瘤或全身性黴菌感染，疾病本身的破壞力可能大於高血鈣本身</li>
+        </ul>
+
+        <h3><span class="sub-num">2</span>診斷邏輯與避險原則（Rule out Spurious Errors）</h3>
+        <p>面對異常的總血鈣（tCa）升高，應啟動標準防呆流程：</p>
+        <ol>
+          <li><strong>永遠確認游離鈣（Verify iCa）：</strong>總鈣升高時，第一步永遠是透過厭氧採樣技術確認iCa是否&gt;1.4 mmol/L</li>
+          <li><strong>排除假性干擾：</strong>實驗室測量誤差極為常見，若結果不合理應直接重新採樣檢驗；並確認血清樣本是否有嚴重「脂血（lipemia）」干擾光學判讀</li>
+          <li><strong>判讀血磷的關鍵決策：</strong>如果血磷偏低或處於正常值下限，不需要浪費金錢檢測維生素D（因為維生素D的生物學效應必然會拉高血磷）</li>
+        </ol>
+
+        <h3><span class="sub-num">3</span>何時必須緊急介入</h3>
+        <p>多數貓咪的高血鈣是緩慢進展的，但當觸及以下醫療警戒線時，必須立刻啟動降鈣治療，以防止不可逆的組織礦物質化與器官衰竭：</p>
+        <div class="dose">
+          <div><span>總血鈣（tCa）</span><span>&gt; 15 mg/dL</span></div>
+          <div><span>游離鈣（iCa）</span><span>&gt; 1.8 mmol/L</span></div>
+          <div><span>高鈣合併高血磷</span><span>絕對的臨床急症（組織礦物質化風險極高，尤其腎臟鈣化）</span></div>
+        </div>
+        <p>BUBU目前iCa為1.41 mmol/L，總鈣11.7 mg/dL，皆落在「警戒」而非「危險／介入」區間，屬於緩慢進展、可先以營養與監測為主的族群，但仍需定期複查以確認數值未持續攀升。</p>
+      </section>
+
+      <!-- 八 -->
+      <section class="chapter" id="s8">
+        <div class="chapter-head"><span class="chapter-num">08</span><h2>立即處置與治療</h2></div>
+        <p>2026-01-31首診當下，因急性下泌尿道症狀合併食慾不振，先以支持性治療穩定病患，再逐步展開高血鈣的鑑別診斷：</p>
+        <div class="dose">
+          <div><span>輸液治療</span><span>Ringer's solution 175 mL SC，補充水分並促進利尿</span></div>
+          <div><span>止痛</span><span>Buprenorphine 0.2 mL BID × 5次</span></div>
+          <div><span>尿道放鬆與緩解緊迫</span><span>Gabapentin 300 mg</span></div>
+          <div><span>膀胱保健</span><span>Cystophan</span></div>
+          <div><span>止血支持</span><span>Transamin</span></div>
+        </div>
+        <p>此階段治療目標是緩解急性症狀（疼痛、努責、緊迫誘發的尿道痙攣）與促進利尿稀釋尿鈣，尚未針對高血鈣本身用藥（如bisphosphonate或類固醇），因為當時鑑別診斷尚未完成，且BUBU的血鈣屬輕度上升、未達緊急介入警戒線，優先以飲食與監測為主的保守策略較為合理。</p>
+      </section>
+
+      <!-- 九 -->
+      <section class="chapter" id="s9">
+        <div class="chapter-head"><span class="chapter-num">09</span><h2>營養矯正策略：鈣磷調控筆記</h2></div>
+        <div class="lit">
+          <span class="lit-tag">整理依據</span>
+          <p>本節為高血鈣／CKD鈣磷營養管理的核心筆記，是本篇整理時參考的主要架構；重點在於強調鈣磷調控不是「單一數值愈低愈好」，而是Ca–P–Vitamin D–PTH整體平衡。</p>
+        </div>
+
+        <h3><span class="sub-num">1</span>核心營養目標</h3>
+        <div class="dose">
+          <div><span>Calcium</span><span>&lt; 200 mg／100 kcal</span></div>
+          <div><span>Ca : P ratio</span><span>&lt; 1.4 : 1</span></div>
+          <div><span>Phosphorus</span><span>不宜過低；參考AAFCO最低需求125 mg／100 kcal</span></div>
+        </div>
+        <div class="lit">
+          <span class="lit-tag">文獻補充</span>
+          <p>Ehrlich等人2024年發表於JFMS的病例系列，收錄10隻游離鈣持續偏高的貓（7隻原發性高血鈣、3隻CKD），飲食史顯示皆攝取鈣&gt;200 mg／100 kcal或Ca:P&gt;1.4:1。將飲食調整為鈣&lt;200 mg／100 kcal、Ca:P&lt;1.4:1後，追蹤中位數9週，10隻中9隻（90%）游離鈣下降，6隻（60%）恢復正常血鈣——為本節「Ca&lt;200 mg／100 kcal、Ca:P&lt;1.4:1」這組目標值提供了直接的臨床實證支持。<a href="https://doi.org/10.1177/1098612X241229811" target="_blank" rel="noopener">Ehrlich MR, et al. J Feline Med Surg. 2024（游離鈣可隨飲食調整而恢復正常）</a></p>
+        </div>
+
+        <h3><span class="sub-num">2</span>血磷不能壓太低：Ca×P×Vitamin D×PTH的連動關係</h3>
+        <p>低磷（hypophosphatemia）會刺激維生素D活化上升，進而增加腸道鈣吸收，反而提高高血鈣風險；這也是為什麼BUBU的血磷正常（4.1–5.2 mg/dL）、未偏低，在鑑別上更支持原發性高血鈣而非「積極限磷造成的醫源性高鈣」。CKD貓則常見另一條路徑：高磷刺激PTH上升（續發性副甲狀腺亢進），但因維生素D不足，無法有效抑制PTH，長期下來反而可能從低鈣演變為高鈣。</p>
+        <p><strong>重點結論：</strong>磷不可以壓太低——過低會刺激維生素D上升，進而導致高血鈣。CKD／高鈣風險貓的營養管理不是「越低越好」，而是「適當降低＋平衡Ca/P」。</p>
+
+        <h3><span class="sub-num">3</span>血磷含量比較（臨床選擇參考）</h3>
+        <div class="table-wrap">
+          <table>
+            <caption>不同飼料每100 kcal磷含量比較（CKD／高血鈣風險貓參考）</caption>
+            <thead><tr><th>飼料</th><th>Phos (mg/100 kcal)</th><th>評價</th></tr></thead>
+            <tbody>
+              <tr><td>Royal Canin Renal D（罐頭）</td><td>78</td><td>非常低，CKD佳</td></tr>
+              <tr><td>Hill's k/d early（乾糧）</td><td>126</td><td>接近AAFCO最低標準</td></tr>
+              <tr><td>Hill's multi-organ</td><td>130</td><td>中低</td></tr>
+              <tr><td>Hill's c/d fish（乾糧）</td><td>164</td><td>中等</td></tr>
+              <tr><td>Purina OM（乾糧）</td><td>390</td><td>過高，不適合CKD／高血鈣族群</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>臨床概念：</strong>&lt;100 mg／100 kcal為CKD理想值；100–170 mg／100 kcal可接受（early CKD／borderline）；&gt;200 mg／100 kcal應避免。</p>
+
+        <h3><span class="sub-num">4</span>高血鈣貓的營養策略與纖維輔助</h3>
+        <p>原則上應避免高鈣飲食與過高維生素D，同時注意不要讓磷過低（避免刺激維生素D活化）。纖維策略作為輔助：</p>
+        <ul>
+          <li><strong>Chia seed（奇亞籽）：</strong>建議劑量約2 g／貓／日，無味道、貓咪接受度佳；使用前建議以20 mL水浸泡約20分鐘使外殼黏液化，再拌入晨間第一餐。</li>
+          <li><strong>Psyllium：</strong>高可溶性纖維，但有味道，貓咪接受度較差。</li>
+        </ul>
+        <div class="lit">
+          <span class="lit-tag">文獻補充</span>
+          <p>Fantinati與Priymenko於2020年發表的病例系列，收錄3隻飲食調整6週仍未恢復正常血鈣的原發性高血鈣貓，加入chia seed 2 g／貓／日後4週，3隻游離鈣皆恢復正常，追蹤至第10週仍維持正常血鈣。推測機轉包含奇亞籽本身鈣質生物利用率低（受phytate、多酚等抗營養因子影響腸道吸收）、富含omega-3與多酚類具抗發炎效果可能減少蝕骨作用，以及高纖維延緩腸道傳輸時間、增加腸道鈣結合與糞便排出。此為BUBU飲食調整若6週後血鈣未恢復正常時，可考慮的下一步非藥物介入選項。<a href="https://doi.org/10.3389/fvets.2020.00421" target="_blank" rel="noopener">Fantinati M, Priymenko N. Front Vet Sci. 2020（奇亞籽輔助管理貓原發性高血鈣）</a></p>
+        </div>
+
+        <h3><span class="sub-num">5</span>何時不急著轉換腎臟處方飼料</h3>
+        <p>若為年輕貓、無蛋白尿，不一定要早期就轉換為腎臟處方飼料；可先以中度限磷、維持Ca&lt;200 mg／100 kcal與Ca:P&lt;1.4的一般或泌尿道處方飲食為主，並定期追蹤，而非直接跳到腎臟飼料——這也呼應BUBU目前腎指數正常、尚無CKD證據的現況，優先方向應是「控鈣＋預防結石復發」而非「保腎」。</p>
+
+        <h3><span class="sub-num">6</span>Monitoring：建議追蹤項目</h3>
+        <div class="dose">
+          <div><span>複查間隔</span><span>約1個月</span></div>
+          <div><span>追蹤項目</span><span>Total Ca／iCa、Phosphorus、BUN／Creatinine、電解質，必要時加驗PTH</span></div>
+        </div>
+        <p><strong>臨床總結：</strong>CKD／高血鈣貓的營養管理核心，不是「壓低某一個數值」，而是維持Ca–P–Vitamin D–PTH的整體平衡。</p>
+      </section>
+
+      <!-- 十 -->
+      <section class="chapter" id="s10">
+        <div class="chapter-head"><span class="chapter-num">10</span><h2>追蹤監測與病程反思</h2></div>
+
+        <h3><span class="sub-num">1</span>飼主與院方分工的追蹤計畫</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>分工</th><th>項目</th></tr></thead>
+            <tbody>
+              <tr><td>飼主（居家）</td><td>密切追蹤排尿頻率與尿液顏色；監測食慾與日常活動力</td></tr>
+              <tr><td>院方（臨床）</td><td>短期複查血鈣、血磷、Creatinine、BUN；複查超音波追蹤結石進展與評估輸尿管阻塞風險；若高血鈣持續：加驗游離鈣、尿液分析、尿鈣，並評估是否需排查腸道／淋巴系統疾病</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3><span class="sub-num">2</span>病程反思：為何症狀會在飲食調整後仍復發</h3>
+        <p>BUBU在轉換泌尿道處方飼料後仍於2026-02-23復發，且結石體積較初診時增大，說明僅處理「下游」（泌尿道支持、飲食稀釋）而未矯正「上游」（持續性高血鈣）時，結石復發幾乎是可預期的結果。完整的高血鈣鑑別套組（iCa／PTH／PTHrP）在此扮演關鍵角色：若未加驗這組檢驗，臨床上很容易把BUBU單純當作「泌尿道結石病患」處理，而遺漏背後原發性高血鈣這個驅動結石反覆形成的根本原因。</p>
+        <p>本篇引用的整體結論可作為這類病例的核心提醒：<strong>有效解決下泌尿道症狀，需要同時處理背後的代謝驅動因子，例如原發性高血鈣</strong>——而不只是針對結石本身做局部處置。</p>
+      </section>
+
+      <!-- 十一 -->
+      <section class="chapter" id="s11">
+        <div class="chapter-head"><span class="chapter-num">11</span><h2>參考資料</h2></div>
+        <ol class="refs">
+          <li>
+            <div class="ref-body">
+              <p>Feline Case Discussion: Lower Urinary Tract Signs &amp; Hypercalcemia — Internal Medicine SOAP Record（教學簡報，聯盟動物醫院龜山萬壽分院，報告者：戴子綺醫師）。含病患BUBU完整病歷、影像與IDEXX Hypercalcemia of Malignancy Profile報告。2026-01-31至2026-03-05。</p>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>貓與鈣：高血鈣症的生理機制與臨床影響——從基礎內分泌生理到臨床診斷決策（簡報整理，依據Dr. Audrey K Cook臨床講座內容）。</p>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>貓CKD／CaT營養與礦物質管理筆記（個人整理，涵蓋鈣磷目標值、Ca×P×Vitamin D×PTH機轉、纖維策略與監測計畫）。</p>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Ehrlich MR, Rudinsky AJ, Chew DJ, Parker VJ. Ionized hypercalcemia can resolve with nutritional modification in cats with idiopathic hypercalcemia or chronic kidney disease. <em>J Feline Med Surg.</em> 2024.</p>
+              <a href="https://doi.org/10.1177/1098612X241229811" target="_blank" rel="noopener">doi.org/10.1177/1098612X241229811</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Fantinati M, Priymenko N. Managing Feline Idiopathic Hypercalcemia With Chia Seeds (<em>Salvia hispanica</em> L.): A Case Series. <em>Front Vet Sci.</em> 2020;7:421.</p>
+              <a href="https://doi.org/10.3389/fvets.2020.00421" target="_blank" rel="noopener">doi.org/10.3389/fvets.2020.00421</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Midkiff AM, Chew DJ, Randolph JF, Center SA, DiBartola SP. Idiopathic hypercalcemia in cats. <em>J Vet Intern Med.</em> 2000;14:619–626.</p>
+              <a href="https://doi.org/10.1111/j.1939-1676.2000.tb02286.x" target="_blank" rel="noopener">doi.org/10.1111/j.1939-1676.2000.tb02286.x</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>de Brito Galvão JF, Parker V, Schenck PA, Chew DJ. Update on feline ionized hypercalcemia. <em>Vet Clin North Am Small Anim Pract.</em> 2017;47:273–292.</p>
+              <a href="https://doi.org/10.1016/j.cvsm.2016.09.004" target="_blank" rel="noopener">doi.org/10.1016/j.cvsm.2016.09.004</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Roberts E, Ramsey IK, Gostelow R, et al. Clinical findings, treatment, and outcomes in cats with naturally occurring hypoadrenocorticism: 41 cases. <em>J Vet Intern Med.</em> 2024. （貓Addison氏病中高血鈣發生率約31.7%，作為本病例排除性鑑別診斷之一的文獻依據。）</p>
+              <a href="https://doi.org/10.1111/jvim.17243" target="_blank" rel="noopener">doi.org/10.1111/jvim.17243</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Hypoadrenocorticism in cats. <em>J Feline Med Surg.</em> 2024. （貓Addison氏病之病因、臨床表徵與診斷回顧，作為高血鈣鑑別診斷的背景文獻。）</p>
+              <a href="https://doi.org/10.1177/1098612X241248381" target="_blank" rel="noopener">doi.org/10.1177/1098612X241248381</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>Wingert AM, Murray OA, Lulich JP, Hoelmer AM, Merkel LK, Furrow E. Efficacy of medical dissolution for suspected struvite cystoliths in dogs. <em>J Vet Intern Med.</em> 2024. （犬struvite膀胱結石飲食溶解成效，作為本病例草酸鈣結石「無法飲食溶解、僅能預防」推論的對照文獻。）</p>
+              <a href="https://doi.org/10.1111/jvim.16252" target="_blank" rel="noopener">doi.org/10.1111/jvim.16252</a>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="note">
+    整理自聯盟動物醫院龜山萬壽分院病例簡報（戴子綺醫師）、Dr. Audrey K Cook相關講座內容與個人CKD／CaT營養筆記，供個人臨床參考使用，非正式發表文獻；診斷邏輯、用藥劑量與飲食建議請以原始病歷、最新文獻及主治獸醫師判斷為準。回到<a href="index.html">梅醫師病例討論</a>列表。
+  </footer>
+
+</div>
+</body>
+</html>
