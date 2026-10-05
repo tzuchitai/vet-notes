@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SGLT2i 仿單外使用｜2026 Texas 內分泌研討會</title>
+<style>
+  :root {
+    --primary: #0F766E;
+    --primary-light: #CCFBF1;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0d2522;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9cc8c1; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #1f4a44;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9cc8c1; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9cc8c1;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #1f4a44;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #5f8f87;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0b4f49 0%, #14a395 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0d2522; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #1f4a44; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 Texas 內分泌研討會</a>
+  <div class="logo">
+    <h2>04｜SGLT2i 仿單外使用：<br>Let's Keep this Between Us!</h2>
+    <p>Jocelyn Mott｜2026 年 10 月 5 日</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">核心觀念與總覽</a>
+    <a href="#s1">1. 歷史與人用藥</a>
+    <a href="#s2">2. 作用機轉與 eDKA</a>
+    <a href="#s3">3. 葡萄糖毒性剋星</a>
+    <a href="#s4">4. 核准藥物與仿單</a>
+    <a href="#s5">5. 沒有獸醫藥時：dapagliflozin</a>
+    <a href="#s6">6. Bexa vs Vela 副作用</a>
+    <a href="#s7">7. HS 貓</a>
+    <a href="#s8">8. 緩解與復發（病例 TJ）</a>
+    <a href="#s9">9. 併用胰島素</a>
+    <a href="#s10">10. 已用過胰島素的貓（病例 Jasmine）</a>
+    <a href="#s11">11. 狗（警世病例 Snowball）</a>
+    <a href="#s12">12. 監測：酮體與酮酸中毒</a>
+    <a href="#s13">13. CKD 與長期使用</a>
+    <a href="#s14">Take-home、更正表與參考資料</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <!-- Header -->
+  <div class="page-header">
+    <h1>這件事我們私下說就好！SGLT2 抑制劑的仿單外使用（Let's Keep this Between Us! Off Label Use of SGLT2i）</h1>
+    <p>主講：Jocelyn Mott, DVM, DACVIM (SAIM), FACVIM（犬貓糖尿病）｜University of Florida</p>
+    <p>2026 年 10 月 5 日 11:36｜VET-KU × Texas A&amp;M 內科研討會｜場次 04（錄音 47 分鐘）</p>
+    <div class="tags">
+      <span class="tag">SGLT2i</span>
+      <span class="tag">Bexacat</span>
+      <span class="tag">Senvelgo</span>
+      <span class="tag">仿單外使用</span>
+      <span class="tag">eDKA</span>
+      <span class="tag">HS 肢端肥大</span>
+      <span class="tag">緩解</span>
+      <span class="tag">犬糖尿病</span>
+      <span class="tag">BHB 監測</span>
+      <span class="tag">CKD</span>
+    </div>
+    <a class="rec-link" href="https://web.plaud.ai/s/pub_e9cb7f13-2515-4fd4-a97b-7cfbb4a2379a::Hxc6o4hox_bV4P1RnWwmgv_BJ8MjdWLc54swxQCrLHenp0_CyoDeaQhxagA_2DSKc3i4_U4ShZ6hrSuwDCBF4AI" target="_blank" rel="noopener">🎧 聆聽課堂錄音（Plaud）↗</a>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-rec">🎤 錄音</span> 課堂逐字稿（盡量完整保留）
+    <span class="src src-slide">📄 講義</span> 投影片（共 55 頁，標示頁碼）
+    <span class="src src-photo">📷 現場</span> 現場拍攝、講義沒有的投影片
+    <span class="src src-hand">✍️ 筆記</span> 我的課堂筆記與提問
+    <span class="src src-add">💡 補充</span> 整理者補充（原始文獻、仿單）
+    <span class="src src-fix">【更正】</span> 逐字稿轉文字錯誤，以講義為準（完整列表見最後一節）
+  </div>
+
+  <!-- Key Points -->
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li>SGLT2i 把糖「排掉」，不會「補」胰島素：自身 β 細胞功能決定安全性</li>
+      <li>美國仿單只限「未用過胰島素、其他方面健康」的貓</li>
+      <li>起效很快（bexagliflozin 8 小時內就降），前幾週是 DKA 高風險期</li>
+      <li>DKA 中約 8 成是 eDKA：一定要測血酮，不能只看血糖</li>
+      <li>尿酮試紙測不到 BHB；開始前先測基準 BHB</li>
+      <li>有酸中毒就應該會生病；精神好、吃得好＝酮症，不是酮酸中毒</li>
+      <li>體重 14 天掉 &gt;5%、1 個月掉 &gt;8% → DKA 風險上升</li>
+      <li>用過胰島素的貓 DKA 約 3–4 倍（18.4% vs 5%），但證據也最多</li>
+      <li>狗永遠需要胰島素；併用時主要風險是低血糖，要戴 CGM</li>
+      <li>併用時胰島素先減 25–30%；有 CGM 時持續 400 可每天加 20–30%</li>
+      <li>狗的 PU/PD 不要全怪 SGLT2i：先找其他疾病（Snowball）</li>
+      <li>IRIS 1–2 期可以用；用藥中尿糖、PU/PD、USG 都失準</li>
+    </ul>
+  </div>
+
+  <!-- ══ SECTION 0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🎯</div>
+      <h2>核心觀念與總覽</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.1</span> 題目在說什麼</h3>
+        <ul class="notes">
+          <li>「Let's keep this between us」是在開<strong>仿單外使用</strong>的玩笑：藥物用在仿單沒有核准的物種、適應症、劑量或族群。</li>
+          <li>本場談的仿單外用法：
+            <ul class="notes">
+              <li>用在已經打過胰島素的貓</li>
+              <li>用在 HS（肢端肥大）貓</li>
+              <li>和胰島素併用</li>
+              <li>用在狗</li>
+              <li>買不到獸醫藥時，把人用藥（dapagliflozin）用在貓</li>
+            </ul>
+          </li>
+          <li><span class="src src-rec">🎤</span> 本場緊接在 03 貓糖尿病之後。錄音從腎小管機轉開始，前面幾頁（p.1–7）沒有錄到。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-add">💡 補充</span> 一句話掌握全場</h3>
+        <div class="quote">SGLT2i 能把血糖「排掉」，但不能「補」胰島素。</div>
+        <ul class="notes">
+          <li>它讓腎臟把葡萄糖排進尿液，血糖下降，<strong>不需要胰島素參與</strong>。</li>
+          <li>但細胞要利用葡萄糖、抑制脂肪分解與酮體生成，<strong>仍然需要胰島素</strong>。</li>
+          <li>所以病患<strong>自己的 β 細胞還剩多少功能</strong>，決定 SGLT2i 是「好用」還是「危險」。</li>
+          <li>下面三件事都可以用這句話理解：
+            <ul class="notes">
+              <li>為什麼仿單只限未用過胰島素的貓</li>
+              <li>為什麼會發生血糖正常型 DKA</li>
+              <li>為什麼狗不能單用</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.25 等</span><span class="src src-rec">🎤</span> 證據等級</h3>
+        <p class="p">🎤 「判斷文獻的分量時，我們通常看這個金字塔，越往上，支持的證據越強。」講者每一段都圈出該主題的證據層級。由強到弱依序是：</p>
+        <ol class="notes">
+          <li>系統性回顧</li>
+          <li>隨機對照試驗</li>
+          <li>世代研究</li>
+          <li>病例對照研究</li>
+          <li>病例系列與病例報告</li>
+          <li>專家意見</li>
+        </ol>
+        <div class="tbl-wrap"><table>
+          <tr><th>主題</th><th>證據層級（講者圈選）</th></tr>
+          <tr><td>HS 貓</td><td>病例系列與病例報告、專家意見</td></tr>
+          <tr><td>緩解與復發</td><td>專家意見、軼事病例、病例系列</td></tr>
+          <tr><td>併用胰島素</td><td>病例系列</td></tr>
+          <tr><td>已用過胰島素的貓</td><td><strong>隨機對照試驗</strong>、病例系列、軼事報告。🎤 「我認為這是證據最強的一塊。」</td></tr>
+          <tr><td>狗</td><td>病例系列、病例報告、軼事報告<span class="src src-add">💡</span>（2025 年已有犬的 RCT，見第 11 節）</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">📜</div>
+      <h2>1. 歷史與人用藥</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.3–5</span> 根皮苷（phlorizin）到 SGLT2i</h3>
+        <ul class="notes">
+          <li><strong>1835 年</strong>從蘋果樹根皮分離出根皮苷；<strong>1921 年</strong>發現胰島素。</li>
+          <li><strong>1980 年代</strong>：給糖尿病大鼠根皮苷，高血糖就緩解了。</li>
+          <li><strong>家族性腎性糖尿</strong>：SGLT2 基因突變的人有嚴重糖尿，血糖卻正常，而且幾乎沒有健康問題。</li>
+          <li>第二型糖尿病患者的腎臟 <strong>SGLT2 表現量上升</strong>，所以 SGLT 被視為很有希望的藥物標的。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充：為什麼這段歷史重要</strong>
+          <ul class="notes">
+            <li><strong>根皮苷不能直接當藥</strong>：
+              <ul class="notes">
+                <li>在腸道會被分解，口服吸收差。</li>
+                <li>它同時抑制 SGLT1，會造成腸胃副作用。</li>
+                <li>所以後來的藥都改成較穩定、只針對 SGLT2 的「C-葡萄糖苷」結構。</li>
+              </ul>
+            </li>
+            <li><strong>大鼠實驗</strong>：只靠排糖，大鼠的胰島素敏感性和 β 細胞功能就恢復了。這是「<strong>葡萄糖毒性</strong>」的早期證據。</li>
+            <li><strong>家族性腎性糖尿</strong>：讓學界相信長期抑制 SGLT2 是安全的。</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.6</span> FDA 核准的人用 SGLT2i</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>藥物</th><th>商品名</th><th>核准時間</th></tr>
+          <tr><td>Canagliflozin</td><td>Invokana®</td><td>2013 年 3 月</td></tr>
+          <tr><td>Dapagliflozin</td><td>Farxiga®</td><td>2014 年 1 月</td></tr>
+          <tr><td>Empagliflozin</td><td>Jardiance®</td><td>2014 年 8 月</td></tr>
+          <tr><td>Ertugliflozin</td><td>Steglatro®</td><td>2017 年</td></tr>
+          <tr><td>Bexagliflozin</td><td>Brenzavvy®</td><td>2023 年</td></tr>
+          <tr><td>Sotagliflozin</td><td>Inpefa®（SGLT1／SGLT2 雙重抑制）</td><td>2023 年</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li>另有複方製劑：SGLT2i 加上 metformin 或 DPP-4 抑制劑。</li>
+          <li><span class="src src-add">💡</span> <strong>Bexagliflozin</strong>：人用 Brenzavvy 和獸醫用 Bexacat 是<strong>同一個分子</strong>。</li>
+          <li><span class="src src-add">💡</span> <strong>Velagliflozin（Senvelgo）</strong>：獸醫專用，沒有人用版本。</li>
+          <li><span class="src src-add">💡</span> <strong>Sotagliflozin</strong>：在美國的核准適應症是<strong>心衰竭</strong>，不是第二型糖尿病。</li>
+          <li><span class="src src-add">💡</span> 在人醫，SGLT2i 已經被證實有<strong>心臟與腎臟保護作用</strong>，沒有糖尿病的心衰竭、CKD 病人也會用（講者在最後也提到，見第 13 節）。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">⚙️</div>
+      <h2>2. 作用機轉與 eDKA</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.8</span><span class="src src-rec">🎤</span> 正常腎小管的葡萄糖回收</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 葡萄糖在腎絲球被自由過濾（圖中的小紅點）。</li>
+          <li><span class="src src-rec">🎤</span> 近曲小管的 <strong>SGLT2</strong> 回收 <strong>90–97%</strong>；再往下的 <strong>SGLT1</strong>（藍色三角形）回收剩下的部分。所以正常尿液<strong>不應該有葡萄糖</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 給了 SGLT2i 之後，SGLT2 無法再回收那 97%。<strong>SGLT1 會代償</strong>，回收量從原本的 <strong>3–10% 增加到 40–50%</strong>，其餘就從尿中流失。</li>
+          <li><span class="src src-rec">🎤</span> 「這類藥另一個很酷的地方是：它降血糖的方式和<strong>胰島素分泌能力、β 細胞功能、胰島素敏感性都無關</strong>。」</li>
+          <li><span class="src src-rec">🎤</span> 幫助 β 細胞的方式是<strong>增加碳水化合物的流失</strong>，讓 β 細胞比較好工作。（03 的「驢子比喻」見 <a href="feline-diabetes.html#s10">03 第 10 節</a>）</li>
+        </ul>
+        <div class="grid2">
+          <div class="card-mini"><h4>SGLT2（近曲小管 S1、S2 段）</h4><ul><li>回收約 <strong>90–97%</strong> 葡萄糖</li><li>低親和力、高容量</li><li><strong>SGLT2i 的作用位置</strong></li></ul></div>
+          <div class="card-mini"><h4>SGLT1（近曲小管 S3 段）</h4><ul><li>平常回收 <strong>3–10%</strong></li><li>被代償時可增加到 <strong>40–50%</strong></li><li>也大量存在於<strong>小腸</strong>：抑制它會造成腹瀉</li></ul></div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-add">💡</span> <strong>腎糖閾</strong>：一般認為貓約 250–290 mg/dL、狗約 180–220 mg/dL。SGLT2i 等於把腎糖閾大幅降低，在較低的血糖下就開始排糖。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.9</span> SGLT2 抑制作用（Rieg T, et al. 2018 Diabetologia）</h3>
+        <ul class="notes">
+          <li>對 SGLT2 的專一性很高。</li>
+          <li>增加尿中<strong>葡萄糖與鈉</strong>的排出。</li>
+          <li>降血糖效果<strong>與胰島素分泌、β 細胞功能、胰島素敏感性都無關</strong>。</li>
+          <li>不會造成低血糖。</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>「不會低血糖」只適用於<strong>單獨使用</strong>。和胰島素併用時仍可能低血糖：p.28 就有一隻貓在胰島素、Senvelgo、cabergoline 併用下發生嚴重低血糖；講者也因此要求併用胰島素的狗戴 CGM（第 12 節）。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-add">💡 補充</span> 為什麼單獨使用很少低血糖</h3>
+        <ol class="notes">
+          <li>血糖越低，過濾出來的葡萄糖越少，能排掉的量也越少，效果會自我煞車。</li>
+          <li>SGLT1 會代償回收一部分（上面的 40–50%）。</li>
+          <li>升糖素、腎上腺素等升糖機制仍然正常。</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-add">💡 補充</span> 酮體為什麼會上升：eDKA 的機轉</h3>
+        <ol class="notes">
+          <li>大量葡萄糖從尿中流失，身體處於類似「飢餓」的狀態。</li>
+          <li>血糖下降後，胰島素分泌減少，升糖素相對增加，<strong>胰島素／升糖素比值下降</strong>。</li>
+          <li>脂肪分解增加，肝臟生成酮體增加。</li>
+          <li>腎臟排除酮體的量可能減少。</li>
+          <li>滲透性利尿造成脫水，讓酸中毒更嚴重。</li>
+          <li>結果：<strong>血糖不高，卻已經酮酸中毒，也就是 eDKA</strong>。</li>
+        </ol>
+        <div class="alert alert-danger"><span class="alert-icon">🚨</span><div><strong>不依賴胰島素是雙面刃。</strong>
+          <ul class="notes">
+            <li>好處：即使 β 細胞功能差或有胰島素阻抗，血糖一樣會降。</li>
+            <li>壞處：血糖下降讓人以為「不需要那麼多胰島素」，但身體可能仍然缺胰島素。</li>
+          </ul>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🔥</div>
+      <h2>3. 葡萄糖毒性剋星</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-photo">📷 現場</span><span class="src src-rec">🎤</span> Why is Glucotoxicity Important?</h3>
+        <p class="p">🎤 「我們上一小時談過這個。」</p>
+        <p class="p"><strong>惡性循環</strong>：</p>
+        <ol class="notes">
+          <li>慢性高血糖造成氧化壓力。</li>
+          <li>氧化壓力引起胰島素阻抗。</li>
+          <li>慢性高血糖讓 <strong>GLUT4</strong>（周邊組織把葡萄糖從血中拉進細胞的轉運蛋白）表現下調。</li>
+          <li>阻抗讓高血糖更嚴重，回到第 1 步。</li>
+        </ol>
+        <p class="p"><strong>對胰臟 β 細胞的影響</strong>：β 細胞受損與凋亡、胰島素合成減少、葡萄糖激酶活性下降，結果<strong>胰島素分泌減少</strong>。</p>
+        <ul class="notes">
+          <li><span class="src src-add">💡</span> <strong>葡萄糖激酶</strong>：β 細胞感測血糖的關鍵酵素。</li>
+          <li><span class="src src-add">💡</span> 這個循環<strong>早期是可逆的</strong>。用胰島素或 SGLT2i 把血糖降下來都能打斷它。SGLT2i 的優勢在於快、不會低血糖、口服方便。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.10</span><span class="src src-rec">🎤</span> β 細胞減少 50%（Zini E, et al. Diabetologia 2009）</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 健康貓輸注葡萄糖，讓血糖達到糖尿病貓的程度：<strong>2 天後胰島素分泌就下降</strong>，<strong>10 天後 β 細胞量減少 50%</strong>。</li>
+          <li>同一研究中，輸注脂質的貓沒有這種變化。</li>
+          <li><span class="src src-add">💡</span> 臨床意義：高血糖拖越久，β 細胞越少。<strong>越早把血糖控制好，越有機會緩解。</strong></li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.11–12</span><span class="src src-rec">🎤</span> 葡萄糖毒性剋星：Bexacat</h3>
+        <p class="p">🎤 講者用一隻<strong>過重的糖尿病貓</strong>說明：</p>
+        <ol class="notes">
+          <li>這隻貓會得糖尿病，一定有<strong>肥胖造成的胰島素阻抗</strong>。</li>
+          <li>但也一定至少有<strong>一些 β 細胞功能異常</strong>，背後是葡萄糖毒性。</li>
+          <li>慢性高血糖會把<strong>輕度</strong>的 β 細胞功能異常變成<strong>嚴重</strong>的。</li>
+          <li>時間一久就變成<strong>不可逆</strong>的功能異常與 β 細胞流失。</li>
+          <li>給 Bexacat 這類 SGLT2i，<strong>通常能解除葡萄糖毒性</strong>。只要 β 細胞還沒到不可逆，它們就能重新開始分泌一些胰島素。</li>
+        </ol>
+        <p class="muted">📄 講義：Bexacat 幫助血糖正常化，降低葡萄糖毒性，可能改善 β 細胞功能與胰島素分泌。💡 「改善 β 細胞功能」是依葡萄糖毒性理論推論的，還沒有大型研究直接證實。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.13</span><span class="src src-rec">🎤</span> 樞紐試驗：降得有多快</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> <strong>Bexagliflozin 樞紐試驗</strong>：貓在<strong>給藥後 8 小時內</strong>血糖就大幅下降，之後幾週的控制非常一致。</li>
+          <li><span class="src src-rec">🎤</span> <strong>Senvelgo 試驗</strong>：貓進試驗時血糖在 400 多，<strong>7 天內降到 193</strong>，「看看曲線有多平、多一致」。第 2–3 天平均血糖就已經降到約 200。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>📄 Senvelgo 田野試驗</th><th>平均血糖（mg/dL）</th><th>n</th></tr>
+          <tr><td>篩選</td><td>445.2</td><td>198</td></tr>
+          <tr><td>第 2–3 天（單次點測）</td><td>203.7</td><td></td></tr>
+          <tr><td>第 7 天</td><td>193.8</td><td>198</td></tr>
+          <tr><td>第 30 天</td><td>169.8</td><td>193</td></tr>
+          <tr><td>第 60 天</td><td>154.8</td><td>173</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-add">💡</span> n 從 198 降到 173。中途退出（包括 DKA）的貓不在後面的平均裡，曲線看起來會比實際好（<strong>存活者偏差</strong>）；而且是單組、開放標籤，沒有對照組。</li>
+          <li><span class="src src-add">💡</span> 血糖降得快，代表<strong>前幾週的酮體監測特別重要</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-photo">📷 現場</span><span class="src src-rec">🎤</span> 病例：12 歲去勢公 DSH，新診斷的自發性糖尿病（UF）</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 到 UF 急診，急診裝了 FreeStyle Libre，開始 <strong>glargine U100 1 U SQ</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 「注意日期：<strong>12 月 24 日，聖誕夜</strong>」才轉到內科。內科住院醫師和飼主長談後發現，飼主是<strong>人醫師（MD）</strong>，但<strong>絕對沒辦法一天給藥超過一次</strong>，「否則就是安樂死」。</li>
+          <li><span class="src src-rec">🎤</span> 雖然這隻貓已經打過胰島素（在美國屬於限制條件），團隊仍決定改成 <strong>Bexacat</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 「你看效果多戲劇化。<strong>同樣的時間內，用胰島素我們絕對做不到這樣</strong>。」</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>日期</th><th>治療（綠箭頭 Bexacat 15 mg PO q24h；藍箭頭 glargine 1 U）</th><th>CGM（依照片判讀）</th></tr>
+          <tr><td>12/22</td><td>Glargine 1 U，約 10 am、9 pm</td><td>清晨短暫降到約 180–200，其餘幾乎都 &gt; 350</td></tr>
+          <tr><td>12/23</td><td>Glargine 1 U，約 6 pm</td><td>整天 &gt; 350</td></tr>
+          <tr><td>12/24</td><td>約 1 pm <strong>開始 Bexacat</strong></td><td>數小時內從 &gt; 350 降到約 180–250</td></tr>
+          <tr><td>12/25</td><td>Bexacat</td><td>約 150–230</td></tr>
+          <tr><td>12/26</td><td>Bexacat</td><td>約 100–150</td></tr>
+        </table></div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>怎麼解讀</strong>
+          <ul class="notes">
+            <li>這個病例真正的重點是<strong>飼主限制</strong>：一天只能給藥一次，不然就安樂死。SGLT2i 讓這隻貓有治療的機會。</li>
+            <li>起效快是事實，但 glargine 只打了 1 U、2 天，並不是公平比較。照第 9 節的原則，戴著 CGM、血糖持續 &gt; 350 時，也可以選擇每天把胰島素加 20–30%。</li>
+            <li>圖上沒有同期的 BHB 數據。</li>
+          </ul>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">💊</div>
+      <h2>4. 核准藥物與仿單</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.14</span><span class="src src-rec">🎤</span><span class="src src-add">💡</span> 兩個獸醫用 SGLT2i</h3>
+        <p class="p">🎤 北美在 <strong>2022 年</strong>有 Bexacat 上市，<strong>2023 年</strong>有 Senvelgo。</p>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>Bexacat</th><th>Senvelgo</th></tr>
+          <tr><td>成分</td><td>Bexagliflozin</td><td>Velagliflozin</td></tr>
+          <tr><td>廠商</td><td>Elanco</td><td>Boehringer Ingelheim</td></tr>
+          <tr><td>FDA 核准</td><td>2022 年</td><td>2023 年 8 月</td></tr>
+          <tr><td>劑型</td><td>15 mg 調味錠</td><td>15 mg/mL 口服液</td></tr>
+          <tr><td>劑量</td><td><strong>每隻貓 15 mg（一顆）q24h，不論體重</strong></td><td><strong>1 mg/kg q24h</strong></td></tr>
+          <tr><td>黑框警語</td><td colspan="2">兩者都有，主要警告 DKA 與 eDKA</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.17–18</span><span class="src src-rec">🎤</span> 北美仿單：適應症非常窄</h3>
+        <p class="p">🎤 「在北美，這兩個藥的適應症<strong>非常窄</strong>，仿單上的文字<strong>一模一樣</strong>：」</p>
+        <div class="quote">Indicated to improve glycemic control in otherwise healthy cats with diabetes mellitus <u>not previously treated with insulin</u>.<span class="quote-zh">適用於改善「其他方面健康、且未曾接受胰島素治療」的糖尿病貓的血糖控制。</span></div>
+        <p class="p"><span class="src src-add">💡</span> <strong>為什麼限定「未曾使用胰島素」</strong></p>
+        <ul class="notes">
+          <li>已經需要胰島素的貓，通常 β 細胞剩得較少，自身胰島素不足。</li>
+          <li>用 SGLT2i 取代胰島素時，沒有足夠的胰島素抑制酮體生成，DKA 風險就會升高。臨床試驗也證實了這點（第 10 節）。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> <strong>「其他方面健康」</strong>：排除胰臟炎、腎病、食慾不振、脫水、精神差、酮症。這些都會讓 DKA 風險升高。</p>
+        <p class="p"><span class="src src-add">💡</span> <strong>化學結構</strong>：兩者都有葡萄糖環，所以能佔住 SGLT2。Velagliflozin 和 L-脯胺酸、水形成共晶。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.19</span><span class="src src-rec">🎤</span> 同樣的藥，不同國家，感覺差很多</h3>
+        <p class="p">🎤 Senvelgo 在全球比較容易取得，所以拿它來比較：</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>地區</th><th>Senvelgo 適應症</th></tr>
+          <tr><td>美國</td><td>未曾接受胰島素治療、其他方面健康的糖尿病貓</td></tr>
+          <tr><td>葡萄牙（歐盟）</td><td>降低<strong>非胰島素依賴型</strong>糖尿病貓的高血糖</td></tr>
+          <tr><td>英國</td><td>治療貓的糖尿病</td></tr>
+        </table></div>
+        <p class="muted">💡 各國文字寬嚴不同，「什麼算仿單外」也跟著不同。核心概念一樣：<strong>病患自身要有足夠的胰島素分泌</strong>。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🌏</div>
+      <h2>5. 沒有獸醫藥時：dapagliflozin</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.15</span><span class="src src-rec">🎤</span> 「我手上沒有 Bexacat！也沒有 Senvelgo！」</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 「如果你所在的國家沒有 Bexacat 或 Senvelgo 呢？」</li>
+          <li><span class="src src-rec">🎤</span> Dapagliflozin（Farxiga）在人醫<strong>核准超過十年</strong>，「大多數國家都有，所以大多數人都有這個選項」。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.16</span><span class="src src-rec">🎤</span> Dapagliflozin（Farxiga® 5 mg／10 mg）— ACVIM 2026 摘要</h3>
+        <ul class="notes">
+          <li>27 隻糖尿病貓：12 隻新診斷，15 隻原本打胰島素（IT 組）。</li>
+          <li>IT 組在 14 天內都<strong>減少或停用了胰島素</strong>。</li>
+          <li>93% 的貓臨床症狀緩解。</li>
+          <li>最終劑量從<strong>每週兩次 2.5 mg 到每天 5 mg</strong>。</li>
+          <li><strong>IT 組有 2 例 eDKA</strong>；新診斷組沒有。</li>
+          <li>投影片配圖寫「PHEW, THAT WAS CLOSE.」（呼～好險）。</li>
+        </ul>
+        <div class="alert alert-success"><span class="alert-icon">🎤</span><div><strong>講者特別強調：</strong>「SGLT2i 的建議是每 24 小時給一次，但這些貓有些<strong>每週兩次</strong>就控制住了。所以有些貓可能可以<strong>拉長給藥間隔</strong>。」</div></div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>補充：注意事項</strong>
+          <ul class="notes">
+            <li>這只是摘要，尚未經過同儕審查。</li>
+            <li>貓的 dapagliflozin 藥動資料幾乎沒有，所以劑量範圍很寬。</li>
+            <li>IT 組 15 隻中有 2 例 eDKA（約 13%），和 SENSATION 試驗中打過胰島素的組別（18.4%）相近。</li>
+            <li>「93% 症狀緩解」沒有附血糖或果糖胺數據。</li>
+            <li>台灣能不能買到 Senvelgo、Bexacat，以及人用藥仿單外使用的規定，要另外確認。</li>
+          </ul>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">⚖️</div>
+      <h2>6. Bexagliflozin vs Velagliflozin 副作用</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.20</span><span class="src src-rec">🎤</span> 目前知道什麼？</h3>
+        <p class="p">🎤 出處是最近一篇研究，分析<strong>美國的不良反應通報資料庫</strong>中這兩個藥的紀錄，兩者都有急性與慢性副作用。</p>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>Bexagliflozin</th><th>Velagliflozin</th></tr>
+          <tr><td>副作用出現</td><td>部分接近第 9 天</td><td>較早，前 5 天內</td></tr>
+          <tr><td>副作用消退</td><td>約 14 天</td><td>較快，8 天內</td></tr>
+          <tr><td>快速出現（&lt; 7 天）</td><td colspan="2"><strong>DKA、腹瀉</strong></td></tr>
+          <tr><td>延遲出現（&gt; 30 天）</td><td colspan="2">📄 講義：<strong>高血鈣（hypercalcemia）</strong>／🎤 錄音：<strong>高血鉀（hyperkalemia）</strong>，「這是我們要注意的」</td></tr>
+          <tr><td>副作用好發體重</td><td><strong>&lt; 2.5 kg</strong></td><td><strong>&gt; 5 kg</strong></td></tr>
+        </table></div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>高血鈣還是高血鉀？</strong>講義寫 hypercalcemia，逐字稿寫 hyperkalemia，可能是講者口誤或轉錄錯誤。實務上<strong>長期使用兩者都追蹤</strong>比較保險。</div></div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>體重差異的原因</strong>：🎤 講者說「為什麼會這樣，我不知道」。以下是整理者的推測：
+          <ul class="notes">
+            <li>Bexacat 每隻貓固定 15 mg，<strong>小貓的 mg/kg 劑量相對高</strong>。</li>
+            <li>Senvelgo 依體重 1 mg/kg，<strong>大貓拿到的總量較多</strong>。大貓常是胖貓，胰島素阻抗也較強。</li>
+          </ul>
+        </div></div>
+        <p class="p"><span class="src src-add">💡</span> <strong>常見副作用整理</strong></p>
+        <ul class="notes">
+          <li><strong>DKA／eDKA</strong>：最嚴重，多發生在初期。</li>
+          <li><strong>腹瀉、軟便</strong>：常見。有腸胃病史（如 IBD）的貓可能較嚴重（第 8、9 節的病例都因腹瀉停藥）。</li>
+          <li><strong>其他</strong>：體重下降、多尿、泌尿道感染（尿中有糖，細菌容易生長）。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🦁</div>
+      <h2>7. HS（生長激素分泌過多症）貓</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.21–23</span><span class="src src-rec">🎤</span> 為什麼 HS 貓很棘手</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 「在美國適應症很窄，那還有誰可能從 SGLT2i 受益？」→ HS 貓。</li>
+          <li><strong>每 4 隻糖尿病貓就有 1 隻有 HS</strong>，不是罕見病。</li>
+          <li><span class="src src-rec">🎤</span> 生長激素是<strong>脈衝式分泌</strong>，不是持續分泌，所以胰島素阻抗會<strong>很快地上下起伏</strong>，胰島素需求也跟著劇烈變化。</li>
+          <li><span class="src src-rec">🎤</span> 「你可能有一隻貓打很高的劑量，<strong>一天兩次 20 U、50 U，甚至 100 U</strong>，然後需求突然大幅下降。」</li>
+          <li>用胰島素治療時，<strong>低血糖是主要顧慮</strong>。一項研究中，打胰島素的 HS 貓：
+            <ul class="notes">
+              <li><strong>25%</strong> 有一次低血糖</li>
+              <li><strong>50%</strong> 有多次臨床低血糖</li>
+            </ul>
+          </li>
+          <li><span class="src src-add">💡</span> <strong>為什麼適合 SGLT2i</strong>：它不依賴胰島素，阻抗再強也照樣排糖；和胰島素併用時，可以降低胰島素劑量。</li>
+          <li><span class="src src-add">💡</span> HS 的診斷與治療見 <a href="feline-diabetes.html#s6">03 貓糖尿病第 6 節</a>。🎤 cabergoline 會在週五的場次再談。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.26</span><span class="src src-rec">🎤</span> Mishra, Behrend, Niessen — ECVIM 2025 摘要：13 隻</h3>
+        <ul class="notes">
+          <li>13 隻 HS 糖尿病貓，在胰島素之外<strong>隨機分配</strong>加上 bexagliflozin（6 隻）或 velagliflozin（7 隻）。</li>
+          <li><span class="src src-rec">🎤</span> 有的用血糖曲線監測，有的用 CGM。</li>
+          <li><strong>2 隻完全停用胰島素</strong>。</li>
+          <li><span class="src src-rec">🎤</span> <strong>每一隻</strong>的最高血糖或組織間液葡萄糖都下降。</li>
+          <li>治療期間<strong>血酮 0.2–7.8 mmol/L</strong>（n=10）。</li>
+          <li><strong>沒有臨床低血糖，沒有 DKA。</strong>追蹤中位數約 200 天（5–405）。</li>
+          <li>結論：改善生活品質、臨床表現與生化數值。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">🎤</span><div><strong>講者對血酮的說法</strong>：「先前一篇研究以 <strong>&gt; 2.4</strong> 作為診斷貓 DKA 的切點。這篇<strong>和那個切點相反</strong>，有些貓高到 7.8，<strong>卻都過得很好</strong>。」
+          <p class="p">💡 2.4 是從<strong>沒用 SGLT2i</strong> 的貓建立的切點，詳見 <a href="feline-diabetes.html#s10">03 第 10 節血酮表</a>。不過 7.8 仍是很高的數值，臨床上看到要<strong>高度警覺</strong>，並確認酸鹼狀態。</p>
+        </div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.27</span><span class="src src-rec">🎤</span> Del Baldo F, et al. JVIM 2025 — 8 隻 HS 糖尿病貓加 velagliflozin</h3>
+        <ul class="notes">
+          <li>所有貓原本都在打胰島素，<strong>都戴 CGM</strong>。</li>
+          <li>6/8 隻糖尿病臨床評分（DCS）改善；CGM 指標<strong>全部</strong>改善。</li>
+          <li><span class="src src-rec">🎤</span> <strong>每一隻在第 7 天左右都需要調降胰島素。</strong></li>
+          <li>沒有臨床低血糖。2 隻完全停用胰島素，只用 SGLT2i 維持。</li>
+          <li><strong>1 隻 DKA</strong>：<span class="src src-rec">🎤</span> 這隻在胰島素加 SGLT2i 之外又<strong>加了 cabergoline</strong>，接著<strong>不吃、嘔吐</strong>，然後進入 DKA。「到底是 SGLT2i、藥物組合，還是其他原因，我們不知道。」</li>
+          <li><strong>1 隻急性腎損傷</strong>：<span class="src src-rec">🎤</span> 這隻原本就有 CKD，「不知道是藥物直接造成，還是慢性腎病的急性惡化」。機轉見第 13 節。</li>
+          <li>結論：無論併用胰島素或單獨使用，velagliflozin 都改善了 HS 貓的血糖控制。</li>
+        </ul>
+        <p class="muted">💡 DKA 那隻的教訓：<strong>先出現不吃、嘔吐</strong>，之後才 DKA，這正是第 12 節「看臨床狀況」的理由。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.28</span><span class="src src-rec">🎤</span> Vanneste A, et al. — 非理想候選者的初步經驗（JFMS）</h3>
+        <p class="p">🎤 這篇是把 SGLT2i 用在「依建議並<strong>不是好的候選者</strong>」的糖尿病貓。</p>
+        <div class="grid2">
+          <div class="card-mini"><h4>第 1 隻：新診斷 DM + HS</h4><ul><li>Senvelgo</li><li>2 週內血糖控制良好</li><li>同時開始 cabergoline，狀況很好</li></ul></div>
+          <div class="card-mini"><h4>第 2 隻：DM + HS + 慢性腹瀉</h4><ul><li>胰島素 + Senvelgo + cabergoline</li><li><strong>5 個月後嚴重低血糖</strong></li><li>降低胰島素、停 cabergoline</li></ul></div>
+        </div>
+        <div class="alert alert-warn"><span class="alert-icon">💡</span><div><strong>第 2 隻為什麼低血糖</strong>
+          <ol class="notes">
+            <li>Cabergoline 讓生長激素下降，胰島素阻抗減輕。</li>
+            <li>SGLT2i 仍在持續排糖。</li>
+            <li>原本的胰島素劑量就變得太多。</li>
+          </ol>
+          <p class="p"><strong>教訓：造成阻抗的原因一旦改善，胰島素必須跟著調降。</strong></p>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🌱</div>
+      <h2>8. 緩解與復發</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 病例 TJ：飼主抓不到貓（講義沒有）</h3>
+        <ul class="notes">
+          <li>6 歲去勢公 DSH，<strong>2021 年 7 月</strong>起有糖尿病。</li>
+          <li>飼主每天要在上班前 <strong>2–4 小時</strong>起床，才抓得到 TJ 打胰島素。即使這樣還是常遲到，<strong>擔心丟掉工作</strong>。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>階段</th><th>治療</th><th>結果</th></tr>
+          <tr><td>1</td><td>Caninsulin（Vetsulin）→ 一個月內換 glargine U100 → ProZinc</td><td>每次約一個月就換</td></tr>
+          <tr><td>2</td><td>糖尿病門診：改 <strong>glargine U300 一天一次</strong></td><td>一天只要抓一次，好多了，但<strong>沒有緩解</strong></td></tr>
+          <tr><td>3</td><td>一個月後加上<strong>每 30 天一次的 GLP-1 促效劑</strong></td><td><strong>3 個月內緩解</strong>，停胰島素；飼主每月帶去家庭獸醫打 GLP-1</td></tr>
+          <tr><td>4</td><td><strong>8 個月後復發</strong>。飼主：「拜託，不要打針，不要抽血，我做不到。」</td><td>BHB <strong>0.3</strong></td></tr>
+          <tr><td>5</td><td>開始 <strong>Bexacat 15 mg（一顆）q24h</strong>，GLP-1 每 30 天繼續</td><td>飼主每週在家測一次酮體（無法抽血）；每月去家庭獸醫打 GLP-1 並測 BHB</td></tr>
+        </table></div>
+        <div class="quote">TJ is doing fantastic on an SGLT2 inhibitor. Mom is not having to do any injections at home. Mom still has her job.<span class="quote-zh">TJ 用 SGLT2i 過得非常好，飼主在家不用打針，工作也保住了（「老闆也開心多了」）。</span></div>
+        <ul class="notes">
+          <li><span class="src src-add">💡</span> 逐字稿把 GLP-1 藥名轉成「bidemnerxenotide」「bactrian」，推測是 <strong>exenatide 緩釋劑型（Bydureon）</strong>；GLP-1 的證據見 <a href="feline-diabetes.html#s13">03 第 13 節</a>。</li>
+          <li><span class="src src-add">💡</span> 這是復發的貓，嚴格說也算「用過胰島素」，屬於仿單外。</li>
+          <li><span class="src src-add">💡</span> 飼主在家「每週測酮體」，因為沒辦法抽血，推測是測尿酮。尿酮會比血酮晚（第 12 節），所以每月仍去醫院測 BHB。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.31</span><span class="src src-rec">🎤</span> 緩解後復發（Vanneste 等）</h3>
+        <ul class="notes">
+          <li>10 歲去勢公貓，胰島素控制不好，改成<strong>只用 velagliflozin</strong>。</li>
+          <li>3 個月後緩解，再 3 個月後<strong>復發</strong>。</li>
+          <li>重新開始 velagliflozin 後，血糖恢復控制。</li>
+          <li><span class="src src-rec">🎤</span> 「在緩解與復發的貓，SGLT2i 也可以扮演一些角色。」</li>
+          <li><span class="src src-add">💡</span> 緩解後仍會復發，所以要持續控制體重、低碳水飲食並定期追蹤。緩解定義見 <a href="feline-diabetes.html#s14">03 第 14 節 ALIVE</a>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.37</span><span class="src src-rec">🎤</span> 13 歲結紮母索馬利貓（Vanneste 等）</h3>
+        <ul class="notes">
+          <li>新診斷糖尿病加 <strong>CKD IRIS 第 2 期</strong>。</li>
+          <li>飼主用了 Senvelgo 4 個月後自行停藥。</li>
+          <li>5 個月後<strong>因為別的問題</strong>回診，糖尿病仍在緩解。</li>
+          <li><span class="src src-add">💡</span> 單一病例，無法證明緩解是 SGLT2i 造成的。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.38</span><span class="src src-rec">🎤</span> Lodarski F, et al. — 新診斷糖尿病貓用 SGLT2i 後緩解</h3>
+        <p class="p">13 歲去勢公 DSH。🎤 這隻貓打了<strong>長效 methylprednisolone</strong>，<strong>30 天內</strong>就變成糖尿病。時間軸：</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>時間</th><th>事件</th></tr>
+          <tr><td>D-34</td><td>注射長效 methylprednisolone</td></tr>
+          <tr><td>D0</td><td>同時診斷糖尿病與<strong>肺部結節</strong>；開始胰島素、高蛋白低碳水飲食</td></tr>
+          <tr><td>D20</td><td>飼主表示<strong>無法再打胰島素</strong>，改用 velagliflozin</td></tr>
+          <tr><td>D41</td><td>腹瀉，換成腸胃道處方飼料，仍持續腹瀉</td></tr>
+          <tr><td>D85</td><td>停用 velagliflozin（共用約 65 天），腹瀉緩解</td></tr>
+          <tr><td>D149</td><td><strong>糖尿病緩解</strong></td></tr>
+          <tr><td>停藥 5.8 個月後</td><td>仍維持緩解，之後手術切除肺部結節</td></tr>
+        </table></div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>怎麼解讀</strong>
+          <ul class="notes">
+            <li><strong>干擾因子</strong>：很可能是類固醇誘發的糖尿病。類固醇效果消退、低碳水飲食、用藥降低葡萄糖毒性，三者都可能促成緩解，不能單獨歸功於 SGLT2i。</li>
+            <li><strong>臨床價值</strong>：飼主無法打胰島素時，SGLT2i 是可行的選項，可以避免動物因為無法治療而被安樂死。</li>
+          </ul>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🤝</div>
+      <h2>9. SGLT2i 和胰島素併用</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.34</span><span class="src src-rec">🎤</span> Benedict SL, Mahony OM, …, Bergman PJ（Tufts 大學）— Bexagliflozin 用於控制不佳的糖尿病貓</h3>
+        <ul class="notes">
+          <li>5 隻打胰島素（中位數 86 天）但控制不佳的貓，胰島素加 bexagliflozin，共 28 天。</li>
+          <li><span class="src src-rec">🎤</span> <strong>每一隻</strong>的血糖和胰島素劑量都下降。果糖胺也下降，但<strong>未達統計顯著</strong>。</li>
+          <li>3/5 隻臨床症狀緩解。</li>
+          <li><strong>3 隻 BHB 上升，但沒有症狀。</strong>沒有低血糖。</li>
+          <li><strong>2 隻停用胰島素</strong>：
+            <ul class="notes">
+              <li><span class="src src-rec">🎤</span> 一隻<strong>至少 2 年</strong>沒打胰島素，之後失去追蹤。</li>
+              <li>另一隻用 bexagliflozin 9 週後，因<strong>腹瀉</strong>停藥（有 <strong>IBD</strong> 病史）。</li>
+            </ul>
+          </li>
+          <li>第 3 隻：試驗期間 bexagliflozin 10 mg q24h 加胰島素；試驗後加到 <strong>15 mg</strong>（🎤「就是現在貓的劑量」）並停用胰島素，<strong>17 個月</strong>後才復發。<span class="src src-fix">【更正】</span>逐字稿寫「10 mg/kg」，依講義應為 10 mg。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> <strong>圖表判讀</strong>：血糖中位數約 380 → 第 14 天約 160 → 第 28 天約 190；胰島素劑量中位數約 0.65 U/kg → 約 0.1–0.15 U/kg。</p>
+        <div class="alert alert-success"><span class="alert-icon">💡</span><div><strong>併用的道理</strong>
+          <ul class="notes">
+            <li>保留部分胰島素，能持續抑制酮體生成。理論上比直接停掉胰島素更安全。</li>
+            <li>代價是要<strong>預先調降胰島素</strong>，並密切監測血糖。</li>
+            <li>✍️ <strong>老師的做法：加上 SGLT2i 時，胰島素劑量先減 25–30%。</strong></li>
+            <li><strong>腸胃道疾病（如 IBD）是相對禁忌。</strong></li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-hand">✍️ 筆記</span> 用 CGM 時，基礎胰島素可以更積極調整</h3>
+        <div class="alert alert-info"><span class="alert-icon">✍️</span><div><strong>老師的做法：使用 CGM 時，基礎胰島素的劑量可以調得更積極。血糖持續在 400 左右，可以每天增加 20–30%，直到見效。</strong></div></div>
+        <div class="tbl-wrap"><table>
+          <tr><th>情境</th><th>老師的調整原則</th></tr>
+          <tr><td>只用胰島素，血糖<strong>持續</strong>約 400（有 CGM）</td><td>基礎胰島素<strong>每天加 20–30%</strong>，直到見效</td></tr>
+          <tr><td>在胰島素上<strong>加 SGLT2i</strong></td><td>胰島素<strong>先減 25–30%</strong></td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-add">💡</span> <strong>為什麼要有 CGM 才這樣做</strong>：傳統做法是每 3–7 天才調一次，因為只靠偶爾的血糖曲線，看不到夜間低點。有 CGM 能看到全天曲線和最低點，加量後一旦開始往下掉，馬上就能發現。</li>
+          <li><span class="src src-add">💡</span> <strong>注意事項</strong>：
+            <ul class="notes">
+              <li>要看到「整天」都在 400 左右才加，不是看到一次餐後高峰就加。</li>
+              <li>Degludec、glargine U300 這類長效胰島素需要數天才達到穩定。每天加量時，前幾天的效果會累積，<strong>見效時要立刻停止加量</strong>，必要時往回減。</li>
+              <li>每天都要看 CGM 的最低點；CGM 讀值偏低時，用血糖機確認。</li>
+            </ul>
+          </li>
+          <li><span class="src src-add">💡</span> 02 犬糖尿病場次有實際病例：degludec 每天加 20%，看到效果後改成每天加 10%。見 <a href="canine-diabetes-insulin.html#s13">02 第 13 節 Drifter</a>。</li>
+          <li><span class="src src-rec">🎤</span> 第 11 節的 Snowball，講者事後檢討的其中一點正是「<strong>我們沒有把基礎胰島素加到最大劑量</strong>」。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">💉</div>
+      <h2>10. 已經用過胰島素的貓</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 講者的定位</h3>
+        <div class="quote">I think this is where we have some of the strongest evidence that these drugs can be used.<span class="quote-zh">在北美，用過胰島素的貓屬於仿單外使用。但我認為這是 SGLT2i 證據最強的一塊：有隨機對照試驗、病例系列，也有軼事報告。</span></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.41</span><span class="src src-rec">🎤</span> Velagliflozin vs Caninsulin（RCT）</h3>
+        <ul class="notes">
+          <li>新診斷（naïve，沒碰過胰島素）與打過胰島素的貓，隨機分配到 velagliflozin 每天一次口服，或 Caninsulin 每天兩次注射。</li>
+          <li><span class="src src-rec">🎤</span> 深藍色是 velagliflozin：<strong>第 7 天就大幅下降</strong>，之後第 21、45、91 天「非常平、非常一致」。Caninsulin 組要到<strong>第 91 天</strong>才開始接近。</li>
+          <li><span class="src src-rec">🎤</span> 果糖胺在<strong>每一個時間點</strong>都是 velagliflozin 組比較低。</li>
+          <li><strong>第 45 天治療成功率：velagliflozin 54% vs 胰島素 42%。</strong></li>
+          <li>結論：每天一次口服 velagliflozin <strong>不劣於</strong>胰島素注射。</li>
+        </ul>
+        <ul class="notes">
+          <li><span class="src src-add">💡</span> 「不劣於」是證明不比較差，<strong>不等於比較好</strong>。</li>
+          <li><span class="src src-add">💡</span> 對照組的 Caninsulin 在貓<strong>不是首選胰島素</strong>（glargine、PZI 才是），比較條件對 velagliflozin 有利。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.42–43</span><span class="src src-rec">🎤</span> SENSATION 試驗（velagliflozin 樞紐試驗，JAVMA）</h3>
+        <p class="muted">SENSATION 是縮寫：<strong>S</strong>afety and <strong>E</strong>fficacy of <strong>N</strong>ovel <strong>S</strong>GLT2-inhibitor vel<strong>A</strong>gliflozin in ca<strong>T</strong>s with DM, <strong>I</strong>nsulin pretreated <strong>O</strong>r <strong>N</strong>aïve。（講義 p.42 拼成 Velagliflozen）</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>數據</th></tr>
+          <tr><td>族群</td><td>214 隻新診斷、38 隻打過胰島素</td></tr>
+          <tr><td>退出</td><td>25%（🎤 副作用、無關的原因，或治療失敗）</td></tr>
+          <tr><td>DKA 整體</td><td><strong>7%</strong></td></tr>
+          <tr><td>新診斷 vs 打過胰島素</td><td><strong>5% vs 18.4%</strong></td></tr>
+          <tr><td>其中 eDKA</td><td><strong>78%</strong></td></tr>
+          <tr><td>發生時間</td><td>📄 <strong>72% 在前 14 天</strong>；🎤 「大多數 DKA 發生在前四（週），那是<strong>最關鍵的監測期</strong>」</td></tr>
+          <tr><td>體重下降（🎤 第 12 節）</td><td>14 天掉 &gt; 5%、1 個月掉 &gt; 8% → DKA 風險上升</td></tr>
+        </table></div>
+        <p class="p">打過胰島素的貓，比較容易因副作用或反應不佳而退出。</p>
+        <div class="alert alert-danger"><span class="alert-icon">🚨</span><div><strong>三個關鍵數字</strong>
+          <ol class="notes">
+            <li>打過胰島素的貓 DKA 風險約為新診斷的 <strong>3–4 倍</strong>。</li>
+            <li>DKA 中將近 <strong>8 成是 eDKA</strong>：不能只看血糖，一定要測酮體。</li>
+            <li>多數發生在<strong>治療初期</strong>（前 2–4 週）：這是監測最密集的時期。</li>
+          </ol>
+        </div></div>
+        <p class="p"><span class="src src-add">💡</span> <strong>eDKA</strong>：血糖相對不高（常見定義低於約 250 mg/dL），卻已經酮酸中毒。危險在於血糖看起來「控制得很好」，容易失去警覺；治療時除了胰島素，通常還要<strong>同時給葡萄糖</strong>，才能安全給足胰島素。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 病例 Jasmine：用過胰島素、密切監測（講義沒有）</h3>
+        <ul class="notes">
+          <li>10 歲結紮母 DSH，<strong>2025 年 3 月</strong>診斷糖尿病，胰島素 <strong>2 U q12h</strong>。</li>
+          <li>飼主是<strong>獸醫重症專科醫師</strong>。問題是 Jasmine <strong>不讓 Libre 留在身上</strong>，所以飼主問能不能改用 SGLT2i。</li>
+          <li>🎤 「雖然 Jasmine 打過胰島素，我們決定試試看。<strong>要出問題的話，還有誰比重症專科醫師更適合當飼主？</strong>」</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>時間</th><th>BHB（mmol/L）</th><th>狀況與決定</th></tr>
+          <tr><td>開始前</td><td><strong>0.1</strong></td><td>開始 Bexacat；血糖很快大幅下降 <span class="src src-fix">【更正】</span>逐字稿說「降到 hypoglycemic range」，依上下文應指降到正常範圍</td></tr>
+          <tr><td>2 天後</td><td><strong>3.7</strong></td><td>🎤 「超過 2.4，有點高了，但 Jasmine 狀況很好：<strong>吃得好、沒腹瀉、很活潑</strong>，所以決定繼續。」</td></tr>
+          <tr><td>再 2 天後</td><td><strong>1.2</strong></td><td>下降</td></tr>
+          <tr><td>隔天</td><td></td><td>飼主來信：Libre 終於黏住了，Jasmine「表現得像好幾年前的她」</td></tr>
+        </table></div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div>這個病例完整示範了第 12 節的原則：<strong>開始前測基準 BHB → 初期密集追蹤 → 用臨床狀況決定</strong>。BHB 3.7 但貓很好，判斷為酮症而繼續；之後 BHB 自己下降。前提是飼主有能力每兩天測一次 BHB。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fdf4ff">🐕</div>
+      <h2>11. 狗</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span><span class="src src-hand">✍️</span> 狗永遠需要胰島素</h3>
+        <div class="quote">Dogs are permanently insulin deficient. They always need insulin. So an SGLT2 inhibitor cannot be a sole therapy in dogs.<span class="quote-zh">狗的糖尿病最像人類第一型：永久性胰島素缺乏，永遠需要胰島素。所以 SGLT2i 不能在狗單獨使用。</span></div>
+        <ul class="notes">
+          <li>✍️ 我的筆記：狗一定要胰島素，不能只用 SGLT2i。🎤 講者原話證實。</li>
+          <li><span class="src src-add">💡</span> 單用 SGLT2i 時，血糖被排掉看起來下降了，但沒有胰島素，脂肪會大量分解產生酮體，很快發展成 DKA 或 eDKA。</li>
+          <li><span class="src src-add">💡</span> 這和貓不同：多數糖尿病貓還有殘存的 β 細胞功能（見 <a href="feline-diabetes.html#s1">03 第 1 節</a>）。</li>
+          <li><span class="src src-rec">🎤</span> 證據等級：病例系列、病例報告、軼事報告。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.46</span><span class="src src-rec">🎤</span><span class="src src-add">💡</span> 犬的研究</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> <strong>Canagliflozin（5 隻，7 天）</strong>：沒有低血糖、BHB 沒上升、沒有 DKA。結論：狗同時用胰島素和 SGLT2i，<strong>很可能需要降低胰島素劑量</strong>。</li>
+          <li><span class="src src-rec">🎤</span> <strong>之後的研究</strong>：胰島素治療中的狗加 SGLT2i，有些用了<strong>一年</strong>；沒有低血糖、DKA，BHB 沒上升，但<strong>必須降低胰島素劑量</strong>。（💡 講者口述的這篇與講義的 DWP16001 研究追蹤期不同，出處待確認）</li>
+          <li><span class="src src-rec">🎤</span> 「上一小時談過的<strong>幼年型糖尿病犬</strong>」用 SGLT2i 加一天一次胰島素，狀況很好。<span class="src src-fix">【更正】</span>逐字稿寫「Sandoz and once daily Glucotab」，應指 02 的病例 Groot（Senvelgo 加 degludec q24h），見 <a href="canine-diabetes-insulin.html">02 筆記</a>。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>💡 原文查證</th><th>① Box 等 2024</th><th>② An 等 2024</th><th>③ An 等 2025</th></tr>
+          <tr><td>期刊</td><td>JVIM 38(3):1353</td><td>Vet Med Sci（先導研究）</td><td>BMC Vet Res（講義未收錄）</td></tr>
+          <tr><td>設計</td><td>無對照、開放標籤</td><td>兩種給藥頻率比較</td><td><strong>多中心、隨機、雙盲、安慰劑對照</strong></td></tr>
+          <tr><td>犬數</td><td>5</td><td>19</td><td><strong>61</strong></td></tr>
+          <tr><td>藥物</td><td>Canagliflozin（人用 Invokana）</td><td>DWP16001（enavogliflozin）</td><td>DWP16001</td></tr>
+          <tr><td>劑量</td><td>約 2–4 mg/kg PO q24h，7 天</td><td>0.025 mg/kg，q24h 或 q72h，8 週</td><td>0.025 mg/kg q24h，8 週</td></tr>
+          <tr><td>胰島素</td><td>NPH q12h，<strong>劑量不變</strong></td><td>NPH、lente、glargine</td><td>穩定胰島素治療</td></tr>
+          <tr><td>血糖結果</td><td>組織間液葡萄糖中位數 <strong>212 → 87 mg/dL</strong></td><td>每天給藥組的果糖胺、胰島素劑量、收縮壓顯著下降</td><td>果糖胺、HbA1c 顯著下降；<strong>原本控制差的狗效果最明顯</strong></td></tr>
+          <tr><td>安全性</td><td>低於 70 mg/dL 的讀值 <strong>4% → 19%</strong>，無症狀；BHB 0–0.3，無 DKA</td><td>沒有明顯副作用</td><td><strong>4 隻無症狀低血糖</strong>，調整胰島素後緩解；無 DKA</td></tr>
+        </table></div>
+        <div class="alert alert-warn"><span class="alert-icon">💡</span><div><strong>一起看</strong>
+          <ul class="notes">
+            <li><strong>全部都是加在胰島素上</strong>，沒有一篇讓狗單用 SGLT2i。</li>
+            <li>講者說 Box 研究「沒有低血糖」是指<strong>沒有臨床低血糖</strong>；原文 CGM 讀值低於 70 的比例其實從 4% 增加到 19%。</li>
+            <li>狗加藥時<strong>主要風險是低血糖</strong>（胰島素照打，血糖又被排掉），這和貓的主要風險 DKA 相反。✍️ 老師的做法：加 SGLT2i 時<strong>胰島素先減 25–30%</strong>。</li>
+            <li>兩個藥的劑量差了約 100 倍（2–4 vs 0.025 mg/kg），因為分子強度不同。<strong>不同 SGLT2i 的劑量不能互換。</strong></li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.47</span><span class="src src-photo">📷 現場</span><span class="src src-rec">🎤</span> 警世故事：Snowball，11 歲結紮母比熊犬</h3>
+        <p class="p">講義 p.47「Cautionary Tale」只有圖片，<strong>內容就是這隻狗</strong>。</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>階段</th><th>經過（🎤）</th></tr>
+          <tr><td>1. 來的時候</td><td>用 <strong>NPH 一天兩次</strong>，其實<strong>控制得很好</strong>。飼主已經在用 Libre。</td></tr>
+          <tr><td>2. 換藥</td><td>飼主<strong>不喜歡 Libre 畫面上有黃色</strong>（高於目標），也不喜歡一天打兩次。糖尿病 fellow 改成 <strong>degludec 5 U 一天一次</strong>。</td></tr>
+          <tr><td>3. 飼主餵食</td><td>「飼主對血糖往下<strong>零容忍</strong>。不用到低血糖，只要曲線往下走，<strong>她就餵</strong>，我們說什麼都沒用。」飼主非常害怕低血糖、睡不著，所以團隊<strong>不敢再加胰島素</strong>。</td></tr>
+          <tr><td>4. 加 SGLT2i</td><td>幾週後 Libre 看起來「好像沒什麼作用」，fellow 和飼主討論後開始 <strong>Bexacat</strong>。反應很戲劇化；而且飼主怎麼餵都不太影響血糖，「她可以一直餵，覺得自己有在做事，很開心」。</td></tr>
+          <tr><td>5. 一直 PU/PD</td><td>飼主一直抱怨<strong>多尿多渴</strong>，這確實可能是狗用 SGLT2i 的副作用。Bexacat 劑量一減再減，換成<strong>液劑 Senvelgo</strong> 以便調到更低，<strong>仍然 PU/PD</strong>。</td></tr>
+          <tr><td>6. 真相</td><td>又出現<strong>腹瀉、食慾時好時壞</strong>，終於帶來檢查：<strong>胸腔有腫瘤</strong>（肺），<strong>腎上腺腫瘤已經侵入後腔靜脈</strong>。</td></tr>
+          <tr><td>7. 現在</td><td>將近一年後 Snowball <strong>還活著</strong>，以有肺腫瘤和腎上腺腫瘤來說狀況還不錯。飼主「還是每天看 Libre」。</td></tr>
+        </table></div>
+        <p class="p"><strong>📷 現場投影片：Libre 每日圖</strong>（綠色「5.0u」是 degludec 5 U；橘色圖示是進食；數字是當日平均）</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>期間</th><th>治療</th><th>每日平均血糖（mg/dL，依照片判讀）</th></tr>
+          <tr><td>7/7–7/10</td><td>Degludec 5 U</td><td>281、301、280、311（橘色進食標記很多，7/9 一度降到約 70 附近）</td></tr>
+          <tr><td>7/22–7/25</td><td>Degludec 5 U；<strong>7/25 開始 Bexacat</strong></td><td>357、397、401、394（「好像沒什麼作用」）</td></tr>
+          <tr><td>7/26–7/31</td><td><strong>Degludec 5 U + Bexacat</strong></td><td><strong>183、215、186、169、170、175</strong></td></tr>
+        </table></div>
+        <div class="alert alert-danger"><span class="alert-icon">🎤</span><div><strong>講者的檢討：「這個病例回頭看，絕對可以處理得不一樣。」</strong>
+          <ol class="notes">
+            <li><strong>一開始就不該動</strong>：狗來的時候控制得很好。「我們其實是在<strong>治療飼主</strong>，不是治療狗。」應該告訴飼主控制得很好，<strong>不要那麼常看 Libre</strong>。</li>
+            <li><strong>沒有檢討飲食</strong>：用 degludec 還是高血糖時，可以先換<strong>低碳水飲食</strong>。</li>
+            <li><strong>沒有把胰島素用足</strong>：沒把基礎胰島素加到最大劑量，也可以考慮<strong>加 bolus</strong>。</li>
+            <li><strong>如果胰島素用足了</strong>，Libre 漂亮但狗還是 PU/PD，「我們就會想：<strong>一定有別的問題</strong>，這隻狗為什麼 PU/PD？」結果我們<strong>一直把 PU/PD 怪到 SGLT2i 頭上</strong>。</li>
+          </ol>
+        </div></div>
+        <ul class="notes">
+          <li><span class="src src-add">💡</span> 對照第 9 節：7/22–7/25 每天平均約 400，又戴著 CGM，正是「每天加 20–30%」的情境，但當時因為飼主而不敢加。加 Bexacat 時胰島素也<strong>維持 5 U 沒有先減</strong>。</li>
+          <li><span class="src src-add">💡</span> 這也呼應 03 場次：Libre 讓飼主看到所有起伏，有時反而造成焦慮與過度介入。</li>
+          <li><span class="src src-fix">【更正】</span>逐字稿後段說「on MPH every 8 hours」，前段是「NPH twice a day」，應為 <strong>NPH q12h</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.48</span><span class="src src-rec">🎤</span> SGLT2i 與狗：重點整理</h3>
+        <ul class="notes">
+          <li>在狗是<strong>仿單外使用</strong>。</li>
+          <li>狗對 SGLT2i 似乎<strong>比較敏感</strong>，需要<strong>較低劑量</strong>。</li>
+          <li>會出現 PU/PD，<span class="src src-rec">🎤</span> 「但<strong>不要把 PU/PD 都當成只是 SGLT2i 的副作用</strong>。」</li>
+          <li><strong>一定要有胰島素</strong>，而且常常需要<strong>較低的胰島素劑量</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 「如果是控制不好的糖尿病狗，<strong>不要直接伸手拿 SGLT2i</strong>。先確定沒有其他需要處理的<strong>合併疾病</strong>。」</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> <strong>常見的胰島素阻抗原因</strong>：庫欣氏症、未結紮母犬的發情週期（黃體素）、感染、胰臟炎、甲狀腺功能低下、肥胖、牙周病，以及 Snowball 這樣的<strong>腫瘤</strong>。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef9c3">🩸</div>
+      <h2>12. 監測：酮體與酮酸中毒</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.50</span><span class="src src-rec">🎤</span> 什麼是 β-羥丁酸（BHB）？講者偏好測 BHB</h3>
+        <div class="grid3">
+          <div class="card-mini"><h4>BHB 78%</h4><ul><li>DKA 中最主要的酮體</li><li><strong>尿液試紙測不到</strong></li></ul></div>
+          <div class="card-mini"><h4>乙醯乙酸 20%</h4><ul><li>尿液試紙測的是它</li></ul></div>
+          <div class="card-mini"><h4>丙酮 2%</h4><ul><li>量最少</li></ul></div>
+        </div>
+        <ul class="notes">
+          <li>血酮比尿酮<strong>更早</strong>上升。🎤 「有一段時間差：血中酮體已經上升，尿液還是陰性。」</li>
+          <li>🎤 「BHB 可能已經陽性，尿液試紙卻是陰性，要到疾病後段才會測到乙醯乙酸。用尿酮可能會<strong>錯過 DKA 很早期的階段</strong>。」</li>
+          <li>🎤 <strong>這對用 SGLT2i 的動物特別重要</strong>：「你想要及早抓到，<strong>在牠們因 eDKA 病得很重之前改回胰島素</strong>。」</li>
+          <li>新診斷、尚未治療的糖尿病貓，BHB 常常<strong>已經偏高</strong>。<span class="src src-add">💡</span> 所以開始 SGLT2i 前要先測<strong>基準 BHB</strong>（TJ 0.3、Jasmine 0.1）。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.51</span><span class="src src-rec">🎤</span> 怎麼測 BHB？</h3>
+        <ul class="notes">
+          <li>講者使用 <strong>Abbott Precision Xtra</strong>。🎤 <strong>舊版</strong>已在健康貓與糖尿病貓驗證。</li>
+          <li>BHB &gt; 4 mmol/L 時<strong>會低估</strong>，實際可能比機器顯示的更高。</li>
+          <li><span class="src src-add">💡</span> 一滴血就能測，院內或教飼主在家都可以做（Jasmine 的飼主就是在家測）。讀到高值時應做血液氣體分析。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.52</span><span class="src src-rec">🎤</span><span class="src src-hand">✍️</span> 怎麼監測用 SGLT2i 的貓？</h3>
+        <div class="quote">The most important thing is how that cat is doing.<span class="quote-zh">最重要的是這隻貓的狀況。</span></div>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>🎤 講者怎麼做</th></tr>
+          <tr><td><strong>臨床狀況</strong></td><td>精神好、沒病徵、食慾正常：<strong>即使 BHB 上升，也不會太擔心</strong>。<br>食慾差、吃得少、沉鬱，或任何不對勁：<strong>非常擔心 DKA</strong>。</td></tr>
+          <tr><td><strong>體重</strong></td><td>SENSATION：<strong>14 天掉 &gt; 5%</strong>、<strong>1 個月掉 &gt; 8%</strong> 的貓 DKA 風險較高。「如果貓看起來很好，但體重一直掉，我會緊張很多，會看得更緊。」</td></tr>
+          <tr><td><strong>血糖控制</strong></td><td>只測<strong>單次血糖（spot glucose）</strong>，「比果糖胺便宜、方便」。</td></tr>
+          <tr><td><strong>酮體</strong></td><td>偏好測 <strong>BHB</strong>，也可以看尿液。</td></tr>
+          <tr><td><strong>酸鹼</strong></td><td>「如果有機器能測<strong>血液 pH 或碳酸氫根</strong>會很好。現在有很多 point-of-care 機器，不用做完整血液氣體分析。」</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li>有些糖尿病貓即使有<strong>酮症</strong>，臨床上仍然很好。</li>
+          <li>血中或尿中出現酮體，<strong>並不能預測</strong>即將發生 DKA 或 eDKA。</li>
+        </ul>
+        <div class="alert alert-success"><span class="alert-icon">✍️</span><div><strong>我的筆記：如果是 ketoacidosis，貓通常會 sick，不太會看起來正常。</strong><br>🎤 講者原話證實：「重點是，<strong>如果有酸中毒，牠們應該會生病</strong>。所以如果貓感覺很好，那就不是酮酸中毒，而是<strong>糖尿病酮症（diabetic ketosis）</strong>。」</div></div>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>酮症（ketosis）</th><th>酮酸中毒（DKA／eDKA）</th></tr>
+          <tr><td>狀況</td><td>只有酮體上升</td><td>酮體上升<strong>加上代謝性酸中毒</strong></td></tr>
+          <tr><td>貓的表現</td><td>可能完全正常</td><td><strong>幾乎都會生病</strong>：厭食、嘔吐、精神差、脫水</td></tr>
+          <tr><td>處置</td><td>繼續用藥，密切監測（例：Jasmine）</td><td><strong>停用 SGLT2i、改回胰島素</strong>，立即治療</td></tr>
+        </table></div>
+        <div class="alert alert-warn"><span class="alert-icon">💡</span><div><strong>補充：兩個陷阱</strong>
+          <ol class="notes">
+            <li><strong>貓很會隱藏症狀</strong>：早期可能只是吃少一點或比較懶。</li>
+            <li><strong>eDKA 時血糖不高</strong>：少了高血糖、多尿多渴這些平常的警訊。</li>
+          </ol>
+          <p class="p"><strong>原則：只要食慾或精神有任何改變，就同時測 BHB 和酸鹼（pH／HCO₃⁻）</strong>，不要等到明顯生病。</p>
+        </div></div>
+        <p class="muted">講義沒有給具體的監測時間表和停藥閾值，請依產品仿單與最新共識。2.4 mmol/L 門檻為什麼不適用於 SGLT2i，見 <a href="feline-diabetes.html#s10">03 第 10 節</a>。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.53</span><span class="src src-rec">🎤</span> 怎麼監測用 SGLT2i 的狗？</h3>
+        <ul class="notes">
+          <li><strong>PU/PD 不適合拿來評估血糖控制</strong>，要直接看血糖。</li>
+          <li><span class="src src-rec">🎤</span> 「因為牠們有打胰島素，<strong>我會要牠們戴 CGM</strong>。我必須調整、調降胰島素劑量。胰島素加 SGLT2i 的狗<strong>可能會低血糖</strong>。」</li>
+          <li><span class="src src-rec">🎤</span> 講者會請飼主<strong>偶爾測狗的尿酮</strong>，但「<strong>從來沒有一隻是陽性</strong>」（也問了 Dr. Tardo）。「我想我做這個只是讓自己安心，不確定真的需要，也沒有固定在做。」</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">💡</span><div><strong>用 SGLT2i 時失準的指標（犬貓都一樣）</strong>
+          <div class="tbl-wrap"><table>
+            <tr><th>指標</th><th>為什麼失準</th><th>改用</th></tr>
+            <tr><td>多尿多渴</td><td>不論控制好壞都有尿糖；而且可能是<strong>別的病</strong>（Snowball）</td><td>血糖曲線、CGM</td></tr>
+            <tr><td>尿糖</td><td>用藥期間一定陽性，<strong>不能用來判斷緩解</strong></td><td>單次血糖、果糖胺</td></tr>
+            <tr><td>尿比重</td><td>尿糖會讓尿比重偏高（可到 1.090）</td><td>creatinine、SDMA</td></tr>
+            <tr><td>尿酮試紙</td><td>測不到 BHB，會晚</td><td>血酮（Precision Xtra）</td></tr>
+          </table></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 13 ══ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0e7ff">🫘</div>
+      <h2>13. CKD 與長期使用</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.54</span><span class="src src-rec">🎤</span> 長期療效：使用超過 500 天的貓（講者團隊的研究）</h3>
+        <p class="p">🎤 「我們最近做了一個研究」，一群用 SGLT2i <strong>超過 500 天</strong>的貓，其中<strong>一隻超過 1,000 天</strong>。「更多資料陸續發表中。」</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>發現（📄🎤）</th></tr>
+          <tr><td><strong>DKA</strong></td><td><strong>任何時間點</strong>都可能發生 DKA 或 eDKA。🎤 「這很合理，因為那些 β 細胞本來就不正常。胰臟的病變可能在持續惡化，但因為用著 SGLT2i、血糖正常，<strong>你不會知道</strong>。」一旦自身胰島素不足以防止酮體生成，就會 DKA。</td></tr>
+          <tr><td><strong>Spec fPL</strong></td><td>「到處跳」，上上下下，常常和胰臟炎的臨床症狀<strong>無關</strong>。停用 SGLT2i 的貓傾向有輕度到中度上升，很多都不正常。🎤 「除非有臨床症狀，我<strong>不會例行監測</strong> fPL。」</td></tr>
+          <tr><td><strong>USG</strong></td><td>多在 1.035–1.055，平均 1.047。🎤 但<strong>有些貓到 1.090</strong>，下一次又降到 1.050，會波動。</td></tr>
+          <tr><td><strong>IRIS 分期</strong></td><td>多數維持在第 1–2 期；不到四分之一分期有升或降，多數是在 1、2 期之間來回。</td></tr>
+          <tr><td><strong>第 3 期</strong></td><td>🎤 有些第 3 期的貓用了相當長一段時間<strong>沒有惡化</strong>，但「1、2 期以外是否安全，目前還不知道」。</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-add">💡</span> DKA 不只發生在初期。生病、厭食、胰臟炎都可能誘發，<strong>飼主衛教要持續</strong>。</li>
+          <li><span class="src src-add">💡</span> 這時 USG 高是因為尿糖，<strong>不代表腎臟濃縮能力好</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-hand">✍️</span><span class="src src-rec">🎤</span><span class="src src-add">💡</span> CKD IRIS 第 1–2 期的貓可以用嗎？</h3>
+        <p class="p">🎤 講者：「這類藥<strong>用在 IRIS 第 1 或第 2 期的貓是可以的</strong>。」以下對照美國仿單：</p>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>Senvelgo（velagliflozin）</th><th>Bexacat（bexagliflozin）</th></tr>
+          <tr><td>仿單立場</td><td>可以<strong>謹慎使用</strong></td><td><strong>不要用</strong>在腎功能下降的貓</td></tr>
+          <tr><td>細節</td><td>
+            <ul class="notes">
+              <li>未在 IRIS 第 3–4 期或 creatinine &gt; 2.0 mg/dL 的貓評估過。</li>
+              <li>Creatinine 1.6–2.0：密切監測脫水與體重，<strong>第一週內追蹤腎功能</strong>。</li>
+              <li>開始數週內 creatinine、BUN、磷、鈉可能輕度上升，之後會穩定。</li>
+            </ul>
+          </td><td>腎或肝功能下降時藥物清除變慢，停藥後尿糖與偏低的血糖仍可能持續。</td></tr>
+        </table></div>
+        <div class="tbl-wrap"><table>
+          <tr><th>IRIS 分期（creatinine）</th><th>Senvelgo</th></tr>
+          <tr><td>第 1 期（&lt; 1.6）</td><td>問題較小</td></tr>
+          <tr><td>第 2 期前段（1.6–2.0）</td><td>仿單允許，但要密切監測</td></tr>
+          <tr><td>第 2 期後段（2.0–2.8）</td><td><strong>超出仿單評估範圍，屬於仿單外</strong>（講者認為 1–2 期可以用）</td></tr>
+          <tr><td>第 3–4 期</td><td>沒有仿單資料；講者有零星第 3 期使用經驗</td></tr>
+        </table></div>
+        <div class="alert alert-warn"><span class="alert-icon">💡</span><div><strong>CKD 貓為什麼可能急性腎損傷</strong>（第 7 節 Del Baldo 研究那隻）
+          <ol class="notes">
+            <li>SGLT2i 讓更多鈉送到遠端腎小管，透過腎小管-腎絲球回饋讓入球小動脈收縮，<strong>腎絲球過濾率初期會下降一些</strong>。在人醫，這種初期下降長期來看反而有保護作用。</li>
+            <li>滲透性利尿造成脫水。</li>
+            <li>原本腎功能差的貓緩衝能力不足，就可能變成急性腎損傷。</li>
+          </ol>
+          <p class="p">所以使用前要評估水合狀態，開始後追蹤 creatinine 與 SDMA。</p>
+        </div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 人醫的腎臟好處</h3>
+        <ul class="notes">
+          <li>用 SGLT2i 的糖尿病患者，<strong>腎病變的證據比較少</strong>。</li>
+          <li>🎤 「如果你看電視，現在的廣告會說 SGLT2i <strong>已經核准用於慢性腎病的人，不一定要有糖尿病</strong>。」</li>
+          <li>🎤 「我想我們也可能會看到這些藥在<strong>糖尿病以外</strong>的好處。」</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 14 ══ -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef9c3">📌</div>
+      <h2>Take-home、更正表與參考資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>Take-home messages（整理者歸納）</h3>
+        <ol class="notes">
+          <li><strong>SGLT2i 排糖，不補胰島素。</strong>自身 β 細胞功能決定安全性。</li>
+          <li><strong>最理想的病患</strong>：新診斷、沒打過胰島素、吃得好、沒有其他疾病的貓。</li>
+          <li><strong>真正的價值常在「飼主限制」</strong>：一天只能給一次、抓不到貓、不能打針（12 歲 DSH、TJ、Lodarski 病例）。SGLT2i 讓這些貓不必被安樂死。</li>
+          <li><strong>起效很快</strong>：治療初期（前 2–4 週）是 DKA 高風險期。</li>
+          <li><strong>要測血酮，不能只看血糖</strong>：將近 8 成是 eDKA；尿酮試紙測不到 BHB。</li>
+          <li><strong>看貓，不只看數字</strong>：有酸中毒就會生病；精神好、吃得好＝酮症，可以繼續觀察（Jasmine）。體重掉太快要警覺。</li>
+          <li><strong>劑量</strong>：Bexacat 每隻貓固定 15 mg；Senvelgo 1 mg/kg。Dapagliflozin 在部分貓每週兩次就夠。</li>
+          <li><strong>仿單外族群</strong>：
+            <ul class="notes">
+              <li>用過胰島素的貓：DKA 風險高 3–4 倍，但證據最多。</li>
+              <li>HS 貓：有希望但證據等級低，併用胰島素第 7 天左右就要調降。</li>
+              <li>和胰島素併用：胰島素先減 25–30%。</li>
+              <li>狗：永遠要胰島素，要戴 CGM；PU/PD 不要全怪 SGLT2i，先找合併疾病。</li>
+            </ul>
+          </li>
+          <li><strong>監測工具要換</strong>：尿糖、多尿多渴、USG 失準；改用單次血糖、果糖胺、血酮、CGM、creatinine 與 SDMA。</li>
+          <li><strong>長期</strong>：DKA 任何時候都可能發生；IRIS 1–2 期可以用。</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-add">💡</span> 講義檢視：需要注意的地方</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>頁</th><th>問題</th><th>說明</th></tr>
+          <tr><td>p.9</td><td>「不會低血糖」太絕對</td><td>只適用單獨使用；p.28 併用胰島素就發生嚴重低血糖</td></tr>
+          <tr><td>p.6</td><td>Sotagliflozin 列在「核准用於第二型糖尿病」</td><td>Inpefa 在美國核准的是心衰竭</td></tr>
+          <tr><td>p.5</td><td>家族性腎性糖尿「1987」</td><td>與 SGLT2 基因突變的關聯是 2000 年代初確認的，年份待查</td></tr>
+          <tr><td>p.20</td><td>延遲副作用</td><td>講義寫高血鈣、錄音說高血鉀，待確認</td></tr>
+          <tr><td>p.26</td><td>血酮 7.8 卻「沒有 DKA」</td><td>講者明確說這推翻了 2.4 的切點；但 7.8 仍應確認酸鹼</td></tr>
+          <tr><td>p.38</td><td>緩解歸功於 SGLT2i</td><td>有類固醇與飲食等干擾因子</td></tr>
+          <tr><td>p.41</td><td>不劣於胰島素</td><td>對照組 Caninsulin 不是貓的首選胰島素</td></tr>
+          <tr><td>p.43</td><td>DKA 發生時間</td><td>講義「72% 在前 14 天」；錄音「大多在前四（週）」</td></tr>
+          <tr><td>p.13</td><td>田野試驗曲線</td><td>廠商資料、存活者偏差</td></tr>
+          <tr><td>p.54</td><td>USG 用來看腎功能</td><td>尿糖會讓 USG 偏高</td></tr>
+          <tr><td>p.16</td><td>Dapagliflozin</td><td>只是摘要；IT 組 eDKA 約 13%；缺貓的藥動資料</td></tr>
+          <tr><td>p.20、23、48、54</td><td>沒有標出處</td><td>p.20 錄音補充為美國不良反應資料庫研究；p.54 為講者團隊研究</td></tr>
+          <tr><td>全場</td><td>缺少實務 SOP</td><td>監測時間表、停藥閾值都沒寫；錄音補了體重下降標準</td></tr>
+        </table></div>
+        <p class="muted">講義錯字：p.42 Velagliflozen → Velagliflozin；p.51 precision Xtra → Precision Xtra；p.31 re initiated → re-initiated；p.19 non- insulin → non-insulin。</p>
+      </div>
+      <div class="subsection">
+        <h3>逐字稿轉文字錯誤一覽</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>逐字稿寫的</th><th>正確內容</th></tr>
+          <tr><td>Bexcat / Bexicap / Vexicap / Vexen / Vexil / Vexilat / Exicap / Bexacat</td><td><strong>Bexacat</strong>（bexagliflozin）</td></tr>
+          <tr><td>Symbio / Simbelgo / Simbello / Simbalgo / Simvast / Simvastatin / Symbiovo / Cattersen, or Belgo</td><td><strong>Senvelgo</strong>（velagliflozin）</td></tr>
+          <tr><td>Bevacizumab / Bevacizumablosin / bezafloxin / becagliplasen / bezigliflosin / bexaliprosin</td><td><strong>bexagliflozin</strong></td></tr>
+          <tr><td>Belimumablosin / levofloxin / belaliprosin / belagliplasen / beliglucosin / beliglucerase / bellowglyclosin / belapliclosin / bellow glyclozen / belocilozin</td><td><strong>velagliflozin</strong></td></tr>
+          <tr><td>Farsega</td><td><strong>Farxiga</strong>（dapagliflozin）</td></tr>
+          <tr><td>hyperkinesiatripism / hypersmetropism / hyperkinesiopathy / hypercatabolism / hypersecretoryism / hypercorticism</td><td><strong>hypersomatotropism（HS）</strong></td></tr>
+          <tr><td>hyperglycemia（Del Baldo 結論）</td><td>hyper<strong>somatotropism</strong></td></tr>
+          <tr><td>Carverolin</td><td><strong>cabergoline</strong></td></tr>
+          <tr><td>hypoplasia</td><td><strong>hypoglycemia</strong></td></tr>
+          <tr><td>hypoglycemic DKA / hyperglycemic DKA / new glycemic DKA / hyperglycemic DK</td><td><strong>euglycemic DKA（eDKA）</strong></td></tr>
+          <tr><td>diabetic ketoosis</td><td><strong>diabetic ketosis</strong></td></tr>
+          <tr><td>ACBIM / ECBIAN / JBIM / JAMA</td><td><strong>ACVIM</strong> / <strong>ECVIM</strong> / <strong>JVIM</strong> / <strong>JAVMA</strong></td></tr>
+          <tr><td>glargine E100</td><td><strong>glargine U100</strong></td></tr>
+          <tr><td>Bexlon or Can Insulin / can insulin</td><td><strong>Vetsulin／Caninsulin</strong></td></tr>
+          <tr><td>Prozeng</td><td><strong>ProZinc</strong></td></tr>
+          <tr><td>bidemnerxenotide / bactrian</td><td>GLP-1 促效劑，推測為 <strong>exenatide ER（Bydureon）</strong></td></tr>
+          <tr><td>library / Libras</td><td><strong>Libre</strong>（FreeStyle Libre CGM）</td></tr>
+          <tr><td>Capri</td><td>（應指 Jasmine 身上，意為 Libre 終於黏住了）</td></tr>
+          <tr><td>salicya / sassy</td><td>（口語：Jasmine 越來越「嗆」，代表精神好）</td></tr>
+          <tr><td>digaladet</td><td><strong>degludec</strong></td></tr>
+          <tr><td>MPH every 8 hours</td><td><strong>NPH</strong>（前段說 twice a day，應為 q12h）</td></tr>
+          <tr><td>IVD</td><td><strong>IBD</strong></td></tr>
+          <tr><td>10 mgs per kg</td><td><strong>10 mg</strong>（講義）</td></tr>
+          <tr><td>BHC</td><td><strong>BHB</strong></td></tr>
+          <tr><td>Precision Extra</td><td><strong>Precision Xtra</strong></td></tr>
+          <tr><td>SGOT two inhibitors / SGTLT2</td><td><strong>SGLT2 inhibitors</strong></td></tr>
+          <tr><td>speck / spec FPL</td><td><strong>Spec fPL</strong></td></tr>
+          <tr><td>diabetic lumen</td><td><strong>diabetic remission</strong></td></tr>
+          <tr><td>Spade Somali</td><td><strong>spayed</strong> Somali</td></tr>
+          <tr><td>ultrasensitive methods</td><td>（應指 SGLT2 inhibitors）</td></tr>
+          <tr><td>PPD</td><td><strong>PU/PD</strong></td></tr>
+          <tr><td>Sandoz and once daily Glucotab</td><td>（不明；應指 02 病例 Groot：Senvelgo 加 degludec q24h）</td></tr>
+          <tr><td>ten thirty five / ten ninety</td><td>USG <strong>1.035</strong> / <strong>1.090</strong></td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Mott J. <em>Let's Keep this Between Us! Off Label Use of SGLT2i.</em> VET-KU × Texas A&amp;M IM Conference, 2026-10-05（講義 55 頁、現場投影片與課堂逐字稿）。</div>
+          <div class="ref-item">課堂錄音與逐字稿（Plaud）。<a href="https://web.plaud.ai/s/pub_e9cb7f13-2515-4fd4-a97b-7cfbb4a2379a::Hxc6o4hox_bV4P1RnWwmgv_BJ8MjdWLc54swxQCrLHenp0_CyoDeaQhxagA_2DSKc3i4_U4ShZ6hrSuwDCBF4AI" target="_blank" rel="noopener">連結</a>（逐字稿有轉文字錯誤，請對照本頁更正表）</div>
+          <div class="ref-item">Rieg T, Vallon V. Development of SGLT1 and SGLT2 inhibitors. <em>Diabetologia.</em> 2018.</div>
+          <div class="ref-item">Heart Fail Rev. 2021;26(3):623–642（腎小管葡萄糖回收圖）。</div>
+          <div class="ref-item">Zini E, et al. Hyperglycaemia but not hyperlipidaemia causes beta cell dysfunction and beta cell loss in the domestic cat. <em>Diabetologia.</em> 2009;52:336–346.</div>
+          <div class="ref-item">Bexagliflozin 與 velagliflozin 不良反應：美國不良反應通報資料庫研究（講者口述，出處未列）。</div>
+          <div class="ref-item">Mishra P, Behrend E, Niessen S. Big news for big diabetic cats: SGLT2 inhibitors in feline hypersomatotropism/acromegaly. ECVIM 2025 摘要。</div>
+          <div class="ref-item">Del Baldo F, Corsini A, Bresciani F, et al. Effects of velagliflozin in 8 cats with diabetes mellitus and hypersomatotropism. <em>J Vet Intern Med.</em> 2025.</div>
+          <div class="ref-item">Vanneste A, Van Heuckelom E, Vannieuwenhuyse D, De Voogt C, Daminet S. SGLT2 inhibitor therapy in diabetic cats: first clinical experiences with non-ideal candidates. <em>JFMS</em>（EXPRESS）。</div>
+          <div class="ref-item">Benedict SL, Mahony OM, …, Bergman PJ. Evaluation of bexagliflozin in cats with poorly regulated diabetes mellitus（Tufts）。</div>
+          <div class="ref-item">Lodarski F, Benchekroun G, Cervone M. Diabetic remission in a newly diagnosed diabetic cat treated with SGLT2 inhibitor.</div>
+          <div class="ref-item">Efficacy and safety of once daily oral administration of SGLT2 inhibitor velagliflozin compared with twice daily insulin injection in diabetic cats. <em>J Vet Intern Med.</em></div>
+          <div class="ref-item">Velagliflozin, a once-daily, liquid, oral SGLT2 inhibitor, is effective as a stand-alone therapy for feline diabetes mellitus: the SENSATION study. <em>JAVMA.</em></div>
+          <div class="ref-item">Dapagliflozin 用於糖尿病貓，ACVIM 2026 摘要。</div>
+          <div class="ref-item">Box JR, Oyama MA, Mosenco AS, Hess RS. Effect of SGLT2 inhibitor canagliflozin on interstitial glucose concentration in insulin-treated diabetic dogs. <em>J Vet Intern Med.</em> 2024;38(3):1353–1358. <a href="https://pubmed.ncbi.nlm.nih.gov/38528660/" target="_blank" rel="noopener">PubMed</a></div>
+          <div class="ref-item">An JH, et al. Effect of the SGLT2 inhibitor, DWP16001, as an add-on therapy to insulin for diabetic dogs: a pilot study. <em>Vet Med Sci.</em> 2024. <a href="https://pubmed.ncbi.nlm.nih.gov/38686463/" target="_blank" rel="noopener">PubMed</a></div>
+          <div class="ref-item">An JH, et al. Differential glycemic effects of DWP16001 in diabetic dogs according to baseline glycemic status: a multicenter randomized controlled trial. <em>BMC Vet Res.</em> 2025. <a href="https://pubmed.ncbi.nlm.nih.gov/40796840/" target="_blank" rel="noopener">PubMed</a></div>
+          <div class="ref-item">SENVELGO® (velagliflozin oral solution) 美國仿單。<a href="https://docs.boehringer-ingelheim.com/SENVELGO_oral_solution_PI.pdf" target="_blank" rel="noopener">PDF</a>／<a href="https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=3ec5ca1f-bded-459e-a813-24d931d50b9a" target="_blank" rel="noopener">DailyMed</a></div>
+          <div class="ref-item">Bexacat™ (bexagliflozin tablets) 美國仿單。<a href="https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f918583d-0337-40da-8da1-1e1320b8d027&amp;audience=consumer" target="_blank" rel="noopener">DailyMed</a></div>
+          <div class="ref-item">AAHA NEWStat. New oral diabetes medication for cats requires careful case selection. <a href="https://www.aaha.org/newstat/publications/new-oral-diabetes-medication-for-cats-requires-careful-case-selection/" target="_blank" rel="noopener">連結</a></div>
+        </div>
+      </div>
+      <p class="muted">🎤 演講結束後休息 5 分鐘，12:27 開始座談與 Q&amp;A。</p>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="feline-diabetes.html">03 貓糖尿病：全新的世界</a>。其他場次將陸續整理更新。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
