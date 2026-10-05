@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>犬糖尿病與胰島素治療｜2026 Texas 內分泌研討會</title>
+<style>
+  :root {
+    --primary: #0F766E;
+    --primary-light: #CCFBF1;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0d2522;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9cc8c1; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #1f4a44;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9cc8c1; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9cc8c1;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #1f4a44;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #5f8f87;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0b4f49 0%, #14a395 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0d2522; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #1f4a44; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 Texas 內分泌研討會</a>
+  <div class="logo">
+    <h2>02｜犬糖尿病：<br>超越 NPH 胰島素</h2>
+    <p>Jocelyn Mott｜2026 年 10 月 5 日</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">講者核心立場與錄音總覽</a>
+    <a href="#s1">1. 胰島素歷史與生理分泌</a>
+    <a href="#s2">2. 胰島素藥理與延長作用</a>
+    <a href="#s3">3. 狗的胰島素治療與選擇考量</a>
+    <a href="#s4">4. 懸浮型胰島素與血糖變異度</a>
+    <a href="#s5">5. 中效胰島素與 CGM 病例</a>
+    <a href="#s6">6. 胰島素選擇一覽</a>
+    <a href="#s7">7. 為什麼用基礎胰島素</a>
+    <a href="#s8">8. 基礎胰島素劑型</a>
+    <a href="#s9">9. Lente vs U300 vs Degludec</a>
+    <a href="#s10">10. Glargine U300</a>
+    <a href="#s11">11. Insulin Degludec</a>
+    <a href="#s12">12. 糖尿病臨床評分</a>
+    <a href="#s13">13. 病例 Drifter：類固醇與 DKA</a>
+    <a href="#s14">14. 筆型注射器 vs 空針</a>
+    <a href="#s15">15. 一天一次或兩次：Charlie</a>
+    <a href="#s16">16. 飲食的影響</a>
+    <a href="#s17">17. 何時加 Bolus</a>
+    <a href="#s18">18. SGLT2 抑制劑</a>
+    <a href="#s19">19. 未來：每週一次胰島素</a>
+    <a href="#s20">Take-home 與更正表</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <!-- Header -->
+  <div class="page-header">
+    <h1>犬糖尿病：超越 NPH 胰島素（Evolving Beyond NPH Insulin in Canine Diabetes）</h1>
+    <p>主講：Jocelyn Mott, DVM, DACVIM (SAIM), FACVIM（犬貓糖尿病）｜University of Florida 糖尿病門診</p>
+    <p>2026 年 10 月 5 日｜VET-KU × Texas A&amp;M 內科研討會｜場次 02</p>
+    <div class="tags">
+      <span class="tag">犬糖尿病</span>
+      <span class="tag">血糖變異度 GV</span>
+      <span class="tag">Glargine U300</span>
+      <span class="tag">Degludec</span>
+      <span class="tag">CGM / Libre</span>
+      <span class="tag">筆型注射器</span>
+      <span class="tag">SGLT2i</span>
+      <span class="tag">每週一次胰島素</span>
+    </div>
+    <a class="rec-link" href="https://web.plaud.ai/s/pub_c08ceecf-4425-4620-b313-72a266b5ee47::ZXQ0tkpunxccxvF_gMPjQ2s8WkuTQHrmX7TjLNamBE0oGCUsJcmY6ltnQXezwi2m6dRt3PPt1lBx2tjYMm8tuQI" target="_blank" rel="noopener">🎧 聆聽課堂錄音（Plaud）↗</a>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-rec">🎤 錄音</span> 課堂錄音（盡量完整保留，講者原話附英文）
+    <span class="src src-slide">📄 講義</span> 投影片
+    <span class="src src-photo">📷 現場</span> 現場拍攝的投影片
+    <span class="src src-hand">✍️ 手記</span> 課堂手寫重點
+    <span class="src src-add">💡 補充</span> 整理者補充
+    <span class="src src-fix">【更正】</span> 錄音轉文字錯誤，以講義為準
+  </div>
+
+  <!-- Key Points -->
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li>沒有一種胰島素適合所有狗，要依病患和飼主的情況選擇</li>
+      <li>懸浮型胰島素每次劑量和吸收都不一樣，需要很多天的資料才能調劑量</li>
+      <li>GV 越高，低血糖風險越高；低 GV 和緩解機會有關（人、貓）</li>
+      <li>Glargine U300、Degludec：約 60–85% 一天打一次就夠，約 2 週達到控制</li>
+      <li>基礎胰島素不必配合吃飯，施打時間可以前後挪幾個小時</li>
+      <li>絕對不要用空針從筆裡抽藥（U300 可能造成嚴重低血糖）</li>
+      <li>每日一次加到頂還控制不好 → 拆成 q12h 再往上調</li>
+      <li>殘留高血糖：沒症狀就接受；有症狀 → 改罐頭 → 加 bolus → SGLT2i</li>
+    </ul>
+  </div>
+
+  <!-- ══ SECTION 0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🎯</div>
+      <h2>講者核心立場與錄音總覽</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>核心立場</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> <strong>沒有一種胰島素適合所有犬貓</strong>（「There is no best insulin for all dogs and cats with diabetes」），要看個別病患。</li>
+          <li><span class="src src-rec">🎤</span><span class="src src-slide">📄</span> 犬糖尿病的治療正從 NPH、Lente 這類<strong>懸浮型中效胰島素</strong>，轉向 <strong>Glargine U300、Degludec</strong> 這類<strong>基礎型長效胰島素</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 懸浮型胰島素<strong>不是不能用</strong>，但多數狗的每日變化很大，要有很多天的資料才敢做決定。</li>
+          <li><span class="src src-rec">🎤</span> 診斷糖尿病時，我們要求飼主做很多事，<strong>一定要花時間坐下來和飼主討論所有選項</strong>，讓他們做出最知情的決定。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 錄音總覽</h3>
+        <p class="p">錄音從「基礎分泌」那張投影片中段開始，前面的胰島素歷史只有講義。講者用大量 <strong>FreeStyle Libre CGM</strong> 病例串起整場演講：</p>
+        <ul class="notes">
+          <li>胰島素生理（基礎／追加分泌）與「延長作用」的藥理</li>
+          <li>選胰島素前要考慮的飼主因素</li>
+          <li>懸浮型胰島素的不穩定與血糖變異度（病例 Bella、12 歲混種犬、Bandit）</li>
+          <li>基礎胰島素的優點（病例 Joe），Glargine U300 與 Degludec 的機轉與研究（病例 Coco、Rudy）</li>
+          <li>類固醇誘發糖尿病與積極調劑量（病例 Drifter）</li>
+          <li>筆 vs 空針、排空氣</li>
+          <li>何時改一天兩次（病例 Charlie）、飲食調整（病例 Ziva、Teddy）、加 bolus（病例 Rusty）</li>
+          <li>SGLT2 抑制劑（病例 Groot）與每週一次胰島素</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">📜</div>
+      <h2>1. 胰島素歷史與生理分泌</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄</span> 胰島素的歷史</h3>
+        <ul class="notes">
+          <li>1921 年，Banting、Best、Collip、Macleod 從<strong>狗的胰臟萃取物</strong>發現胰島素。</li>
+          <li>早期要用 <strong>4,500 公斤的豬胰臟，才能做出 0.25 公升胰島素</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> 生理性胰島素分泌</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>類型</th><th>比例</th><th>特性與作用</th></tr>
+          <tr><td><strong>基礎（Basal）</strong></td><td>約 50%</td><td>24 小時持續低量分泌。<strong>抑制肝臟糖質新生</strong>、<strong>抑制脂肪分解</strong></td></tr>
+          <tr><td><strong>追加（Bolus）</strong></td><td>約 50%</td><td>吃飯和腸泌素（incretin）刺激時分泌。預防飯後高血糖、抑制肝臟輸出葡萄糖、促進周邊組織吸收葡萄糖</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> <strong>貓</strong>如果整天少量多餐、吃低碳水飲食，<strong>就沒有追加分泌</strong>。【更正】錄音寫「cow」，應為 cat。</li>
+          <li><span class="src src-rec">🎤</span> 非糖尿病的人：晚上 8 點到早上 8 點，一直有<strong>低量持續的胰島素分泌</strong>。講者開玩笑：「就算你們今天早上沒吃早餐、沒喝咖啡，身體還是一直在分泌胰島素。」早上吃早餐後出現一個<strong>大波峰</strong>，之後再降回來。</li>
+          <li><span class="src src-rec">🎤</span> 講者打趣：「經過多年研究，我們終於知道胰島素怎麼作用：它跟受體結合，然後發生了一些事，然後就有效果了。」</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">💉</div>
+      <h2>2. 胰島素藥理：「胰島素就是胰島素」與延長作用</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> Insulin is Insulin</h3>
+        <ul class="notes">
+          <li>所有胰島素在標的組織的<strong>作用機轉都一樣</strong>。到了標的組織，每一種胰島素做的事情都相同。</li>
+          <li><strong>任何胰島素靜脈注射都會變成速效</strong>，因為延長作用被拿掉了。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> 延長作用（Protraction）</h3>
+        <p class="p">延長作用就是我們對胰島素「動手腳」，<strong>減慢它從皮下進入循環的速度</strong>，藉此拉長作用時間。</p>
+        <ol class="notes">
+          <li>用筆注射後，在皮下形成一個胰島素<strong>儲存處（depot）</strong>，裡面多半是<strong>六聚體（hexamer）</strong>。</li>
+          <li>六聚體必須先<strong>解離成單體和雙體</strong>，才能被吸收進微血管。</li>
+          <li>經循環到達標的組織，和<strong>胰島素受體</strong>結合。</li>
+          <li>結合後，<strong>GLUT4</strong> 轉運蛋白移到細胞膜上，讓葡萄糖進入細胞。【更正】錄音寫「four receptors」，應為 GLUT4。</li>
+        </ol>
+        <h4><span class="src src-rec">🎤</span> 各種胰島素怎麼延長作用</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>胰島素</th><th>延長作用的方式</th><th>結果</th></tr>
+          <tr><td>Regular</td><td>六聚體加少量鋅</td><td>很快解離、很快吸收 → 起效快、<strong>作用時間很短</strong></td></tr>
+          <tr><td>NPH</td><td>加入<strong>魚精蛋白（protamine）</strong></td><td>皮下吸收變慢 → 作用時間較長</td></tr>
+          <tr><td>Glargine U100</td><td>形成<strong>六聚體聚集物</strong></td><td>需要更久才能分解、吸收</td></tr>
+          <tr><td><strong>Degludec、Glargine U300</strong></td><td>基礎胰島素（細節見第 10、11 節）</td><td><strong>作用時間最長</strong></td></tr>
+        </table></div>
+        <p class="p muted"><span class="src src-slide">📄</span> 講義第 9 頁的圖把胰島素依起效速度分成「非常快」「短效」等類別（圖片無文字可擷取）。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">🧭</div>
+      <h2>3. 狗的胰島素治療現實與選擇考量</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> 理想 vs 現實</h3>
+        <p class="p">理想上，胰島素治療應該<strong>模擬基礎＋追加的分泌模式</strong>。但實際上有很多限制：</p>
+        <ul class="notes">
+          <li><strong>費用</strong>：通常至少要用兩種胰島素。</li>
+          <li><strong>多次注射</strong>：有時一天要打 <strong>3–5 針</strong>。</li>
+          <li><strong>飼主配合度</strong>可能很低：一天打 3–5 針，幾乎需要有人 24 小時陪著動物。講者說：「包括我在內，誰都做不到，因為我不是在家工作。」</li>
+          <li><strong>作息時間</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 美國的胰島素現況</h3>
+        <ul class="notes">
+          <li>美國有 <strong>2 種獸醫核准的胰島素</strong>：<strong>Vetsulin</strong>（其他國家叫 <strong>Caninsulin</strong>）和 <strong>ProZinc</strong>。講者問泰國是否也都有核准，還有沒有其他獸醫用胰島素。【更正】錄音寫「canned insulin」「frozen」，應為 Caninsulin、ProZinc。</li>
+          <li>市面上另有 <strong>超過 12 種人用胰島素</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 獸醫核准的胰島素都是 <strong>U-40</strong>，<strong>一定要用 U-40 專用針筒</strong>。</li>
+          <li><span class="src src-slide">📄</span> 講義第 12 頁：FDA 核准的犬貓獸醫用胰島素（圖片）。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 建立「分級照護（Spectrum of Care）」：選胰島素前要考慮的事</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>胰島素本身</h4><ul>
+            <li><strong>買得到哪些</strong>：產品一直上市、下市，要持續追蹤</li>
+            <li><strong>價格</strong>：常變動。例如 Lantus U100：原本生物相似藥便宜很多，學名藥上市後，<strong>學名藥突然變成最便宜</strong></li>
+            <li>只用基礎，還是基礎＋bolus？中效還是長效？懸浮型還是溶液型？</li>
+          </ul></div>
+          <div class="card-mini"><h4>飼主與病患</h4><ul>
+            <li><strong>要不要綁吃飯時間？</strong></li>
+            <li>飼主<strong>能不能打針</strong>？</li>
+            <li>需要的頻率：<strong>q8h、q12h 還是 q24h</strong>？會影響胰島素的選擇</li>
+            <li>飼主<strong>怕針</strong> → 筆型注射器容易很多</li>
+            <li><strong>挑食的狗</strong>：飼主常等好幾個小時等狗吃早餐才敢打針 → 選<strong>不用綁吃飯</strong>的胰島素</li>
+          </ul></div>
+        </div>
+        <div class="quote">「There is no best insulin for all dogs and cats with diabetes. It really comes down to the individual pet.」<span class="quote-zh">沒有一種胰島素適合所有糖尿病犬貓，要看個別病患。</span></div>
+        <p class="p muted"><span class="src src-slide">📄</span> 講義第 11 頁為圖片（無文字）。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">📉</div>
+      <h2>4. 懸浮型胰島素的問題與血糖變異度（GV）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> 懸浮型胰島素（Lente、NPH、PZI）</h3>
+        <ul class="notes">
+          <li>以<strong>懸浮液</strong>注射。抽藥前要<strong>輕輕滾動</strong>混勻；<strong>Vetsulin 則要用力搖</strong>。</li>
+          <li>🎤 <strong>每次混勻的程度都不會完全一樣</strong>，所以每次從藥瓶抽出來的劑量都略有不同。「不管是飼主、你自己還是技術員抽，每一次都會有點不同。」</li>
+          <li>打進去後，靠皮下的<strong>沉澱溶出</strong>來吸收，這個過程<strong>不規則、無法預測</strong>。</li>
+          <li>兩者加起來 → <strong>每次打的劑量都不同、效果也不同 → 作用時間曲線變異很大</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> 什麼是血糖變異度（Glycemic Variability, GV）</h3>
+        <p class="p">GV 指血糖的起伏，包括一天之內（日內 GV）或不同天之間（日間 GV）的低血糖和高血糖。</p>
+        <div class="grid3">
+          <div class="card-mini"><h4>病患 A</h4><ul><li>同一天內起伏很大</li><li>= <strong>日內 GV 明顯</strong></li></ul></div>
+          <div class="card-mini"><h4>病患 B</h4><ul><li>每天都很一致</li><li>= <strong>GV 很低</strong></li></ul></div>
+          <div class="card-mini"><h4>病患 C</h4><ul><li>這天偏低、那天偏高</li><li>= <strong>日間 GV 明顯</strong></li></ul></div>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> 研究證據</h3>
+        <h4>犬：日間變異（JAVMA 2003;222:317–321）</h4>
+        <ul class="notes">
+          <li>使用<strong>豬 Lente</strong> 的糖尿病犬，連續 2 天做血糖曲線，回家 2 週後再來做 2 天，總共重複 3 次。</li>
+          <li><strong>胰島素劑量、施打時間、食物、餵食時間都相同</strong>，運動量也盡量一樣。</li>
+          <li>結果：<strong>同一隻狗不同天的曲線差很多</strong>。</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>🎤 「如果病患來做血糖曲線，看到的是這一天還是那一天，你對胰島素劑量的決定會完全不同。」使用懸浮型胰島素時，<strong>連續血糖曲線的日間變異很大</strong>。</div></div>
+        <h4>貓：日間變異（JAVMA 2007;230:1011–1017）</h4>
+        <ul class="notes">
+          <li>同樣使用豬 Lente。<strong>就算飯量、胰島素種類和劑量都固定，貓處在沒有壓力的環境</strong>，每天的血糖曲線還是差很多。</li>
+          <li>📄 人的糖尿病患者中，<strong>93%</strong> 有這種日間變異。</li>
+        </ul>
+        <h4>健康犬（較新的研究）</h4>
+        <ul class="notes">
+          <li>健康非糖尿病犬戴 CGM：<strong>GV 很低，血糖維持在很窄的範圍</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span><span class="src src-slide">📄</span> 為什麼要降低 GV</h3>
+        <ul class="notes">
+          <li>🎤 人：新診斷第一型糖尿病的兒童，<strong>GV 最低的人，最有機會出現部分緩解</strong>。</li>
+          <li>🎤 貓：<strong>GV 較低，可能和緩解機會較高有關</strong>。</li>
+          <li>📄🎤 <strong>%CV（變異係數）越高，低血糖事件的風險越高。</strong></li>
+          <li>👉 所以要盡量讓糖尿病病患的 GV 越低越好。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🐕</div>
+      <h2>5. 中效胰島素與 CGM 病例（Bella、混種犬、Bandit）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> 中效胰島素</h3>
+        <ul class="notes">
+          <li>狗用的中效胰島素：<strong>NPH、豬 Lente、PZI、Glargine U100</strong>。</li>
+          <li>至少<strong>一天兩次</strong>；NPH 有時甚至豬 Lente 要<strong>每 8 小時</strong>一次。</li>
+          <li>都是懸浮型（Glargine U100 除外），通常教飼主「<strong>先讓狗吃，再打針</strong>」。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">⏱️</span><div><strong>時間對不上的問題</strong>：飯後血糖高峰約在 <strong>1–3 小時</strong>（依食物而定），但豬 Lente 的作用高峰在 <strong>3–6 小時</strong>。<br>🎤「<strong>食物消化得快，胰島素作用得慢。</strong>」（Food digests fast, insulin action is slower.）理想上要讓胰島素高峰對上飯後高血糖的高峰。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span><span class="src src-add">💡</span> 判讀 FreeStyle Libre 報表要注意</h3>
+        <ul class="notes">
+          <li>灰色區是<strong>人的目標範圍</strong>，不一定是犬貓的目標範圍。</li>
+          <li>依讀取設備不同，這款量測範圍是 <strong>0–350 mg/dL</strong>，超過 350 不會顯示，或只顯示成 350、400。</li>
+          <li><strong>低於 70 mg/dL 時可能比較不準</strong>。</li>
+          <li>💡 黃色是高於目標範圍，紅色是低於目標範圍。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 病例 Bella：13 歲母犬已結紮，博美</h3>
+        <ul class="notes">
+          <li>到 UF 糖尿病門診時，使用 <strong>Vetsulin 3 U BID</strong>。【更正】錄音寫「Metformin」，依上下文應為 Vetsulin。</li>
+          <li>飲食種類、份量、餵食時間完全相同，<strong>沒有外在壓力</strong>。講者說她是「腳從不落地」的小狗；講者自己有 3 隻吉娃娃，所以可以這樣說。</li>
+          <li>Libre 資料<strong>非常不一致</strong>：看一天的資料，無法預測隔天。如果病患來院做血糖曲線，這天做和那天做，會得到完全不同的臨床決策。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 病例：12 歲母犬已結紮，混種犬</h3>
+        <ul class="notes">
+          <li><strong>Vetsulin 7 U BID</strong>，其他條件都相同，資料<strong>變異很大</strong>。</li>
+          <li>「<strong>這不是感測器的問題，也不是胰島素的問題，這是懸浮型胰島素本來就會有的樣子。</strong>」</li>
+          <li>如果只有一天的資料，臨床決策會差很多。</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">📊</span><div>🎤 使用懸浮型胰島素時，<strong>需要很多資料、看很多天</strong>，才能有把握決定怎麼調胰島素。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span><span class="src src-photo">📷</span> 病例 Bandit：8 歲公犬已結紮，約克夏（反例）</h3>
+        <ul class="notes">
+          <li><strong>Vetsulin 3 U q12h</strong>，體重穩定，PU/PD 很輕微。</li>
+          <li>📷 投影片：「懸浮型胰島素也能做到良好控制、日間和日內變異都很小的例子」。</li>
+          <li>🎤 資料<strong>非常一致</strong>，幾乎每天都看得出狗在哪個時間吃飯，<strong>可以很快做臨床決策</strong>，因為能預測隔天的樣子。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>📷 連續 4 天 CGM</th><th>Day 1</th><th>Day 2</th><th>Day 3</th><th>Day 4</th></tr>
+          <tr><td>每日平均血糖（mg/dL）</td><td class="td-center cgm">209</td><td class="td-center cgm">216</td><td class="td-center cgm">186</td><td class="td-center cgm">228</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-add">💡</span> 每天的模式都一樣：早上 8–9 點有一個小峰（早餐）；中午到下午 1–2 點是最低點（第 1、3 天短暫進入紅色區）；下午 3 點後快速上升，傍晚 6 點到半夜偏高。</li>
+          <li><span class="src src-add">💡</span> 晚上那一針打完後血糖沒有明顯下降，可能和晚餐量或晚上施打的時間有關。正因為模式穩定，才能針對特定時段調整。</li>
+          <li><span class="src src-add">💡</span> 平均血糖約 186–228 mg/dL、臨床症狀少、波動模式一致 → 算是控制良好。評估控制時<strong>要看曲線穩不穩定</strong>，不能只看平均值。</li>
+        </ul>
+        <div class="quote">「You can certainly manage diabetics on suspension insulin, but be aware that a lot of them are going to be a lot less predictable.」<span class="quote-zh">用懸浮型胰島素當然可以控制糖尿病，但要知道很多病患會比較難預測。</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">📋</div>
+      <h2>6. 胰島素選擇一覽（美國）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p class="p"><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> 把胰島素分成<strong>懸浮型</strong>和<strong>溶液型</strong>。講義也標示哪些有<strong>筆型</strong>、哪些只有<strong>藥瓶</strong>。講者提醒這是美國的情況，不確定泰國有哪些。D＝犬，C＝貓。</p>
+      <div class="tbl-wrap"><table>
+        <tr><th>類型</th><th>胰島素</th><th>產品</th><th>犬</th><th>貓</th></tr>
+        <tr><td rowspan="3"><span class="badge badge-yellow">懸浮型</span></td><td>NPH（Neutral Protamine Hagedorn）</td><td>Humulin N、N/R 70/30；Novolin N、N/R 70/30；ReliOn（Walmart 低價品牌）</td><td>q8–12h</td><td>q8h</td></tr>
+        <tr><td>PZI（Protamine Zinc）</td><td>U-40 ProZinc</td><td>q12–24h</td><td>q12–24h</td></tr>
+        <tr><td>豬 Lente（Porcine Zinc）</td><td>U-40 Vetsulin</td><td>q12–24h</td><td>q8–12h</td></tr>
+        <tr><td rowspan="4"><span class="badge badge-blue">溶液型</span></td><td rowspan="3">Glargine</td><td>U-100 Lantus、U-100 Basaglar</td><td>q12h</td><td>q12–24h</td></tr>
+        <tr><td>U-100 Semglee</td><td>q12h</td><td>q12–24h</td></tr>
+        <tr><td><strong>U-300 Toujeo</strong></td><td>q12–24h</td><td>q12–24h</td></tr>
+        <tr><td>Degludec</td><td><strong>U-100/U-200 Tresiba</strong></td><td>q12–24h</td><td>q12h</td></tr>
+      </table></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">✅</div>
+      <h2>7. 為什麼用基礎胰島素？（病例 Joe）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> 基礎胰島素的優點</h3>
+        <ul class="notes">
+          <li><strong>比懸浮型更可預測</strong>：是溶液，<strong>不用混勻</strong>，少了一個不準的來源。</li>
+          <li>注射後<strong>吸收更一致</strong>。</li>
+          <li><strong>用筆打</strong>，筆比空針加藥瓶<strong>更精準</strong>。</li>
+          <li><strong>日間變異低很多</strong>。</li>
+          <li><strong>不需要讓胰島素高峰配合碳水吸收高峰</strong>：狗不想在固定時間吃早餐，飼主照樣可以打針，狗晚點再吃。</li>
+          <li><strong>低血糖風險低</strong>。📄 在人可減少夜間低血糖。【更正】錄音寫「nocturnal hyperglycemia」，講義為 nocturnal <strong>hypo</strong>glycemia。</li>
+          <li><strong>施打時間沒那麼關鍵</strong>：人可以白天或晚上任何時間打，適合作息不固定的人。狗大概可以<strong>前後差 2–3 小時</strong>（📄 講義打了問號）。</li>
+          <li>📄 <strong>一天一次，讓飼主更有彈性。</strong></li>
+        </ul>
+        <div class="alert alert-success"><span class="alert-icon">🎬</span><div>🎤 講者在一般門診時，最常接到的電話之一是：「<strong>我們今晚想去看電影，胰島素怎麼辦？</strong>」用基礎胰島素，看電影前打或回來再打都可以，飼主自由很多，<strong>飼主比較開心，也比較願意治療</strong>糖尿病狗。【更正】錄音寫「gives the heart more clients」，應為 happier clients。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 病例 Joe：挑食的狗</h3>
+        <ul class="notes">
+          <li>Joe 有時吃早餐，有時不吃。飼主快瘋了，每天早上想辦法讓 Joe 吃東西才能打針，飼主和 Joe 都很有壓力。</li>
+          <li>使用 <strong>insulin degludec</strong>。有吃早餐那天和<strong>沒吃早餐</strong>那天的資料對比：<strong>沒吃早餐也沒有低血糖的風險</strong>。</li>
+          <li>可以看出這隻狗的<strong>基準線（baseline）</strong>在哪裡，不會掉得比基準線更低。</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>但如果狗<strong>連續好幾餐沒吃，還是會低血糖</strong>。如果你知道這隻狗的資料長什麼樣，<strong>只漏一餐</strong>通常不會有問題。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🖊️</div>
+      <h2>8. 犬貓的基礎胰島素劑型</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="tbl-wrap"><table>
+        <tr><th>產品</th><th>每支筆</th><th>每格</th><th>對象與說明</th></tr>
+        <tr><td><strong>Degludec U-100</strong>（Tresiba）</td><td>300 U</td><td>1 U</td><td>犬。<strong>小型犬用 U-100</strong></td></tr>
+        <tr><td><strong>Degludec U-200</strong>（Tresiba）</td><td>600 U</td><td>2 U</td><td>犬。<strong>通常留給大型犬</strong></td></tr>
+        <tr><td><strong>Glargine U-300</strong> SoloStar（Toujeo）</td><td>450 U</td><td>1 U</td><td>犬、貓</td></tr>
+        <tr><td><strong>Glargine U-300</strong> Max SoloStar（Toujeo）</td><td>900 U</td><td>2 U</td><td>犬、貓</td></tr>
+      </table></div>
+      <ul class="notes">
+        <li><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> <strong>Degludec U-200 和 U-100 生體相等</strong>：狗用 U-100 打 10 U BID，換成 U-200 還是 <strong>10 U BID</strong>，換算已經在筆裡做好了。可以先用 U-100 找劑量，之後換 U-200，<strong>U-100 缺貨時</strong>也能切換。</li>
+        <li><span class="src src-rec">🎤</span> 講者<strong>通常不在貓用 Degludec</strong>，原因在下一堂（貓糖尿病）說明。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">📊</div>
+      <h2>9. 研究：Lente vs Glargine U300 vs Degludec 的日間變異</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p class="p"><span class="src src-slide">📄</span> Miller et al., JVIM 2020：糖尿病犬，比較 Lente、Glargine U300、Degludec，<strong>q12h 階段，連續 5 天</strong>的日間變異。講義第 22 頁標題：「Toujeo 和 Tresiba：日間變異降低」。</p>
+      <ul class="notes">
+        <li><span class="src src-rec">🎤</span> <strong>7 隻</strong>糖尿病犬，觀察 5 天。圖上<strong>顏色面積越大，代表變異越大</strong>：綠色是豬 Lente，藍色是 Degludec，紅色是 Glargine U300。</li>
+        <li><span class="src src-rec">🎤</span> Lente 的綠色很多，Degludec 的藍色少很多 → <strong>豬 Lente 的變異度明顯高於 Glargine U300 和 Degludec</strong>。</li>
+        <li><span class="src src-slide">📄</span> 圖表：7 隻犬（Dog #1–#7）24 小時組織間液血糖曲線，另有平均 %CV 比較（L／G／D，統計標示 0.01、0.01、ns）。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🧪</div>
+      <h2>10. Insulin Glargine U300（Toujeo）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 機轉</h3>
+        <ul class="notes">
+          <li>U-100 和 U-300 都是<strong>筆型</strong>。Glargine <strong>在酸性 pH 下可溶</strong>，所以筆裡是溶液；<strong>打進中性 pH 的皮下後會沉澱</strong>，減慢吸收。</li>
+          <li><strong>U-300 濃度是 U-100 的 3 倍</strong>，打進去的體積只有約 1/3 → 儲存處<strong>表面積較小</strong> → 從皮下吸收更緩慢 → 作用時間更長。</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>Glargine U-100 和 U-300 不是生體相等，是兩種不同的胰島素。</strong>U-300 濃度是 3 倍，但<strong>效價比較低</strong>。</div></div>
+        <div class="alert alert-danger"><span class="alert-icon">🚫</span><div>🎤 <strong>絕對不要用空針從 Glargine U-300 的藥匣抽藥。</strong>事實上任何胰島素筆都不該從藥匣抽，這樣筆的好處就全沒了。用 U-300 這樣做，<strong>有造成嚴重低血糖的風險</strong>。「So just don't do it.」</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> 臨床研究：每日一次 Glargine U300 的劑量調整流程（2024）</h3>
+        <p class="p muted">Gilor C, Fracassi F, Berg A, Guarino A, Tardo AM, Fleeman L. <em>A dose-titration protocol for once-daily insulin glargine 300 U/mL for the treatment of diabetes mellitus in dogs.</em> 講者提到 Dr. Tardo（上一場 PU/PD 講者）也是作者之一。</p>
+        <ul class="notes">
+          <li><strong>95 隻</strong>客戶的糖尿病犬。</li>
+          <li>基礎胰島素能讓<strong>大多數狗維持良好控制</strong>。</li>
+          <li><strong>約 60% 一天打一次就夠</strong>。🎤「對飼主來說，從一天兩次變成一天一次，差別非常大。」</li>
+          <li>約 <strong>2 週</strong>達到臨床控制。🎤 講者印象是 17 天。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 病例 Coco：11 歲公犬已去勢，西高地白梗（參加此研究）</h3>
+        <ul class="notes">
+          <li>使用 <strong>Toujeo 約 9 U BID</strong>（?）。【更正】錄音寫「2J09 units」，應為 Toujeo 9 units。</li>
+          <li>資料<strong>非常一致</strong>：看這一天，就能很有把握知道隔天的樣子。</li>
+          <li>👉 因為能預測隔天，<strong>調劑量時更有信心，也能更快往上調</strong>。</li>
+          <li>看得出<strong>基準線</strong>：如果 Coco 漏吃一餐，預期血糖不會掉到基準線以下。</li>
+          <li>用 Toujeo，<strong>日間變異很小</strong>，也看得出 Coco 每天在哪個時間吃飯。【更正】錄音寫「Dujail」，應為 Toujeo。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">🔬</div>
+      <h2>11. Insulin Degludec（Tresiba）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> 機轉</h3>
+        <p class="p"><strong>重組人胰島素類似物</strong>：去掉一個胺基酸，再接上一條<strong>脂肪酸</strong>。</p>
+        <ol class="notes">
+          <li>筆裡的 degludec 以<strong>雙六聚體（dihexamer）</strong>存在，含 <strong>phenol 和鋅</strong>。</li>
+          <li>注射後，<strong>phenol 很快擴散離開</strong>。</li>
+          <li>phenol 離開後，胰島素形成<strong>多六聚體長鏈（multihexamer）</strong>，需要更久才能分解、吸收。</li>
+          <li><strong>鋅也要慢慢擴散出去</strong>，再延長一點作用時間；鋅擴散後才分解成雙體和單體，進入循環。</li>
+          <li>在循環中<strong>和白蛋白結合</strong>，跟著白蛋白到標的組織；進入組織前要先<strong>和白蛋白分開</strong>，單體再和受體結合。</li>
+        </ol>
+        <p class="p">👉 以上每一步都延長了作用時間。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> 藥效研究</h3>
+        <ul class="notes">
+          <li><strong>健康犬</strong>：🎤 作用時間<strong>超過 24 小時</strong>，作用曲線<strong>很平坦</strong>，很接近生理的基礎分泌。<br><span class="muted">📄 講義寫「作用時間 &gt; 20 小時」，與錄音略有出入。</span></li>
+          <li><strong>5 隻健康犬＋4 隻糖尿病犬，比較 NPH 和 degludec</strong>：
+            <ul class="notes">
+              <li>📄 Degludec 有<strong>明顯的飯後高血糖</strong>，但<strong>整體血糖控制較好</strong>。</li>
+              <li>🎤 NPH 壓飯後高血糖比較好，但長時間來看，降血糖的整體效果不如 degludec。</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> 臨床研究：客戶的糖尿病犬使用 Degludec U-100</h3>
+        <p class="p muted">🎤 講者團隊的研究，Dr. Tardo 也參與。【更正】錄音寫「Dr. Chardo」。</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>結果</th></tr>
+          <tr><td>病例</td><td><strong>33 隻</strong>糖尿病犬（6 隻新診斷、27 隻之前治療過），用 <strong>FreeStyle Libre</strong> 監測</td></tr>
+          <tr><td>施打頻率</td><td>q12h：5 隻；<strong>q24h：28 隻（85%）</strong>，其中 1 隻另加 NPH 當 bolus</td></tr>
+          <tr><td>最終劑量中位數</td><td><strong>1.3 U/kg</strong>（0.4–2.2）</td></tr>
+          <tr><td>達到控制時間中位數</td><td><strong>14 天</strong>（3–32）</td></tr>
+          <tr><td>低血糖</td><td>只有 <strong>1 次</strong>臨床低血糖</td></tr>
+          <tr><td>控制品質</td><td><strong>76%</strong> 飼主評為「極佳」或「很好」</td></tr>
+          <tr><td>起始劑量</td><td><strong>0.5 U/kg q24h</strong>　<span class="src src-fix">【更正】</span>講義寫「0.5 mg/kg」，應為 U/kg</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li>🎤 所有狗都戴感測器，<strong>有時每天都調劑量</strong>，只用了<strong>1–2 個感測器</strong>的時間就找到最終劑量。</li>
+          <li>📄 結論：<strong>Degludec 100 U/mL 一天一次對糖尿病犬有效。</strong></li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 病例 Rudy：6 歲公犬已結紮，迷你品</h3>
+        <ul class="notes">
+          <li>到 UF 時已確診糖尿病 6 個月。<strong>非常胖</strong>，使用 <strong>Vetsulin 15 U BID</strong>。【更正】錄音寫「Vexilin」。</li>
+          <li>飼主抱怨他在變瘦，雖然還是非常胖。講者說：「胖到找不到尾巴，尾巴藏在肥肉裡。」後來 Rudy 得了<strong>肺癌</strong>、瘦下來，才露出一截小尾巴，飼主從來不知道牠有尾巴。</li>
+          <li><strong>PU/PD 嚴重</strong>，<strong>糖尿病臨床評分 5 分</strong>（滿分 12，偏高）。</li>
+          <li>剛來時戴 Libre，Vetsulin 15 U BID：「沒什麼作用」，每天之間也有差異。</li>
+          <li>研究結束時：<strong>Degludec 30 U q24h</strong>。之前是 15 U BID，<strong>一天總劑量相同</strong>，只是變成一天一次。</li>
+          <li>約 <strong>20 天</strong>達到最終劑量，比較久是因為 Rudy 一直弄掉感測器，飼主又拖了一陣子才重新裝上。</li>
+          <li>研究結束時的臨床評分：錄音在這裡中斷，沒有聽到數字。</li>
+        </ul>
+      </div>
+      <p class="p muted"><span class="src src-slide">📄</span> 講義第 24 頁為圖片（無文字）。</p>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef9c3">📝</div>
+      <h2>12. 糖尿病臨床評分（Diabetic Clinical Score）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <ul class="notes">
+        <li><span class="src src-slide">📄</span> <strong>總分 0–12 分</strong>。</li>
+        <li><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> 目標：<strong>在低血糖風險還能接受的前提下，分數越低越好</strong>。</li>
+        <li><span class="src src-rec">🎤</span> <strong>可以請飼主自己評分</strong>。4 個項目，每項 0–3 分，加總起來。講者現場問：多少人知道並使用這個評分？</li>
+      </ul>
+      <div class="tbl-wrap"><table>
+        <tr><th>項目</th><th>0 分</th><th>1 分</th><th>2 分</th><th>3 分</th></tr>
+        <tr><td><strong>非預期的體重減輕</strong></td><td>沒有，或比上次檢查增加</td><td>輕度（&lt; 5%）</td><td>中度（5–10%）</td><td>嚴重（&gt; 10%）</td></tr>
+        <tr><td><strong>多尿多渴</strong></td><td>正常</td><td>輕度（飼主覺得有點增加）</td><td>中度（水碗要更常加水）</td><td>嚴重（一直守在水碗旁）</td></tr>
+        <tr><td><strong>食慾</strong></td><td>正常或食慾下降*</td><td>輕度多食（很積極地吃完）</td><td>中度多食（吃完還會討食）</td><td>嚴重多食（滿腦子都是食物）</td></tr>
+        <tr><td><strong>精神／活動力</strong></td><td>正常</td><td>輕度下降（跑跳稍微變少）</td><td>中度下降（跑跳明顯變少）</td><td>嚴重下降（整天躺著）**</td></tr>
+      </table></div>
+      <div class="alert alert-danger"><span class="alert-icon">⚠️</span><div>
+        * 食慾下降雖然算 0 分，但<strong>要先排除 DKA 或其他併發疾病</strong>。<br>
+        ** 糖尿病動物如果看起來很不舒服，<strong>要考慮 DKA</strong>。<br>
+        <span class="src src-add">💡</span> 「食慾」和「活動力」分數低，不一定代表控制得好。
+      </div></div>
+      <p class="p muted"><span class="src src-photo">📷</span> 表格內容依現場拍攝的投影片整理（PDF 講義中為圖片）。</p>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 13 ══ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">💊</div>
+      <h2>13. 病例 Drifter：類固醇誘發糖尿病與積極調劑量</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p class="p"><span class="src src-rec">🎤</span> <strong>Drifter：11.5 歲母犬已結紮，沙皮混種</strong>（講者說「現在還活著」。錄音中講者用 he 稱呼）。</p>
+      <div class="subsection">
+        <h3>病程時間軸</h3>
+        <ol class="notes">
+          <li>到 UF <strong>眼科</strong>做<strong>眼瞼內翻</strong>手術，同時有<strong>角膜潰瘍</strong>和<strong>嚴重白內障</strong>。</li>
+          <li>同時看<strong>皮膚科</strong>，診斷<strong>特發性黏液沉積症（idiopathic mucinosis）</strong>，開始用逐漸減量的 <strong>prednisone</strong>。</li>
+          <li>幾天內，原本的家庭獸醫又開了<strong>含類固醇的耳藥</strong>。</li>
+          <li>約一週後回來手術，角膜潰瘍已癒合，眼科開始讓 prednisone 減量。</li>
+          <li>兩週後術後回診，<strong>停用 prednisone</strong>。飼主仍抱怨 <strong>PU/PD 和喘</strong>，但這時候 Drifter 還在用類固醇。</li>
+          <li>一個月後因<strong>右後肢跛行</strong>去急診，飼主說停類固醇一個月了還是 PU/PD。抽血診斷為 <strong>DKA</strong>，開始用 <strong>Vetsulin 17 U BID</strong>。【更正】錄音寫「Tavetolin」。</li>
+          <li>之後一個月內，飼主<strong>聽朋友建議，自己從 Vetsulin 換成 NPH</strong>。🎤 在美國，<strong>NPH 是唯一不需處方就能買的胰島素</strong>。Libre 資料顯示「幾乎沒有作用」。</li>
+          <li>飼主聯絡 UF，表示<strong>從來沒被告知類固醇會引起糖尿病</strong>。講者接到電話：「趕快讓這隻狗來糖尿病門診。」</li>
+          <li>到糖尿病門診時：<strong>體重掉了 3 kg</strong>，雖然一直在打胰島素，<strong>PU/PD 完全沒改善</strong>。</li>
+          <li>當時跟診的實習醫師（現在是 Texas A&amp;M 外科第三年住院醫師）診斷出<strong>右側前十字韌帶斷裂</strong>，就是跛行的原因。【更正】錄音寫「craniocerebral rupture」。</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3>改用 Degludec 與積極調整</h3>
+        <ul class="notes">
+          <li>星期六開始 <strong>Degludec 24 U q24h</strong>。</li>
+          <li>星期日「沒什麼變化」→ <strong>劑量增加 20%</strong>。</li>
+          <li>星期日下午收到飼主絕望的 email：「<strong>Drifter 現在到處撞東西，新的胰島素讓牠瞎了。</strong>」</li>
+          <li>講者：「現在我知道飼主已經不信任我們了，我們必須很快幫到這隻狗。」→ <strong>每天至少增加 20%，直到看到效果</strong>。</li>
+          <li>這時感測器剛好失效，有幾天沒有資料。重新裝上後開始看到效果 → 改成<strong>每天增加 10%</strong>，比較緩和地繼續加。</li>
+          <li>劑量加到一定程度後，資料非常一致。回診時狀況很好，有些時段組織間液血糖偏低，但 <strong>Drifter 沒有症狀</strong>，為了安全把劑量<strong>從 58 U 降到 53 U</strong>（?）。</li>
+        </ul>
+        <p class="p muted"><span class="src src-fix">【更正】</span>錄音中劑量數字前後不一致（一處寫「up to 15 units once a day」，一處寫「from fifty eight down to fifty three」）。從 24 U 每天加 20%、再每天加 10% 推算，最後在 50–60 U 左右比較合理，「15」可能是「50」的轉錄錯誤。</p>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div>
+        <strong>這個病例的學習重點</strong>（<span class="src src-add">💡</span> 整理者歸納）：<br>
+        ① 開類固醇（包括外用、耳藥）前，<strong>要告知飼主可能誘發糖尿病</strong>，並注意多個醫師同時開類固醇。<br>
+        ② 已有白內障的病例，要<strong>事先說明視力可能惡化</strong>，以免飼主歸咎於新藥、失去信任。<br>
+        ③ 有 CGM 時，可以<strong>每天積極調劑量</strong>（先 +20%/天，看到效果後 +10%/天）。<br>
+        ④ 控制不好時要找其他問題，例如這隻狗的前十字韌帶斷裂。
+      </div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 14 ══ -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🖊️</div>
+      <h2>14. 胰島素給藥：筆型注射器 vs 空針</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> 研究結果</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>準確度（Accuracy）</h4><ul>
+            <li>空針：<strong>&lt; 4 U 時劑量過多</strong></li>
+            <li>筆：<strong>各種劑量都比設定值少一點</strong></li>
+            <li>筆在 <strong>&lt; 2 U 時準確度明顯較好</strong></li>
+          </ul></div>
+          <div class="card-mini"><h4>精密度（Precision）</h4><ul>
+            <li>筆的<strong>重現性較好</strong></li>
+            <li>低劑量時，筆的精密度比空針高</li>
+            <li>不會選錯空針規格</li>
+            <li>適合<strong>視力或手部靈活度不好</strong>的飼主</li>
+          </ul></div>
+        </div>
+        <div class="quote">「Would you rather have precision versus accuracy? We'd rather have precision.」<span class="quote-zh">精密度和準確度你要哪一個？我們寧可要精密度。設定 5 U，筆每次都穩定打出 4.8 U，狗每次拿到的都是同樣的劑量。</span></div>
+        <ul class="notes">
+          <li>🎤 用藥瓶和空針抽出正確劑量真的很難，「連我們有時候都很難」，飼主很喜歡用筆。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 講者示範：筆的用法</h3>
+        <ol class="notes">
+          <li>拔掉筆蓋，藥液應該是<strong>透明的</strong>（溶液）。</li>
+          <li><strong>轉上針頭</strong>。</li>
+          <li>轉到要打的<strong>單位數</strong>。</li>
+          <li>拔掉針頭的小蓋子。</li>
+          <li>注射。講者團隊習慣<strong>用整隻手握住筆身</strong>打進動物身上，覺得比較好控制；接著按下按鈕，胰島素就打進去了。</li>
+        </ol>
+        <h4><span class="src src-rec">🎤</span><span class="src src-hand">✍️</span> 排空氣（air shot）</h4>
+        <ul class="notes">
+          <li>🎤 講者建議<strong>每次開始用一支新筆時</strong>，都要做 air shot：<strong>筆垂直拿</strong>，轉 <strong>2–3 單位</strong>，應該看到<strong>胰島素從針頭冒出來</strong>。沒冒出來就再轉 2–3 單位，<strong>重複到看到胰島素冒出來為止</strong>。</li>
+          <li>✍️ 手記：需要教主人打針；需要排空氣，直到看到胰島素排出。</li>
+          <li><span class="src src-add">💡</span> 原廠說明書（Tresiba、Toujeo）建議<strong>每一次注射前</strong>都要做安全測試，不只是新筆。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-add">💡</span> 飼主衛教版：胰島素筆注射步驟</h3>
+        <h4>一、準備</h4>
+        <ol class="notes">
+          <li>洗手，拿出胰島素筆和<strong>一支新針頭</strong>。<strong>每次都要換新針頭</strong>，重複使用容易塞住、劑量不準。</li>
+          <li>確認拿對筆。檢查藥液：Tresiba 和 Toujeo 應為<strong>透明無色</strong>，混濁就不要用。<strong>不需要也不可以搖</strong>（和 Vetsulin 不同）。</li>
+          <li>用酒精棉擦筆前端的橡膠膜，裝上針頭轉緊。</li>
+          <li>拔掉針頭的<strong>外蓋（留著）</strong>和<strong>內蓋（丟掉）</strong>。</li>
+        </ol>
+        <h4>二、排空氣（安全測試）</h4>
+        <ol class="notes">
+          <li>轉到：<strong>Tresiba（FlexTouch）2 單位</strong>；<strong>Toujeo（SoloStar）3 單位</strong>。</li>
+          <li><strong>針頭朝上</strong>，輕彈筆身，讓氣泡浮到上方。</li>
+          <li>按下注射鈕，直到劑量窗回到「0」。</li>
+          <li><strong>確認針尖冒出一滴胰島素。</strong>沒有就重複（Tresiba 最多 6 次、Toujeo 最多 3 次）；還是沒有就<strong>換新針頭</strong>再試；換針頭仍沒有 → <strong>這支筆不要用，聯絡醫院</strong>。</li>
+        </ol>
+        <h4>三、設定劑量並注射</h4>
+        <ol class="notes">
+          <li>轉到醫師指定的單位數，<strong>確認數字正確</strong>。轉過頭可以往回轉。</li>
+          <li>抓起一塊皮膚捏成小帳篷狀，建議打在<strong>胸側或腹側</strong>，每次換位置。</li>
+          <li>針頭插進皮膚（不要打在毛上），按下注射鈕直到數字回到 0。</li>
+          <li><strong>繼續按住，慢慢數秒後再拔針</strong>：<strong>Tresiba 數 6 秒</strong>、<strong>Toujeo 數 5 秒</strong>。太早拔針，胰島素會漏出來。</li>
+          <li>套回外蓋、轉下針頭，丟進硬的容器（例如空寶特瓶）。</li>
+        </ol>
+        <h4>四、常見問題</h4>
+        <ul class="notes">
+          <li><strong>不確定有沒有打進去</strong>（毛濕濕的、狗突然掙扎）：<strong>不要補打</strong>，下一次照原本時間打。補打可能造成低血糖，比漏打一次危險得多。</li>
+          <li><strong>保存</strong>：未開封放冰箱冷藏（2–8°C），不可冷凍。開始使用後放室溫（30°C 以下），<strong>開封後 56 天內用完</strong>，在筆上寫開封日期。</li>
+          <li><strong>低血糖徵兆</strong>：沒精神、走路不穩、發抖、抽搐 → 把<strong>蜂蜜或糖漿塗在牙齦</strong>，立刻聯絡醫院。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">🏥</span><div>
+          <strong>給醫院端的提醒</strong><br>
+          · <strong>排空氣會用掉胰島素</strong>（每次 2–3 U）。小型犬每天只打幾 U 時，排氣量可能接近實際劑量，計算一支筆能用幾天和談費用時要算進去。<br>
+          · 小型犬用每格 1 U 的筆（Tresiba U-100、Toujeo SoloStar），不適合每格 2 U 的 U-200 和 Max SoloStar。<br>
+          · 第一次教學最好讓飼主<strong>在醫院當面操作一次</strong>，確認有做到「按住數秒」。
+        </div></div>
+      </div>
+      <p class="p muted"><span class="src src-slide">📄</span> 講義第 30 頁「Insulins and Administration：VS」為圖片。</p>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 15 ══ -->
+  <div class="section" id="s15">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">⚖️</div>
+      <h2>15. 一天一次還是一天兩次？（病例 Charlie）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> 什麼時候需要一天兩次</h3>
+        <p class="p">📄 講義第 32 頁用「天使與惡魔」的圖比喻這個抉擇：<strong>改成 q12h</strong>，還是<strong>提高 q24h 的劑量</strong>？</p>
+        <ul class="notes">
+          <li>基礎胰島素<strong>無法在 24 小時內持續降血糖</strong>時，就要拆成 q12h。</li>
+          <li>每日一次的劑量<strong>已經加到頂</strong>（再加就有低血糖風險），但<strong>還是有高血糖時段或臨床症狀</strong>，也就是需要更多胰島素，卻沒辦法一天一次給更多 → <strong>拆成兩次，再往上加</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span><span class="src src-photo">📷</span> 病例 Charlie：13 歲公犬已結紮（糖尿病＋脾臟腫塊）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>階段</th><th>📷 日期</th><th>用法</th><th>📷 每日平均血糖（mg/dL）</th><th>說明</th></tr>
+          <tr><td>①</td><td>12/12–12/16</td><td><strong>Degludec 3 U q24h</strong></td><td class="cgm">368、372、308、371、343</td><td>🎤 很快就看到一致的模式，但<strong>再加量會有低血糖風險</strong>，仍有很長時間高血糖而且<strong>有症狀</strong>。📷 一天只有一個低點，12/13 低點進入紅色區</td></tr>
+          <tr><td>②</td><td>12/17–12/22</td><td>→ <strong>2 U q12h</strong>（一天總量增加到 4 U）→ <strong>2 U／3 U</strong></td><td class="cgm">333、345、362、369、319、361</td><td>改成一天兩次後逐步調整</td></tr>
+          <tr><td>③</td><td>12/23–12/26</td><td><strong>3 U q12h</strong></td><td class="cgm">372 → 289 → 259 → 295</td><td>🎤 <strong>很穩定</strong>，Charlie 狀況很好。仍有高血糖時段，但<strong>飼主沒有觀察到臨床症狀，所以不再調整</strong>，維持 3 U BID</td></tr>
+        </table></div>
+        <p class="p muted">📷 日期與平均值依現場照片辨識，可能有誤差。</p>
+        <ul class="notes">
+          <li><span class="src src-add">💡</span> 脾臟腫塊等併發疾病可能造成<strong>胰島素阻抗</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span><span class="src src-hand">✍️</span> 如果還有症狀，可以怎麼做？</h3>
+        <p class="p">✍️ 手記：老師如果<strong>沒有症狀，還是會讓牠保留一些高峰</strong>；但如果<strong>有症狀</strong>，可以嘗試改成<strong>濕食</strong>，或給一劑 <strong>bolus（NPH）</strong>。</p>
+        <ol class="notes">
+          <li><strong>改變碳水負擔</strong>：最簡單的方法，即使在狗也一樣，就是<strong>乾飼料換成罐頭</strong>。「這是我會做的第一件事，有時候這樣就夠了。」</li>
+          <li><strong>加一劑 bolus 胰島素</strong>：在狗吃飯時給（見第 17 節）。</li>
+          <li><strong>第三個選項：仿單外使用的藥物</strong>，也就是 SGLT2 抑制劑（見第 18 節）。</li>
+        </ol>
+        <div class="alert alert-success"><span class="alert-icon">💡</span><div><span class="src src-add">💡</span> 治療目標是<strong>臨床控制</strong>（臨床評分越低越好、低血糖風險可接受），不是整天都在正常範圍。基礎胰島素本來就不是用來壓飯後高峰的，為了壓高峰一直加基礎劑量，<strong>低點會先掉到低血糖</strong>，Charlie 第一階段就出現過。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 16 ══ -->
+  <div class="section" id="s16">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🥫</div>
+      <h2>16. 飲食的影響（Diet – it makes a Difference!）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p class="p"><span class="src src-rec">🎤</span> 大家都知道飲食在貓有多重要（下一堂會講），<strong>在狗也有影響</strong>。</p>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 病例 Ziva：8 歲母犬已結紮，德國短毛指示犬</h3>
+        <ul class="notes">
+          <li>開始用 <strong>Degludec 14 U q24h</strong>，吃<strong>乾飼料</strong>。</li>
+          <li>16 號那天<strong>唯一的改變</strong>是換成<strong>罐頭</strong>：同一個品牌和口味，<strong>不是處方飼料</strong>，只是把乾的換成罐頭。→ <strong>變化非常明顯</strong>。</li>
+          <li>接著<strong>調降胰島素劑量</strong>。之後請飼主改成<strong>一半罐頭、一半乾飼料</strong>。</li>
+          <li>👉 即使是狗，<strong>降低碳水攝取量</strong>也能明顯改變 Libre 資料。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 病例 Teddy：12 歲公犬已結紮，迷你貴賓</h3>
+        <ul class="notes">
+          <li>已過世。有「<strong>內分泌三冠王</strong>」：<strong>糖尿病、腎上腺皮質功能亢進（庫欣）、原發性副甲狀腺功能亢進</strong>。</li>
+          <li>使用 <strong>Degludec 26 U</strong>，吃乾飼料 → 只請飼主<strong>換成罐頭</strong>。</li>
+          <li>幾天後<strong>必須調降 degludec 劑量</strong>。</li>
+        </ul>
+      </div>
+      <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><span class="src src-add">💡</span> 從乾飼料換成罐頭時，<strong>要注意低血糖</strong>，可能需要同時或隨後調降胰島素。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 17 ══ -->
+  <div class="section" id="s17">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">➕</div>
+      <h2>17. 什麼時候加 Bolus 胰島素？（病例 Rusty）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <ul class="notes">
+        <li><span class="src src-slide">📄</span> 犬使用 <strong>Glargine U300（Toujeo）</strong>或 <strong>Degludec（Tresiba）</strong>（Fink et al. 2018；Oda et al. 2018）。</li>
+        <li><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> 如果<strong>注射後 1–6 小時有明顯飯後高血糖</strong>，可能需要加一劑「bolus」胰島素（中效胰島素）。像 Charlie 一樣，用了基礎胰島素仍有明顯飯後高血糖，就可以考慮。</li>
+      </ul>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 病例 Rusty：12 歲公犬已結紮，貴賓</h3>
+        <ul class="notes">
+          <li><strong>挑食</strong>，不一定吃早餐。參加 Glargine U300 臨床試驗，使用 <strong>Toujeo 14 U q24h</strong>。【更正】錄音寫「barding U300」，應為 glargine U300。</li>
+          <li>資料<strong>非常一致</strong>，看得出 Rusty 每天幾點吃飯。</li>
+          <li>講者認為 Rusty <strong>其實沒有症狀</strong>，沒有 PU/PD，但<strong>飼主不喜歡看到那麼多黃色</strong>。</li>
+          <li>🎤「很遺憾，有時候我們也必須照顧飼主，因為我們希望他們配合、希望他們開心。」</li>
+          <li>做法：<strong>如果 Rusty 有吃早餐，就打一劑 70/30 或 NPH 當 bolus</strong> → 效果非常明顯。</li>
+          <li>Rusty <strong>一天只打兩針</strong>（一針基礎、一針 bolus）。</li>
+        </ul>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡</span> NPH 的作用高峰約在注射後 3–6 小時，剛好可以蓋住基礎胰島素管不到的飯後高血糖。加 bolus 後要用 CGM 確認低點沒有變得太低。講義第 28 頁的 degludec 研究中，也有 1 隻狗另外加了 NPH 當 bolus。</div></div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> 胰島素費用</h3>
+        <p class="p">在美國，胰島素費用是很大的考量。講者在隔天（週二）的「建立犬糖尿病的分級照護選項（Establishing Spectrum of Care Options in Canine Diabetes Mellitus）」會詳細討論。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 18 ══ -->
+  <div class="section" id="s18">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">💊</div>
+      <h2>18. SGLT2 抑制劑（仿單外使用）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p class="p"><span class="src src-slide">📄</span><span class="src src-rec">🎤</span><span class="src src-hand">✍️</span> 在狗使用 SGLT2 抑制劑屬於<strong>仿單外使用（off-label）</strong>。</p>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 病例 Groot：2 歲公犬已結紮，黃金獵犬</h3>
+        <ul class="notes">
+          <li><strong>4 個月大</strong>就來 UF，診斷為<strong>幼年型糖尿病</strong>。這次回診，飼主說狀況很好、沒有任何抱怨，使用 <strong>Degludec 21 U q24h</strong>。</li>
+          <li>大部分糖尿病是在老年動物診斷，<strong>不預期牠們會帶著糖尿病活很多年</strong>；但 Groot <strong>可能還要和糖尿病共處十年以上</strong>，病程越長，越可能出現併發症 → 想讓 Groot 控制得更好。</li>
+          <li>開始用 <strong>Senvelgo（velagliflozin）</strong>。【更正】錄音寫「Simvastatin」「simbalgo」「Sembelgo」「Symbio」，都是 Senvelgo。</li>
+          <li>隔天胰島素降到 <strong>15 U</strong>，Senvelgo 也減量。</li>
+          <li>再隔天又減量。出現偏低的血糖數值，但 Groot <strong>沒有低血糖症狀</strong>。胰島素維持 15 U，並<strong>停用 Senvelgo 一天</strong>。</li>
+          <li>最後穩定在 <strong>Degludec 12 U q24h＋Senvelgo q24h</strong>，資料非常一致。</li>
+          <li>飼主說狀況很好，唯一的變化是<strong>可能有點多渴</strong>。SGLT2 抑制劑的狗<strong>有時會口渴增加</strong>。</li>
+          <li>接近美國感恩節時飼主在烤東西，Groot 吃到一塊<strong>糖餅乾</strong>，一切都還好。偏低的數值也沒有症狀。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> SGLT2i 用在狗的重點</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>📄 講義</th><th>🎤 錄音補充</th></tr>
+          <tr><td>狗對 SGLT2 抑制劑<strong>似乎比較敏感，需要較低劑量</strong></td><td>需要的劑量<strong>低很多</strong></td></tr>
+          <tr><td>有些狗會出現<strong>明顯的 PU/PD</strong></td><td>講者想得到<strong>有 1 隻狗</strong>因為開始用藥後明顯增加而停藥（錄音不清楚，推測是 PU/PD 增加）</td></tr>
+          <tr><td>用 SGLT2i 的狗<strong>仍然需要胰島素</strong></td><td><strong>不是單一療法</strong></td></tr>
+          <tr><td>有些狗可能需要<strong>調降胰島素劑量</strong></td><td>講者說「<strong>大部分</strong>狗」需要調降</td></tr>
+          <tr><td>使用前<strong>先找其他造成胰島素阻抗的原因</strong></td><td>不要直接認定是控制問題，要確定沒有漏掉其他造成胰島素阻抗的疾病（講者說之後會舉例）</td></tr>
+        </table></div>
+        <div class="quote">「I wouldn't say SGLT2 inhibitors are for every diabetic out there… They're going to be for select cases.」<span class="quote-zh">SGLT2 抑制劑不是每隻糖尿病動物都適合，只用在挑選過的病例。</span></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-add">💡</span> 背景補充</h3>
+        <ul class="notes">
+          <li><strong>機轉</strong>：抑制腎臟近曲小管的 SGLT2，葡萄糖從尿排掉，血糖下降，<strong>不需要靠胰島素</strong>。</li>
+          <li><strong>核准狀況</strong>：bexagliflozin（Bexacat）、velagliflozin（Senvelgo）核准用於<strong>貓</strong>，而且只限新診斷、沒打過胰島素的糖尿病貓。<strong>狗沒有核准產品</strong>。狗的糖尿病大多是 β 細胞被破壞（類似人的第一型），所以只能當<strong>胰島素的輔助藥</strong>。</li>
+          <li><strong>PU/PD 的判讀</strong>：用藥後的多尿多渴是尿糖造成的滲透性利尿，<strong>不能拿來判斷控制好不好</strong>，臨床評分的 PU/PD 那項會失真，要靠 CGM 或血糖曲線。</li>
+          <li><strong>尿糖一定陽性</strong>，不能再用尿糖試紙監測；尿裡一直有糖，<strong>泌尿道感染風險較高</strong>。</li>
+        </ul>
+        <div class="alert alert-danger"><span class="alert-icon">⚠️</span><div><strong>正常血糖性 DKA（euglycemic DKA）</strong>：用了 SGLT2i，血糖可能看起來正常或只稍微偏高，但<strong>酮體已經在上升</strong>。如果狗<strong>食慾變差、嘔吐、沒精神</strong>，就算血糖不高也要<strong>驗酮體</strong>，並考慮停用 SGLT2i。</div></div>
+      </div>
+      <p class="p muted"><span class="src src-slide">📄</span> 講義第 39 頁為圖片（「回到未來」）。</p>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 19 ══ -->
+  <div class="section" id="s19">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">🚀</div>
+      <h2>19. 未來發展：每週一次胰島素（Back to the Future）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> 犬用胰島素-Fc 融合蛋白</h3>
+        <ul class="notes">
+          <li>把<strong>突變的胰島素</strong>接在<strong>犬 IgG 的 Fc 片段</strong>上。</li>
+          <li>融合蛋白的胰島素部分會和胰島素受體作用，Fc 部分則和宿主的<strong>新生兒 Fc 受體（FcRn）</strong>結合。</li>
+          <li>和 FcRn 結合後，被<strong>胞飲（pinocytosis）</strong>進細胞，再<strong>胞吐（exocytosis）</strong>出來，也就是<strong>細胞內回收</strong>。</li>
+          <li>🎤 前面講的胰島素，都是靠<strong>減慢吸收</strong>來延長作用；這個胰島素<strong>吸收得很快</strong>，延長作用是靠<strong>細胞內回收</strong>。</li>
+          <li><strong>半衰期 5–7 天</strong> → 狗可能是<strong>每週一次或兩次</strong>。</li>
+        </ul>
+        <div class="alert alert-success"><span class="alert-icon">📄</span><div>🎤 目前<strong>唯一已發表</strong>的臨床試驗：<strong>5 隻</strong>客戶的狗，<strong>4 隻</strong>用這個每週一次的新胰島素，達到臨床症狀控制、體重維持和血糖控制。還在開發中，講者希望很快能上市。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> 人用每週一次基礎胰島素：Awiqli（insulin icodec）</h3>
+        <ul class="notes">
+          <li>📄 <strong>Awiqli（insulin icodec-abae）注射劑，700 U/mL</strong>，FlexTouch 筆。廣告文案：「用熟悉的方式開始治療，或從其他基礎胰島素轉換過來。一週打一次，劑量調整方式和現在常用的基礎胰島素類似。」</li>
+          <li>🎤 講者：現在已經有<strong>每週一次的基礎胰島素</strong>，<strong>可能是部分病患的選項</strong>，「我們才剛開始嘗試，看看效果如何」。</li>
+        </ul>
+        <h4><span class="src src-add">💡</span> 背景補充</h4>
+        <ul class="notes">
+          <li>Novo Nordisk（和 Tresiba 同一家藥廠）的人用超長效胰島素。已在歐盟、中國、日本、加拿大等地核准用於人；美國核准狀況請另外查證。「-abae」是美國生物製劑命名的四字母後綴。</li>
+          <li>機轉：接了脂肪酸側鏈，<strong>和白蛋白緊密可逆結合</strong>形成儲存庫慢慢釋放；人的<strong>半衰期約 8 天</strong>。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>Awiqli（icodec）</th><th>胰島素-Fc（犬用開發中）</th></tr>
+          <tr><td>延長作用方式</td><td>和<strong>白蛋白結合</strong>，慢慢釋放</td><td><strong>FcRn 細胞內回收</strong></td></tr>
+          <tr><td>半衰期</td><td>約 8 天（人）</td><td>5–7 天（犬）</td></tr>
+          <tr><td>物種</td><td>人用</td><td>用犬 IgG Fc 設計，專為狗開發</td></tr>
+        </table></div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><span class="src src-add">💡</span> 用在狗要注意：<br>
+          · <strong>劑量刻度太粗</strong>：700 U/mL，每格約 10 U。例如 5 公斤的狗每天約 2.5 U，一週約 17.5 U，很難調準，小型犬尤其困難。<br>
+          · <strong>低血糖會拖很久</strong>：藥效持續好幾天，劑量過高時不像每天打的胰島素停一針就能改善。人的第一型糖尿病使用時低血糖較多，狗的糖尿病和第一型很像。<br>
+          · <strong>白蛋白結合可能有物種差異</strong>，人的藥動學數據不能直接套用。</div></div>
+      </div>
+      <p class="p muted"><span class="src src-slide">📄</span> 講義第 41 頁為圖片；第 43 頁「THANK YOU!」。</p>
+      <p class="p muted"><span class="src src-rec">🎤</span> 演講最後時間不夠，問題留到最後一場座談會；休息半小時後再繼續。</p>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 20 ══ -->
+  <div class="section" id="s20">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef9c3">📌</div>
+      <h2>Take-home messages 與錄音更正表</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>重點結論</h3>
+        <ol class="notes">
+          <li><strong>沒有最好的胰島素</strong>：依病患、飼主的作息、預算、打針能力和狗的食慾選擇。</li>
+          <li><strong>懸浮型胰島素</strong>（NPH、Lente、PZI）劑量和吸收都不穩定，多數狗<strong>日間變異大</strong>，需要很多天的資料；也有像 Bandit 這樣穩定的例外。</li>
+          <li><strong>GV 越高，低血糖風險越高</strong>；低 GV 和緩解機會有關。</li>
+          <li><strong>Glargine U300、Degludec</strong>：約 60–85% 一天一次就夠，約 2 週達到控制，不用配合吃飯，施打時間有彈性。Degludec 起始 0.5 U/kg q24h。</li>
+          <li><strong>不要從筆裡抽藥</strong>；Glargine U100 和 U300 不能互換；Degludec U100 和 U200 可以等單位互換。</li>
+          <li>筆比空針<strong>精密</strong>，低劑量時更準。教飼主<strong>排空氣直到看到胰島素冒出來</strong>。</li>
+          <li>每日一次<strong>加到頂</strong>還控制不好或有症狀 → <strong>拆成 q12h 再往上調</strong>。</li>
+          <li>殘留高血糖：<strong>沒症狀就接受</strong>；有症狀 → <strong>乾飼料換罐頭</strong> → <strong>吃飯時加 NPH 或 70/30 bolus</strong> → <strong>SGLT2i</strong>（仿單外、挑選病例、仍需胰島素、通常要降胰島素）。</li>
+          <li>開類固醇前要<strong>告知可能誘發糖尿病</strong>；有 CGM 時可以每天積極調劑量。</li>
+          <li>未來：犬用<strong>胰島素-Fc</strong>（每週一到兩次）與人用 <strong>Awiqli</strong>（每週一次）。</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3>錄音轉文字錯誤一覽</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>錄音寫的</th><th>正確內容</th></tr>
+          <tr><td>inhibits plate ulcuses / cavitating genesis</td><td>inhibits <strong>lipolysis</strong> / <strong>hepatic gluconeogenesis</strong></td></tr>
+          <tr><td>bone remakes / degresia</td><td><strong>bolus</strong> / <strong>secretion</strong></td></tr>
+          <tr><td>a cow grazing all day</td><td>a <strong>cat</strong> grazing all day</td></tr>
+          <tr><td>four receptors</td><td><strong>GLUT4</strong></td></tr>
+          <tr><td>canned insulin / frozen</td><td><strong>Caninsulin</strong>（= Vetsulin）/ <strong>ProZinc</strong></td></tr>
+          <tr><td>porcine lenteg / Porcilente</td><td><strong>porcine lente</strong></td></tr>
+          <tr><td>Large U100 / Larginu 300 / boragein / Blargen / barding</td><td><strong>glargine</strong></td></tr>
+          <tr><td>Metformin（Bella）/ Vexilin / Tavetolin</td><td><strong>Vetsulin</strong></td></tr>
+          <tr><td>Dagladap / daplidex / Deglet / diglindac / digalactose / Denledek</td><td><strong>degludec</strong></td></tr>
+          <tr><td>2J09 / 2J0 / Dujail</td><td><strong>Toujeo</strong>（glargine U300）</td></tr>
+          <tr><td>nocturnal hyperglycemia</td><td>nocturnal <strong>hypo</strong>glycemia（講義）</td></tr>
+          <tr><td>gives the heart more clients</td><td>happier clients</td></tr>
+          <tr><td>Dr. Chardo</td><td>Dr. <strong>Tardo</strong></td></tr>
+          <tr><td>insulin injection points a day</td><td>insulin injection <strong>once</strong> a day</td></tr>
+          <tr><td>PPD / PPE / PUPD</td><td><strong>PU/PD</strong></td></tr>
+          <tr><td>otho / Otto</td><td><strong>ophtho</strong>（眼科）</td></tr>
+          <tr><td>craniocerebral rupture</td><td><strong>cranial cruciate ligament rupture</strong>（前十字韌帶斷裂）</td></tr>
+          <tr><td>Drifter「up to 15 units」</td><td>應為約 <strong>50</strong> 多 U（之後由 58 U 降到 53 U）（?）</td></tr>
+          <tr><td>Rasky / group</td><td><strong>Rusty</strong> / <strong>Groot</strong></td></tr>
+          <tr><td>7030</td><td><strong>70/30</strong>（NPH/Regular 預混）</td></tr>
+          <tr><td>Simvastatin / simbalgo / Sembelgo / Symbio</td><td><strong>Senvelgo</strong>（velagliflozin）</td></tr>
+          <tr><td>I think they're going to be for every diabetic dog</td><td>（口誤）講者接著更正：<strong>只用在挑選過的病例</strong></td></tr>
+          <tr><td>講義：Starting dose 0.5 mg/kg q24h</td><td><strong>0.5 U/kg</strong> q24h</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Mott J. <em>Evolving Beyond NPH Insulin in Canine Diabetes.</em> VET-KU × Texas A&amp;M IM Conference, 2026-10-05（講義與課堂錄音）。</div>
+          <div class="ref-item">課堂錄音與逐字稿（Plaud）。<a href="https://web.plaud.ai/s/pub_c08ceecf-4425-4620-b313-72a266b5ee47::ZXQ0tkpunxccxvF_gMPjQ2s8WkuTQHrmX7TjLNamBE0oGCUsJcmY6ltnQXezwi2m6dRt3PPt1lBx2tjYMm8tuQI" target="_blank" rel="noopener">連結</a>（逐字稿有轉文字錯誤，請對照本頁更正表）</div>
+          <div class="ref-item">Fleeman LM, Rand JS. Evaluation of day-to-day variability of serial blood glucose concentration curves in diabetic dogs. <em>J Am Vet Med Assoc.</em> 2003;222:317–321.</div>
+          <div class="ref-item">Alt N, et al. Day-to-day variability of blood glucose concentration curves generated at home in cats with diabetes mellitus. <em>J Am Vet Med Assoc.</em> 2007;230:1011–1017.</div>
+          <div class="ref-item">Miller M, et al. Lente vs. glargine U300 vs. degludec in diabetic dogs（日間變異）. <em>J Vet Intern Med.</em> 2020（依講義標示）。</div>
+          <div class="ref-item">Gilor C, Fracassi F, Berg A, Guarino A, Tardo AM, Fleeman L. A dose-titration protocol for once-daily insulin glargine 300 U/mL for the treatment of diabetes mellitus in dogs. 2024.</div>
+          <div class="ref-item">Fink H, et al. 2018；Oda H, et al. 2018（基礎胰島素在犬的藥效研究，依講義第 35 頁標示）。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>2026 Texas 內分泌研討會的其他場次，將陸續整理更新於此。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
