@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PU/PD 診斷流程｜2026 Texas 內分泌研討會</title>
+<style>
+  :root {
+    --primary: #0F766E;
+    --primary-light: #CCFBF1;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0d2522;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9cc8c1; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #1f4a44;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9cc8c1; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9cc8c1;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #1f4a44;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #5f8f87;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0b4f49 0%, #14a395 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0d2522; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #1f4a44; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 Texas 內分泌研討會</a>
+  <div class="logo">
+    <h2>01｜多尿／多飲（PU/PD）<br>的診斷流程</h2>
+    <p>Antonio Tardo｜2026 年 10 月 5 日</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">講者核心立場與錄音總覽</a>
+    <a href="#s1">1. 開場與病例 Hope</a>
+    <a href="#s2">2. 尿液分析與年齡</a>
+    <a href="#s3">3. 尿液濃縮生理</a>
+    <a href="#s4">4. 原發性多飲 vs 多尿</a>
+    <a href="#s5">5. 原發性多尿的原因</a>
+    <a href="#s6">6. 滲透性利尿與髓質沖刷</a>
+    <a href="#s7">7. 診斷流程與基本資料庫</a>
+    <a href="#s8">8. 影像與針對性檢查</a>
+    <a href="#s9">9. 區分 DI 與原發性多飲</a>
+    <a href="#s10">10. 病例 1：Hope</a>
+    <a href="#s11">11. 低張尿 vs 等張尿</a>
+    <a href="#s12">12. 病例 2：Trudy</a>
+    <a href="#s13">13. 流程總結與 Q&amp;A</a>
+    <a href="#s14">14. Q&amp;A：腫瘤性 CDI</a>
+    <a href="#s15">Take-home 與更正表</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <!-- Header -->
+  <div class="page-header">
+    <h1>多尿／多飲（PU/PD）的診斷流程</h1>
+    <p>主講：Antonio Tardo, DVM, PhD, Dipl. ECVIM-CA｜UC Davis 小動物內科</p>
+    <p>2026 年 10 月 5 日｜VET-KU × Texas A&amp;M 內科研討會｜場次 01</p>
+    <div class="tags">
+      <span class="tag">PU/PD</span>
+      <span class="tag">USG</span>
+      <span class="tag">AVP / ADH</span>
+      <span class="tag">Desmopressin 試驗</span>
+      <span class="tag">原發性多飲</span>
+      <span class="tag">中樞性尿崩症</span>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-rec">🎤 錄音</span> 課堂錄音（盡量完整保留，講者原話附英文）
+    <span class="src src-slide">📄 講義</span> 投影片
+    <span class="src src-hand">✍️ 手記</span> 課堂手寫重點
+    <span class="src src-add">💡 補充</span> 整理者補充
+    <span class="src src-fix">【更正】</span> 錄音轉文字錯誤，以講義為準
+  </div>
+
+  <!-- Key Points -->
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li>先確認真的是 PU/PD：在家量 3–5 天飲水量，USG 要測多次</li>
+      <li>只看一次低 USG 不夠，早晨尿最有代表性</li>
+      <li>常見的先想、便宜的先做、安全的先做；DI 是排除性診斷</li>
+      <li>基本資料庫要含 UPC 與尿液培養，並一定要量血壓</li>
+      <li>CKD 是等張尿，不會出現低張尿</li>
+      <li>連續 USG：真正多尿一直低；原發性多飲忽高忽低</li>
+      <li>講者完全不做禁水試驗：連續 USG + DDAVP 試驗就能診斷</li>
+      <li>DDAVP 偏好口服；試驗做 1–2 週，完整反應可能要數週</li>
+    </ul>
+  </div>
+
+  <!-- ══ SECTION 0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🎯</div>
+      <h2>講者核心立場與錄音總覽</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>核心立場</h3>
+        <ul class="notes">
+          <li><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> <strong>常見的先想、便宜的先做、安全的先做。</strong>尿崩症（DI）是排除性診斷。</li>
+          <li><span class="src src-rec">🎤</span><span class="src src-hand">✍️</span> <strong>完全不做禁水試驗</strong>（「I will never do that」）。病患可能本身有 CKD，禁水會造成 AKI；連續 USG + desmopressin 試驗就足以診斷。</li>
+          <li><span class="src src-rec">🎤</span> <strong>血漿滲透壓不太有用</strong>：各疾病重疊太多，只在少數情況有幫助。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 錄音總覽</h3>
+        <p class="p">講者用兩個病例串起整場演講：<strong>犬 Hope（原發性多飲）</strong>與<strong>貓 Trudy（自發性中樞性尿崩症）</strong>。內容包括：</p>
+        <ul class="notes">
+          <li>先確認是不是真的 PU/PD：量飲水量、重複做尿液分析</li>
+          <li>AVP/ADH 軸與濃縮尿液的四個條件</li>
+          <li>鑑別原發性多飲（行為）與較常見的原發性多尿（滲透性利尿、髓質沖刷、各種 DI）</li>
+          <li>基本資料庫（CBC、生化、尿液分析、尿液培養）加上影像</li>
+          <li>基本檢查都正常時，用<strong>連續 USG</strong> 與 <strong>desmopressin 試驗</strong>區分 CDI、NDI、原發性多飲</li>
+          <li><strong>強烈反對禁水試驗</strong>（安全風險）</li>
+          <li>最後 Q&amp;A：腦下垂體腫瘤造成 CDI 時的伴隨症狀</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🐕</div>
+      <h2>1. 開場與病例介紹：Hope</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>病例 Hope</h3>
+        <p class="p"><span class="src src-rec">🎤</span> 講者先點出 PU/PD 的診斷在犬貓之間有物種差異。</p>
+        <ul class="notes">
+          <li>母犬，31 kg，主訴 PU/PD；飼主說每天喝 3–4 L 水、尿量很多</li>
+          <li><strong>奇怪的觀察：散步時從來不喝水。</strong>講者覺得不尋常——PU/PD 的狗通常一有機會就喝水、尿尿</li>
+          <li>理學檢查正常，沒有其他症狀</li>
+        </ul>
+        <div class="alert alert-danger"><span class="alert-icon">✏️</span><span><strong>【更正】</strong>錄音說 13 歲，講義是 <strong>8 歲</strong>、格雷伊獵犬、已絕育。錄音寫「never trained during walks」，應為 <strong>never drinks</strong>。</span></div>
+      </div>
+      <div class="subsection">
+        <h3>第一步，也是最關鍵的一步：確認是不是真的 PU/PD</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>標準</th><th>備註</th></tr>
+          <tr><td>多尿</td><td>&gt; 50 mL/kg/天</td><td>🎤 飼主很難量</td></tr>
+          <tr><td>多飲（犬）</td><td>&gt; 100 mL/kg/天</td><td></td></tr>
+          <tr><td>多飲（貓）</td><td>&gt; 45 mL/kg/天</td><td></td></tr>
+        </table></div>
+        <p class="p">Hope 約 100–120 mL/kg/天（📄 講義算 95–127 mL/kg/天），確認是真的多飲。</p>
+        <h4><span class="src src-rec">🎤</span> 給臨床獸醫的實務建議</h4>
+        <ul class="notes">
+          <li>請飼主在動物平常的環境中，<strong>連續量 3–5 天</strong>飲水量</li>
+          <li><strong>所有水源都要算</strong>，包括濕食</li>
+          <li>可外出的貓最難量，因為有很多其他水源</li>
+        </ul>
+        <p class="p muted"><span class="src src-slide">📄</span> 貓的 PU/PD 很常被漏掉：外出時能喝到別的水；有時只能從貓砂盆尿塊變大來發現。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🧫</div>
+      <h2>2. 尿液分析與年齡</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <p class="p"><span class="src src-rec">🎤</span> 低 USG 可以輔助確認 PU/PD，但一定要測多次：</p>
+        <div class="quote">「Just one single low urine specific gravity is not enough.」<span class="quote-zh">只有一次 USG 偏低是不夠的。</span></div>
+      </div>
+      <div class="subsection">
+        <h3>正常值與物種差異</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 犬：超過 70% 的正常犬 USG &gt; 1.030（📄 103 隻健康犬中 73%）</li>
+          <li><span class="src src-rec">🎤</span> 貓：一千多隻貓的研究，大多數 USG &gt; 1.035（📄 1040 隻中 88%）→ <strong>貓的濃縮能力比犬好</strong></li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>年齡的影響</h3>
+        <p class="p"><span class="src src-rec">🎤</span> 講者引用 1997 年研究：犬貓 USG 會隨年齡下降，可能是老年動物較常有造成 PU/PD 的潛在疾病。</p>
+        <div class="quote">「Just keep in mind that the urine specific gravity can be lower in this population of dogs and cats.」<span class="quote-zh">要記得，老年犬貓的 USG 本來就可能比較低。</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">🧠</div>
+      <h2>3. 尿液濃縮的生理機轉</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>AVP/ADH 軸</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 由<strong>下視丘製造</strong>、<strong>腦下垂體釋放</strong></li>
+          <li><span class="src src-rec">🎤</span> <strong>最主要刺激：血漿滲透壓上升</strong>（📄 只要上升 1–2% 就會觸發）</li>
+          <li><span class="src src-rec">🎤</span> 較弱刺激：全身血壓下降、循環血量下降</li>
+        </ul>
+        <div class="quote">「If you eat something with a lot of salt inside… This will stimulate, and you will be drinking more.」<span class="quote-zh">吃了很鹹的東西會刺激分泌，你就會喝更多水。</span></div>
+      </div>
+      <div class="subsection">
+        <h3>作用方式</h3>
+        <p class="p"><span class="src src-rec">🎤</span> AVP 作用在腎臟 <strong>V2 受體</strong>，促使<strong>水通道蛋白</strong>生成，讓水能從腎小管回收；這條路徑任何一處被破壞都會造成 PU/PD。</p>
+        <p class="p muted"><span class="src src-slide">📄</span> V2 → cAMP → AQP2 插入集尿管頂端膜 → 水順濃度梯度進入高張髓質。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span><span class="src src-slide">📄</span> 濃縮尿液的四個必要條件</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>條件</th><th>失效時</th></tr>
+          <tr><td>a. AVP/ADH 合成足夠</td><td>中樞性尿崩症（CDI）</td></tr>
+          <tr><td>b. V2 受體功能正常</td><td>受體失能或被阻斷 → 腎性尿崩症（NDI）</td></tr>
+          <tr><td>c. 至少 <strong>1/3</strong> 腎元有功能</td><td>失去<strong>超過 2/3</strong>（如 CKD）→ 濃縮能力受損</td></tr>
+          <tr><td>d. 髓質間質高張</td><td>靠<strong>鈉與尿素</strong>維持；喪失 → 髓質沖刷</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">⚖️</div>
+      <h2>4. 原發性多飲 vs 原發性多尿</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="grid2">
+        <div class="card-mini">
+          <h4>原發性多尿（較常見）</h4>
+          <ul><li>先尿太多 → 脫水 → 代償性喝水</li><li>DI（中樞性／腎性）、滲透性利尿、髓質張力喪失</li></ul>
+        </div>
+        <div class="card-mini">
+          <h4>原發性多飲</h4>
+          <ul><li>先喝太多 → 尿量增加是代償</li></ul>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 原發性多飲的原因</h3>
+        <ul class="notes">
+          <li><strong>a. 心因性多飲</strong>：行為問題</li>
+          <li><strong>b. 代謝性</strong>：甲狀腺功能亢進、部分肝病、腸胃道疾病——講者推測<strong>腸胃道來的毒素可能刺激原發性多飲</strong></li>
+          <li><strong>c. 口渴中樞異常</strong>：人醫有記載，<strong>犬貓文獻很少</strong>（📄 先天、外傷、腫瘤）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🔎</div>
+      <h2>5. 原發性多尿的原因與內分泌影響</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>尿崩症</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> <strong>CDI</strong>：ADH 製造減少</li>
+          <li><span class="src src-rec">🎤</span> <strong>NDI</strong>：腎臟對 ADH 沒反應；原發性 NDI 在犬貓「<strong>really, really rare</strong>」</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>續發性尿崩症：內分泌</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> <strong>庫欣</strong>：犬常見。講者提到最常見的相關藥物就是<strong>類固醇</strong>。內生或外給的皮質醇過多會<strong>拮抗 AVP</strong> → <strong>續發性 NDI</strong>。<br><span class="muted">💡 用藥史一定要問類固醇的劑量與療程，考慮醫源性庫欣。</span></li>
+          <li><span class="src src-rec">🎤</span> <strong>甲狀腺功能亢進</strong>：貓非常常見，PU/PD 雖非主要症狀仍是重要鑑別</li>
+          <li><span class="src src-rec">🎤</span> <strong>原發性醛固酮增多症</strong>：講者說是<strong>貓最常見的腎上腺疾病</strong></li>
+          <li><span class="src src-rec">🎤</span> <strong>肢端肥大</strong>（生長激素過多症）</li>
+        </ul>
+        <div class="quote">「In cats, when they have PUPD, it's usually because of diabetes.」<span class="quote-zh">貓有 PU/PD 時，通常是糖尿病。</span></div>
+        <p class="p muted"><span class="src src-add">💡</span> 講義寫貓 PU/PD 最常見的是 <strong>CKD</strong>；兩者合起來看，CKD、甲狀腺功能亢進、糖尿病三個都要先篩。</p>
+      </div>
+      <div class="subsection">
+        <h3>感染</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> <strong>泌尿道感染、子宮蓄膿</strong>：細菌毒素結合在 V2 受體上，ADH 無法作用（📄 典型菌種為大腸桿菌）</li>
+        </ul>
+        <div class="quote">「The toxins are attached there, so the ADH is not working.」<span class="quote-zh">毒素卡在那裡，所以 ADH 沒辦法作用。</span></div>
+        <p class="p muted"><strong>【更正】</strong>錄音寫成「UBD」，應為 ADH。</p>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> <strong>鉤端螺旋體</strong>：重要鑑別診斷，可能以<strong>慢性病程</strong>表現、<strong>PU/PD 是主要症狀</strong>。講者當場問聽眾：<strong>你們這裡有鉤端螺旋體的病例嗎？</strong></li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>其他</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> <strong>滲透性利尿</strong>：葡萄糖等溶質把水帶走（【更正】錄音寫「small kidney urises」）</li>
+          <li><span class="src src-rec">🎤</span> <strong>髓質沖刷</strong>：髓質間質流失鈉或尿素 → 濃縮能力下降</li>
+          <li><span class="src src-rec">🎤</span> <strong>電解質</strong>：<strong>高血鈣是「big one」</strong>，低血鉀也是原因之一</li>
+          <li><span class="src src-hand">✍️</span> <strong>高血鈣的貓約 40% 會有 PU/PD</strong></li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">💡</span><span>貓沒有 PU/PD 不能排除高血鈣。40% 這個數字講義沒有標出處，放進正式教材前建議先確認文獻。</span></div>
+        <p class="p muted"><span class="src src-slide">📄</span> 講義另列：紅血球增多症；藥物（類固醇、苯巴比妥、利尿劑）；腫瘤（平滑肌肉瘤、血管肉瘤）；低血鈉。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">💧</div>
+      <h2>6. 滲透性利尿與髓質張力喪失</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>滲透性利尿</h3>
+        <p class="p"><span class="src src-rec">🎤</span> 機轉：腎小管中的溶質把水一起拉走。</p>
+        <div class="quote">「The typical example is diabetes… we have glycosuria.」<span class="quote-zh">最典型的例子是糖尿病，會有尿糖。</span></div>
+        <ul class="notes">
+          <li><strong>糖尿病</strong>：尿糖</li>
+          <li><strong>CKD</strong>：腎臟「is no longer able to resorb all the substances, so mainly electrolytes」</li>
+          <li><strong>阻塞解除後利尿</strong>：「Mainly in cats with urinary tract obstruction」</li>
+          <li><strong>藥物</strong>：如<strong>甘露醇</strong>（【更正】錄音寫成「mandel」）</li>
+        </ul>
+        <p class="p muted"><span class="src src-slide">📄</span> 另有腎性糖尿、范可尼症候群。葡萄糖腎閾值：犬約 180–220 mg/dL，貓約 200–280 mg/dL。</p>
+      </div>
+      <div class="subsection">
+        <h3>髓質張力喪失（髓質沖刷）</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> <strong>肝功能不全</strong>：尿素製造減少 → 髓質張力下降</li>
+          <li><span class="src src-rec">🎤</span> <strong>愛迪森氏症</strong>：低血鈉 → 髓質沖刷（【更正】錄音寫成「hypochinovascism」）</li>
+          <li><span class="src src-rec">🎤</span> <strong>低蛋白飲食</strong>：理論上會減少尿素，但講者說「I've never seen an animal with PUPD because of this.」（我從沒看過因為這樣而 PU/PD 的動物）</li>
+          <li><span class="src src-rec">🎤</span> <strong>低血鈉</strong>：「Any potential cause of hyponatremia, especially… chronic hyponatremia, can be associated with PUPD.」</li>
+          <li><span class="src src-rec">🎤</span> <strong>髓質沖刷本身</strong>：慢性多尿會「wash out the medulla」→ <strong>原發病因治好後 PU/PD 仍可能持續一段時間</strong></li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">📄</span><span>任何慢性多尿都會沖刷髓質，<strong>心因性多飲與尿崩症也一樣</strong>。💡 臨床上要評估肝功能（膽酸、尿素）、腎上腺（ACTH 刺激試驗）、飲食與血鈉，並在確診時先跟飼主說明 PU/PD 可能還會持續一陣子。</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef9c3">🪜</div>
+      <h2>7. 診斷流程：前幾步與基本資料庫</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> Step 1：確認 PU/PD</h3>
+        <div class="quote">「We can ask the caregiver to measure the water intake, and we can repeat urine specific gravity. Just one sample… is not enough.」<span class="quote-zh">請飼主量飲水量，並重複測 USG。只有一個樣本是不夠的。</span></div>
+        <p class="p"><strong>最好用早晨的尿</strong>，比較「representative of the day」。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> Step 2：病史</h3>
+        <div class="quote">「Ask about drugs and the diet… environment, and travel… any behavioral condition.」<span class="quote-zh">要問用藥、飲食、環境、旅遊史，以及有沒有行為問題。</span></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 基本資料庫：每個 PU/PD 病例都要做</h3>
+        <div class="quote">「At least a CBC… a complete profile and urine analysis… I usually like to have the UPC… I also have a urine culture… if the urine is not really concentrated, we can miss some bacteria… so I want to be sure there is no urinary tract infection.」<span class="quote-zh">至少要有 CBC、完整生化與尿液分析；習慣加做 UPC；一定做尿液培養——尿沒有濃縮時可能看不到細菌，要確定沒有泌尿道感染。</span></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄</span> 六步驟流程</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>步驟</th><th>內容</th><th>講者口頭補充</th></tr>
+          <tr><td>1. 確認 PU/PD</td><td>在家量飲水量；重複測 USG</td><td>用早晨尿</td></tr>
+          <tr><td>2. 病史</td><td>藥物、飲食、環境、旅遊、行為</td><td>類固醇一定要問</td></tr>
+          <tr><td>3. 基本資料庫</td><td>CBC、生化、UA、<strong>UPC</strong>、<strong>尿液培養</strong></td><td>尿稀時沉渣看不到細菌，一定要培養</td></tr>
+          <tr><td>4. 針對性檢查</td><td>超音波、T4（貓）、內分泌檢測、膽酸、<strong>血壓</strong></td><td>✍️🎤 一定要量血壓</td></tr>
+          <tr><td>5. 區分三大類</td><td><strong>連續 USG + DDAVP 試驗</strong></td><td>不做禁水試驗；血漿滲透壓幫助不大</td></tr>
+          <tr><td>6. 腦部影像</td><td>懷疑 CDI 時做 CT / MRI</td><td>犬尤其要找腦下垂體腫瘤</td></tr>
+        </table></div>
+        <div class="quote">常見的先於罕見的 · 便宜的先於昂貴的 · 安全的先於有風險的</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🩻</div>
+      <h2>8. 進階檢查：影像與針對性檢查</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p class="p"><span class="src src-rec">🎤</span> 這些都正常的話，鑑別診斷就只剩<strong>尿崩症與原發性多飲</strong>。</p>
+      <ul class="notes">
+        <li><strong>影像</strong>：「Very important… we want to see how the kidneys look on the ultrasound… adrenals… liver.」</li>
+        <li><strong>貓甲狀腺功能亢進</strong>：「Especially important when they are old cats because this is a disease typical for cats.」</li>
+        <li><strong>內分泌檢測</strong>：依臨床懷疑安排庫欣或愛迪森氏症檢測</li>
+        <li><span class="src src-hand">✍️</span> <strong>血壓</strong>：「Really important… to stage a potential CKD… we want to know our systolic blood pressure.」</li>
+      </ul>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><span>IRIS 分期先以肌酸酐或 SDMA 分期，再以 UPC 與收縮壓做次分期；高血壓本身也可能提示內分泌疾病。</span></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🧭</div>
+      <h2>9. 區分尿崩症與原發性多飲</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="quote">「Diabetes insipidus and primary polydipsia… central or nephrogenic, but it's more commonly central.」<span class="quote-zh">剩下尿崩症與原發性多飲；尿崩症中以中樞性較常見。</span></div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 連續測 USG</h3>
+        <div class="quote">「Easy and important… if you have a condition causing PUPD, urine specific gravity will always be low. But… primary polydipsia, urine specific gravity will go up and down.」<span class="quote-zh">簡單又重要。真正造成 PU/PD 的疾病 USG 會一直低；原發性多飲則忽高忽低。</span></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> Desmopressin 試驗</h3>
+        <div class="quote">「If… responding, that means it is diabetes insipidus… There is no production of ADH.」<span class="quote-zh">有反應就代表是尿崩症，身體沒有在製造 ADH。</span></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span><span class="src src-hand">✍️</span> 禁水試驗：講者強烈反對</h3>
+        <div class="quote">「I just put this in gray because I don't like this test… we are dealing with… potentially CKD… we can cause an acute injury.」<span class="quote-zh">我把這張投影片做成灰色，因為我不喜歡這個試驗；病患可能有 CKD，可能造成急性腎損傷。</span></div>
+        <p class="p muted"><span class="src src-slide">📄</span> 講義仍保留禁水試驗內容，供理解判讀邏輯：</p>
+        <div class="grid3">
+          <div class="card-mini"><h4>準備</h4><ul><li>3–5 天逐步限水</li><li>前一天約 100 mL/kg/24h</li><li>禁食 12 小時</li></ul></div>
+          <div class="card-mini"><h4>第一階段：禁水</h4><ul><li>排空膀胱、量體重</li><li>每 1–2 小時測 USG、體重、Na⁺</li><li>USG &gt; 1.030 或體重降 5% 停止</li></ul></div>
+          <div class="card-mini"><h4>第二階段：DDAVP</h4><ul><li>僅在脫水 5% 時 USG 仍 &lt; 1.030</li><li>給藥後 2、4、6、8 小時測 USG</li></ul></div>
+        </div>
+        <p class="p muted">禁忌：已脫水、氮血症、高血鈉。</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>疾病（犬）</th><th>基線 USG</th><th>脫水 5% 時</th><th>給藥後</th><th>達 5% 脫水（小時）</th></tr>
+          <tr><td>完全型 CDI</td><td>&lt; 1.006</td><td>&lt; 1.006</td><td>&gt; 1.010</td><td>4（3–7）</td></tr>
+          <tr><td>部分型 CDI</td><td>&lt; 1.006</td><td>1.008–1.020</td><td>&gt; 1.015</td><td>8（6–11）</td></tr>
+          <tr><td>原發性 NDI</td><td>&lt; 1.006</td><td>&lt; 1.006</td><td>&lt; 1.006</td><td>5（3–9）</td></tr>
+          <tr><td>原發性多飲</td><td>1.002–1.020</td><td>&gt; 1.030</td><td>不適用</td><td>13（8–20）</td></tr>
+        </table></div>
+        <div class="alert alert-warn"><span class="alert-icon">💡</span><span>從表中可看出講者反對的理由：完全型 CDI 平均只要 <strong>4 小時</strong>就脫水 5%，容易造成高血鈉與 AKI。</span></div>
+      </div>
+      <div class="subsection">
+        <h3>血漿滲透壓與腦部影像</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 血漿滲透壓「Not really helpful… in some cases can help」，重疊很多（📄 自由飲水下 &lt; 280 mOsm/kg 提示原發性多飲；&gt; 280 無法區分）</li>
+          <li><span class="src src-rec">🎤</span> 懷疑 DI 時，<strong>尤其是犬</strong>，要檢查腦下垂體有無腫瘤</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🐕</div>
+      <h2>10. 病例 1：Hope，原發性多飲</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>檢查結果</h3>
+        <div class="quote">「Everything is normal… creatinine is in the high range… liver enzymes are normal… glucose is normal… pretty boring minimum database.」<span class="quote-zh">全部正常，肌酸酐在高端，肝指數、血糖正常——很無聊的基本資料庫。</span></div>
+        <p class="p muted"><span class="src src-add">💡</span> 肌酸酐偏高端對格雷伊獵犬是正常的，這個品種肌酸酐與 HCT 本來就較高。</p>
+        <p class="p"><span class="src src-rec">🎤</span> 尿液分析：「Really low urine specific gravity… we define hyposthenuria」（📄 USG 1.002）。</p>
+      </div>
+      <div class="subsection">
+        <h3>判讀</h3>
+        <ul class="notes">
+          <li>低張尿 → 鑑別縮小到<strong>尿崩症或原發性多飲</strong></li>
+          <li><strong>CKD 通常是等張尿</strong>：腎臟「cannot dilute the urine more than isosthenuria」</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>行為線索</h3>
+        <div class="quote">「Never drinking when going outside… just drinking… in the house… especially… alone.」<span class="quote-zh">出門時從不喝水，只在家裡喝，尤其是獨處時。</span></div>
+      </div>
+      <div class="subsection">
+        <h3>在家連續 USG</h3>
+        <p class="p"><span class="src src-rec">🎤</span> 請飼主帶不同時間點的尿液，結果 <strong>1.020、1.006、1.004、1.028</strong>。真正多尿的狗<strong>不可能濃縮到 1.028</strong> → 支持原發性多飲。</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>時間（📄）</th><th>USG</th></tr>
+          <tr><td>第 1 天 09:00</td><td>1.020</td></tr>
+          <tr><td>第 1 天 16:00</td><td>1.006</td></tr>
+          <tr><td>第 1 天 21:00</td><td>1.004</td></tr>
+          <tr><td>第 2 天 09:30</td><td><strong>1.028</strong></td></tr>
+          <tr><td>回診當下</td><td>1.002</td></tr>
+        </table></div>
+        <p class="p muted">早上最高，符合夜間沒喝水時尿液會濃縮。</p>
+        <div class="alert alert-info"><span class="alert-icon">📄</span><span>走到這一步之前要先排除：庫欣、腎盂腎炎（尿稀時培養可能偽陰性）、早期 CKD、鉤端螺旋體。🎤 錄音也提醒：量血壓＋腎臟超音波排除尚無氮血症的早期 CKD（犬較常見）；做尿液培養並檢查所有電解質（含鉀）。</span></div>
+      </div>
+      <div class="subsection">
+        <h3>治療</h3>
+        <p class="p"><span class="src src-rec">🎤</span> 行為管理、逐步減少飲水、密切監測體重，必要時轉介行為專科。</p>
+        <div class="quote">「Never completely remove the water… decrease gradually… we don't want this dog to be dehydrated.」<span class="quote-zh">絕對不要完全拿走水，要逐步減少，不要讓狗脫水。</span></div>
+        <p class="p"><span class="src src-hand">✍️</span> <strong>老師不喜歡限水。</strong>真的要限，分 <strong>3–5 天</strong>逐步減量，<strong>每天量體重</strong>。</p>
+        <p class="p muted"><span class="src src-slide">📄</span> 環境豐富化、增加運動與互動。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span><span class="src src-hand">✍️</span> 補充：AVP 滲透壓閾值升高——不只是行為問題</h3>
+        <p class="p"><span class="src src-rec">🎤</span> 有些心因性原發性多飲的狗，<strong>ADH 釋放的滲透壓閾值較高</strong>，可以解釋為什麼用 desmopressin 會有<strong>部分但不完全</strong>的改善。</p>
+        <div class="grid2">
+          <div class="card-mini"><h4>正常犬</h4><ul><li>血漿稍微變濃 → 開始分泌 AVP、保水</li></ul></div>
+          <div class="card-mini"><h4>閾值升高的犬</h4><ul><li>血漿要更濃才啟動分泌</li><li>一般滲透壓下 AVP 相對不足 → 尿偏稀</li></ul></div>
+        </div>
+        <ul class="notes">
+          <li>可想成「保水開關」設定得比較高；是<strong>啟動點延後</strong>，不是完全無法製造 AVP</li>
+          <li>證據：van Vonderen 等，JVIM 1999（<a href="https://pubmed.ncbi.nlm.nih.gov/10499724/" target="_blank" rel="noopener">PubMed 10499724</a>）：4 隻原發性多飲犬中 3 隻在高張鹽水刺激下閾值升高</li>
+          <li>限制：只有 4 隻的小型研究。「原發性多飲」不能直接等同「心理性多飲」，但也不能推論所有病例都有這種異常</li>
+        </ul>
+        <p class="p muted"><span class="src src-slide">📄</span> 貓的原發性多飲很罕見：兩個貓病例（10 個月與 2 歲 DSH 公貓）對 DDAVP 皆無反應，改良式禁水後 USG 分別 &gt; 1.035、&gt; 1.036。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">📏</div>
+      <h2>11. 低張尿 vs 等張尿的診斷意義</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <ul class="notes">
+        <li><span class="src src-rec">🎤</span> <strong>低張尿</strong>：USG 低於血漿滲透壓 → 指向 <strong>DI 或原發性多飲</strong>；<strong>庫欣</strong>也可能因續發性 DI 出現</li>
+        <li><span class="src src-rec">🎤</span> <strong>等張尿</strong>：與血漿相近 → 典型為 <strong>CKD</strong> 或髓質沖刷</li>
+      </ul>
+      <div class="quote">「Usually isosthenuria… It's impossible [to have hyposthenuria] because they are not able to dilute… or concentrate.」<span class="quote-zh">腎功能不全通常是等張尿，不可能出現低張尿，因為腎臟既不能稀釋也不能濃縮。</span></div>
+      <p class="p"><span class="src src-rec">🎤</span> USG 變動大的疾病：錄音中的「piano flats」——<strong>【更正】應為 pyelonephritis（腎盂腎炎）</strong>，講義表格中其 USG 範圍正好最寬（1.007–1.045）。</p>
+      <div class="tbl-wrap"><table>
+        <tr><th>區間（📄）</th><th>USG</th><th>意義</th></tr>
+        <tr><td>低張尿</td><td>&lt; 1.008</td><td>腎小管能稀釋：CDI、NDI、原發性多飲</td></tr>
+        <tr><td>等張尿</td><td>1.008–1.012</td><td>CKD 或任何原因的髓質沖刷</td></tr>
+        <tr><td>濃縮尿</td><td>犬 &gt; 1.030，貓 &gt; 1.035</td><td>濃縮能力存在</td></tr>
+      </table></div>
+      <h4><span class="src src-slide">📄</span> 犬各疾病 USG（Feldman 教科書）</h4>
+      <div class="tbl-wrap"><table>
+        <tr><th>疾病</th><th>n</th><th>平均 USG</th><th>範圍</th><th>蛋白尿</th><th>WBC &gt; 5/hpf</th></tr>
+        <tr><td>中樞性尿崩</td><td>20</td><td>1.005</td><td>1.001–1.012</td><td>5%</td><td>0%</td></tr>
+        <tr><td>心因性多飲</td><td>18</td><td>1.011</td><td>1.003–1.023</td><td>0%</td><td>0%</td></tr>
+        <tr><td>庫欣</td><td>20</td><td>1.012</td><td>1.001–1.027</td><td>48%</td><td>0%</td></tr>
+        <tr><td>腎功能不全</td><td>20</td><td>1.011</td><td>1.008–1.016</td><td>90%</td><td>25%</td></tr>
+        <tr><td>腎盂腎炎</td><td>20</td><td>1.019</td><td>1.007–1.045</td><td>70%</td><td>75%</td></tr>
+      </table></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🐱</div>
+      <h2>12. 病例 2：Trudy，自發性中樞性尿崩症</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>初診與基本檢查</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 6 歲母貓，明顯 PU/PD；<strong>膀胱脹大</strong>，其他正常</li>
+          <li><span class="src src-rec">🎤</span> 基本資料庫大致正常，總 T4 正常；考慮過 CKD、甲狀腺功能亢進、糖尿病</li>
+          <li><span class="src src-rec">🎤</span> 尿液為<strong>低張尿</strong>——在<strong>原發性多飲很罕見的貓</strong>身上，DI 可能性更高</li>
+          <li><span class="src src-rec">🎤</span> 超音波正常</li>
+        </ul>
+        <div class="alert alert-danger"><span class="alert-icon">✏️</span><span><strong>【更正】</strong>錄音說「輕度低血鈉與高血鉀」，講義是 <strong>Na⁺ 157（輕度高血鈉）、Cl⁻ 124.7（輕度高血氯）</strong>，提示<strong>自由水流失</strong>，正好符合 DI。</span></div>
+        <h4><span class="src src-slide">📄</span> 講義細節</h4>
+        <ul class="notes">
+          <li>DSH 已絕育母貓，4.3 kg，室內，乾糧＋濕食，1 歲絕育，BCS 6/9</li>
+          <li>病史 1 個月：明顯 PU/PD、<strong>在家到處漏尿</strong>、一直找水喝、尿「清得像水」</li>
+          <li>CBC：血小板 71,000，但抹片有凝集、估計足夠 → 假性血小板減少</li>
+          <li>總 T4 40.5 nmol/L（15–42）；USG 1.004、UPC 0.07、培養陰性、無定形結晶</li>
+          <li>超音波：約 8 mm 高回音腹膜病灶，可能為偶發脂肪壞死</li>
+        </ul>
+        <div class="grid3">
+          <div class="card-mini"><h4>CKD</h4><ul><li>最常見</li><li>等張尿、氮血症</li></ul></div>
+          <div class="card-mini"><h4>甲狀腺功能亢進</h4><ul><li>&gt; 95% 大於 9 歲</li><li>&gt; 90% 摸得到結節</li></ul></div>
+          <div class="card-mini"><h4>糖尿病</h4><ul><li>高血糖＋糖尿</li></ul></div>
+        </div>
+        <p class="p muted"><span class="src src-slide">📄</span> 貓 PU/PD 三大病（基本資料庫＋總 T4 即可篩）。較少見：高血鈣、UTI／腎盂腎炎、肝病、肢端肥大、藥物；罕見：DI、原發性多飲。</p>
+      </div>
+      <div class="subsection">
+        <h3>住院連續 USG 與飲水監測</h3>
+        <p class="p"><span class="src src-rec">🎤</span> 住院 6 小時，USG 一直停在低值（等張範圍），體重下降約 2% → <strong>已脫水卻沒有適當濃縮</strong>，高度懷疑 DI。</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>時間（📄）</th><th>USG</th><th>體重</th></tr>
+          <tr><td>0 小時</td><td>1.010</td><td>4.27 kg</td></tr>
+          <tr><td>4 小時</td><td>1.010</td><td></td></tr>
+          <tr><td>6 小時</td><td>1.010</td><td>4.18 kg</td></tr>
+        </table></div>
+        <p class="p muted">期間只給 60 mL 水。</p>
+      </div>
+      <div class="subsection">
+        <h3>Desmopressin 試驗</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 給<strong>口服</strong> desmopressin；USG 比基線<strong>上升 &gt; 50%</strong> 符合 CDI</li>
+          <li><span class="src src-rec">🎤</span> 因髓質沖刷，<strong>可能要好幾週才看到完整反應</strong></li>
+        </ul>
+        <div class="alert alert-danger"><span class="alert-icon">❗</span><span><span class="src src-slide">📄</span> 劑量：<strong>每隻貓 0.05 mg，口服，q12h</strong>。<strong>【更正】</strong>錄音摘要寫 0.5 mg，<strong>差了 10 倍</strong>。錄音摘要另提到需要時可改 q8h。</span></div>
+        <div class="tbl-wrap"><table>
+          <tr><th>時間點（📄）</th><th>USG</th></tr>
+          <tr><td>入院</td><td>1.004</td></tr>
+          <tr><td>禁水 0 小時</td><td>1.010</td></tr>
+          <tr><td>禁水 6 小時</td><td>1.010</td></tr>
+          <tr><td>用藥第 7 天</td><td>1.020</td></tr>
+          <tr><td>治療中回診</td><td>1.024</td></tr>
+        </table></div>
+        <h4><span class="src src-slide">📄</span> 如何判讀</h4>
+        <ul class="notes">
+          <li>至少用藥 5–7 天再判斷</li>
+          <li>≥ 50% 上升支持 CDI，尤其升到 &gt; 1.030</li>
+          <li>部分反應：原發性多飲，或任何原因的續發性 DI</li>
+          <li>完全沒反應：腎性尿崩症</li>
+        </ul>
+        <p class="p muted"><span class="src src-add">💡</span> 50% 看小數點後的數字：1.004 → 1.020 是 0.004 → 0.020，上升 5 倍。</p>
+      </div>
+      <div class="subsection">
+        <h3>病因與診斷</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 腦部 MRI 正常 → <strong>自發性 CDI</strong></li>
+          <li><span class="src src-rec">🎤</span> <strong>貓的 CDI 多為外傷後或自發性</strong>；自發性可能機轉是<strong>自體免疫性腦下垂體炎</strong></li>
+          <li><span class="src src-rec">🎤</span> <strong>犬要特別考慮腦下垂體腫瘤</strong></li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>CDI 病因（📄）</th><th>說明</th></tr>
+          <tr><td>自發性</td><td>最常見</td></tr>
+          <tr><td>頭部外傷</td><td>貓的重要病因</td></tr>
+          <tr><td>腫瘤</td><td>顱咽管瘤、腦下垂體腫瘤、腦膜瘤、轉移（犬）</td></tr>
+          <tr><td>畸形／囊腫</td><td></td></tr>
+          <tr><td>發炎／寄生蟲</td><td>如淋巴球性腦下垂體炎</td></tr>
+          <tr><td>腦下垂體切除術後</td><td>暫時或永久</td></tr>
+        </table></div>
+        <p class="p muted">最大的貓病例系列只有 5 隻：2 隻外傷後、3 隻自發性。</p>
+        <ul class="notes">
+          <li><span class="src src-slide">📄</span> 常見於 &lt; 2 歲（範圍 2 個月–12 歲），無性別或品種傾向</li>
+          <li><span class="src src-slide">📄</span> 症狀：嚴重 PU/PD、<strong>尿失禁</strong>、神經症狀（腫瘤、外傷、高血鈉）</li>
+          <li><span class="src src-slide">📄</span> USG：犬 1.001–1.015（通常 &lt; 1.006）；貓 1.003–1.011（極低張尿較少見）</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>預後與治療</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 自發性 CDI 治療後<strong>預後通常良好</strong>；Trudy 用藥後 PU/PD 與漏尿改善</li>
+          <li><span class="src src-rec">🎤</span> 選擇：desmopressin（<strong>口服優於點眼</strong>），或不治療但<strong>保證隨時有水</strong></li>
+          <li><span class="src src-rec">🎤</span> <strong>腫瘤造成的 CDI，放射治療可有不錯預後</strong></li>
+          <li><span class="src src-hand">✍️</span> 老師偏好口服：點眼劑偏酸，會刺激眼睛</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>DDAVP 口服（📄）</th><th>每隻劑量</th><th>頻率</th></tr>
+          <tr><td>貓、&lt; 5 kg 犬</td><td>0.05 mg</td><td>q8–12h</td></tr>
+          <tr><td>5–20 kg 犬</td><td>0.1 mg</td><td>q8–12h</td></tr>
+          <tr><td>&gt; 20 kg 犬</td><td>0.2 mg</td><td>q8–12h</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li>點眼：1–2 滴 q12–24h</li>
+          <li>調整到最低有效劑量與頻率；過量 → 水中毒、低血鈉</li>
+          <li>不治療時<strong>絕對不能限水</strong>，多尿會持續</li>
+          <li>預後（📄）：自發性很好，多數貓穩定好幾年；腦下垂體／下視丘腫瘤為保留</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 13 ══ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🗣️</div>
+      <h2>13. 實務流程總結與 Q&amp;A</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="quote">「Think common first, less expensive test first.」<span class="quote-zh">先想常見的，先做便宜的檢查。</span></div>
+      <p class="p"><span class="src src-rec">🎤</span> 病史與基本資料 → 基本資料庫 → 針對性檢查（超音波等）→ 仍找不到原因時，連續 USG ＋ desmopressin 試驗。<strong>尿崩症是排除性診斷。</strong></p>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> Q&amp;A 重點</h3>
+        <div class="qa"><div class="q">Q：desmopressin 試驗怎麼做？</div><div class="a"><strong>每天給藥，持續 1–2 週</strong>，q8–12h。因髓質沖刷，<strong>完整反應可能要好幾週</strong>。</div></div>
+        <div class="qa"><div class="q">Q：連續 USG 怎麼採？</div><div class="a"><strong>貓</strong>最好在家採，做不到可住院採；<strong>犬</strong>較容易，一天內或分幾天採多個樣本，<strong>樣本越多越有把握</strong>。</div></div>
+        <div class="qa"><div class="q">Q：禁水試驗？</div><div class="a">「I will never do that… you don't need the water deprivation… you can cause AKI… serial USG and desmopressin trial will reach diagnosis.」<br><span class="muted">我絕對不會做。你不需要禁水試驗，它可能造成 AKI；連續 USG 加 desmopressin 試驗就能診斷。</span><br><span class="src src-hand">✍️</span> 老師認為多測幾次 USG 就可以辨別。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 14 ══ -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🧠</div>
+      <h2>14. Q&amp;A：腫瘤造成的中樞性尿崩症</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p class="p">聽眾問：腦下垂體腫瘤造成 CDI 時，還會有哪些伴隨症狀？</p>
+      <div class="grid2">
+        <div class="card-mini"><h4>會分泌 ACTH 的腫瘤</h4><ul><li>同時出現<strong>庫欣症狀</strong></li></ul></div>
+        <div class="card-mini"><h4>不分泌激素的腫瘤</h4><ul><li><strong>神經症狀</strong>：嗜睡、定向感混亂、發作</li><li>【更正】錄音「sleep crises」應為 <strong>seizures</strong></li></ul></div>
+      </div>
+      <div class="quote">「If you have a French Bulldog with neurological signs, PUPD… That's really suspect for potential meningioma.」<span class="quote-zh">法國鬥牛犬有神經症狀加上 PU/PD，要高度懷疑腦膜瘤。</span></div>
+      <ul class="notes">
+        <li><span class="src src-rec">🎤</span><span class="src src-hand">✍️</span> 不分泌激素的腦膜瘤，<strong>放射治療</strong>可有「good prognosis」，<strong>中位存活期約 900 天</strong></li>
+        <li><span class="src src-rec">🎤</span> 講者強調：一定要先得到診斷，才能告知飼主、決定治療方向</li>
+        <li><span class="src src-rec">🎤</span> 主持人宣布：之後的座談會可繼續提問，包括禁水試驗</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 15 ══ -->
+  <div class="section" id="s15">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef9c3">📌</div>
+      <h2>Take-home messages 與錄音更正表</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄</span> 五個重點結論</h3>
+        <ol class="notes">
+          <li><strong>先確認 PU/PD</strong>：在家量飲水量，配合臨床情境判讀 USG</li>
+          <li><strong>先想常見鑑別</strong>：犬——庫欣、CKD、糖尿病、腎盂腎炎；貓——CKD、甲狀腺功能亢進、糖尿病</li>
+          <li><strong>照步驟走</strong>：病史 → 基本資料庫 → 針對性檢查 → 找不到原因才做 DDAVP 試驗</li>
+          <li><strong>連續 USG 簡單又有用</strong>：任何一次 &gt; 1.030 就能排除其他相關疾病</li>
+          <li><strong>CDI 很罕見</strong>：犬多為自發性或腫瘤，貓多為自發性或外傷後；對 DDAVP 反應通常很好</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3>錄音轉文字錯誤一覽</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>錄音摘要寫的</th><th>正確內容</th></tr>
+          <tr><td>Dr. Tan</td><td>Dr. <strong>Tardo</strong></td></tr>
+          <tr><td>Hope 13 歲</td><td><strong>8 歲</strong>（格雷伊獵犬）</td></tr>
+          <tr><td>never trained during walks</td><td>never <strong>drinks</strong> during walks</td></tr>
+          <tr><td>Trudy 低血鈉、高血鉀</td><td><strong>高血鈉、高血氯</strong>（Na⁺ 157、Cl⁻ 124.7）</td></tr>
+          <tr><td>DDAVP 0.5 mg</td><td><strong>0.05 mg</strong> ❗差 10 倍</td></tr>
+          <tr><td>piano flats</td><td><strong>pyelonephritis</strong>（腎盂腎炎）</td></tr>
+          <tr><td>mandel</td><td><strong>mannitol</strong>（甘露醇）</td></tr>
+          <tr><td>hypochinovascism</td><td><strong>hypoadrenocorticism</strong>（愛迪森氏症）</td></tr>
+          <tr><td>small kidney urises</td><td><strong>osmotic diuresis</strong>（滲透性利尿）</td></tr>
+          <tr><td>UBD</td><td><strong>ADH</strong></td></tr>
+          <tr><td>sleep crises</td><td><strong>seizures</strong>（發作）</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Tardo A. <em>Diagnostic investigation of polyuria and polydipsia.</em> VET-KU × Texas A&amp;M IM Conference, 2026-10-05（講義與課堂錄音）。</div>
+          <div class="ref-item">Feldman EC, Nelson RW, Reusch CE, Scott-Moncrieff JC. <em>Canine and Feline Endocrinology</em>, 4th ed. 2015.</div>
+          <div class="ref-item">Feldman EC, Fracassi F, Peterson ME. <em>Feline Endocrinology.</em> 2019.</div>
+          <div class="ref-item">Chew DJ, DiBartola SP, Schenck PA. <em>Canine and Feline Nephrology and Urology</em>, 2nd ed. 2011.</div>
+          <div class="ref-item">van Vonderen IK, et al. Disturbed vasopressin release in 4 dogs with so-called primary polydipsia. <em>J Vet Intern Med.</em> 1999. <a href="https://pubmed.ncbi.nlm.nih.gov/10499724/" target="_blank" rel="noopener">PubMed</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>2026 Texas 內分泌研討會的其他場次，將陸續整理更新於此。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
