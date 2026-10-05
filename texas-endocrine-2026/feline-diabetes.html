@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>貓糖尿病：全新的世界｜2026 Texas 內分泌研討會</title>
+<style>
+  :root {
+    --primary: #0F766E;
+    --primary-light: #CCFBF1;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0d2522;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9cc8c1; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #1f4a44;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9cc8c1; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9cc8c1;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #1f4a44;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #5f8f87;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0b4f49 0%, #14a395 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0d2522; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #1f4a44; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 Texas 內分泌研討會</a>
+  <div class="logo">
+    <h2>03｜貓糖尿病：<br>It's a Whole New World!</h2>
+    <p>Jocelyn Mott｜2026 年 10 月 5 日</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">講者核心立場與總覽</a>
+    <a href="#s1">1. 分類：糖尿病不是一種病</a>
+    <a href="#s2">2. 胰島素阻抗</a>
+    <a href="#s3">3. β 細胞與葡萄糖毒性</a>
+    <a href="#s4">4. 飼主與安樂死</a>
+    <a href="#s5">5. 治療目標：新與舊</a>
+    <a href="#s6">6. 合併疾病與 HS</a>
+    <a href="#s7">7. 胰島素分類（貓）</a>
+    <a href="#s8">8. 懸浮型 vs 基礎胰島素</a>
+    <a href="#s9">9. 筆型注射器 vs 空針</a>
+    <a href="#s10">10. SGLT2 抑制劑</a>
+    <a href="#s11">11. 飲食與三個病例</a>
+    <a href="#s12">12. 風險因子與肥胖</a>
+    <a href="#s13">13. GLP-1 促效劑</a>
+    <a href="#s14">14. 糖尿病緩解</a>
+    <a href="#s15">15. 新舊胰島素控制對照</a>
+    <a href="#s16">Take-home 與更正表</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <!-- Header -->
+  <div class="page-header">
+    <h1>貓糖尿病：全新的世界（Feline Diabetes: It's a Whole New World!）</h1>
+    <p>主講：Jocelyn Mott, DVM, DACVIM (SAIM), FACVIM（犬貓糖尿病）</p>
+    <p>2026 年 10 月 5 日｜VET-KU × Texas A&amp;M 內科研討會｜場次 03</p>
+    <div class="tags">
+      <span class="tag">貓糖尿病</span>
+      <span class="tag">葡萄糖毒性</span>
+      <span class="tag">Spectrum of Care</span>
+      <span class="tag">Glargine U300</span>
+      <span class="tag">筆型注射器</span>
+      <span class="tag">SGLT2i</span>
+      <span class="tag">低碳水飲食</span>
+      <span class="tag">GLP-1</span>
+      <span class="tag">緩解 ALIVE</span>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-rec">🎤 錄音</span> 課堂逐字稿（盡量完整保留）
+    <span class="src src-slide">📄 講義</span> 投影片（共 54 頁，標示頁碼）
+    <span class="src src-photo">📷 現場</span> 現場拍攝、講義沒有的投影片
+    <span class="src src-add">💡 補充</span> 整理者補充
+    <span class="src src-fix">【更正】</span> 逐字稿轉文字錯誤，以講義為準
+  </div>
+
+  <!-- Key Points -->
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li>75–80% 糖尿病貓類似人類晚期第二型：阻抗 + β 細胞功能下降，有機會緩解</li>
+      <li>葡萄糖毒性早期可逆：盡快降血糖，β 細胞才有機會恢復</li>
+      <li>每 4 隻糖尿病貓至少 1 隻有 HS（肢端肥大）</li>
+      <li>目標是貓和飼主的生活品質，不是特定血糖範圍</li>
+      <li>貓少量多餐 + 低碳水 → 沒有 bolus 需求，基礎胰島素就夠</li>
+      <li>Glargine U300 是貓最接近「基礎胰島素」的劑型；U100 與 U300 不能等量互換</li>
+      <li>&lt;4 U 時空針會過量給藥；筆在 &lt;2 U 時最準</li>
+      <li>SGLT2i 降血糖不依賴胰島素；用藥中測單次血糖就夠</li>
+      <li>乾飼料換罐頭就能大幅降低胰島素需求 → 換飲食時要配 CGM</li>
+      <li>沒有單一因素能預測緩解；控制寬鬆也能緩解</li>
+    </ul>
+  </div>
+
+  <!-- ══ SECTION 0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🎯</div>
+      <h2>講者核心立場與總覽</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>核心立場</h3>
+        <ul class="notes">
+          <li><span class="src src-slide">📄 p.1</span> 貓糖尿病的治療正在改變：SGLT2i、基礎胰島素、胰島素筆、CGM、GLP-1 都是新工具。</li>
+          <li><span class="src src-rec">🎤</span> 很多糖尿病貓不是死於疾病，而是<strong>飼主放棄、選擇安樂死</strong>。所以「我們要盡一切努力讓飼主選擇治療，而不是安樂死」。</li>
+          <li><span class="src src-rec">🎤</span> 診斷時我們告訴飼主「這隻貓這輩子每 12 小時都要打針、餵飯」——<strong>「我們有多少人做得到？」</strong>我們要求的實在很多。</li>
+          <li><span class="src src-rec">🎤</span><span class="src src-slide">📄</span> 治療目標是<strong>貓和飼主的生活品質</strong>、預防併發症，而不是把血糖壓進某個範圍。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 講者列出的「舊」與「新」</h3>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>一直在做的（舊）</h4>
+            <ul>
+              <li>獸醫核准胰島素（Vetsulin／Caninsulin、ProZinc）</li>
+              <li>空針與針頭</li>
+              <li>血糖曲線</li>
+              <li>低碳水飲食（做了一陣子）</li>
+              <li>讓貓減重</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>比較新的</h4>
+            <ul>
+              <li>連續血糖監測（CGM）</li>
+              <li>SGLT2 抑制劑</li>
+              <li>基礎胰島素（basal insulin）</li>
+              <li>胰島素筆</li>
+              <li>GLP-1 促效劑</li>
+            </ul>
+          </div>
+        </div>
+        <p class="muted"><span class="src src-slide">📄 p.15</span> 講義用<strong>小黑貓代表「新」</strong>、<strong>虎斑貓代表「舊」</strong>，後面頁面角落出現哪隻貓，就表示該內容是新觀念還是舊觀念。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🧬</div>
+      <h2>1. 分類：糖尿病不是一種病</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.3–4</span><span class="src src-rec">🎤</span> 絕對 vs 相對胰島素缺乏</h3>
+        <ul class="notes">
+          <li><span class="src src-slide">📄 p.3</span> 「Diabetes ≠ one disease」：放狗的照片做對比。</li>
+          <li><span class="src src-rec">🎤</span> <strong>絕對缺乏</strong>：幾乎不產生胰島素，<strong>狗比較常見</strong>。</li>
+          <li><span class="src src-rec">🎤</span> <strong>相對缺乏</strong>：還能分泌一些，但不足以維持正常血糖，<strong>貓最常見</strong>。</li>
+          <li><span class="src src-slide">📄 p.4</span> 病理生理是一條<strong>光譜</strong>：一端是<strong>胰島素分泌不足</strong>，另一端是<strong>胰島素作用不足（阻抗）</strong>，中間是兩者混合。每隻貓落點不同，治療要個別化。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 貓糖尿病的分類</h3>
+        <ul class="notes">
+          <li><strong>75–80%</strong> 的糖尿病貓類似人類<strong>晚期第二型糖尿病</strong>：胰島素作用受損（阻抗）+ 殘存的分泌能力 + β 細胞功能和分泌逐漸下降。</li>
+          <li>這群貓<strong>如果能矯正葡萄糖毒性和胰島素阻抗，就有機會脫離胰島素、進入緩解</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.5</span><span class="src src-rec">🎤</span> 其他原因造成的糖尿病（次發性）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>類別</th><th>內容</th></tr>
+          <tr><td>內分泌疾病</td><td><strong>Hypersomatotropism（HS）</strong>：最常見的內分泌病因，<strong>至少四分之一</strong>的糖尿病貓有（講義：胰島素阻抗最常見原因，12.5–26%）。10 月 9 日有專場。<br>Hypercortisolism：<strong>真正的 Cushing's 在貓很少見</strong>。</td></tr>
+          <tr><td>藥物</td><td>類固醇、黃體素。<strong>糖尿病是貓使用糖皮質素最常見的副作用</strong>（講義圖：Prednisolone、長效 Depo-Medrol）。</td></tr>
+          <tr><td>外分泌胰臟疾病</td><td>胰臟炎、<strong>胰臟腫瘤</strong>（錄音補充）。</td></tr>
+        </table></div>
+        <p class="muted"><span class="src src-fix">【更正】</span> 逐字稿把 HS 寫成 hypercatabolism；「extrahepatic pancreatic disease」應為 exocrine pancreatic disease（講義）。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">⚖️</div>
+      <h2>2. 胰島素阻抗</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 胖貓與糖尿病</h3>
+        <ul class="notes">
+          <li>體重<strong>每超過理想體重 1 kg，胰島素阻抗增加約 30%</strong>。</li>
+          <li>但<strong>不是所有胖貓都會得糖尿病</strong>：胖貓有阻抗，血糖可能稍微上升，但只要 <strong>β 細胞功能正常，就能多分泌胰島素代償</strong>，維持正常血糖。</li>
+          <li>要等到 <strong>β 細胞也受損、分泌不夠</strong>時，才會變成糖尿病。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.7</span><span class="src src-rec">🎤</span> 貓胰島素阻抗相關狀況</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>類別</th><th>疾病</th></tr>
+          <tr><td>肥胖</td><td>肥胖</td></tr>
+          <tr><td>感染</td><td>泌尿道、牙齒</td></tr>
+          <tr><td>發炎</td><td>胰臟炎、肥胖、慢性腸病、齒齦口炎</td></tr>
+          <tr><td>藥物</td><td>類固醇、黃體素</td></tr>
+          <tr><td>內分泌</td><td>HS、hypercortisolism、甲狀腺機能亢進</td></tr>
+          <tr><td>其他</td><td>慢性腎病（CKD）、腫瘤、懷孕</td></tr>
+        </table></div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">補充</span> 血糖控制不好時，先回頭找這些問題，<strong>不要只是一直加胰島素</strong>。肥胖相關的分子機轉見<a href="#s12">第 12 節</a>。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🔥</div>
+      <h2>3. β 細胞與葡萄糖毒性</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.6</span> 正常 β 細胞如何分泌胰島素</h3>
+        <ol class="notes">
+          <li>葡萄糖進入 β 細胞 → 代謝成 pyruvate → 進粒線體產生 <strong>ATP</strong></li>
+          <li>ATP/ADP 上升 → <strong>K<sub>ATP</sub> 通道關閉</strong> → 細胞膜去極化</li>
+          <li>電壓門控鈣通道（Ca<sub>V</sub>）打開 → <strong>Ca²⁺ 流入</strong></li>
+          <li>細胞內鈣上升 → <strong>胰島素顆粒胞吐</strong></li>
+        </ol>
+        <p class="muted"><span class="src src-add">💡 補充</span> 圖中 <strong>MafA</strong> 是 β 細胞轉錄因子，調控 Cacng4（Ca<sub>V</sub>γ4，鈣通道次單元）。β 細胞功能異常時 MafA 下降 → 鈣通道減少 → 分泌能力變差。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.8–9</span><span class="src src-rec">🎤</span> 葡萄糖毒性（Glucose toxicity）</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 葡萄糖毒性在貓<strong>很重要</strong>：持續高血糖會<strong>直接傷害 β 細胞</strong>，讓分泌能力下降。</li>
+          <li><span class="src src-rec">🎤</span> 也會讓<strong>周邊組織的葡萄糖轉運蛋白下調</strong>：組織從血中拉葡萄糖的能力下降 → 高血糖更嚴重（惡性循環）。</li>
+          <li><span class="src src-slide">📄</span><span class="src src-rec">🎤</span> 機轉（Kawahito 2009）：慢性高血糖 → <strong>氧化壓力（ROS）</strong> → β 細胞損傷與凋亡；PDX-1 活性下降 → <strong>glucokinase 活性下降</strong>（glucokinase 就像 β 細胞的「葡萄糖感測器」）、<strong>胰島素合成下降</strong> → 分泌下降。</li>
+          <li><span class="src src-slide">📄</span> 講者在圖上打叉：高血糖 <strong>Resolve</strong>、氧化壓力 <strong>Stop</strong>、轉運蛋白 <strong>UP</strong> → 胰島素分泌回升。</li>
+          <li><span class="src src-rec">🎤</span> 解除葡萄糖毒性後：停止氧化傷害、轉運蛋白上調、停止 β 細胞凋亡、glucokinase 活性和胰島素合成增加 → <strong>最終胰島素分泌增加</strong>。</li>
+        </ul>
+        <div class="quote">高血糖拖太久，β 細胞的傷害會變成不可逆；在永久損傷之前介入，這些貓才有機會緩解。<span class="quote-zh">🎤 講者原意整理</span></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.10</span><span class="src src-rec">🎤</span> 高血糖會殺死 β 細胞（Zini et al., <em>Diabetologia</em> 2009）</h3>
+        <ul class="notes">
+          <li>健康貓輸注葡萄糖，讓血糖達到<strong>未治療糖尿病貓的程度</strong>（對照組：生理食鹽水、脂質）。</li>
+          <li><span class="src src-rec">🎤</span> <strong>2 天內</strong>胰島素分泌就下降。</li>
+          <li><strong>10 天後 β 細胞減少 50%</strong>；高血脂組沒有這種變化（論文標題：Hyperglycaemia but not hyperlipidaemia causes beta cell dysfunction and beta cell loss in the domestic cat）。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">👥</div>
+      <h2>4. 飼主與安樂死</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p class="p"><span class="src src-rec">🎤</span> 在討論怎麼治療之前，<strong>飼主得先選擇「要治療」</strong>。</p>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.11</span><span class="src src-rec">🎤</span> Big Pet Diabetes Survey（Niessen et al.，調查 &gt;1000 位獸醫）</h3>
+        <div class="alert alert-danger"><span class="alert-icon">⚠️</span><div><strong>每 10 隻糖尿病寵物，1 隻在診斷時被安樂死，另 1 隻在第一年內被安樂死。</strong></div></div>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>診斷時安樂死的原因</h4>
+            <ul>
+              <li>費用</li>
+              <li>年紀：老年動物較常被安樂死</li>
+              <li>合併疾病：🎤 有時不是很嚴重的病，只因為「糖尿病再加上別的病」就選擇安樂死</li>
+              <li>擔心貓的福利、治療後的感受</li>
+              <li>對飼主生活的影響</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>第一年內安樂死的原因</h4>
+            <ul>
+              <li>看不到療效，或配合度不佳（最常見）</li>
+              <li>照顧者疲乏</li>
+              <li>需要多年維持固定作息</li>
+              <li>治療與監測的金錢、時間負擔</li>
+              <li>🎤 <strong>缺乏獸醫支援</strong>（講義沒列）</li>
+            </ul>
+          </div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 支援不一定要由獸醫本人提供：可以<strong>訓練擅長糖尿病的技術員</strong>，協助飼主解決打針、CGM 等問題。<strong>要善用全院的人力</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.12</span><span class="src src-rec">🎤</span> 英國 VetCompass 2019（Waite et al.，基層醫療約 122 萬隻貓）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>指標</th><th>數字</th></tr>
+          <tr><td>375 隻糖尿病貓，追蹤結束時（🎤 約 3 年）死亡</td><td><strong>51.2%</strong>（192/375）</td></tr>
+          <tr><td>死亡中，安樂死的比例</td><td><strong>92.7%</strong>（178/192）</td></tr>
+          <tr><td>安樂死中，診斷後 30 天內</td><td><strong>39.9%</strong>（71/178）</td></tr>
+          <tr><td>安樂死中，診斷後 3 天內</td><td><strong>19.7%</strong>（35/178）</td></tr>
+        </table></div>
+        <div class="quote">診斷當下是飼主決定治療或安樂死的關鍵時刻，也是我們最能影響飼主的時候。<span class="quote-zh">🎤 講者原意整理</span></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.13</span><span class="src src-rec">🎤</span> 飼主的阻礙（Niessen 2010 <em>JVIM</em>，DIAQoL-pet）</h3>
+        <p class="p">研究本來要評估糖尿病貓的生活品質，結果其實評估到的是<strong>飼主的生活品質</strong>。影響最大的前 10 項：</p>
+        <ol class="notes">
+          <li>無法使用寄宿安親</li>
+          <li>希望有更多自主權（🎤 想對寵物的糖尿病控制有更多主導權）</li>
+          <li>和親友相處的時間減少</li>
+          <li>整體擔心</li>
+          <li><strong>擔心低血糖</strong>（講義紅線）</li>
+          <li>難以融入社交生活</li>
+          <li>費用</li>
+          <li>難以融入工作生活</li>
+          <li><strong>寵物情緒改變</strong>（講義紅線）</li>
+          <li>活動受限</li>
+        </ol>
+        <div class="alert alert-warn"><span class="alert-icon">📌</span><div>10 項中<strong>只有 2 項直接和貓有關</strong>（紅線兩項）。多數顧慮是<strong>對飼主生活的影響，而不是貓的福利</strong>。診斷時就要把這點納入考量，因為它決定飼主要不要治療。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.14</span> 讓飼主願意配合</h3>
+        <div class="quote">良好溝通 + 足夠的飼主衛教 + 強力的獸醫支援 = 好的配合度、遵從性與信心</div>
+        <p class="muted"><span class="src src-rec">🎤</span> 還要給飼主「做得到」的信心。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🎯</div>
+      <h2>5. 治療目標：新與舊</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.16</span><span class="src src-rec">🎤</span> <s>Target</s> Goals</h3>
+        <ul class="notes">
+          <li>「血糖必須維持在目標範圍內」被打叉，配上拄拐杖老人的圖：<strong>這是舊觀念</strong>。</li>
+          <li><strong>目前沒有前瞻性的高等級證據顯示，設定特定血糖目標和特定治療結果（包括緩解）有關。</strong></li>
+          <li><span class="src src-rec">🎤</span> 要求飼主「不計代價把貓維持在很窄的目標範圍」不一定必要，還會給飼主很大壓力——他們不想辜負我們，也不想辜負貓。目標高到以他們的生活不可能達成，就是<strong>讓他們注定失敗，最後選擇安樂死</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.17</span><span class="src src-rec">🎤</span> 新的治療目標</h3>
+        <ol class="notes">
+          <li><strong>寵物和飼主</strong>都有好的生活品質</li>
+          <li>盡量讓典型臨床症狀消失（多尿、多渴、多食、體重下降）</li>
+          <li>避免重大併發症（DKA、低血糖）。🎤 發生併發症就要住院，<strong>住院費用又是飼主選擇安樂死的另一個原因</strong>。</li>
+          <li>體態評分恢復正常</li>
+          <li><strong>糖尿病緩解</strong>：講義標「Not For Everyone」。🎤 對某些貓和飼主是合理目標，但不是每個人都適合。</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.18, 22, 35</span> 治療三大重點</h3>
+        <div class="grid3">
+          <div class="card-mini"><h4>① 合併疾病</h4><ul><li>HS、胰臟炎、發炎、肥胖…</li></ul></div>
+          <div class="card-mini"><h4>② 胰島素或 SGLT2i</h4><ul><li>「We have options.」</li></ul></div>
+          <div class="card-mini"><h4>③ 飲食</h4><ul><li>低碳水、罐頭</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">🩺</div>
+      <h2>6. 合併疾病與 Hypersomatotropism</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.19</span><span class="src src-rec">🎤</span> 糖尿病貓常見的合併疾病</h3>
+        <p class="p"><span class="src src-rec">🎤</span> 糖尿病通常在老貓診斷，這些貓本來就容易有其他疾病。<strong>先找出合併疾病，再決定要不要同時治療。</strong></p>
+        <div class="tbl-wrap"><table>
+          <tr><th>疾病</th><th>盛行率</th><th>錄音補充</th></tr>
+          <tr><td>胰臟炎</td><td><strong>31–83%</strong></td><td>如果有辦法也要一併處理</td></tr>
+          <tr><td>Hypersomatotropism</td><td><strong>15–26%</strong></td><td><strong>很常見，而且可能被低估</strong>，實際比例應該比文獻高，要主動評估</td></tr>
+          <tr><td>泌尿道感染</td><td>12–31%</td><td>有<strong>下泌尿道症狀</strong>才依培養結果用抗生素。<strong>很多糖尿病貓有無症狀細菌尿</strong>，沒有症狀不一定要治療</td></tr>
+          <tr><td>甲狀腺機能亢進</td><td>3–23%</td><td>【更正】逐字稿寫 hypothyroidism，講義為 hyperthyroidism</td></tr>
+          <tr><td>慢性腎病</td><td>3–71%</td><td>【更正】逐字稿唸成 3–7%，以講義為準</td></tr>
+          <tr><td>Hyperadrenocorticism</td><td>3–7%</td><td>Cushing's 在貓很少見</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li>同時有糖尿病和高血壓的貓，<strong>76%</strong> 還有另一種合併疾病。</li>
+          <li><span class="src src-slide">📄</span> 圖中 Toujeo（glargine U300）<strong>＋</strong> Vetoryl（trilostane）：糖尿病合併庫欣時，兩個病要一起治療。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.20–21</span><span class="src src-rec">🎤</span> Not New! But do you know…</h3>
+        <div class="quote">如果你看了 4 隻糖尿病貓，至少有 1 隻是 HS。<span class="quote-zh">🎤 講者原話整理</span></div>
+        <ul class="notes">
+          <li><span class="src src-slide">📄</span> IGF-1 in diabetic cats？要測誰？何時測？怎麼判讀？怎麼治療？→ <strong>10 月 9 日 HS 專場</strong>。</li>
+          <li><span class="src src-add">💡 補充</span> 一般共識：
+            <ul class="notes">
+              <li><strong>測誰</strong>：理想上所有糖尿病貓；尤其是胰島素阻抗、大頭、下顎前突、齒縫變寬、呼吸雜音的貓。</li>
+              <li><strong>何時測</strong>：剛診斷、還沒打胰島素時 IGF-1 可能<strong>偽陰性</strong>（肝臟產生 IGF-1 需要門脈胰島素），建議<strong>開始胰島素 6–8 週後</strong>再測。</li>
+              <li><strong>判讀</strong>：IGF-1 &gt;1000 ng/mL 高度懷疑 → CT/MRI 看腦下垂體。</li>
+              <li><strong>治療</strong>：腦下垂體切除、放射治療、pasireotide、cabergoline；SGLT2i（見<a href="#s10">第 10 節</a>）。</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">💉</div>
+      <h2>7. 貓的胰島素分類</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.23–24</span> Not New, And New!</h3>
+        <ul class="notes">
+          <li>《The Discovery of Insulin》（Michael Bliss）：胰島素 1921 年發現，🎤 「這是我們幾十年來一直在用的」；但現在有<strong>新的胰島素</strong>。</li>
+          <li><strong>FDA 核准的貓用胰島素</strong>：<strong>Vetsulin</strong>（Caninsulin，豬 lente）與 <strong>ProZinc</strong>（PZI，重組人胰島素），<strong>都是 40 U/mL</strong>。🎤 「要用正確的空針」（U-40）。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-photo">📷 現場</span><span class="src src-rec">🎤</span> Insulin Therapy for Feline Diabetes（講義沒有這頁）</h3>
+        <p class="p"><span class="src src-rec">🎤</span> 基本原則：<strong>作用時間越長，效力越弱</strong>。投影片右邊兩個箭頭：往上效力越強，往下作用時間越長。</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>分類</th><th>藥物與貓的給藥頻率</th><th>說明</th></tr>
+          <tr><td><span class="badge badge-red">「Short」acting</span></td><td>Humulin R、Actrapid、Lispro；<strong>NPH q8h</strong></td><td>作用時間很短但很強。<strong>NPH 在貓是 8 小時的胰島素，絕對不是首選</strong>。<span class="src src-add">💡</span> Regular、lispro 主要用在 DKA 住院（CRI／IM）。</td></tr>
+          <tr><td><span class="badge badge-blue">「Intermediate」acting</span></td><td>Porcine Lente q8–12h、<strong>Degludec q12h</strong>、<strong>Glargine U100 q12h</strong>、PZI q12h</td><td><strong>Degludec 是溶液、在狗是基礎胰島素，但在貓不是</strong>，要 q12h。Glargine U100 通常 q12h。</td></tr>
+          <tr><td><span class="badge badge-purple">「Long」acting</span></td><td><strong>PZI q24h</strong>（部分貓）、<strong>Glargine U300（Toujeo）</strong> q12h 或 q24h</td><td>PZI 有些貓可以一天一次，但<strong>加大 ProZinc 劑量會增加風險</strong>，所以<strong>不會是大多數貓</strong>。</td></tr>
+        </table></div>
+        <div class="alert alert-info"><span class="alert-icon">📌</span><div>重點：人醫的分類標籤搬到貓不準。人類一天一次的 glargine U100、degludec，在貓作用時間較短，被歸為「intermediate」，<strong>要 q12h</strong>。所以投影片每個分類都加了引號。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 懸浮型 vs 溶液型</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>懸浮型（suspension）</h4><ul><li>Porcine lente（Vetsulin／Caninsulin）</li><li>PZI（ProZinc）</li><li>NPH</li></ul></div>
+          <div class="card-mini"><h4>溶液型（solution）</h4><ul><li>Degludec</li><li>Glargine U100</li><li>Glargine U300（Toujeo）← <strong>貓最接近基礎胰島素</strong></li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">📈</div>
+      <h2>8. 懸浮型 vs 基礎胰島素</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.25</span> 懸浮型胰島素（Lente、NPH、PZI）的限制</h3>
+        <ul class="notes">
+          <li>是懸浮液，抽藥前要<strong>輕輕滾動</strong>重新混勻（Vetsulin 是用搖的）。</li>
+          <li>皮下儲存處的溶出過程<strong>不穩定、難以預測</strong>。</li>
+          <li>結果是<strong>劑量不準、作用時間曲線每天不同</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 為什麼貓不需要 bolus</h3>
+        <div class="quote">貓一天吃 4 次以上、又是低碳水飲食，就沒有 bolus 的需求。所以貓常常只用基礎胰島素就可以，不需要再加 bolus。<span class="quote-zh">🎤 講者原話整理</span></div>
+        <p class="muted"><span class="src src-add">💡 補充</span> 人醫常用 basal-bolus（長效 + 餐前速效）。貓的「basal insulin」是 <strong>basal-only</strong>：只用一種平坦的長效胰島素。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.26</span><span class="src src-rec">🎤</span> Why Basal Insulin?</h3>
+        <ul class="notes">
+          <li><strong>比懸浮型更可預測</strong>：不用重新混勻；用筆比空針加藥瓶精準；吸收更一致。</li>
+          <li><strong>每天之間的變異較小</strong>。</li>
+          <li><strong>不需要讓胰島素高峰對上碳水吸收高峰</strong>：懸浮型有高峰，傳統要 q12h 配兩餐；基礎胰島素曲線平，不必配合進食。</li>
+          <li><strong>低血糖風險低</strong>（人類可減少夜間低血糖）。</li>
+          <li><strong>施打時間不必很精準</strong>：人類任何時間都可以；貓 ±2–3 小時？🎤 「在貓大概可以輕易差個幾小時」。</li>
+          <li>講義紅框：<strong>一天一次給飼主更多彈性</strong>。</li>
+          <li>右上圖（Owens et al.）：人類使用 Gla-300、IDeg-100 後 24 小時血糖曲線很平。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> Glargine 的藥理（講義沒有）</h3>
+        <ul class="notes">
+          <li>Glargine 在<strong>酸性 pH 可溶</strong>；打進皮下（<strong>中性 pH</strong>）後<strong>沉澱</strong>，所以吸收變慢。</li>
+          <li><strong>Glargine U100 和 U300 不是生物等效</strong>：U300 <strong>濃度較高但效力較低</strong>，不能等單位互換。</li>
+          <li>貓的藥效動力學研究：作用時間 <strong>U100 約 13 小時</strong>、<strong>U300 約 17 小時</strong>。所以 U100 通常 q12h，U300 部分貓可以 q24h。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> Glargine U300 用在糖尿病貓的臨床研究</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>結果</th></tr>
+          <tr><td>病例</td><td>13 隻糖尿病貓，其中 <strong>4 隻有 HS</strong></td></tr>
+          <tr><td>臨床低血糖</td><td><strong>0 隻</strong></td></tr>
+          <tr><td>緩解率</td><td><strong>45%</strong>（不含 HS 貓）</td></tr>
+          <tr><td>Nadir 時間</td><td>最常見在打針後 <strong>2–4 小時</strong>，但有些貓到 <strong>15–16 小時</strong></td></tr>
+        </table></div>
+        <p class="p">👉 Nadir 出現得這麼晚的貓，就是<strong>適合一天打一次</strong>的貓。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.27</span> 2025 iCatCare 共識指引</h3>
+        <div class="quote">Glargine U300 seems currently to be the only formulation that comes close to meeting the criteria for a 'basal' insulin formulation in some cats because it has a flat time–action profile and minimal day-to-day variability.<span class="quote-zh">Glargine U300 是目前唯一在部分貓接近基礎胰島素標準的劑型：作用曲線平坦、每天之間變異小。</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef9c3">🖊️</div>
+      <h2>9. 筆型注射器 vs 空針</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.28–29</span><span class="src src-rec">🎤</span> Malerba et al., <em>JVIM</em> 2021</h3>
+        <p class="p">空針加藥瓶是我們做了幾十年的方法，筆是比較新的。</p>
+        <ul class="notes">
+          <li>✓ <strong>低劑量時筆的精確度較高</strong></li>
+          <li>✓ 適合<strong>視力不好或手部靈活度差</strong>的飼主</li>
+          <li>✓ 筆的重複性（precision）較好</li>
+          <li>✓ <strong>不會拿錯空針規格</strong></li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>工具</th><th>準確度（accuracy）</th></tr>
+          <tr><td>空針（30U/0.3mL、40U/mL）</td><td><strong>&lt;4 U 時會過量給藥</strong>；0.5 U 時誤差可達約 +25–30%</td></tr>
+          <tr><td>筆（SoloSTAR、FlexPen、KwikPen、JuniorSTAR、VetPen 0.5–8U／1–16U）</td><td>所有劑量都略為少給，但<strong>特別在 &lt;2 U 時準確度較好</strong></td></tr>
+        </table></div>
+        <div class="alert alert-warn"><span class="alert-icon">📌</span><div><span class="src src-rec">🎤</span> 貓的劑量常常 &lt;4 U，<strong>正好是空針最不準的範圍</strong>，也是受影響最大的族群。用筆前要先做 <strong>air shot（排空氣）</strong>。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">💊</div>
+      <h2>10. SGLT2 抑制劑</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.30–31</span><span class="src src-rec">🎤</span> They're here!（2023）</h3>
+        <ul class="notes">
+          <li>2023 年美國有兩個 SGLT2i 核准用於貓糖尿病：<strong>Bexacat</strong>（bexagliflozin 錠劑，15 mg）、<strong>Senvelgo</strong>（velagliflozin 口服液，15 mg/mL）。</li>
+          <li>仿單外使用 → <strong>下一個小時的專場</strong>。</li>
+          <li><span class="src src-add">💡 補充</span> 仿單限於<strong>沒打過胰島素</strong>的貓；最大風險是 <strong>DKA（含 euglycemic DKA）</strong>，用藥前要篩檢酮體，治療初期要密集監測。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 作用機轉（講義沒有）</h3>
+        <ul class="notes">
+          <li>腎臟近曲小管的 <strong>SGLT2</strong>（膜蛋白）負責回收尿中 <strong>90–97%</strong> 的葡萄糖。</li>
+          <li>再往下的 <strong>SGLT1</strong> 回收剩下的 <strong>3–10%</strong>。健康動物的尿中應該沒有葡萄糖。</li>
+          <li>課堂提問：SGLT1 濃度最高在哪裡？→ <strong>腸道</strong>。SGLT2i 對 SGLT1 也有一點作用，所以<strong>最常見的副作用是腸胃症狀（腹瀉、嘔吐）</strong>。</li>
+          <li><strong>為什麼很少低血糖</strong>：
+            <ul class="notes">
+              <li>SGLT2 被抑制後，<strong>SGLT1 會代償，回收量從 3–10% 增加到 40–50%</strong>（其他物種的觀察，貓還不確定）</li>
+              <li>升糖素增加、<strong>肝臟葡萄糖輸出增加</strong></li>
+            </ul>
+          </li>
+          <li>降血糖作用<strong>和胰島素分泌、β 細胞功能、胰島素敏感性都無關</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.32</span><span class="src src-rec">🎤</span> SGLT2i 如何幫助 β 細胞：驢子比喻</h3>
+        <ul class="notes">
+          <li>糖尿病貓要<strong>盡量減輕 β 細胞的工作量</strong>。診斷後第一件事通常是換<strong>低碳水飲食</strong>，減少碳水的「攝入」。</li>
+          <li><strong>SGLT2i 也降低碳水負荷，但方式是「增加流失」</strong>。</li>
+          <li>β 細胞是一頭拉著一車糖、拉得很辛苦的驢子；給 SGLT2i 就是<strong>把車上的貨卸掉</strong>，讓 β 細胞比較好工作。</li>
+          <li>講義：幫助血糖正常化；<strong>降低葡萄糖毒性，可能改善 β 細胞功能和胰島素分泌</strong>。🎤 這類藥處理葡萄糖毒性非常有效：β 細胞損傷還沒變成不可逆時，這是讓它恢復分泌的<strong>最好機會</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.32</span><span class="src src-rec">🎤</span> Bexagliflozin 樞紐研究的血糖曲線</h3>
+        <ul class="notes">
+          <li>入組時平均血糖約 <strong>450 mg/dL</strong>。</li>
+          <li>吃第一顆藥後 <strong>8 小時內，大多降到 200 以下</strong>。</li>
+          <li>Day 14、28、56、84 的 8 小時曲線<strong>都很平、很一致</strong>。</li>
+        </ul>
+        <div class="alert alert-success"><span class="alert-icon">✅</span><div><strong>用 SGLT2i 的貓評估血糖控制時，測單次血糖（spot BG）就夠了。</strong>美國仿單寫 fructosamine 或 8 小時血糖曲線，只是因為 FDA 核准糖尿病藥物時要求這種資料。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.33–34</span><span class="src src-rec">🎤</span> SGLT2i 用在 HS</h3>
+        <ul class="notes">
+          <li>已有數篇研究：<strong>SGLT2i 可能改善 DM 合併 HS 貓的血糖控制，可以和胰島素併用，也可以單獨使用</strong>。</li>
+          <li>講義列出：Del Baldo et al.（velagliflozin 用於 8 隻 DM + HS 貓）、Vanneste et al.（非理想候選貓的初步臨床經驗）、Mishra, Behrend, Niessen（HS／肢端肥大新進展）。</li>
+          <li><span class="src src-add">💡</span> 道理：HS 的問題是嚴重胰島素阻抗；SGLT2i 不靠胰島素，可以繞過阻抗。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-add">💡 補充</span> SGLT2i 治療中的血酮（出自下一場 SGLT2i 仿單外使用講義）</h3>
+        <p class="p"><strong>ECVIM 2025 摘要：13 隻 HS 糖尿病貓</strong>，胰島素加 bexagliflozin 或 velagliflozin：</p>
+        <ul class="notes">
+          <li>2 隻停用胰島素；最高血糖下降</li>
+          <li>治療期間<strong>血酮 0.2–7.8 mmol/L</strong>：即使高於過往 DKA 門檻 2.4，最高到 7.8，<strong>也沒有出現 DKA 或臨床低血糖</strong></li>
+          <li>追蹤中位數 <strong>202 天</strong></li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>問題</th><th>解釋</th></tr>
+          <tr><td>為什麼血酮會偏高</td><td>尿糖排出 → 血糖下降 → 胰島素下降、升糖素相對上升 → 脂肪分解、生酮增加；SGLT2i 也可能減少腎臟排除酮體。<strong>輕到中度酮血症是這類藥的 class effect</strong>。</td></tr>
+          <tr><td>為什麼 2.4 不適用</td><td>2.4 mmol/L 的門檻是從<strong>沒用 SGLT2i</strong>的貓建立的；在那種情況下酮體這麼高，通常代表胰島素嚴重不足。</td></tr>
+          <tr><td>DKA 要怎麼判斷</td><td>不能只看酮體，還要有<strong>代謝性酸中毒</strong>（pH、HCO₃⁻ 下降）和<strong>臨床症狀</strong>（食慾差、嘔吐、沉鬱、脫水）。</td></tr>
+          <tr><td>為什麼沒有低血糖</td><td>排糖依血糖濃度而定，加上 SGLT1 代償和肝臟輸出（見上方機轉）。</td></tr>
+        </table></div>
+        <div class="alert alert-danger"><span class="alert-icon">⚠️</span><div><strong>Ketosis ≠ ketoacidosis</strong>：看貓的狀態和酸鹼值，不要只看 BHB。但這不代表可以不測酮體：
+          <ul class="notes">
+            <li>Euglycemic DKA 真實存在，<strong>治療前 1–2 週風險最高</strong></li>
+            <li>這是 13 隻 HS 貓併用胰島素的摘要，<strong>只能套用在類似條件的貓</strong></li>
+            <li>同場 Del Baldo 研究的 8 隻貓中<strong>有 1 隻發生 DKA</strong></li>
+            <li>7.8 mmol/L 仍是很高的數值，臨床上看到要<strong>高度警覺</strong></li>
+          </ul>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fed7aa">🥫</div>
+      <h2>11. 飲食與三個病例</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.36–37</span><span class="src src-rec">🎤</span> 貓的營養有什麼特別？</h3>
+        <ul class="notes">
+          <li><strong>蛋白質需求較高</strong>。</li>
+          <li><strong>代謝葡萄糖較慢</strong>，肝臟的葡萄糖代謝速度<strong>不會因為飲食碳水增加而加快</strong>。🎤 人吃一條巧克力，肝臟會很快加速代謝，把葡萄糖從血中拉走；<strong>貓做不到</strong>。</li>
+          <li><strong>貓最主要的胰島素促泌素是蛋白質（胺基酸），不是碳水</strong>——即使有葡萄糖毒性時也是。其他物種主要是葡萄糖。</li>
+          <li><strong>沒有唾液澱粉酶</strong>。</li>
+          <li>胰澱粉酶和腸道雙醣酶都低 → 澱粉消化吸收慢 → 餐後血糖和胰島素反應不明顯，🎤 「一切都比較緩慢」。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.38</span><span class="src src-rec">🎤</span> 貓的肝臟</h3>
+        <ul class="notes">
+          <li>葡萄糖要經 glucokinase 或 hexokinase 轉成 <strong>glucose-6-phosphate</strong> 才能進入肝臟代謝。</li>
+          <li><strong>貓的 glucokinase 活性極低</strong>；glucokinase 是負責<strong>應付碳水快速大量增加</strong>的酵素。</li>
+          <li>貓<strong>依賴 hexokinase</strong>，它只在<strong>低葡萄糖負荷</strong>時有效。</li>
+          <li>所以<strong>無法快速清除高血糖</strong>（例如餐後）；就算餵很多碳水，肝臟也沒辦法加快代謝。</li>
+          <li>🎤 「不是貓不能吃、不能消化碳水，只是吸收葡萄糖的速度比較慢。」</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.39</span><span class="src src-rec">🎤</span> 糖質新生</h3>
+        <ul class="notes">
+          <li>多數動物的血糖主要來自<strong>飲食中的碳水</strong>；<strong>貓的血糖主要來自肝臟</strong>。</li>
+          <li>正常貓用<strong>胺基酸做糖質新生</strong>（小腸吸收胺基酸 → 肝臟 → 葡萄糖），維持基本需求 → <strong>緩慢、穩定地釋放葡萄糖</strong>，而不是從腸道吸收葡萄糖。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.40</span><span class="src src-rec">🎤</span> 飲食如何幫助 β 細胞</h3>
+        <ul class="notes">
+          <li>同一頭驢子：<strong>降低碳水攝入</strong>，β 細胞拉的貨就變少。糖尿病貓的 β 細胞本來就不正常，要盡量減輕它的工作量。</li>
+          <li><strong>最簡單的方法：換成罐頭</strong>。原本吃什麼品項，就換同品項的罐頭版本，碳水就下降了。</li>
+          <li><span class="src src-add">💡 補充</span> 一般建議碳水低於代謝能的 12%。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 病例（講義沒有）</h3>
+        <div class="qa">
+          <div class="q">病例 1｜Domino，14 歲結紮母貓（DSH）</div>
+          <div class="a">
+            <ul class="notes">
+              <li>2019 年 6 月診斷糖尿病，用 <strong>glargine U100</strong>，<strong>2023 年 3 月才緩解</strong>。</li>
+              <li>緩解後飼主繼續讓牠<strong>戴著 Libre</strong>，臨床上沒發現異常，但看到<strong>組織間液血糖慢慢上升</strong>。</li>
+              <li><strong>貓的腎糖閾約 270–280 mg/dL</strong>。Libre 資料大多低於這個值，只有極少時段才可能出現症狀；因為有 Libre，飼主才看得到變化。</li>
+              <li>這隻貓<strong>過重</strong>（可以處理，但減重很慢），而且<strong>吃乾糧</strong>。</li>
+              <li>處置：<strong>只把乾糧換成同品項的罐頭</strong>，沒有用胰島素或任何藥 → 改善非常明顯。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="qa">
+          <div class="q">病例 2｜8 歲結紮公貓（DSH），糖尿病門診</div>
+          <div class="a">
+            <ul class="notes">
+              <li>只做了<strong>乾糧換罐頭</strong> → 差異非常大。</li>
+              <li>胰島素<strong>減得太多</strong>，所以血糖之後又回升。</li>
+              <li>⚠️ <strong>換飲食時胰島素需求可能急速下降，要小心</strong>。講者建議<strong>換飲食時讓貓戴 Libre</strong>。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="qa">
+          <div class="q">病例 3｜Tommy，15 歲結紮公貓（DSH）</div>
+          <div class="a">
+            <ul class="notes">
+              <li>過去有泌尿問題，吃<strong>乾的 S/O</strong> 處方。</li>
+              <li>換成<strong>罐頭 S/O</strong> → 血糖改善。</li>
+              <li>飼主餵了<strong>一次乾零食</strong> → 血糖升高，而且<strong>影響持續很久</strong>；停掉零食後回到原本狀態。</li>
+              <li>👉 飲食影響真的很大。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🐈</div>
+      <h2>12. 風險因子與肥胖</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.41</span><span class="src src-rec">🎤</span> 風險因子</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>因子</th><th>說明</th></tr>
+          <tr><td><strong>肥胖</strong></td><td>最重要。🎤 <strong>過重的貓風險是 4 倍</strong></td></tr>
+          <tr><td>室內飼養、活動量少</td><td>久坐生活型態的貓發生率較高</td></tr>
+          <tr><td>年紀</td><td><strong>95% &gt;5 歲</strong></td></tr>
+          <tr><td>公貓</td><td><strong>約 70%</strong>。🎤 公貓的<strong>胰島素敏感性本來就比母貓低</strong>；公貓<strong>結紮後比母貓更容易變胖</strong></td></tr>
+          <tr><td>藥物</td><td>糖皮質素、黃體素</td></tr>
+          <tr><td>緬甸貓</td><td>風險 4 倍。🎤 <strong>依國家而定</strong>：美國的緬甸貓沒有增加風險，可能主要是澳洲的現象；現場泰國聽眾表示當地也沒有</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 肥胖的機轉研究（瘦貓 vs 胖貓，減重前後）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>胖貓的變化</th><th>意義</th></tr>
+          <tr><td><strong>GLUT4 表現下降</strong></td><td>周邊組織從血中拉葡萄糖的能力下降 → 高血糖</td></tr>
+          <tr><td><strong>Adiponectin 下降</strong></td><td>它由脂肪組織產生，原本能<strong>增加胰島素敏感性</strong>、有抗發炎作用</td></tr>
+          <tr><td><strong>Leptin 上升，但有 leptin 阻抗</strong></td><td>Leptin 本來會抑制食慾，但這些貓沒有得到抑制效果</td></tr>
+          <tr><td><strong>TNF-α 上升</strong></td><td>肥胖是一種<strong>發炎性疾病</strong>，發炎也會促成糖尿病</td></tr>
+        </table></div>
+        <div class="alert alert-success"><span class="alert-icon">✅</span><div>好消息：讓貓增重再減重後，<strong>胰島素阻抗是可逆的</strong>。過重有阻抗，不代表永遠都有阻抗。</div></div>
+        <ul class="notes">
+          <li>最新研究：<strong>肥胖持續越久，罹患糖尿病的勝算比越高</strong>。不要讓貓長期維持肥胖。<span class="src src-fix">【更正】</span>逐字稿寫 canine diabetes，內容是貓。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.42</span><span class="src src-rec">🎤</span> 肥胖的治療</h3>
+        <ul class="notes">
+          <li><strong>飲食介入</strong>：減重飼料、停零食、運動。🎤 但「<strong>食物就是愛</strong>」，飼主很難遵守減重計畫，有些貓也很會叫著要吃。</li>
+          <li><strong>GLP-1 促效劑</strong>：🎤 「GLP-1 就是 Ozempic，想想好萊塢，大家都在用。」</li>
+          <li><strong>Liraglutide（Victoza）</strong>：健康實驗貓使用後，<strong>沒有限制熱量也明顯減重</strong>。🎤 美國<strong>專利剛到期，相對便宜</strong>；講者團隊正在做<strong>肥胖貓臨床試驗</strong>，初步看到貓有減重。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 13 ══ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0e7ff">🧠</div>
+      <h2>13. GLP-1 促效劑</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.43</span><span class="src src-rec">🎤</span> GLP-1 做了什麼</h3>
+        <div class="grid3">
+          <div class="card-mini"><h4>大腦</h4><ul><li>降低飢餓感，吃得少</li></ul></div>
+          <div class="card-mini"><h4>胃</h4><ul><li>延緩排空、減慢消化</li><li>增加飽足感</li></ul></div>
+          <div class="card-mini"><h4>胰臟</h4><ul><li>降低升糖素</li><li>增加胰島素分泌</li></ul></div>
+        </div>
+        <p class="p"><span class="src src-rec">🎤</span> 在人類，GLP-1 降低大腦「渴望」的作用很強，甚至正在研究用於<strong>酒精和藥物成癮</strong>，這可能是它在人身上最主要的效果。在貓還不知道機制，但<strong>確實有效</strong>。GLP-1 在獸醫不算新，<strong>貓的研究其實出乎意料地多</strong>。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.44</span> 健康貓的研究</h3>
+        <ul class="notes">
+          <li>✓ <strong>增加胰島素分泌</strong>（Rudinsky：exenatide ER 藥理；Padrutt：exenatide、exenatide ER、DPP-4 抑制劑 sitagliptin；Gilor：exenatide 增強胰島素分泌）</li>
+          <li>✓ <strong>胰島素釋放是葡萄糖依賴性</strong>：血糖要上升才會釋放（Strage：分離的貓胰島研究）。<span class="src src-add">💡</span> 所以單獨使用低血糖風險低。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.45</span><span class="src src-rec">🎤</span> 糖尿病貓的研究</h3>
+        <ul class="notes">
+          <li>✓ <strong>降低胰島素需求，可能減重</strong>（Riederer：新診斷糖尿病貓用 exenatide ER；Scuderi：GLP-1 mimetic 併用 glargine）</li>
+          <li>✓ <strong>不影響緩解維持時間</strong>（Gilor et al.：exenatide ER 維持緩解；講者是共同作者）</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">📌</span><div><strong>GLP-1 在糖尿病貓不能單獨使用，必須和胰島素或 SGLT2i 併用。</strong>🎤 但在<strong>只有肥胖的貓</strong>，可以單獨使用。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 14 ══ -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🌈</div>
+      <h2>14. 糖尿病緩解</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.46–47</span><span class="src src-rec">🎤</span> ALIVE 定義</h3>
+        <p class="p">ALIVE（Agreeing Language in Veterinary Endocrinology）是全球內分泌專家一起制定標準定義的團體。🎤 <strong>因為 SGLT2i 出現，所以修改了緩解的定義</strong>。</p>
+        <div class="quote">依 ALIVE 標準診斷的糖尿病患者，在<strong>停用所有降血糖藥物（例如胰島素、SGLT 抑制劑）至少 4 週後</strong>，依 ALIVE 標準已無糖尿病證據，即視為達到糖尿病緩解。</div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.48</span><span class="src src-rec">🎤</span> 緩解的數據</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>內容</th></tr>
+          <tr><td>盛行率</td><td>各研究差很多：<strong>10–100%</strong>，平均約 <strong>30%</strong></td></tr>
+          <tr><td>時機</td><td>多數在<strong>治療前 3–4 個月</strong>，但任何時間都可能。🎤 Domino 2019 年診斷，2023 年 3 月才緩解。<strong>沒有馬上緩解不代表永遠不會，但機會會變低</strong></td></tr>
+          <tr><td>復發</td><td><strong>25–50%</strong>；第二次發病<strong>多半變成胰島素依賴</strong></td></tr>
+        </table></div>
+        <p class="muted"><span class="src src-slide">📄</span> 圖上標「Monitoring → Success」：緩解後仍要持續監測。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 為什麼要爭取緩解</h3>
+        <ol class="notes">
+          <li><strong>存活時間較長</strong></li>
+          <li>飼主認為貓的<strong>生活品質較好</strong></li>
+          <li><strong>長期花費較少</strong>：不用再付 CGM、胰島素或 SGLT2i、回診的費用</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.49</span><span class="src src-rec">🎤</span> 預測因子</h3>
+        <p class="p">文獻中提過和緩解有關的因素：</p>
+        <ul class="notes">
+          <li>最近使用過糖皮質素</li>
+          <li>年紀較大</li>
+          <li>診斷時的血糖值</li>
+          <li>診斷時<strong>沒有</strong>周邊神經病變</li>
+          <li>緬甸貓</li>
+          <li>吃市售罐頭或糖尿病處方飼料</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">🔮</span><div>講者接著把<strong>同一批因素</strong>（類固醇、年紀、血糖、神經病變、低碳水飲食）列在「<strong>不能預測</strong>」那邊：<strong>各研究結果互相矛盾</strong>。「沒有一個單一指標能告訴你這隻貓會不會緩解。」講義用水晶球占卜師的圖表達這一點。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.50–52</span><span class="src src-rec">🎤</span> 和緩解「無關」的因素</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>因素</th><th>說明</th></tr>
+          <tr><td><strong>胰島素種類</strong></td><td>講義圖：Lantus、Toujeo、Humulin N、ProZinc、Vetsulin…<strong>用哪一種都可能緩解</strong>，沒有哪一種機會比較大</td></tr>
+          <tr><td><strong>血糖控制程度</strong></td><td>各種強度的研究都有高緩解率：
+            <ul class="notes">
+              <li><strong>密集血糖控制</strong>（intensive）</li>
+              <li><strong>接近正常血糖</strong>的控制（near-normoglycemic），提升緩解率</li>
+              <li><strong>低成本、中等強度的居家監測</strong>，也有高緩解率</li>
+              <li><strong>寬鬆控制</strong>：Restine, Norsworthy, Kass——PZI 寬鬆控制 185 例（2005–2015）</li>
+            </ul>
+            講義另列 Gottlieb, Rand, Anderson；Nack &amp; DeClue。</td></tr>
+          <tr><td><strong>診斷時有沒有 DKA</strong></td><td>第一次就診就是 DKA 的貓，緩解機會<strong>不比</strong>健康就診的糖尿病貓低</td></tr>
+        </table></div>
+        <div class="quote">如果飼主就是沒辦法在家做很多監測，為什麼要硬推？如果那代表他們會選擇安樂死，我們就要配合他們。用比較寬鬆的控制，還是有機會讓貓緩解。<span class="quote-zh">🎤 講者原話整理</span></div>
+        <div class="alert alert-warn"><span class="alert-icon">📌</span><div><strong>沒有任何單一因素能預測會不會緩解，或緩解能不能維持！</strong>🎤 「抱歉，這部分我沒有很好的答案。」</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 15 ══ -->
+  <div class="section" id="s15">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">🔄</div>
+      <h2>15. 新舊胰島素控制對照</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p class="muted"><span class="src src-add">💡 補充</span> 依講義與錄音整理；監測一列部分為整理者補充。</p>
+      <div class="tbl-wrap"><table>
+        <tr><th>面向</th><th>以前</th><th>現在</th></tr>
+        <tr><td><strong>治療目標</strong></td><td>把血糖壓進目標範圍，用數字調劑量</td><td><strong>臨床症狀、生活品質、避免低血糖和 DKA</strong>；沒有證據支持特定血糖目標</td></tr>
+        <tr><td><strong>胰島素</strong></td><td>Lente、PZI、glargine U100 都 <strong>q12h</strong></td><td>部分貓可用 <strong>glargine U300 q24h</strong>；或<strong>完全不用胰島素</strong>，改口服 SGLT2i</td></tr>
+        <tr><td><strong>餵食</strong></td><td>一天兩餐，<strong>打針前確認有吃</strong>，餐和針綁在一起</td><td>基礎胰島素<strong>不必配合進食</strong>，貓照自己的習慣少量多餐；<strong>低碳水仍要做</strong></td></tr>
+        <tr><td><strong>給藥工具</strong></td><td>U-40 空針加藥瓶，懸浮液要先混勻</td><td><strong>胰島素筆</strong>：0.5–2 U 低劑量較準；不會拿錯空針</td></tr>
+        <tr><td><strong>追求緩解</strong></td><td>主流是嚴格控制（glargine q12h + 低碳水），認為越緊緩解率越高</td><td><strong>控制強度、胰島素種類、DKA 都和緩解無關</strong>；早期解除葡萄糖毒性仍重要</td></tr>
+        <tr><td><strong>胰島素阻抗</strong></td><td>加劑量、找原因，HS 常較晚發現</td><td><strong>主動篩檢 IGF-1</strong>；DM + HS 可考慮 SGLT2i（仿單外）</td></tr>
+        <tr><td><strong>輔助藥物</strong></td><td>無</td><td><strong>GLP-1</strong>：降低胰島素用量、幫助減重；不能單用</td></tr>
+        <tr><td><strong>監測</strong></td><td>住院血糖曲線、fructosamine</td><td>居家 <strong>CGM（Libre）</strong>；SGLT2i 測<strong>單次血糖</strong>就夠，重點轉為<strong>酮體</strong></td></tr>
+        <tr><td><strong>整體策略</strong></td><td>一套標準方案</td><td><strong>Spectrum of Care</strong>：依飼主的時間、預算、生活提供選項</td></tr>
+      </table></div>
+      <div class="quote">以前是「一天兩次胰島素 + 兩餐配合 + 追血糖數字」；現在是「依貓和飼主選工具，目標放在症狀和生活品質」。</div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 16 ══ -->
+  <div class="section" id="s16">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef9c3">📌</div>
+      <h2>Take-home messages 與錄音更正表</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.53</span><span class="src src-rec">🎤</span> Take Home Messages</h3>
+        <ol class="notes">
+          <li>貓糖尿病的治療正在改變。</li>
+          <li>治療目標是<strong>貓和飼主的生活品質</strong>、預防併發症，<strong>不是</strong>達到特定血糖範圍。</li>
+          <li>所有糖尿病貓和飼主都應該被提供 <strong>Spectrum of Care</strong> 選項。🎤 「我們要盡一切努力讓飼主選擇治療，而不是安樂死。」</li>
+          <li><strong>SGLT2i 或基礎胰島素</strong>對某些貓是很好的替代方案。</li>
+          <li><strong>胰島素筆比空針精準</strong>。</li>
+          <li>在部分貓，<strong>緩解是合理的目標</strong>。</li>
+        </ol>
+        <p class="muted">課後 5 分鐘休息，11:30 接著開始 SGLT2i 仿單外使用專場。</p>
+      </div>
+      <div class="subsection">
+        <h3>逐字稿轉文字錯誤一覽</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>逐字稿寫的</th><th>正確內容</th></tr>
+          <tr><td>euthysemic</td><td><strong>euglycemic</strong></td></tr>
+          <tr><td>hypercatabolism / hypercortisomatism / hypercorticotropism / hyperosmotic trophism / hypercortropism / hypercatabotropism / hypersecretoryism / hypercorticism</td><td><strong>hypersomatotropism（HS）</strong></td></tr>
+          <tr><td>extrahepatic pancreatic disease</td><td><strong>exocrine</strong> pancreatic disease</td></tr>
+          <tr><td>that cut is going to remain normoglycemic</td><td>that <strong>cat</strong></td></tr>
+          <tr><td>Hypothyroidism 3–23%</td><td><strong>Hyperthyroidism</strong>（講義）</td></tr>
+          <tr><td>Chronic renal disease 3–7%</td><td>講義為 <strong>3–71%</strong></td></tr>
+          <tr><td>Porcilente / Degladec</td><td><strong>porcine lente</strong> / <strong>degludec</strong></td></tr>
+          <tr><td>larger than 300 or 2JO / twojo / UJO</td><td><strong>glargine U300（Toujeo）</strong></td></tr>
+          <tr><td>Largy U100</td><td><strong>glargine U100</strong></td></tr>
+          <tr><td>Can insulin and the Prosing</td><td><strong>Caninsulin</strong>（= Vetsulin）與 <strong>ProZinc</strong></td></tr>
+          <tr><td>Solente and Tandem</td><td>（不明，應指 lente、PZI 等懸浮型胰島素）</td></tr>
+          <tr><td>Besipat / Senmelgo / becxiclazone / becxicad</td><td><strong>Bexacat</strong>（bexagliflozin）/ <strong>Senvelgo</strong>（velagliflozin）</td></tr>
+          <tr><td>calves</td><td><strong>cats</strong></td></tr>
+          <tr><td>Spot low glucose</td><td><strong>spot blood glucose</strong></td></tr>
+          <tr><td>liveraya / Libre / lepre</td><td><strong>FreeStyle Libre</strong>（CGM）</td></tr>
+          <tr><td>Domine / Dominique</td><td><strong>Domino</strong>（講者病例）</td></tr>
+          <tr><td>a quickly eight-year-old</td><td>an eight-year-old（?）</td></tr>
+          <tr><td>SO</td><td><strong>S/O</strong>（泌尿處方飼料）</td></tr>
+          <tr><td>canine diabetes（肥胖研究）</td><td><strong>feline</strong> diabetes</td></tr>
+          <tr><td>BCD / G1 agonists</td><td>（應為 obesity 治療）/ <strong>GLP-1 agonists</strong></td></tr>
+          <tr><td>the Ili and this green language</td><td><strong>ALIVE</strong>（Agreeing Language in Veterinary Endocrinology）</td></tr>
+          <tr><td>treatment of type 1 diabetes</td><td>（應為貓糖尿病）</td></tr>
+          <tr><td>near view glycemic management</td><td><strong>near-normoglycemic</strong> management</td></tr>
+          <tr><td>I Cat Consensus</td><td><strong>iCatCare</strong> consensus</td></tr>
+          <tr><td>Dr. Mart</td><td>Dr. <strong>Mott</strong></td></tr>
+        </table></div>
+        <p class="muted">逐字稿最後一段是聽眾私下談話，與課程無關，未整理。</p>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Mott J. <em>Feline Diabetes: It's a Whole New World!</em> VET-KU × Texas A&amp;M IM Conference, 2026-10-05（講義 54 頁與課堂逐字稿）。</div>
+          <div class="ref-item">Kawahito S, Kitahata H, Oshita S. Problems associated with glucose toxicity: role of hyperglycemia-induced oxidative stress. <em>World J Gastroenterol.</em> 2009;15(33):4137–4142.</div>
+          <div class="ref-item">Zini E, et al. Hyperglycaemia but not hyperlipidaemia causes beta cell dysfunction and beta cell loss in the domestic cat. <em>Diabetologia.</em> 2009;52:336–346.</div>
+          <div class="ref-item">Niessen SJM, et al. The Big Pet Diabetes Survey: perceived frequency and triggers for euthanasia. <em>Vet Sci</em>（MDPI）.</div>
+          <div class="ref-item">Waite O, Gostelow R, Wright E, Jepson RE, Brodbelt DC, O'Neill DG. Frequency, risk factors, and mortality for diabetes mellitus in 1,225,130 cats under primary veterinary care in the United Kingdom in 2019.</div>
+          <div class="ref-item">Niessen SJM, et al. Evaluation of a quality-of-life tool for cats with diabetes mellitus. <em>J Vet Intern Med.</em> 2010;24:1098–1105.</div>
+          <div class="ref-item">2025 iCatCare consensus guidelines on the diagnosis and management of diabetes mellitus in cats.</div>
+          <div class="ref-item">Owens DR, et al. Clinical relevance of pharmacokinetic and pharmacodynamic profiles of insulin degludec and insulin glargine – a review.</div>
+          <div class="ref-item">Malerba E, Fracassi F, Del Baldo F, Golinelli S, Ceccherini M, Barbarossa A. The accuracy and precision of insulin administration using human and veterinary pen-injectors and syringes. <em>J Vet Intern Med.</em> 2021.</div>
+          <div class="ref-item">Del Baldo F, et al. Effects of velagliflozin in 8 cats with diabetes mellitus and hypersomatotropism.</div>
+          <div class="ref-item">Vanneste A, et al. SGLT2i in diabetic cats: first clinical experiences with non-ideal candidates.</div>
+          <div class="ref-item">Rudinsky AJ, et al.；Padrutt I, et al.；Gilor C, et al.；Strage EM, et al.（GLP-1 在健康貓／貓胰島的研究）。</div>
+          <div class="ref-item">Riederer A, et al.（exenatide ER 用於新診斷糖尿病貓）；Scuderi MA, et al.（GLP-1 mimetic + glargine）；Gilor C, et al.（exenatide ER 維持緩解）。</div>
+          <div class="ref-item">ALIVE: Hypothyroidism, hyperthyroidism, (euglycaemic) diabetic ketosis/ketoacidosis, and diabetic remission — a modified Delphi-method-based system to create consensus definitions.</div>
+          <div class="ref-item">Restine LM, Norsworthy GD, Kass PH. Loose-control of diabetes mellitus with protamine zinc insulin in cats: 185 cases (2005–2015).</div>
+          <div class="ref-item">ECVIM 2025 摘要：13 隻 HS 糖尿病貓併用胰島素與 SGLT2i（出自同日 SGLT2i 仿單外使用講義）。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>2026 Texas 內分泌研討會的其他場次，將陸續整理更新於此。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
