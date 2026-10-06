@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>座談會 Q&amp;A｜2026 Texas 內分泌研討會</title>
+<style>
+  :root {
+    --primary: #0F766E;
+    --primary-light: #CCFBF1;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0d2522;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9cc8c1; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #1f4a44;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9cc8c1; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9cc8c1;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #1f4a44;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #5f8f87;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0b4f49 0%, #14a395 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0d2522; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #1f4a44; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 Texas 內分泌研討會</a>
+  <div class="logo">
+    <h2>05｜座談會 Q&amp;A：<br>犬貓糖尿病與 PU/PD</h2>
+    <p>Mott · Tardo · MSU 講者｜2026 年 10 月 5 日</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">座談總覽與講者</a>
+    <a href="#s1">1. 已打胰島素，加 SGLT2i：胰島素減多少？</a>
+    <a href="#s2">2. 沒有限制的飼主：基礎胰島素還是 SGLT2i？</a>
+    <a href="#s3">3. 單用 SGLT2i 的回診頻率</a>
+    <a href="#s4">4. 調劑量多快：基礎、bolus、飲食</a>
+    <a href="#s5">5. Degludec 與低白蛋白</a>
+    <a href="#s6">6. SGLT2i 與癌症、GLP-1 併用</a>
+    <a href="#s7">7. 換基礎胰島素、Rusty 與「治療飼主」</a>
+    <a href="#s8">8. 血糖正常卻仍 PU/PD</a>
+    <a href="#s9">9. CGM 的選擇與放置</a>
+    <a href="#s10">10. 胰島素阻抗：&gt; 2 U/kg 還控制不好</a>
+    <a href="#s11">11. Senvelgo ↔ Bexacat、緩解、狗的劑量</a>
+    <a href="#s12">12. 控制不好的狗能加 SGLT2i 嗎？</a>
+    <a href="#s13">13. PU/PD 場次延伸：腎盂腎炎、尿崩症</a>
+    <a href="#s14">Take-home、更正表與參考資料</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <!-- Header -->
+  <div class="page-header">
+    <h1>座談會 Q&amp;A：犬貓糖尿病管理與 PU/PD（Panel Discussion）</h1>
+    <p>座談：Jocelyn Mott（UF）、Antonio Tardo（UC Davis）、Michigan State University 講者</p>
+    <p>2026 年 10 月 5 日 12:30｜VET-KU × Texas A&amp;M 內科研討會｜場次 05（接續 01–04 的現場提問）</p>
+    <div class="tags">
+      <span class="tag">座談 Q&amp;A</span>
+      <span class="tag">SGLT2i</span>
+      <span class="tag">胰島素減量</span>
+      <span class="tag">CGM</span>
+      <span class="tag">基礎胰島素調整</span>
+      <span class="tag">胰島素阻抗</span>
+      <span class="tag">GLP-1</span>
+      <span class="tag">腎盂腎炎</span>
+      <span class="tag">尿崩症</span>
+    </div>
+    <a class="rec-link" href="https://web.plaud.ai/s/pub_809205d9-6b66-469a-9496-0cb8c86b5bea::MWTk705B97aJ0iEEHOS86TIpsDTOUXzoGIp6KHJLovcznzktcoOUCt2nD3uImXh0IYQzw2LO1_meSQe2hi0dfwI" target="_blank" rel="noopener">🎧 聆聽座談錄音（Plaud）↗</a>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-rec">🎤 錄音</span> 座談逐字稿（盡量完整保留，依問題整理）
+    <span class="src src-hand">✍️ 筆記</span> 我的課堂筆記
+    <span class="src src-add">💡 補充</span> 整理者補充
+    <span class="src src-fix">【更正】</span> 逐字稿轉文字錯誤（完整列表見最後一節）
+  </div>
+
+  <!-- Key Points -->
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li>已打胰島素再加 SGLT2i：開始當天就減胰島素 25–50%，貓可直接降到 1 U</li>
+      <li>這類病患馬上戴 CGM；沒有 CGM 很容易漏掉低血糖</li>
+      <li>減胰島素不只怕低血糖，也怕酮症：同時追體重與酮體</li>
+      <li>前 2 週最關鍵，前 2 個月最危險；之後每 3 個月回診</li>
+      <li>有 CGM、整天平平卡在 400：基礎胰島素每天加 20–30%，見效就放慢</li>
+      <li>沒有 CGM：至少 2–3 條血糖曲線才調劑量</li>
+      <li>「&gt; 1 U/kg＝胰島素阻抗」已過時：U300 中位數約 2 U/kg/天</li>
+      <li>血糖正常卻仍 PU/PD：一定是別的病</li>
+      <li>Senvelgo ↔ Bexacat 互換：間隔 24–48 小時，不要重疊</li>
+      <li>狗的 SGLT2i 劑量非常低（≤ 0.1 mg/kg），仍會有副作用</li>
+    </ul>
+  </div>
+
+  <!-- ══ SECTION 0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🎙️</div>
+      <h2>座談總覽與講者</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>座談形式</h3>
+        <ul class="notes">
+          <li>01–04 場次結束後的現場 Q&amp;A，聽眾拿麥克風提問，講者輪流回答。</li>
+          <li>開場先抽獎送 SPA 券（號碼在名牌背面），52 號得獎。</li>
+          <li>最後主持人提醒部分學員要去搭船（social event），感謝講者與贊助商。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>講者對照（依逐字稿內容判斷）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>逐字稿代號</th><th>講者</th><th>判斷依據</th></tr>
+          <tr><td>Speaker 3</td><td><strong>Jocelyn Mott</strong>（UF，糖尿病）</td><td>回答 SGLT2i、Snowball、Rusty 等自己的病例</td></tr>
+          <tr><td>Speaker 5</td><td><strong>Antonio Tardo</strong>（UC Davis）</td><td>談「今天早上」的 PU/PD、「週三」的庫欣、驗證過獸醫用 CGM、狗的 SGLT2i 研究</td></tr>
+          <tr><td>Speaker 6</td><td><strong>Michigan State University 的講者</strong></td><td>「MSU 沒有糖尿病門診，我比較是做腎上腺的」。主持人開場介紹為「Dr. Langbar」<span class="src src-fix">【更正】</span>姓名可能轉錄錯誤，未確認</td></tr>
+          <tr><td>其他</td><td>主持人與現場提問者</td><td></td></tr>
+        </table></div>
+        <p class="muted">💡 這場座談解答了很多 04 筆記裡標成 ✍️ 的手記出處：胰島素減量、CGM 每天加 20–30%、degludec 與低白蛋白，都是在這裡被問到的。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">💉</div>
+      <h2>1. 已經在打胰島素，再加 SGLT2i：胰島素要減多少？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">Q：病患已經打胰島素一段時間，想再加 SGLT2i。胰島素要怎麼調？維持原劑量、稍微減，還是減幾 %？</div>
+        <div class="a">
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li>「這些病患我會<strong>馬上戴 CGM</strong>，因為我想看到牠們有沒有大幅下降的可能。」</li>
+            <li>「<strong>開始 SGLT2i 的同時就減胰島素</strong>。減多少看控制得多差，但我會說至少<strong>減四分之一，甚至一半</strong>。」</li>
+            <li>「然後要看得非常緊，<strong>你很可能還得再減</strong>。所以戴著 CGM，需要就減。」</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">追問：如果沒有 CGM，只用血糖機呢？</div>
+        <div class="a">
+          <p class="p"><strong>Mott</strong>：「也可以，但難很多，因為你可能會<strong>漏掉血糖曲線上沒抓到的低血糖</strong>。做得到嗎？我認為成功機會最大的還是用 CGM。」</p>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">Tardo 補充：你問的是狗還是貓？（提問者：主要是貓）</div>
+        <div class="a">
+          <div class="tbl-wrap"><table>
+            <tr><th>物種</th><th>Tardo 的做法</th></tr>
+            <tr><td><strong>貓</strong></td><td>原本有打胰島素的話，<strong>直接降到 1 U</strong>，然後開始轉換。「胰島素你還有時間可以再調。」</td></tr>
+            <tr><td><strong>狗</strong></td><td>同意 Mott，通常<strong>減 30–50%</strong>。監測有困難時，之後還是可以再往上加胰島素。理想上狗也要戴 CGM。</td></tr>
+          </table></div>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">Mott 補充：直接停胰島素可以嗎？</div>
+        <div class="a">
+          <ul class="notes">
+            <li>「有些研究就是<strong>直接換</strong>：停胰島素，開始 SGLT2i。所以在貓這是可能的。」</li>
+            <li>「但我總是有點擔心牠們能不能自己做出足夠的胰島素。<strong>降到 1 U 並保留著</strong>，我覺得很好，但我還是會密切監測這隻貓。」</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">追問：CGM 要一直戴嗎？需不需要每 2–3 個月回來再戴一次？</div>
+        <div class="a">
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li>你會找到一個點：<strong>這個胰島素劑量加 SGLT2i 不會低血糖</strong>。到那時候，想停 CGM 就可以停，之後再回來複查。</li>
+            <li>只打胰島素的貓也是一樣，<strong>隨時都可能進入緩解</strong>。你可以讓貓一直戴 CGM 等緩解，飼主也要知道這永遠是一個可能。</li>
+            <li>「但如果只打 <strong>1 U</strong>，尤其是 1 U 的<strong>基礎胰島素</strong>，就算進入緩解，低血糖的機會也很低。」</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">MSU 講者補充：不只怕低血糖，也怕酮症</div>
+        <div class="a">
+          <ul class="notes">
+            <li>「要回到<strong>當初為什麼決定胰島素加 SGLT2i</strong>。我把胰島素降下來時，其實<strong>同樣擔心</strong>：血糖控制變好，是不是只是因為 SGLT2i？這會不會讓牠們<strong>更容易酮症</strong>？」</li>
+            <li>「我認為<strong>體重可能是被低估的監測工具</strong>：這些貓狗有沒有開始掉體重？同樣也可以監測酮體。」</li>
+            <li>「這一群病患，你不只是擔心血糖掉太低，也擔心變成酮症，<strong>另一邊也要監測，一樣重要</strong>。」</li>
+          </ul>
+          <p class="p"><strong>Mott</strong>：「完全同意。我們看 CGM 是因為兩種藥一起用，但我們<strong>一直都在看酮體</strong>，因為那才是問題。打過胰島素的貓，<strong>我們完全不知道牠能不能自己做出足夠的胰島素來防止酮症</strong>。狗會繼續打胰島素，這個問題似乎沒那麼大。」</p>
+          <p class="p"><strong>Tardo</strong>：「要強調一下，<strong>狗是完全不同的故事</strong>。狗的胰島素不能停，牠們是胰島素依賴型。要加任何東西可以，但狗要繼續打胰島素。」</p>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">MSU 講者：我們需要更好的監測工具</div>
+        <div class="a">
+          <ul class="notes">
+            <li>「如果有很好的 <strong>C-peptide</strong> 檢測，或其他方法能評估牠們<strong>自己分泌胰島素的能力</strong>就好了。我們現在就是沒有好方法。」</li>
+          </ul>
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li>「這就是問題：診斷貓糖尿病時，你<strong>完全不知道</strong>這隻貓能不能做出足夠的胰島素讓自己不 DKA。」</li>
+            <li>「好消息是，如果牠自己做的胰島素不夠，<strong>應該很快就會 DKA</strong>。所以<strong>前兩週才這麼關鍵</strong>。在那段時間盯緊，希望能在牠病得很重之前抓到。」</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-success"><span class="alert-icon">✍️</span><div><strong>對照我的筆記</strong>：我記的「胰島素先減 25–30%」就是這段。完整說法是 <strong>Mott：至少減 1/4 到 1/2</strong>；<strong>Tardo：貓直接降到 1 U，狗減 30–50%</strong>；之後依 CGM 再往下調。</div></div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>整理成流程</strong>
+        <ol class="notes">
+          <li>開始 SGLT2i 當天：先測<strong>基準 BHB</strong>，胰島素<strong>減 25–50%</strong>（貓可降到 1 U；狗減 30–50%，不能停）。</li>
+          <li>戴上 <strong>CGM</strong>，依最低點繼續往下調。</li>
+          <li>同時追<strong>體重、食慾、酮體</strong>，特別是前 2 週。</li>
+          <li>找到「不會低血糖」的穩定劑量後，可以先停 CGM，之後再複查。</li>
+        </ol>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">⚖️</div>
+      <h2>2. 沒有限制的飼主：基礎胰島素還是 SGLT2i？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">MSU 講者問 Mott：那篇「不劣於胰島素」的貓研究，對照組用的是 Vetsulin，不是好的比較對象。如果飼主沒有任何限制，你會選 Toujeo 積極治療，還是現在會直接選 SGLT2i？</div>
+        <div class="a">
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li>「就算飼主沒有限制，<strong>兩個都可以用</strong>：打基礎胰島素，同時用 SGLT2i。」</li>
+            <li>「另一個想法是<strong>每週一次的胰島素</strong>。這些貓可能是很好的候選者：每週打一次，再加 SGLT2i，大概就兩邊都顧到了。」</li>
+          </ul>
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li>「我們也在用：一種<strong>一天打一次</strong>就有效果的胰島素。」</li>
+            <li>「我的印象是，大家<strong>不太用這類藥，只是因為怕 DKA</strong>。但看數字，只有 <strong>5–10%</strong>。用胰島素治療的貓狗，數字其實<strong>差不多</strong>，牠們也會 DKA。而貓吃口服藥，大多數時候<strong>比一天打兩次胰島素容易太多</strong>。」</li>
+            <li>「我們現在在試一個<strong>新的流程</strong>，還不能透露太多，但前幾個病例的印象是<strong>效果很好</strong>。」</li>
+            <li>「兩種藥併用的問題當然是低血糖。但<strong>有胰島素就能阻止酮酸生成</strong>。這個流程的概念就是<strong>降低 DKA 的機會</strong>。」</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div>這呼應 04 筆記第 10 節的提醒：velagliflozin vs Caninsulin 的研究，對照組不是貓的首選胰島素。講者自己也承認這點，並傾向「<strong>基礎胰島素 + SGLT2i</strong>」或「<strong>每週一次胰島素 + SGLT2i</strong>」的組合。每週一次胰島素見 <a href="canine-diabetes-insulin.html#s19">02 第 19 節</a>。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef9c3">📅</div>
+      <h2>3. 單用 SGLT2i 的回診頻率</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">Q：只用 SGLT2i 時，要密切監測 DKA 和腎功能。多久要回診一次？</div>
+        <div class="a">
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li>「<strong>前兩週，或前兩個月</strong>，通常是最關鍵的。兩個藥的仿單都有建議的回診時間。」</li>
+            <li>「前兩週，你大概會想看這隻貓<strong>幾次</strong>，確認一切都好。」</li>
+            <li>「過了兩個月，我們通常建議<strong>每三個月</strong>檢查一次。」</li>
+            <li>「如果飼主願意在中間定期<strong>測尿酮或 BHB</strong>，也完全沒問題。」</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tbl-wrap"><table>
+        <tr><th>時期</th><th>回診建議（Mott）</th></tr>
+        <tr><td>前 2 週</td><td>回診<strong>幾次</strong>（最關鍵）</td></tr>
+        <tr><td>前 2 個月</td><td>風險最高的時期，依仿單回診</td></tr>
+        <tr><td>2 個月後</td><td><strong>每 3 個月</strong>一次</td></tr>
+        <tr><td>中間</td><td>飼主可在家測尿酮或 BHB</td></tr>
+      </table></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">📈</div>
+      <h2>4. 調劑量要多快：基礎胰島素、bolus、飲食</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">Q：以前用 NPH 這類傳統胰島素，指引建議每 7 天才調一次。但老師分享的病例中，只換飲食就大幅影響血糖變異度；加基礎胰島素時，也是每天都在加。基礎胰島素、bolus、飲食這三種介入，調整頻率和先後順序要怎麼考量？</div>
+        <div class="a">
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li>「bolus 或<strong>懸浮型胰島素</strong>，我們通常說<strong>每 1–2 週</strong>調一次，是因為它們的<strong>變異太大</strong>。」</li>
+            <li>「如果寵物戴著 CGM，資料又相當一致，<strong>即使是 bolus，也可以比 1–2 週更快調</strong>。」</li>
+            <li>「<strong>基礎胰島素</strong>我們通常都戴著 CGM，<strong>會加得很快</strong>。如果是一條<strong>整條平平卡在 400 多</strong>的線，我會<strong>每天加 20–30%</strong>，直到開始看到變化，然後在<strong>開始看出模式時放慢</strong>。」</li>
+          </ul>
+          <p class="p"><strong>MSU 講者</strong>：</p>
+          <ul class="notes">
+            <li>「舊做法更大的問題是，我們<strong>沒有探索別的方法</strong>，只是照文獻那樣做。實際上，不管基礎還是 bolus，我們<strong>大概都可以調得更積極</strong>。」</li>
+            <li>「回到 Jocelyn 提到的那篇研究，我們看的是一大堆<strong>單條血糖曲線</strong>。我們大部分飼主都用 CGM，但還是有人拒絕，在家做血糖曲線。」</li>
+            <li>「對這些飼主，我們已經<strong>改了建議</strong>：要看到<strong>2–3 條血糖曲線</strong>才做決定，<strong>不依賴單一條</strong>在家做的曲線。主要就是因為那篇研究。」</li>
+            <li>「所以我們會盡量推 CGM。」</li>
+          </ul>
+          <p class="muted">主持人：「但不是每個人都戴 CGM。」<span class="src src-fix">【更正】</span>逐字稿的研究名「Undefleman and Jacki Ryan study」無法辨識，應是談單條血糖曲線變異度的研究。</p>
+        </div>
+      </div>
+      <div class="tbl-wrap"><table>
+        <tr><th>介入</th><th>調整速度（座談共識）</th></tr>
+        <tr><td><strong>基礎胰島素</strong>（glargine U300、degludec）＋ CGM</td><td>整天平平卡在 400：<strong>每天 +20–30%</strong>，見效後放慢（02 的 Drifter 是 +20%/天 → +10%/天）</td></tr>
+        <tr><td><strong>懸浮型／bolus 胰島素</strong></td><td>傳統每 1–2 週；有 CGM 且資料一致時可以更快</td></tr>
+        <tr><td><strong>沒有 CGM</strong>（在家血糖曲線）</td><td>至少 <strong>2–3 條曲線</strong>才調劑量</td></tr>
+        <tr><td><strong>飲食</strong></td><td>換飲食本身就會大幅改變血糖變異度與胰島素需求（02、03 的飲食病例），換飲食時要配 CGM</td></tr>
+      </table></div>
+      <p class="muted">✍️ 我的筆記「使用 CGM 時基礎劑量可更積極調整，血糖持續在 400 左右可每天增加 20–30% 直至見效」就是這段。見 <a href="sglt2i-off-label.html#s9">04 第 9 節</a>、<a href="canine-diabetes-insulin.html#s13">02 第 13 節 Drifter</a>。</p>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">🧪</div>
+      <h2>5. Degludec 與低白蛋白血症</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">Q：Degludec 會和白蛋白結合。如果動物有<strong>低蛋白血症</strong>，或有影響代謝周轉的疾病（例如<strong>甲狀腺功能亢進</strong>），要不要調整 degludec 的劑量或注射間隔？</div>
+        <div class="a">
+          <p class="p"><strong>Mott</strong>（先確認：你問的是 SGLT2i 嗎？→ 是 degludec）：</p>
+          <ul class="notes">
+            <li>「和白蛋白結合這件事……我不知道。我們大概沒在低白蛋白的狗身上用過。」</li>
+            <li>「<strong>理論上，你可能需要調整劑量</strong>。但前提是：一隻糖尿病狗本來打胰島素、劑量也很好，然後突然變成低白蛋白。」</li>
+            <li>「那這隻狗會是一隻<strong>生病的狗</strong>，不只有糖尿病，所以<strong>反正你都會想給牠戴 CGM</strong>，就看要不要調劑量。」</li>
+          </ul>
+          <p class="p"><strong>MSU 講者</strong>：「很好的問題。聽起來<strong>應該有人去研究</strong>，因為這確實會是個顧慮。」</p>
+          <p class="p">主持人：「但我還沒遇過。」</p>
+        </div>
+      </div>
+      <div class="alert alert-success"><span class="alert-icon">✍️</span><div>我的筆記「針對患有低白蛋白血症的犬隻，理論上可能需要調整劑量」就是這題。機轉解說（白蛋白是 degludec 的緩衝庫、為什麼只是「理論上」、實務做法）寫在 <a href="canine-diabetes-insulin.html#s11">02 第 11 節</a>。</div></div>
+      <p class="muted"><span class="src src-fix">【更正】</span>逐字稿把 degludec 轉成「clue deck」「diclofenac」，把 hypoalbuminemic 轉成「hypovolemic」「hypoproteinemia」；「IVS」應為 DM。</p>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🔬</div>
+      <h2>6. SGLT2i 與癌症、GLP-1 併用</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">Q：像人醫一樣，貓有沒有胰臟炎或癌症的報告？另外，SGLT1／SGLT2 抑制劑能不能和其他藥一起用在複雜的貓，例如肥胖或脂肪肝？</div>
+        <div class="a">
+          <p class="p"><strong>Mott（癌症）</strong>：</p>
+          <ul class="notes">
+            <li>「在人醫，SGLT2i 曾被認為和<strong>胰臟癌、甲狀腺癌</strong>有關，你問的是這個嗎？」（提問者：是）</li>
+            <li>「第一，我們<strong>不知道</strong>有哪隻有胰臟癌的貓用了 SGLT2i；也<strong>不知道</strong>有哪隻用 SGLT2i 的貓後來得了胰臟癌。」</li>
+            <li>「我們知道的是，SGLT2i 樞紐試驗中的貓，<strong>確實有些長了各種腫瘤</strong>：<strong>膀胱腫瘤、淋巴瘤</strong>等等。」</li>
+            <li>「那是<strong>老年貓族群</strong>，牠們本來就會長這些腫瘤嗎？我不知道。如果是人，有某些癌症病史，醫師<strong>絕對不會</strong>讓你用這個藥。」</li>
+          </ul>
+          <p class="p"><strong>Tardo（癌症）</strong>：</p>
+          <ul class="notes">
+            <li>「癌症主要的問題是，它可能<strong>影響腸胃道或食慾</strong>。用 SGLT2i 的貓<strong>如果不吃，那就是問題</strong>，這點要記住。」</li>
+            <li>「會看到很多淋巴瘤、很多腫瘤，是因為那本來就是常見的組合。做藥品註冊時，<strong>每一個不良事件都要通報</strong>，包括同時存在的疾病。但<strong>目前腫瘤和 SGLT2i 之間沒有真正的關聯</strong>。」</li>
+          </ul>
+          <p class="p"><strong>Tardo（GLP-1 併用）</strong>：</p>
+          <ul class="notes">
+            <li>「GLP-1 和 SGLT2i 併用，<strong>獸醫還沒有任何研究</strong>，但在人醫是很好的組合：一邊<strong>刺激胰島素分泌</strong>，一邊用 SGLT2i <strong>降血糖</strong>。」</li>
+            <li>「一個限制是 GLP-1 對<strong>食慾</strong>的副作用，還會<strong>延緩胃排空</strong>。食慾下降就會厭食，<strong>厭食是 DKA 的危險因子</strong>。目前沒有資料，未來應該要多研究。」</li>
+          </ul>
+          <p class="p"><strong>Mott（GLP-1 併用與升糖素）</strong>：</p>
+          <ul class="notes">
+            <li>「另一件事是，<strong>SGLT2i 會讓升糖素上升</strong>，<strong>GLP-1 會讓升糖素下降</strong>。我們在找這些貓為什麼會 eDKA 或 DKA 時，升糖素上升大概不是好事。所以這兩個<strong>也許可以一起用</strong>。」</li>
+            <li>「在人醫，通常是<strong>二選一</strong>。保險通常只給付其中一個。」</li>
+            <li>「SGLT2i 和癌症還有一件事：在人醫，發現 SGLT2i 對<strong>某些癌症反而有益</strong>，因為它<strong>減少癌細胞能拿到的葡萄糖</strong>，有點像把癌細胞餓死。有些癌症在 SGLT2i 下比較容易發生，有些可能有好處。<strong>這些藥還有很多我們完全不知道的地方。</strong>」</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>
+        <ul class="notes">
+          <li>在人醫，<strong>甲狀腺 C 細胞腫瘤與胰臟炎的警語主要出現在 GLP-1 促效劑</strong>；SGLT2i 早期試驗曾有<strong>膀胱癌</strong>的訊號（dapagliflozin）。現場問答可能把兩類藥混在一起談。</li>
+          <li>TJ 就是 <strong>GLP-1（每月一次）＋ Bexacat</strong> 的實際病例，見 <a href="sglt2i-off-label.html#s8">04 第 8 節</a>。GLP-1 在貓的證據見 <a href="feline-diabetes.html#s13">03 第 13 節</a>。</li>
+          <li>升糖素上升是 eDKA 機轉的一環（胰島素／升糖素比值下降），見 <a href="sglt2i-off-label.html#s2">04 第 2 節</a>。</li>
+        </ul>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0e7ff">🔄</div>
+      <h2>7. 換基礎胰島素、Rusty 與「治療飼主」</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">Q（關於 02 的病例 Rusty）：如果暫時高血糖，什麼時候會考慮換胰島素，例如狗從 degludec 換成 Toujeo？</div>
+        <div class="a">
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li>「<strong>隨時都可以換</strong>。」</li>
+            <li>當時 Rusty 用的是 <strong>Toujeo</strong>，因為那時 degludec <strong>非常貴</strong>，還沒開始用。後來 degludec 價格突然大降，才開始用 degludec。<span class="src src-fix">【更正】</span>逐字稿前一句說「degludec 比較便宜」，和後文矛盾，依後文整理。</li>
+            <li>「兩個都是<strong>好的基礎胰島素</strong>，可以互換。如果其中一個<strong>買不到</strong>，可以考慮換成另一個。」</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">追問：Rusty 這個病例，如果沒有臨床症狀，有必要加 bolus 胰島素嗎？</div>
+        <div class="a">
+          <p class="p"><strong>Mott</strong>：「那個病例<strong>我們是在治療飼主</strong>。飼主就是不能接受畫面上有黃色，<strong>不是因為狗有症狀</strong>，純粹是想讓飼主開心。」</p>
+        </div>
+      </div>
+      <p class="muted">💡 和 04 的 Snowball 是同一個主題：Libre 讓飼主看到所有起伏，有時會為了「數字好看」而介入。Rusty 見 <a href="canine-diabetes-insulin.html#s17">02 第 17 節</a>，Snowball 見 <a href="sglt2i-off-label.html#s11">04 第 11 節</a>。</p>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">💧</div>
+      <h2>8. 血糖正常卻仍 PU/PD</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">Q：有時病患血糖正常、控制得很好（可能有或沒有庫欣），卻還是非常 PU/PD。這樣可以接受嗎？還是要再找其他原因？</div>
+        <div class="a">
+          <p class="p"><strong>Mott</strong>：「<strong>你要找別的原因。</strong>不管有沒有症狀，只要血糖正常卻還 PU/PD，造成 PU/PD 的<strong>就不是糖尿病</strong>。可能是腎病，也可能是庫欣，我會去找別的原因。」</p>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">追問：如果懷疑庫欣，但 ACTH 刺激試驗後數值正常，是不是就能排除庫欣？</div>
+        <div class="a">
+          <p class="p"><strong>Tardo</strong>（「週三才會講庫欣」）：</p>
+          <ul class="notes">
+            <li>「庫欣<strong>不能只靠單一數字</strong>。不能只看刺激後的 cortisol，也不能只看基礎 cortisol，要<strong>把整個臨床全貌放在一起</strong>。你測到的 cortisol 可能正常，但三小時後就比之前高。很難，比較複雜。」</li>
+            <li>「另一點是，如果血糖正常，就要注意 PU/PD 的其他原因，庫欣是其中之一。」</li>
+            <li>「還要記得今天早上（01 PU/PD 場次）談的：庫欣的狗 cortisol 可能正常，但如果有<strong>大的腦下垂體腫瘤</strong>，就會造成<strong>中樞性尿崩症</strong>。cortisol 正常，但 <strong>ADH 分泌減少</strong>。所以要注意腦下垂體後葉。」</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">追問：那還是可以做 desmopressin 試驗嗎？</div>
+        <div class="a">
+          <p class="p"><strong>Tardo</strong>：「<strong>可以</strong>。理想上要先做<strong>影像檢查</strong>，看是不是真的有腫瘤。如果還是懷疑 PU/PD 是腫瘤造成的，可以給 desmopressin，牠們會改善，因為這是<strong>續發性</strong>的問題。」</p>
+        </div>
+      </div>
+      <p class="muted">💡 腫瘤造成的中樞性尿崩症見 <a href="pupd.html#s14">01 第 14 節</a>。也呼應 04 的 Snowball：用了 SGLT2i 後一直 PU/PD，最後發現是腫瘤。</p>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">📡</div>
+      <h2>9. CGM 的選擇與放置</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">Q：除了 FreeStyle Libre，對其他 CGM 有什麼看法？放置位置、提高配合度的策略？如果用 Libre，偏好哪一代？</div>
+        <div class="a">
+          <p class="p"><strong>Mott</strong>：</p>
+          <div class="tbl-wrap"><table>
+            <tr><th></th><th>Libre 2</th><th>Libre 3（講者偏好）</th></tr>
+            <tr><td>資料取得</td><td>要<strong>每 8 小時掃描</strong>一次，否則資料會遺失</td><td><strong>不用掃描</strong>，手機靠近寵物就<strong>自動上傳</strong>全部資料</td></tr>
+            <tr><td>大小</td><td></td><td><strong>比較小</strong></td></tr>
+            <tr><td>驗證</td><td colspan="2">Libre 2、Libre 3 <strong>都已在動物驗證過</strong></td></tr>
+          </table></div>
+          <ul class="notes">
+            <li><strong>獸醫專用 CGM</strong>正陸續上市，<strong>Tardo 已經驗證過其中一款</strong>。</li>
+            <li><strong>Libre 最大的問題是客服</strong>：只要知道是狗或貓，客服<strong>不能和飼主談</strong>，會掛電話，或在帳號上做註記。飼主遇到問題時<strong>完全沒有支援</strong>。獸醫專用的 CGM，飼主可以打電話求助。</li>
+            <li>目標範圍、<strong>警報</strong>也不同。「我們有些病患的資料，<strong>如果是人早就住院了</strong>，但牠們走來走去好好的。」Libre 是<strong>為人設計的演算法</strong>，這是它的限制。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">追問：獸醫專用的叫什麼名字？</div>
+        <div class="a">
+          <p class="p"><strong>Tardo</strong>：「我們合作的那款在另一個國家叫『Food Care』（音）。在美國我們正在做另一個裝置，叫『<strong>Adapet</strong>』（音）。可能是同一個裝置，在不同國家有不同名稱。」</p>
+          <p class="p"><strong>Mott</strong>：「Adapet 是在<strong>北美</strong>的那款。」</p>
+          <p class="muted"><span class="src src-fix">【更正】</span>兩個產品名都是依逐字稿發音記錄，拼法未確認。</p>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">追問：Libre 放在哪裡比較好？為了讀值、配合度，或是在貓？</div>
+        <div class="a">
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li>「<strong>哪裡留得住就放哪裡</strong>。寵物能忍受的地方就好。有些來的時候我都不敢相信牠們放在那裡。」</li>
+            <li>有研究看過不同位置有沒有差異，差異不大。</li>
+            <li>貓通常會試<strong>頸部側面</strong>，再戴<strong>頸圈</strong>，效果還不錯。「但我看過貓放在各種地方，<strong>只要不困擾牠、又能用，就很好</strong>。」</li>
+          </ul>
+          <p class="p"><strong>Tardo</strong>：「這主要是針對貓。如果找到一個位置讀值比較低、比較穩，就固定在那裡。」</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">📉</div>
+      <h2>10. 胰島素阻抗：打到 2 U/kg 還控制不好</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">Q（代 Dr. Liu 提問）：胰島素已經打到 2 U/kg，還是控制不好。想到胰島素阻抗，有時找得到原因，有時找不到；有時找得到，卻沒辦法馬上去除。該怎麼辦？</div>
+        <div class="a">
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li>「你是說已經到 2 U/kg。如果沒有其他原因、又沒反應，<strong>那就是需要更多胰島素</strong>。」</li>
+            <li>「我們<strong>不用</strong>每公斤幾單位來判斷胰島素阻抗。不會說打到 X U/kg 就是阻抗。」</li>
+            <li>「我們也<strong>不看</strong>打胰島素後血糖要掉多少，才算不是阻抗。」</li>
+            <li>「有些動物就是要很多胰島素，我們也找不到任何潛在疾病。<strong>我認為牠們就是需要更多胰島素。</strong>」</li>
+          </ul>
+          <p class="p"><strong>MSU 講者</strong>：</p>
+          <ul class="notes">
+            <li>「如果有<strong>已知的阻抗原因</strong>，牠們<strong>就只是需要更多胰島素</strong>。」</li>
+            <li>「如果<strong>找不到原因</strong>，這種時候我有時會考慮<strong>換一種胰島素</strong>。」</li>
+          </ul>
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li>「『超過 1 U/kg 就叫胰島素阻抗』這個概念<strong>非常舊</strong>了。」</li>
+            <li>「看看新的基礎胰島素，和 Dr. Mott 前面提到的研究：我們研究中用 <strong>Toujeo 控制的中位數劑量是 2 U/kg/天</strong>。中位數代表有人到 <strong>5 U/kg</strong>，也有人只要 <strong>0.5 U/kg</strong>。」</li>
+            <li>「<strong>Degludec 的中位數是 1.2 U/kg</strong>（如果我沒記錯），也超過 1 U/kg。」</li>
+            <li>「這些胰島素的<strong>效價比以前的低很多</strong>，例如 lente 和其他中效胰島素。所以要記得，<strong>很容易就超過 1 U/kg</strong>。」</li>
+            <li>「也可能就是胰島素本身的關係，沒有其他原因。如果一直加上去，還是要找可能的阻抗原因；如果找不到，那就是這隻狗的糖尿病和你用的胰島素。」</li>
+          </ul>
+          <p class="p"><strong>Mott</strong>：「每次加胰島素，<strong>低血糖永遠是要考慮的</strong>。」</p>
+        </div>
+      </div>
+      <div class="tbl-wrap"><table>
+        <tr><th>情境</th><th>座談建議</th></tr>
+        <tr><td>找得到阻抗原因（但無法立刻去除）</td><td><strong>加胰島素</strong>，同時處理原因</td></tr>
+        <tr><td>找不到原因、沒有反應</td><td><strong>加胰島素</strong>；或<strong>換一種胰島素</strong></td></tr>
+        <tr><td>用 U300、degludec</td><td>&gt; 1 U/kg 很常見，<strong>不代表阻抗</strong></td></tr>
+        <tr><td>每次加量</td><td>注意低血糖（最好有 CGM）</td></tr>
+      </table></div>
+      <div class="qa">
+        <div class="q">Q：那 HS（肢端肥大）要怎麼治療？就我所知沒有辦法。</div>
+        <div class="a">
+          <p class="p"><strong>Mott</strong>：「我們<strong>週五</strong>有一堂專講這個。」<span class="src src-fix">【更正】</span>逐字稿寫「hypohormetrical」，依上下文應為 hypersomatotropism。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">💊</div>
+      <h2>11. Senvelgo ↔ Bexacat、怎麼知道緩解、狗的劑量</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">Q：貓用 Senvelgo，能不能換成 Bexacat，或兩個之間互換？如果貓不再接受其中一種，換藥有研究或顧慮嗎？</div>
+        <div class="a">
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li>「<strong>目前我們知道的沒有研究</strong>。但就軼事經驗，我知道有人換過。」</li>
+            <li>「我會等 <strong>24 小時、48 小時</strong>。」</li>
+            <li>「SGLT2i 的問題是，很多<strong>作用時間超過 24 小時</strong>，所以我<strong>不想讓兩個 SGLT2i 重疊</strong>。」</li>
+            <li>「確實有因為貓不肯吃錠劑或液劑而換藥的情況。」</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">追問：用 SGLT2i 的貓，不會高血糖也不會低血糖，也沒有酮體，那要怎麼知道牠緩解了？</div>
+        <div class="a">
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li>「<strong>停藥</strong>。唯一的方法就是<strong>停掉 SGLT2i</strong>。」</li>
+            <li>「如果飼主因為<strong>經濟原因</strong>想停，我們通常要他們<strong>至少用 2–3 個月</strong>，然後才說可以停。」</li>
+            <li>「但我的想法是：如果<strong>不是經濟問題</strong>，就算牠已經緩解，用著也不會低血糖。」</li>
+            <li>「SGLT2i <strong>減輕 β 細胞的工作量</strong>，這是很好的事，因為胰臟和那些 β 細胞<strong>本來就不正常</strong>。也許還有別的好處，像在人醫用於<strong>心臟病、腎病</strong>，我們可能正得到一些還不知道的正面效果。」</li>
+            <li>「我的做法是：<strong>飼主沒問題、也不是經濟因素，我就讓牠繼續用。</strong>」</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">追問：狗用 Senvelgo 的劑量是多少？</div>
+        <div class="a">
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li>「<strong>沒有固定劑量</strong>。我們做了你前面看到的研究，只有幾個病例；現在還有另一篇狗的在發表中。」</li>
+            <li>「我們用的是<strong>低劑量，0.1 mg/kg</strong>。」<span class="src src-fix">【更正】</span>逐字稿寫「reload dose」，依上下文應為 low dose。</li>
+            <li>「牠們<strong>還是有一些副作用</strong>，所以我們大概<strong>還不知道狗的正確劑量</strong>。每隻狗的差異很大。」</li>
+          </ul>
+          <p class="p"><strong>Mott</strong>：「我們有些狗<strong>用得比那個還低</strong>。我想劑量會<strong>比你想的低很多</strong>。狗似乎對<strong>非常小的劑量</strong>就有反應。」</p>
+        </div>
+      </div>
+      <div class="alert alert-warn"><span class="alert-icon">💡</span><div><strong>劑量對照</strong>：貓的 Senvelgo 是 <strong>1 mg/kg</strong>，狗只用 <strong>0.1 mg/kg 甚至更低</strong>，約是貓的十分之一以下。這和 04 筆記中「狗比較敏感」一致；Snowball 也是 Bexacat 一減再減，最後換成液劑 Senvelgo 才能調得更低。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fdf4ff">🐕</div>
+      <h2>12. 控制不好的狗，能加 SGLT2i 嗎？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">Q：狗的胰島素阻抗，如果胰島素已經加到很高，會建議加 SGLT2i 嗎？</div>
+        <div class="a">
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li>「我想 SGLT2i 可能會被用到的地方之一，就是<strong>控制不好、很難控制的狗</strong>。」</li>
+            <li>「我唯一的提醒是：<strong>確定你沒有漏掉別的東西，像 Snowball</strong>。因為很容易：你加上抑制劑，牠們看起來<strong>會好很多</strong>。」</li>
+          </ul>
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li>「我們在狗用的研究（我糖尿病那堂講過），重點是我們遇到<strong>很多 SGLT2i 的併發症</strong>。」<span class="src src-fix">【更正】</span>逐字稿寫「H1 receptor inhibitor」，應為 SGLT2 inhibitor。</li>
+            <li>「重點是：我們要<strong>治療數字</strong>，還是<strong>治療狗的臨床狀況</strong>？開始這個藥，數字會變好、真的好很多，曲線很平，也可以減胰島素，但同時<strong>牠們出現 PU/PD</strong>。」</li>
+            <li>「所以我們還要研究<strong>劑量</strong>和<strong>哪一種 SGLT2i</strong> 適合狗。我們知道狗對這類藥<strong>敏感得多</strong>，還有很多不知道的，每隻狗反應可能都不同。」</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-danger"><span class="alert-icon">🐕</span><div><strong>狗加 SGLT2i 前的檢查清單</strong>（整合 02、04、05）
+        <ol class="notes">
+          <li>胰島素<strong>不能停</strong>，加藥時先減 30–50%。</li>
+          <li>先找胰島素阻抗與<strong>合併疾病</strong>（庫欣、感染、胰臟炎、甲狀腺功能低下、腫瘤……），不要讓 SGLT2i 把它們蓋掉。</li>
+          <li>先確認<strong>胰島素用足</strong>、飲食調整過。</li>
+          <li>劑量要<strong>非常低</strong>（Senvelgo ≤ 0.1 mg/kg）。</li>
+          <li>戴 <strong>CGM</strong>，抓低血糖。</li>
+          <li>用藥後的 <strong>PU/PD 不要全怪藥</strong>：數字好看但還 PU/PD，要找別的原因。</li>
+        </ol>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 13 ══ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🚰</div>
+      <h2>13. PU/PD 場次延伸：腎盂腎炎、尿崩症的治療目標</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">Q（01 PU/PD 場次）：老師說進一步檢查前要先排除腎盂腎炎。具體要怎麼排除？</div>
+        <div class="a">
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li>「很好的問題，這就是為什麼我們說像 CKD 這類狀況<strong>很難排除</strong>。」</li>
+            <li>「提腎盂腎炎是因為，尿液很稀時，<strong>尿液培養可能是陰性</strong>，而且感染在<strong>腎臟</strong>，不在膀胱。」</li>
+            <li>「我通常會<strong>綜合</strong>：狗或貓的<strong>臨床狀況</strong>、<strong>超音波影像</strong>，以及<strong>發炎指標</strong>，例如 <strong>SAA</strong>（有證據顯示腎盂腎炎時會上升）、<strong>CRP</strong>。」<span class="src src-fix">【更正】</span>逐字稿寫「serum ILD」，依 Plaud 摘要應為 SAA（serum amyloid A）。</li>
+          </ul>
+          <p class="p"><strong>Mott</strong>：「如果腎盂夠大，我們也會做<strong>腎盂穿刺（pyelocentesis）</strong>。超音波看到<strong>腎盂擴張</strong>、尿液培養陰性、又擔心腎盂腎炎，就<strong>直接從腎盂抽尿培養</strong>，有時成功率比較高。」</p>
+          <p class="p"><strong>MSU 講者</strong>：</p>
+          <ul class="notes">
+            <li>「Antonio 給的資料完全就是臨床上看到的：<strong>腎盂腎炎的狗，USG 不會是 1.004</strong>。」</li>
+            <li>「如果你在檢查一隻<strong>低張尿</strong>的動物，尿沉渣正常（沒有細菌、沒有膿尿），培養又是陰性，<strong>臨床上大概就已經排除腎盂腎炎了</strong>。腎盂腎炎幾乎不會出現低張尿。有些情況會，但非常少見。」</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>排除腎盂腎炎的整理</strong>
+        <ol class="notes">
+          <li><strong>USG</strong>：低張尿（&lt; 1.008）時，腎盂腎炎可能性很低（01 的 USG 表中，腎盂腎炎多為等張尿）。</li>
+          <li><strong>尿沉渣</strong>：有沒有細菌、膿尿。</li>
+          <li><strong>尿液培養</strong>：稀釋尿可能偽陰性。</li>
+          <li><strong>超音波</strong>：腎盂擴張等變化；夠大時做<strong>腎盂穿刺培養</strong>。</li>
+          <li><strong>發炎指標</strong>：SAA、CRP。</li>
+        </ol>
+        <p class="p">見 <a href="pupd.html#s11">01 第 11 節 低張尿 vs 等張尿</a>。</p>
+      </div></div>
+      <div class="qa">
+        <div class="q">Q（尿崩症）：治療目標是什麼？看臨床症狀，還是看 USG 這類指標？有時給 desmopressin 後，7–8 小時又開始 PU/PD，是要加劑量，還是已經要每 8 小時給一次？</div>
+        <div class="a">
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li>「很好的問題。一般原則是看<strong>臨床狀況</strong>。」</li>
+            <li>「如果一定要給數字，USG 超過約 <strong>1.020</strong> 我們通常就不太擔心；但我主要是<strong>問飼主有沒有臨床症狀</strong>。」<span class="src src-fix">【更正】</span>逐字稿寫「over 120」，推測為 USG 1.020，未確認。</li>
+            <li>「管理尿崩症病患時，我有時會請飼主<strong>多帶幾個尿液樣本</strong>：在一天兩次給藥的日子，分別在不同時間點（例如兩次給藥之間、白天和夜間）收集尿液，就能看出藥效能撐多久。」</li>
+          </ul>
+          <p class="p"><strong>MSU 講者</strong>：</p>
+          <ul class="notes">
+            <li>「同意。USG 從 <strong>1.005 變成 1.015</strong>，往往代表<strong>尿量的巨大變化</strong>。所以<strong>追求完美數字不是目標</strong>，要看臨床全貌。」</li>
+            <li>「我們管理的尿崩症病例，飼主常常很擔心。我們會請他們<strong>量 24 小時的飲水量</strong>，給一個真實的數字。」</li>
+            <li>「因為就像 Antonio 說的，USG 一整天都在變。<strong>量 24 小時飲水量</strong>，比較能判斷是不是真的要<strong>加劑量</strong>，或改成<strong>一天三次</strong>。」</li>
+          </ul>
+        </div>
+      </div>
+      <p class="muted">💡 尿崩症與 desmopressin 試驗見 <a href="pupd.html#s12">01 第 12 節 Trudy</a>。</p>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 14 ══ -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef9c3">📌</div>
+      <h2>Take-home、更正表與參考資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>Take-home messages（整理者歸納）</h3>
+        <ol class="notes">
+          <li><strong>已打胰島素再加 SGLT2i</strong>：當天就減 25–50%（貓可降到 1 U；狗減 30–50%，不能停），戴 CGM，依最低點再調。</li>
+          <li><strong>兩頭都要顧</strong>：低血糖（CGM）和酮症（體重、食慾、BHB）。打過胰島素的貓，不知道自己做的胰島素夠不夠。</li>
+          <li><strong>回診</strong>：前 2 週看幾次，前 2 個月最危險，之後每 3 個月。</li>
+          <li><strong>沒有限制的飼主</strong>：講者傾向「基礎胰島素 + SGLT2i」或「每週一次胰島素 + SGLT2i」；Tardo 認為 DKA 風險（5–10%）被高估了。</li>
+          <li><strong>調劑量</strong>：基礎胰島素 + CGM，整條卡在 400 就每天 +20–30%；沒有 CGM 至少 2–3 條曲線才調。</li>
+          <li><strong>胰島素阻抗</strong>：不用 U/kg 定義；U300 中位數 2 U/kg/天、degludec 1.2 U/kg。找不到原因就加量或換胰島素。</li>
+          <li><strong>血糖正常卻仍 PU/PD</strong>：不是糖尿病造成的，去找腎病、庫欣、腫瘤性中樞性尿崩症。</li>
+          <li><strong>SGLT2i 互換</strong>：間隔 24–48 小時；<strong>確認緩解</strong>只能停藥（至少用 2–3 個月）；非經濟因素可以繼續用。</li>
+          <li><strong>狗</strong>：Senvelgo ≤ 0.1 mg/kg，仍有副作用；不要只治療數字。</li>
+          <li><strong>CGM</strong>：偏好 Libre 3；Libre 沒有寵物客服；獸醫專用 CGM 即將上市；放在留得住的地方。</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3>逐字稿轉文字錯誤一覽</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>逐字稿寫的</th><th>正確內容</th></tr>
+          <tr><td>CGL</td><td><strong>CGM</strong></td></tr>
+          <tr><td>budget</td><td>（應為 insulin dose）</td></tr>
+          <tr><td>any form of table</td><td>（應為 any form of therapy／SGLT2i）</td></tr>
+          <tr><td>BHP / BKA</td><td><strong>BHB</strong></td></tr>
+          <tr><td>decay / TTKA / DK</td><td><strong>DKA</strong></td></tr>
+          <tr><td>hypoglycemic DKA</td><td><strong>euglycemic DKA</strong></td></tr>
+          <tr><td>Jostin / Doctor Wong / Dr. Moti</td><td>Dr. <strong>Jocelyn Mott</strong></td></tr>
+          <tr><td>tujeo / TUIO / 2JL / tozo</td><td><strong>Toujeo</strong>（glargine U300）</td></tr>
+          <tr><td>clue deck / diclofenac / digaladet</td><td><strong>degludec</strong></td></tr>
+          <tr><td>hypovolemic / hypoproteinemia</td><td><strong>hypoalbuminemia</strong>（低白蛋白血症）</td></tr>
+          <tr><td>IVS</td><td><strong>DM</strong>（糖尿病）</td></tr>
+          <tr><td>insuring / bill insuring</td><td><strong>insulin</strong> / <strong>basal insulin</strong>（應指懸浮型胰島素）</td></tr>
+          <tr><td>NT-LT / SNL T2 / HLT2 / H1 receptor inhibitor / chelation inhibitor</td><td><strong>SGLT2 inhibitor</strong></td></tr>
+          <tr><td>chelation（「put you on it」）</td><td>（應指 SGLT2 inhibitor）</td></tr>
+          <tr><td>GMP1</td><td><strong>GLP-1</strong></td></tr>
+          <tr><td>insurance</td><td>（人醫保險給付，原意如此）</td></tr>
+          <tr><td>Senvelo / Symbio / Cymbalum</td><td><strong>Senvelgo</strong></td></tr>
+          <tr><td>reload dose</td><td>（應為 low dose）</td></tr>
+          <tr><td>kick（units per kick, mg per kick）</td><td><strong>kg</strong></td></tr>
+          <tr><td>gushing / cushion</td><td><strong>Cushing's</strong></td></tr>
+          <tr><td>EUPD / PPT session / BPD section</td><td><strong>PU/PD</strong>（場次）</td></tr>
+          <tr><td>posterior gland sites</td><td>（應為 pituitary／posterior pituitary）</td></tr>
+          <tr><td>hypohormetrical</td><td><strong>hypersomatotropism</strong></td></tr>
+          <tr><td>lebray / Libra</td><td><strong>Libre</strong></td></tr>
+          <tr><td>key collar</td><td>（應為 collar／E-collar）</td></tr>
+          <tr><td>Food Care / Adapet</td><td>獸醫專用 CGM 產品名（依發音，未確認）</td></tr>
+          <tr><td>serum ILD</td><td><strong>SAA</strong>（serum amyloid A）</td></tr>
+          <tr><td>culdocentesis</td><td><strong>pyelocentesis</strong>（腎盂穿刺）</td></tr>
+          <tr><td>10 and 4 / ten to five / 10, 15</td><td>USG <strong>1.004</strong> / <strong>1.005</strong> / <strong>1.015</strong></td></tr>
+          <tr><td>over 120</td><td>（推測為 USG 1.020）</td></tr>
+          <tr><td>diabetogenic diabetes</td><td>（應為 diabetes insipidus）</td></tr>
+          <tr><td>chemical condition</td><td><strong>clinical</strong> condition</td></tr>
+          <tr><td>Undefleman and Jacki Ryan study</td><td>（無法辨識；談單條血糖曲線變異度的研究）</td></tr>
+          <tr><td>Dr. Langbar</td><td>（MSU 講者，姓名未確認）</td></tr>
+        </table></div>
+        <p class="muted">逐字稿中有一句「I couldn't keep my blood pressure at a normal level today」與上下文無關，應為轉錄雜訊，未整理。</p>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Panel Discussion: Feline and Canine Diabetes Management. VET-KU × Texas A&amp;M IM Conference, 2026-10-05 12:30（座談逐字稿）。</div>
+          <div class="ref-item">座談錄音與逐字稿（Plaud）。<a href="https://web.plaud.ai/s/pub_809205d9-6b66-469a-9496-0cb8c86b5bea::MWTk705B97aJ0iEEHOS86TIpsDTOUXzoGIp6KHJLovcznzktcoOUCt2nD3uImXh0IYQzw2LO1_meSQe2hi0dfwI" target="_blank" rel="noopener">連結</a>（逐字稿有轉文字錯誤，請對照本頁更正表）</div>
+          <div class="ref-item">相關場次：<a href="pupd.html">01 PU/PD 的診斷流程</a>、<a href="canine-diabetes-insulin.html">02 犬糖尿病</a>、<a href="feline-diabetes.html">03 貓糖尿病</a>、<a href="sglt2i-off-label.html">04 SGLT2i 仿單外使用</a>。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="sglt2i-off-label.html">04 SGLT2i 仿單外使用</a>。其他場次將陸續整理更新。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
