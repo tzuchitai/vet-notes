@@ -1,0 +1,1743 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>糖尿病併發症：DKA、eDKA 與 HHS｜2026 Texas 內分泌研討會</title>
+<style>
+  :root {
+    --primary: #0F766E;
+    --primary-light: #CCFBF1;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0d2522;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9cc8c1; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #1f4a44;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9cc8c1; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9cc8c1;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #1f4a44;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #5f8f87;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0b4f49 0%, #14a395 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0d2522; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #1f4a44; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 Texas 內分泌研討會</a>
+  <div class="logo">
+    <h2>08｜糖尿病併發症：<br>DKA、eDKA 與 HHS</h2>
+    <p>Antonio Tardo｜2026 年 10 月 6 日</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">核心觀念與總覽</a>
+    <div class="nav-section">病理生理</div>
+    <a href="#s1">1. DKA 的病理生理</a>
+    <a href="#s2">2. 誘發因子：狗與貓</a>
+    <a href="#s3">3. HHS 的定義與病理生理</a>
+    <div class="nav-section">診斷</div>
+    <a href="#s4">4. 臨床症狀</a>
+    <a href="#s5">5. DKA 與 DK 的診斷</a>
+    <a href="#s6">6. eDKA 與 SGLT2 抑制劑</a>
+    <a href="#s7">7. 如何測量酮體</a>
+    <a href="#s8">8. DKA vs HHS 與 HHS 診斷</a>
+    <a href="#s9">9. 診斷檢查</a>
+    <div class="nav-section">治療</div>
+    <a href="#s10">10. 治療五目標與 eDKA</a>
+    <a href="#s11">11. 輸液：多少、多快、哪一種</a>
+    <a href="#s12">12. 鉀、磷、鎂</a>
+    <a href="#s13">13. 胰島素：為什麼、何時開始</a>
+    <a href="#s14">14. 胰島素方案</a>
+    <a href="#s15">15. HHS 的治療</a>
+    <div class="nav-section">照護與預後</div>
+    <a href="#s16">16. 營養、監測與 CGM</a>
+    <a href="#s17">17. 降級照護與預後</a>
+    <a href="#s18">18. Q&amp;A</a>
+    <a href="#s19">Take-home、更正表與參考資料</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <!-- Header -->
+  <div class="page-header">
+    <h1>糖尿病併發症：DKA、eDKA 與 HHS</h1>
+    <p>主講：Antonio Tardo, DVM, PhD, Dipl. ECVIM-CA｜UC Davis 小動物內科助理教授</p>
+    <p>2026 年 10 月 6 日｜VET-KU × Texas A&amp;M 內科研討會｜場次 08</p>
+    <div class="tags">
+      <span class="tag">DKA</span>
+      <span class="tag">eDKA</span>
+      <span class="tag">HHS</span>
+      <span class="tag">3βHB</span>
+      <span class="tag">SGLT2i</span>
+      <span class="tag">SENSATION</span>
+      <span class="tag">輸液</span>
+      <span class="tag">補鉀・磷・鎂</span>
+      <span class="tag">胰島素 CRI</span>
+      <span class="tag">固定速率輸注</span>
+      <span class="tag">IM Lispro</span>
+      <span class="tag">Glargine</span>
+      <span class="tag">CGM</span>
+      <span class="tag">預後</span>
+    </div>
+    <a class="rec-link" href="https://web.plaud.ai/s/pub_6afe4340-0fd4-43c7-8a1d-b7b8fc5d62bb::NMgghuoiDxzUG6_YYUBaBCNslVCuBZwjZRP1YENNbknOUULPWUU62IsLJvZL3FlsuRSqVJC8GNmJZE_HeNhfewI" target="_blank" rel="noopener">🎧 聆聽課堂錄音（Plaud）↗</a>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（頁碼為投影片右下角編號；9、29、33 為隱藏頁）
+    <span class="src src-rec">🎤</span> 課堂逐字稿（盡量完整保留）
+    <span class="src src-add">💡 補充</span> 整理者補充（機轉、計算、交叉參照）
+    <span class="src src-fix">【更正】</span> 逐字稿轉文字錯誤或講述口誤，以講義為準（完整列表見最後一節）
+  </div>
+
+  <!-- Key Points -->
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li>DKA 和 HHS 是同一個光譜，差在「還剩多少胰島素」</li>
+      <li>診斷三要素：高血糖＋酮血症/酮尿＋代謝性酸中毒</li>
+      <li>測<strong>血中 3βHB</strong>，尿液試紙只測得到 AcAc</li>
+      <li>治療中尿酮變更陽性 ≠ 惡化</li>
+      <li>血糖正常 ≠ 沒有 DKA（SGLT2i、厭食、剛打過胰島素）</li>
+      <li>SGLT2i 的 eDKA 多發生在<strong>前 2 週</strong>，約 5–7%</li>
+      <li>先輸液、先補鉀，再給胰島素</li>
+      <li>血糖每小時降 50–75 mg/dL；鈉每天 ≤ 10–12 mEq/L</li>
+      <li>血糖降到約 250 時加葡萄糖，<strong>不要停胰島素</strong>，直到酮症解除</li>
+      <li>HHS 要更慢：滲透壓每小時 ≤ 3 mOsm/kg，先輸液、胰島素晚點給</li>
+      <li>用你的醫院做得到的胰島素方案</li>
+      <li>找出共病，它決定預後</li>
+    </ul>
+  </div>
+
+  <!-- ══ SECTION 0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🎯</div>
+      <h2>核心觀念與總覽</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.1–2</span><span class="src src-rec">🎤</span> 場次資訊與大綱</h3>
+        <ul class="notes">
+          <li>講者：Antonio Tardo（DVM, PhD, Dipl. ECVIM-CA），UC Davis 小動物內科助理教授。也是 <a href="pupd.html">01 PU/PD</a> 的講者。</li>
+          <li><span class="src src-rec">🎤</span> 前兩天都在談糖尿病，這一場談糖尿病的急性併發症：DKA，以及一個重要的新型態，<strong>正常血糖 DKA（eDKA）</strong>。因為現在越來越常用 <strong>SGLT2 抑制劑</strong>，所以要特別談這種併發症，它其實跟標準的 DKA 很像。另外也會談高滲透壓高血糖症候群（HHS）。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>#</th><th>主題</th><th>重點</th></tr>
+          <tr><td>1</td><td>病理生理</td><td>為什麼會產生酮體、為什麼病患會脫水</td></tr>
+          <tr><td>2</td><td>誘發因子</td><td>同時存在的疾病本身就是診斷的一部分</td></tr>
+          <tr><td>3</td><td>診斷</td><td>DKA、正常血糖 DKA（eDKA）、HHS</td></tr>
+          <tr><td>4</td><td>治療</td><td>輸液 → 電解質 → 胰島素 → 營養</td></tr>
+          <tr><td>5</td><td>監測與預後</td><td>要測什麼、什麼時候可以降級照護</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 要先懂病理生理，才會懂怎麼治療。</li>
+          <li><span class="src src-rec">🎤</span> 這些是糖尿病患非常糟的併發症。病患會從一個<strong>很好治療的疾病</strong>，變成一個<strong>幾小時內就可能死亡的疾病</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.3</span><span class="src src-rec">🎤</span> DKA 與 HHS：同一個光譜</h3>
+        <ul class="notes">
+          <li>兩者都是糖尿病<strong>急性、可能致命</strong>的併發症。</li>
+          <li>它們不是兩種不同的疾病，而是由<strong>胰島素缺乏程度</strong>決定、落在同一光譜上的不同位置。</li>
+          <li>由壓力和共病誘發 → 升糖素、兒茶酚胺、皮質醇上升。</li>
+        </ul>
+        <div class="grid3">
+          <div class="card-mini"><h4>DKA</h4><ul>
+            <li>胰島素嚴重缺乏 ++</li>
+            <li>脂肪分解失控</li>
+            <li>生酮 → 酸中毒</li>
+          </ul></div>
+          <div class="card-mini"><h4>混合型 DKA / HHS</h4><ul>
+            <li>兩者重疊</li>
+            <li>酮症＋高滲透壓</li>
+            <li><strong>臨床上很常見</strong></li>
+          </ul></div>
+          <div class="card-mini"><h4>HHS</h4><ul>
+            <li>還有殘存胰島素</li>
+            <li>生酮被抑制</li>
+            <li>極端高血糖</li>
+          </ul></div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 區分兩者的關鍵通常在胰島素缺乏本身。DKA 的動物大多是<strong>胰島素完全缺乏</strong>，所以有脂肪分解，酮體大量產生。</li>
+          <li><span class="src src-rec">🎤</span> HHS 的動物還有<strong>一些殘存的胰島素分泌</strong>，足以阻止脂肪分解，但動物會出現嚴重高血糖<span class="src src-fix">【更正】</span>（逐字稿誤為 hypoglycemia），進而造成高滲透壓。</li>
+          <li><span class="src src-rec">🎤</span> 有時候酮體上升和嚴重高滲透壓會<strong>同時存在</strong>，所以要把病患定義成 HHS 還是 DKA，有時候並不容易。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：抑制脂肪分解所需的胰島素量，遠少於控制血糖所需的量。所以只要還有一點胰島素，就不太會生酮，但血糖仍會飆高（HHS）；完全沒有胰島素時就會生酮（DKA）。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-add">💡 補充</span> 與其他場次的關聯</h3>
+        <ul class="notes">
+          <li>滲透性利尿與 PU/PD：見 <a href="pupd.html">01 PU/PD 診斷流程</a>（講者在本場多次提到「10 月 5 日講過」）。</li>
+          <li>SGLT2i 的病患篩選、eDKA 與 BHB 監測：見 <a href="sglt2i-off-label.html">04 SGLT2 抑制劑的仿單外使用</a>。</li>
+          <li>實際 DKA 病例的穩定處置與飲食：見 <a href="diabetic-nutrition.html#s2">06 病例 Bobo 的 DKA 穩定處置</a>。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🧬</div>
+      <h2>1. DKA 的病理生理</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.4</span><span class="src src-rec">🎤</span> 兩個步驟</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>第一步：脂肪分解增加</h4><ul>
+            <li>送到肝臟的 NEFA（非酯化脂肪酸）增加</li>
+            <li>正常情況下胰島素會抑制這個過程</li>
+          </ul></div>
+          <div class="card-mini"><h4>第二步：肝臟代謝改變</h4><ul>
+            <li>從合成三酸甘油酯轉為 β-氧化</li>
+            <li>升糖素驅動酮體生成</li>
+            <li><strong>關鍵：升糖素／胰島素比值上升</strong></li>
+          </ul></div>
+        </div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>殘存的胰島素分泌會抑制脂肪分解，結果就是<strong>嚴重高血糖但沒有酮症</strong>（也就是 HHS 的伏筆）。</div></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 胰島素缺乏時，身體會試著從脂肪組織取得能量，而脂肪最終的產物就是酮體。酮體上升造成酮症。</li>
+          <li><span class="src src-rec">🎤</span> 第二步是肝臟代謝異常<span class="src src-fix">【更正】</span>（逐字稿誤為 abnormal adipic metabolism，應為 hepatic）。肝臟拿 NEFA 做 β-氧化產生能量，但最終產物是酮體，造成酮症。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.5</span><span class="src src-rec">🎤</span> 流程圖一：從荷爾蒙到 NEFA</h3>
+        <ul class="notes">
+          <li>胰島素缺乏和/或胰島素阻抗 → <strong>周邊組織利用葡萄糖和酮體的能力下降</strong></li>
+          <li>兒茶酚胺、皮質醇、生長激素（GH）、升糖素上升 → <strong>蛋白質分解增加 → 提供糖質新生的原料</strong></li>
+          <li>兩者共同 → 活化<strong>荷爾蒙敏感性脂解酶（HSL）</strong> → 脂肪分解 → NEFA</li>
+        </ul>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 一邊是胰島素缺乏與胰島素阻抗，另一邊是反調節荷爾蒙（catecholamines、cortisol、GH、glucagon）增加。這些荷爾蒙很重要，因為它們刺激蛋白質分解，身體會嘗試從蛋白質取得能量，啟動糖質新生路徑。</li>
+          <li><span class="src src-rec">🎤</span> 同時因為胰島素缺乏，身體<strong>再也無法利用葡萄糖</strong>，所以才轉向從脂肪拿能量。</li>
+          <li><span class="src src-rec">🎤</span> 胰島素缺乏加上其他荷爾蒙上升，<strong>尤其是兒茶酚胺</strong>，會活化 HSL，刺激脂肪分解，產物就是 NEFA。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：HSL 平常被胰島素抑制，被壓力荷爾蒙活化。DKA 不只是「缺胰島素」，而是「缺胰島素」加上「壓力荷爾蒙暴衝」的雙重打擊，這也是共病（胰臟炎、感染等）那麼重要的原因。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.6</span><span class="src src-rec">🎤</span> 流程圖二：肝臟裡發生什麼事</h3>
+        <figure class="fig">
+          <img src="photos/08-dka-liver.jpg" alt="Pathophysiology of DKA：NEFA 在肝臟經肉鹼穿梭進入粒線體 β-氧化產生酮體" loading="lazy">
+          <figcaption>📄 p.6：NEFA → Fatty acyl CoA →（升糖素↑、Malonyl CoA↓、肉鹼穿梭↑）→ 粒線體 → Acetyl CoA → BHB ⇄ AcAc → 丙酮</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>肝臟同時進行三件事：<strong>生酮</strong>、<strong>糖質新生</strong>、<strong>肝醣分解</strong>。</li>
+          <li><strong>結果：血中充滿無法利用的葡萄糖和有機酸。</strong></li>
+          <li><span class="src src-rec">🎤</span> NEFA 在肝臟代謝，也就是 β-氧化。肝臟想從 NEFA 取得能量，但最終產物是酮體：<strong>β-羥丁酸、乙醯乙酸、丙酮</strong>，進而造成 DKA。</li>
+          <li><span class="src src-rec">🎤</span> 肝臟也增加糖質新生（因為蛋白質分解增加）。血中葡萄糖更多了，但沒有胰島素，葡萄糖進不了細胞，動物無法使用。</li>
+          <li><span class="src src-rec">🎤</span> 另一個過程是肝醣分解：肝臟仍然在努力製造葡萄糖當能量，但還是用不了。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：Malonyl CoA 是肉鹼棕櫚醯轉移酶 I（CPT-1）的抑制劑。升糖素讓 Malonyl CoA 下降，等於解除煞車，脂肪酸大量進入粒線體做 β-氧化。產生的 Acetyl CoA 超過 TCA 循環的處理量，就轉成酮體。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.7</span><span class="src src-rec">🎤</span> 酮體</h3>
+        <figure class="fig">
+          <img src="photos/08-ketone-bodies.jpg" alt="The ketone bodies：β-羥丁酸、乙醯乙酸、丙酮" loading="lazy">
+          <figcaption>📄 p.7：三種酮體的結構</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>酮體</th><th>性質</th></tr>
+          <tr><td><strong>β-羥丁酸（3βHB）</strong></td><td>強有機酸</td></tr>
+          <tr><td><strong>乙醯乙酸（AcAc）</strong></td><td>強有機酸</td></tr>
+          <tr><td><strong>丙酮</strong></td><td>具揮發性，就是口氣裡的味道</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li>造成<strong>高陰離子間隙（high anion gap）代謝性酸中毒</strong>。</li>
+          <li>3βHB : AcAc 正常約 <strong>1:1</strong>，DKA 時可達 <strong>20:1</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 3βHB 是<strong>最重要的一種</strong>。要記住，因為我們測酮體時要測的就是 3βHB。</li>
+          <li><span class="src src-rec">🎤</span> 正常情況下最常見的是 3βHB 和 AcAc 兩種。但在 DKA 時，3βHB 會大量產生。要做診斷，<strong>先測 3βHB</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 這有實務上的影響：3βHB 可以用血酮機在血中測，<strong>尿液測不到</strong>；尿液測的是乙醯乙酸。最終的問題是陰離子間隙代謝性酸中毒，因為酮酸是強有機酸。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充：為什麼 DKA 時以 3βHB 為主？</strong>
+          <ul class="notes">
+            <li>DKA 時粒線體內 NADH/NAD⁺ 比值升高（脂肪酸大量 β-氧化，加上組織灌流差），AcAc → 3βHB 的反應被推向右邊，比例可達 20:1。</li>
+            <li>測 3βHB 的理由不只是量最多：① 尿液試紙（nitroprusside 反應）只會跟 AcAc（和少量丙酮）反應，完全測不到 3βHB；② 血酮比尿酮早上升，寡尿的病患甚至沒有尿可以測；③ 治療中能正確反映進展（見第 7 節）。</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.8</span><span class="src src-rec">🎤</span> DKA 全貌（Gal &amp; Odunayo 2023）</h3>
+        <figure class="fig">
+          <img src="photos/08-dka-whole-picture.jpg" alt="The whole picture of DKA：器官層面變化與酮血症、高血糖造成休克與多重器官衰竭的流程" loading="lazy">
+          <figcaption>📄 p.8：The whole picture of DKA（Gal A, Odunayo A. Vet Clin North Am Small Anim Pract 2023;53:531–550）</figcaption>
+        </figure>
+        <div class="grid2">
+          <div class="card-mini"><h4>器官層面（左圖）</h4><ul>
+            <li>肌肉：周邊葡萄糖攝取 ↓</li>
+            <li>胰臟：胰島素 ↓、升糖素 ↑</li>
+            <li>脂肪：脂肪分解 ↑</li>
+            <li>肝臟：糖解 ↓、肝醣分解 ↑、糖質新生 ↑、葡萄糖輸出 ↑、生酮</li>
+            <li>腎臟：酮體再吸收 ↑、腎臟葡萄糖清除 ↓</li>
+          </ul></div>
+          <div class="card-mini"><h4>後果（右圖）</h4><ul>
+            <li>酮血症 → 緩衝能力 ↓ → 酮酸中毒 → 低碳酸血症（呼吸代償）</li>
+            <li>高血糖 → 多尿 → 水和電解質流失 → 脫水 → 血管內容積減少 → <strong>休克與多重器官衰竭（MOD）</strong></li>
+            <li>高滲透壓 → 中樞神經功能異常、腦水腫</li>
+          </ul></div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 這張是剛才內容的總整理。所有過程造成酮體產生增加：血中酮體更多、葡萄糖更多，於是<strong>高滲透壓</strong>。高滲透壓造成部分臨床症狀，也造成<strong>滲透性利尿</strong>（10 月 5 日講過）。</li>
+          <li><span class="src src-rec">🎤</span> 所以動物會 PU/PD：酮體和葡萄糖跑到尿裡，帶走水分，造成脫水。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：這張圖把「酸中毒」和「脫水」兩條致命路徑串起來。臨床上真正致死的常常是低血容性休克，而不只是 pH 太低。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🔍</div>
+      <h2>2. 誘發因子：狗與貓</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 為什麼要找誘發因子</h3>
+        <ul class="notes">
+          <li>大多數動物有<strong>另一個疾病觸發 DKA</strong>，所以知道可能的共病和誘發因子非常重要。</li>
+          <li>DKA 的病患可能是<strong>新診斷的糖尿病</strong>，也可能是<strong>已經診斷並在治療中</strong>的糖尿病患，卻發生了別的併發症。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.10</span><span class="src src-rec">🎤</span> 狗</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>誘發情境</h4><ul>
+            <li>新診斷的糖尿病（最常見）</li>
+            <li>已知糖尿病：胰島素劑量不足或有共病</li>
+          </ul>
+          <h4 style="margin-top:10px">69% 的病例有共病</h4><ul>
+            <li>急性胰臟炎（<strong>73% 的狗 PLI 上升</strong>）</li>
+            <li>細菌感染（UTI）</li>
+            <li>腫瘤</li>
+            <li>腎上腺皮質功能亢進、外源性類固醇</li>
+            <li><strong>發情間期（diestrus）</strong></li>
+          </ul></div>
+          <div class="card-mini"><h4>實務上</h4><ul>
+            <li>尋找共病</li>
+            <li>未絕育母犬 → 先給黃體素受體拮抗劑，穩定後再絕育</li>
+            <li>cPLI 上升很常見：要配合臨床表現判讀</li>
+          </ul></div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> <strong>急性胰臟炎</strong>是狗最常被報告的共病。</li>
+          <li><span class="src src-rec">🎤</span> <strong>尿路感染（UTI）</strong>：現在的 UTI 指引建議只有<strong>出現症狀</strong>才治療。但講者認為，在這個族群裡證據不夠，因為這些動物病得很重、需要加護治療，所以也許需要治療。<strong>目前沒有研究</strong>顯示在這個族群治療或不治療 UTI 是否有益。</li>
+          <li><span class="src src-rec">🎤</span> <strong>腫瘤</strong>也常見，因為牠們多是老年動物。</li>
+          <li><span class="src src-rec">🎤</span> <strong>類固醇給藥</strong>：如果動物因為任何原因在吃糖皮質素，要記住。</li>
+          <li><span class="src src-rec">🎤</span> <strong>發情間期</strong>在狗很重要要記得：未絕育母犬的黃體素增加，會刺激 <strong>GH</strong> 分泌增加（造成胰島素阻抗），所以要讓動物先絕育。</li>
+          <li><span class="src src-rec">🎤</span> 如果是未絕育母犬，又<strong>不能馬上絕育</strong>，可以先用黃體素拮抗劑<span class="src src-fix">【更正】</span>（逐字稿誤為 progesterone tablets），避免胰島素阻抗，等動物穩定再手術。</li>
+          <li><span class="src src-rec">🎤</span> <strong>胰臟指數上升非常常見，但不代表所有動物都有胰臟炎</strong>。上升可能也跟糖尿病和 DKA 本身有關。結果一定要配合臨床狀況和其他發現（例如超音波）來判讀。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：發情間期的黃體素會刺激乳腺分泌生長激素，造成嚴重胰島素阻抗。黃體素受體拮抗劑例如 aglepristone。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.11</span><span class="src src-rec">🎤</span> 貓</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>80–90% 的貓有共病</h4><ul>
+            <li>急性胰臟炎</li>
+            <li>肝膽疾病</li>
+            <li>腸胃道疾病</li>
+            <li>CKD 或 AKI</li>
+            <li>細菌（UTI）與病毒感染</li>
+            <li>腫瘤</li>
+            <li>類固醇給藥</li>
+          </ul></div>
+          <div class="card-mini"><h4>實務上</h4><ul>
+            <li>胰臟炎和脂肪肝常常是隱性的 → 做超音波</li>
+            <li>尿液培養：感染可能沒有臨床症狀</li>
+            <li>厭食本身就會促進酮症</li>
+            <li>早期營養支持很重要</li>
+          </ul></div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 大多數貓有<strong>急性胰臟炎</strong>，也常有膽道疾病（膽管炎）。發炎會導致<strong>肝脂質沉積</strong>。腸胃道疾病也很常見，例如 <strong>IBD 和淋巴瘤</strong>的鑑別。</li>
+          <li><span class="src src-rec">🎤</span> 腎臟病也常見（CKD 或 AKI），還有感染，很多是 UTI。</li>
+          <li><span class="src src-rec">🎤</span> 所有動物都可能有腫瘤。類固醇在 10 月 5 日已經講過：<strong>貓使用類固醇最常見的併發症就是糖尿病</strong>，糖尿病如果不治療，動物可能會死。所以一定要問飼主貓有沒有在吃任何藥。</li>
+          <li><span class="src src-rec">🎤</span> 實務上，胰臟炎和脂肪肝<span class="src src-fix">【更正】</span>（逐字稿誤為 parvovirus and leukaemias）可能很難察覺。通常要做<strong>超音波</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 尿液培養是另一個重點。講者偏好做尿液培養，因為大部分這類動物最後都會用抗生素，至少有藥敏結果，知道哪種抗生素才對。</li>
+          <li><span class="src src-rec">🎤</span> 要小心<strong>厭食</strong>：它本身就會促進酮症，而且貓還可能因此發生肝脂質沉積<span class="src src-fix">【更正】</span>（逐字稿為 has a whole），對已經很病的動物又多一個併發症。</li>
+          <li><span class="src src-rec">🎤</span> 所以營養支持很重要（第 16 節）。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：貓的共病比例比狗更高，而且更常「看不出來」。厭食幾天就可能進展成脂肪肝，所以營養在貓的 DKA 治療中不是附加項目。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">🧠</div>
+      <h2>3. HHS 的定義與病理生理</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.12</span><span class="src src-rec">🎤</span> 高血糖高滲透壓症候群（HHS）</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>嚴重高血糖</h4><ul><li><strong>&gt; 600 mg/dL（34 mmol/L）</strong></li></ul></div>
+          <div class="card-mini"><h4>高滲透壓</h4><ul><li><strong>&gt; 330 mOsm/kg</strong>，常常 &gt; 400</li></ul></div>
+          <div class="card-mini"><h4>脫水</h4><ul><li>通常很嚴重</li></ul></div>
+          <div class="card-mini"><h4>酮體</h4><ul><li>血液和尿液中沒有或很少</li></ul></div>
+        </div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>共病很常見</strong>：腎衰竭、CHF、感染、胰臟炎，<strong>而且共病決定預後</strong>。</div></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 差別在哪？HHS 有非常嚴重的高血糖，但<strong>沒有或只有極少酮尿</strong>。原因如前述：這些動物還有一些胰島素分泌，足以阻止脂肪分解，但不足以防止高血糖。</li>
+          <li><span class="src src-rec">🎤</span> 嚴重高血糖造成嚴重高滲透壓（逐字稿說「通常超過 300 mOsm/kg」，講義寫 &gt; 330），所以這些動物<strong>非常非常脫水</strong>。</li>
+          <li><span class="src src-rec">🎤</span> HHS 的共病也很常見，最重要的是<strong>腎衰竭（CKD 和 AKI）</strong>，因為它是誘發因子之一：這些狗貓無法處理尿糖，GFR 下降讓高血糖和高滲透壓更嚴重<span class="src src-fix">【更正】</span>（逐字稿誤為 HGF-R、hypercoagulability）。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.13</span><span class="src src-rec">🎤</span> HHS 的病理生理</h3>
+        <ol class="notes">
+          <li><strong>部分胰島素缺乏</strong>：足以防止脂肪分解和生酮，但不足以控制血糖。</li>
+          <li><strong>壓力荷爾蒙上升</strong>：由共病驅動。</li>
+          <li><strong>高血糖 → 滲透性利尿</strong>：初期 GFR 還正常，尿糖排出能限制血糖上升。</li>
+          <li><strong>低血容造成 GFR 下降</strong>：葡萄糖排不出去 → 極端高血糖。</li>
+        </ol>
+        <div class="grid2">
+          <div class="card-mini"><h4>腦部脫水</h4><ul>
+            <li>高滲透壓把水分從神經元拉出來</li>
+            <li>→ 喝水能力受損</li>
+            <li>→ 更脫水</li>
+          </ul></div>
+          <div class="card-mini"><h4>沒有酮酸 = 沒有早期症狀</h4><ul>
+            <li>病患來院時間比 DKA 晚</li>
+            <li>血糖比 DKA 高</li>
+          </ul></div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 部分胰島素缺乏，加上 DKA 提到的壓力荷爾蒙（反調節荷爾蒙）。</li>
+          <li><span class="src src-rec">🎤</span> 高血糖<span class="src src-fix">【更正】</span>（逐字稿誤為 hypoglycemia）造成滲透性利尿，動物脫水。到某個時間點，低血容使 GFR 下降，動物再也無法處理這麼嚴重的高血糖，於是發展出低血容和臨床症狀。</li>
+          <li><span class="src src-rec">🎤</span> 動物會<strong>細胞脫水</strong>：高滲透壓時，水分會從腦細胞跑出來（逐字稿此處說成 cerebral edema；依講義應為<strong>腦部脫水</strong>，腦水腫是治療太快時的併發症，見第 11 節）。</li>
+          <li><span class="src src-rec">🎤</span> 這造成<strong>意識異常</strong>，動物不再喝水，又進一步加重脫水和低血容。</li>
+          <li><span class="src src-rec">🎤</span> 因為沒有酮酸，這些動物通常<strong>沒有早期臨床症狀</strong>，來到醫院時已經病得非常重。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：第 4 點是重點。腎臟就像洩壓閥，只要 GFR 還在，血糖就很難超過 600；一旦脫水造成 GFR 下降，閥門關掉，血糖就會飆到 800–1000+。這也解釋了為什麼 HHS 只靠輸液恢復 GFR，血糖就會明顯下降（第 15 節）。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🩺</div>
+      <h2>4. 臨床症狀：DKA 與 HHS</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.14</span><span class="src src-rec">🎤</span> 臨床症狀</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>全身性</h4><ul>
+            <li>PU/PD（就診時可能已經消失）</li>
+            <li>厭食、嘔吐、嗜睡</li>
+            <li>體重減輕</li>
+            <li>脫水 → 低血容性休克</li>
+          </ul></div>
+          <div class="card-mini"><h4>神經與其他</h4><ul>
+            <li>意識改變：沉鬱 → 昏迷</li>
+            <li>神經症狀：運動失調、轉圈、踱步</li>
+            <li>共病的症狀（例如腹痛）</li>
+          </ul></div>
+        </div>
+        <div class="alert alert-info"><span class="alert-icon">🫁</span><div><strong>Kussmaul 呼吸</strong>：快速、深、節律規則，是呼吸代償。</div></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 症狀變化很大。當然有糖尿病本身的症狀，就像新診斷的糖尿病狗貓：PU/PD、多食、體重減輕。</li>
+          <li><span class="src src-rec">🎤</span> 但 DKA 時，因為酮體，大多會出現<strong>厭食、嘔吐、嗜睡</strong>。高滲透壓造成脫水。</li>
+          <li><span class="src src-rec">🎤</span> <strong>主要在 HHS</strong>，還會出現神經症狀：嚴重沉鬱，甚至昏迷。動物不吃不喝，讓病患的處置更複雜。</li>
+          <li><span class="src src-rec">🎤</span> 也可能有共病的症狀，取決於同時存在的是什麼病。</li>
+          <li><span class="src src-rec">🎤</span> 講者問台下有沒有看過 Kussmaul 呼吸<span class="src src-fix">【更正】</span>（逐字稿為 guzmal breathing），它和動物試圖排除酸有關。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：PU/PD「可能消失」是因為病患已經嚴重脫水、GFR 下降，或根本不喝水了。Kussmaul 呼吸是藉由排出 CO₂ 來代償代謝性酸中毒（酮體本身不是從肺排出，丙酮的氣味除外）。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🧪</div>
+      <h2>5. DKA 與 DK 的診斷</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.15</span><span class="src src-rec">🎤</span> 診斷三要素</h3>
+        <div class="quote">高血糖 ＋ 酮血症或酮尿 ＋ 代謝性酸中毒 ＝ DKA</div>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>標準</th></tr>
+          <tr><td>血糖</td><td><strong>&gt; 250 mg/dL</strong></td></tr>
+          <tr><td>酮體</td><td>血中 3βHB 上升（<strong>首選</strong>）</td></tr>
+          <tr><td>血氣分析</td><td><strong>pH &lt; 7.35</strong>、HCO₃⁻ 下降</td></tr>
+        </table></div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>有酮症但沒有酸血症 = <strong>糖尿病酮症（DK, diabetic ketosis）</strong></div></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 這個三要素來自<strong>歐洲兒童內分泌學會（European Society for Paediatric Endocrinology）</strong>的指引。</li>
+          <li><span class="src src-rec">🎤</span> DKA 的定義通常是血糖 &gt; 250。理想上要測 3βHB，因為它是最主要的有機酸。做血氣分析時，會看到低 pH 和低碳酸氫根。</li>
+          <li><span class="src src-rec">🎤</span> 當然也可以有酮症而沒有酸血症，叫作糖尿病酮症。<strong>這類病患大多可以門診處理，不需要住院。</strong></li>
+          <li><span class="src src-rec">🎤</span> 每個新診斷的糖尿病患多少都會有一些酮症，這算是正常的。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">💊</div>
+      <h2>6. 正常血糖 DKA（eDKA）與 SGLT2 抑制劑</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.16</span><span class="src src-rec">🎤</span> eDKA 的診斷</h3>
+        <ul class="notes">
+          <li><strong>定義</strong>：有酮酸中毒，但血糖或組織間液葡萄糖 <strong>&lt; 250 mg/dL</strong>。</li>
+          <li><strong>何時懷疑</strong>：
+            <ul class="notes">
+              <li>使用 <strong>SGLT2 抑制劑</strong></li>
+              <li>長期厭食、飢餓</li>
+              <li>來院前不久剛打過胰島素</li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 以前 DKA 都是非常高血糖，但現在越來越常用 SGLT2 抑制劑，所以<strong>血糖正常時也要想到 DKA</strong>，這叫作正常血糖 DKA<span class="src src-fix">【更正】</span>（逐字稿誤為 hypoglycemic keto）。</li>
+          <li><span class="src src-rec">🎤</span> 最常見的情況是<strong>貓用 SGLT2 抑制劑治療</strong>時。10 月 5 日講過，狗是胰島素依賴型，所以<strong>不會在狗單獨使用 SGLT2i 而不給胰島素</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 其他少見情況：飢餓時也可能血糖正常；或動物其實在 DKA，但幾小時前剛打過胰島素，所以測血糖正常，酮體卻非常高。</li>
+          <li><span class="src src-rec">🎤</span> 病理生理一樣。看起來很奇怪，為什麼血糖正常還會酮酸中毒？原因是血中的葡萄糖<strong>即使正常，也因為沒有胰島素而無法被細胞利用</strong>。身體就從其他受質（脂肪）取得能量，最終產物就是酮體。這就是 SGLT2i 治療的動物發生 DKA 的原因。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.17</span><span class="src src-rec">🎤</span> eDKA 與 SGLT2 抑制劑</h3>
+        <ul class="notes">
+          <li><strong>Velagliflozin</strong>（Senvelgo）和 <strong>bexagliflozin</strong>（Bexacat）已核准用於貓糖尿病。</li>
+          <li>適應症：<strong>還有殘存 β 細胞功能、沒有酮症</strong>的貓。</li>
+          <li>約 <strong>5–7%</strong> 治療中的貓會發生。</li>
+          <li><strong>大多發生在前 2 週</strong>。</li>
+        </ul>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 這個併發症的頻率 10 月 5 日講過，在近兩年發表的研究中約 5–7%，<strong>最常發生在前兩週</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 所以開這個藥（velagliflozin<span class="src src-fix">【更正】</span>，逐字稿為 semagro）給貓時，要請飼主<strong>特別在前兩週</strong>監測。這是動物最容易發生 DKA 的時間點。</li>
+          <li><span class="src src-rec">🎤</span> 但 DKA 也可能在任何時間點發生，甚至治療一年、幾年後。只是關鍵期是前兩週。</li>
+          <li><span class="src src-rec">🎤</span> 如果看只用胰島素治療的貓族群，DKA 的頻率可能差不多，甚至更高。重點是要了解所開的藥會造成什麼併發症、要怎麼處理。對 SGLT2i 來說，<strong>選對病患是最重要的因素</strong>。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：SGLT2i 讓葡萄糖從尿中排掉，所以血糖「看起來」正常，但身體其實仍然胰島素不足，脂肪分解和生酮照樣進行。詳見 <a href="sglt2i-off-label.html">04 SGLT2 抑制劑的仿單外使用</a>。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.18</span><span class="src src-rec">🎤</span> eDKA 的風險因子（SENSATION 研究，Behrend 2024）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>#</th><th>風險因子</th><th>🎤 講者解釋</th></tr>
+          <tr><td>1</td><td><strong>之前接受過胰島素治療</strong></td><td>不是胰島素本身的問題。這些貓通常很久以前就診斷了，代表牠可能<strong>已經不能分泌內生性胰島素</strong>。目前沒有任何實驗室參數能預測哪隻動物還在分泌胰島素。已經長期打胰島素的貓可能不是最好的候選者，但仍然可以考慮這個藥。</td></tr>
+          <tr><td>2</td><td>第 2–3 天體重減輕 <strong>≥ 5%</strong>，或前 2 週減輕 <strong>&gt; 8%</strong></td><td>牠們正在大量消耗體脂肪來製造酮體。</td></tr>
+          <tr><td>3</td><td>任何時間點三酸甘油酯 <strong>&gt; 500 mg/dL</strong></td><td rowspan="2">代表正在大量利用脂肪、動員大量三酸甘油酯。</td></tr>
+          <tr><td>4</td><td>治療期間三酸甘油酯<strong>上升十倍</strong></td></tr>
+        </table></div>
+        <div class="grid2">
+          <div class="card-mini"><h4>SGLT2i 治療期間的高風險情境</h4><ul>
+            <li>厭食、嘔吐</li>
+            <li>同時有其他疾病</li>
+            <li>手術、麻醉、長時間禁食</li>
+          </ul></div>
+          <div class="card-mini"><h4>🎤 講者舉例</h4><ul>
+            <li>一隻已經打了兩年胰島素、三酸甘油酯很高、體重一直掉的貓，大概<strong>不是這個藥的理想候選者</strong>。</li>
+          </ul></div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> SENSATION 是這個藥在貓最大的研究之一。</li>
+          <li><span class="src src-rec">🎤</span> 任何造成厭食或嘔吐的原因，都可能觸發 DKA<span class="src src-fix">【更正】</span>（逐字稿誤為 hypoglycemia）。任何共病也都是風險。</li>
+          <li><span class="src src-rec">🎤</span> <strong>手術、麻醉、長時間禁食</strong>在貓還沒有資料，但人醫知道這些是發生 DKA 的風險情境。原因是：動物要麻醉、手術時通常會停藥，但<strong>藥效還會持續好幾天，有時甚至好幾週</strong>。所以如果動物術後不吃東西，就是酮酸中毒的風險因子。動物要手術或麻醉時要特別小心。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：實務上，開始 SGLT2i 後前兩週要密切監測酮體（最好用 3βHB 血酮機）並追蹤體重；遇到麻醉或手術要預先計畫停藥與術後營養（見第 18 節 Q&amp;A 的牙科手術問題）。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🩸</div>
+      <h2>7. 如何測量酮體？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.19</span><span class="src src-rec">🎤</span> 尿液試紙 vs 照護現場（POC）3βHB 血酮機</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>尿液試紙</h4><ul>
+            <li>只偵測<strong>乙醯乙酸</strong></li>
+            <li>血酮比尿酮<strong>先上升</strong></li>
+            <li>尿液檢測可能漏掉早期 DKA</li>
+          </ul></div>
+          <div class="card-mini"><h4>POC 3βHB 血酮機</h4><ul>
+            <li>全血 10 µL，Abbott Precision Xtra®</li>
+            <li>已在狗貓驗證</li>
+            <li>狗：3βHB &gt; <strong>3.8 mmol/L</strong> → Se 70%、Sp 92%</li>
+            <li>貓：3βHB &gt; <strong>2.55 mmol/L</strong>（血酮機）→ Se 94%、Sp 68%</li>
+          </ul></div>
+        </div>
+        <div class="quote">3βHB 約占 DKA 酮體的 78%，而這正是試紙看不到的那一種。</div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 從講者展示的圖可以看到，DKA 時大部分酮體是 <strong>3βHB</strong>（藍色那塊），約 <strong>20% 是乙醯乙酸</strong>，約 <strong>2% 是丙酮</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 所以要測 3βHB，而且只能在血中測。講者問台下有沒有人在用血酮機。這台血酮機已在狗驗證，可以測 3βHB，表上的 cut-off 來自已發表的研究。</li>
+          <li><span class="src src-rec">🎤</span> 狗的 3βHB &gt; 3.8 時，對 DKA 的敏感度 70%、特異度 92%。<strong>最常用的酮體 cut-off 是 2.4–2.5</strong>，可以當作考慮 DKA 的參考值。</li>
+          <li><span class="src src-rec">🎤</span> 尿液也可以測酮體，但要記得只會測到乙醯乙酸，不會測到 3βHB，所以可能<strong>錯過酮體早期的上升</strong>。不過<strong>如果尿酮陽性，代表血中 3βHB 可能已經非常高</strong>，所以尿酮對診斷還是有幫助。但如果要具體數字或要追蹤，最好測血中 3βHB。</li>
+        </ul>
+        <div class="alert alert-danger"><span class="alert-icon">🚩</span><div><strong>治療中的陷阱</strong>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 在 DKA 監測過程中測酮體，<strong>尿液試紙會隨時間變得更陽性</strong>。這<strong>不代表變差</strong>，只是因為治療讓 3βHB 轉成乙醯乙酸。所以尿酮<strong>不是監測 DKA 的好指標</strong>，要測血中 3βHB。</li>
+            <li><span class="src src-add">💡</span> 治療後灌流和氧化還原狀態改善，3βHB 被氧化回 AcAc，病患在好轉，尿酮反而更陽性。這也是第 17 節「連續 2 次 3βHB 正常」才降級照護的原因。</li>
+          </ul>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">⚖️</div>
+      <h2>8. DKA vs HHS 鑑別與 HHS 診斷</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.20</span><span class="src src-rec">🎤</span> 鑑別表</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>DKA</th><th>HHS</th></tr>
+          <tr><td>血糖或組織間液葡萄糖（mg/dL）</td><td>&gt; 250（eDKA 時 &lt; 250）</td><td><strong>&gt; 600</strong></td></tr>
+          <tr><td>pH</td><td>&lt; 7.3</td><td>&gt; 7.3</td></tr>
+          <tr><td>碳酸氫根（mmol/L）</td><td>&lt; 18</td><td>&gt; 18</td></tr>
+          <tr><td>酮體（血、尿）</td><td>陽性</td><td>少量或無</td></tr>
+          <tr><td>有效滲透壓</td><td>不一定</td><td><strong>&gt; 320 mOsm/kg</strong></td></tr>
+        </table></div>
+        <p class="p"><strong>有效滲透壓 = 2 × Na⁺ + 葡萄糖</strong>；正常狗貓 280–300 mOsm/kg。</p>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> DKA 的血糖可以正常或偏高；HHS 通常非常高。</li>
+          <li><span class="src src-rec">🎤</span> DKA 通常有酸中毒，HHS 沒有。但 HHS <strong>仍可能有酸中毒</strong>，例如同時有急性腎損傷或其他造成代謝性酸中毒的狀況。</li>
+          <li><span class="src src-rec">🎤</span> DKA 的酮體通常陽性且上升；HHS 通常沒有或只有很少量。</li>
+          <li><span class="src src-rec">🎤</span> HHS 的滲透壓非常高。狗貓正常滲透壓約 <strong>280–300</strong>。</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>補充：公式單位</strong>：葡萄糖用 mg/dL 時要<strong>除以 18</strong>：有效滲透壓 = 2 × Na⁺ + Glu(mg/dL) ÷ 18。尿素不列入，因為它能自由穿過細胞膜，不會造成水分移動，所以叫「有效」滲透壓。另外，這張表 pH 切點是 7.3，p.15 是 7.35，屬於不同文獻的差異。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-add">💡 補充</span> 怎麼診斷 HHS（整理）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>標準</th><th>說明</th></tr>
+          <tr><td>血糖</td><td><strong>&gt; 600 mg/dL</strong>（34 mmol/L）</td><td>常遠高於此，800–1000+ 並不少見</td></tr>
+          <tr><td>有效滲透壓</td><td><strong>&gt; 320 mOsm/kg</strong>（p.12 寫 &gt; 330，常 &gt; 400）</td><td>超過 320 就開始警覺，超過 330 確定落在 HHS 範圍</td></tr>
+          <tr><td>酸鹼</td><td><strong>pH &gt; 7.3、HCO₃⁻ &gt; 18</strong></td><td>沒有明顯酮酸中毒（除非有 AKI 等其他原因）</td></tr>
+          <tr><td>酮體</td><td><strong>陰性或微量</strong></td><td>最好測血中 3βHB</td></tr>
+        </table></div>
+        <h4>計算範例</h4>
+        <ul class="notes">
+          <li><strong>有效滲透壓</strong>：Na 150、血糖 900 mg/dL → 2 × 150 + 900 ÷ 18 = 300 + 50 = <strong>350 mOsm/kg</strong> → 符合 HHS。</li>
+          <li><strong>校正鈉</strong>（p.37 公式）：測得 Na 140、血糖 900 → 140 + 1.6 × (900 − 100) ÷ 100 ≈ <strong>153 mEq/L</strong>。高血糖把細胞內的水拉出來稀釋血鈉，所以測得的鈉看起來正常甚至偏低，實際自由水缺乏更嚴重。</li>
+          <li>如果有機器直接測的滲透壓（冰點下降法），那是「總滲透壓」，包含尿素，數值會比有效滲透壓高。</li>
+        </ul>
+        <h4>DKA、混合型、HHS 的區分</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>DKA</th><th>混合型</th><th>HHS</th></tr>
+          <tr><td>血糖</td><td>&gt; 250</td><td>通常很高</td><td>&gt; 600</td></tr>
+          <tr><td>酮體</td><td>陽性</td><td><strong>陽性</strong></td><td>無或微量</td></tr>
+          <tr><td>pH / HCO₃⁻</td><td>&lt; 7.3 / &lt; 18</td><td><strong>酸中毒</strong></td><td>&gt; 7.3 / &gt; 18</td></tr>
+          <tr><td>滲透壓</td><td>不一定</td><td><strong>&gt; 320</strong></td><td>&gt; 320</td></tr>
+        </table></div>
+        <p class="p">混合型臨床上很常見：胰島素要照 DKA 的方式給（因為有酮體），但輸液和矯正速度要照 HHS 的規則慢慢來（因為滲透壓高）。</p>
+        <h4>什麼時候要懷疑 HHS</h4>
+        <ul class="notes">
+          <li>血糖非常高，但沒有 Kussmaul 呼吸，血氣也沒有明顯酸中毒</li>
+          <li>神經症狀比 DKA 明顯：沉鬱、昏迷、運動失調、轉圈、癲癇（腦部脫水）</li>
+          <li>極度脫水，BUN／肌酸酐上升（GFR 下降正是血糖飆高的原因）</li>
+          <li>病程較長、來院較晚（沒有酮酸，早期症狀不明顯）</li>
+          <li>有共病：腎病、心衰竭、感染、胰臟炎，或正在使用類固醇</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">📋</div>
+      <h2>9. 診斷檢查</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.21</span><span class="src src-rec">🎤</span> Diagnostic work-up</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>基本</h4><ul>
+            <li>血液學（含血液抹片）</li>
+            <li>生化＋Ca、P，± CRP/SAA</li>
+            <li>尿液分析 ± 尿液培養</li>
+            <li>靜脈血氣（pH、HCO₃⁻、電解質、陰離子間隙）</li>
+          </ul></div>
+          <div class="card-mini"><h4>依懷疑加做</h4><ul>
+            <li>腹部超音波</li>
+            <li>± 胸腔 X 光</li>
+            <li>± 其他檢查（PLI／DGGR lipase、葉酸／鈷胺素、細針抽吸）</li>
+            <li>± 黃體素（未絕育母犬）</li>
+          </ul></div>
+        </div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>共病對預後的影響，比初始血糖或 pH 更大。</strong></div></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> CBC、血液生化、尿液分析是這類病患的<strong>標準基本檢查</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 尿液培養寫「±」，因為要看懷疑程度和尿沉渣有沒有細菌。但講者<strong>通常喜歡做尿液培養</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 要做靜脈血氣，測 pH、碳酸氫根、電解質和陰離子間隙。</li>
+          <li><span class="src src-rec">🎤</span> 其他檢查依懷疑的疾病而定。講者通常<strong>至少會做腹部超音波</strong>。胸腔 X 光看懷疑程度：腫瘤<span class="src src-fix">【更正】</span>（逐字稿為 neonatia）是常見共病之一，要確定沒有會影響預後的腫瘤。</li>
+          <li><span class="src src-rec">🎤</span> 未絕育母犬可以測黃體素，考慮用黃體素拮抗劑治療。</li>
+          <li><span class="src src-rec">🎤</span> 其他依懷疑加做：胰臟炎測 PLI 或 DGGR lipase<span class="src src-fix">【更正】</span>（逐字稿為 endometrium）、腸胃道疾病測葉酸／鈷胺素、有異常就做 FNA。檢查計畫會隨懷疑的疾病改變。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🎯</div>
+      <h2>10. 治療五目標與 eDKA 的差異</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.22</span><span class="src src-rec">🎤</span> 治療：五個目標</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>#</th><th>目標</th><th>講義</th><th>🎤 講者說明</th></tr>
+          <tr><td>1</td><td><strong>恢復水分與電解質</strong></td><td>永遠先輸液</td><td>補回因高血糖（滲透性利尿）和低血容而流失的水分和電解質。</td></tr>
+          <tr><td>2</td><td><strong>給胰島素</strong></td><td>抑制脂肪分解、生酮、肝臟葡萄糖輸出</td><td>胰島素讓代謝從脂肪<strong>切回葡萄糖</strong>：阻斷脂肪分解、恢復正常葡萄糖代謝。</td></tr>
+          <tr><td>3</td><td><strong>需要時給葡萄糖</strong></td><td>讓胰島素可以繼續給，不會低血糖</td><td>開始胰島素後血糖一路下降，到某個點時<strong>不要停胰島素</strong>，而是加葡萄糖，葡萄糖和胰島素同時給，維持葡萄糖代謝。</td></tr>
+          <tr><td>4</td><td><strong>慢慢來</strong></td><td>太積極矯正會造成滲透壓相關併發症</td><td><strong>HHS 尤其如此</strong>。嚴重高滲透壓不要在幾小時內矯正完，會有併發症。具體數字見第 11、15 節。</td></tr>
+          <tr><td>5</td><td><strong>治療誘發疾病</strong></td><td>胰臟炎、感染、發情間期、類固醇</td><td>感染、胰臟炎或任何和 DKA 相關的狀況都要治療。</td></tr>
+          <tr><td>—</td><td>矯正酸中毒</td><td>大多靠輸液和胰島素自行改善</td><td>給輸液、給胰島素、減少酮體生成之後，酸中毒大多會改善。</td></tr>
+        </table></div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：DKA 的治療終點是「<strong>酮體清除</strong>」，不是「血糖正常」。血糖通常比酮體先降，所以要補葡萄糖來「掩護」胰島素繼續作用。一般不建議常規給碳酸氫鈉。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.23</span><span class="src src-rec">🎤</span> eDKA 的治療有什麼不同？</h3>
+        <div class="grid3">
+          <div class="card-mini"><h4>停用 SGLT2 抑制劑</h4><ul><li>但<strong>仍然需要胰島素</strong></li></ul></div>
+          <div class="card-mini"><h4>一開始就給葡萄糖</h4><ul><li>追蹤 3βHB 和低血糖</li></ul></div>
+          <div class="card-mini"><h4>病程會比較長</h4><ul>
+            <li>尿糖會持續數天到數週</li>
+            <li>酮體清除得慢</li>
+            <li>有低血糖風險</li>
+          </ul></div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> eDKA 有什麼不一樣？<strong>沒有，治療完全一樣</strong>。唯一的差別是停掉 SGLT2 抑制劑、開始胰島素。</li>
+          <li><span class="src src-rec">🎤</span> 這看起來很怪，動物血糖正常，卻要開始打胰島素。但還是要給胰島素，也要給葡萄糖。這類病患常常需要<strong>高濃度葡萄糖</strong>，或者<strong>長時間給葡萄糖</strong>，因為 SGLT2 抑制劑的作用還在。</li>
+          <li><span class="src src-rec">🎤</span> 預期病程比較長，可能很難處理，原因就是藥停了但<strong>還在作用</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 最近發表的一篇病例報告：一隻用 SGLT2i 治療（逐字稿為 dabiglucazine，藥名無法確認）的貓診斷為 eDKA。出院後兩週，這隻貓<strong>又出現尿糖</strong>（逐字稿為 hyperglycemia；依講義內容應指尿糖持續），代表藥效持續了兩週。所以這類病患很難處理：藥還在作用，同時又要努力減少酮酸生成。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">💧</div>
+      <h2>11. 輸液：多少、多快、哪一種</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.24</span><span class="src src-rec">🎤</span> 給多少、多快</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>低灌流（前 1–2 小時）</h4><ul>
+            <li>Bolus：狗 <strong>10–20 mL/kg</strong>、貓 <strong>5–10 mL/kg</strong>，15–20 分鐘給完</li>
+            <li>每次 bolus 後重新評估：意識、心跳、脈搏品質、CRT、血壓</li>
+          </ul></div>
+          <div class="card-mini"><h4>脫水（接下來 12–48 小時）</h4><ul>
+            <li>缺水量（mL）= 脫水 % × 體重（kg）× 10</li>
+            <li>加上維持量 <strong>2–2.5 mL/kg/h</strong></li>
+            <li>加上持續流失（嘔吐、腹瀉、多尿）</li>
+          </ul></div>
+        </div>
+        <div class="tbl-wrap"><table>
+          <tr><th colspan="2">慢慢來（Go slowly）</th></tr>
+          <tr><td>血糖</td><td>每小時下降目標 <strong>50–75 mg/dL</strong></td></tr>
+          <tr><td>鈉</td><td>每天變化 <strong>≤ 10–12 mEq/L</strong></td></tr>
+        </table></div>
+        <div class="alert alert-danger"><span class="alert-icon">🧠</span><div>血漿滲透壓快速下降會讓水分跑進細胞。<strong>病患看似改善後幾小時又惡化 → 考慮腦水腫。</strong></div></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 這張講者不多講，因為大家都比他更懂怎麼處理低灌流、怎麼補脫水。他想給的是<strong>血糖和鈉的目標</strong>。</li>
+          <li><span class="src src-rec">🎤</span> <strong>一開始輸液，血糖就已經開始下降</strong>。所以先讓動物補水，之後再開始胰島素（具體時間見第 13 節）。</li>
+          <li><span class="src src-rec">🎤</span> 血糖通常希望每小時降 50–75 mg/dL。鈉要低於 10–12 mEq/L<span class="src src-fix">【更正】</span>（錄音說 per hour，講義為 <strong>per day</strong>），避免鈉濃度變化太快造成神經併發症。</li>
+          <li><span class="src src-rec">🎤</span> 滲透壓快速下降會把水推進細胞。高滲透壓時，<strong>腦會產生一些物質來對抗高滲透壓</strong>，而腦需要時間把這些滲透物質移除。如果滲透壓降得太快，水跑進腦細胞，造成<strong>腦水腫</strong>，出現神經症狀，<strong>這可能成為安樂死的原因</strong>。所以滲透壓的處理要小心。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：腦細胞產生的物質稱為「特發性滲透分子（idiogenic osmoles）」。缺水量公式裡的脫水 % 用整數，例如 8% 就寫 8：10 kg、8% 脫水 → 8 × 10 × 10 = 800 mL。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.25</span><span class="src src-rec">🎤</span> 選哪一種輸液？</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>Na⁺</th><th>Cl⁻</th><th>K⁺</th><th>Ca²⁺</th><th>Mg²⁺</th><th>緩衝劑</th><th>mOsm/L</th><th>pH</th></tr>
+          <tr><td>血漿</td><td>145</td><td>105</td><td>5</td><td>5</td><td>3</td><td>24</td><td>300</td><td>7.4</td></tr>
+          <tr><td>0.9% NaCl</td><td>154</td><td>154</td><td>0</td><td>0</td><td>0</td><td>0</td><td>308</td><td>5.0</td></tr>
+          <tr><td>乳酸林格氏液</td><td>130</td><td>109</td><td>4</td><td>2.7</td><td>0</td><td>28</td><td>273</td><td>6.5</td></tr>
+          <tr><td>Plasma-Lyte</td><td>140</td><td>98</td><td>5</td><td>0</td><td>3</td><td>50</td><td>295</td><td>7.4</td></tr>
+          <tr><td>Normosol-R</td><td>140</td><td>98</td><td>5</td><td>0</td><td>3</td><td>50</td><td>295</td><td>7.4</td></tr>
+        </table></div>
+        <p class="muted">表格改編自 Feldman &amp; Nelson, Canine and Feline Endocrinology, 4th ed., 2015:333；JBDS Adult DKA Guidelines 2023</p>
+        <div class="grid2">
+          <div class="card-mini"><h4>0.9% NaCl</h4><ul>
+            <li>人醫指引首選</li>
+            <li>Na⁺ 較高 → 滲透壓下降較慢</li>
+            <li>Cl⁻ 較高 → 高氯性酸中毒、可能造成腎損傷</li>
+          </ul></div>
+          <div class="card-mini"><h4>平衡晶體液</h4><ul>
+            <li>較接近血漿、較不會酸化</li>
+            <li>含鉀和可代謝的緩衝劑</li>
+            <li>要注意鈉和滲透壓</li>
+          </ul></div>
+        </div>
+        <div class="quote">狗貓沒有研究比較 DKA 的輸液種類：選哪種輸液，沒有給「足量」來得重要。</div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 狗貓的 DKA 沒有特定的輸液建議，但人醫通常偏好生理食鹽水，因為鈉濃度較高，滲透壓下降比較慢。</li>
+          <li><span class="src src-rec">🎤</span> 但這些病患已經脫水，生理食鹽水的氯濃度高，可能造成腎損傷和高氯性酸中毒。</li>
+          <li><span class="src src-rec">🎤</span> 所以有些病患講者偏好平衡晶體液，因為電解質濃度較接近血漿。但問題可能是鈉：乳酸林格氏液的鈉比血漿低，如果動物有嚴重<strong>高血鈉</strong><span class="src src-fix">【更正】</span>（逐字稿為 hyponatremia；依上下文應為高鈉／高滲透壓），會讓鈉濃度降得很快，造成剛才提到的併發症。</li>
+          <li><span class="src src-rec">🎤</span> 用平衡晶體液時，<strong>注意鈉濃度和滲透壓</strong>。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：LRS 的滲透壓只有 273，對嚴重高滲透壓（尤其 HHS）的病患可能讓滲透壓降太快，這時 0.9% NaCl 比較安全。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">⚡</div>
+      <h2>12. 電解質：鉀、磷、鎂</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.26</span><span class="src src-rec">🎤</span> 補鉀：機轉</h3>
+        <figure class="fig">
+          <img src="photos/08-potassium-shift.jpg" alt="Potassium supplementation：正常 pH、酸中毒、矯正酸中毒時鉀在細胞內外的移動" loading="lazy">
+          <figcaption>📄 p.26：A 正常 pH；B 酸中毒（H⁺ 進細胞、K⁺ 出細胞）；C 矯正酸中毒（K⁺ 回到細胞內）</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><strong>酸中毒使 K⁺ 從細胞內液（ICF）移到細胞外液（ECF）</strong></li>
+          <li>滲透性利尿、腸胃道流失、攝取減少</li>
+        </ul>
+        <div class="alert alert-danger"><span class="alert-icon">⬇️</span><div><strong>治療過程中 K⁺ 會降得更低</strong>：矯正酸中毒＋胰島素會把 K⁺ 推回細胞內。症狀：無力、<strong>貓的頸部腹屈</strong>、腸阻塞、心律不整。</div></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 需要補充的電解質之一是鉀，因為病患會低血鉀。酸中毒時鉀從細胞內移到細胞外；但治療 DKA、矯正酸中毒時，鉀又回到細胞內。</li>
+          <li><span class="src src-rec">🎤</span> 給胰島素時，胰島素會把鉀從細胞外液推進細胞內。所以會低血鉀，可能很嚴重，也可能很難處理。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：DKA 病患<strong>全身總鉀量幾乎都缺乏</strong>，即使來院時血鉀正常甚至偏高，也只是假象。一打胰島素血鉀就會掉，所以要「先補鉀再打胰島素」。另見 <a href="diabetic-nutrition.html#s1">06 Bobo 的高血鉀其實是全身缺鉀</a>。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.27</span><span class="src src-rec">🎤</span> 補鉀：劑量表</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>血清 K⁺（mEq/L）</th><th>傳統指引（mEq/L 輸液）</th><th>DKA 指引（mEq/L 輸液）</th></tr>
+          <tr><td>&gt; 5.0</td><td class="td-center">0</td><td class="td-center">0</td></tr>
+          <tr><td>4.0–5.0</td><td class="td-center">10</td><td class="td-center">20–30</td></tr>
+          <tr><td>3.5–4.0</td><td class="td-center">20</td><td class="td-center">30–40</td></tr>
+          <tr><td>3.0–3.5</td><td class="td-center">30</td><td class="td-center">40–50</td></tr>
+          <tr><td>2.5–3.0</td><td class="td-center">40</td><td class="td-center"><strong>50–60</strong></td></tr>
+          <tr><td>2.0–2.5</td><td class="td-center">60</td><td class="td-center"><strong>60–80</strong></td></tr>
+          <tr><td>&lt; 2.0</td><td class="td-center">80</td><td class="td-center"><strong>80</strong></td></tr>
+        </table></div>
+        <div class="grid2">
+          <div class="card-mini"><h4>上限</h4><ul>
+            <li>絕對不要超過 <strong>0.5 mEq/kg/h</strong></li>
+            <li>每 4–6 小時複檢 K⁺</li>
+          </ul></div>
+          <div class="card-mini"><h4>注意</h4><ul>
+            <li>寡尿或無尿 → 謹慎補充</li>
+          </ul></div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 鉀有特定的補充指引。比較傳統指引和 DKA 指引，<strong>DKA 的補鉀量通常更高</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 鉀也有每小時不能超過的速率。如果病患有<strong>急性腎損傷</strong><span class="src src-fix">【更正】</span>（逐字稿為 lactic acid injury），鉀的處理要小心。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：表上是「每公升輸液」的濃度，實際速率要乘上輸液速度，算出 mEq/kg/h 確認沒有超過 0.5。例：10 kg 的狗，輸液 40 mL/h、KCl 60 mEq/L → 0.04 L/h × 60 = 2.4 mEq/h ÷ 10 kg = 0.24 mEq/kg/h，安全。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.28</span><span class="src src-rec">🎤</span> 補磷與補鎂</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>磷</h4><ul>
+            <li>來院時可能低、正常或高 → <strong>開始給胰島素後會急遽下降</strong></li>
+            <li>補充時機：P &lt; 1.5 mg/dL；<strong>溶血（尤其是貓）</strong>；少數情況下的橫紋肌溶解、換氣不足、心律不整</li>
+            <li>劑量：<strong>0.01–0.12 mmol/kg/h CRI</strong></li>
+            <li>每 8–12 小時複檢 P</li>
+          </ul></div>
+          <div class="card-mini"><h4>鎂</h4><ul>
+            <li>總鎂 &lt; 1.9 mg/dL（0.8 mmol/L）；游離鎂 &lt; 0.5 mmol/L</li>
+            <li>頑固性低血鉀、低血鈣或心律不整時要檢查</li>
+            <li>補充劑量：<strong>0.25–1 mEq/kg/day</strong></li>
+          </ul></div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 磷<span class="src src-fix">【更正】</span>（逐字稿為 inosine）：病患來院時可能正常、偏高或偏低。但開始打胰島素後，磷會進入細胞，出現低血磷。</li>
+          <li><span class="src src-rec">🎤</span> 講者提到低血磷的主要併發症之一是<strong>橫紋肌溶解</strong>，是非常嚴重的併發症，所以要補磷（講義則把<strong>溶血</strong>列為主要情況，橫紋肌溶解為少見）。</li>
+          <li><span class="src src-rec">🎤</span> 補磷的切點約 <strong>1.5</strong>，但要看你的檢驗室怎麼測磷、用什麼參考範圍。</li>
+          <li><span class="src src-rec">🎤</span> 另一個要補的電解質是<strong>鎂</strong>。尤其是<strong>頑固性低血鉀</strong>（可能和低血鎂有關），或頑固性低血鈣，或病患出現心臟異常、心律不整時，就要補鎂<span class="src src-fix">【更正】</span>（逐字稿誤為 supplement potassium）。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：低磷讓紅血球的 ATP 和 2,3-DPG 下降、膜變脆，進而溶血，貓特別容易。常用磷酸鉀補充，會同時補到鉀，要合併計算鉀的總量。低鎂會讓腎臟持續排鉀，所以「補鉀補不上來」時要想到鎂。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 13 ══ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">💉</div>
+      <h2>13. 胰島素：為什麼重要、何時開始</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.30</span><span class="src src-rec">🎤</span> 胰島素治療為什麼這麼重要？</h3>
+        <div class="grid3">
+          <div class="card-mini"><h4>脂肪組織</h4><ul>
+            <li>⊖ 脂肪分解</li>
+            <li>送到肝臟的 NEFA 減少</li>
+          </ul></div>
+          <div class="card-mini"><h4>肝臟</h4><ul>
+            <li>⊖ 生酮</li>
+            <li>⊖ 糖質新生</li>
+            <li>⊕ 脂質儲存</li>
+          </ul></div>
+          <div class="card-mini"><h4>肌肉與周邊</h4><ul>
+            <li>⊕ 葡萄糖攝取</li>
+            <li>⊕ 酮體利用</li>
+            <li>K⁺ 和磷移入細胞</li>
+          </ul></div>
+        </div>
+        <div class="alert alert-success"><span class="alert-icon">🎯</span><div><strong>目標</strong>：血糖每小時下降 50–75 mg/dL，降到約 250 mg/dL → <strong>加入葡萄糖，持續給胰島素，直到酮症解除</strong>。</div></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 這是治療中<strong>最重要的部分</strong>。第一，胰島素<strong>停止脂肪分解</strong><span class="src src-fix">【更正】</span>（逐字稿為 life forces）。第二，作用在肝臟：停止生酮、停止糖質新生、促進肝臟的脂質儲存。第三，促進細胞攝取葡萄糖，也促進酮體的利用。</li>
+          <li><span class="src src-rec">🎤</span> 併發症之一是鉀和磷下降。</li>
+          <li><span class="src src-rec">🎤</span> 這就是治療 DKA 時<strong>不要停胰島素</strong>的原因。</li>
+          <li><span class="src src-rec">🎤</span> 血糖目標前面講過：每小時降 50–75 mg/dL，降到 200–250 mg/dL 的範圍。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.31</span><span class="src src-rec">🎤</span> 什麼時候開始胰島素？（DiFazio &amp; Fletcher 2016）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>早期</th><th>晚期</th></tr>
+          <tr><td>開始時間</td><td>0–6 小時（中位數 4 小時）</td><td>7–21 小時（中位數 8.3 小時）</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li>早期給胰島素 → <strong>DK／DKA 較快緩解</strong></li>
+          <li>併發症率和住院時間相近</li>
+        </ul>
+        <div class="card-mini"><h4>開始前要確認</h4><ul>
+          <li>✔ 已完成容積復甦</li>
+          <li>✔ K⁺ &gt; 3.5 mEq/L，或已經在補鉀</li>
+          <li>✔ 已能每小時監測血糖</li>
+          <li>✔ 已備妥含葡萄糖輸液</li>
+        </ul></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 一個重要問題是「什麼時候」開始胰島素<span class="src src-fix">【更正】</span>（逐字稿說成 stop）。這篇研究比較早期（0–6 小時）和晚期（7–24 小時）給胰島素。</li>
+          <li><span class="src src-rec">🎤</span> 逐字稿寫「早期治療的狗，DKA 緩解時間較長」<span class="src src-fix">【更正】</span>，與講義和原始研究相反：<strong>早期給胰島素緩解較快</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 胰島素<strong>不要太晚開始</strong>，但同時要<strong>先讓病患補水</strong>（逐字稿為 retrain，應為 rehydrate）。</li>
+          <li><span class="src src-rec">🎤</span> 要先改善鉀濃度，因為開始胰島素後鉀會更低。</li>
+          <li><span class="src src-rec">🎤</span> 當然要開始監測血糖，因為這時血糖會下降，要避免低血糖。</li>
+          <li><span class="src src-rec">🎤</span> 也要注意<strong>磷</strong>：開始胰島素時磷應該要正常，因為開始胰島素治療後它會下降。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：過去常說「先輸液 6 小時再打胰島素」。這篇研究顯示提早給並不會增加併發症，重點不是等多久，而是上面四個條件有沒有到位。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 14 ══ -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">📈</div>
+      <h2>14. 胰島素方案</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.32</span><span class="src src-rec">🎤</span> 短效胰島素：靜脈 CRI（Macintire 法）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>血糖（mg/dL）</th><th>輸液</th><th>胰島素速率（mL/h）</th></tr>
+          <tr><td>&gt; 250</td><td>LRS／Plasma-Lyte</td><td class="td-center">2</td></tr>
+          <tr><td>200–250</td><td>2.5% 葡萄糖 *</td><td class="td-center">1.5</td></tr>
+          <tr><td>150–200</td><td>2.5–5% 葡萄糖</td><td class="td-center">1.5</td></tr>
+          <tr><td>100–150</td><td>5% 葡萄糖 §</td><td class="td-center">1</td></tr>
+          <tr><td>&lt; 100</td><td>5% 葡萄糖</td><td class="td-center"><strong>停止</strong></td></tr>
+        </table></div>
+        <p class="muted">* 500 mL 乳酸林格氏液加 25 mL 50% 葡萄糖；§ 500 mL 乳酸林格氏液加 50 mL 50% 葡萄糖</p>
+        <div class="grid2">
+          <div class="card-mini"><h4>配製</h4><ul>
+            <li>狗：<strong>2.2 U/kg</strong> 加入 48 mL 0.9% NaCl</li>
+            <li>貓：<strong>1.1 U/kg</strong> 加入 48 mL 0.9% NaCl</li>
+          </ul></div>
+          <div class="card-mini"><h4>管路沖洗</h4><ul>
+            <li>胰島素會吸附在玻璃和塑膠上</li>
+            <li>接上病患前先讓約 <strong>50 mL</strong> 流過管路</li>
+          </ul></div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 這是最常用的方案，大家大概都知道：短效胰島素 CRI。狗和貓的劑量不同。記得<strong>沖洗管路</strong>，因為胰島素會黏在塑膠和玻璃上。</li>
+          <li><span class="src src-rec">🎤</span> 對講者來說，這是<strong>最有效的方案之一，也是他最常用的</strong>。但處理上有些困難：要常常改胰島素速率，要一直盯著調整。</li>
+          <li><span class="src src-rec">🎤</span> 所以新的文獻中出現其他方案：其他種類的胰島素，或<strong>固定速率</strong>、不隨時間調整的胰島素。</li>
+          <li><span class="src src-rec">🎤</span> 主要難處是：<strong>沒有加護病房、沒有護理人員、沒有其他人一起照顧</strong>時，這個方案會很難執行。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：這是原始 Macintire 法（2.2 U/kg 加入 250 mL，以 10／7／5 mL/h 給）的<strong>針筒幫浦濃縮版</strong>。48 mL 的 2 mL/h 約等於 250 mL 的 10 mL/h；狗在血糖 &gt; 250 時約 0.09 U/kg/h。這套是「調整胰島素速率」的邏輯。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.34</span><span class="src src-rec">🎤</span> 短效胰島素：固定速率輸注（Gant 2024）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>袋子</th><th>內容</th><th>時機</th></tr>
+          <tr><td>1．胰島素</td><td>50 U 短效胰島素加入 500 mL 0.9% NaCl（0.1 U/mL）→ 以 <strong>1 mL/kg/h</strong> 給 = <strong>0.1 U/kg/h</strong></td><td>固定速率，全程不變</td></tr>
+          <tr><td>2．晶體液</td><td>等張晶體液：補充＋維持</td><td>全程</td></tr>
+          <tr><td>3．葡萄糖</td><td>5% 葡萄糖（中央靜脈可到 10%）</td><td>血糖 &lt; 270 mg/dL 時開始，調整到維持 <strong>180–270</strong></td></tr>
+        </table></div>
+        <div class="card-mini"><h4>RCT：20 隻狗＋16 隻貓</h4><ul>
+          <li>狗：<strong>住院時間較短</strong>（129 vs 200 小時）</li>
+          <li>酮症緩解時間、併發症、存活率<strong>無差異</strong></li>
+          <li><strong>較多動物</strong>因血糖 &lt; 126 mg/dL 需要<strong>暫停胰島素</strong></li>
+        </ul></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 固定速率胰島素：1 mL/kg/h，表上有所有細節。</li>
+          <li><span class="src src-rec">🎤</span> 主要問題是<strong>通常需要更多葡萄糖</strong>，因為無法調降胰島素濃度。</li>
+          <li><span class="src src-rec">🎤</span> 葡萄糖濃度高時是高張的，所以如果用到 10% 葡萄糖，可能要用<strong>中央靜脈導管</strong>避免靜脈炎。</li>
+          <li><span class="src src-rec">🎤</span> 研究結果：跟前面標準的短效胰島素方案相比，<strong>住院時間較短</strong>；酮症緩解、併發症、存活率沒有差異。</li>
+          <li><span class="src src-rec">🎤</span> 但<strong>更多動物需要停胰島素</strong>，也就是停掉一個對停止酮體生成非常關鍵的治療<span class="src src-fix">【更正】</span>（逐字稿為 stopping the production of insulin）。這是這個方案的主要缺點，但它<strong>比另一個方案容易執行</strong>。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：這是人醫目前的做法：<strong>胰島素固定不動，用葡萄糖濃度調血糖</strong>。邏輯是胰島素劑量是為了清除酮體，不是為了降血糖。缺點是低血糖事件較多，需要較密集監測。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.35</span><span class="src src-rec">🎤</span> 短效胰島素：肌肉注射法</h3>
+        <ol class="notes">
+          <li>起始：<strong>0.1–0.2 U/kg IM</strong></li>
+          <li>之後 <strong>0.1 U/kg IM q1–2h</strong>，每小時測血糖</li>
+        </ol>
+        <div class="tbl-wrap"><table>
+          <tr><th>每小時血糖下降</th><th>調整</th></tr>
+          <tr><td>&lt; 50 mg/dL/h</td><td>增加到 0.2 U/kg IM</td></tr>
+          <tr><td>50–75 mg/dL/h</td><td>維持 0.1 U/kg IM</td></tr>
+          <tr><td>&gt; 75 mg/dL/h</td><td>減到 0.05 U/kg IM</td></tr>
+        </table></div>
+        <div class="alert alert-info"><span class="alert-icon">📌</span><div><strong>血糖 &lt; 250 mg/dL</strong>：0.1–0.3 U/kg IM q6–8h，輸液加葡萄糖，直到病患會吃且無酮。</div></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 和 CRI 一樣，只是不打 CRI，改成<strong>肌肉注射短效胰島素</strong>，依血糖調整劑量和給藥頻率。</li>
+          <li><span class="src src-rec">🎤</span> 方案在講義裡。如果從來沒用過，可以試試看。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：適合沒有輸液幫浦的醫院。嚴重脫水或低灌流時肌肉吸收不穩定，所以一定要先完成容積復甦。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.36</span><span class="src src-rec">🎤</span> 替代胰島素方案</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>貓用 Glargine U-100</h4><ul>
+            <li>開始輸液時 <strong>2 U/貓 SC</strong></li>
+            <li>約 2 小時後 <strong>1 U/貓 IM</strong></li>
+            <li>血糖 &gt; 250 時 <strong>1 U/貓 IM q4h</strong></li>
+            <li>不論血糖，<strong>0.25 U/kg SC q12h</strong></li>
+          </ul>
+          <p class="p">與短效胰島素 CRI 相比：<strong>酮體和血糖下降較快、住院較短</strong>。</p></div>
+          <div class="card-mini"><h4>速效類似物</h4><ul>
+            <li><strong>Lispro</strong>：貓狗都可 IV，狗可 IM</li>
+            <li><strong>Aspart</strong>：狗 IV 輸注</li>
+            <li><strong>Lispro IM，不需幫浦</strong>：0.25 U/kg，之後若血糖下降 &lt; 10% 則 q1h、&gt; 10% 則 q3h</li>
+            <li>血糖 &lt; 250：0.125 U/kg q3h，並加葡萄糖</li>
+          </ul>
+          <p class="p">狗：<strong>IM lispro 的酮症緩解較快</strong>；貓：<strong>沒有證據優於短效胰島素</strong>。</p></div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 還有其他替代方案，因為就像前面的講者提到的，<strong>短效胰島素（regular insulin）未來某個時間點可能買不到</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 有研究在貓用 <strong>glargine（Lantus）</strong>處理 DKA。方案：開始輸液時 2 U/貓，約 2 小時後 1 U，之後血糖 &gt; 250<span class="src src-fix">【更正】</span>（逐字稿為 215）時每 4 小時 1 U。細節可以看原文，下載不到的話講者可以寄給大家。</li>
+          <li><span class="src src-rec">🎤</span> 結果：跟短效胰島素 CRI 比，<strong>酮體和血糖下降較快，住院較短</strong>。這也是一個好選擇，而且 glargine<span class="src src-fix">【更正】</span>（逐字稿為 Lidocaine）<strong>在每個國家都很容易取得</strong>，值得考慮。</li>
+          <li><span class="src src-rec">🎤</span> 速效胰島素類似物，例如 <strong>lispro、aspart</strong>，在狗貓都有描述。Lispro 是肌肉注射，aspart 是靜脈輸注。</li>
+          <li><span class="src src-rec">🎤</span> 講者團隊在<strong>波隆那（Bologna）</strong>做過 lispro 的研究。主要優點是<strong>不需要胰島素幫浦</strong>，因為是肌肉注射；而且這些胰島素是人用的，在不同國家都很常見。</li>
+          <li><span class="src src-rec">🎤</span> 結果：狗用 lispro <strong>緩解較快</strong>，貓<strong>沒有證據顯示較優</strong>。它們不優於短效胰島素，但要記得這個選項，因為短效胰島素未來可能買不到。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：Glargine 方案的好處是可以直接銜接到出院用的長效胰島素，省下轉換步驟。狗用 glargine 處理 DKA 沒有研究，見第 18 節 Q&amp;A。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 15 ══ -->
+  <div class="section" id="s15">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">🐢</div>
+      <h2>15. HHS 的治療</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.37</span><span class="src src-rec">🎤</span> 速率上限與「先輸液、胰島素晚點給」</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>參數</th><th>最大變化速率</th></tr>
+          <tr><td>滲透壓</td><td><strong>≤ 3 mOsm/kg／小時</strong></td></tr>
+          <tr><td>血糖</td><td><strong>≤ 75–100 mg/dL／小時</strong></td></tr>
+          <tr><td>鈉</td><td><strong>≤ 10 mEq/L／天</strong></td></tr>
+        </table></div>
+        <div class="quote">校正 Na⁺ = 測得 Na⁺ + 1.6 × (血糖 − 100) ÷ 100</div>
+        <div class="card-mini"><h4>先輸液，胰島素晚點給</h4><ul>
+          <li>初期常用 <strong>0.9% NaCl</strong> → Na⁺ 負荷較高，減緩滲透壓下降</li>
+          <li><strong>光是恢復 GFR，就會讓血糖和滲透壓下降</strong></li>
+          <li>只靠輸液血糖就有適當下降時，<strong>先不給胰島素</strong></li>
+          <li>酮體 <strong>&gt; 2 mmol/L</strong> 時提早給胰島素</li>
+        </ul></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 治療跟 DKA 一樣，只是要記住<strong>一定要慢</strong>。要記得這些速率上限：滲透壓每小時 ≤ 3 mOsm/kg、血糖每小時 ≤ 75–100 mg/dL、鈉每天 ≤ 10 mEq/L。</li>
+          <li><span class="src src-rec">🎤</span> 有這些數字，就能檢查自己：「我太快了，這個病患要慢一點。」</li>
+          <li><span class="src src-rec">🎤</span> DKA 也一樣，但在 HHS 更重要：要先讓動物補水，先給輸液，改善低血容<span class="src src-fix">【更正】</span>（逐字稿為 hypokalemia）、恢復 GFR。要治療高血糖<span class="src src-fix">【更正】</span>（逐字稿為 hypocalcemia），就需要腎臟重新開始工作。所以<strong>先輸液，再胰島素</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 如果酮體生成增加，這時就要開始胰島素，以停止酮體生成。</li>
+          <li><span class="src src-rec">🎤</span> HHS <strong>沒有特定數字</strong>告訴你幾小時後開始胰島素（6 小時？12 小時？），每個病患都不一樣。不馬上給胰島素的原因是：那樣血糖會降得非常快。所以<strong>先輸液，胰島素在之後某個時間點再給</strong>。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：高血糖把水從細胞拉出來稀釋血鈉（假性低鈉）。血糖每高 100 mg/dL，鈉約被稀釋 1.6（有些文獻在血糖 &gt; 400 時用 2.4）。實務重點：<strong>血糖下降時，測得的鈉應該要上升</strong>；如果血糖降了鈉卻沒升，代表自由水給太多，滲透壓會降太快，有腦水腫風險。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 16 ══ -->
+  <div class="section" id="s16">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🍽️</div>
+      <h2>16. 營養、監測與 CGM</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.38</span><span class="src src-rec">🎤</span> 營養支持</h3>
+        <ul class="notes">
+          <li>入院時就做營養評估</li>
+          <li><strong>12–24 小時內</strong>放鼻胃管或鼻食道管？
+            <ul class="notes">
+              <li>也能監測胃殘留量、作為給水和口服藥的途徑、幫助體液平衡、避免肝脂質沉積</li>
+            </ul>
+          </li>
+          <li>需要較長期支持或更多飲食選擇時，放<strong>食道造口管</strong></li>
+        </ul>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 營養支持非常重要。DKA 病患要<strong>盡早</strong>開始營養支持，大概 12–24 小時內放鼻飼管，幫助病患重新切換回利用葡萄糖。</li>
+          <li><span class="src src-rec">🎤</span> 如果預期住院時間會比較長，也要考慮<strong>食道造口管</strong><span class="src src-fix">【更正】</span>（逐字稿為 subarachnoid）。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：食物本身能刺激內源性胰島素，也能直接減少飢餓性酮症，尤其是貓。另見 <a href="diabetic-nutrition.html">06 犬貓糖尿病營養</a>。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.39</span><span class="src src-rec">🎤</span> 監測</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>頻率</th><th>備註</th></tr>
+          <tr><td>臨床參數（意識、心跳、灌流、血壓、水合、體重）</td><td><strong>每小時</strong></td><td>—</td></tr>
+          <tr><td>血糖</td><td><strong>每小時或用 CGM</strong></td><td>CGM 減少抽血 → 減少貧血</td></tr>
+          <tr><td>酮體（3βHB）</td><td><strong>每 4 小時</strong></td><td>測血，不是尿</td></tr>
+          <tr><td>酸鹼狀態</td><td><strong>每 8–12 小時</strong></td><td>靜脈血氣</td></tr>
+          <tr><td>電解質（Na、K、P、Mg）</td><td><strong>每 4–6 小時</strong></td><td>—</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 這些通常是加護病房的病患，<strong>臨床參數要每小時監測</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 要監測血糖（CGM 等一下講）。要監測酮體，<strong>尤其是前幾天</strong>，確認它在下降。</li>
+          <li><span class="src src-rec">🎤</span> 酸鹼狀態要重複做血氣，電解質也是。通常每 4–6 小時測一次，尤其是前幾天。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.40</span><span class="src src-rec">🎤</span> DKA 時使用連續血糖監測（CGM）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>水合狀態</th><th>組織間液葡萄糖（IG）與血糖（BG）的差異</th></tr>
+          <tr><td>正常</td><td>15.6%</td></tr>
+          <tr><td>輕度脫水</td><td>21.4%</td></tr>
+          <tr><td>中度脫水</td><td>27%</td></tr>
+          <tr><td>重度脫水</td><td><strong>28%</strong></td></tr>
+        </table></div>
+        <div class="grid2">
+          <div class="card-mini"><h4>不影響讀值</h4><ul>
+            <li>pH、HCO₃⁻、乳酸、酮體<strong>不會</strong>明顯影響葡萄糖讀值</li>
+          </ul></div>
+          <div class="card-mini"><h4>建議</h4><ul>
+            <li>早期決策請用<strong>血糖</strong></li>
+            <li><strong>病患補足水分後再貼感測器</strong></li>
+          </ul></div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> DKA 病患可以用 CGM 嗎？<strong>可以，但有些事要注意。</strong></li>
+          <li><span class="src src-rec">🎤</span> 一篇狗 DKA 使用 CGM 的研究顯示，pH、碳酸氫根對 CGM 結果<strong>完全沒有影響</strong>，但<strong>水合狀態有影響</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 所以要<strong>先補水再開始用 CGM</strong>。嚴重脫水的動物差異約 30%。這在前幾天特別重要，因為那時要決定胰島素、輸液等。</li>
+          <li><span class="src src-rec">🎤</span> 前期就用血糖機測血糖。想貼 Libre 也可以，但要記得動物如果還在脫水，結果可能不一樣，要對照血糖。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：脫水讓組織間液灌流變差，CGM 讀值變得不準。CGM 的延遲時間與原理見 <a href="spectrum-of-care.html">07 照護光譜</a>。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 17 ══ -->
+  <div class="section" id="s17">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🏁</div>
+      <h2>17. 降級照護與預後</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.41</span><span class="src src-rec">🎤</span> 什麼時候可以從加護降級？</h3>
+        <ol class="notes">
+          <li><strong>3βHB 正常</strong>：酮症已解除</li>
+          <li><strong>酸鹼正常</strong>：pH &gt; 7.3、HCO₃⁻ &gt; 15 mmol/L</li>
+          <li><strong>自主進食</strong>：或能可靠地經管灌食，且沒有腸胃道症狀</li>
+        </ol>
+        <div class="alert alert-success"><span class="alert-icon">✅</span><div><strong>連續 2 次 3βHB 正常 → 改用長效胰島素。</strong></div></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 要 3βHB 正常，代表酮症解除。講者通常在<strong>兩次 3βHB 正常</strong>後，就從短效胰島素改成長效胰島素；或者病患本來就在用前面介紹的方案（例如 glargine），就直接轉成長效。</li>
+          <li><span class="src src-rec">🎤</span> 要酸鹼正常：pH 和碳酸氫根正常。</li>
+          <li><span class="src src-rec">🎤</span> 要能恢復自主進食。如果還不吃，這就是需要營養支持的原因。</li>
+          <li><span class="src src-rec">🎤</span> 如果動物還不吃，但 <strong>3βHB 已經正常</strong>，講者<strong>仍然會開始長效胰島素</strong>，但必須有營養支持（管灌）。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.42</span><span class="src src-rec">🎤</span> 預後</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>DKA</h4><ul>
+            <li>狗貓報告的死亡率 <strong>0–42%</strong></li>
+            <li>🎤 最近的研究多在 5–10%</li>
+            <li>🎤 講者估計現在約 <strong>10–20%</strong></li>
+          </ul></div>
+          <div class="card-mini"><h4>HHS</h4><ul>
+            <li>死亡率 <strong>35–65%</strong></li>
+            <li>🎤 錄音說 35–75%</li>
+          </ul></div>
+        </div>
+        <ul class="notes">
+          <li>大多數死亡來自<strong>共病</strong>，或因<strong>費用或預後而安樂死</strong>。</li>
+          <li>要及早和飼主討論照護強度和費用：這類病患需要 <strong>48–72 小時的加護治療</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 這些是會致命的併發症。HHS 的預後通常比 DKA 差，要和飼主討論。</li>
+          <li><span class="src src-rec">🎤</span> 但兩者<strong>都是可以治療的</strong>。飼主有意願時就應該試著治療。這些死亡率數字很可能來自文獻中<strong>很高的安樂死比例</strong>。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 18 ══ -->
+  <div class="section" id="s18">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">💬</div>
+      <h2>18. Q&amp;A</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <div class="qa">
+          <div class="q">Q1：沒有短效胰島素（regular）時，可以把其他胰島素（例如 glargine）拿來打 IV 嗎？任何胰島素靜脈給都會變成短效。</div>
+          <div class="a">
+            <ul class="notes">
+              <li><span class="src src-rec">🎤</span> 理論上可以，但胰島素<strong>一旦靜脈給，就失去長效型的優點</strong>。</li>
+              <li><span class="src src-rec">🎤</span> 大家開始發展其他方案，就是為了<strong>避免 CRI</strong>：CRI 比較難處理，直接皮下或肌肉注射容易多了。</li>
+              <li><span class="src src-rec">🎤</span> 如果手邊只有 glargine，可以用<strong>肌肉注射方案</strong>（第 14 節的 glargine 方案），不需要打 CRI。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="qa">
+          <div class="q">Q1 追問：狗如果用 glargine 處理 DKA，劑量怎麼給？</div>
+          <div class="a">
+            <ul class="notes">
+              <li><span class="src src-rec">🎤</span> 狗<strong>沒有研究</strong>，目前的文獻只有貓。未來可能會有更多研究，也許可以用 <strong>Toujeo</strong>（glargine U300）。</li>
+              <li><span class="src src-rec">🎤</span> 講者會用治療狗糖尿病的同樣劑量：Toujeo 起始劑量 <strong>0.5 U/kg</strong>。但<strong>完全沒有證據</strong>，只有在沒有其他選擇時才這樣用。</li>
+            </ul>
+            <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：狗的 Toujeo 起始劑量與使用經驗，見 <a href="canine-diabetes-insulin.html">02 犬糖尿病：超越 NPH 胰島素</a>。</div></div>
+          </div>
+        </div>
+        <div class="qa">
+          <div class="q">Q2：有些嚴重高血糖的貓同時有嚴重牙周病。想做全口拔牙時該怎麼辦？麻醉時間越長，發生 DKA 的風險越高。</div>
+          <div class="a">
+            <ul class="notes">
+              <li><span class="src src-rec">🎤</span> 講者先釐清：是指用 SGLT2i 治療的貓，還是一般糖尿病貓？</li>
+              <li><span class="src src-rec">🎤</span> 有證據顯示<strong>牙周病和血糖控制不良有關</strong>，所以要治療牙周病。</li>
+              <li><span class="src src-rec">🎤</span> 如果擔心的是麻醉時的血糖過高<span class="src src-fix">【更正】</span>（逐字稿為 hypoglycemia，依上下文應為高血糖），那不是問題，高血糖不會讓動物在麻醉中死亡。</li>
+              <li><span class="src src-rec">🎤</span> 如果貓在用 <strong>SGLT2 抑制劑</strong>，還是可以做：<strong>停藥</strong>，然後做手術、麻醉。只是要小心<strong>術後如果不開始吃東西</strong>，那就是產生酮體的風險因子。</li>
+              <li><span class="src src-rec">🎤</span> 所以做這類手術時，通常要準備<strong>營養支持</strong>，例如放餵食管（逐字稿為 an intru，可能是食道造口管）。動物不吃的時候還能餵食，降低酮症的機會。</li>
+            </ul>
+          </div>
+        </div>
+        <p class="muted">🎤 主持人：謝謝 Tardo 醫師。約 4–5 分鐘後，11:30 開始下一場。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 19 ══ -->
+  <div class="section" id="s19">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">📌</div>
+      <h2>Take-home、更正表與參考資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.43</span><span class="src src-rec">🎤</span> Take-home messages</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>#</th><th>重點</th><th>說明</th></tr>
+          <tr><td>1</td><td><strong>同一個光譜</strong></td><td>DKA 和 HHS 的差別在於剩下多少胰島素。🎤 有時很難區分兩者。</td></tr>
+          <tr><td>2</td><td><strong>測 3βHB</strong></td><td>尿液試紙在診斷和治療中都會誤導。🎤 它是血中最主要的酮酸。</td></tr>
+          <tr><td>3</td><td><strong>血糖正常 ≠ 沒有 DKA</strong></td><td>SGLT2 抑制劑在貓越來越常用。</td></tr>
+          <tr><td>4</td><td><strong>先輸液和補鉀，再給胰島素</strong></td><td>而且滲透壓要慢慢矯正。🎤 HHS 尤其重要。</td></tr>
+          <tr><td>5</td><td><strong>用你做得到的胰島素方案</strong></td><td>CRI、IM 短效、IM lispro、glargine。🎤 重點是一定要給胰島素。</td></tr>
+          <tr><td>6</td><td><strong>找出誘發疾病</strong></td><td>它決定結果。🎤 要同時治療共病，才能給病患最好的照顧。</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-add">💡</span> 講義與錄音的差異、需要注意的地方</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>頁</th><th>差異或問題</th><th>說明</th></tr>
+          <tr><td>p.12</td><td>HHS 滲透壓切點</td><td>講義 &gt; 330；錄音說「通常超過 300」；p.20 表格寫 &gt; 320</td></tr>
+          <tr><td>p.15 vs p.20</td><td>DKA 的 pH 切點</td><td>p.15 &lt; 7.35；p.20 &lt; 7.3（不同文獻來源）</td></tr>
+          <tr><td>p.19</td><td>血酮 cut-off</td><td>講義列狗 3.8、貓 2.55；錄音另提到「最常用的 cut-off 是 2.4–2.5」</td></tr>
+          <tr><td>p.20</td><td>有效滲透壓公式</td><td>葡萄糖用 mg/dL 時要除以 18，講義公式未寫出</td></tr>
+          <tr><td>p.24</td><td>鈉的變化速率</td><td>講義為<strong>每天</strong> ≤ 10–12 mEq/L；錄音口誤為每小時</td></tr>
+          <tr><td>p.28</td><td>低血磷的主要併發症</td><td>講義以<strong>溶血</strong>（尤其是貓）為主、橫紋肌溶解少見；錄音強調橫紋肌溶解</td></tr>
+          <tr><td>p.31</td><td>早期胰島素的結果</td><td>講義：早期給胰島素<strong>緩解較快</strong>；逐字稿說成較長</td></tr>
+          <tr><td>p.31</td><td>晚期組的時間</td><td>講義 7–21 小時；錄音說 7–24 小時</td></tr>
+          <tr><td>p.32</td><td>CRI 配製</td><td>48 mL 為針筒幫浦濃縮版，等同傳統 250 mL Macintire 法</td></tr>
+          <tr><td>p.42</td><td>HHS 死亡率</td><td>講義 35–65%；錄音說 35–75%</td></tr>
+          <tr><td>p.42</td><td>DKA 死亡率</td><td>講義 0–42%；錄音補充近期研究 5–10%，講者估計現在 10–20%</td></tr>
+          <tr><td>p.23</td><td>eDKA 病例報告的藥名</td><td>逐字稿為 dabiglucazine，無法確認是哪一種 SGLT2i</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3>逐字稿轉文字錯誤一覽</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>逐字稿寫的</th><th>正確內容</th></tr>
+          <tr><td>GLT2 inhibitors / SGRT inhibitors / H2 receptor inhibitors / HFD2D / HCTU NIVO / adjunctive to inhibitor</td><td><strong>SGLT2 inhibitors</strong></td></tr>
+          <tr><td>an important new blood sugar / hypoglycemic keto / hyperglycemic DKA / UDKA / Ubersaxin decay / H. H. Glucose</td><td><strong>euglycemic DKA（eDKA）</strong></td></tr>
+          <tr><td>HCS / HHHS</td><td><strong>HHS</strong></td></tr>
+          <tr><td>DKD / DJT / DA / DKAA</td><td><strong>DKA</strong></td></tr>
+          <tr><td>severe hypoglycemia（HHS 段落）</td><td>severe <strong>hyperglycemia</strong></td></tr>
+          <tr><td>kidney bodies / ketomodies / ketonodies / keto bodies / little bodies / solubility of body</td><td><strong>ketone bodies</strong></td></tr>
+          <tr><td>beta-drositoid rate / petadosebutrate / beta distribution / platelet osmolyte / metabolic aciduria / toxicoterein / venous glucose</td><td><strong>β-hydroxybutyrate（3βHB）</strong></td></tr>
+          <tr><td>acetohydroacetate / acetoacetic</td><td><strong>acetoacetate</strong></td></tr>
+          <tr><td>immunophases</td><td><strong>ketone bodies</strong>（測酮體時）</td></tr>
+          <tr><td>a tumor with PTK1</td><td>（不明；上下文為「在 DKA 時」）</td></tr>
+          <tr><td>kidney meter / kitometer</td><td><strong>ketone meter</strong>（血酮機）</td></tr>
+          <tr><td>abnormal adipic metabolism</td><td>abnormal <strong>hepatic</strong> metabolism</td></tr>
+          <tr><td>ion gap</td><td><strong>anion gap</strong></td></tr>
+          <tr><td>toxicant</td><td><strong>diabetic</strong>（糖尿病患）</td></tr>
+          <tr><td>urethral infection / UDI</td><td><strong>UTI</strong>（尿路感染）</td></tr>
+          <tr><td>hyperproliferation</td><td><strong>hypercortisolism</strong></td></tr>
+          <tr><td>diet is really important … entire thing</td><td><strong>Diestrus</strong> 在<strong>未絕育（intact）</strong>母犬很重要</td></tr>
+          <tr><td>NDGH</td><td>（GH 造成胰島素阻抗）</td></tr>
+          <tr><td>an ectopic / progesterone tablets</td><td><strong>intact female</strong>／<strong>progesterone receptor antagonist</strong></td></tr>
+          <tr><td>pancreatic disease … increase</td><td><strong>PLI</strong> 上升</td></tr>
+          <tr><td>the parvovirus and leukaemias</td><td><strong>pancreatitis and lipidosis</strong>（講義 p.11）</td></tr>
+          <tr><td>the cat now has a whole</td><td>（應指<strong>肝脂質沉積</strong>）</td></tr>
+          <tr><td>HGF-R / hypercoagulability</td><td><strong>GFR</strong>／<strong>hyperosmolality</strong></td></tr>
+          <tr><td>newletetosis dog and can so BPB</td><td>newly diagnosed dogs and cats：<strong>PU/PD</strong></td></tr>
+          <tr><td>guzmal breathing / sort of rabbit / ketovalis</td><td><strong>Kussmaul breathing</strong></td></tr>
+          <tr><td>European Society of Pediatric Endocrinology</td><td>（照錄；應為 ESPE/ISPAD 兒童 DKA 指引）</td></tr>
+          <tr><td>NG as to individuals / semagro / dabiglucazine</td><td><strong>SGLT2 inhibitors</strong>／<strong>Senvelgo（velagliflozin）</strong>／（藥名不明）</td></tr>
+          <tr><td>UPLASTICITY KAE / sensational study</td><td><strong>euglycemic DKA</strong>／<strong>SENSATION study</strong></td></tr>
+          <tr><td>disminigation</td><td>（停用這個藥物）</td></tr>
+          <tr><td>neonatia</td><td><strong>neoplasia</strong></td></tr>
+          <tr><td>biographically based or the DGGR based for endometrium</td><td><strong>PLI</strong> 或 <strong>DGGR lipase</strong>（胰臟炎）</td></tr>
+          <tr><td>hyperpyrexia（流失電解質的原因）</td><td><strong>hyperglycemia</strong>（滲透性利尿）</td></tr>
+          <tr><td>provide the extras / dexros</td><td><strong>dextrose</strong></td></tr>
+          <tr><td>small anity</td><td><strong>hyperosmolality</strong></td></tr>
+          <tr><td>radical of the osmolarity / traction</td><td><strong>rapid fall</strong> of osmolality／<strong>dehydration</strong></td></tr>
+          <tr><td>winter lactate / renal lactate / plasma life</td><td><strong>Ringer's lactate</strong>／<strong>Plasma-Lyte</strong></td></tr>
+          <tr><td>decay in Dobson cat</td><td><strong>DKA in dogs and cats</strong></td></tr>
+          <tr><td>conservation（of chloride/electrolyte/sodium）</td><td><strong>concentration</strong></td></tr>
+          <tr><td>balance crystallograph</td><td><strong>balanced crystalloid</strong></td></tr>
+          <tr><td>deadline（for potassium）</td><td><strong>guideline</strong></td></tr>
+          <tr><td>lactic acid injury</td><td><strong>acute kidney injury</strong></td></tr>
+          <tr><td>inosine</td><td><strong>phosphate</strong></td></tr>
+          <tr><td>supplement potassium（鎂段落）</td><td>supplement <strong>magnesium</strong></td></tr>
+          <tr><td>stops the life forces</td><td>stops <strong>lipolysis</strong></td></tr>
+          <tr><td>When do we want to stop the insulin?</td><td>When do we want to <strong>start</strong> the insulin?</td></tr>
+          <tr><td>time for the resolution of the DKA was longer（早期組）</td><td><strong>shorter</strong>（講義：faster resolution）</td></tr>
+          <tr><td>retrain this patient</td><td><strong>rehydrate</strong></td></tr>
+          <tr><td>CLI</td><td><strong>CRI</strong></td></tr>
+          <tr><td>goes clarified</td><td>（高濃度葡萄糖為<strong>高張</strong>，易靜脈炎）</td></tr>
+          <tr><td>hypotonses</td><td><strong>ketosis</strong></td></tr>
+          <tr><td>Dr. Bond</td><td>（前一場講者，名字無法確認）</td></tr>
+          <tr><td>once a day, meal, so the lantus / 215</td><td><strong>glargine（Lantus）</strong>／<strong>250</strong></td></tr>
+          <tr><td>Lidocaine is widely available</td><td><strong>Glargine</strong> is widely available</td></tr>
+          <tr><td>Robbie / rabbit acting insulin</td><td><strong>rapid-acting</strong> insulin</td></tr>
+          <tr><td>brain limits</td><td><strong>rate limits</strong></td></tr>
+          <tr><td>don't have kidney on dialysis</td><td>（不明；上下文為先恢復腎臟灌流）</td></tr>
+          <tr><td>improve the hypokalemia and restore the GFR / treat the hypocalcemia</td><td>改善<strong>低血容</strong>、恢復 GFR／治療<strong>高血糖</strong></td></tr>
+          <tr><td>H L（no specific numbers）</td><td><strong>HHS</strong></td></tr>
+          <tr><td>an aso dietitian</td><td><strong>naso-esophageal / nasogastric</strong> tube</td></tr>
+          <tr><td>pulmonary disease</td><td>（不明；上下文為預期住院較長）</td></tr>
+          <tr><td>subarachnoid</td><td><strong>esophagostomy tube</strong></td></tr>
+          <tr><td>D5 care</td><td><strong>ICU</strong> care</td></tr>
+          <tr><td>veneprocedure concentration</td><td><strong>β-hydroxybutyrate</strong> concentration</td></tr>
+          <tr><td>normal pA</td><td>normal <strong>pH</strong></td></tr>
+          <tr><td>in Indonesia</td><td><strong>euthanasia</strong></td></tr>
+          <tr><td>worse than the ovarian cell</td><td>worse than <strong>DKA</strong></td></tr>
+          <tr><td>utilisation rate</td><td><strong>euthanasia</strong> rate</td></tr>
+          <tr><td>letter C I / C I / claudin</td><td><strong>glargine</strong></td></tr>
+          <tr><td>transdermal way</td><td>（應為 SC/IM 的方式）</td></tr>
+          <tr><td>give the serum</td><td>give the <strong>CRI</strong></td></tr>
+          <tr><td>tujeo</td><td><strong>Toujeo</strong></td></tr>
+          <tr><td>vasopressor / endotoxemia</td><td>（應指 <strong>SGLT2i</strong> 治療的貓）</td></tr>
+          <tr><td>period of disease</td><td><strong>periodontal disease</strong></td></tr>
+          <tr><td>hypoglycemia is never going to kill any animal during the anesthesia</td><td>（依上下文應為 <strong>hyperglycemia</strong>）</td></tr>
+          <tr><td>an intru</td><td>（可能是 <strong>E-tube</strong> 或 NE tube）</td></tr>
+          <tr><td>Doctor Tato</td><td><strong>Dr. Tardo</strong></td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Tardo A. <em>Diabetic complications: DKA, eDKA and HHS.</em> VET-KU × Texas A&amp;M IM Conference, 2026-10-06（講義與課堂逐字稿「完整記錄」PDF）。</div>
+          <div class="ref-item">課堂錄音與逐字稿（Plaud）。<a href="https://web.plaud.ai/s/pub_6afe4340-0fd4-43c7-8a1d-b7b8fc5d62bb::NMgghuoiDxzUG6_YYUBaBCNslVCuBZwjZRP1YENNbknOUULPWUU62IsLJvZL3FlsuRSqVJC8GNmJZE_HeNhfewI" target="_blank" rel="noopener">連結</a>（逐字稿有轉文字錯誤，請對照本頁更正表）</div>
+          <div class="ref-item">Gal A, Odunayo A. Diabetic ketoacidosis and hyperosmolar hyperglycemic syndrome in companion animals. <em>Vet Clin North Am Small Anim Pract.</em> 2023;53:531–550.</div>
+          <div class="ref-item">Hume DZ, Drobatz KJ, Hess RS. Outcome of dogs with diabetic ketoacidosis: 127 dogs (1993–2003). <em>J Vet Intern Med.</em> 2006;20:547–555.</div>
+          <div class="ref-item">Bruskiewicz KA, Nelson RW, Feldman EC, et al. Diabetic ketosis and ketoacidosis in cats: 42 cases (1980–1995). <em>J Am Vet Med Assoc.</em> 1997;211:188–192.</div>
+          <div class="ref-item">Sieber-Ruckstuhl NS, Kley S, Tschuor F, et al. Remission of diabetes mellitus in cats with diabetic ketoacidosis. <em>J Vet Intern Med.</em> 2008;22:1326–1332.</div>
+          <div class="ref-item">Cooper RL, Drobatz KJ, Lennon EM, et al. Retrospective evaluation of risk factors and outcome predictors in cats with diabetic ketoacidosis (1997–2007): 93 cases. <em>J Vet Emerg Crit Care.</em> 2015;25:263–272.</div>
+          <div class="ref-item">Bolton TA, Cook A, Steiner JM, et al. Pancreatic lipase immunoreactivity in serum of dogs with diabetic ketoacidosis. <em>J Vet Intern Med.</em> 2016.</div>
+          <div class="ref-item">Rao SJ, Kumar K, Saleh N. SGLT2 inhibitor-induced euglycemic diabetic ketoacidosis. <em>Cureus.</em> 2022;14(10).</div>
+          <div class="ref-item">Bugbee A, et al. 2026 AAHA Diabetes Management Guidelines for Cats. <em>J Am Anim Hosp Assoc.</em> 2026;62:65–93.</div>
+          <div class="ref-item">Behrend EN, et al. Velagliflozin for feline diabetes mellitus: the SENSATION study. <em>J Am Vet Med Assoc.</em> 2024.</div>
+          <div class="ref-item">Bresciani F, Pietra M, Corradini S, et al. Accuracy of capillary blood 3-β-hydroxybutyrate determination for the detection and treatment of canine diabetic ketoacidosis. <em>J Vet Sci.</em> 2014;15:309–316.</div>
+          <div class="ref-item">Zeugswetter FK, Rebuzzi L. Point-of-care β-hydroxybutyrate measurement for the diagnosis of feline diabetic ketoacidaemia. <em>J Small Anim Pract.</em> 2012;53:328–331.</div>
+          <div class="ref-item">DiFazio J, Fletcher DJ. Retrospective comparison of early- versus late-insulin therapy regarding effect on time to resolution of diabetic ketosis and ketoacidosis in dogs and cats: 60 cases (2003–2013). <em>J Vet Emerg Crit Care.</em> 2016;26:108–115.</div>
+          <div class="ref-item">Macintire DK. Treatment of diabetic ketoacidosis in dogs by continuous low-dose intravenous infusion of insulin. <em>J Am Vet Med Assoc.</em> 1993；Claus MA, et al. 2010（講義 p.32 引用）。</div>
+          <div class="ref-item">Gant P, Barfield D, Florey J. Comparison of insulin infusion protocols for management of canine and feline diabetic ketoacidosis. <em>J Vet Emerg Crit Care.</em> 2024;34:23–30.</div>
+          <div class="ref-item">Marshall RD, et al. <em>JVECC</em> 2013；Zeugswetter FK, et al. <em>JVECC</em> 2021；Malerba E, et al. <em>JFMS</em> 2019；Malerba E, et al. <em>Front Vet Sci</em> 2020；Walsh ES, et al. <em>JVECC</em> 2016（替代胰島素方案，講義 p.36 引用）。</div>
+          <div class="ref-item">Katz MA. Hyperglycemia-induced hyponatremia: calculation of expected serum sodium depression. <em>N Engl J Med.</em> 1973；Hillier TA, et al. <em>Am J Med.</em> 1999（校正鈉公式）。</div>
+          <div class="ref-item">Feldman EC, Nelson RW. <em>Canine and Feline Endocrinology</em>, 4th ed. 2015:333；JBDS Adult DKA Guidelines 2023（輸液比較表）。</div>
+          <div class="ref-item">Koenig A. <em>Small Animal Critical Care Medicine</em>, 2022；Trotman TK, et al. <em>JVECC</em> 2013;23:557–564；Judy A, et al. <em>JVECC</em> 2025;35:415–424（預後）。</div>
+          <div class="ref-item">Weingart C, Lotz F, Kohn B. β-hydroxybutyrate in cats with diabetic ketosis and ketoacidosis（講義參考文獻第 12 篇）。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="spectrum-of-care.html">07 犬糖尿病的照護光譜選項</a>。其他場次將陸續整理更新。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
