@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>犬貓糖尿病營養｜2026 Texas 內分泌研討會</title>
+<style>
+  :root {
+    --primary: #0F766E;
+    --primary-light: #CCFBF1;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0d2522;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9cc8c1; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #1f4a44;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9cc8c1; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9cc8c1;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #1f4a44;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #5f8f87;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0b4f49 0%, #14a395 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0d2522; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #1f4a44; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+</style>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 Texas 內分泌研討會</a>
+  <div class="logo">
+    <h2>06｜犬貓糖尿病營養：<br>Diabetic Nutrition for Dogs &amp; Cats</h2>
+    <p>Andrew Bugbee｜2026 年 10 月 6 日</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">核心觀念與總覽</a>
+    <div class="nav-section">病例一：Bobo（犬）</div>
+    <a href="#s1">1. Bobo：表現與檢查</a>
+    <a href="#s2">2. DKA 穩定處置</a>
+    <div class="nav-section">所有糖尿病患</div>
+    <a href="#s3">3. 餵誰？餵多少？</a>
+    <a href="#s4">4. 餵什麼：目標、GI/GL、罐頭</a>
+    <div class="nav-section">糖尿病犬</div>
+    <a href="#s5">5. 犬的飲食成分與纖維</a>
+    <a href="#s6">6. Bobo 的飲食決策</a>
+    <a href="#s7">7. Bobo 追蹤：換成 Degludec</a>
+    <div class="nav-section">病例二：Leo（貓）</div>
+    <a href="#s8">8. Leo：表現與檢查</a>
+    <a href="#s9">9. 貓的胰島素與 SGLT2i</a>
+    <a href="#s10">10. 貓的碳水與蛋白質</a>
+    <a href="#s11">11. 選飼料：肥胖貓與 CKD 貓</a>
+    <a href="#s12">12. GlycoAdvanced 熱量限制試驗</a>
+    <a href="#s13">13. Leo 的評估與追蹤</a>
+    <div class="nav-section">疑難排解</div>
+    <a href="#s14">14. 傍晚血糖高峰之謎</a>
+    <a href="#s15">15. 基礎胰島素與餐次</a>
+    <a href="#s16">16. Q&amp;A</a>
+    <a href="#s17">Take-home、更正表與參考資料</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <!-- Header -->
+  <div class="page-header">
+    <h1>犬貓糖尿病營養（Diabetic Nutrition for Dogs &amp; Cats）</h1>
+    <p>主講：Andrew Bugbee, DVM, DACVIM (SAIM)｜Texas A&amp;M 首席醫療長暨臨床教授</p>
+    <p>2026 年 10 月 6 日｜VET-KU × Texas A&amp;M 內科研討會｜場次 06</p>
+    <div class="tags">
+      <span class="tag">犬糖尿病</span>
+      <span class="tag">貓糖尿病</span>
+      <span class="tag">DKA</span>
+      <span class="tag">RER / MER</span>
+      <span class="tag">升糖負荷</span>
+      <span class="tag">纖維</span>
+      <span class="tag">胰臟炎</span>
+      <span class="tag">GlycoAdvanced</span>
+      <span class="tag">熱量限制</span>
+      <span class="tag">Degludec</span>
+      <span class="tag">CGM</span>
+      <span class="tag">餵食分配</span>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（共 42 頁，標示頁碼）
+    <span class="src src-rec">🎤 錄音</span> 課堂逐字稿（盡量完整保留）
+    <span class="src src-add">💡 補充</span> 整理者補充（計算、交叉參照）
+    <span class="src src-fix">【更正】</span> 逐字稿轉文字錯誤，以講義為準（完整列表見最後一節）
+  </div>
+
+  <!-- Key Points -->
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li>把食物當成治療工具：營養和胰島素一樣重要</li>
+      <li>胰島素劑量假設的是「正常熱量攝取」：吃越多，需要越多胰島素</li>
+      <li>先問飲食史：吃什麼、吃多少、<strong>零食</strong>、家裡每個人</li>
+      <li>先評估「餵誰」：缺乏型或阻抗型、控制好壞、BCS、共病</li>
+      <li>需求衝突時，先針對最先會要命的病</li>
+      <li>狗：有胰臟炎時低脂優先；沒有胰臟炎才談低碳高纖</li>
+      <li>瘦的狗不要用高纖減重處方，纖維可以另外加</li>
+      <li>罐頭優先：水分多、碳水少、份量大、飼主開心</li>
+      <li>貓：碳水 &lt;3–4 g/100 kcal、蛋白 &gt;10–15 g/100 kcal</li>
+      <li>胖貓限制熱量 → 緩解機率高 4 倍</li>
+      <li>看升糖負荷（GL），不只看升糖指數（GI）</li>
+      <li>基礎胰島素壓不住大餐時，先試少量多餐或調整熱量分配</li>
+    </ul>
+  </div>
+
+  <!-- ══ SECTION 0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🎯</div>
+      <h2>核心觀念與總覽</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.1–2</span> 場次資訊與架構</h3>
+        <ul class="notes">
+          <li>講者：Andrew Bugbee（DVM, DACVIM-SAIM），Texas A&amp;M 首席醫療長暨臨床教授。</li>
+          <li>整堂課用兩個病例串起來：
+            <ul class="notes">
+              <li><strong>Bobo</strong>（糖尿病犬）：DKA、極瘦、合併胰臟炎（p.3–22）</li>
+              <li><strong>Leo</strong>（糖尿病貓）：肥胖、神經病變、胰臟炎、疑似肝脂質沉積（p.24–36）</li>
+            </ul>
+          </li>
+          <li>中間穿插所有糖尿病患共通的營養原則（p.8–14）、犬的飲食（p.15–17）、貓的飲食（p.29–34）。</li>
+          <li>最後是飲食相關的疑難排解（p.37–41）與 Q&amp;A。</li>
+          <li><span class="src src-rec">🎤</span> 錄音從 Bobo 的病史開始。講者提到下一場會講<strong>肥胖與減重</strong>，BCS 與脂肪的影響會在那一場細談。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 一句話掌握全場</h3>
+        <div class="quote">"Treat food like a therapeutic."<span class="quote-zh">把食物當成治療藥物。不要以為胰島素是唯一的藥；在很多病患身上，食物和營養跟胰島素一樣重要。</span></div>
+        <ul class="notes">
+          <li>本場兩個 CGM 案例（p.11、p.40），都是<strong>完全沒動胰島素</strong>，只改了餵食量或餵食分配，血糖就明顯改善。</li>
+          <li>「低碳高纖」不是一體適用的公式（cookie cutter）。Bobo 的例子顯示，對瘦弱又有胰臟炎的狗，這反而不是最好的選擇。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-add">💡 補充</span> 與前幾場的關聯</h3>
+        <ul class="notes">
+          <li>胰島素選擇、基礎胰島素、飲食與 bolus：見 <a href="canine-diabetes-insulin.html#s16">02 第 16 節（飲食的影響）</a>、<a href="canine-diabetes-insulin.html#s17">第 17 節（何時加 Bolus）</a>。</li>
+          <li>貓的飲食病例與緩解：見 <a href="feline-diabetes.html#s11">03 第 11 節</a>、<a href="feline-diabetes.html#s14">第 14 節</a>。</li>
+          <li>SGLT2i 的篩選與 BHB 監測：見 <a href="sglt2i-off-label.html#s4">04 第 4 節</a>、<a href="sglt2i-off-label.html#s12">第 12 節</a>。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🐕</div>
+      <h2>1. 病例 Bobo：表現與檢查</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.3</span><span class="src src-rec">🎤</span> Bobo，13 歲，已去勢公馬爾濟斯</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>主訴</h4><ul>
+            <li>體重嚴重下降，但<strong>食慾很好</strong></li>
+            <li>極度多喝多尿（PU/PD）</li>
+            <li>在家要包尿布</li>
+            <li><strong>飼主開始限水</strong></li>
+          </ul></div>
+          <div class="card-mini"><h4>初診</h4><ul>
+            <li>虛弱，但有意識、有反應</li>
+            <li>脫水 8%</li>
+            <li><strong>BCS 2/9、MCS 1/3</strong></li>
+            <li>雙側白內障</li>
+            <li>體重 <strong>5.45 → 4.02 kg</strong></li>
+            <li>吃市售維持期飼料，每天 250 kcal</li>
+          </ul></div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 這是大約兩年前 Texas A&amp;M 內科部的病例。飼主最擔心的是<strong>體重一直掉</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 飼主是一位很和善的年長女士。她很長一段時間對臨床症狀視而不見，所以來看診時狗已經很糟了。</li>
+          <li><span class="src src-rec">🎤</span> 她以為<strong>限水可以減少多喝多尿</strong>，結果只讓脫水更嚴重，狗變得非常虛弱。</li>
+          <li><span class="src src-rec">🎤</span> 「至少脫水 8%。」BCS 很低，肌肉嚴重流失。</li>
+          <li><span class="src src-rec">🎤</span> 每天 250 kcal，大約等於牠一天的 RER。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>
+          <ul class="notes">
+            <li>體重從 5.45 掉到 4.02 kg，掉了約 <strong>26%</strong>。</li>
+            <li>理想體重 5.45 kg 時，RER = 70 × 5.45<sup>0.75</sup> ≈ <strong>250 kcal</strong>。所以 Bobo 只吃到 1 倍 RER，還處於失控糖尿病的分解代謝，當然一直瘦。</li>
+            <li>糖尿病的多尿是<strong>滲透性利尿</strong>（尿糖把水帶走）。限水不會減少尿量，只會加重脫水。</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.4</span><span class="src src-rec">🎤</span> 初步檢查</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>結果</th><th>意義</th></tr>
+          <tr><td>CBC</td><td>無明顯異常，HCT 45%</td><td>—</td></tr>
+          <tr><td>血漿滲透壓（計算）</td><td>約 319 mOsm/kg</td><td>高滲透壓，推測為慢性</td></tr>
+          <tr><td>尿液</td><td>USG 1.039、pH 6.0、蛋白 2+、<strong>糖 4+、酮 1+</strong></td><td>尿糖加尿酮</td></tr>
+          <tr><td>血壓</td><td><strong>80 mmHg</strong></td><td>低血壓，低血容</td></tr>
+          <tr><td>靜脈血 pH</td><td><strong>7.31</strong></td><td>酸血症</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 生化有很多 H 和 L，「這從來不是好事」。</li>
+          <li><span class="src src-rec">🎤</span> <strong>懷疑糖尿病時，一定要算滲透壓</strong>，確認不是慢性高滲透壓的病患。高滲透壓越慢性，降血糖等數值的速度就要越慢。Bobo 是計算出的高滲透壓，因為症狀在家已經很久，推測是慢性的。</li>
+          <li><span class="src src-rec">🎤</span> <strong>鉀和磷一定要看</strong>：
+            <ul class="notes">
+              <li><strong>鉀</strong>：Bobo 測到的鉀偏高。但糖尿病患開始酸中毒、產生酮體時，細胞內的鉀會流失，然後從尿中排掉。所以測到高血鉀，實際上<strong>全身是缺鉀的</strong>，這點在治療時很重要。</li>
+              <li><strong>磷</strong>：之後要打胰島素。如果磷已經偏低，胰島素會把鉀和磷推進細胞，低血磷可能引發<strong>溶血危機</strong>。</li>
+            </ul>
+          </li>
+          <li><span class="src src-rec">🎤</span> 確認有酸血症，加上血壓 80 mmHg，判斷 Bobo 是<strong>病況嚴重的 DKA</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.5</span><span class="src src-rec">🎤</span> 進階檢查</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>結果</th><th>參考值</th></tr>
+          <tr><td>血中 β-羥丁酸（BHB）</td><td><strong>6.8 mmol/L</strong></td><td>&lt;0.6</td></tr>
+          <tr><td>果糖胺</td><td>550</td><td>&lt;328</td></tr>
+          <tr><td>Spec cPL</td><td><strong>&gt;2000</strong></td><td>&lt;200</td></tr>
+          <tr><td>尿液培養</td><td>無細菌生長</td><td>—</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li>腹部超音波：
+            <ul class="notes">
+              <li>肝臟輕度腫大、輕度高回音</li>
+              <li>雙腎退行性變化</li>
+              <li><strong>急性發作的慢性胰臟炎</strong></li>
+            </ul>
+          </li>
+          <li><span class="src src-rec">🎤</span> 用酮體機確認 BHB 6.8。</li>
+          <li><span class="src src-rec">🎤</span> 果糖胺幾天後才回來，確認是慢性高血糖，主要是為了之後追蹤用。</li>
+          <li><span class="src src-rec">🎤</span> Spec cPL &gt;2000，符合活動性胰臟炎。</li>
+          <li><span class="src src-rec">🎤</span> 影像上還看到脂肪胰、肝臟明顯的肝醣堆積，以及雙腎退行性變化。</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>胰臟炎是決定 Bobo 飲食的關鍵</strong>：胰臟炎需要控制脂肪，和「瘦弱要增重」的需求互相衝突（見第 6 節）。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">💉</div>
+      <h2>2. Bobo 的 DKA 穩定處置</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.6</span><span class="src src-rec">🎤</span> 輸液與電解質</h3>
+        <ul class="notes">
+          <li><strong>低血容</strong>：
+            <ul class="notes">
+              <li>先給 20 mL/kg IV 輸液 bolus</li>
+              <li>接著 IV 輸液，每公升加 <strong>20 mEq KCl + 10 mEq KPhos</strong></li>
+              <li>脫水缺額 <strong>325 mL，分 6 小時補足</strong></li>
+            </ul>
+          </li>
+          <li><span class="src src-rec">🎤</span> 雖然測到高血鉀，但因為全身缺鉀，還是在輸液裡加鉀。磷也偏低，所以一起加磷酸鉀。</li>
+          <li><span class="src src-rec">🎤</span> 「我們很努力把這兩個拉上來，才能開始打胰島素。」</li>
+          <li><span class="src src-rec">🎤</span> 因為是低血容，所以積極一點，在 6 小時內補完缺水量。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充：脫水缺額怎麼算</strong>：體重 × 脫水% = 4.02 kg × 8% ≈ 0.32 L ≈ 325 mL。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.6</span><span class="src src-rec">🎤</span> 第 4 小時複查</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>初診</th><th>4 小時</th><th>講者說明</th></tr>
+          <tr><td>體重</td><td>4.02 kg</td><td>4.2 kg</td><td>和給的輸液量相符</td></tr>
+          <tr><td>血壓</td><td>80 mmHg</td><td>110 mmHg</td><td>上升</td></tr>
+          <tr><td>血糖</td><td>617 mg/dL</td><td>420 mg/dL</td><td>光靠輸液就開始下降</td></tr>
+          <tr><td>BHB</td><td>6.4 mmol/L</td><td>6.1 mmol/L</td><td>只降一點：還沒打胰島素，<strong>只有胰島素能清除酮體</strong></td></tr>
+          <tr><td>K⁺</td><td>5.5 mmol/L</td><td><strong>3.2 mmol/L</strong></td><td>在輸液和補鉀之下，才反映出真正的全身鉀狀態</td></tr>
+          <tr><td>P</td><td>2.3 mg/dL</td><td>2.7 mg/dL</td><td>回到可接受範圍（參考值低端）</td></tr>
+        </table></div>
+        <p class="p"><span class="src src-rec">🎤</span> 「整體來說，到這裡我們很滿意。」</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.6</span><span class="src src-rec">🎤</span> 開始胰島素</h3>
+        <ul class="notes">
+          <li>Regular insulin CRI，目標速率 <strong>0.1 U/kg/hr</strong>，依血糖每 1–2 小時調整。</li>
+        </ul>
+        <div class="alert alert-danger"><span class="alert-icon">🚫</span><div><strong>開始胰島素之前</strong>：<span class="src src-slide">📄</span> 輸液中 K⁺ 必須 &gt;3.0。<span class="src src-rec">🎤</span> 複查時磷要正常、鉀至少 3，以免引發低血鉀或低血磷危機。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.7</span><span class="src src-rec">🎤</span> 第 3 天：準備轉為長期管理</h3>
+        <ul class="notes">
+          <li>血容量已補足、血壓正常，電解質異常都已矯正。</li>
+          <li>血糖 112–299 mg/dL；BHB 0.3 mmol/L。<span class="src src-rec">🎤</span> 用胰島素 CRI 大約 3 天，BHB 恢復正常。</li>
+          <li>長效胰島素選擇：</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>頻率</th><th>胰島素</th></tr>
+          <tr><td>每 12 小時</td><td>NPH、Vetsulin、Glargine U100</td></tr>
+          <tr><td>每 12–24 小時</td><td>Degludec、Glargine U300、ProZinc</td></tr>
+        </table></div>
+        <p class="p"><span class="src src-rec">🎤</span> 準備出院時，下一個大問題是：<strong>營養計畫呢？回家要吃什麼？</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">⚖️</div>
+      <h2>3. 所有糖尿病患：餵誰？餵多少？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.8–9</span><span class="src src-rec">🎤</span> 你在餵誰？</h3>
+        <p class="p"><span class="src src-slide">📄</span> 9 分制 BCS 對照表（Cline et al. 2021 AAHA 營養與減重指引）：</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>BCS</th><th>體脂 %</th><th>過重 %</th></tr>
+          <tr><td>4</td><td>15–19</td><td>理想</td></tr>
+          <tr><td>5</td><td>20–24</td><td>—</td></tr>
+          <tr><td>6</td><td>25–29</td><td>10%</td></tr>
+          <tr><td>7</td><td>30–34</td><td>20%</td></tr>
+          <tr><td>8</td><td>35–39</td><td>30%</td></tr>
+          <tr><td>9</td><td>40–45+</td><td>40%</td></tr>
+          <tr><td>&gt;9</td><td>—</td><td>&gt;40%</td></tr>
+        </table></div>
+        <p class="p">選飲食前要問的問題：</p>
+        <ul class="notes">
+          <li><strong>胰島素缺乏型還是阻抗型？</strong> <span class="src src-rec">🎤</span> 缺乏型的狗和阻抗型的貓，營養需求不同。</li>
+          <li><strong>控制好還是控制不佳？</strong> <span class="src src-rec">🎤</span> 控制不佳的糖尿病是非常強的<strong>分解代謝狀態</strong>。長期失控和控制良好的動物，餵法很不一樣。</li>
+          <li><strong>未絕育還是已絕育？</strong> <span class="src src-rec">🎤</span> 會影響營養需求和一天要餵多少。</li>
+          <li><strong>BCS 或 MCS 異常？</strong>
+            <ul class="notes">
+              <li><strong>胖的</strong>：脂肪與熱量要少</li>
+              <li><strong>瘦的</strong>（像 Bobo）：脂肪與熱量要多</li>
+            </ul>
+          </li>
+          <li><strong>有沒有對飲食有反應的共病？</strong> <span class="src src-rec">🎤</span> 糖尿病患很少只有糖尿病，常有多個共病，都要納入考量。</li>
+        </ul>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 在狗，肥胖對「發生糖尿病」的影響沒有貓那麼大。</li>
+          <li><span class="src src-rec">🎤</span> 但不論狗貓，長期管理都要以<strong>達到理想體重</strong>為目標。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.10</span><span class="src src-rec">🎤</span> 要餵多少？</h3>
+        <div class="quote">RER = 體重(kg)<sup>0.75</sup> × 70<br>MER = RER × 生命階段係數</div>
+        <div class="tbl-wrap"><table>
+          <tr><th>營養評估係數</th><th>貓</th><th>狗</th></tr>
+          <tr><td>已絕育成年</td><td>1.2–1.4</td><td>1.4–1.6</td></tr>
+          <tr><td>未絕育成年</td><td>1.4–1.6</td><td>1.6–1.8</td></tr>
+          <tr><td>不活動／易胖</td><td>1.0</td><td>1.0–1.2</td></tr>
+          <tr><td><strong>減重</strong></td><td><strong>0.8</strong></td><td><strong>1.0</strong></td></tr>
+          <tr><td>懷孕</td><td>1.6–2.0</td><td>3.0（最後 21 天）</td></tr>
+          <tr><td>泌乳（依胎數與泌乳週數）</td><td>2.0–6.0</td><td>3.0 到 ≥6.0</td></tr>
+          <tr><td>生長期</td><td>2.5</td><td>&lt;4 月齡：3.0；≥4 月齡：2.0</td></tr>
+          <tr><td>工作</td><td>—</td><td>輕度 1.6–2.0；中度 2.0–5.0；重度 5.0–11.0</td></tr>
+          <tr><td><strong>增重</strong>（講者另外標註）</td><td colspan="2"><strong>1.5–2.0</strong></td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 先算 RER，再乘上生命階段係數，得到每日總熱量。</li>
+          <li><span class="src src-rec">🎤</span> 希望大家不要像照片裡那隻狗一樣，整天放一大堆飼料讓牠自由吃。</li>
+          <li><span class="src src-rec">🎤</span> Bobo 要用「增重」的係數 1.5–2.0。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：計算時要用<strong>理想體重</strong>，不是目前體重。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.11</span><span class="src src-rec">🎤</span> 餵多少有差嗎？</h3>
+        <div class="quote">有！胰島素劑量的前提是「正常的每日熱量攝取」。吃越多，需要的胰島素越多！</div>
+        <div class="grid2">
+          <div class="card-mini"><h4>之前：Vetsulin 0.66 U/kg q24h</h4><ul>
+            <li>飼主餵到每日熱量需求的 <strong>180%</strong></li>
+            <li>CGM 整天在 <span class="cgm">300–400</span> mg/dL</li>
+          </ul></div>
+          <div class="card-mini"><h4>之後：熱量降到 100%</h4><ul>
+            <li><strong>完全沒動胰島素劑量</strong></li>
+            <li>大部分時間在 <span class="cgm">150–300</span>，只剩早上和傍晚餐後高峰</li>
+          </ul></div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 飼主常問這個問題，「尤其在美國，<strong>食物就是愛</strong>，飼主很愛餵」。</li>
+          <li><span class="src src-rec">🎤</span> 大部分胰島素的計算，都假設動物吃的是標準計算出的熱量需求。吃越多食物或碳水，胰島素需求就越高。</li>
+          <li><span class="src src-rec">🎤</span> 這隻狗是因為糖尿病控制不佳轉診來的。講者裝了 FreeStyle Libre 找原因，發現牠對 Vetsulin 幾乎沒有反應。</li>
+          <li><span class="src src-rec">🎤</span> 和飼主談過才知道，他們餵了將近兩倍的熱量。只把食量降回 MER，連胰島素劑量都沒碰，血糖曲線就穩定很多。</li>
+          <li><span class="src src-rec">🎤</span> 所以飲食史是糖尿病患的<strong>例行問診</strong>：吃什麼、吃多少。</li>
+          <li><span class="src src-rec">🎤</span> 也要問<strong>零食</strong>。零食可能帶來很多熱量或碳水，不問就可能錯過造成控制不佳的原因（實例見第 14 節）。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🥫</div>
+      <h2>4. 餵什麼：飲食目標、GI/GL、罐頭</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.12</span><span class="src src-rec">🎤</span> 大多數糖尿病患的飲食目標</h3>
+        <ul class="notes">
+          <li>盡量縮短血糖高於<strong>腎閾值</strong>的時間：
+            <ul class="notes">
+              <li>狗約 <strong>180–200 mg/dL</strong></li>
+              <li>貓約 <strong>200–250 mg/dL</strong></li>
+            </ul>
+          </li>
+          <li>避免血糖大幅或極端波動。<span class="src src-rec">🎤</span> 尤其在狗，要減少<strong>餐後</strong>的血糖高峰，希望整天的血糖平穩。</li>
+          <li><span class="src src-rec">🎤</span> 血糖超過腎閾值，就會出現尿糖與臨床症狀。盡量讓血糖待在閾值以下，可以減少症狀，也有助於維持或增加體重。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>情境</th><th>最主要的飲食需求</th></tr>
+          <tr><td>狗糖尿病<strong>合併胰臟炎</strong>（現在有或曾經有）</td><td><strong>低脂</strong>。<span class="src src-rec">🎤</span> 避免刺激胰臟；胰臟炎在多數情況下會讓血糖更難控制</td></tr>
+          <tr><td>狗糖尿病，<strong>沒有胰臟炎</strong></td><td>低碳水、高纖維</td></tr>
+          <tr><td>任何<strong>控制不佳</strong>的糖尿病</td><td>高蛋白、較高熱量（因為處於分解代謝）</td></tr>
+        </table></div>
+        <p class="p"><span class="src src-rec">🎤</span> Bobo 會是這幾種建議的綜合體。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.13</span><span class="src src-rec">🎤</span> 食物對血糖的影響：GI 與 GL</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>升糖指數（Glycemic Index, GI）</h4><ul>
+            <li>食物讓血糖上升的<strong>速度</strong></li>
+            <li>以純葡萄糖為比較基準，0–100 分</li>
+            <li>高 &gt;70；低 &lt;55</li>
+          </ul></div>
+          <div class="card-mini"><h4>升糖負荷（Glycemic Load, GL）</h4><ul>
+            <li>同時考慮上升速度和<strong>每份實際吃進的碳水量</strong></li>
+            <li>更能反映食物對血糖的真實影響</li>
+            <li>高 &gt;20；低 &lt;10</li>
+          </ul></div>
+        </div>
+        <div class="quote">🎤 GI 是車子開多快；GL 是車子開多快，加上開了多遠。</div>
+        <ul class="notes">
+          <li><strong>例子：西瓜</strong>。GI = 72，聽起來是高升糖食物，糖尿病人好像應該避免。但 GL 只有 <strong>5</strong>（低），因為每份的碳水很少。</li>
+          <li><span class="src src-rec">🎤</span> 吃得夠多時，西瓜確實會讓血糖快速上升。但每份碳水太少，長時間下來影響很小，不會打亂血糖控制，所以其實不是糖尿病患不能吃的食物。</li>
+          <li><span class="src src-rec">🎤</span> 只看 GI 可能被誤導，讓糖尿病患避開其實影響不大的食物。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：GL = GI × 每份碳水克數 ÷ 100。西瓜一份約 6–7 g 碳水，所以 72 × 7 ÷ 100 ≈ 5。<span class="src src-rec">🎤</span> 講者在 Q&amp;A 也說，目前 GI／GL 資料大多來自人醫，沒有針對犬貓商業飼料的研究（見第 16 節）。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.14</span><span class="src src-rec">🎤</span> 罐頭優先</h3>
+        <ul class="notes">
+          <li>水分多。</li>
+          <li>熱量密度較低，有助減重。<span class="src src-rec">🎤</span> 熱量和碳水通常也比乾糧低。</li>
+          <li><strong>飼主開心</strong>：可以餵比較多份量，又不會超過熱量上限。</li>
+        </ul>
+        <p class="p">範例：<strong>5 kg、理想體態的貓，每天約 280 kcal</strong>。<span class="src src-rec">🎤</span> 用的是 Royal Canin 的貓糖尿病處方 GlycoAdvanced。</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>劑型</th><th>熱量密度</th><th>每天要餵</th></tr>
+          <tr><td>乾糧</td><td>3,180 kcal/kg；299 kcal/杯</td><td><strong>0.93 杯</strong></td></tr>
+          <tr><td>罐頭</td><td>638 kcal/kg；93 kcal/罐</td><td><strong>3 罐</strong></td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 「食物就是愛」：很多飼主不願意限制食量，覺得在折磨、餓著自己的動物。</li>
+          <li><span class="src src-rec">🎤</span> 吃罐頭時份量看起來比較多，飼主比較能接受減重，也比較不會超過每日熱量。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🦴</div>
+      <h2>5. 糖尿病犬的飲食成分與纖維</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.15–16</span><span class="src src-rec">🎤</span> 犬的飲食成分（Weber et al. JVIM 2007）</h3>
+        <ul class="notes">
+          <li>一般教的是<strong>降低碳水、提高纖維</strong>，目的是減少餐後血糖高峰。
+            <ul class="notes">
+              <li><span class="src src-rec">🎤</span> 這在多數情況下可行，但<strong>不要當成一體適用的方法</strong>。每隻糖尿病犬都套這個營養配方，反而可能讓某些狗出問題。</li>
+            </ul>
+          </li>
+          <li>以下情況需要<strong>更多蛋白質</strong>：
+            <ul class="notes">
+              <li>糖尿病控制不佳（分解代謝狀態）</li>
+              <li>肥胖：需要 <strong>≥6 g 蛋白質／100 kcal</strong>，才能保住肌肉、促進脂肪減少。<span class="src src-rec">🎤</span> 我們不要用掉肌肉來減重，要減的是多餘的脂肪。</li>
+            </ul>
+          </li>
+          <li>蛋白質多 + 纖維多 = 飽足感高。<span class="src src-rec">🎤</span> 動物比較快停止進食，有助控制食慾與減重。</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><span class="src src-slide">📄</span> <strong>胰島素缺乏型糖尿病的碳水需求量目前未知。</strong> <span class="src src-rec">🎤</span> 在狗，我們不知道改變碳水在臨床上到底有多大意義。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 纖維：可溶性 + 不可溶性</h3>
+        <p class="p">講到高纖時，目標是可溶性和不可溶性纖維<strong>混合</strong>，兩者各有好處：</p>
+        <div class="grid2">
+          <div class="card-mini"><h4>可溶性纖維</h4><ul>
+            <li>在腸道形成凝膠，把碳水分子包住</li>
+            <li>凝膠沿著腸道移動時，慢慢釋放碳水</li>
+            <li>葡萄糖吸收變慢，餐後高峰變平緩</li>
+          </ul></div>
+          <div class="card-mini"><h4>不可溶性纖維</h4><ul>
+            <li>增加糞便體積</li>
+            <li>加快腸道通過時間</li>
+            <li>讓葡萄糖盡快離開腸道，減少吸收</li>
+          </ul></div>
+        </div>
+        <p class="muted"><span class="src src-fix">【更正】</span> 逐字稿第二段也寫成 soluble fiber，依內容應為 <strong>insoluble</strong>（不可溶性）。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.17</span><span class="src src-rec">🎤</span> 高纖一定最好嗎？</h3>
+        <ul class="notes">
+          <li>以 Bobo 這種 BCS 2/9 的狗為例，要回到理想體重，每天可能需要 <strong>700 kcal</strong>。</li>
+          <li>高纖飲食通常熱量低，脂肪也可能低，<strong>可能讓增重變慢甚至無法增重！</strong></li>
+          <li><span class="src src-rec">🎤</span> 很多高纖處方本來就是設計給減重用的。用在瘦的糖尿病犬，可能拖慢甚至阻礙增重。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>飼料（乾糧）</th><th>蛋白</th><th>碳水</th><th>脂肪</th><th>纖維</th><th>kcal/杯</th><th>💡 700 kcal 要吃</th></tr>
+          <tr><td>Royal Canin Satiety</td><td>11.5</td><td>11.3</td><td>3.60</td><td><strong>10.8</strong></td><td>214</td><td>約 3.3 杯</td></tr>
+          <tr><td>Royal Canin Glycobalance</td><td>11.0</td><td>8.60</td><td>3.60</td><td>5.40</td><td>316</td><td>約 2.2 杯</td></tr>
+          <tr><td>Purina EN</td><td>9.20</td><td>8.09</td><td>4.64</td><td>1.80</td><td><strong>442</strong></td><td>約 1.6 杯</td></tr>
+        </table></div>
+        <p class="muted">單位：g/100 kcal。</p>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> Satiety 纖維很高，但和 Glycobalance 比，熱量密度低很多，這點要考慮。兩者脂肪差不多，Satiety 的碳水稍高，蛋白質大概相當。</li>
+          <li><span class="src src-rec">🎤</span> Purina EN 乾糧：蛋白中等、碳水稍高、纖維低、<strong>熱量高</strong>，可能更有助增重。</li>
+          <li><span class="src src-rec">🎤</span> 這就是取捨：為了增加脂肪和熱量來幫助增重，可能要放棄低碳，改吃中等碳水。</li>
+          <li><span class="src src-rec">🎤</span> 蛋白質對這些狗也很重要，高蛋白可能是關鍵因素之一。</li>
+        </ul>
+        <p class="muted"><span class="src src-add">💡</span> 錄音說 EN「脂肪較低」，但講義數字是 EN 4.64 g，略高於另外兩款的 3.60 g。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🧮</div>
+      <h2>6. Bobo 的飲食決策</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.18</span><span class="src src-rec">🎤</span> 問答題：對 Bobo 優先順序最高的飲食策略？</h3>
+        <ol class="notes" type="a">
+          <li>以增重為主，高熱量、中等脂肪</li>
+          <li><strong>因為有胰臟炎病史，盡量降低脂肪</strong></li>
+          <li>盡量降低碳水以減少升糖負荷</li>
+          <li>提高纖維以減緩葡萄糖吸收</li>
+        </ol>
+        <div class="alert alert-success"><span class="alert-icon">✅</span><div><strong>答案：b（控制脂肪）</strong>。<span class="src src-rec">🎤</span> 「有點難。增重很重要，但他有活動性胰臟炎，而且胰臟炎反覆發作。這可能讓之後的血糖更難控制，甚至再次掉進 DKA。所以要專注在脂肪：找一個<strong>低到不會引發胰臟炎、又高到能讓他長回體重</strong>的脂肪量。」</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 另一組比較：Purina EN 罐頭 vs EN Low Fat 罐頭</h3>
+        <ul class="notes">
+          <li>如果沒有糖尿病，單純胰臟炎的狗，EN Low Fat 會是好選擇。</li>
+          <li>但 EN 一般罐頭的脂肪屬於<strong>中等</strong>，熱量高很多，碳水也稍低。</li>
+          <li>對 Bobo 來說，EN 一般罐頭可能更好：能幫助增重，脂肪也只是中等。</li>
+        </ul>
+        <p class="muted">講義 PDF 沒有這一張的數值，內容只來自錄音。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.19</span><span class="src src-rec">🎤</span> Bobo 需要什麼？</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>問題</th><th>對應的飲食需求</th></tr>
+          <tr><td>糖尿病</td><td>低碳、高纖</td></tr>
+          <tr><td>體態差</td><td>高脂、高熱量、高蛋白</td></tr>
+          <tr><td>胰臟炎</td><td>低脂</td></tr>
+        </table></div>
+        <p class="p"><strong>Bobo 的取捨</strong>：</p>
+        <ol class="notes">
+          <li><strong>優先：低到中等脂肪</strong></li>
+          <li>熱量密度高（幫助增重）</li>
+          <li>高蛋白：<span class="src src-rec">🎤</span> 幫助增重，也對抗失控糖尿病的分解代謝</li>
+          <li>次要：低到中等碳水、高纖。<span class="src src-rec">🎤</span> 狗的碳水需求不明，不值得依碳水含量做太多決定。需要纖維的話，可以另外加<strong>洋車前子（psyllium）或南瓜罐頭</strong>，不一定要靠飼料本身。</li>
+        </ol>
+        <div class="quote">熱量計算：理想體重 5.45 kg × 生命階段係數 1.5–2.0 → 每天約 375–500 kcal</div>
+        <p class="muted"><span class="src src-add">💡</span> 驗算：RER = 70 × 5.45<sup>0.75</sup> ≈ 250 kcal；× 1.5 = 375、× 2.0 = 500。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.20</span><span class="src src-rec">🎤</span> Bobo 的計畫</h3>
+        <ul class="notes">
+          <li><strong>告知飼主絕對不可以限水！</strong> <span class="src src-rec">🎤</span> 和飼主長談：Bobo 一輩子都要隨時有乾淨的飲水，再也不能限水。那是很危險的決定，牠幸運活了下來。</li>
+          <li>胰島素：<strong>Vetsulin 0.5 U/kg q12h</strong></li>
+          <li>飲食：<span class="src src-rec">🎤</span> 請營養專科一起討論。他們的想法是選<strong>能量很高、熱量密度很高</strong>的食物來幫助增重。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>候選飼料（乾糧）</th><th>蛋白</th><th>碳水</th><th>脂肪</th><th>纖維</th><th>kcal/杯</th><th>💡 375–500 kcal 要吃</th></tr>
+          <tr><td>Purina Sport/Performance</td><td>6.83</td><td>6.50</td><td>4.56</td><td>7.6</td><td><strong>484</strong></td><td>約 0.8–1.0 杯</td></tr>
+          <tr><td>Hill's 幼犬糧</td><td>7.20</td><td>9.60</td><td>4.80</td><td>2.3</td><td>418</td><td>約 0.9–1.2 杯</td></tr>
+          <tr><td>Royal Canin Glycobalance</td><td><strong>11.0</strong></td><td>8.60</td><td><strong>3.60</strong></td><td>5.40</td><td>316</td><td>約 1.2–1.6 杯</td></tr>
+        </table></div>
+        <p class="muted">單位：g/100 kcal。</p>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 運動犬或工作犬的飼料熱量密度很高。幼犬糧熱量密度也高，蛋白質也不錯。</li>
+        </ul>
+        <div class="alert alert-success"><span class="alert-icon">✅</span><div><span class="src src-rec">🎤</span> <strong>最後的決定：Purina Sport/Performance 和 RC Glycobalance 混著吃</strong>。這樣可以拿到高熱量，把脂肪壓在中等範圍，蛋白質也維持在中高程度。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">📈</div>
+      <h2>7. Bobo 追蹤：從 Vetsulin 換成 Degludec</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.21</span><span class="src src-rec">🎤</span> Vetsulin 0.5 U/kg q12h 加新飲食</h3>
+        <ul class="notes">
+          <li>已矯正低血容與電解質異常，回家打 Vetsulin、吃新飲食。</li>
+          <li><strong>血糖變異度很大，加了劑量仍然持續。</strong></li>
+          <li>CGM（紅色 X = 打針與餵食）：
+            <ul class="notes">
+              <li>第 1 天：早上 6 點打針後掉到 <span class="cgm">65</span>（低血糖），10 點後回升，下午到半夜卡在 <span class="cgm">400</span>。</li>
+              <li>第 2 天：早上打針後反而升到 <span class="cgm">350–400</span>，下午掉到 <span class="cgm">58</span>，傍晚 6 點後又卡在 <span class="cgm">400</span>。</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.22</span><span class="src src-rec">🎤</span> 換成 Degludec 0.5 U/kg（2U）SC q24h</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 他是一隻「一天一次 degludec 就可以的狗」，起始 <strong>2U SC q24h</strong>。</li>
+          <li>同時把餵食改成一天 <strong>3–4 小餐</strong>，取代原本的一天兩餐。</li>
+          <li><strong>4 天內從 2U 加到 4U</strong>，開始看到很好的血糖反應。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>CGM</th><th>表現</th></tr>
+          <tr><td>第 2 天</td><td>整天約 <span class="cgm">230–360</span></td></tr>
+          <tr><td>第 3 天</td><td>約 <span class="cgm">260–380</span>，早上打針後反而升高</td></tr>
+          <tr><td>第 7 天</td><td>大部分時間在 <span class="cgm">70–200</span>；清晨最低約 <span class="cgm">71</span>，晚上 10 點短暫升到 <span class="cgm">296</span></td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.22</span><span class="src src-rec">🎤</span> 回到理想體重後：轉換飲食</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 第一次回診時，Bobo 已經長回很多體重，<strong>回到理想體重</strong>。</li>
+          <li>飲食轉成<strong>較低碳水、較高纖維、中等蛋白</strong>。<span class="src src-rec">🎤</span> 改成營養專科建議的 Purina OM。</li>
+          <li><span class="src src-rec">🎤</span> OM 雖然是減重處方，但可以餵到足夠的量，讓他維持熱量。他吃 OM 後一直維持在較高的體重，狀況很好。</li>
+        </ul>
+        <div class="quote">🎤 再說一次：低碳高纖，一開始對 Bobo 並不是最好的選擇。</div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充：Bobo 為什麼成功</strong>
+          <ol class="notes">
+            <li><strong>Degludec</strong> 是平穩的基礎胰島素，不像 Vetsulin 有明顯尖峰，所以不會雲霄飛車式波動。</li>
+            <li><strong>少量多餐</strong>：單一餐不會大到壓過基礎胰島素（見第 15 節）。</li>
+            <li><strong>依階段換飲食</strong>：先增重（熱量密度高、中等脂肪），回到理想體重後再換低碳高纖。</li>
+          </ol>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">🐈</div>
+      <h2>8. 病例 Leo：表現與檢查</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.23–24</span><span class="src src-rec">🎤</span> Leo，12 歲，已去勢公布偶貓</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 「糖尿病貓其實比較簡單一點，因為我們對貓有明確、已知的營養需求可以依循。」</li>
+          <li><span class="src src-rec">🎤</span> 照片上的 Leo 是講者自己養的布偶貓，「我非常愛他，所以他出現在我所有的簡報裡」。</li>
+        </ul>
+        <div class="grid2">
+          <div class="card-mini"><h4>主訴</h4><ul>
+            <li>食慾超好</li>
+            <li>水碗要一直加。<span class="src src-rec">🎤</span> 對貓來說這不是好徵兆</li>
+            <li><strong>沒辦法爬樓梯</strong>。<span class="src src-rec">🎤</span> 以前會跳上流理台、沙發、上樓，後來都做不到了；步態也不正常</li>
+          </ul></div>
+          <div class="card-mini"><h4>初診</h4><ul>
+            <li>體重 <strong>8.1 kg</strong>（以前約 6 kg）</li>
+            <li><strong>BCS 8/9</strong></li>
+            <li>脫水 5%（輕度）</li>
+            <li><strong>蹠行站姿（plantigrade）</strong>：糖尿病神經病變</li>
+            <li>吃乾糧維持期飼料，每天 350 kcal。<span class="src src-rec">🎤</span> 對他來說有點太多</li>
+          </ul></div>
+        </div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：理想體重 6 kg 時，RER = 70 × 6<sup>0.75</sup> ≈ <strong>268 kcal</strong>。Leo 每天吃 350 kcal，約為理想體重 RER 的 1.3 倍。如果要減重，用貓的係數 0.8，每天約 215 kcal。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.25</span><span class="src src-rec">🎤</span> 初步檢查</h3>
+        <ul class="notes">
+          <li>CBC 無明顯異常，HCT 39%</li>
+          <li>尿液：
+            <ul class="notes">
+              <li>USG 1.025、蛋白 1+、pH 7.0</li>
+              <li><strong>尿糖 &gt;1000、酮陰性</strong></li>
+              <li>沉渣有脂質</li>
+            </ul>
+          </li>
+          <li>TT4 2.3（參考 1.0–4.0）。<span class="src src-rec">🎤</span> 「T4 正常。他那麼胖，這點有點出乎意料。」</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.26</span><span class="src src-rec">🎤</span> 進階檢查</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>結果</th><th>參考值</th><th>解讀</th></tr>
+          <tr><td>BHB</td><td>0.3 mmol/L</td><td>&lt;0.6</td><td>沒有酮症</td></tr>
+          <tr><td>果糖胺</td><td><strong>725 µmol/L</strong></td><td>&lt;340</td><td>長期高血糖，符合糖尿病</td></tr>
+          <tr><td>Spec fPL</td><td><strong>15 µg/L</strong></td><td>&lt;4.4</td><td>胰臟炎</td></tr>
+          <tr><td>尿液培養</td><td>陰性</td><td>—</td><td>—</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li>腹部超音波：
+            <ul class="notes">
+              <li><strong>肝臟腫大、高回音</strong>。<span class="src src-rec">🎤</span> 有肝脂質沉積的跡象。</li>
+              <li>輕度腎臟退行性變化（<span class="src src-rec">🎤</span> 雙側輕到中度）</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">💊</div>
+      <h2>9. 貓的胰島素與 SGLT2 抑制劑</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.27</span><span class="src src-rec">🎤</span> 胰島素選擇</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>胰島素</th><th>濃度／核准狀態</th><th>起始劑量</th></tr>
+          <tr><td>豬鋅胰島素（Vetsulin／Caninsulin）</td><td>U40，FDA 核准</td><td rowspan="3">每隻貓 <strong>1U q12h</strong></td></tr>
+          <tr><td>Glargine</td><td>U100，仿單外使用</td></tr>
+          <tr><td>PZI（ProZinc）</td><td>U40，FDA 核准</td></tr>
+          <tr><td>Glargine U300（Toujeo）</td><td>基礎型胰島素</td><td><strong>0.5 U/kg q12–24h</strong>（<span class="src src-rec">🎤</span> 用理想體重算）</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 這些在貓都可以用。講者在貓的偏好是 <strong>ProZinc、Glargine U100 或 Glargine U300（Toujeo）</strong>。</li>
+          <li><span class="src src-rec">🎤</span> Toujeo 可以從 q12h 或 q24h 開始，再用 FreeStyle Libre 監測。</li>
+        </ul>
+        <div class="alert alert-danger"><span class="alert-icon">🚫</span><div><strong>貓不要用 NPH</strong>：作用時間太短，長期很難用它控制好。</div></div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>Degludec 在貓需要 q12h</strong>。<span class="src src-rec">🎤</span> 所以講義沒有把它列進來：它在貓沒有「一天一次」的優勢，基本上是一天兩次的胰島素。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.28</span><span class="src src-rec">🎤</span> SGLT-2 抑制劑？</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>Velagliflozin（Senvelgo）</h4><ul>
+            <li>口服液 15 mg/mL，蜂蜜口味</li>
+            <li>1.0 mg/kg PO q24h</li>
+            <li>附刻度針筒</li>
+          </ul></div>
+          <div class="card-mini"><h4>Bexagliflozin（Bexacat）</h4><ul>
+            <li>15 mg 錠劑，牛肉口味</li>
+            <li>每天一錠 PO q24h</li>
+            <li>貓必須 <strong>≥3 kg</strong></li>
+          </ul></div>
+        </div>
+        <ul class="notes">
+          <li><strong>優點</strong>：
+            <ul class="notes">
+              <li><strong>不用打針</strong>。<span class="src src-rec">🎤</span> 減少飼主的負擔</li>
+              <li>不用冷藏、不需要特殊處理</li>
+              <li>不用嚴格作息。<span class="src src-rec">🎤</span> 飼主不必配合打針時間安排生活</li>
+            </ul>
+          </li>
+          <li><span class="src src-rec">🎤</span> 「我把它和胰島素一樣當成<strong>起始選項</strong>。請把兩種選擇都告訴飼主，讓他們決定。」</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>適用條件</th><th>錄音補充</th></tr>
+          <tr><td>全身狀況健康</td><td>—</td></tr>
+          <tr><td>有進食、沒有慢性下痢</td><td>要能穩定進食</td></tr>
+          <tr><td>CKD 未達 IRIS 第 3 期</td><td>研究是在 IRIS &lt;3 期的貓做的。但有新研究顯示，<strong>IRIS 3 期以上</strong>似乎仍然有效</td></tr>
+          <tr><td>ALT／ALP &lt; 3 倍上限</td><td>—</td></tr>
+          <tr><td>總膽紅素 &lt;0.5</td><td>—</td></tr>
+          <tr><td>BHB &lt;3.7 mmol/L</td><td>多數情況下，安全使用的條件是 BHB 低於 3.7</td></tr>
+        </table></div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：
+          <ul class="notes">
+            <li>SGLT2i 最大的風險是<strong>血糖正常型 DKA（eDKA）</strong>。</li>
+            <li>美國仿單只限<strong>未用過胰島素</strong>的貓。</li>
+            <li>開始前要測基準 BHB，用藥初期要監測。</li>
+            <li>詳見 <a href="sglt2i-off-label.html#s2">04 第 2 節</a>、<a href="sglt2i-off-label.html#s4">第 4 節</a>、<a href="sglt2i-off-label.html#s12">第 12 節</a>。</li>
+            <li>Leo 有胰臟炎和疑似肝脂質沉積，最後用的是胰島素（見第 13 節）。</li>
+          </ul>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🍗</div>
+      <h2>10. 貓的碳水與蛋白質</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.29</span><span class="src src-rec">🎤</span> 問答題：最近研究顯示，讓肥胖糖尿病貓減重最重要的因素是？</h3>
+        <ol class="notes" type="a">
+          <li><strong>熱量限制</strong></li>
+          <li>低碳水飲食</li>
+          <li>高纖飲食</li>
+          <li>低脂飲食</li>
+        </ol>
+        <div class="alert alert-success"><span class="alert-icon">✅</span><div><strong>答案：a（熱量／能量限制）</strong>。研究見第 12 節。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.30</span><span class="src src-rec">🎤</span> 貓的碳水含量</h3>
+        <ul class="notes">
+          <li><strong>大多數貓適合低碳水</strong>：<strong>&lt;12% ME</strong>，或更容易辨認的 <strong>&lt;3–4 g/100 kcal</strong>。（講義黃框：適用於<strong>胰島素阻抗型</strong>糖尿病）</li>
+          <li><strong>罐頭 = 水分多、碳水少</strong>。
+            <ul class="notes">
+              <li>光是把乾糧換成罐頭就有幫助！</li>
+              <li><span class="src src-rec">🎤</span> 就算飼主負擔不起處方飼料，只要從乾糧換成罐頭，就有治療效果，即使碳水或蛋白質還遠遠不到標準。</li>
+            </ul>
+          </li>
+          <li><strong>低碳一定最好嗎？</strong>
+            <ul class="notes">
+              <li>胰島素 + 低碳飲食 = <strong>緩解率提高</strong>。<span class="src src-rec">🎤</span> 如果目標是減重和緩解，低碳一定是最好的。</li>
+              <li>但是，<strong>低碳常常代表高脂</strong>。</li>
+            </ul>
+          </li>
+          <li><span class="src src-rec">🎤</span> SGLT2i 的緩解率目前資料還不理想。軼事上，有些貓用這類藥會進入緩解。</li>
+        </ul>
+        <p class="muted"><span class="src src-fix">【更正】</span> 逐字稿寫「insulin plus a low carb food <em>decreases</em> your remission rate」，講義是 ↑ remission rate，以講義為準。</p>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：碳水約 3.5 kcal/g，所以 3 g/100 kcal ≈ 10.5% ME，4 g ≈ 14% ME，兩種寫法大致相當。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.31</span><span class="src src-rec">🎤</span> 貓的蛋白質含量（Weber et al. JVIM 2007）</h3>
+        <ul class="notes">
+          <li><strong>大多數貓適合高蛋白</strong>：<strong>&gt;40% ME</strong>，或 <strong>&gt;10–15 g/100 kcal</strong>。</li>
+          <li>肥胖患者吃高蛋白飲食：
+            <ul class="notes">
+              <li><strong>保留肌肉、減少脂肪</strong>。</li>
+              <li><strong>把脂肪從肝臟動員出來（肝脂質沉積）</strong>。<span class="src src-rec">🎤</span> 失控的糖尿病會讓身體以為自己在挨餓、無法利用能量，所以糖尿病貓在診斷時常有某種程度的肝脂質沉積。蛋白質是把脂肪移出肝臟最重要的營養素之一，能避免肝脂質沉積惡化。一旦嚴重，肝脂質沉積可能啟動<strong>死亡螺旋</strong>，尤其在糖尿病很難控制的貓。</li>
+            </ul>
+          </li>
+          <li>考慮共病：
+            <ul class="notes">
+              <li><strong>先針對最先會要命的病來餵！</strong> <span class="src src-rec">🎤</span> 例如同時有腎病和糖尿病，腎病很可能比糖尿病更早要命，就可能要以腎病為主。不過常常能找到兼顧兩邊的中間點。</li>
+              <li>需不需要營養專科協助？</li>
+            </ul>
+          </li>
+        </ul>
+        <p class="muted"><span class="src src-add">💡</span> 蛋白質約 3.5 kcal/g，所以 40% ME ≈ 11.4 g/100 kcal。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🛒</div>
+      <h2>11. 選飼料：肥胖貓與蛋白尿 CKD 貓</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.32</span><span class="src src-rec">🎤</span> 餵食肥胖的糖尿病貓</h3>
+        <ul class="notes">
+          <li>例子：BCS 9/9 的貓（講義寫「chonky」，胖嘟嘟）。理想體重每天需要 <strong>300 kcal</strong>。</li>
+          <li>病患需要：<strong>高蛋白 + 低碳</strong>（糖尿病、保護肌肉）、<strong>低脂 + 低熱量</strong>（減重）。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>罐頭</th><th>蛋白</th><th>碳水</th><th>脂肪</th><th>熱量</th><th>💡 300 kcal 要吃</th></tr>
+          <tr><td>Purina DM</td><td>13.3</td><td><strong>1.5</strong></td><td>5.4</td><td>163 kcal / 5.5 oz</td><td>約 1.8 罐</td></tr>
+          <tr><td>RC GlycoAdvanced</td><td><strong>14.8</strong></td><td>2.6</td><td>3.8</td><td>93 kcal / 5.1 oz（≈100 / 5.5 oz）</td><td>約 3.2 罐</td></tr>
+          <tr><td>Purina OM</td><td>13.6</td><td>6.4</td><td><strong>3.5</strong></td><td>115 kcal / 5.5 oz</td><td>約 2.6 罐</td></tr>
+          <tr><td>RC Multifunction Urinary SO + Satiety</td><td>12.0</td><td>5.1</td><td>4.7</td><td>88 kcal / 5.1 oz（≈95 / 5.5 oz）</td><td>約 3.4 罐</td></tr>
+        </table></div>
+        <p class="muted">單位：g/100 kcal。</p>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> DM 和 GlycoAdvanced 都是典型的糖尿病處方，都高蛋白、低碳，但脂肪和熱量不同。只比這兩個的話，<strong>GlycoAdvanced 可能較好</strong>，因為脂肪和熱量都比較低。</li>
+          <li><span class="src src-rec">🎤</span> OM 是典型的減重處方。蛋白 13.6 符合糖尿病貓的蛋白需求，碳水也落在高蛋白低碳的範圍。脂肪比 GlycoAdvanced 少一點，但熱量稍高，所以兩者在這個情境下<strong>大概相當</strong>。</li>
+          <li><span class="src src-rec">🎤</span> Multifunction 熱量偏低，但脂肪比較高，可能不是最佳選擇。</li>
+          <li><span class="src src-rec">🎤</span> 結論：這個病例最適合 <strong>GlycoAdvanced 或 OM</strong>，既能減重，又能支持血糖控制。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.33</span><span class="src src-rec">🎤</span> 餵食合併蛋白尿 CKD 的糖尿病貓</h3>
+        <ul class="notes">
+          <li>病患需要：<strong>低到中等蛋白、低碳</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 兩款糖尿病處方蛋白質都很高，所以都不是很好的選擇。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>罐頭</th><th>蛋白</th><th>碳水</th><th>脂肪</th><th>評估</th></tr>
+          <tr><td>Purina DM</td><td>13.3</td><td>1.5</td><td>5.4</td><td>蛋白太高</td></tr>
+          <tr><td>RC GlycoAdvanced</td><td>14.8</td><td>2.6</td><td>3.8</td><td>蛋白太高</td></tr>
+          <tr><td>Hill's k/d</td><td>6.7</td><td>9.4</td><td>5.1</td><td>蛋白中等，碳水較高</td></tr>
+          <tr><td>RC Renal Support E</td><td>7.0</td><td><strong>5.9</strong></td><td>6.0</td><td>蛋白中等，<strong>碳水較低</strong></td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 腎臟處方的蛋白質比糖尿病處方中等很多，碳水都在中等範圍，Renal Support E 稍低。脂肪在 5.1–6.0 之間。</li>
+          <li><span class="src src-rec">🎤</span> 要看動物的 BCS 決定用哪一款。但因為碳水限制較多，<strong>Renal Support E 可能比較適合糖尿病貓</strong>。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div>這就是「先針對最先會要命的病」的實例：蛋白尿 CKD 比糖尿病更可能先要命，所以先選腎臟處方，再從中挑碳水較低的。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🔬</div>
+      <h2>12. GlycoAdvanced 熱量限制臨床試驗</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.34</span><span class="src src-rec">🎤</span> Jørgensen FK, et al. JVIM 2026;40(2)</h3>
+        <p class="muted">A two-center, randomized controlled trial to determine the effect of 12 weeks of caloric restriction with a novel diet in overweight cats with diabetes mellitus.</p>
+        <ul class="notes">
+          <li>目的：評估<strong>熱量限制</strong>的效果。</li>
+          <li>對象：<strong>72 隻過重的糖尿病貓</strong>，兩個中心，隨機對照，12 週。</li>
+          <li>兩組都吃 RC GlycoAdvanced（<span class="src src-rec">🎤</span> 新配方的貓糖尿病處方），目標不同：
+            <ul class="notes">
+              <li>維持體重組：<strong>80 kcal/BW<sup>0.75</sup></strong></li>
+              <li>減重組：<strong>40 kcal/BW<sup>0.75</sup></strong></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="grid2">
+          <div class="card-mini"><h4>熱量限制組</h4><ul>
+            <li><strong>緩解機率高 4 倍</strong></li>
+            <li>胰島素劑量下降更多</li>
+            <li>血糖變異度下降的百分比更大</li>
+          </ul></div>
+          <div class="card-mini"><h4>兩組都改善</h4><ul>
+            <li>生活品質（QOL）</li>
+            <li>糖尿病臨床分數</li>
+          </ul></div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 不管有沒有減重，兩組都有好處。但限制熱量的那組，明顯比餵到維持體重的那組得到更多好處。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：
+          <ul class="notes">
+            <li>RER 是 70 kcal/BW<sup>0.75</sup>，所以減重組約等於 <strong>0.57 倍 RER</strong>，維持組約等於 1.14 倍 RER。這是相當嚴格的熱量限制。</li>
+            <li>兩組吃的是同一種飼料，差別只在熱量，所以這個試驗支持「<strong>熱量本身就是治療</strong>」。</li>
+            <li>本研究是飼料品牌相關的試驗。結果是否適用於其他低碳高蛋白飲食，需要再看原文。</li>
+            <li>03 的緩解定義與預測因子見 <a href="feline-diabetes.html#s14">03 第 14 節</a>。</li>
+          </ul>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 13 ══ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">📋</div>
+      <h2>13. Leo 的評估與追蹤</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.35</span><span class="src src-rec">🎤</span> Leo 的主要問題</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>問題</th><th>處置與思考</th></tr>
+          <tr><td>糖尿病</td><td>—</td></tr>
+          <tr><td>糖尿病神經病變</td><td>考慮<strong>甲鈷胺（methylcobalamin）</strong>。<span class="src src-rec">🎤</span> 控制好糖尿病就可能逆轉神經病變。有些證據顯示，甲基化的鈷胺素比較能進入神經組織，可能加快神經功能恢復。但它<strong>不能取代良好且快速的血糖控制</strong></td></tr>
+          <tr><td>肥胖</td><td>需要減重</td></tr>
+          <tr><td>fPL 高：慢性胰臟炎</td><td><span class="src src-rec">🎤</span> 在貓，胰臟炎對飲食決策的影響可能沒有狗那麼大</td></tr>
+          <tr><td>肝臟亮：可能輕度肝脂質沉積</td><td>需要蛋白質</td></tr>
+          <tr><td>其他：ALP 上升、膽固醇上升、早期 CKD</td><td><span class="src src-rec">🎤</span> CKD 還沒到需要特別飲食介入的程度</td></tr>
+          <tr><td>無法分期 CKD</td><td>因為就診時有低血容</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.36</span><span class="src src-rec">🎤</span> Leo 的追蹤</h3>
+        <ol class="notes">
+          <li>補液後開始 <strong>Glargine U100 1U q12h</strong>。</li>
+          <li>飲食選 <strong>Purina OM</strong>：高蛋白、低脂、低熱量、中等碳水。</li>
+          <li>FreeStyle Libre 曲線顯示控制不佳，胰島素逐步加到 <strong>3U q12h</strong>，血糖控制好很多。</li>
+          <li>達到減重目標後，改成 <strong>RC GlycoAdvanced</strong>。<span class="src src-rec">🎤</span> 剛好那時 GlycoAdvanced 上市，所以換過去。</li>
+          <li><span class="src src-rec">🎤</span> 之後一直吃 GlycoAdvanced，只靠飲食加胰島素就維持住體重。可惜<strong>沒有進入緩解</strong>，但他狀況很好。</li>
+        </ol>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充：為什麼先用 OM，不用碳水更低的 DM？</strong>
+          <ul class="notes">
+            <li>DM 的脂肪（5.4）和每罐熱量（163 kcal）都最高，不利於減重，對胰臟炎也較不理想。</li>
+            <li>OM 犧牲一點低碳，換到低脂、低熱量、高蛋白，同時照顧到肥胖、胰臟炎和肝脂質沉積。</li>
+            <li>減重完成後，再換成兼顧低碳的飲食。</li>
+          </ul>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 14 ══ -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🍬</div>
+      <h2>14. 疑難排解：傍晚血糖高峰之謎</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.37–38</span><span class="src src-rec">🎤</span> 案例</h3>
+        <ul class="notes">
+          <li>一隻糖尿病犬，打 <strong>Toujeo（Glargine U300）1.0 U/kg q12h</strong>。</li>
+          <li><span class="src src-slide">📄</span> 傍晚出現多喝多尿。<span class="src src-rec">🎤</span> 飼主說白天都很好，但晚上會因為多尿把他們吵醒，或在家裡尿出來，擔心控制不好。</li>
+          <li><span class="src src-rec">🎤</span> 看 FreeStyle Libre 曲線時，講者注意到<strong>中午</strong>有一次掃描，可見飼主中午有在看血糖；掃描後血糖立刻往上衝。於是請飼主回來，問中午到底發生什麼事。</li>
+          <li>真相：
+            <ul class="notes">
+              <li>只有媽媽來回診。她提到爸爸在家工作。</li>
+              <li>爸爸午休吃飯時心疼狗，給了 <strong>3 根零食棒</strong>。</li>
+              <li>3 根約等於<strong>每日熱量的 30%</strong>。</li>
+              <li>成分表第 4 項是<strong>糖</strong>。</li>
+              <li>（講義：媽媽很不開心。）</li>
+            </ul>
+          </li>
+          <li><span class="src src-rec">🎤</span> 把零食停掉之後，狗的狀況就很好。</li>
+        </ul>
+        <div class="quote">問飲食史，要問到「家裡的每一個人」和「每一種零食」。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 15 ══ -->
+  <div class="section" id="s15">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">⏰</div>
+      <h2>15. 基礎胰島素與餐次</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.39</span><span class="src src-rec">🎤</span> 沒有一體適用的餵食策略</h3>
+        <ul class="notes">
+          <li>基礎胰島素指的是 degludec 和 Toujeo（Glargine U300）。</li>
+          <li>餵食策略沒有標準公式，要依病患調整。</li>
+          <li>可能需要調整每餐份量或餐次。</li>
+        </ul>
+        <div class="quote">把食物當成治療工具來用！（Use food like a therapeutic!!!）</div>
+        <p class="p"><strong>案例</strong>：一隻狗每天傍晚打一次 degludec，一天一餐吃下 100% 熱量。<span class="src src-rec">🎤</span> 飼主在牠得糖尿病之前就一直一天餵一餐，所以先試著維持家裡習慣的作息。</p>
+        <ul class="notes">
+          <li>CGM：其他時間大多在 <span class="cgm">70–180</span>，但每次吃完那一大餐，血糖就衝到 <span class="cgm">350–400</span>，持續好幾個小時。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.40</span><span class="src src-rec">🎤</span> 調整熱量分配（沒有改胰島素）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>餵法</th><th>CGM 表現</th><th>評估</th></tr>
+          <tr><td>一天一次 100%（傍晚）</td><td>傍晚衝到 <span class="cgm">291–356</span>，晚上又一個高峰</td><td>餐後高峰明顯</td></tr>
+          <tr><td>早上 5 點 20% + 傍晚 5 點 80%</td><td>早餐後小高峰 <span class="cgm">231</span>；中午最低 <span class="cgm">69</span>；傍晚衝到 <span class="cgm">400</span></td><td>🎤 改善不如預期</td></tr>
+          <tr><td><strong>早上 5 點 40% + 傍晚 5 點 60%</strong></td><td>大多在目標區間；傍晚只短暫升到 <span class="cgm">320–334</span>；凌晨一個 <span class="cgm">66</span></td><td>✅ 高峰短很多，<strong>不足以造成臨床症狀</strong></td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 說服飼主試試一天兩餐，飼主願意配合。</li>
+          <li><span class="src src-rec">🎤</span> 「胰島素我們完全沒動，只改了餵食策略，這隻狗就控制得很好。」</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.41</span><span class="src src-rec">🎤</span> 餐點壓過基礎胰島素時</h3>
+        <ul class="notes">
+          <li>少數情況下，餐點會<strong>壓過基礎胰島素的作用</strong>，造成控制不佳。<span class="src src-rec">🎤</span> 飼主就算餵的是小餐，每一餐後血糖還是大幅飆高。</li>
+          <li>處理順序：
+            <ol class="notes">
+              <li>先試<strong>少量多餐</strong>。</li>
+              <li>有些病患需要再加一針<strong>中效胰島素</strong>：<strong>NPH 或 Vetsulin 約 0.25 U/kg</strong>，搭配其中一餐。</li>
+              <li>通常<strong>一天只需要在其中一餐後加</strong>。<span class="src src-rec">🎤</span> 和 degludec 合併使用，通常就能抵消餐後血糖反應，控制更好。</li>
+            </ol>
+          </li>
+        </ul>
+        <p class="muted"><span class="src src-add">💡</span> 何時加 bolus 也可以對照 <a href="canine-diabetes-insulin.html#s17">02 第 17 節</a>。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 16 ══ -->
+  <div class="section" id="s16">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">💬</div>
+      <h2>16. Q&amp;A</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <div class="qa">
+          <div class="q">Q1：有沒有針對商業飼料的升糖指數／升糖負荷研究？</div>
+          <div class="a">🎤 「我不知道有任何針對獸醫病患的 GI 或 GL 研究。我們手上的 GI 資料大多是從人醫推論來的。」不過可以確定的是，<strong>在食物裡加纖維</strong>能降低食物對血糖的影響，長期下來對血糖有保護作用。</div>
+        </div>
+        <div class="qa">
+          <div class="q">Q2：建議加什麼纖維？狗貓吃得下嗎？天然的（像南瓜）比市售纖維補充品好嗎？</div>
+          <div class="a">
+            <ul class="notes">
+              <li>🎤 高纖不一定要靠飼料本身。講者常在處方飼料裡另外加<strong>南瓜罐頭或洋車前子</strong>。</li>
+              <li><strong>貓</strong>：<strong>奇亞籽</strong>可能比較容易，泡水後拌進食物。</li>
+              <li><strong>狗</strong>：
+                <ul class="notes">
+                  <li>南瓜罐頭拌進食物通常適口性很好，狗多半喜歡。</li>
+                  <li>或者用<strong>無味的洋車前子殼粉</strong>，請飼主拌進食物。它幾乎沒有味道，不影響適口性。</li>
+                  <li>比起另外吃一種有口味的保健品，狗通常比較能接受這種方式。</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="qa">
+          <div class="q">Q3：對非處方（市售一般）飼料的看法？</div>
+          <div class="a">
+            <ul class="notes">
+              <li>🎤 飼主負擔不起處方飼料的話，講者可以接受市售飼料。</li>
+              <li><strong>避開有肉汁或醬汁的</strong>（gravy／sauce），碳水通常比較高。</li>
+              <li>選<strong>肉泥（pâté）類、不含肉汁</strong>的罐頭。例如 Friskies 的 Turkey Feast、Liver 系列等 pâté，Fancy Feast 的 pâté 系列。🎤 有些碳水接近 0%。</li>
+              <li>像「乾糧加肉汁」這類產品要避免。</li>
+              <li>🎤 很多飼主說負擔不起處方飼料，但<strong>算成一個月的費用</strong>，市售飼料常常沒有省多少。</li>
+              <li><strong>BalanceIT</strong> 網站有營養計算機，可以輸入飼料標示的成分，算出熱量來源比例（% ME），用來確認是否符合糖尿病的蛋白質與碳水標準。🎤 講者團隊算過很多市售飼料，不少都符合，適合糖尿病患。</li>
+            </ul>
+          </div>
+        </div>
+        <p class="muted">🎤 結束：「謝謝 Dr. Bugbee。」</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 17 ══ -->
+  <div class="section" id="s17">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">📚</div>
+      <h2>Take-home、更正表與參考資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>Take-home</h3>
+        <ol class="notes">
+          <li><strong>先評估病患，再選飲食</strong>：缺乏型或阻抗型、控制好壞、絕育狀態、BCS／MCS、共病。</li>
+          <li><strong>先處理會要命的問題</strong>：
+            <ul class="notes">
+              <li>狗有胰臟炎時，低脂優先於低碳。</li>
+              <li>貓有蛋白尿 CKD 時，要調整蛋白質。</li>
+            </ul>
+          </li>
+          <li><strong>熱量本身就是治療</strong>：
+            <ul class="notes">
+              <li>餵太多會讓胰島素看起來無效。</li>
+              <li>肥胖貓限制熱量後，緩解機率高 4 倍。</li>
+            </ul>
+          </li>
+          <li><strong>狗不要迷信高纖</strong>：瘦的狗先用高熱量密度、中等脂肪、高蛋白的飲食增重；纖維可以另外加。</li>
+          <li><strong>貓要低碳高蛋白</strong>：碳水 &lt;3–4 g/100 kcal、蛋白 &gt;10–15 g/100 kcal；罐頭優先，光換罐頭就有幫助。</li>
+          <li><strong>用 CGM 找出飲食問題</strong>：零食、餐點分配、餐次。基礎胰島素壓不住時，先少量多餐，再考慮加一針中效胰島素。</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-add">💡</span> 講義與錄音的差異、需要注意的地方</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>頁</th><th>差異或問題</th><th>說明</th></tr>
+          <tr><td>p.10</td><td>「增重 1.5–2.0x」</td><td>講者自己加的，不在 AAHA 原表裡</td></tr>
+          <tr><td>p.17</td><td>Purina EN 的脂肪</td><td>錄音說「脂肪較低」，講義數字 4.64 g 反而是三款中最高</td></tr>
+          <tr><td>p.17–20</td><td>EN 罐頭 vs EN Low Fat 罐頭</td><td>錄音有這張，講義 PDF 沒有</td></tr>
+          <tr><td>p.20</td><td>最後選哪一款飼料</td><td>講義沒寫；錄音說是 Purina Sport/Performance 和 Glycobalance 混著吃</td></tr>
+          <tr><td>p.22</td><td>轉換後的飼料</td><td>講義只寫「低碳、高纖、中等蛋白」；錄音說是營養專科建議的 Purina OM</td></tr>
+          <tr><td>p.27</td><td>貓的胰島素偏好</td><td>講義列了 Vetsulin；錄音說偏好 ProZinc、Glargine U100、U300</td></tr>
+          <tr><td>p.28</td><td>IRIS 分期限制</td><td>講義寫 &lt;IRIS 3 期；錄音補充新研究顯示 3 期以上仍可能有效</td></tr>
+          <tr><td>p.28</td><td>錠劑與 ≥3 kg 屬於哪個藥</td><td>版面上不易分辨；15 mg 牛肉口味錠劑、限 ≥3 kg 的是 bexagliflozin（Bexacat）</td></tr>
+          <tr><td>p.30</td><td>緩解率</td><td>講義寫 ↑；逐字稿誤為 decreases</td></tr>
+          <tr><td>p.32 vs p.24</td><td>BCS</td><td>p.32 是另一隻 BCS 9/9 的示範貓，不是 Leo（BCS 8/9）</td></tr>
+          <tr><td>p.36</td><td>為什麼換 GlycoAdvanced</td><td>錄音：減重達標，剛好 GlycoAdvanced 上市</td></tr>
+          <tr><td>p.38</td><td>多尿時段</td><td>講義寫傍晚；錄音說晚上會吵醒飼主</td></tr>
+          <tr><td>p.34</td><td>研究性質</td><td>飼料品牌相關研究，結果能否推廣到其他飲食要看原文</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3>逐字稿轉文字錯誤一覽</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>逐字稿寫的</th><th>正確內容</th></tr>
+          <tr><td>Vovo / boho / BoBo</td><td><strong>Bobo</strong></td></tr>
+          <tr><td>Dr. Bugby</td><td><strong>Dr. Bugbee</strong></td></tr>
+          <tr><td>80 milligrams per artery</td><td>80 <strong>mmHg</strong></td></tr>
+          <tr><td>total body calcium deficit / added calcium / calcium phosphorus</td><td>全身<strong>鉀</strong>缺乏；加 <strong>KCl</strong> 與<strong>磷酸鉀</strong></td></tr>
+          <tr><td>speck. Pancreat white paste</td><td><strong>Spec cPL</strong>（pancreatic lipase）</td></tr>
+          <tr><td>vets' orders / vetsland / betadine</td><td><strong>Vetsulin</strong></td></tr>
+          <tr><td>free-style we bring / pre-stall curve / free style lead rate / Free style eBRA</td><td><strong>FreeStyle Libre</strong>（CGM）</td></tr>
+          <tr><td>chlorophyll requirement</td><td><strong>caloric</strong> requirement</td></tr>
+          <tr><td>AHA guidelines</td><td><strong>AAHA</strong> guidelines</td></tr>
+          <tr><td>AER calculation</td><td><strong>MER</strong></td></tr>
+          <tr><td>pre-meal blood glucose spikes</td><td><strong>post-prandial</strong>（餐後）</td></tr>
+          <tr><td>Biometric load</td><td><strong>Glycemic load</strong></td></tr>
+          <tr><td>Newbiker Advance / Lifeo Advanced / glycol advance / glycated bans / Vital Balance / Rompina Blackfoot</td><td><strong>Royal Canin GlycoAdvanced</strong></td></tr>
+          <tr><td>whole grain / rapidly equilibrant / raw candy glycocalc balance</td><td><strong>Royal Canin Glycobalance</strong></td></tr>
+          <tr><td>Purina E / puree E / patina E</td><td><strong>Purina EN</strong></td></tr>
+          <tr><td>pureness, sport, and performance</td><td><strong>Purina Sport/Performance</strong></td></tr>
+          <tr><td>Karina DM</td><td><strong>Purina DM</strong></td></tr>
+          <tr><td>rompina multifunction</td><td><strong>Royal Canin Multifunction</strong></td></tr>
+          <tr><td>raw peanut brittle support / royal cane and royal sport E</td><td><strong>Royal Canin Renal Support E</strong></td></tr>
+          <tr><td>Burger and dogs</td><td><strong>But in dogs</strong></td></tr>
+          <tr><td>His dietitian knows this</td><td>（應為「他有糖尿病，所以」低碳高纖）</td></tr>
+          <tr><td>gludec / GluDeck / glufac / diluent</td><td><strong>degludec</strong></td></tr>
+          <tr><td>Tujaio / Tjio / tojo / TGL or large unit of 300</td><td><strong>Toujeo</strong>（glargine U300）</td></tr>
+          <tr><td>praline</td><td><strong>ProZinc</strong></td></tr>
+          <tr><td>Clarigen / Largen</td><td><strong>glargine</strong></td></tr>
+          <tr><td>FPH / MPH</td><td><strong>NPH</strong></td></tr>
+          <tr><td>MPH or insulin</td><td><strong>NPH or Vetsulin</strong></td></tr>
+          <tr><td>two-fold insulin</td><td>（貓的 degludec 是 <strong>一天兩次</strong> 的胰島素）</td></tr>
+          <tr><td>total BPO</td><td><strong>TT4</strong></td></tr>
+          <tr><td>Hemocystemia／Hemoglobin is the main component…</td><td><strong>Fructosamine</strong>（血紅素那句是轉錄產生的無關文字）</td></tr>
+          <tr><td>patellogeosis / lipodosis / pachydermosis / mild type lipoproteinosis</td><td><strong>hepatic lipidosis</strong>（肝脂質沉積）</td></tr>
+          <tr><td>vildagliptin or vecaglptin</td><td><strong>velagliflozin</strong> 或 <strong>bexagliflozin</strong>（不是 DPP-4 抑制劑 vildagliptin）</td></tr>
+          <tr><td>Valegylpudisom / Flexigylpudisom</td><td><strong>Velagliflozin</strong>（口服液）／<strong>Bexagliflozin</strong>（錠劑）</td></tr>
+          <tr><td>specifically healthy</td><td><strong>systemically</strong> healthy</td></tr>
+          <tr><td>urine zinc elevation</td><td>肝<strong>酶</strong>（ALT／ALP）上升</td></tr>
+          <tr><td>below normal T value</td><td><strong>總膽紅素</strong> &lt;0.5</td></tr>
+          <tr><td>hydroxyurea</td><td><strong>β-hydroxybutyrate</strong>（BHB）</td></tr>
+          <tr><td>decreases your remission rate</td><td><strong>increases</strong>（講義 ↑）</td></tr>
+          <tr><td>CAD</td><td><strong>CKD</strong></td></tr>
+          <tr><td>can't taste our palatability … hectic</td><td>無法<strong>分期 CKD</strong>，因為<strong>低血容</strong>（講義 p.35）</td></tr>
+          <tr><td>rosiglitazone actually came out</td><td><strong>GlycoAdvanced</strong> 剛上市</td></tr>
+          <tr><td>did not go to admission</td><td><strong>remission</strong></td></tr>
+          <tr><td>puppy treats</td><td>零食<strong>棒</strong>（講義寫 sticks）</td></tr>
+          <tr><td>scanning the liver</td><td>掃描 <strong>Libre</strong></td></tr>
+          <tr><td>every time you see an apple appear</td><td>（應指 CGM 上標記的每一餐）</td></tr>
+          <tr><td>bisonic</td><td><strong>glycemic</strong></td></tr>
+          <tr><td>zillion plus</td><td><strong>psyllium</strong>（洋車前子）</td></tr>
+          <tr><td>briskies / Krispies</td><td><strong>Friskies</strong></td></tr>
+          <tr><td>the Beasts</td><td><strong>Fancy Feast</strong></td></tr>
+          <tr><td>balance it</td><td><strong>BalanceIT</strong></td></tr>
+          <tr><td>dewclaw surgery and OM</td><td>（不明；上下文是 Bobo 吃 OM 後維持體重）</td></tr>
+          <tr><td>which is around 130 calories</td><td>（不明；講義只寫 250 kcal/day）</td></tr>
+          <tr><td>family history of diabetes, screen them early</td><td>（不明；上下文在講「先針對最先會要命的病」）</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Bugbee A. <em>Diabetic Nutrition for Dogs &amp; Cats.</em> VET-KU × Texas A&amp;M IM Conference, 2026-10-06（講義 42 頁與課堂逐字稿「完整記錄」PDF）。</div>
+          <div class="ref-item">Cline MG, Burns KM, Coe JB, et al. 2021 AAHA Nutrition and Weight Management Guidelines for Dogs and Cats. <em>J Am Anim Hosp Assoc.</em> 2021;57(4):153–178.</div>
+          <div class="ref-item">Weber M, et al. <em>J Vet Intern Med.</em> 2007（講義 p.16、p.31、p.33 引用；講義只列作者與年份）。</div>
+          <div class="ref-item">Jørgensen FK, et al. A two-center, randomized controlled trial to determine the effect of 12 weeks of caloric restriction with a novel diet in overweight cats with diabetes mellitus. <em>J Vet Intern Med.</em> 2026 Mar 2;40(2).</div>
+          <div class="ref-item">BalanceIT 營養計算機（講者在 Q&amp;A 推薦，用來從飼料標示計算 % ME）。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="panel-qa.html">05 座談會 Q&amp;A</a>。其他場次將陸續整理更新。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
