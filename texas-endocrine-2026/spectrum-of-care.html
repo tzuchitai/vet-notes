@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>犬糖尿病的照護光譜選項｜2026 Texas 內分泌研討會</title>
+<style>
+  :root {
+    --primary: #0F766E;
+    --primary-light: #CCFBF1;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0d2522;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9cc8c1; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #1f4a44;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9cc8c1; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9cc8c1;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #1f4a44;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #5f8f87;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0b4f49 0%, #14a395 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0d2522; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #1f4a44; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 Texas 內分泌研討會</a>
+  <div class="logo">
+    <h2>07｜犬糖尿病的<br>照護光譜選項</h2>
+    <p>Jocelyn Mott｜2026 年 10 月 6 日</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">核心訊息</a>
+    <a href="#s1">1. 為什麼照護光譜很重要</a>
+    <a href="#s2">2. 什麼是照護光譜與治療目標</a>
+    <a href="#s3">3. 費用與犬用胰島素</a>
+    <a href="#s4">4. 基礎型胰島素的研究</a>
+    <a href="#s5">5. 胰島素費用比較與講者偏好</a>
+    <a href="#s6">6. 糖尿病臨床評分（ALIVE DCS）</a>
+    <a href="#s7">7. 血糖曲線、果糖胺、HbA1c</a>
+    <a href="#s8">8. CGM 連續血糖監測</a>
+    <a href="#s9">9. 飲食</a>
+    <a href="#s10">10. 獸醫照護與降低成本</a>
+    <a href="#s11">11. Mix and Match</a>
+    <a href="#s12">參考文獻與 Take-home</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <!-- Header -->
+  <div class="page-header">
+    <h1>犬糖尿病的照護光譜選項（Establishing Spectrum of Care Options in Canine Diabetes Mellitus）</h1>
+    <p>主講：Jocelyn Mott, DVM, DACVIM (SAIM), FACVIM（犬貓糖尿病）</p>
+    <p>2026 年 10 月 6 日｜VET-KU × Texas A&amp;M 內科研討會｜場次 07</p>
+    <div class="tags">
+      <span class="tag">照護光譜 SOC</span>
+      <span class="tag">犬糖尿病</span>
+      <span class="tag">安樂死</span>
+      <span class="tag">胰島素費用</span>
+      <span class="tag">Degludec</span>
+      <span class="tag">ALIVE DCS</span>
+      <span class="tag">CGM</span>
+      <span class="tag">市售飼料</span>
+      <span class="tag">遠距追蹤</span>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（PDF 講義）
+    <span class="src src-photo">📷 現場</span> 現場拍攝的投影片
+    <span class="src src-hand">✍️ 手記</span> 課堂筆記（講者口頭補充）
+    <span class="src src-add">💡 補充</span> 整理者補充
+    <span class="src src-fix">【更正】</span> 講義筆誤或數字更正
+  </div>
+
+  <!-- Key Points -->
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li>犬糖尿病的死因多半是飼主放棄，不是治不好</li>
+      <li>確診時 10–40% 被安樂死，37–60% 活不到 1 年</li>
+      <li>治療目標是生活品質與臨床症狀，不是血糖數字</li>
+      <li>照護光譜：在實證範圍內，依飼主預算與時間選方案</li>
+      <li>講者偏好 Degludec：每單位約 $0.05，85% 一天一次</li>
+      <li>最重要的監測工具：臨床症狀與體重（ALIVE DCS）</li>
+      <li>飼主真的沒錢時，可以只靠 DCS 加體重監控</li>
+      <li>平價市售飼料可以取代糖尿病處方飼料</li>
+      <li>前 6 個月是飼主支持最關鍵的時期</li>
+      <li>四大面向（飲食、監測、胰島素、回診）自由搭配</li>
+    </ul>
+  </div>
+
+  <!-- ══ SECTION 0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🎯</div>
+      <h2>核心訊息</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <ul class="notes">
+        <li><span class="src src-slide">📄</span> 本場的 <strong>SOC 指 Spectrum of Care（照護光譜）</strong>，不是 Standard of Care。</li>
+        <li><span class="src src-slide">📄</span> 犬糖尿病是<strong>可以治療的慢性病</strong>，但存活時間偏短、安樂死比例偏高，主因是飼主的負擔：費用、時間、生活被綁住。</li>
+        <li><span class="src src-slide">📄</span> 演講把費用拆成四塊：<strong>胰島素、飲食、監測、獸醫診療</strong>，每一塊都提供從便宜到完整的選項，最後用「Mix and Match」組合成個別化方案。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">⚠️</div>
+      <h2>1. 為什麼照護光譜對犬糖尿病很重要</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.2</span> 存活與安樂死</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>時間點</th><th>比例</th></tr>
+          <tr><td>確診當下被安樂死</td><td><strong>10–40%</strong></td></tr>
+          <tr><td>確診後 30 天內</td><td><strong>15–20%</strong></td></tr>
+          <tr><td>活不到 1 年</td><td><strong>37–60%</strong></td></tr>
+        </table></div>
+        <p class="p muted">出處：Tardo 等（JVIM，新診斷糖尿病犬的存活與預後因子，獸醫教學醫院）、Fall 等（瑞典族群資料的發生率、存活與品種分布）。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.3</span> Big Pet Diabetes Survey（超過 1000 位獸醫）</h3>
+        <p class="p">每 10 隻糖尿病寵物有 <strong>1 隻在確診時被安樂死</strong>，1 年內再多 1 隻。</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>確診時安樂死的原因</th><th>治療第一年內安樂死的原因</th></tr>
+          <tr><td>費用、年齡、併發疾病、寵物福祉、對飼主生活的影響</td><td>治療沒反應或飼主配合度差、照顧者疲乏、好幾年都要維持固定作息、治療與監測的金錢和時間負擔</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.4</span> 糖尿病犬生活品質工具（Niessen 等，JVIM 2012）</h3>
+        <p class="p">飼主最在意的前 10 項：</p>
+        <ol class="notes">
+          <li>整體擔憂</li><li>少了陪親友的時間</li><li>擔心狗的視力</li><li>無法把狗送去寄宿</li><li>擔心低血糖</li>
+          <li>融入社交生活</li><li>費用</li><li>擔心能不能長期照顧下去</li><li>配合工作生活</li><li>活動受限</li>
+        </ol>
+        <div class="alert alert-warn"><span class="alert-icon">💬</span><div>排在前面的多半是<strong>對飼主生活的影響，而不是狗的福祉</strong>。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.5</span> 糖尿病犬飼主的治療「障礙」</h3>
+        <p class="p">生活型態要調整、費用、怕低血糖、作息被綁住、家人朋友不支持、要打胰島素、生活品質、監測方式、期待不切實際、寵物福祉。</p>
+        <p class="p muted">出處：Niessen 等 JVIM 2010、2012；Hazuchova 等 JFMS 2018。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🌈</div>
+      <h2>2. 什麼是照護光譜與實際可行的治療目標</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.6</span> 定義（Fingland 等，JAVMA 2021）</h3>
+        <p class="p quote">一段連續、都可接受的獸醫照護範圍：以實證醫學為基礎，同時回應飼主的期待與經濟限制。</p>
+        <p class="p"><span class="src src-add">💡</span> 照護方案不是只有「最好」和「放棄」兩種，中間有很多合理的選項。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.7</span> 讓飼主願意投入治療</h3>
+        <p class="p"><strong>良好溝通 ＋ 充分衛教 ＋ 穩固的獸醫支持 ＝ 飼主配合度、遵從度和信心都很好。</strong></p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.8</span> 實際可行的治療目標</h3>
+        <ol class="notes">
+          <li>改善飼主與寵物的生活品質</li>
+          <li>改善臨床症狀</li>
+          <li>預防 DKA 和低血糖</li>
+          <li>讓體態評分（BCS）恢復正常</li>
+        </ol>
+        <div class="alert alert-danger"><span class="alert-icon">❗</span><div><strong>達到特定血糖數值不是目標</strong>，也和預後好壞沒有直接關聯。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">💉</div>
+      <h2>3. 費用與犬用胰島素</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.9–11</span> 費用結構與 FDA 核准的犬用胰島素</h3>
+        <ul class="notes">
+          <li>美國犬糖尿病的四大支出：<strong>胰島素、飲食、監測、獸醫診療</strong>。</li>
+          <li>FDA 核准犬用：<strong>Vetsulin®／Caninsulin®</strong>（豬 lente，40 U/mL）、<strong>ProZinc®</strong>（PZI，重組人類胰島素，40 U/mL）。都要搭配 U-40 針筒。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.12</span> Lente、NPH、PZI（中效懸浮型）的問題</h3>
+        <ul class="notes">
+          <li>是懸浮液，抽取前要輕輕滾動回溶（Vetsulin 要搖）。</li>
+          <li>在皮下儲積處溶解的速度不規則、難以預測 → 劑量不準、作用曲線變異大。</li>
+          <li>打針同時餵食時，需要胰島素的時間和實際作用時間對不上（高峰約在注射後 3–6 小時）。</li>
+          <li>一天兩次（NPH 每 8–12 小時一次）。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.13</span> 為什麼選基礎型（basal）胰島素</h3>
+        <ul class="notes">
+          <li>比懸浮液可預測、不用回溶、吸收穩定、每天變異小。</li>
+          <li><strong>一天一次</strong>，飼主時間比較彈性。筆型比針筒加藥瓶精準。</li>
+          <li>不需要讓胰島素高峰對上碳水吸收高峰。</li>
+          <li>低血糖風險低；人醫可減少夜間低血糖。</li>
+          <li>給藥時間不必太精準：人可以任何時間打；狗可能前後 <strong>±2–3 小時</strong>（講義打問號，尚未確證）。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">📊</div>
+      <h2>4. 基礎型胰島素的研究</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="tbl-wrap"><table>
+        <tr><th></th><th><span class="src src-slide">📄 p.14</span> Glargine U300（Gilor 等，2024）</th><th><span class="src src-slide">📄 p.15</span> Degludec（Tresiba®）</th></tr>
+        <tr><td>病例數</td><td>95 隻</td><td>33 隻（6 隻新診斷、27 隻已在治療），用 FreeStyle Libre 監測</td></tr>
+        <tr><td>一天一次就夠</td><td>約 60%</td><td><strong>85%</strong>（28 隻）；5 隻需 q12h 或加一劑 NPH</td></tr>
+        <tr><td>達到控制</td><td>約 2 週</td><td>中位數 14 天（3–32 天）</td></tr>
+        <tr><td>最終劑量</td><td>—</td><td>中位數 1.3 U/kg（0.4–2.2）</td></tr>
+        <tr><td>低血糖</td><td>—</td><td>只有 1 次臨床低血糖</td></tr>
+        <tr><td>控制品質</td><td>多數控制良好</td><td>76% 極佳或很好</td></tr>
+      </table></div>
+      <ul class="notes">
+        <li><span class="src src-slide">📄</span> Degludec 起始劑量：<strong>0.5 U/kg，每日一次</strong>。<span class="src src-fix">【更正】</span>講義寫「0.5 mg/kg」，胰島素應為 U/kg。</li>
+        <li><span class="src src-add">💡</span> 最終劑量中位數 1.3 U/kg，比 lente／NPH 的常用劑量高，調整時不要因為數字偏高就不敢往上加。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef9c3">💰</div>
+      <h2>5. 胰島素費用比較與講者偏好</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.16–17</span> 胰島素很貴</h3>
+        <ul class="notes">
+          <li>新聞：〈研究顯示：儘管政策改變，胰島素配給（省著用）情況依然存在〉（2025/11）。</li>
+          <li>全球胰島素價格：美國每瓶約 <strong>$99</strong>，其他國家多半 $7–21；每瓶的生產成本只要約 <strong>$2–4</strong>。原因是美國缺乏政府管制。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.18</span><span class="src src-photo">📷 現場</span> Insulin Cost Comparison（2025 年 3 月，美國佛州）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>胰島素</th><th>濃度</th><th>瓶裝</th><th>瓶裝每單位</th><th>筆型</th><th>筆型每單位</th></tr>
+          <tr><td>Vetsulin（豬 lente）</td><td>40 U/mL</td><td>$75.00／10 mL</td><td>$0.19</td><td>$255.99／10×2.7 mL</td><td>$0.24</td></tr>
+          <tr><td>Novolin-N</td><td>100 U/mL</td><td>$57.53／10 mL</td><td>$0.06</td><td>$90.60／5×3 mL</td><td>$0.06</td></tr>
+          <tr><td><strong>ReliOn NPH 與 70/30</strong></td><td>100 U/mL</td><td>$24.88／10 mL</td><td><strong>$0.02</strong></td><td>$42.88／5×3 mL</td><td><strong>$0.03</strong></td></tr>
+          <tr><td>Toujeo（Glargine U300）</td><td>300 U/mL</td><td>無</td><td>—</td><td>$367.08／3×1.5 mL</td><td>$0.27</td></tr>
+          <tr><td><strong>Degludec</strong></td><td>100 U/mL</td><td>$133.00／10 mL</td><td>$0.13</td><td>$71.99／5×3 mL</td><td><strong>$0.05</strong></td></tr>
+          <tr><td>ProZinc</td><td>40 U/mL</td><td>$229.99／20 mL</td><td>$0.29</td><td>無</td><td>—</td></tr>
+          <tr><td>Lantus（Glargine）</td><td>100 U/mL</td><td>$139.99／10 mL</td><td>$0.14</td><td>$64.99／1×3 mL</td><td>$0.22</td></tr>
+          <tr><td>Semglee（Glargine）</td><td>100 U/mL</td><td>$295.11／10 mL</td><td>$0.30</td><td>$106.40／1×3 mL</td><td>$0.35</td></tr>
+          <tr><td>Basaglar（Glargine）</td><td>100 U/mL</td><td>無</td><td>—</td><td>$94.34／1×3 mL</td><td>$0.31</td></tr>
+        </table></div>
+        <div class="alert alert-info"><span class="alert-icon">🔎</span><div>
+          <span class="src src-fix">【更正】</span> PDF 講義中 Toujeo 筆型每單位有一個疊在上面的「$0.10」，<strong>現場投影片是 $0.27</strong>。驗算：3 支 × 1.5 mL × 300 U/mL ＝ 1350 U，$367.08 ÷ 1350 ≈ $0.27。<br>
+          <span class="src src-photo">📷</span> 現場版本只有 Vetsulin $0.19 有藍框；PDF 裡 ReliOn 的紅圈、Degludec 的綠圈、ProZinc 的藍框可能是講解時才出現的動畫標註。
+        </div></div>
+        <figure class="fig">
+          <img src="photos/07-insulin-cost-live.jpg" alt="現場拍攝的 Insulin Cost Comparison 投影片" loading="lazy">
+          <figcaption>📷 現場拍攝：Insulin Cost Comparison（Toujeo 筆型每單位為 $0.27）</figcaption>
+        </figure>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.20</span><span class="src src-photo">📷 現場</span> My Preference for Insulin</h3>
+        <figure class="fig">
+          <img src="photos/07-my-preference-insulin.jpg" alt="My Preference for Insulin：Tresiba 100/200 FlexTouch 與 Toujeo 筆" loading="lazy">
+          <figcaption>講者偏好的胰島素：Tresiba®（degludec）U-100／U-200 FlexTouch 與 Toujeo®（glargine U300）</figcaption>
+        </figure>
+        <p class="p">投影片放了兩種基礎型胰島素的筆，其中講者<strong>更偏好 Degludec</strong>，理由如下：</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>理由</th><th>Degludec（Tresiba）</th><th>Glargine U300（Toujeo）</th></tr>
+          <tr><td><span class="src src-slide">📄</span> 筆型每單位</td><td><strong>$0.05</strong>，接近 NPH</td><td>$0.27，約貴 5 倍</td></tr>
+          <tr><td><span class="src src-slide">📄</span> 一天一次就夠的比例</td><td><strong>85%</strong></td><td>約 60%</td></tr>
+          <tr><td><span class="src src-add">💡</span> 小型犬抓劑量</td><td>有 U-100，容易微調</td><td>U300 濃縮，低劑量難抓</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-add">💡</span> Degludec 在皮下形成多聚六聚體儲積、慢慢釋放；人醫半衰期約 25 小時，作用曲線平、給藥時間彈性大。</li>
+          <li><span class="src src-add">💡</span> 一句話：<strong>接近 NPH 的價格 ＋ 基礎型胰島素的穩定度 ＋ 更多狗只要一天打一次</strong>，符合照護光譜「有效又負擔得起」的精神。預算最緊時，ReliOn NPH 仍是最便宜的選項。</li>
+          <li><span class="src src-add">💡</span> Degludec 的機轉、U-100／U-200 換算見 <a href="canine-diabetes-insulin.html#s11">02 犬糖尿病：超越 NPH 第 11 節</a>。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef9c3">📝</div>
+      <h2>6. 糖尿病臨床評分（ALIVE Diabetic Clinical Score）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <ul class="notes">
+        <li><span class="src src-slide">📄 p.21</span> 監測方法：糖尿病臨床評分（DCS）、CGM、果糖胺、血糖曲線。</li>
+        <li><span class="src src-slide">📄 p.22</span> <strong>犬糖尿病最重要的監測工具是臨床症狀和體重！</strong></li>
+      </ul>
+      <div class="alert alert-success"><span class="alert-icon">✍️</span><div>
+        <span class="src src-hand">✍️ 手記</span> 講者：<strong>如果飼主真的非常沒錢，可以只用這張表監控</strong>，也就是只靠 DCS 加體重，不做血糖曲線、果糖胺或 CGM。這正是照護光譜裡最省錢的監測選項（見第 11 節 Mix and Match）。
+      </div></div>
+      <figure class="fig">
+        <img src="photos/07-alive-dcs.jpg" alt="Monitoring Diabetic Clinical Score：ALIVE Table 3" loading="lazy">
+        <figcaption>📷 Monitoring Diabetic Clinical Score：ALIVE 共識的 Table 3</figcaption>
+      </figure>
+      <p class="p"><strong>總分 0–12 分</strong>。目標是<strong>在低血糖風險還能接受的前提下，分數越低越好</strong>。</p>
+      <div class="tbl-wrap"><table>
+        <tr><th>項目</th><th>0 分</th><th>1 分</th><th>2 分</th><th>3 分</th></tr>
+        <tr><td><strong>非預期的體重減輕</strong></td><td>沒有，或比上次檢查增加</td><td>輕度（&lt; 5%）</td><td>中度（5–10%）</td><td>嚴重（&gt; 10%）</td></tr>
+        <tr><td><strong>多尿多渴</strong></td><td>正常</td><td>輕度（飼主覺得有點增加）</td><td>中度（水碗要更常加水）</td><td>嚴重（一直守在水碗旁）</td></tr>
+        <tr><td><strong>食慾</strong></td><td>正常或食慾下降*</td><td>輕度多食（很積極地吃完）</td><td>中度多食（吃完還會討食）</td><td>嚴重多食（滿腦子都是食物）</td></tr>
+        <tr><td><strong>精神／活動力</strong></td><td>正常</td><td>輕度下降（跑跳稍微變少）</td><td>中度下降（跑跳明顯變少）</td><td>嚴重下降（整天躺著）**</td></tr>
+      </table></div>
+      <div class="alert alert-danger"><span class="alert-icon">⚠️</span><div>
+        * 食慾下降雖然算 0 分，但<strong>要先排除 DKA 或其他併發疾病</strong>。<br>
+        ** 糖尿病動物看起來很不舒服時，<strong>要考慮 DKA</strong>。
+      </div></div>
+      <div class="alert alert-info"><span class="alert-icon">📚</span><div>
+        <strong>出處：</strong>Niessen SJM, Bjornvad C, Church DB, Davison L, Esteban-Saltiveri D, Fleeman LM, Forcada Y, Fracassi F, Gilor C, Hanson J, Herrtage M, Lathan P, Leal RO, Loste A, Reusch C, Schermerhorn T, Stengel C, Thoresen S, Thuroczy J; ESVE/SCE membership. <em>Agreeing Language in Veterinary Endocrinology (ALIVE): Diabetes mellitus – a modified Delphi-method-based system to create consensus disease definitions.</em> <strong>Vet J. 2022;289:105910.</strong> <a href="https://doi.org/10.1016/j.tvjl.2022.105910" target="_blank" rel="noopener">doi:10.1016/j.tvjl.2022.105910</a>（DCS 為文中 Table 3）<br>
+        <span class="src src-add">💡</span> ALIVE 是歐洲獸醫內分泌學會（ESVE）於 2016 年發起、比較內分泌學會（SCE）背書的共識計畫，用改良式 Delphi 法統一犬貓糖尿病的名詞定義。
+      </div></div>
+      <ul class="notes">
+        <li><span class="src src-add">💡</span> 實務做法：請飼主每週在家量體重、用這 4 項自評打分，email 或 LINE 回報，作為調整胰島素的依據（見第 10 節）。</li>
+        <li><span class="src src-add">💡</span> 「食慾」和「活動力」分數低，不一定代表控制得好，要搭配體重一起看。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">📈</div>
+      <h2>7. 血糖曲線、果糖胺與 HbA1c</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.24–25</span> 血糖曲線的日間變異（Fleeman &amp; Rand, JAVMA 2003;222:317–321）</h3>
+        <ul class="notes">
+          <li>p.24 反諷：「血糖曲線就能告訴我所有需要的資訊。」旁邊的 CGM 圖顯示一天中有好幾次低點，間隔採血很容易漏掉。</li>
+          <li>設計：同一隻狗 2 天內各做一次血糖曲線，每 2 週重複一次，共 3 次；胰島素劑量、時間、食物、餵食時間都相同。</li>
+          <li>結論：<strong>糖尿病犬連續血糖曲線的各項參數，每天之間差異很大。</strong>單憑一次血糖曲線調劑量並不可靠。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.26</span> 果糖胺</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>怎麼用</th><th>限制</th><th>會受影響的情況</th></tr>
+          <tr><td>看同一隻狗的趨勢；用同一家實驗室與方法；搭配 DCS、體重、理學檢查判讀</td><td>分級血糖控制的準確度有限；看不到血糖最低點、胰島素作用時間、對注射的反應</td><td>蛋白質異常、氮血症、高血脂、類固醇治療、未治療的甲狀腺低下</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-photo">📷 現場</span> 果糖胺 vs HbA1c：反映多久的血糖、多久調一次胰島素（講義沒有這頁）</h3>
+        <figure class="fig">
+          <img src="photos/07-fructosamine-hba1c-live.jpg" alt="現場拍攝：Fructosamine 7–21 days、HbA1c 120 days" loading="lazy">
+          <figcaption>📷 現場拍攝：血清白蛋白醣化成果糖胺；紅血球內血紅素醣化成 HbA1c</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>指標</th><th>醣化的蛋白</th><th>反映多久的平均血糖</th><th>依此調整胰島素的間隔</th></tr>
+          <tr><td><strong>果糖胺</strong></td><td>血清蛋白（主要是白蛋白）</td><td><strong>7–21 天</strong></td><td><strong>每 14–21 天</strong></td></tr>
+          <tr><td><strong>HbA1c</strong></td><td>紅血球內的血紅素</td><td><strong>120 天</strong></td><td><strong>每 4 個月</strong></td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-add">💡</span> 間隔取決於蛋白的壽命：白蛋白半衰期短，所以果糖胺反映近 1–3 週；紅血球壽命約 110–120 天，所以 HbA1c 反映近 4 個月。改劑量後太早複檢，數值還來不及反映新的劑量。</li>
+          <li><span class="src src-add">💡</span> 對應第 11 節 Mix and Match：「每 2 週回診驗果糖胺」和「每 3 個月回診驗 HbA1c」兩個回診選項，就是依這兩個時間尺度設計的。</li>
+          <li><span class="src src-add">💡</span> 貧血、紅血球壽命縮短（例如溶血）或近期輸血時，HbA1c 會被低估；低白蛋白時果糖胺會偏低（見上表）。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">📡</div>
+      <h2>8. CGM 連續血糖監測</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.27–29</span> 講者偏好 CGM；原理</h3>
+        <ul class="notes">
+          <li>p.27 講者偏好的監測方式：狗身上貼 Libre 感測器。</li>
+          <li>CGM 量的是<strong>組織間液葡萄糖（IG）</strong>。感測絲厚度 &lt; 0.4 mm、長 5 mm。</li>
+          <li>IG 的變化取決於：葡萄糖穿過微血管壁的擴散速度、細胞從組織液攝取葡萄糖的速度。</li>
+          <li>探針：葡萄糖穿過半透膜 → 接觸葡萄糖氧化酶層 → 產生與 IG 成正比的電流 → 即時傳到接收器。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.30–33</span> 迷思：「CGM 不準，跟血糖都不一樣」</h3>
+        <ul class="notes">
+          <li><strong>IG 永遠落後 BG。</strong>血糖變化小時 IG 接近 BG；快速大幅變動時兩者差距變大。</li>
+          <li>人醫延遲時間約 5–12 或 5–15 分鐘。</li>
+          <li>貓（Del Baldo 等）：靜脈給 0.5 g/kg 葡萄糖後，延遲約 <strong>30 分鐘</strong>。血糖快速變動時，延遲期會拉長。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.34</span> CGM 能發現並預防低血糖</h3>
+        <ul class="notes">
+          <li>人（第二型糖尿病，Pazos-Couselo 等）：CGM 抓到的低血糖事件是指尖自我監測的 <strong>5 倍</strong>。</li>
+          <li>狗（Del Baldo 等）：FGMS 偵測到 <strong>60%</strong> 的低血糖事件，攜帶式血糖機只有 <strong>9%</strong>。</li>
+          <li>人醫：使用 CGM 和較少低血糖、較短低血糖時間、較多時間落在目標範圍有關。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.35–37</span> 飼主看到數據的壓力；健康動物也會有低 IG</h3>
+        <ul class="notes">
+          <li>飼主看太多數字會焦慮（Owner Reaction to Data：STRESS）。</li>
+          <li>健康犬（Brisman 等）：也有一部分 IG 讀值 &lt; 70 mg/dL（平均約 3%），多在夜間。</li>
+          <li>健康貓（Schuppisser 等）：<strong>83%</strong> 在白天或夜間出現低 IG，最低到 <strong>39 mg/dL</strong>，但沒有任何低血糖症狀。</li>
+          <li><span class="src src-add">💡</span> CGM 上看到偏低的數值，不一定是真的臨床低血糖，不需要一看到就恐慌，要搭配臨床症狀判讀。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🍽️</div>
+      <h2>9. 飲食</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <ul class="notes">
+        <li><span class="src src-slide">📄 p.39</span> 餵食目標是<strong>讓體態恢復正常</strong>：過瘦要增重、過胖要減重。</li>
+        <li><span class="src src-slide">📄 p.40</span> 纖維？（Fleeman 等，JSAP 2009;50:604–14）：病情穩定的糖尿病犬吃高纖、中碳水飲食，和中纖、低碳水的<strong>一般市售飼料</strong>相比<strong>沒有明顯優勢</strong>。偏瘦的狗不應常規使用高纖、中碳水、中脂飲食。</li>
+        <li><span class="src src-slide">📄 p.41</span> 碳水：種類、消化率與含量都會影響餐後血糖。健康犬吃中碳水（25%）比傳統糖尿病處方（55% ME）餐後血糖低；糖尿病犬吃高 GI 碳水時餐後血糖更高。</li>
+        <li><span class="src src-slide">📄 p.42</span> 共病：<strong>選能處理最嚴重疾病的飲食</strong>。例：12 歲已結紮母混種犬，糖尿病＋IRIS 第 III 期腎病 → 腎臟處方（k/d）。</li>
+        <li><span class="src src-slide">📄 p.43</span> 適口性：要餵狗願意<strong>穩定吃</strong>的食物。</li>
+      </ul>
+      <div class="alert alert-success"><span class="alert-icon">🥫</span><div><span class="src src-slide">📄 p.45</span> 講者偏好：<strong>平價的一般市售飼料可以取代糖尿病處方飼料。</strong>詳細營養討論見 <a href="diabetic-nutrition.html">06 犬貓糖尿病營養</a>。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">🏥</div>
+      <h2>10. 獸醫照護與降低成本</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.47</span> 澳洲基層醫院 2078 例糖尿病犬的安樂死研究（2008–2017）</h3>
+        <ul class="notes">
+          <li>最常見的安樂死原因：生活品質、飼主不能或不願打針、費用。</li>
+          <li><strong>46%</strong> 在確診後前 6 個月被安樂死，之後 6 個月只再增加 <strong>7%</strong>。</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">🗝️</span><div>結論：<strong>至少前 6 個月給飼主更密集的支持</strong>，可能可以降低安樂死率。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.48</span> 讓糖尿病照護更負擔得起</h3>
+        <ul class="notes">
+          <li>減少回診次數。</li>
+          <li>飼主在家量體重、定期回報 DCS，作為調整胰島素的依據。</li>
+          <li>獸醫上 <strong>LibreView</strong> 線上看 CGM 數據，搭配 DCS 調劑量，不用回診。</li>
+          <li>不再每 3 個月回診，改成飼主每 3 個月自己貼一次感測器，再通知獸醫看數據。</li>
+          <li>教飼主在家自己貼感測器。</li>
+          <li>提供視訊回診。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🧩</div>
+      <h2>11. Mix and Match：整合成個別化方案</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p class="p"><span class="src src-slide">📄 p.49</span> 病例 Abby Smith：12 歲已結紮母混種犬，確診糖尿病。請設計具有照護光譜的管理方案。</p>
+      <div class="tbl-wrap"><table>
+        <tr><th>面向</th><th>選項</th></tr>
+        <tr><td><strong>飲食</strong></td><td>一般市售 ⭐◯／處方</td></tr>
+        <tr><td><strong>監測</strong></td><td>DCS 加體重 ⭐◯／CGM ⭐／果糖胺／HbA1c</td></tr>
+        <tr><td><strong>胰島素</strong></td><td>Caninsulin／ProZinc／NPH ◯／Glargine U100／Glargine U300／Degludec ⭐</td></tr>
+        <tr><td><strong>回診</strong></td><td>初診用 CGM，每天記錄 DCS 與體重，用 1–2 片感測器，之後每 3 個月 1 片 ⭐<br>每 2 週回診一次持續 6 個月，驗果糖胺加 DCS 與體重<br>每 6 個月回診，每月 email 回報 DCS 與體重 ◯<br>每 3 個月回診，驗 HbA1c 加 DCS 與體重</td></tr>
+      </table></div>
+      <ul class="notes">
+        <li><span class="src src-slide">📄</span> ⭐ 講者偏好的組合：市售飼料、DCS 加體重、CGM、Degludec，初期用 CGM、之後每 3 個月一片感測器。</li>
+        <li><span class="src src-slide">📄</span> ◯ 最省錢的組合：市售飼料、<strong>只靠 DCS 加體重</strong>、NPH（ReliOn）、每半年回診加每月 email。</li>
+        <li><span class="src src-add">💡</span> 四個面向可依飼主的預算與時間自由搭配，不必整套升級或整套降級。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">📚</div>
+      <h2>參考文獻與 Take-home</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>Take-home</h3>
+        <ol class="notes">
+          <li>犬糖尿病的死因多半是<strong>飼主放棄</strong>，不是治不好。</li>
+          <li>治療目標是<strong>生活品質、臨床症狀、避免 DKA 與低血糖</strong>，不是漂亮的血糖數字。</li>
+          <li>胰島素：講者偏好 Degludec；預算最緊時用 ReliOn NPH。</li>
+          <li>監測以 <strong>DCS 加體重</strong>為主，飼主真的沒錢時只用這個也可以；有預算就用 CGM 取代院內血糖曲線。</li>
+          <li>一般市售飼料就可以；有共病時選能處理最嚴重疾病的飲食。</li>
+          <li>減少回診、改成遠距追蹤；<strong>前 6 個月</strong>給飼主最多支持。</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.51</span> 延伸閱讀</h3>
+        <ul class="notes">
+          <li>Mott J, Garrett LD, Gilor C. Can implementing spectrum-of-care approaches in management of canine diabetes mellitus improve dog and owner outcomes? <em>J Am Vet Med Assoc.</em> 2025;263(S3):S39–S42. doi:10.2460/javma.25.04.0288</li>
+          <li>Rand J, Mott J, Kendall K, Gilor C. Spectrum of veterinary care in feline diabetes mellitus. <em>J Feline Med Surg.</em> 2025. doi:10.1177/1098612X251401500</li>
+          <li>Niessen SJM 等. ALIVE: Diabetes mellitus. <em>Vet J.</em> 2022;289:105910. doi:10.1016/j.tvjl.2022.105910（DCS 出處）</li>
+          <li>Fingland RB 等. Spectrum of care. <em>JAVMA</em> 2021.</li>
+          <li>Fleeman LM, Rand JS. Day-to-day variability of serial blood glucose curves in diabetic dogs. <em>JAVMA</em> 2003;222:317–321.</li>
+          <li>Fleeman LM, Rand JS, Markwell PJ. Lack of advantage of high-fibre, moderate-carbohydrate diets in dogs with stabilised diabetes. <em>J Small Anim Pract.</em> 2009;50:604–14.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>2026 Texas 內分泌研討會的其他場次，將陸續整理更新於此。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
