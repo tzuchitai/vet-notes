@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>座談會 Q&amp;A：DKA、胰島素與 CGM｜2026 Texas 內分泌研討會</title>
+<style>
+  :root {
+    --primary: #0F766E;
+    --primary-light: #CCFBF1;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0d2522;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9cc8c1; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #1f4a44;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9cc8c1; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9cc8c1;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #1f4a44;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #5f8f87;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0b4f49 0%, #14a395 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0d2522; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #1f4a44; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 Texas 內分泌研討會</a>
+  <div class="logo">
+    <h2>10｜座談會 Q&amp;A：<br>DKA、胰島素策略與 CGM</h2>
+    <p>Bugbee · Mott · Tardo｜2026 年 10 月 6 日</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">座談總覽與講者</a>
+    <a href="#s1">1. DKA：何時開始胰島素？心臟病、腎病怎麼補液</a>
+    <a href="#s2">2. DKA：靜脈 CRI 還是肌肉注射？</a>
+    <a href="#s3">3. DKA／HHS 混合型：滲透壓降太快</a>
+    <a href="#s4">4. 基礎胰島素不夠時：換藥還是加 bolus？</a>
+    <a href="#s5">5. 胰島素成本與 bolus 的選擇</a>
+    <a href="#s6">6. 同時用基礎＋bolus：怎麼調？</a>
+    <a href="#s7">7. 果糖胺：院內檢驗、篩檢、有 CGM 還要嗎？</a>
+    <a href="#s8">8. HbA1c</a>
+    <a href="#s9">9. CGM 的皮膚問題</a>
+    <a href="#s10">10. 停 SGLT2i 後怎麼確認緩解</a>
+    <a href="#s11">11. 怎麼和飼主談貓糖尿病的緩解</a>
+    <a href="#s12">12. GLP-1 減重：怎麼和飼主談</a>
+    <a href="#s13">13. CGM 判讀怎麼收費、怎麼溝通</a>
+    <a href="#s14">Take-home、更正表與參考資料</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <!-- Header -->
+  <div class="page-header">
+    <h1>座談會 Q&amp;A：DKA 處置、胰島素策略與 CGM（Panel Discussion）</h1>
+    <p>座談：Andrew Bugbee（Texas A&amp;M）、Jocelyn Mott（UF）、Antonio Tardo（UC Davis）</p>
+    <p>2026 年 10 月 6 日｜VET-KU × Texas A&amp;M 內科研討會｜場次 10（接續 06–09 的現場提問）</p>
+    <div class="tags">
+      <span class="tag">座談 Q&amp;A</span>
+      <span class="tag">DKA</span>
+      <span class="tag">HHS</span>
+      <span class="tag">補液與補鉀</span>
+      <span class="tag">基礎＋bolus 胰島素</span>
+      <span class="tag">果糖胺</span>
+      <span class="tag">HbA1c</span>
+      <span class="tag">CGM 皮膚</span>
+      <span class="tag">SGLT2i 停藥</span>
+      <span class="tag">緩解</span>
+      <span class="tag">GLP-1</span>
+      <span class="tag">收費</span>
+    </div>
+    <a class="rec-link" href="https://web.plaud.ai/s/pub_92799dda-5394-46e6-91e5-6a05cc837453::TnRaE9d9d0PuCXJyfCj-ZFO9_vA16xN8p7tkZORpIEclu7lSce8dSC86r75lxRtX6YwbcL22RXLY1nKTNIIO2gI" target="_blank" rel="noopener">🎧 聆聽座談錄音（Plaud）↗</a>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-rec">🎤 錄音</span> 座談逐字稿（盡量完整保留，依問題整理）
+    <span class="src src-add">💡 補充</span> 整理者補充
+    <span class="src src-fix">【更正】</span> 逐字稿轉文字錯誤（完整列表見最後一節）
+  </div>
+
+  <!-- Key Points -->
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li>DKA：不必等完全補足水分才打胰島素，Bugbee 目標 3–4 小時內開始；心臟或腎臟病約 6–8 小時</li>
+      <li>DKA 一到院，不管鉀多少，<strong>KCl 直接加進輸液袋</strong></li>
+      <li>心臟病也可以給小劑量 bolus（10–20 mL/kg）；IV 輸液受限時，放鼻胃管補水</li>
+      <li>CRI 和 IM 都有效：嚴重脫水時 IM 吸收較慢；人手不足時 IM 反而比較安全</li>
+      <li>血糖每小時下降要 &lt; 100 mg/dL；HHS 滲透壓降太快，先減胰島素，再調高輸液的鈉</li>
+      <li>基礎胰島素不夠時不要換掉，是<strong>加上 bolus</strong>（NPH／70/30），之後只調 bolus</li>
+      <li>果糖胺、HbA1c 都要固定同一種檢測方法；CGM 是第一選擇，但果糖胺仍是工具箱的一部分</li>
+      <li>停 SGLT2i 後要用 CGM 監測，<strong>不要看尿糖</strong>，因為尿糖可能持續 10 天到數週</li>
+      <li>CGM 判讀一定要收費：設糖尿病專用診療費，用 email 溝通</li>
+    </ul>
+  </div>
+
+  <!-- ══ SECTION 0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🎙️</div>
+      <h2>座談總覽與講者</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>座談形式</h3>
+        <ul class="notes">
+          <li>10 月 6 日場次（<a href="diabetic-nutrition.html">06 營養</a>、<a href="spectrum-of-care.html">07 照護光譜</a>、<a href="dka-hhs.html">08 DKA／HHS</a>、<a href="obesity-weight-loss.html">09 肥胖</a>）結束後的現場 Q&amp;A，聽眾提問，三位講者輪流回答。最後主持人也提了兩個問題。</li>
+          <li>開場先抽獎（號碼 115 得獎，要到吧台預約時間），結尾提醒學員回報是否參加週四的 social event。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>講者對照（依逐字稿內容判斷）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>逐字稿代號</th><th>講者</th><th>判斷依據</th></tr>
+          <tr><td>Speaker 3</td><td><strong>Andrew Bugbee</strong>（Texas A&amp;M）</td><td>「我在德州，很多農場犬」、「我們 Texas A&amp;M 收血糖判讀費」、「我教學生……」</td></tr>
+          <tr><td>Speaker 6</td><td><strong>Jocelyn Mott</strong>（UF）</td><td>胰島素價格比較（Vetsulin 每單位 17 美分 vs ReliOn 3 美分，和 07 投影片一致）、驗證貓的 HbA1c、「Dr. Bugbee 講的」</td></tr>
+          <tr><td>Speaker 5</td><td><strong>Antonio Tardo</strong>（UC Davis）</td><td>引用 08 場次自己講過的「早期 vs 晚期開始胰島素」研究、HHS 的鈉與張力</td></tr>
+          <tr><td>Speaker 1</td><td>主持人</td><td>抽獎、控時間，後段自己提問</td></tr>
+        </table></div>
+        <p class="muted">逐字稿的代號是依聲音自動分的，偶爾會把同一人拆開或把不同人合併。以下依內容判斷回答者。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🚑</div>
+      <h2>1. DKA：何時開始胰島素？心臟病、腎病怎麼補液</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">聽眾問 Tardo：DKA 動物到急診，我們想盡快開始胰島素，但心臟病或腎病的動物無法那麼快矯正脫水。什麼時候可以開始胰島素？一般 DKA 和有共病的 DKA 有什麼差別？</div>
+        <div class="a">
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 我通常照研究的時間軸：0–6 小時先補液，大約 6–8 小時後開始胰島素。開始前要先確認脫水和血中電解質。</li>
+            <li><span class="src src-rec">🎤</span> 但研究結果顯示，<strong>早一點開始胰島素，DKA 緩解得比較快</strong>（逐字稿這段語意混亂，依 08 投影片 p.31 的研究結論整理）。</li>
+          </ul>
+          <p class="p"><strong>Bugbee</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 要盡量積極。這些動物通常脫水得很嚴重，<strong>「管子是空的」</strong>，一開始做的大多是在把管子重新填滿。</li>
+            <li><span class="src src-rec">🎤</span> 即使有心臟病，只要用適當的 <strong>10–20 mL/kg 輸液 bolus</strong>，就能比較快把管子填回來，減少之後要慢慢補的缺水量。</li>
+            <li><span class="src src-rec">🎤</span> 我認為很多人在<strong>補電解質這件事上不夠積極</strong>。<strong>把 KCl 加進輸液袋，不管你量到的鉀是多少。</strong>病患一到院，KCl 就進袋子。這樣到 4–6 小時第一次複檢時，電解質已經在可以接受的範圍，補水也正在進行，就可以安全地開始胰島素。</li>
+            <li><span class="src src-rec">🎤</span> <strong>目標不是在 6 小時內補足水分才開始胰島素，而是要「在補的路上」。</strong></li>
+            <li><span class="src src-rec">🎤</span> 很多人用 6–8 小時的補水計畫；不耐受輸液的疾病，依嚴重程度拉長到 12 或 24 小時。但一開始還是可以先稍微積極地把管子填回來。<strong>我的目標是 3–4 小時內開始胰島素</strong>；有心臟病或腎病，大概以 6–8 小時為目標。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">追問：如果開始胰島素時，動物還有 5–7% 的脫水，還是照樣開始嗎？</div>
+        <div class="a">
+          <p class="p"><strong>Bugbee</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 因為我們<strong>不是打皮下</strong>，所以不需要完全補足水分。我們通常用 IV 或 IM。只要補液已經開始，進度也不錯，即使用 IM，肌肉應該也有灌流，可以吸收胰島素。</li>
+            <li><span class="src src-rec">🎤</span> 只要在 4–8 小時內補進大部分的缺水量，電解質濃度又安全，我就可以放心開始胰島素。</li>
+          </ul>
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 如果病患<strong>無法承受靜脈輸液量</strong>，我會<strong>馬上放鼻胃管（NG tube）</strong>，直接從管子給水，同時補水。<strong>腸道能用就用。</strong></li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div>對照 <a href="dka-hhs.html#s13">08 第 13 節</a>：DiFazio &amp; Fletcher 2016 比較早期（0–6 小時，中位數 4 小時）和晚期（7–21 小時）開始胰島素，早期組 DKA 緩解較快，併發症和住院天數相近。開始前的四個條件：已在容積復甦、K⁺ &gt; 3.5 或已在補鉀、能每小時監測血糖、備好含葡萄糖的輸液。Bugbee 的「KCl 一開始就進袋」正是為了提早達到第二個條件。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">💉</div>
+      <h2>2. DKA：靜脈 CRI 還是肌肉注射？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">聽眾問：IV 和 IM 有很大的差別嗎，還是差不多？</div>
+        <div class="a">
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 第一個考量是<strong>水合狀態</strong>。很脫水時，IM 吸收可能比較慢。</li>
+            <li><span class="src src-rec">🎤</span> 我個人偏好 CRI，但在一些私人診所不一定可行，IM 反而比較容易執行。<strong>兩種都有效，看你偏好哪一種。</strong></li>
+          </ul>
+          <p class="p"><strong>Bugbee</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 美國大部分地方<strong>護理人力短缺</strong>很嚴重。如果 ICU 人手不足，治療進度落後，CRI 被留在太高的速率太久，對病患可能非常不利。</li>
+            <li><span class="src src-rec">🎤</span> 依醫院的護理狀況，有時我反而會選<strong>比較安全的方案</strong>（IM）。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🧂</div>
+      <h2>3. DKA／HHS 混合型：滲透壓降太快</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">聽眾問：HHS 和 DKA 混合的病例，我矯正水合和電解質後開始胰島素，滲透壓卻掉得非常快，只好延後胰島素。有什麼建議？</div>
+        <div class="a">
+          <p class="p"><strong>Bugbee</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 開始後下降太快，很多時候是<strong>劑量問題</strong>。即使是一般 DKA，開始 CRI 或 IM 方案後血糖下降，我通常讓<strong>血糖每小時下降少於 100 mg/dL</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 如果超過，就<strong>降低胰島素劑量</strong>，或<strong>調低 CRI 速率</strong>，讓血糖下降慢一點。</li>
+          </ul>
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 問題在<strong>鈉</strong>。要從輸液著手，<strong>改變輸液的張力</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 要注意輸液的鈉含量，有時可以<strong>混入高張食鹽水</strong>來提高鈉。（逐字稿最後提到 glucose clamp，可能是指必要時加葡萄糖來穩住血糖，語意不清。）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div>對照 <a href="dka-hhs.html#s15">08 第 15 節 HHS 的治療</a>：HHS 要更慢地降低血糖和滲透壓，以免造成腦水腫。血糖下降時，水會從血管移出，校正後的鈉會上升。如果血鈉反而下降、有效滲透壓掉太快，就提高輸液的鈉濃度，而不是只延後胰島素。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🔁</div>
+      <h2>4. 基礎胰島素不夠時：換藥還是加 bolus？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">聽眾問：你們說沒有一種胰島素是完美的。如果用基礎胰島素效果不夠，什麼時候要停掉、換成另一種？</div>
+        <div class="a">
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 我個人<strong>不會停掉基礎胰島素</strong>。如果單用基礎胰島素達不到目標，我會<strong>加上 bolus</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 我好像從來沒有把基礎胰島素換成豬 lente 或 NPH 之類的。都是<strong>額外再加一種胰島素</strong>。</li>
+          </ul>
+          <p class="p"><strong>Bugbee</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 我唯一換掉的情況是：飼主很想要一天一次，但那隻動物一天一次沒效；飼主又擔心費用，最後換成美國最便宜的 <strong>NPH</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 所以在我們這裡，決定常常取決於<strong>給藥時間表或費用</strong>。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef9c3">💰</div>
+      <h2>5. 胰島素成本與 bolus 的選擇</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">Mott 反問：你們那邊胰島素多貴？會影響你們怎麼治療嗎？</div>
+        <div class="a">
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>提問者（中國）</strong>：Toujeo 不到 20 美元，degludec 約 10 美元。</li>
+            <li><span class="src src-rec">🎤</span> <strong>Mott</strong>：所以對我們來說，<strong>財務</strong>可能是我把動物從基礎胰島素換掉的原因。很多國家這不是考量，但在美國是很大的因素，選胰島素時一定要考慮。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">聽眾問：bolus 你們通常選哪一種？</div>
+        <div class="a">
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 通常選<strong>最便宜的</strong>，也就是 <strong>ReliOn NPH 或 70/30</strong>。各國情況不同。</li>
+            <li><span class="src src-rec">🎤</span> 也可以加 Vetsulin，但在美國比 ReliOn 貴很多：<strong>Vetsulin 每單位約 17 美分，ReliOn 約 3 美分</strong>。飼主已經在付基礎胰島素的錢，現在又要加一種，所以我們通常不選 Vetsulin。</li>
+          </ul>
+          <p class="p"><strong>Bugbee</strong>（教學生的選項）：</p>
+          <div class="tbl-wrap"><table>
+            <tr><th>物種</th><th>常用胰島素</th></tr>
+            <tr><td><strong>狗</strong></td><td>Vetsulin、NPH；Toujeo 也是好選擇</td></tr>
+            <tr><td><strong>貓</strong></td><td>PZI、glargine；Toujeo 也是</td></tr>
+          </table></div>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 在美國，<strong>費用和給藥頻率</strong>是選擇時的重要因素。</li>
+          </ul>
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 我們用中效的 NPH 而不是速效胰島素當 bolus，原因是<strong>狗的餐後高血糖持續得比人久</strong>。人用速效胰島素當 bolus，我們很少用。看 Libre 的資料就會發現，狗的餐後高血糖比人類糖尿病患者持續得更久，這就是我們選這類製劑的原因。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">聽眾問：你提到今年之後美國就沒有 regular insulin 了，之後怎麼辦？</div>
+        <div class="a">
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>Mott</strong>：大概要改用 <strong>lispro</strong> 或其他短效胰島素，價格可能更貴。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div>價格對照 <a href="spectrum-of-care.html#s5">07 第 5 節</a>的胰島素價格表：ReliOn NPH／70/30 每單位約 0.02–0.03 美元，Vetsulin 約 0.19–0.24 美元。regular insulin 和 Humulin NPH 預計 2026 年底退出美國市場，DKA 的 CRI 與 IM 方案將改用 lispro，見 <a href="dka-hhs.html#s14">08 第 14 節</a>。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">⚖️</div>
+      <h2>6. 同時用基礎＋bolus：怎麼調？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">主持人問：病患同時用基礎和 bolus 胰島素，調劑量顯然更複雜。有什麼策略？</div>
+        <div class="a">
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 看 CGM。加了 bolus 通常代表單靠基礎胰島素已經不夠了。</li>
+            <li><span class="src src-rec">🎤</span> 大部分時候<strong>調的是 bolus 的劑量</strong>：bolus 後還是有餐後高血糖，就加 bolus；bolus 後出現低血糖，就減 bolus。（逐字稿寫「嚴重餐後低血糖就增加」<span class="src src-fix">【更正】</span>，依邏輯整理。）</li>
+            <li><span class="src src-rec">🎤</span> 我的病患開始用 bolus 後，大多不再調基礎胰島素。</li>
+          </ul>
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 我的情況通常是<strong>基礎胰島素已經加到頂了</strong>：一天兩次，已經是我覺得能給的最高劑量，但還是有明顯的餐後高血糖，這時才加 bolus。<strong>之後只調 bolus。</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🧪</div>
+      <h2>7. 果糖胺：院內檢驗、篩檢、有 CGM 還要嗎？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">聽眾問：院內（in-house）的果糖胺檢測，你們怎麼看？</div>
+        <div class="a">
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 重點是<strong>不管用哪一種，都固定用同一種</strong>。不要這次用院內，下次又送外檢。院內檢驗的準確度我手邊沒有資料，但一直用同一種檢測方法會有幫助。</li>
+          </ul>
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 如果是為了<strong>診斷</strong>，也許有用。如果是為了<strong>監測</strong>，而你有 CGM，我不確定是不是還需要反覆測果糖胺。果糖胺反映的是<strong>過去 1–2 週</strong>的大範圍指標，用來調劑量並不難。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">聽眾問：在我的國家，很多獸醫診斷犬糖尿病時會驗果糖胺，甚至在健康檢查時也驗。可以用果糖胺來篩檢糖尿病嗎？</div>
+        <div class="a">
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 在人醫，HbA1c 上升可以表示這個人有糖尿病傾向。但<strong>我們的病患沒有這方面的證據</strong>，老實說我不認為已經有驗證可以用來篩檢。</li>
+          </ul>
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 人醫可以用這些檢驗診斷<strong>糖尿病前期</strong>，在那個時間點介入，希望他們不要變成糖尿病。可惜我們的病患<strong>沒有辦法診斷糖尿病前期</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 不過，如果一隻貓的果糖胺<strong>逐漸上升</strong>，也許可以考慮改成<strong>低碳水飲食</strong>。</li>
+          </ul>
+          <p class="p"><strong>Bugbee</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 最好的例子是<strong>得了自體免疫疾病、要用高劑量類固醇的貓</strong>。我會介入並監測這些病患會不會發展成糖尿病（逐字稿為 toxicity）。</li>
+            <li><span class="src src-rec">🎤</span> 現在有了 SGLT2i，類固醇治療期間血糖呈上升趨勢的貓，我們常會<strong>開始用 SGLT2i</strong>，等類固醇減到低劑量時再停掉。</li>
+          </ul>
+          <p class="p"><strong>提問者</strong>：我們看法一致。狗來診疑似糖尿病時，不應該用果糖胺來診斷，但可以用在監測。</p>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">聽眾追問：現在有 CGM，可以放棄果糖胺了嗎？</div>
+        <div class="a">
+          <p class="p"><strong>Bugbee</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 我不會放棄。我在德州，看很多<strong>農場犬</strong>之類的，牠們不會來做血糖曲線，也不會戴 CGM。我可能只有<strong>理學檢查、臨床症狀和果糖胺</strong>可以用來監測。</li>
+            <li><span class="src src-rec">🎤</span> 所以看情況還是有用處。尤其對狗來說，<strong>臨床症狀是最主要的</strong>，而血糖曲線是指引決策最好的方式。但獸醫的理想狀況不一定存在，有時要找替代的監測方式。</li>
+          </ul>
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 它是<strong>工具箱裡的一樣工具</strong>，要看什麼對那隻動物、那位飼主最好。</li>
+            <li><span class="src src-rec">🎤</span> 我的第一選擇永遠是 CGM，但有些病患不適合。常見的是<strong>外出的貓</strong>：每次出門 Libre 就掉了。這時果糖胺還是有幫助。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div>對照 <a href="spectrum-of-care.html#s7">07 第 7 節</a>：果糖胺反映約 1–3 週（貓較短），HbA1c 反映約 2–4 個月。兩者都只看平均，看不出低血糖和血糖變異度。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🩸</div>
+      <h2>8. HbA1c</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">聽眾問：HbA1c 在人醫似乎比果糖胺好用。犬貓可以用人類血液檢驗的 HbA1c 嗎？</div>
+        <div class="a">
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> HbA1c 和果糖胺一樣，<strong>必須固定同一種檢測方法、同一間實驗室</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 美國有實驗室提供<strong>貓和狗的 HbA1c</strong>，我們就是用它在健康貓身上做驗證，所以我們用那一家。</li>
+            <li><span class="src src-rec">🎤</span> 人醫一開始不太用 HbA1c，是因為檢驗<strong>很難標準化</strong>，要等到有可靠的檢驗才普及。</li>
+            <li><span class="src src-rec">🎤</span> 最近一些研討會有廣告<strong>院內 HbA1c</strong>，但我完全不知道準不準。</li>
+            <li><span class="src src-rec">🎤</span> 它只是另一種監測方式：<strong>貓大約反映過去 60–70 天，狗大約 120 天</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 如果病患只需要慢慢調整，可以考慮用它。但如果剛開始用基礎胰島素、要逐步加劑量，<strong>CGM 還是最好的方法</strong>。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><span class="src src-add">💡</span> 提問者問的「人類血液檢驗的 HbA1c」：講者沒有直接回答。依 Mott 的說法，必須是<strong>經過犬貓驗證的檢驗</strong>，人用的 HbA1c 分析儀和參考範圍不能直接套用。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🩹</div>
+      <h2>9. CGM 的皮膚問題</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">聽眾問：我有些病患皮膚很脆弱，貼 CGM 的地方會長皮膚炎。有什麼對皮膚友善的做法可以預防？</div>
+        <div class="a">
+          <p class="p"><strong>Bugbee</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 可以用 <strong>Cavilon</strong><span class="src src-fix">【更正】</span>（逐字稿為 Caplon）。它有濕紙巾和噴霧兩種，是<strong>保護皮膚的屏障膜</strong>。先擦在皮膚上，讓它風乾，再貼感測器。</li>
+            <li><span class="src src-rec">🎤</span> 它可以保護皮膚，又讓黏膠有地方附著，減少<strong>拆除感測器後的皮膚刺激</strong>。</li>
+          </ul>
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 有時候動物是對我們<strong>額外加在貼片上的膠</strong>有反應。這時可以停用那種膠，換成另一種擦在皮膚上的黏著劑。</li>
+            <li><span class="src src-rec">🎤</span> <strong>不要讓飼主硬撕下來。</strong>飼主常在感測器失效時就想撕掉，這也會傷害皮膚。<strong>讓它自己掉。</strong></li>
+          </ul>
+          <p class="p"><strong>Bugbee</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 另一個方法是請飼主在家用<strong>丙酮或去光水</strong>浸濕貼片。撕的時候，用沾了丙酮的棉花棒在貼片下面滾，邊滾邊撕，減少黏膠對皮膚的傷害。就像撕 OK 繃，大家都會刺激皮膚。</li>
+          </ul>
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>眼部卸妝液</strong>也有效，而且很溫和。</li>
+          </ul>
+          <p class="p"><strong>Bugbee</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 有趣的是，有些<strong>長期反覆戴 CGM</strong> 的病患，幾個月後<strong>脊椎區和肩胛</strong>的毛會<strong>長回不同的顏色</strong>。應該要提前告訴飼主，因為長期使用 CGM 時，毛或皮膚可能出現奇怪的變化，飼主看到會很擔心。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div>整理成貼片流程：剃毛 → 清潔、乾燥 → 擦 Cavilon 屏障膜並風乾 → 貼感測器（必要時加黏著劑）→ 失效後讓它自然脫落，或用去光水、眼部卸妝液邊潤濕邊撕 → 換位置貼，讓原處皮膚恢復。CGM 的其他注意事項（瘦的動物可能氣胸）見 <a href="spectrum-of-care.html#s8">07 第 8 節</a>。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🛑</div>
+      <h2>10. 停 SGLT2i 後怎麼確認緩解</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">聽眾問：病患要停 SGLT2i 時，你們會等多久再驗尿糖看是否緩解？還是請飼主戴 CGM，隔天就看？比較喜歡哪一種？</div>
+        <div class="a">
+          <p class="p"><strong>Bugbee</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 我通常<strong>先戴上 CGM，再停藥並監測</strong>。最重要的是要<strong>盡快抓到高血糖復發</strong>，讓牠們盡快回到需要的藥物上。</li>
+          </ul>
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> SGLT2i 雖然說作用時間是 24 小時，但<strong>有些貓尿中的葡萄糖會持續到 10 天甚至更久</strong>。所以看尿液時，我會一直懷疑：這還是 SGLT2i 的作用嗎？我通常會用 CGM。</li>
+          </ul>
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 我看過停 SGLT2i 後<strong>尿糖持續好幾週</strong>的病例。</li>
+            <li><span class="src src-rec">🎤</span> 之後可以請飼主<strong>每個月或每幾個月測一次血糖</strong>，看貓是不是又變成糖尿病。</li>
+            <li><span class="src src-rec">🎤</span> 要記得這些貓是<strong>糖尿病前期</strong>，緩解之後某個時間點可能會再變成糖尿病，所以要長期監測。我會驗血看血糖是否維持正常；如果又升高，就重新開始治療。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div>對照 <a href="panel-qa.html#s11">05 第 11 節</a>：要確認緩解只能停藥（SGLT2i 至少用 2–3 個月後）。本場補充了停藥的<strong>監測方法</strong>：用 CGM 看血糖，不要靠尿糖。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🐱</div>
+      <h2>11. 怎麼和飼主談貓糖尿病的緩解</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">主持人問：新診斷的糖尿病貓，你們怎麼談緩解？會把它設成飼主的目標嗎？有些貓不會緩解，飼主可能會失望，怎麼處理？</div>
+        <div class="a">
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 我們一定會談緩解，但要看貓的狀況：<strong>有明顯共病</strong>的貓，我們不一定會積極追求緩解。也要看飼主想要什麼。</li>
+            <li><span class="src src-rec">🎤</span> 大部分飼主一開始都說想要緩解，但有些人的回診配合度不夠，不會每天 email。兩週都沒消息，我們只能很慢地調整。所以這一直是要討論的。</li>
+            <li><span class="src src-rec">🎤</span> 我也會告訴飼主，緩解<strong>隨時都可能發生</strong>。當然<strong>最好的機會是剛診斷的時候</strong>，這時要最積極、監測最密集。但前幾個月沒有緩解，<strong>不代表之後不會</strong>。</li>
+          </ul>
+          <p class="p"><strong>Bugbee</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 我會跟飼主說，不是每隻貓都會緩解。但對打胰島素的貓來說，<strong>緩解代表貓的餘生可能都不用再打針</strong>，這是很好的誘因。</li>
+            <li><span class="src src-rec">🎤</span> 一開始把這個目標放在飼主面前，可以讓他們<strong>配合你的建議、維持在軌道上</strong>。就算貓最後沒有緩解，飼主也已經<strong>習慣在家照顧的流程</strong>，之後的管理會比較穩定、順利。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">⚖️</div>
+      <h2>12. GLP-1 減重：怎麼和飼主談</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">聽眾問：GLP-1 這幾年在人醫很熱門，但在肥胖的犬貓還沒有太多證據。你們什麼時候會考慮讓病患用 GLP-1？怎麼調整飼主的期待？</div>
+        <div class="a">
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 首先，先做 Dr. Bugbee<span class="src src-fix">【更正】</span>（逐字稿為 Bovee）講的所有事：檢查飲食、停掉零食或換成低熱量零食、增加運動。</li>
+            <li><span class="src src-rec">🎤</span> 如果這些沒效，才考慮 GLP-1。有些飼主<strong>絕對不會照減重飲食計畫做</strong>，這種情況它是一個選項。</li>
+            <li><span class="src src-rec">🎤</span> 我們通常跟飼主說，肥胖和很多疾病有關：貓的糖尿病、關節炎、皮膚問題等，然後解釋為什麼要處理肥胖。</li>
+            <li><span class="src src-rec">🎤</span> 現在的好處是<strong>每個人都知道 Ozempic</strong>，所以其實不需要討論太多。你說要讓貓用 Ozempic，飼主馬上就懂。因為這類藥在人身上很常見、很受歡迎，要讓飼主接受寵物使用，<strong>落差沒有那麼大</strong>。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div>對照 <a href="obesity-weight-loss.html">09 肥胖與減重</a>：目前犬貓的 GLP-1 證據多是糖尿病貓搭配胰島素；專門用於貓肥胖的有康乃爾的 AKS-562c（每週注射）和 Okava 的 OKV-119（6 個月植入劑），都還在臨床試驗。Slentrol 失敗的教訓是飼主不喜歡寵物食慾變差，GLP-1 也會降低食慾，事先要跟飼主說明。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 13 ══ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">📧</div>
+      <h2>13. CGM 判讀怎麼收費、怎麼溝通</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">聽眾問：你們都很用心追蹤糖尿病病患、持續和飼主溝通。這些長期病患的 Libre 報告判讀，你們怎麼收費？我們學校有內建的收費項目，但住院醫師很少真的收，所以大多是免費做的，這在私人診所大概行不通。</div>
+        <div class="a">
+          <p class="p"><strong>Bugbee</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> Texas A&amp;M 有收<strong>血糖判讀費</strong>。即使 CGM 是在家裝、在家監測，判讀還是要付費。</li>
+            <li><span class="src src-rec">🎤</span> 我上課會教學生<strong>為自己的時間收費</strong>。CGM 追蹤很花時間，尤其用 CGM 調劑量時，要常常看、常常和飼主溝通。</li>
+            <li><span class="src src-rec">🎤</span> 我們發現一個簡單的模式：設一個<strong>比一般診療費高的糖尿病診療費</strong>，包含一定數量的血糖曲線，或一定次數的 email、電話。用完額度後，飼主要再付一次診療費才能繼續。</li>
+            <li><span class="src src-rec">🎤</span> 同意你說的：不為時間收費會造成很大的虧損，<strong>久了你會開始怨恨這件事</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 我幾乎把所有 CGM 飼主都<strong>訓練成用 email</strong>，因為<strong>一旦接起飼主的電話，就掛不掉了</strong>。他們知道我<strong>每天早上 10 點</strong>會看 FreeStyle 曲線，再 email 告訴他們要調整什麼。有問題就回信，我們再回覆。在數位時代這很有效，大部分飼主都能接受 email。</li>
+          </ul>
+          <p class="p"><strong>Mott</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 我們幾乎全部用 email。<strong>只要有調整就收費</strong>，照規定一個 Libre 感測器（的判讀）收 <strong>70 美元</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 我們大概只有 20% 的時候真的收，因為我們在學校。<strong>你們一定要收。</strong></li>
+            <li><span class="src src-rec">🎤</span> 其實花的時間不長。我早上只看<strong>有 email 給我的飼主</strong>，所以飼主要主動 email 告訴我狀況。我打開他們的 Libre 資料看；想調整就回「加到 4 單位」，就這樣。</li>
+            <li><span class="src src-rec">🎤</span> <strong>不需要調整就不回。</strong>飼主知道，如果寄了幾天 email 都沒回，就代表不用改。</li>
+            <li><span class="src src-rec">🎤</span> 但我同意要為時間收費，而且應該收<strong>超過 70 美元</strong>。</li>
+          </ul>
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 我也收判讀費，通常是一個感測器的期間收一次。</li>
+            <li><span class="src src-rec">🎤</span> 但我發現飼主有時不懂「單次判讀費」，因為感測器常常只貼幾天就掉了。理論上一個感測器兩週，實際上從來不到兩週，結果要付好幾次。所以我改用<strong>較長的判讀期</strong>，例如一個月、兩個月、三個月一起收。</li>
+            <li><span class="src src-rec">🎤</span> 我用 <strong>Google 表單</strong>讓飼主填資料，例如貓狗的狀況和臨床症狀，我再看 Libre 給回饋。我們也有<strong>飼主入口網站</strong>，可以直接傳訊息。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-success"><span class="alert-icon">✅</span><div><strong>三種收費模式比較</strong>
+        <div class="tbl-wrap"><table>
+          <tr><th>講者</th><th>收費方式</th><th>溝通方式</th></tr>
+          <tr><td>Bugbee</td><td>較高的糖尿病診療費，含固定次數的曲線或聯絡；超過再收</td><td>email，每天 10 點固定看</td></tr>
+          <tr><td>Mott</td><td>每次調整收費（約 70 美元／感測器），建議收更高</td><td>email，只看有來信的；不回 = 不改</td></tr>
+          <tr><td>Tardo</td><td>1–3 個月的判讀期打包收</td><td>Google 表單＋飼主入口網站</td></tr>
+        </table></div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 14 ══ -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef9c3">📌</div>
+      <h2>Take-home、更正表與參考資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>Take-home messages（整理者歸納）</h3>
+        <ol class="notes">
+          <li><strong>DKA 開始胰島素</strong>：不必等完全補足水分（不是打皮下）。KCl 一開始就進袋，4–6 小時複檢電解質；Bugbee 目標 3–4 小時開始，心臟或腎臟病 6–8 小時。</li>
+          <li><strong>輸液</strong>：心臟病也可以小心給 10–20 mL/kg bolus；不耐受 IV 輸液時，用鼻胃管補水。</li>
+          <li><strong>CRI vs IM</strong>：都有效；嚴重脫水時 IM 吸收較慢；人手不足時 IM 比較安全。</li>
+          <li><strong>降速</strong>：血糖每小時下降 &lt; 100 mg/dL；HHS 滲透壓降太快，先減胰島素或 CRI 速率，再提高輸液的鈉。</li>
+          <li><strong>基礎胰島素不夠</strong>：不換掉，加 NPH／70/30 當 bolus，之後只調 bolus；換藥通常是因為費用或給藥時間表。</li>
+          <li><strong>果糖胺</strong>：固定同一種檢測；不能篩檢糖尿病前期；農場犬、外出貓等無法用 CGM 時仍有用。</li>
+          <li><strong>HbA1c</strong>：要用經犬貓驗證的檢驗（貓約 60–70 天、狗約 120 天）；需要調劑量時還是用 CGM。</li>
+          <li><strong>CGM 皮膚</strong>：Cavilon 屏障膜、讓它自然掉、用去光水或眼部卸妝液幫忙撕；長期使用可能讓毛色改變，事先告知。</li>
+          <li><strong>停 SGLT2i</strong>：先戴 CGM 再停藥；尿糖可能持續 10 天到數週，不能用來判斷；緩解的貓要長期追蹤。</li>
+          <li><strong>收費</strong>：一定要為 CGM 判讀收費，用 email 溝通並設定規則。</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3>逐字稿轉文字錯誤一覽</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>逐字稿寫的</th><th>正確內容</th></tr>
+          <tr><td>mineral DKAHS</td><td><strong>DKA／HHS</strong>（場次）</td></tr>
+          <tr><td>Dr. Trader</td><td>Dr. <strong>Tardo</strong></td></tr>
+          <tr><td>correct BKA / BKA</td><td><strong>DKA</strong></td></tr>
+          <tr><td>mL or gig</td><td><strong>mL/kg</strong></td></tr>
+          <tr><td>pre-check mark</td><td>（應為 recheck，4–6 小時複檢）</td></tr>
+          <tr><td>housebucc / protoposamine / transaminase / fructoseemia / fructosmia</td><td><strong>in-house fructosamine</strong> / <strong>fructosamine</strong></td></tr>
+          <tr><td>potassium（果糖胺段落）</td><td>（應為 fructosamine）</td></tr>
+          <tr><td>CCM</td><td><strong>CGM</strong></td></tr>
+          <tr><td>FPH / PH doo / ph 7030</td><td><strong>NPH</strong> / <strong>NPH 70/30</strong></td></tr>
+          <tr><td>Tojo / 2jo</td><td><strong>Toujeo</strong></td></tr>
+          <tr><td>Depo Dec</td><td><strong>degludec</strong></td></tr>
+          <tr><td>rely on</td><td><strong>ReliOn</strong>（Walmart 的人用胰島素品牌）</td></tr>
+          <tr><td>Vaseline / betel</td><td><strong>Vetsulin</strong></td></tr>
+          <tr><td>Pzi and largey</td><td><strong>PZI</strong> and <strong>glargine</strong></td></tr>
+          <tr><td>Libra rat / library data</td><td><strong>Libre</strong> data</td></tr>
+          <tr><td>regulatory this year</td><td>（應為 regular insulin）</td></tr>
+          <tr><td>blood of semi / proposition / H1B</td><td><strong>fructosamine</strong> / <strong>HbA1c</strong></td></tr>
+          <tr><td>HGLT2 inhibitors / SGLT two</td><td><strong>SGLT2 inhibitors</strong></td></tr>
+          <tr><td>monitor for toxicity</td><td>（應為 monitor for diabetes）</td></tr>
+          <tr><td>obliterative study</td><td>（語意不清，指替代的監測方式）</td></tr>
+          <tr><td>Caplon / Caplon spray</td><td><strong>Cavilon</strong>（3M 皮膚屏障膜）</td></tr>
+          <tr><td>HFS and BQ / intraluminal</td><td><strong>HHS</strong> and <strong>DKA</strong> / <strong>electrolytes</strong></td></tr>
+          <tr><td>fluidity / food</td><td>（應為 fluid／輸液的鈉含量）</td></tr>
+          <tr><td>mix blood with the hypertonic solution</td><td>（應為輸液混入高張食鹽水）</td></tr>
+          <tr><td>GOP one / Jovi one</td><td><strong>GLP-1</strong></td></tr>
+          <tr><td>sleep owner</td><td>（語意不清，推測為 clinician）</td></tr>
+          <tr><td>Dr. Bovee</td><td>Dr. <strong>Bugbee</strong></td></tr>
+          <tr><td>free style curves</td><td><strong>FreeStyle</strong>（Libre）曲線</td></tr>
+          <tr><td>severe postprandial hypoglycemia → increase</td><td>（應為餐後高血糖 → 加 bolus；低血糖 → 減）</td></tr>
+          <tr><td>permission</td><td><strong>remission</strong></td></tr>
+          <tr><td>BA one C / A1C</td><td><strong>HbA1c</strong></td></tr>
+          <tr><td>for Canada</td><td>（應為 for canine／犬貓）</td></tr>
+          <tr><td>real estate about great remission</td><td>（語意不清，談緩解的好處）</td></tr>
+        </table></div>
+        <p class="muted">逐字稿中 Tardo 回答果糖胺和 bolus 的幾句（例如「Just a kid」「Tramisul, also the Visco」「liver function and smoking」）無法辨識，未整理。</p>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Panel Discussion: Veterinary Diabetes Management, Insulin Protocols, and CGM Monitoring. VET-KU × Texas A&amp;M IM Conference, 2026-10-06（座談逐字稿，完整記錄 PDF）。</div>
+          <div class="ref-item">座談錄音與逐字稿（Plaud）。<a href="https://web.plaud.ai/s/pub_92799dda-5394-46e6-91e5-6a05cc837453::TnRaE9d9d0PuCXJyfCj-ZFO9_vA16xN8p7tkZORpIEclu7lSce8dSC86r75lxRtX6YwbcL22RXLY1nKTNIIO2gI" target="_blank" rel="noopener">連結</a>（逐字稿有轉文字錯誤，請對照本頁更正表）</div>
+          <div class="ref-item">DiFazio J, Fletcher DJ. Retrospective comparison of early- versus late-insulin therapy regarding effect on time to resolution of diabetic ketosis and ketoacidosis in dogs. J Vet Emerg Crit Care. 2016.（見 <a href="dka-hhs.html#s13">08 第 13 節</a>）</div>
+          <div class="ref-item">相關場次：<a href="panel-qa.html">05 座談會 Q&amp;A（10/5）</a>、<a href="diabetic-nutrition.html">06 糖尿病營養</a>、<a href="spectrum-of-care.html">07 照護光譜</a>、<a href="dka-hhs.html">08 DKA、eDKA 與 HHS</a>、<a href="obesity-weight-loss.html">09 肥胖與減重</a>。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="obesity-weight-loss.html">09 肥胖、脂肪激素與未來的糖尿病治療</a></p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
