@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>犬 Addison 氏症：辨識、診斷與 DOCP 新知｜2026 Texas 內分泌研討會</title>
+<style>
+  :root {
+    --primary: #0F766E;
+    --primary-light: #CCFBF1;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0d2522;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9cc8c1; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #1f4a44;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9cc8c1; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9cc8c1;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #1f4a44;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #5f8f87;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0b4f49 0%, #14a395 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0d2522; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #1f4a44; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 Texas 內分泌研討會</a>
+  <div class="logo">
+    <h2>11｜犬 Addison 氏症：<br>辨識、診斷與 DOCP 新知</h2>
+    <p>Daniel K. Langlois｜2026 年 10 月 7 日</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">場次資訊與大綱</a>
+    <div class="nav-section">第一堂：疾病辨識</div>
+    <a href="#s1">1. 疾病背景與好發族群</a>
+    <a href="#s2">2. 臨床與實驗室特徵</a>
+    <a href="#s3">3. 病例：Addison 是或否？</a>
+    <a href="#s4">4. 非典型 Addison</a>
+    <a href="#s5">5. 臨床辨識、JFK 與 POMC</a>
+    <div class="nav-section">第一堂：診斷檢測</div>
+    <a href="#s6">6. ACTH 刺激試驗與類固醇</a>
+    <a href="#s7">7. 基礎 cortisol</a>
+    <a href="#s8">8. 尿 cortisol 與 UCCR</a>
+    <a href="#s9">9. 診斷總結</a>
+    <a href="#s10">10. 第一堂 Q&amp;A</a>
+    <div class="nav-section">第二堂：治療</div>
+    <a href="#s11">11. 急性處置</a>
+    <a href="#s12">12. 慢性處置：糖皮質素與 DOCP</a>
+    <a href="#s13">13. 低劑量 DOCP 四篇研究</a>
+    <a href="#s14">14. MSU DOCP PK/PD 研究</a>
+    <a href="#s15">15. 總結、Stella 與非典型治療</a>
+    <a href="#s16">Take-home、更正表與參考資料</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>犬 Addison 氏症（腎上腺皮質功能低下症）：辨識、診斷與 DOCP 新知</h1>
+    <p>主講：Daniel K. Langlois, DVM, DACVIM｜密西根州立大學（MSU）獸醫學院內科教授</p>
+    <p>2026 年 10 月 7 日｜VET-KU × Texas A&amp;M 內科研討會｜場次 11（第一堂＋第二堂）</p>
+    <div class="tags">
+      <span class="tag">Hypoadrenocorticism</span>
+      <span class="tag">非典型 Addison</span>
+      <span class="tag">偉大模仿者</span>
+      <span class="tag">ACTH 刺激試驗</span>
+      <span class="tag">基礎 cortisol</span>
+      <span class="tag">尿 cortisol／UCCR</span>
+      <span class="tag">醛固酮</span>
+      <span class="tag">eACTH</span>
+      <span class="tag">POMC</span>
+      <span class="tag">急性輸液</span>
+      <span class="tag">Hydrocortisone</span>
+      <span class="tag">Prednisone</span>
+      <span class="tag">DOCP 低劑量</span>
+      <span class="tag">PRA</span>
+    </div>
+    <a class="rec-link" href="https://web.plaud.ai/s/pub_53ba4677-68f1-4ea8-ba80-4f2f6fa8b2fc::kssBY9brZXTonxmWQS8EV5BzDGbJzIs3TABxwpUz6maj9qgVvQZSBYRAIeVdlDOwnWu9fiEQ0rN2tlmnpy7vawI" target="_blank" rel="noopener">🎧 聆聽第一堂課堂錄音（Plaud）↗</a>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（頁碼＝講義投影片編號 1–119）
+    <span class="src src-rec">🎤</span> 第一堂課堂逐字稿（疾病辨識＋診斷，盡量完整保留；第二堂治療的錄音尚未提供）
+    <span class="src src-photo">📸 現場</span> 課堂現場投影片（講義 PDF 沒有）
+    <span class="src src-hand">✍️ 筆記</span> 上課手寫重點
+    <span class="src src-add">💡 補充</span> 整理者補充（機轉、判讀、交叉參照）
+    <span class="src src-fix">【更正】</span> 逐字稿轉文字錯誤，以講義為準（完整列表見最後一節）
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li>生病卻<strong>沒有壓力白血球像</strong>（92%）是最敏感的線索</li>
+      <li>Na:K 低不等於 Addison：腎盂腎炎、鞭蟲、AKI、阻塞、積液、腸病都會模仿</li>
+      <li>Addison 也可能電解質完全正常（約 20%），只有低白蛋白／膽固醇／血糖</li>
+      <li>非典型病犬 <strong>&gt; 75% 是原發性且醛固酮也缺乏</strong>；20–44% 會轉為典型</li>
+      <li>ACTH 刺激仍是金標準；類固醇（含外用）<strong>7 天內</strong>就能抑制 HPA 軸</li>
+      <li>基礎 cortisol <strong>≥ 2 µg/dL（55 nmol/L）</strong>排除，NPV 約 99.8%；「在參考範圍內」不等於排除</li>
+      <li><strong>尿 cortisol &gt; 40–55 nmol/L</strong> 排除，篩檢比基礎 cortisol 好；要在醫院採尿</li>
+      <li>實驗室要能測到約 5 nmol/L 的低值；切點因實驗室而異</li>
+      <li>急性期核心：積極輸液＋dexamethasone；高血鉀多半不必特別處理</li>
+      <li>Prednisone 最終劑量常只要 0.05–0.15 mg/kg/day；失敗主因是 GC 給不夠</li>
+      <li>DOCP 標示劑量 2.2 mg/kg 幾乎都過量；電解質看不出來，要看 PRA</li>
+      <li>建議 <strong>DOCP 1.1 mg/kg q4–6 週</strong>：安全有效、省約 65%</li>
+    </ul>
+  </div>
+
+  <!-- ══ S0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🎯</div>
+      <h2>場次資訊與大綱</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 1–2</span><span class="src src-rec">🎤</span> 講者與大綱</h3>
+        <ul class="notes">
+          <li>講者 Daniel K. Langlois，DVM、DACVIM，密西根州立大學（MSU）獸醫學院內科教授。</li>
+          <li><span class="src src-rec">🎤</span> MSU 有一個很大的內分泌實驗室，講者近年很多研究都是和這個實驗室合作。（另外介紹了校園的 Spartan 雕像、蘋果花，和冬天會整片結冰的湖。）</li>
+          <li><span class="src src-rec">🎤</span> 課中穿插投票：每個病例看完檢驗後投「Addison 是／否」，再公布答案。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>#</th><th>主題</th><th>內容</th></tr>
+          <tr><td>1</td><td>疾病辨識</td><td>典型與「不那麼典型」的病例、「非典型」Addison</td></tr>
+          <tr><td>2</td><td>診斷檢測</td><td>ACTH 刺激試驗與替代方案（基礎 cortisol、尿 cortisol）</td></tr>
+          <tr><td>3</td><td>治療考量</td><td>急性穩定、DOCP 劑量</td></tr>
+        </table></div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：HA＝hypoadrenocorticism（腎上腺皮質功能低下症）＝Addison 氏症。本頁 cortisol 單位換算：<strong>1 µg/dL ＝ 27.5 nmol/L</strong>；2 µg/dL ≈ 55 nmol/L。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">📜</div>
+      <h2>1. 疾病背景與好發族群</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 3</span><span class="src src-rec">🎤</span> 定義與歷史</h3>
+        <ul class="notes">
+          <li>糖皮質素（glucocorticoid）缺乏，常常也合併礦物皮質素（mineralocorticoid）缺乏。</li>
+          <li><span class="src src-rec">🎤</span> 1850 年代由英國醫師 Thomas Addison 描述。當時根本不知道腎上腺是什麼、有什麼荷爾蒙功能，他的經典著作標題是《Diseases of the Suprarenal Capsules》。他描述的是人類病人皮膚蒼白、虛弱、症狀時好時壞，多年後才弄清楚荷爾蒙機轉。</li>
+          <li><span class="src src-rec">🎤</span> 冷知識：最早描述的 Addison 病例，病因是<strong>結核病</strong>。全身性結核的病人，腎上腺被巨大的結核結節整個破壞。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 4</span><span class="src src-rec">🎤</span> 病因</h3>
+        <ul class="notes">
+          <li>原發性腎上腺衰竭超過 95%；有免疫媒介成分，也有遺傳成分；其他原因罕見。</li>
+          <li>少見而且常被漏診：約占一般犬族群 0.1–0.2%。</li>
+          <li><span class="src src-rec">🎤</span> 現在狗和人的 Addison 主要被認為是<strong>免疫媒介的腎上腺炎</strong>。有很多遺傳因素參與，但<strong>沒有單一致病突變</strong>，遺傳背景非常複雜。</li>
+          <li><span class="src src-rec">🎤</span> 講者在美國中西部做過調查：多數一般開業獸醫<strong>同一時間手上大約在照顧 4–6 隻 Addison 病犬</strong>。少見，但不算稀有。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：講義的組織切片顯示腎上腺皮質萎縮，並有大量淋巴球、漿細胞浸潤（Frank et al. 2013 J Comp Path）。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 5</span><span class="src src-rec">🎤</span> 好發族群（Signalment）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>講義數據</th><th>講者補充</th></tr>
+          <tr><td>年輕到中年：中位數 4 歲（0.25–13 歲）</td><td><span class="src src-rec">🎤</span> 實際範圍是 <strong>3 月齡到 14 歲</strong>。MSU 最年輕的病犬叫 Z，3 個月大確診；當時以為是腎病或鞭蟲，結果就是一般的 Addison。</td></tr>
+          <tr><td>母犬：70%（MSU 研究 55%）</td><td><span class="src src-rec">🎤</span> 早期研究顯示母犬好發很明顯，近期研究只是<strong>稍微</strong>好發，沒有以前以為的那麼強。</td></tr>
+          <tr><td>已絕育</td><td><span class="src src-rec">🎤</span> 美國幾乎所有狗都絕育了，所以這不太算好發因子。</td></tr>
+          <tr><td>純種：MSU 70%</td><td><span class="src src-rec">🎤</span> <strong>混種犬也很多</strong>。</td></tr>
+        </table></div>
+        <div class="quote">典型病犬確實是年輕到中年的已絕育母犬，但表現的變異非常大。<span class="quote-zh">不符合典型族群，不代表不是 Addison。</span></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 6</span> 生理作用</h3>
+        <figure class="fig">
+          <img src="photos/11-principal-cell.jpg" alt="Clinical &amp; Laboratory Features：糖皮質素與礦物皮質素作用、腎集尿管主細胞示意圖" loading="lazy">
+          <figcaption>📄 6：糖皮質素與礦物皮質素的作用；右圖為腎集尿管主細胞（principal cell）</figcaption>
+        </figure>
+        <div class="grid2">
+          <div class="card-mini"><h4>糖皮質素（cortisol）</h4><ul>
+            <li>腸胃黏膜血流與屏障完整性</li>
+            <li>血管張力與血壓</li>
+            <li>血糖恆定</li>
+          </ul></div>
+          <div class="card-mini"><h4>礦物皮質素（醛固酮）</h4><ul>
+            <li>Na⁺ 再吸收、K⁺ 排泄</li>
+            <li>Na⁺/H⁺ 交換</li>
+          </ul></div>
+        </div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：醛固酮增加主細胞管腔側的 Na⁺ 通道（ENaC）、K⁺ 通道（ROMK）和基底側 Na⁺/K⁺-ATPase。缺乏時就出現低血鈉、高血鉀、代謝性酸中毒。Cortisol 缺乏則造成腸胃出血、低血壓、低血糖。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🩺</div>
+      <h2>2. 臨床與實驗室特徵</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 7</span><span class="src src-rec">🎤</span> 臨床表現</h3>
+        <ul class="notes">
+          <li>症狀的嚴重度與病程長短差異很大！主要影響三個系統：腸胃道、泌尿、心血管。</li>
+          <li>嗜睡、虛弱很常見；多數病例理學檢查模糊、沒有特異性。</li>
+          <li><span class="src src-rec">🎤</span> 病史與理學檢查變化這麼大，是因為 <strong>cortisol 在全身有太多功能</strong>。醛固酮的角色比較明確：電解質、體液容積、水分恆定。</li>
+          <li><span class="src src-rec">🎤</span> 實際上很多病例來看診的原因只是非特異性的嗜睡、食慾下降。<strong>臨床懷疑往往是看到檢驗數值才升起來的。</strong></li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 8–9</span><span class="src src-rec">🎤</span> 檢驗異常的比例（Scott-Moncrieff, Ettinger 教科書）</h3>
+        <div class="grid2">
+          <div>
+            <div class="tbl-wrap"><table>
+              <tr><th>CBC</th><th>%</th></tr>
+              <tr><td>非再生性貧血</td><td>27</td></tr>
+              <tr><td>嗜酸性球增多</td><td>20</td></tr>
+              <tr><td>嗜中性球增多</td><td>32</td></tr>
+              <tr><td>淋巴球增多</td><td>10</td></tr>
+              <tr><td><strong>缺乏壓力白血球像</strong></td><td><strong>92</strong></td></tr>
+            </table></div>
+          </div>
+          <div>
+            <div class="tbl-wrap"><table>
+              <tr><th>生化</th><th>%</th><th>生化</th><th>%</th></tr>
+              <tr><td>高血鉀</td><td>95</td><td>低血糖</td><td>17</td></tr>
+              <tr><td>低血鈉</td><td>81</td><td>肝指數上升</td><td>30–50</td></tr>
+              <tr><td>低血氯</td><td>42</td><td>代謝性酸中毒</td><td>40</td></tr>
+              <tr><td>高血鈣</td><td>31</td><td>低白蛋白</td><td>6–39</td></tr>
+              <tr><td>氮血症</td><td>88</td><td>低膽固醇</td><td>7</td></tr>
+              <tr><td>高血磷</td><td>68</td><td>USG &lt; 1.030</td><td>60</td></tr>
+            </table></div>
+          </div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 我們會試著把每個異常歸類：是 <strong>cortisol 缺乏</strong>造成的，還是<strong>醛固酮缺乏</strong>造成的。</li>
+          <li><span class="src src-rec">🎤</span> 比例因研究而異。一般診所的研究，典型電解質異常的比例很高；大學醫院的研究則有較多特殊病例。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：生病的狗應該有壓力像（淋巴球、嗜酸性球下降），<strong>「生病卻沒有壓力像」</strong>是很敏感的線索。氮血症多為腎前性，但慢性失鈉造成腎髓質濃度梯度流失，60% 的病犬 USG &lt; 1.030，<strong>很容易被誤判為腎衰竭</strong>。正常 Na:K 約 27–40，&lt; 27 要懷疑。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🐕</div>
+      <h2>3. 病例：Addison 是或否？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p class="muted">講者讓台下看完每個病例的檢驗後投票「Addison 是／否」，再公布 ACTH 刺激結果。所有病例都來自 MSU，而且<strong>每一隻都有足夠的懷疑去做檢測</strong>。</p>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 10–13</span><span class="src src-rec">🎤</span> 病例 1：9 月齡未絕育母犬，混種 → <span class="badge badge-green">不是 Addison（腎盂腎炎）</span></h3>
+        <ul class="notes">
+          <li><strong>病史</strong>：從小尿失禁，間歇性排尿困難和血尿；數週嗜睡、體重減輕；3 天厭食。</li>
+          <li><span class="src src-rec">🎤</span> 這隻狗已知有<strong>異位輸尿管</strong><span class="src src-fix">【更正】</span>（逐字稿誤為 in-topic verters），矯正太貴，飼主就這樣養著。這次是因為最近幾週嗜睡、消瘦，就診當天完全不吃，才從急診進來。</li>
+          <li><strong>CBC</strong>：WBC 30.0 H、分葉嗜中性球 23.1 H、單核球 5.4 H、PLT 371 H、TP 5.6 L；淋巴球 1.2；Hct 48。</li>
+          <li><strong>生化</strong>：BUN 67 H、Crea 1.0、<strong>Na 122 L、K 7.5 H、Na:K 16</strong>、Cl 93 L、Ca 7.9 L、P 7.6 H、Mg 3.4 H、Alb 2.6 L。</li>
+          <li><strong>尿檢</strong>：紅色混濁、USG 1.050、pH 8.7、蛋白 4+、潛血大量、WBC/RBC 數不清、細菌大量。<span class="src src-rec">🎤</span>「尿看起來基本上就是膿。」</li>
+          <li><span class="src src-rec">🎤</span> 台下多數投「是 Addison」。結果<strong>絕對不是</strong>：ACTH 刺激完全正常，基礎 cortisol 約 2 µg/dL，刺激後升到約 13–14 µg/dL。最可能是<strong>腎盂腎炎</strong><span class="src src-fix">【更正】</span>（逐字稿誤為 pilonephritis）造成這些電解質異常。</li>
+        </ul>
+        <div class="alert alert-success"><span class="alert-icon">✅</span><div><strong>學習重點</strong>：Na:K 低不等於 Addison。發炎性白血球像（有壓力反應）、尿液能濃縮到 1.050、明確的泌尿道病灶，都指向「模仿者」。</div></div>
+      </div>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 14–17</span><span class="src src-rec">🎤</span> 病例 2：4 歲已絕育母犬，混種 → <span class="badge badge-red">Addison（典型危象）</span></h3>
+        <ul class="notes">
+          <li><strong>病史</strong>：一個月嗜睡、食慾下降、血便、虛弱；完全厭食 3 天；就診時虛脫、意識遲鈍。<span class="src src-rec">🎤</span> 到院時已經虛脫、插管。</li>
+          <li><strong>CBC</strong>：<strong>Hct 60 H</strong><span class="src src-fix">【更正】</span>（逐字稿誤為 16%）、RBC 8.4 H、TP 4.1 L、PLT 83 L、<strong>淋巴球 4.1 H</strong>。<span class="src src-rec">🎤</span> 血液濃縮，很多急性就診的 Addison 都會這樣；也有淋巴球增多。</li>
+          <li><strong>生化</strong>：BUN 93 H、Crea 3.6 H、<strong>Na 127 L、K 8.1 H</strong>、Cl 101 L、HCO₃ 14 L、P 9.9 H、Alb 1.6 L、<strong>Glu 38 L</strong>、<strong>Chol 48 L</strong>、CK 206 H。</li>
+          <li><span class="src src-rec">🎤</span>「不要被上一個病例影響，上一個才是陷阱。」這隻狗像是讀過教科書，<strong>幾乎每一項 Addison 會有的血液和生化異常都有</strong>。基礎 cortisol 測不到，刺激後也測不到。</li>
+          <li><span class="src src-rec">🎤</span> 兩個病例的電解質幾乎一模一樣，一個是 Addison，一個不是。</li>
+        </ul>
+        <div class="alert alert-success"><span class="alert-icon">✅</span><div><strong>學習重點</strong>：和病例 1 對照，關鍵在「<strong>重症卻淋巴球增多</strong>」加上低血糖、低膽固醇、低白蛋白這組 cortisol 缺乏特徵。確診一定要靠 ACTH 刺激。</div></div>
+      </div>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 18–20</span><span class="src src-rec">🎤</span> 病例 3：12 歲已去勢公犬，Brittany Spaniel → <span class="badge badge-green">不是 Addison（鞭蟲）</span></h3>
+        <ul class="notes">
+          <li><strong>病史</strong>：嗜睡和食慾減退 2 個月，持續惡化；間歇性下痢 3 週；虛弱 5–7 天；疫苗按時、每月 Sentinel。</li>
+          <li><span class="src src-rec">🎤</span> 這是講者導師的狗。導師養了很多 Brittany 當獵犬，帶來看長期嗜睡、食慾差、慢慢變瘦，最近在家很虛弱。</li>
+          <li><strong>CBC</strong>：Hgb 8 L、<strong>Hct 21 L</strong>、<strong>嗜酸性球 1.6 H</strong>，其他沒什麼。</li>
+          <li><strong>生化</strong>：BUN 35 H、Crea 1.8、Na 142 L、K 5.4 H（Na:K 約 26，輕度）、Cl 106 L、TCO₂ 17 L、<strong>Alb 1.9 L</strong>、USG 1.010。</li>
+          <li><span class="src src-rec">🎤</span>「你可以說也許是、也許不是。」結果是<strong>鞭蟲</strong>，不是 Addison。講者的導師正是描述這個「假性 Addison」現象那篇研究的第二作者，而他自己的狗就得了這個症候群。</li>
+        </ul>
+        <div class="alert alert-success"><span class="alert-icon">✅</span><div><strong>學習重點</strong>：<strong>寄生蟲也會模仿 Addison</strong>。有用預防藥（Sentinel 的適應症包含鞭蟲）不代表可以排除。</div></div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：鞭蟲卵是間歇性排出，糞檢一次陰性不能排除。慢性大腸性下痢合併低 Na:K，要做多次糞檢或直接經驗性驅蟲（如 fenbendazole）。嗜酸性球增多在寄生蟲感染也很常見。</div></div>
+      </div>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 21</span><span class="src src-rec">🎤</span> 「偉大的模仿者」</h3>
+        <p class="p">會模仿 Addison 電解質型態的疾病：</p>
+        <ol class="notes">
+          <li>急性腎損傷（AKI）</li>
+          <li>腎後性阻塞（包括輸尿管）</li>
+          <li>體腔積液（胸水、腹水）</li>
+          <li>腸道疾病</li>
+        </ol>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 最常見的是 AKI，其次是泌尿道阻塞、長期大量的胸腹水，以及某些腸道疾病。電解質異常<strong>不是敏感也不是特異的指標</strong>，但確實是一個線索。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：其他還有腎盂腎炎（病例 1）、鞭蟲（病例 3）、沙門氏菌、十二指腸潰瘍穿孔、懷孕、反覆抽乳糜胸等。</div></div>
+      </div>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 22–24</span><span class="src src-rec">🎤</span> 病例 4：4 歲已絕育母犬，混種 → <span class="badge badge-red">Addison</span></h3>
+        <ul class="notes">
+          <li><strong>病史</strong>：搔癢、熱點；家中另一隻狗安樂死後，一個月嗜睡、輕度食慾差；「整天慢慢吃」vs「定時吃完」。</li>
+          <li><span class="src src-rec">🎤</span> 從基礎照護門診來看熱點，有季節性皮膚問題。飼主提到平常一起玩的同伴上個月安樂死後，這隻狗就怪怪的，以為是心理因素、在難過。以前吃飯狼吞虎嚥，現在一整天慢慢吃。</li>
+          <li><strong>CBC</strong>：輕度貧血（Hct 37 L）、WBC 16.6 H、<strong>淋巴球 6.6 H</strong>、嗜中性球正常偏高。</li>
+          <li><strong>生化</strong>：BUN 28 H、Crea 1.9 H（輕度氮血症）、Na 142（正常）、K 5.2 H（只是略高）、Na:K 27、<strong>Ca 11.5 H</strong>、P 6.0 H、Alb 2.6 L、Amylase 1639 H。</li>
+          <li><span class="src src-rec">🎤</span>「看起來沒什麼，變化都很輕微。」結果<strong>絕對是 Addison</strong>。</li>
+          <li><span class="src src-hand">✍️ 筆記</span> ACTH 刺激：前 0／後 0。</li>
+          <li><span class="src src-rec">🎤</span> 很多狗在演變成危象之前，可能已經看過好幾次診，那時的異常輕微得多。<strong>這是一個光譜，沒有清楚的「典型」，表現方式非常多。</strong></li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：淋巴球增多加高血鈣，第一個會想到淋巴瘤，但 Addison 約 30% 也有高血鈣。熱點病史也提醒：做 ACTH 刺激前要問清楚有沒有用過類固醇（含外用）。</div></div>
+      </div>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 25–28</span><span class="src src-rec">🎤</span><span class="src src-photo">📸</span> 病例 5：Harlow，3 歲已絕育母犬，大丹 → <span class="badge badge-red">Addison（非典型，醛固酮也是 0）</span></h3>
+        <ul class="notes">
+          <li><strong>病史</strong>：反覆吸入性肺炎；慢性反流、食道蠕動異常；間歇性下痢。</li>
+          <li><span class="src src-rec">🎤</span> 大丹在美國很受歡迎，約 60 公斤。飼主是 21 歲大學生，和三個室友一起養。這隻狗多次因吸入性肺炎掛急診，第三次時急診做了食道攝影，發現<strong>食道功能異常</strong><span class="src src-fix">【更正】</span>（逐字稿誤為 dysplasia），轉到內科做檢查。</li>
+          <li><strong>CBC</strong>（當時有活動性吸入性肺炎）：輕度貧血、嗜中性球輕度增多、<strong>淋巴球 6.6 H、嗜酸性球 1.8 H</strong>。</li>
+          <li><strong>生化</strong>：<strong>Na 145、K 4.6、Na:K 32</strong>，「正好在參考範圍正中間」；Alb 2.4 L、Glu 73 L、Chol 73 L（都是輕度下降）、CK 1245 H。</li>
+          <li><span class="src src-rec">🎤</span>「有支持的理由，也有反對的理由。」結果是 Addison，<strong>完全沒有 cortisol</strong>。也測了醛固酮：儘管電解質正常，<strong>醛固酮也完全測不到</strong>。</li>
+        </ul>
+        <figure class="fig">
+          <img src="photos/11-case5-hormones-live.jpg" alt="現場投影片：Hypoadrenocorticism? Cortisol pre 0 post 1；Aldosterone pre 0 post 0" loading="lazy">
+          <figcaption>📸 現場：Cortisol ACTH 前 0 nmol/L（15–110）、後 1 nmol/L（220–550）；醛固酮 前 0 pmol/L（14–957）、後 0 pmol/L（197–2103）</figcaption>
+        </figure>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：<strong>巨食道症</strong>是 Addison 少見但已知的表現，治療後可能可逆。不明原因的食道疾病或反覆吸入性肺炎，應篩檢 Addison。</div></div>
+      </div>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 29</span><span class="src src-rec">🎤</span> 病例：Bella，10 歲已絕育母犬，混種 → <span class="badge badge-red">Addison（非典型）</span></h3>
+        <ul class="notes">
+          <li><strong>檢驗</strong>：Na 145、K 4.3、<strong>Na:K 34（正常）</strong>、BUN 11 L、Ca 8.9 L、Mg 1.5 L、TP 4.3 L、<strong>Alb 1.6 L、Glu 46 L、Chol 52 L</strong>、AST 101 H、CK 897 H。</li>
+          <li><span class="src src-rec">🎤</span> 因為非特異性症狀就診，檢驗「除了輕微的膽固醇下降之外沒什麼」，還有血糖中度下降、低白蛋白。同樣地，<strong>cortisol 測不到，醛固酮也測不到</strong>。這就是傳統上所說的「非典型 Addison」。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：外觀很像蛋白質流失性腸病（PLE），但 PLE 很少同時有明顯低血糖。開始免疫抑制前，要先排除 Addison。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">🧬</div>
+      <h2>4. 非典型 Addison</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 30</span><span class="src src-rec">🎤</span> 術語</h3>
+        <p class="p">血鈉、血鉀正常的自然發生 HA，文獻用過的名稱：A. 非典型 HA；B. 糖皮質素缺乏型 HA；C. 原發性糖皮質素缺乏型 HA；D. 腎上腺功能不全；<strong>E. 血鈉正常、血鉀正常的 HA（eunatremic and eukalemic HA）</strong>；F. 其他。</p>
+        <ul class="notes">
+          <li>Project ALIVE：建立獸醫內分泌學的共識術語。講義的玩笑：「ALIVE 計畫的政治成分不亞於科學成分。」</li>
+          <li><span class="src src-rec">🎤</span> 現在建議用 E，但太拗口，講者還是說「非典型」。這些狗不是以典型方式表現，所以<strong>常被誤診</strong>。研究顯示非典型病犬比較會有 cortisol 缺乏的變化：輕度貧血、白蛋白／膽固醇／血糖輕度下降。<strong>你必須注意到這些變化，否則可能根本不會想到要檢測。</strong></li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 31</span> 典型 vs 非典型（Thompson et al. JAVMA 2007）</h3>
+        <ul class="notes">
+          <li>非典型（GDH）病犬 HCT（31% vs 41%）、膽固醇（94 vs 163 mg/dL）、白蛋白（2.1 vs 3.0 g/dL）較低。</li>
+          <li>非典型病犬臨床症狀持續較久（4.4 vs 1.2 個月）。</li>
+          <li>GDH 病犬偶爾也有氮血症。</li>
+          <li>臨床症狀比較表中，只有嘔吐有顯著差異（85% vs 54%，p = 0.048）。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 32</span><span class="src src-rec">🎤</span> 盛行率</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>研究</th><th>非典型比例</th></tr>
+          <tr><td>Peterson 1996 JAVMA</td><td>4%（10/225）</td></tr>
+          <tr><td>Scott-Moncrieff 2007 JAVMA</td><td>24%（11/46）</td></tr>
+          <tr><td>Adler 2007 JVIM</td><td>7%（6/71）</td></tr>
+          <tr><td>Gold 2016 JVIM</td><td>17%（28/163）</td></tr>
+          <tr><td>Reagan 2020 Domest Anim Endocrinol</td><td>42%（57/133）</td></tr>
+        </table></div>
+        <p class="p"><span class="src src-rec">🎤</span> 比例很依賴研究族群。全部加起來，<strong>大約 20% 的 Addison 病犬屬於「非典型」</strong>。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 33–36</span><span class="src src-rec">🎤</span><span class="src src-photo">📸</span> 為什麼電解質會正常？三種可能</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> <strong>次發性 HA</strong>：病在腦下垂體或下視丘，ACTH 缺乏（例如腦下垂體腫瘤或其他腦部疾病）。醛固酮正常，電解質也正常，因為 <strong>ACTH 在醛固酮調控中只扮演很小的角色</strong>。這確實會發生，有文獻記載。</li>
+          <li><span class="src src-rec">🎤</span> <strong>原發性但醛固酮正常</strong>：免疫攻擊放過了腎上腺皮質的外層（球狀帶），或只是疾病早期。</li>
+          <li><span class="src src-rec">🎤</span> <strong>原發性而且醛固酮也沒有</strong>：像前面兩隻狗，靠某種其他機制維持電解質正常。</li>
+        </ul>
+        <figure class="fig">
+          <img src="photos/11-aldosterone-baumstark.jpg" alt="Supporting Evidence：Baumstark 2014 ACTH 刺激前後醛固酮濃度" loading="lazy">
+          <figcaption>📄 34（Baumstark et al. JVIM 2014）：HA 犬（n=70）刺激前後醛固酮都貼近 0；4 隻「非典型」病犬刺激後醛固酮全部低於檢測下限</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 約十年前的研究：Addison 病犬 ACTH 刺激後醛固酮低於檢測下限，其中 4 隻非典型病犬也一樣。<strong>大多數非典型病犬雖然電解質正常，醛固酮仍然缺乏。</strong></li>
+        </ul>
+        <h4><span class="src src-slide">📄 35</span><span class="src src-rec">🎤</span> 病例：Molly，5 歲已絕育母犬，拉布拉多</h4>
+        <ul class="notes">
+          <li>數天嗜睡；Crea 1.8、Alb 2.4、Chol 130、淋巴球 3.6×10³。</li>
+          <li>ACTH 刺激：前 5、後 5 nmol/L；<strong>eACTH 104 pg/mL（19–67），偏高</strong>；醛固酮 前 10、後 23 pmol/L（偏低）。</li>
+          <li><span class="src src-rec">🎤</span> 骨科門診來評估十字韌帶斷裂，<strong>麻醉前檢查</strong>發現類似的細微變化，結果是 Addison。eACTH 高代表<strong>原發性</strong><span class="src src-fix">【更正】</span>（逐字稿誤為 hyperadrenocorticism）；醛固酮不恰當地偏低。</li>
+        </ul>
+        <figure class="fig">
+          <img src="photos/11-pathophys-conclusions-live.jpg" alt="現場投影片：Pathophysiology Conclusions，次發性罕見、原發性醛固酮正常不常見、原發性醛固酮低最常見 >75%" loading="lazy">
+          <figcaption>📸 現場：病生理結論，講者在各機轉旁加註發生頻率</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>機轉</th><th>醛固酮</th><th>頻率（📸 現場）</th></tr>
+          <tr><td>次發性（或三級）HA：腦部發炎／腫瘤／血管疾病</td><td>正常</td><td><strong>罕見</strong>（但有充分文獻記載）</td></tr>
+          <tr><td>原發性：疾病早期、束狀帶／網狀帶局部破壞</td><td>正常</td><td><strong>不常見</strong>（但並不罕見）</td></tr>
+          <tr><td>原發性：靠其他機制維持鈉鉀正常</td><td>偏低</td><td><strong>最常見（&gt; 75%）</strong></td></tr>
+        </table></div>
+        <div class="quote">絕大多數非典型 Addison，只是「電解質正常」這一點非典型。從荷爾蒙來看，大多仍是原發性腎上腺疾病，而且醛固酮也缺乏。<span class="quote-zh">特別的不是荷爾蒙，而是牠們不知為何能維持電解質正常。</span></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 37</span><span class="src src-rec">🎤</span> 非典型 → 典型</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>研究</th><th>轉為典型</th><th>追蹤時間</th><th>缺點</th></tr>
+          <tr><td>Sadek &amp; Schaer 1996</td><td>15%（2/13）</td><td>0.75–1 個月</td><td>收案標準、追蹤不一致</td></tr>
+          <tr><td>Thompson 2006</td><td>10%（1/10）</td><td>7 個月</td><td>追蹤不一致</td></tr>
+          <tr><td>Richartz &amp; Neiger 2011</td><td>20%（1/5）</td><td>5 個月</td><td>1 隻用 fludrocortisone</td></tr>
+          <tr><td>Baumstark 2014</td><td>25%（1/4）</td><td>6 個月</td><td>1 隻用 fludro、追蹤不一致</td></tr>
+          <tr><td>Wakayama 2017</td><td>14%（5/35）</td><td>2–51 個月</td><td>追蹤不一致</td></tr>
+          <tr><td><strong>Irish Vet J 2024</strong></td><td><strong>&gt; 40%（44%）</strong></td><td></td><td></td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 沒有醛固酮的狗，會不會變成典型？沒有很好的答案。早期研究說約 20%，但都是回溯性研究，很多失聯、沒有長期追蹤。較新的 Irish Vet Journal 研究是 <strong>44%</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 有些（但絕對不是全部）會隨時間出現典型電解質異常<span class="src src-fix">【更正】</span>（逐字稿誤為 luxemburgite）。</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>非典型病犬只給 prednisone 時，<strong>務必定期追蹤電解質</strong>。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🔎</div>
+      <h2>5. 臨床辨識、JFK 與 POMC</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 38</span><span class="src src-rec">🎤</span> 臨床辨識</h3>
+        <ul class="notes">
+          <li>Addison 會以很多種方式表現 → <strong>提高警覺是關鍵</strong>；漏診的多半是早期或非典型病例。</li>
+          <li>什麼情況值得檢測？
+            <ul class="notes">
+              <li>不明原因的 Na:K 異常（高鉀或低鈉，不論比值）</li>
+              <li>未確診的腸胃道疾病（包括食道疾病）</li>
+              <li>cortisol 缺乏的血液／生化表現：生病卻淋巴球增多；低膽固醇／白蛋白／血糖</li>
+              <li>非特異性的嗜睡與虛弱</li>
+            </ul>
+          </li>
+          <li><span class="src src-rec">🎤</span> 低鈉高鉀的狗大家都抓得到。難抓的是<strong>以腸胃症狀表現、電解質正常</strong>的狗，這些才是我們要保持警覺的。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span><span class="src src-rec">🎤</span> 甘迺迪總統與色素沉著：POMC 衍生物</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 美國史上很有名的總統 <strong>JFK 就是 Addison 病人</strong>。他有很多病，在任內大多被隱瞞。大家印象中他曬得很黑、古銅色，但他是新英格蘭人，日照應該比密西根還少，沒理由這麼黑。</li>
+          <li><span class="src src-rec">🎤</span> 人類 Addison 病人常出現<strong>病理性色素沉著</strong>，因為 ACTH 的大型前驅分子切下來的產物之一就是<strong>黑色素細胞刺激素（MSH）</strong>。這也是人類腦下垂體依賴型庫興氏症會色素沉著的原因。<strong>狗則看不到這個現象。</strong></li>
+        </ul>
+        <figure class="fig">
+          <img src="photos/11-pomc-live.jpg" alt="現場投影片：POMC Derivatives，POMC 切割成 γ-MSH、ACTH、α-MSH、CLIP、β-LPH、γ-LPH、β-MSH、β-endorphin" loading="lazy">
+          <figcaption>📸 現場：POMC 衍生物</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>POMC 片段</th><th>再切出</th><th>作用</th></tr>
+          <tr><td>N 端片段</td><td>γ₃-MSH → γ₁-MSH</td><td>MSH 家族</td></tr>
+          <tr><td><strong>ACTH</strong></td><td><strong>α-MSH</strong>＋CLIP</td><td>ACTH 刺激腎上腺；α-MSH 刺激黑色素細胞</td></tr>
+          <tr><td>β-LPH</td><td>γ-LPH → β-MSH；β-endorphin</td><td>β-MSH 刺激黑色素細胞；β-腦內啡止痛</td></tr>
+        </table></div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充（機轉）</strong>：原發性 Addison 的 cortisol 出不來 → 失去負回饋 → CRH 增加 → 腦下垂體大量製造 POMC → ACTH 和 MSH 都上升（ACTH 前 13 個胺基酸就是 α-MSH 序列）→ 刺激黑色素細胞的 MC1R → 色素沉著。<strong>只有原發性才會</strong>；次發性是 ACTH 本身不足。色素沉著和 eACTH 偏高（Molly 104、Stella 128）都是原發性的線索。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">💉</div>
+      <h2>6. ACTH 刺激試驗與類固醇</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 39</span><span class="src src-rec">🎤</span> ACTH 刺激試驗</h3>
+        <figure class="fig">
+          <img src="photos/11-acth-stim.jpg" alt="ACTH stimulation test：正常、模稜兩可、HA 的 cortisol 曲線" loading="lazy">
+          <figcaption>📄 39：正常（實線）、模稜兩可（虛線）、HA（黃框，前後皆貼底）</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>測基礎值和注射後 1 小時的 cortisol；Cortrosyn（cosyntropin）<strong>5 µg/kg IV</strong>。</li>
+          <li>極度準確。限制：費用、cosyntropin 取得性、等報告時間。</li>
+          <li><span class="src src-rec">🎤</span> 幾十年來都是金標準。觀念很簡單：沒有 Addison 的狗，給超生理劑量 ACTH 會有很旺盛的反應；腎上腺萎縮或被破壞的 Addison 病犬則不會。<strong>最大的陷阱是檢測前有沒有用過外源性糖皮質素。</strong></li>
+          <li><span class="src src-rec">🎤</span> 偶爾會有模稜兩可的結果，但很少見（處理方式見 <a href="#s10">Q&amp;A</a>）。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">✍️</span><div><strong>上課筆記：低劑量 ACTH 刺激</strong>。有些研究用較低的 cosyntropin 劑量（例如 1 µg/kg IV），診斷 Addison 的結果和 5 µg/kg 相當，可以省藥費。<strong>講者自己仍用標準劑量，但認為可以試試。</strong><br><span class="src src-add">💡 補充</span> 低劑量要用 IV、一樣 1 小時採血；開瓶的 cosyntropin 可分裝冷凍給多隻狗用；結果模稜兩可時用標準劑量重做。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 40</span><span class="src src-rec">🎤</span> 院內 cortisol 檢測</h3>
+        <ul class="notes">
+          <li>ELISA 與 RIA 整體相關性極佳。但是：低值區的動態範圍令人擔心；cortisol &lt; 1 µg/dL（28 nmol/L）時要小心；終身疾病，建議送參考實驗室。</li>
+          <li><span class="src src-rec">🎤</span>（Q&amp;A）各家都有院內機（Heska、Antech 等），講者太太也是獸醫，也用院內 cortisol。數據顯示相關性很高，只有在<strong>非常低的數值</strong>才開始分歧。品管做好的話，<strong>用院內機排除 Addison 可以很放心</strong>。但如果要依此<strong>確診</strong>，建議把 <strong>ACTH 刺激後 1 小時的樣本送參考實驗室</strong>確認：通常結果一致，但這是要治療很多年的終身疾病。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 41–42</span><span class="src src-rec">🎤</span> 類固醇與 ACTH 刺激試驗</h3>
+        <ul class="notes">
+          <li>許多外源性糖皮質素會與現行 cortisol 檢測交叉反應；<strong>dexamethasone 不會</strong>，採完基礎值後給單劑 dex 不會干擾結果。</li>
+          <li>外源性類固醇會抑制內源性 cortisol 製造，造成腎上腺萎縮。</li>
+          <li><span class="src src-rec">🎤</span> 雖然 dex 不會交叉反應，<strong>連續給藥仍會影響 HPA 軸</strong>。</li>
+        </ul>
+        <figure class="fig">
+          <img src="photos/11-prednisone-hpa.jpg" alt="Steroids and ACTH Stim Testing：給 prednisone 期間 ACTH 刺激後 cortisol 下降" loading="lazy">
+          <figcaption>📄 42（Corrigan et al. 2010 AJVR）：實線為給 prednisone 的 beagle，ACTH 刺激後 cortisol 第 7 天起明顯下降，停藥後回升；虛線為對照組</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 常被問：要給幾劑類固醇，狗才會腎上腺萎縮、對 ACTH 反應不足？這是 Auburn 團隊約 15 年前的研究：beagle 口服 <strong>prednisone 0.5 mg/kg、連續一個月</strong>。只有每週測一次，所以不知道確切時間點，但<strong>給藥 7 天時，刺激後 cortisol 就可能看起來和 Addison 一樣</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 經驗法則：<strong>用糖皮質素超過 2–3 天，判讀就要非常非常小心。</strong></li>
+          <li><span class="src src-rec">🎤</span> 沒人答得出來的問題：停藥多久 HPA 軸才會恢復？這篇研究說用藥一個月要停<strong>至少兩週</strong>。用了好幾個月的呢？沒有答案，比較麻煩，<strong>也許測醛固酮是比較好的選擇</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 43</span><span class="src src-rec">🎤</span> 外用類固醇也會抑制 HPA 軸</h3>
+        <figure class="fig">
+          <img src="photos/11-topical-steroid-hpa.jpg" alt="Topical Steroids and HPA Axis：dexamethasone 使用期間 ACTH 刺激後 cortisol 被抑制" loading="lazy">
+          <figcaption>📄 43（Abraham et al. 2005 Endocrinology）：dex 使用期間刺激後 cortisol 顯著被抑制，停藥後恢復</figcaption>
+        </figure>
+        <p class="p"><span class="src src-rec">🎤</span> 不只是全身性或口服，<strong>任何糖皮質素都算</strong>，包括<strong>耳藥、眼藥、皮膚藥</strong>。</p>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>做 ACTH 刺激前，先問清楚並記錄近期所有類固醇（口服、注射、外用、耳藥、眼藥）。區分醫源性抑制與原發性 Addison 可加測 <strong>eACTH</strong>（原發性偏高、醫源性偏低）和<strong>醛固酮</strong>。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🩸</div>
+      <h2>7. 基礎 cortisol</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 44–45</span><span class="src src-rec">🎤</span><span class="src src-photo">📸</span> 病例：Maya，12 歲已絕育母犬，波士頓㹴 → <span class="badge badge-green">不是 Addison</span></h3>
+        <ul class="notes">
+          <li>因嚴重腸胃道出血就診：厭食、黑色焦油便；HCT 13%，小球性、再生性。長期腸胃病史：數年間歇性嘔吐與食慾差、輕度消瘦、飲食治療部分控制。</li>
+          <li><strong>生化</strong>：BUN 62 H、Crea 1.1、<strong>Na 124 L</strong>、K 4.4、Cl 93 L、Ca 7.7 L、TP 4.2 L、Alb 1.6 L。</li>
+          <li><span class="src src-rec">🎤</span> 我們看很多腸胃病，而腸胃病可能是 Addison 的表現，所以很多狗都要評估 Addison。這隻狗 12 歲、多年腸病，檢驗有些讓人擔心的地方，於是做了 ACTH 刺激。</li>
+          <li><span class="src src-rec">🎤</span> 但 ACTH 刺激在美國要 <strong>250–300 美元</strong>。花這麼多錢只為了說「牠沒有 Addison」，這是最大的問題。<strong>問題不在確診，而在排除。</strong></li>
+        </ul>
+        <figure class="fig">
+          <img src="photos/11-maya-acth-live.jpg" alt="現場投影片：Maya ACTH Stimulation Test baseline 69 nmol/L，1 小時後 679 nmol/L" loading="lazy">
+          <figcaption>📸 現場：基礎值 69 nmol/L（15–110）；1 小時後 679 nmol/L（220–550）</figcaption>
+        </figure>
+        <div class="alert alert-success"><span class="alert-icon">✅</span><div>刺激後大幅上升，腎上腺正常。低鈉、低白蛋白、BUN 上升來自慢性腸病與腸胃出血。<strong>基礎值 69 已經 &gt; 55</strong>，其實光看基礎值就能排除，可以省下 ACTH 刺激。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 46</span><span class="src src-rec">🎤</span> ACTH 刺激的替代方案</h3>
+        <ul class="notes">
+          <li>研究過的生物標記：常規檢驗（Na/K 比）、cortisol/ACTH 比、醛固酮/腎素比、機器學習／AI。</li>
+          <li>→ <strong>最受關注的是基礎 cortisol 與尿 cortisol／UCCR。</strong></li>
+          <li><span class="src src-rec">🎤</span> 最早是 NC State 的 Birkenheuer 與 Lunn 團隊約 15 年前提出：<strong>基礎 cortisol &gt; 2 µg/dL（55 nmol/L）很適合排除 Addison</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 47–48</span><span class="src src-rec">🎤</span> MSU 資料（Gold, Langlois, Refsal 2016 JVIM）</h3>
+        <figure class="fig">
+          <img src="photos/11-basal-cortisol-scatter.jpg" alt="Basal Cortisol Concentrations 散布圖：HA 與非腎上腺疾病" loading="lazy">
+          <figcaption>📄 47：HA 病犬基礎值與刺激後值都貼底；非腎上腺疾病（NAI）分布很廣，不少基礎值也偏低</figcaption>
+        </figure>
+        <figure class="fig">
+          <img src="photos/11-basal-cortisol-cutoffs.jpg" alt="基礎 cortisol 切點的敏感度與特異度表" loading="lazy">
+          <figcaption>📄 48：黃圈為篩檢切點 ≤40、≤55 nmol/L（敏感度 99.4%，特異度 82.6%、67.0%）</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 幾乎 100% 的 Addison 病犬基礎 cortisol &lt; 2 µg/dL（55 nmol/L），很多 NAI 病犬則高得多。實務上，<strong>基礎值 &gt; 1.8–2 µg/dL 對排除 Addison 很有價值</strong>，很多人都這樣用。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：≤ 55 時特異度只有 67%，三分之一的 NAI 病犬也會落在這裡。所以<strong>基礎值高可以排除，基礎值低不能確診</strong>。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 49</span><span class="src src-rec">🎤</span><span class="src src-photo">📸</span> 病例：Gus，8 月齡未去勢公犬，拉布拉多 → <span class="badge badge-green">排除 Addison</span></h3>
+        <ul class="notes">
+          <li>急性嗜睡、嘔吐、食慾差；檢驗讓人有點擔心 Addison：Na 129 L、K 4.5、Cl 100 L、Glu 141 H、BUN 44 H、Crea 2.7 H、TCO₂ 13.6 L。</li>
+          <li><span class="src src-rec">🎤</span> 這是我們想用基礎 cortisol 的情境：年輕狗、不太覺得是 Addison，但想排除。基礎 cortisol 很高，可以說沒有 Addison。<strong>只測一個 cortisol 就幫飼主省了 150 美元。</strong></li>
+        </ul>
+        <figure class="fig">
+          <img src="photos/11-gus-baseline-live.jpg" alt="現場投影片：Gus Screening for Addison's Disease baseline 225 nmol/L" loading="lazy">
+          <figcaption>📸 現場：Addison 篩檢，基礎 cortisol 225 nmol/L（15–110）</figcaption>
+        </figure>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 50</span><span class="src src-rec">🎤</span> 基礎 cortisol 的最大問題：Bernadette</h3>
+        <ul class="notes">
+          <li>1.5 歲已絕育母犬，標準貴賓：因非特異性疾病（消瘦、食慾差）就診；有些「有點像 Addison」的結果：Alb 2.6、Glu 79、非再生性貧血、淋巴球增多。</li>
+          <li><span class="src src-rec">🎤</span> 看很多腸胃病的人都知道，這些通常是比較穩定的狗。標準貴賓是好發品種。基礎 cortisol 測出 <strong>34</strong>，怎麼辦？<strong>只好請狗再回來做刺激試驗。</strong></li>
+          <li><span class="src src-rec">🎤</span> 這就是基礎 cortisol 最大的挑戰：<strong>很多狗的基礎值 &lt; 55 nmol/L</strong>，想排除卻排除不了，第二次回診又要花錢花時間，原本想省的都沒省到。篩檢時如果要叫一半的狗回來重測，就不是很好的篩檢工具。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🧪</div>
+      <h2>8. 尿 cortisol 與 UCCR</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 51</span><span class="src src-rec">🎤</span> 起源：2018 ACVIM 摘要</h3>
+        <ul class="notes">
+          <li>理論優點：反映較長時間的 cortisol 分泌、避免瞬間波動影響、單一樣本又便宜。</li>
+          <li>ACVIM 2018 摘要（NC State，Dechra 贊助）：5 隻 HA、130 隻 NAI；<strong>UCCR ≤ 3 敏感度與特異度皆 100%</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 想找特異度更好、「偽陽性」更少的篩檢。UCCR 本來是篩檢庫興氏症用的，能不能反過來篩 Addison？同一個 NC State 團隊提出 UCCR ≤ 3 可診斷、&gt; 3 可可靠排除。結果很有趣，但只有 5 隻 Addison，<strong>而且一直沒有發表</strong>（講者問過，原因說來話長）。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">✍️</span><div><strong>上課筆記：尿 cortisol 反映一段時間；基礎血清 cortisol 只是一個點。</strong>cortisol 是脈衝式分泌，正常狗剛好抽在低谷也會很低；尿液把高峰與低谷平均掉，正常狗累積量明顯較高，Addison 狗整段時間都分泌不出來。（筆記記為約 6–8 小時；<span class="src src-rec">🎤</span> 講者在 Q&amp;A 說約 4–6 小時。）</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 52–53</span><span class="src src-rec">🎤</span> 2022 年兩篇研究</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>Del Baldo et al. JVIM 2022</th><th>Moya et al. JAVMA 2022（MSU）</th></tr>
+          <tr><td>族群</td><td>10 HA、18 NAI、19 健康犬</td><td>41 HA、107 NAI</td></tr>
+          <tr><td>採尿</td><td>在家或院內</td><td>院內</td></tr>
+          <tr><td>方法</td><td>CLIA</td><td>RIA 與 CLIA</td></tr>
+          <tr><td>結果</td><td>HA 與 NAI 無重疊；健康犬與 HA 1 例重疊；AUC 0.99</td><td>CLIA 無重疊、RIA 1 例重疊；AUC 0.99（RIA）、1.00（CLIA）</td></tr>
+        </table></div>
+        <figure class="fig">
+          <img src="photos/11-uccr-cutoffs.jpg" alt="UCCR 切點表現：RIA 與 CLIA" loading="lazy">
+          <figcaption>📄 53：CLIA 下 UCCR ≤10 敏感度、特異度皆 100%（紅圈）；同一數字在 RIA 意義不同</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 2022 年歐洲團隊和 MSU 幾乎同時發表，歐洲團隊早了幾個月。兩篇結論一樣：Addison 病犬的 UCCR 遠低於 NAI。更驚喜的是，似乎不只能篩檢，<strong>可能還有確診價值</strong>（這在內分泌界仍有爭議）。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 54</span><span class="src src-rec">🎤</span> 2021 年抗體更換</h3>
+        <figure class="fig">
+          <img src="photos/11-antibody-change.jpg" alt="Antibody Change in 2021：同樣本新舊抗體尿 cortisol 比較" loading="lazy">
+          <figcaption>📄 54：左表為同一尿樣用舊抗體與新抗體的結果</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>新抗體測出的尿 cortisol 較低：已報告平均偏差 −70%（2020 ESVE EQA，Graham 等）；MSU 平均 −39%（n=30）；Pearson r = 0.886；等比例偏差但不固定。</li>
+          <li><span class="src src-rec">🎤</span> 後來發生不幸的事：檢測用的抗體換了。MSU 用化學冷光免疫分析（Immulite<span class="src src-fix">【更正】</span>），原本以為 <strong>UCCR &lt; 10</strong> 就是神奇切點，結果換抗體後尿 cortisol 差很多。</li>
+          <li><span class="src src-rec">🎤</span> 偏差不固定：有一個樣本舊抗體 1134、新抗體 1128，幾乎一樣；底下那個舊的 337、新的 181，差很多。<strong>之前發表的切點等於全部作廢</strong>，必須重做研究。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 55–56</span><span class="src src-rec">🎤</span> 新抗體下的研究</h3>
+        <ul class="notes">
+          <li>歐洲團隊用新抗體重做：20 HA、60 NAI＋42 健康犬；尿 cortisol &lt; 55 nmol/L：敏感度 100%、特異度 90%；UCCR 8.5×10⁻⁶：敏感度 100%、特異度 71.7%。→ 特異度和 MSU 觀察、先前研究不一致。</li>
+          <li><span class="src src-rec">🎤</span> MSU 也重新分析自己的資料：在我們手上仍然很準，只是切點不同。</li>
+        </ul>
+        <figure class="fig">
+          <img src="photos/11-msu-urine-cortisol.jpg" alt="Updated Results from MSU：尿 cortisol 與 UCCR，HA vs NAI" loading="lazy">
+          <figcaption>📄 56：左為尿 cortisol、右為 UCCR；HA 全部貼底，與 NAI 完全分開（虛線 55 nmol/L、3.5）</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span>「我不相信有任何檢驗是 100%」，但以手上的資料，兩群幾乎 100% 分開。</li>
+          <li><span class="src src-rec">🎤</span> 兩篇研究都顯示：<strong>直接測尿 cortisol 比 UCCR 更好</strong>，兩群分得更開。</li>
+          <li><span class="src src-rec">🎤</span> <strong>尿 cortisol &gt; 40–55 nmol/L 可以可靠地排除 Addison。</strong>數值非常低時能不能用來確診？MSU 的資料說可以。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 57</span><span class="src src-rec">🎤</span><span class="src src-hand">✍️</span> 判讀尿 cortisol：臨床價值</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>支持確診？</th><th>模稜兩可</th><th>排除 HA</th></tr>
+          <tr><td>尿 cortisol（nmol/L）</td><td>≤ 9</td><td>10–40</td><td>≥ 41</td></tr>
+          <tr><td>UCCR</td><td>≤ 2</td><td>3–8</td><td>≥ 9</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li>尿 cortisol 與 UCCR 可能是比基礎血清 cortisol 更好的篩檢；也許較低切點能確診；<strong>必須院內採尿</strong>；切點依方法／實驗室而定；準確量化「低」cortisol 很關鍵。</li>
+        </ul>
+        <h4>為什麼兩篇研究結果不同？兩個關鍵</h4>
+        <div class="grid2">
+          <div class="card-mini"><h4>① 採尿地點：要在醫院</h4><ul>
+            <li><span class="src src-rec">🎤</span> 歐洲研究允許飼主在家採尿</li>
+            <li>篩庫興氏症要在家採，<strong>以減少壓力</strong></li>
+            <li>篩 Addison 正好相反：<strong>在醫院採，利用壓力</strong></li>
+            <li>NAI 的狗會因壓力產生 cortisol 高峰，Addison 狗沒有，兩群分得更開</li>
+          </ul></div>
+          <div class="card-mini"><h4>② 實驗室能測多低</h4><ul>
+            <li><span class="src src-rec">🎤</span> 美國很多實驗室 &lt; 1 µg/dL 就只報「&lt; 1」（&lt; 27.5 nmol/L）</li>
+            <li>但很多 Addison 狗只有 2–3 nmol/L</li>
+            <li>把 3 和 27.5 當成一樣，結果就差很多</li>
+            <li>MSU 報到 1 nmol/L；至少要報到 <strong>約 5 nmol/L（0.3 µg/dL）</strong></li>
+          </ul></div>
+        </div>
+        <div class="tbl-wrap"><table>
+          <tr><th>✍️ 筆記對照</th><th>採尿地點</th><th>原因</th></tr>
+          <tr><td><strong>Addison</strong>（找 cortisol 太低）</td><td><strong>醫院</strong></td><td>利用就醫壓力把正常狗數值拉高</td></tr>
+          <tr><td><strong>Cushing's</strong>（找 cortisol 太高）</td><td><strong>在家</strong>（早晨第一泡尿）</td><td>避開就醫壓力造成偽陽性</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> MSU 醫院正逐漸改用<strong>尿 cortisol 當 Addison 的篩檢</strong>，取代基礎 cortisol。問台下：這裡大多還是用基礎值？「基礎值是好檢驗，但老實說尿 cortisol 可能更好。」</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 58–59</span><span class="src src-rec">🎤</span><span class="src src-photo">📸</span> 套用：Bernadette 與 Hazelnut Latte → <span class="badge badge-green">兩隻都不是 Addison</span></h3>
+        <div class="grid2">
+          <figure class="fig">
+            <img src="photos/11-bernadette-urine-live.jpg" alt="現場投影片：Bernadette baseline 34、post 403、urine cortisol 278、UCCR 108" loading="lazy">
+            <figcaption>📸 Bernadette：基礎 34、刺激後 403；尿 cortisol 278、UCCR 108</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/11-hazelnut-urine-live.jpg" alt="現場投影片：Hazelnut Latte baseline 19、post 261、urine cortisol 203、UCCR 11" loading="lazy">
+            <figcaption>📸 Hazelnut Latte：基礎 19、刺激後 261；尿 cortisol 203、UCCR 11</figcaption>
+          </figure>
+        </div>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>Bernadette（1.5 歲標準貴賓）</th><th>Hazelnut Latte（5 歲比特混種）</th></tr>
+          <tr><td>背景</td><td>非特異性疾病、輕微「像 Addison」</td><td>慢性嘔吐下痢消瘦；PLE：Alb 1.4、Chol 101</td></tr>
+          <tr><td>基礎 cortisol</td><td>34 → 排除不了</td><td>19 → 很低，排除不了</td></tr>
+          <tr><td>ACTH 刺激後</td><td>403（正常）</td><td>261（正常）</td></tr>
+          <tr><td>尿 cortisol</td><td>278 → 排除</td><td>203 → 排除</td></tr>
+          <tr><td>UCCR</td><td>108 → 排除</td><td>11 → 排除</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> Bernadette<span class="src src-fix">【更正】</span>（逐字稿誤為 Barnet）也在 MSU 的 UCCR 資料裡。基礎值無法排除，但<strong>尿 cortisol 和 UCCR 絕對可以排除</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 小比特混種來做腸胃評估，有低白蛋白、低膽固醇。基礎值排除不了，本來要請牠回來做完整 ACTH 刺激；看尿 cortisol，<strong>一開始就能有效排除</strong>。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：Hazelnut 提醒，慢性病的狗基礎 cortisol 本來就可能很低，<strong>低不等於 Addison</strong>。UCCR 11 離模稜兩可區不遠，但尿 cortisol 本身很高，兩個指標要一起看。排除 Addison 後，才能放心以 PLE 處理、使用免疫抑制劑。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">📋</div>
+      <h2>9. 診斷總結</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 60</span><span class="src src-rec">🎤</span> 三種檢測怎麼用</h3>
+        <div class="grid3">
+          <div class="card-mini"><h4>基礎 cortisol</h4><ul>
+            <li>篩檢用：&gt; 55 nmol/L 排除</li>
+            <li>懷疑程度低到中、穩定的狗</li>
+          </ul></div>
+          <div class="card-mini"><h4>尿 cortisol／UCCR</h4><ul>
+            <li>可能是比基礎值更好的篩檢</li>
+            <li>也許有確診切點（尿 cortisol &lt; 10 nmol/L？）</li>
+          </ul></div>
+          <div class="card-mini"><h4>ACTH 刺激試驗</h4><ul>
+            <li>仍是金標準</li>
+            <li>高度懷疑、重症的狗</li>
+          </ul></div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 基礎 cortisol 仍被廣泛使用，但你會叫很多狗回來做完整刺激試驗。尿 cortisol 和 UCCR 是更好的篩檢；能不能確診還沒定論。</li>
+          <li><span class="src src-rec">🎤</span> MSU 因為看大量腸胃病，<strong>一年要跑 600–700 個基礎 cortisol</strong>，很多狗得回來做 ACTH 刺激。改用尿 cortisol 後，「回診重做」少了很多。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">💬</div>
+      <h2>10. 第一堂 Q&amp;A</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">Q1：為什麼不用基礎 cortisol 的參考範圍來排除？如果基礎值回來 2 或 2.5 µg/dL，還需要做刺激試驗嗎？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 每家實驗室參考範圍不同，大多約 15–115 nmol/L。大部分 Addison 是 0 和 0，毫無疑問；但<strong>確實有一群 Addison 病犬基礎值介於 15–115 之間</strong>。所以「在參考範圍內」不能排除，才要用 55 nmol/L（2 µg/dL）這個切點。<br>如果真的 ≥ 2 µg/dL，陰性預測值大約 <strong>99.8%</strong>。沒有任何東西是 100%，但除非有特殊理由懷疑，<strong>不需要再做刺激試驗</strong>。切點也許可以再低一點（也有研究說應該高一點），我們總想找 100% 的切點，但總會有例外。</div>
+      </div>
+      <div class="qa">
+        <div class="q">Q2：院內 cortisol 機器可以用嗎？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 可以用來<strong>排除</strong>（品管做好的前提下）。如果要<strong>確診</strong>，建議把 ACTH 刺激後 1 小時的樣本送參考實驗室確認。（詳見 <a href="#s6">第 6 節</a>）</div>
+      </div>
+      <div class="qa">
+        <div class="q">Q3：ACTH 刺激結果模稜兩可（例如從 &lt; 0.2 升到 4 µg/dL，反應不足）怎麼辦？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 刺激得不像 Addison，也沒達到正常狗的標準，叫「次佳／低於正常的反應」。<strong>這些狗大多是非腎上腺疾病，不是 Addison。</strong>每個講者答案可能都不一樣，講者的做法看反應大小：
+          <ul class="notes">
+            <li>刺激後只到 <strong>約 2.4 µg/dL</strong>（剛好超過 2）：比較擔心，會請狗回來<strong>重做</strong>，可能測<strong>醛固酮</strong>，因為偶爾有狗醛固酮先掉、cortisol 後掉，尤其有電解質異常時。</li>
+            <li>刺激後到 <strong>3.5–4 µg/dL</strong>：通常相當有信心不是 Addison，最後大多有其他疾病。</li>
+          </ul>
+          為什麼會這樣沒人知道，可能沒打到完整劑量，或是短暫的相對性腎上腺功能不全。</div>
+      </div>
+      <div class="qa">
+        <div class="q">Q4：基礎血清 cortisol 和尿 cortisol 相關嗎？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 相關，但只有中等（相關係數約 0.5–0.6<span class="src src-fix">【更正】</span>，逐字稿記為 .05／.06）。部分原因是兩個樣本的採集時間差（MSU 資料在 6 小時內採），cortisol 在幾小時內會變很多。最根本的是：<strong>尿 cortisol 反映 4–6 小時的分泌，基礎值只是一個點</strong>。</div>
+      </div>
+      <div class="qa">
+        <div class="q">Q5：不同國家的 UCCR 方法和抗體不同，切點能通用嗎？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 不能。從 RIA 換成化學冷光法時數值差很多；同一方法換抗體也不一樣。<strong>要用實驗室專屬的參考範圍和切點。</strong>講者正和 NC State 合作釐清。他認為不論哪種方法，尿 cortisol 都會是很好的檢驗，但每種方法的切點都不同。</div>
+      </div>
+      <div class="qa">
+        <div class="q">Q6：尿液要怎麼採？尿中有血會不會影響抗體檢測？</div>
+        <div class="a"><span class="src src-rec">🎤</span> MSU 研究沒有規定方式，只要求<strong>在醫院採</strong>，所以有導尿、自然排尿、膀胱穿刺三種混在一起。除非有大量血液污染，否則應該不太影響結果；但研究中有沒有明顯血尿的樣本，講者記不得，無法給更確定的答案。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🚑</div>
+      <h2>11. 急性處置</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="alert alert-warn"><span class="alert-icon">🎤</span><div>第二堂（治療）的錄音尚未提供，本節以下內容來自講義、現場投影片與整理者解說。</div></div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 61–63</span> 急性處置步驟</h3>
+        <p class="p">治療考量：急性 vs 慢性、糖皮質素補充、礦物皮質素治療、支持療法、併發疾病。（圖：Florinef、Prednisone、Zycortal、Percorten-V）</p>
+        <ol class="notes">
+          <li>矯正低血容／低血壓</li>
+          <li>矯正電解質異常</li>
+          <li>矯正酸鹼失衡</li>
+          <li>荷爾蒙補充：<strong>Dexamethasone 0.1–0.2 mg/kg IV q24h</strong>（住院期間）；礦物皮質素在<strong>出院前一天</strong>開始</li>
+          <li>腸胃支持：制酸劑（腸胃出血）或止吐劑（噁心）</li>
+        </ol>
+        <ul class="notes">
+          <li>頑固性高血鉀（不常見）：葡萄糖酸鈣（ECG 嚴重異常）、葡萄糖＋胰島素。</li>
+          <li>嚴重時處理低血糖或貧血；密集監測。</li>
+          <li>→ <strong>多數狗 48–96 小時內出院。</strong></li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：急性期不急著給 DOCP，輸液＋dex 已足以矯正電解質，而 DOCP 要數天才起效。dex 不會干擾 cortisol 檢測，可以邊急救邊完成 ACTH 刺激。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 64–65</span><span class="src src-photo">📸</span> ICU 輸液</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>輸液</th><th>Na（mEq/L）</th><th>K（mEq/L）</th><th>緩衝劑</th></tr>
+          <tr><td>0.9% NaCl</td><td>154</td><td>0</td><td>無</td></tr>
+          <tr><td>Normosol-R</td><td>140</td><td>5</td><td>醋酸鹽／葡萄糖酸鹽</td></tr>
+          <tr><td>LRS</td><td>130</td><td>4</td><td>乳酸</td></tr>
+        </table></div>
+        <div class="alert alert-success"><span class="alert-icon">📸</span><div><strong>現場投影片：不論選哪種輸液</strong>
+          <ul class="notes">
+            <li>→ 常常需要<strong>積極復甦</strong></li>
+            <li>→ Addison 病犬的<strong>輸液速率常常比較高</strong>（前 1–2 小時 <strong>40–80 mL/kg/hr</strong>？）</li>
+            <li>→ <strong>頑固性低血壓：單劑 fludrocortisone？</strong></li>
+          </ul></div></div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：傳統首選 0.9% NaCl（鈉最高、不含鉀），但慢性低血鈉的狗矯正太快可能造成滲透性脫髓鞘（ODS），目標每 24 小時 Na 上升 ≤ 10–12 mEq/L；生理食鹽水也會加重高氯性酸中毒。平衡晶體液含的 4–5 mEq/L 鉀遠低於病犬血鉀，稀釋加上恢復腎灌流一樣能降鉀。<strong>重點是補足容積</strong>。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 66</span> 預算限制</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>急性期所有狗都需要</h4><ul>
+            <li>積極輸液</li>
+            <li>糖皮質素補充</li>
+            <li>通常需要住院</li>
+          </ul></div>
+          <div class="card-mini"><h4>不是所有狗都需要（35 kg 狗估算）</h4><ul>
+            <li>PPI／pantoprazole（฿5,000/天）</li>
+            <li>多次（甚至任何一次？）止吐劑（฿2,500/天）</li>
+            <li>針對高血鉀的治療（฿1,000–3,000）</li>
+            <li>ECG 監測（฿5,000/天）</li>
+            <li>每天多次血氣（4 次 VBG ฿12,000/天）</li>
+          </ul></div>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 67–68</span> 病例：只靠輸液＋類固醇的血氣變化</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>入院</th><th>12 小時</th><th>24 小時</th></tr>
+          <tr><td>pH</td><td>7.38</td><td>7.38</td><td>7.37</td></tr>
+          <tr><td>HCO₃／BE</td><td>16.5／−6.5</td><td>17.2／−5.9</td><td>19.2／−4.5</td></tr>
+          <tr><td>Na</td><td>130 L</td><td>132 L</td><td>137 L</td></tr>
+          <tr><td>K</td><td>7.0 H</td><td>6.4 H</td><td>5.3 H</td></tr>
+          <tr><td>血糖</td><td>72</td><td>129 H</td><td>93</td></tr>
+        </table></div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：沒有特別降鉀，24 小時內電解質和酸鹼就大幅改善；鈉 24 小時上升 7 mEq/L，速度安全。說明多次血氣、降鉀治療常常是多餘的。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 69–71</span> ICU 中使用 hydrocortisone</h3>
+        <ul class="notes">
+          <li>Hydrocortisone 也許能改善危象預後：傳統以 CRI 0.5 mg/kg/hr 給予；電解質恢復較快、住院較短？</li>
+          <li>Hydrocortisone GC:MC 1:1；Prednisone 效價為 hydro 4 倍、4:0.8；Dexamethasone 為 pred 7–10 倍、幾乎無 MC。</li>
+          <li>→ <strong>20 mg hydrocortisone ≈ 5 mg prednisone ≈ 0.75 mg dexamethasone</strong></li>
+          <li>Mitropoulou 2022：hydrocortisone（HSS）組與傳統治療組的鈉、鉀恢復幅度相近。</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">⚖️</span><div><strong>結論：可以用，但是</strong>：沒有確立的存活優勢；住院天數似乎不受影響；對電解質恢復的效果不一致；需要更頻繁的監測。（Gunn 2016 JSAP；Mitropoulou 2022、Emming 2025 Front Vet Sci）</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">💊</div>
+      <h2>12. 慢性處置：糖皮質素與 DOCP</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 72</span> 糖皮質素補充</h3>
+        <ul class="notes">
+          <li>首選 prednisone／prednisolone：便宜、容易取得、熟悉。</li>
+          <li>依臨床症狀與生化監測。</li>
+          <li>生理劑量 0.1–0.3 mg/kg/day；<strong>典型最終劑量 0.05–0.15 mg/kg/day</strong>。</li>
+          <li>預期有壓力時加倍？</li>
+          <li><strong>治療失敗的頭號原因：糖皮質素不足。</strong></li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 73–76</span> 礦物皮質素補充</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>DOCP</h4><ul>
+            <li>2.2 mg/kg IM/SQ 每月一次</li>
+            <li>只有礦物皮質素作用 → 一定要另外給 pred</li>
+          </ul></div>
+          <div class="card-mini"><h4>Fludrocortisone</h4><ul>
+            <li>0.01–0.02 mg/kg PO q12–24h</li>
+            <li>同時有礦物與糖皮質素作用</li>
+          </ul></div>
+        </div>
+        <ul class="notes">
+          <li>相關文獻：Zeugswetter 2014（ACTH 監測下的 prednisolone 劑量）、Roberts 2016 Vet Rec（穩定時間）、Kintzer &amp; Peterson 1997 JVIM（205 隻長期追蹤）、Baumstark 2014 JVIM（以 PRA 比較 DOCP 與 fludrocortisone）。</li>
+          <li>DOCP＝DOC 接上 pivalate 酯，注射後緩慢釋放；DOC 是醛固酮合成路徑中的天然前驅物（黃體素 → 11-去氧皮質酮 → 皮質酮 → 醛固酮）。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>Percorten-V®</th><th>Zycortal®</th></tr>
+          <tr><td>途徑</td><td>IM（SC 也有效）</td><td>SC</td></tr>
+          <tr><td>起始</td><td>2.2 mg/kg q25 天</td><td>2.2 mg/kg q25 天</td></tr>
+          <tr><td>最終維持</td><td>1.7–2.2 mg/kg，每 21–30 天</td><td>1.9 ± 0.27 mg/kg（1.2–2.5），每 20–46 天</td></tr>
+          <tr><td>賦形劑差異</td><td>polysorbate 60、chlorocresol</td><td>polysorbate 80、0.002% thimerosal</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 77–80</span> 田野試驗：標示劑量從哪來</h3>
+        <ul class="notes">
+          <li><strong>Lynn et al. 1993 JAVMA</strong>（早期 Percorten-V）：舊病例 60、新診斷 9；2.2 mg/kg IM 於第 0、25、50 天；<strong>沒有探討其他給藥方案</strong>；第 75 天成功 97%（1 隻需 21 天間隔、1 隻第 65 天失敗、60% 沒給 pred）。</li>
+          <li><strong>Farr et al. 2020 Vet Rec</strong>（Zycortal 非劣性試驗）：151 隻 HA 低 Na:K；Zycortal 131、Percorten 39；雙盲；第 0、25、60、90…180 天給藥；依第 10、25 天 Na:K 調整（&gt; 32 減量或延長、27–32 依第 10 天調整、&lt; 27 加量或縮短）；第 90 天成功 86.2%（實驗室）／99%（臨床）。</li>
+        </ul>
+        <figure class="fig">
+          <img src="photos/11-na-k-table.jpg" alt="Zycortal 非劣性試驗 Table 6：各時間點 Na:K 分布" loading="lazy">
+          <figcaption>📄 80：第 90、180 天約 8–9 成的狗 Na:K &gt; 32（紅圈）→ 多數獸醫可以接受偏高的 Na:K</figcaption>
+        </figure>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：Na:K 長期偏高，代表多數狗其實是<strong>過度治療</strong>。獸醫怕不夠，不怕過量。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 81–83</span> 費用、仿單建議與過量的代價</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>2.2 → 2.0 mg/kg q30d</th><th>9 kg 西高地</th><th>60 kg 聖伯納</th></tr>
+          <tr><td>藥費／月</td><td>฿1,600</td><td>฿10,500</td></tr>
+          <tr><td>藥費／年</td><td>฿19,000</td><td>฿125,000</td></tr>
+          <tr><td>終身</td><td>฿170,000</td><td>&gt; ฿830,000</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li>仿單建議：依 Na:K 每次減 0.1–0.2 mg/kg，或延長 3–7 天。</li>
+          <li>人類腎上腺功能不全：住院與醫療支出較多、死亡率是一般人兩倍、心臟病是早死主因；<strong>礦物皮質素劑量不當可能增加心血管不良結果</strong>。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S13 ══ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">📉</div>
+      <h2>13. 低劑量 DOCP 四篇研究</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="tbl-wrap"><table>
+        <tr><th>研究</th><th>設計</th><th>主要發現</th><th>限制</th></tr>
+        <tr><td><strong>① Bates 2013 Aust Vet J</strong><br>「小狗 0.5 mL，大狗 1 mL」</td><td>回溯 49 隻；分四組：0.36–0.96（n=19）、1.00–1.47（n=7）、1.76–2.19（n=10）、≥ 2.2 mg/kg（n=13）</td><td>沒有危象或住院；成犬都不需調整劑量（容忍輕微亞臨床異常）；死亡率無差；四組 Na、K 曲線 36 個月幾乎重疊</td><td>起始劑量憑經驗；追蹤不一致、資料缺漏；未評估作用時間與體重</td></tr>
+        <tr><td><strong>② Jaffey 2017 JVIM</strong><br>延長間隔</td><td>前瞻多中心 53 隻；標準劑量，每 7 天測電解質直到異常 → 個別化給藥間隔（IDI）</td><td>作用約 <strong>2 個月（32–124 天）</strong>；每年省近 60%；年齡、體重、劑量與作用時間無關；仿單半衰期可能不正確</td><td>只有 15/53 完成；回診太多；電解質正常 ≠ 礦物皮質素正常（沒測 PRA）；25% 要再縮短 IDI；2 隻在估計 IDI 前 35、38 天就發病 → <strong>活著 ≠ 活得好</strong></td></tr>
+        <tr><td><strong>③ Sieber-Ruckstuhl 2019 JVIM</strong><br>起始 1.5 mg/kg SQ</td><td>前瞻 17 隻（12 新、5 舊）；依第 14 天電解質調整 5–10%；q28–30d</td><td>1.5 安全有效，但仍比多數狗需要的多（劑量逐漸降到 0.5–1.0）；只有 2 隻需加量（4 月齡臘腸幼犬、3 歲聖伯納 1.2→1.3→1.7→0.7）</td><td>樣本小；沒測 PRA</td></tr>
+        <tr><td><strong>④ Vincent 2021 JVIM</strong><br>1.1 vs 2.2 RCCT</td><td>隨機雙盲 37 隻：2.2（n=18）vs 1.1（n=19）q30d，不調整；監測電解質＋PRA＋血壓</td><td><strong>1.1 全部有效且耐受良好；2.2 組幾乎都過度治療</strong>；2 隻暫時性高血鉀（3 月齡對照組幼犬、6.5 kg 試驗組狗）；第 2、3 次注射後 Na:K 更高（累積）</td><td>無法分析體重、年齡；沒評估作用時間</td></tr>
+      </table></div>
+      <figure class="fig">
+        <img src="photos/11-pra-table.jpg" alt="Vincent 2021：各時間點 PRA 分布" loading="lazy">
+        <figcaption>📄 98（Vincent 2021）：2.2 mg/kg 組第 3 次注射後 17/17 的 PRA 被抑制（&lt; 0.41 ng/mL/h）；1.1 組多數也被抑制，少數第 30 天偏高</figcaption>
+      </figure>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：PRA（血漿腎素活性）被抑制＝礦物皮質素過量（身體覺得不需要再分泌腎素）；PRA 偏高＝不足。電解質只能看出「不足」的晚期，看不出「過量」。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ S14 ══ -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">📈</div>
+      <h2>14. MSU DOCP PK/PD 研究</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 100–101</span> 研究目的與族群（Langlois et al., JVIM）</h3>
+        <ul class="notes">
+          <li>PK 假設：注射後 &gt; 30 天仍測得到；暴露量與劑量相關；半衰期與劑量無關。</li>
+          <li>PD 假設：現行方案常使 PRA 被過度抑制；電解質會高估作用時間、低估過度治療時間。</li>
+          <li>→ 目標：<strong>安全、符合生理、具成本效益</strong>。</li>
+          <li>21 隻；低劑量與標示劑量組的年齡、性別、體重、Na:K（18.9 vs 18.9）、prednisone 劑量都無差異。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 102–103</span> 藥物動力學</h3>
+        <figure class="fig">
+          <img src="photos/11-docp-pk.jpg" alt="DOCP PK 參數表：低劑量 vs 標示劑量" loading="lazy">
+          <figcaption>📄 102：AUC 19.6 vs 32.1（P=.008）、Cmax 0.44 vs 0.82 ng/mL（P=.007）；t½ 16.6 vs 13.9 天、Tmax 約 15–16 天，皆無差異</figcaption>
+        </figure>
+        <figure class="fig">
+          <img src="photos/11-docp-curve.jpg" alt="血清 DOC 濃度曲線：低劑量 vs 標示劑量" loading="lazy">
+          <figcaption>📄 103：約第 14 天達峰；兩組到第 63 天都還測得到</figcaption>
+        </figure>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：半劑量讓暴露量約減半，但<strong>半衰期約 2 週、與劑量無關</strong>，所以減量不會讓作用時間縮短太多。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 104–108</span> 藥效學</h3>
+        <figure class="fig">
+          <img src="photos/11-elec-vs-pra.jpg" alt="電解質 vs PRA 判斷的作用時間與過度治療時間" loading="lazy">
+          <figcaption>📄 104：作用時間 電解質約 60 天 vs PRA 約 50 天（P&lt;.001）；過度治療時間 電解質幾乎 0 天 vs PRA 約 22 天（P=.01）</figcaption>
+        </figure>
+        <div class="quote">血清電解質會高估 DOCP 的作用時間，並低估過度治療的時間。</div>
+        <ul class="notes">
+          <li>📄 105：兩組 PRA 在第 7–14 天就被抑制到接近 0，持續到第 35 天；Na:K 穩定在 32–36。</li>
+          <li>📄 106：第 21 天 vs「倒數第二次」採樣，HCT 43→50、白蛋白 3.2→3.7、鈣 10.2→10.9、肌酸酐 1.0→1.1（皆顯著）→ <strong>電解質變化之前，已經出現血液濃縮</strong>，礦物皮質素作用其實在消退。</li>
+          <li>📄 108 離群值：2.8 歲 Doodle 吸收極少（Cmax 0.15）、PRA 持續偏高、第 29 天 Na:K 偏低但臨床良好；7 歲混種 DOC 一直很低。<strong>兩隻都以低劑量每月一次維持。</strong></li>
+        </ul>
+        <figure class="fig">
+          <img src="photos/11-individual-pra.jpg" alt="四隻病犬個別 PRA 與 Na:K 曲線" loading="lazy">
+          <figcaption>📄 107：紅＝PRA、藍＝Na:K；PRA 第 28–49 天開始回升，Na:K 要更晚才下降</figcaption>
+        </figure>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 109–112</span> 討論、理想劑量與 MSU 經驗</h3>
+        <ul class="notes">
+          <li>較低劑量、每 5–7 週給一次；<strong>低劑量較頻繁給藥，優於標示劑量拉長間隔</strong>（標示劑量約 25 天處於過量，之後可能較長時間不足）。</li>
+          <li>電解質 ≠ 礦物皮質素狀態：太晚反映不足，也低估過量。</li>
+          <li>大概不可能維持 PRA 完全正常（個體內外變異；&lt; 5 kg 小型犬與 &lt; 1 歲幼犬資料不足）。</li>
+          <li><strong>但 1.1 mg/kg q4–6 週</strong>：第 42 天 DOC 平均仍 0.23 ng/mL；第 42 天前 PRA 很少偏高；Na:K 異常落後於 PRA；過量較輕；<strong>省 65%</strong>。</li>
+          <li>監測：建議第一次 DOCP（及每次調整）後 10–14 天與 25–30 天檢查。</li>
+          <li>MSU 超過 100 隻：第 10–14 天常見<strong>過量</strong>；不足很少見，<strong>從未記錄到有臨床意義的不足</strong>；會隨時間累積。→ <strong>經費有限時可以省略第 10–14 天複檢？</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S15 ══ -->
+  <div class="section" id="s15">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🏁</div>
+      <h2>15. 總結、Stella 與非典型治療</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 113</span> 總結</h3>
+        <div class="grid3">
+          <div class="card-mini"><h4>保持警覺</h4><ul>
+            <li>早期或「非典型」很容易漏</li>
+            <li>正確辨識省時省錢</li>
+            <li>區分「生病的狗」與「Addison 危象」</li>
+          </ul></div>
+          <div class="card-mini"><h4>診斷</h4><ul>
+            <li>ACTH 刺激仍是標準</li>
+            <li>尿 cortisol 比基礎血清 cortisol 準</li>
+            <li>減少 ACTH 刺激的「白做」</li>
+          </ul></div>
+          <div class="card-mini"><h4>治療</h4><ul>
+            <li>短期內院內支持療法常很關鍵</li>
+            <li>低劑量糖皮質素</li>
+            <li><strong>低劑量 DOCP q4–6 週</strong></li>
+          </ul></div>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 114–116</span> 壓軸病例：Stella，6 歲已絕育母犬，標準貴賓 → <span class="badge badge-red">原發性 Addison</span></h3>
+        <ul class="notes">
+          <li>因低白蛋白轉診：2 個月前（急性肝病時）發現，之後 3 次生化都持續偏低；就診時狀況良好，BCS 3–4/9。</li>
+          <li>生化：Na 150、K 4.0、<strong>Na:K 38</strong>、Cl 118 H、Alb 2.7 L、Chol 86 L、CK 201 H。</li>
+          <li>ACTH 刺激：前 11、後 13 nmol/L；<strong>eACTH 128 pg/mL（偏高）</strong>；醛固酮 前 7、後 11 pmol/L（偏低）。</li>
+        </ul>
+        <div class="alert alert-success"><span class="alert-icon">✅</span><div>電解質完全不像，狗看起來也很好，只有「持續低白蛋白、低膽固醇」。好發品種加上這些細微線索，就是講者一直強調的<strong>提高警覺</strong>。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 117</span> 非典型病例的治療與預後</h3>
+        <ul class="notes">
+          <li>存活是否受影響未知：Haviland 2016 CVJ 非典型存活較短（4.2 vs 5.6 年），但非典型病犬確診時年紀較大；沒有研究確立兩者是否真的不同。</li>
+          <li>文獻顯示 70–80% 的非典型病犬一開始只用糖皮質素；Herrtage 2019 SCE 摘要：幾乎所有非典型病犬都缺乏醛固酮；SCE／ESVE 仍在爭論；估計 2/3–3/4 只用 pred。</li>
+          <li><span class="src src-rec">🎤</span>（第一堂）非典型病犬需要糖皮質素；是否給礦物皮質素，要考慮醛固酮缺乏與轉為典型的風險，並<strong>定期追蹤</strong>。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S16 ══ -->
+  <div class="section" id="s16">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">📚</div>
+      <h2>Take-home、更正表與參考資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>病例答案一覽</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>病例</th><th>結果</th><th>關鍵</th></tr>
+          <tr><td>病例 1：9 月齡混種</td><td>不是（腎盂腎炎）</td><td>有壓力像、USG 1.050、泌尿道病灶</td></tr>
+          <tr><td>病例 2：4 歲混種</td><td>Addison（危象）</td><td>重症卻淋巴球增多、低血糖、低膽固醇；cortisol 0/0</td></tr>
+          <tr><td>病例 3：12 歲 Brittany</td><td>不是（鞭蟲）</td><td>有用 Sentinel 也不能排除</td></tr>
+          <tr><td>病例 4：4 歲混種（熱點）</td><td>Addison</td><td>變化極輕微；cortisol 0/0</td></tr>
+          <tr><td>病例 5：Harlow 大丹</td><td>Addison（非典型）</td><td>巨食道；cortisol 0/1、醛固酮 0/0</td></tr>
+          <tr><td>Bella：10 歲混種</td><td>Addison（非典型）</td><td>只有低白蛋白／血糖／膽固醇；cortisol、醛固酮皆測不到</td></tr>
+          <tr><td>Molly：5 歲拉布拉多</td><td>原發性 Addison</td><td>麻醉前檢查發現；eACTH 高、醛固酮低</td></tr>
+          <tr><td>Maya：12 歲波士頓㹴</td><td>不是</td><td>基礎 69、刺激後 679</td></tr>
+          <tr><td>Gus：8 月齡拉布拉多</td><td>不是</td><td>基礎 225，一次排除</td></tr>
+          <tr><td>Bernadette：1.5 歲貴賓</td><td>不是</td><td>基礎 34 排除不了；尿 cortisol 278 排除</td></tr>
+          <tr><td>Hazelnut Latte：5 歲比特混種</td><td>不是</td><td>基礎 19；尿 cortisol 203 排除</td></tr>
+          <tr><td>Stella：6 歲貴賓</td><td>原發性 Addison</td><td>Na:K 38、狗很好；eACTH 128</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-fix">【更正】</span> 逐字稿轉文字錯誤</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>逐字稿</th><th>正確</th></tr>
+          <tr><td>in-topic verters</td><td>ectopic ureters（異位輸尿管）</td></tr>
+          <tr><td>pilonephritis</td><td>pyelonephritis（腎盂腎炎）</td></tr>
+          <tr><td>hematocrit around 16%</td><td>Hct 60%（講義 📄 15，血液濃縮）</td></tr>
+          <tr><td>Britons</td><td>Brittany（布列塔尼獵犬）</td></tr>
+          <tr><td>esophageal dysplasia</td><td>esophageal dysmotility（食道蠕動異常，📄 25）</td></tr>
+          <tr><td>uniatremic and UKL hypoaldosteronism</td><td>eunatremic and eukalemic hypoadrenocorticism</td></tr>
+          <tr><td>luxemburgite abnormalities</td><td>electrolyte abnormalities</td></tr>
+          <tr><td>primary hyperadrenocorticism（Molly）</td><td>primary hypoadrenocorticism</td></tr>
+          <tr><td>Edinger textbook</td><td>Ettinger 教科書</td></tr>
+          <tr><td>Ellen Baron at Auburn</td><td>Auburn 團隊（講義引用 Corrigan et al. 2010 AJVR）</td></tr>
+          <tr><td>Adam Birkenhauer and Kathy Wan</td><td>Adam Birkenheuer、Katharine Lunn（NC State）</td></tr>
+          <tr><td>ASH</td><td>ACVIM（2018 摘要）</td></tr>
+          <tr><td>Kenny Luminescent Amino Acid the Emulite</td><td>chemiluminescent immunoassay（Immulite）</td></tr>
+          <tr><td>11.34 / 11.28</td><td>1134 / 1128 nmol/L（📄 54）</td></tr>
+          <tr><td>animals per liter</td><td>nmol/L</td></tr>
+          <tr><td>non-inflammatory illness / non-drill illness</td><td>non-adrenal illness（NAI）</td></tr>
+          <tr><td>Barnet</td><td>Bernadette</td></tr>
+          <tr><td>rho .05 or .06</td><td>約 0.5–0.6</td></tr>
+          <tr><td>Antec / IDX</td><td>Antech / IDEXX</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Langlois DK. <em>Hypoadrenocorticism: Review &amp; Updates.</em> VET-KU × Texas A&amp;M IM Conference, 2026-10-07（講義 119 張投影片、第一堂逐字稿「完整記錄」PDF、現場投影片照片）。</div>
+          <div class="ref-item">第一堂課堂錄音與逐字稿（Plaud）。<a href="https://web.plaud.ai/s/pub_53ba4677-68f1-4ea8-ba80-4f2f6fa8b2fc::kssBY9brZXTonxmWQS8EV5BzDGbJzIs3TABxwpUz6maj9qgVvQZSBYRAIeVdlDOwnWu9fiEQ0rN2tlmnpy7vawI" target="_blank" rel="noopener">連結</a>（逐字稿有轉文字錯誤，請對照更正表）</div>
+          <div class="ref-item">Scott-Moncrieff JC. Hypoadrenocorticism. In: Ettinger SJ, Feldman EC, eds. <em>Textbook of Veterinary Internal Medicine.</em> 2010.</div>
+          <div class="ref-item">Thompson AL, et al. Comparison of classic hypoadrenocorticism with glucocorticoid-deficient hypoadrenocorticism in dogs. <em>JAVMA.</em> 2007.</div>
+          <div class="ref-item">Baumstark ME, et al. Evaluation of aldosterone concentrations in dogs with hypoadrenocorticism. <em>JVIM.</em> 2014.</div>
+          <div class="ref-item">Corrigan AM, et al. Evaluation of the effects of prednisone on ACTH stimulation test results in dogs. <em>AJVR.</em> 2010.</div>
+          <div class="ref-item">Gold AJ, Langlois DK, Refsal KR. Evaluation of basal serum or plasma cortisol concentrations for the diagnosis of hypoadrenocorticism in dogs. <em>JVIM.</em> 2016.</div>
+          <div class="ref-item">Del Baldo F, et al. <em>JVIM</em> 2022；Moya MV, et al. <em>JAVMA</em> 2022（尿 cortisol／UCCR 診斷 HA）。</div>
+          <div class="ref-item">Lynn RC, et al. <em>JAVMA</em> 1993；Farr H, et al. <em>Vet Rec</em> 2020（DOCP 田野試驗）。</div>
+          <div class="ref-item">Bates JA, et al. <em>Aust Vet J</em> 2013；Jaffey JA, et al. <em>JVIM</em> 2017；Sieber-Ruckstuhl NS, et al. <em>JVIM</em> 2019；Vincent AM, et al. <em>JVIM</em> 2021（低劑量 DOCP）。</div>
+          <div class="ref-item">Langlois DK, et al. Pharmacokinetics and pharmacodynamics of desoxycorticosterone pivalate in dogs with hypoadrenocorticism. <em>JVIM.</em></div>
+          <div class="ref-item">Gunn E, et al. <em>JSAP</em> 2016；Mitropoulou A, et al. <em>Front Vet Sci</em> 2022；Emming et al. <em>Front Vet Sci</em> 2025（hydrocortisone）。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="panel-qa-dka-cgm.html">10 座談會 Q&amp;A：DKA 處置、胰島素策略與 CGM</a>。其他場次將陸續整理更新。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
