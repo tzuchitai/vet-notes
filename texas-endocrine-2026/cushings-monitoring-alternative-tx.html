@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>犬庫欣氏症：藥物監測與替代療法｜2026 Texas 內分泌研討會</title>
+<style>
+  :root {
+    --primary: #0F766E;
+    --primary-light: #CCFBF1;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0d2522;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9cc8c1; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #1f4a44;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9cc8c1; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9cc8c1;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #1f4a44;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #5f8f87;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0b4f49 0%, #14a395 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0d2522; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #1f4a44; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+</style>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 Texas 內分泌研討會</a>
+  <div class="logo">
+    <h2>13｜犬庫欣氏症：<br>藥物監測與替代療法</h2>
+    <p>Andrew Bugbee｜2026 年 10 月 7 日</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">核心觀念與總覽</a>
+    <div class="nav-section">背景</div>
+    <a href="#s1">1. 為什麼庫欣讓人挫折</a>
+    <a href="#s2">2. 食物依賴型庫欣</a>
+    <div class="nav-section">Trilostane 監測</div>
+    <a href="#s3">3. Trilostane 用法</a>
+    <a href="#s4">4. 開始後的回診時程</a>
+    <a href="#s5">5. 治療目標與 Δ cortisol</a>
+    <a href="#s6">6. 控制後與低皮質醇症</a>
+    <a href="#s7">7. ACTH 刺激 vs 給藥前皮質醇</a>
+    <a href="#s8">8. 講者的監測流程</a>
+    <a href="#s9">9. 別忘了共病</a>
+    <div class="nav-section">替代療法</div>
+    <a href="#s10">10. Mitotane</a>
+    <a href="#s11">11. 垂體切除術</a>
+    <a href="#s12">12. 垂體放射治療</a>
+    <a href="#s13">13. 類固醇合成阻斷劑</a>
+    <a href="#s14">14. ACTH 阻斷劑與受體</a>
+    <a href="#s15">15. Selegiline 與 Cabergoline</a>
+    <a href="#s16">16. 視黃酸</a>
+    <a href="#s17">17. 體抑素類似物</a>
+    <a href="#s18">18. 腸–腦軸與菌叢失衡</a>
+    <a href="#s19">Take-home、更正表與參考資料</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>犬庫欣氏症：藥物監測與替代療法</h1>
+    <p>主講：Andrew Bugbee, DVM, DACVIM｜Texas A&amp;M 首席醫療長（CMO）、臨床教授</p>
+    <p>2026 年 10 月 7 日｜VET-KU × Texas A&amp;M 內科研討會｜場次 13</p>
+    <div class="tags">
+      <span class="tag">Trilostane 監測</span>
+      <span class="tag">Δ cortisol</span>
+      <span class="tag">Pre-pill cortisol</span>
+      <span class="tag">低皮質醇症</span>
+      <span class="tag">共病</span>
+      <span class="tag">Mitotane</span>
+      <span class="tag">垂體切除術</span>
+      <span class="tag">類固醇合成阻斷劑</span>
+      <span class="tag">Cabergoline</span>
+      <span class="tag">視黃酸</span>
+      <span class="tag">Pasireotide</span>
+      <span class="tag">腸–腦軸</span>
+    </div>
+    <a class="rec-link" href="https://web.plaud.ai/s/pub_a95e997c-f8de-4eb4-9804-d266116167eb::2vWJfU2T1m_44puBl-t4OQCEpXGmYjcb8ryu_iYX4CwyzJ2-YP4Hm3dBVXLj33lcx-QUepsCBM-mLAhD2nU-cwI" target="_blank" rel="noopener">🎧 聆聽課堂錄音（Plaud）↗</a>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（頁碼為 PDF 頁數）
+    <span class="src src-rec">🎤</span> 課堂逐字稿
+    <span class="src src-hand">✍️ 筆記</span> 上課筆記（老師的補充）
+    <span class="src src-add">💡 補充</span> 整理者補充（機轉、交叉參照）
+    <span class="src src-fix">【更正】</span> 逐字稿轉文字錯誤，以講義為準（完整列表見最後一節）
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li><strong>臨床症狀和臨床評分</strong>是最重要的監測工具，數字只是輔助</li>
+      <li>Trilostane 約 1 mg/kg q12h、隨餐給、盡量避免調劑藥</li>
+      <li>第 10–14 天回診只看<strong>有沒有壓過頭</strong>，不加藥；30 天後才調整</li>
+      <li>每次刺激試驗都在<strong>同一個給藥後時間</strong>開始</li>
+      <li>監測刺激試驗一定要抽<strong>刺激前</strong>：約 1/4 會是 Δ 不變或負值</li>
+      <li>控制良好：給藥前皮質醇每 6–12 個月一次；≥ 1.45 大致排除壓過頭</li>
+      <li>有症狀：做 ACTH 刺激試驗，依數值加藥、找其他原因或減藥</li>
+      <li>低皮質醇症 4 年內約 26%；約 25% 永久無法恢復</li>
+      <li>沒有在診斷時處理的共病，<strong>控制後一定要回頭複查</strong></li>
+      <li>垂體切除術要<strong>主動告知飼主</strong>，拒絕也寫進病歷</li>
+      <li>放射治療是治腫瘤，不是治庫欣</li>
+      <li>替代藥物中，cabergoline、視黃酸可能減緩或縮小垂體腫瘤</li>
+    </ul>
+  </div>
+
+  <!-- ══ SECTION 0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🎯</div>
+      <h2>核心觀念與總覽</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.1–2</span><span class="src src-rec">🎤</span> 場次資訊</h3>
+        <ul class="notes">
+          <li>講者：Andrew Bugbee（DVM, DACVIM），Texas A&amp;M 首席醫療長、臨床教授。也是 <a href="diabetic-nutrition.html">06 糖尿病營養</a> 和 <a href="obesity-weight-loss.html">09 肥胖與減重</a> 的講者。</li>
+          <li><span class="src src-rec">🎤</span> 接續上一場 Tardo 的診斷與 trilostane。這場的重點是<strong>監測</strong>，最後再講替代療法。講者只挑在動物身上研究過的治療來談，有些是單獨使用，有些是和 trilostane 合併。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.5、19、29</span><span class="src src-rec">🎤</span> 治療總覽：依 HPA 軸上的作用位置分類</h3>
+        <figure class="fig"><img src="photos/13-hc-treatments.jpg" alt="HC 治療總覽" loading="lazy"><figcaption>📄 p.5　HC 治療依作用位置分類（BioRender）</figcaption></figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>類別</th><th>作用位置</th><th>藥物或方法</th></tr>
+          <tr><td><strong>ACTH 阻斷劑</strong></td><td>垂體</td><td>Pasireotide、Octreotide、Cabergoline、Selegiline、視黃酸、Gefitinib、Carbenoxolone</td></tr>
+          <tr><td><strong>類固醇合成阻斷劑</strong></td><td>腎上腺</td><td><strong>Trilostane</strong>、Mitotane、Ketoconazole、SF-1 反向促效劑、Abiraterone、Osilodrostat、ATR-101</td></tr>
+          <tr><td><strong>糖皮質素受體阻斷劑</strong></td><td>標的組織</td><td>Mifepristone</td></tr>
+          <tr><td><strong>手術</strong></td><td>垂體／腎上腺</td><td>垂體切除術、腎上腺切除術</td></tr>
+          <tr><td>放射治療（p.19 打了三個問號）</td><td>垂體</td><td>見第 12 節</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-add">💡 補充</span> 與其他場次的關聯</h3>
+        <ul class="notes">
+          <li>診斷、trilostane 劑量與停藥原則、P:B ratio：見 <a href="cushings-diagnosis-treatment.html">12 犬庫欣氏症：診斷與內科治療</a>。</li>
+          <li>醫源性 Addison、ACTH 刺激試驗判讀、DOCP：見 <a href="addisons-disease.html">11 犬 Addison 氏症</a>。</li>
+          <li>庫欣合併糖尿病、胰島素阻抗：見 <a href="canine-diabetes-insulin.html">02 犬糖尿病與胰島素</a>。</li>
+          <li>中樞性尿崩症與 DDAVP（垂體切除術後）：見 <a href="pupd.html">01 PU/PD</a>。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">😩</div>
+      <h2>1. 為什麼庫欣讓人挫折</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.4</span><span class="src src-rec">🎤</span> 獸醫、飼主、病患三方的困難</h3>
+        <div class="grid3">
+          <div class="card-mini"><h4>獸醫</h4><ul>
+            <li>診斷有難度</li>
+            <li>沒有標準的治療與監測流程；共識之間也常不一致</li>
+            <li>飼主順從度、治療相關問題要排除</li>
+          </ul></div>
+          <div class="card-mini"><h4>飼主</h4><ul>
+            <li>約 40% 表示照顧庫欣犬讓<strong>自己</strong>的生活品質變差</li>
+            <li>約 25% 低估所需的費用、時間與心力</li>
+            <li>藥和監測都貴；覺得治療只「輕微」改善狗的生活品質</li>
+          </ul></div>
+          <div class="card-mini"><h4>病患</h4><ul>
+            <li>「拜託快把我治好！」</li>
+            <li>藥物副作用、低皮質醇症</li>
+            <li>生活品質與壽命</li>
+          </ul></div>
+        </div>
+        <p class="p"><span class="src src-rec">🎤</span> 飼主花了好幾年的時間、心力和錢，在他們心中卻沒有得到相對應的回報。講者的問題是：改進診斷、治療或監測，能不能減少獸醫的挫折，並改善病患和飼主的結果？</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.6</span><span class="src src-rec">🎤</span> 庫欣臨床評分（ESVE Project ALIVE）</h3>
+        <ul class="notes">
+          <li>可以在歐洲獸醫內分泌學會（ESVE）網站的 ALIVE 頁面取得。</li>
+          <li><strong>分數 0–15</strong>；最好在<strong>診斷時</strong>就開始評分，作為之後監測的基準。</li>
+          <li>每次回診都評一次；目標是分數越低越好，但<strong>不能造成低皮質醇（Addison）的症狀</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 整場的主軸：臨床症狀監測是工具箱裡<strong>最重要</strong>的工具；評分讓它變得客觀、可量化、可標準化。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🍽️</div>
+      <h2>2. 分類與食物依賴型庫欣</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.3</span> ACTH 依賴型（約 85%）與非依賴型（約 15%）</h3>
+        <p class="p">非依賴型中有一種罕見的<strong>食物依賴型 HC</strong>，報告多見於較年輕的犬（2–6 歲）。</p>
+        <div class="grid2">
+          <div class="card-mini"><h4>健康狀態</h4><ul>
+            <li>進食時胃腸分泌 GIP</li>
+            <li>GIP 結合胰臟受體，胰島素上升</li>
+          </ul></div>
+          <div class="card-mini"><h4>食物依賴型 HC</h4><ul>
+            <li>進食時分泌的 GIP 結合<strong>腎上腺上異常表現的受體</strong></li>
+            <li>結果是皮質醇上升</li>
+          </ul></div>
+        </div>
+        <h4>診斷</h4>
+        <ul class="notes">
+          <li>餐後 UCCR 上升 50–100%。</li>
+          <li>ACTH 刺激試驗如果在餐後太久才做，可能抓不到皮質醇上升。</li>
+          <li><strong>Octreotide</strong> 可以抑制餐後的皮質醇上升（它會阻斷 GIP 分泌，見第 17 節）。</li>
+        </ul>
+        <h4>治療</h4>
+        <p class="p"><strong>餐前 2–3 小時給 trilostane</strong>，讓藥效高峰對上餐後的皮質醇高峰。</p>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 年輕犬有典型庫欣症狀，但空腹採樣的檢查結果對不起來時，可以想到這一型。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">💊</div>
+      <h2>3. Trilostane（Vetoryl®）用法</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.7</span><span class="src src-rec">🎤</span> 機轉與劑量</h3>
+        <ul class="notes">
+          <li>3β-HSD 抑制劑（也作用在 11β-HSD），美國 FDA 核准。</li>
+          <li>仿單劑量 2.2–6.7 mg/kg q24h，比多數專科醫師實際用的高。</li>
+          <li><strong>講者的做法：約 1 mg/kg q12h</strong>。<span class="src src-rec">🎤</span> 實際上會<strong>往下取整數</strong>，配合最接近的膠囊規格，和 Tardo 的 0.5–1 mg/kg 差不多。</li>
+          <li><strong>隨餐給</strong>效果最好。</li>
+          <li>膠囊規格：5、10、30、60、120 mg。</li>
+          <li><span class="src src-rec">🎤</span> 美國只有膠囊。2025 年英國推出<strong>有調味、可切成四等分的錠劑</strong>（20、30、60 mg），劑量選擇更有彈性，各種體型都比較好給。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.7</span><span class="src src-rec">🎤</span> 盡量避免調劑藥</h3>
+        <ul class="notes">
+          <li>研究中 <strong>40% 的調劑批次含量不合格</strong>：劑量不準，溶離特性和生體可用率也會改變。</li>
+          <li><span class="src src-rec">🎤</span> Trilostane 是不太適合調劑的藥。但調劑比原廠便宜，有時還是不得不用。</li>
+          <li><span class="src src-rec">🎤</span> 講者會先告訴飼主：用調劑藥時，控制狀況常常<strong>時好時壞</strong>，會間歇出現皮質醇過多的症狀。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">📅</div>
+      <h2>4. 開始 trilostane 後的回診時程</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.8</span><span class="src src-rec">🎤</span> 三個時間點</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>時間點</th><th>目的</th><th>可以做的調整</th></tr>
+          <tr><td><strong>第 10–14 天</strong></td><td>唯一目的：確認皮質醇<strong>沒有壓過頭</strong></td><td>壓過頭可以減藥；<strong>不加藥</strong></td></tr>
+          <tr><td><strong>≥ 30 天</strong></td><td>評估控制狀況</td><td>未控制可以加藥</td></tr>
+          <tr><td><strong>每次改劑量後 10–14 天</strong></td><td>看調整的效果，確認沒有壓過頭</td><td>重複直到控制穩定</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 講者說美國很多獸醫沒有照這些時間點回診，<strong>問題常常就發生在這裡</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 第 10–14 天的回診是在「保護自己」：庫欣的檢查不完美，一定會有偽陽性。如果狗其實不是庫欣，這時就會被壓過頭。及早發現，才不會破壞腎上腺、造成 Addison 甚至死亡。</li>
+          <li><span class="src src-rec">🎤</span> 第 10–14 天時狗還有症狀、皮質醇也還不正常，<strong>沒關係</strong>。Trilostane 的完整效果要<strong>約 30 天</strong>才出現，所以 30 天前不加藥。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.8</span><span class="src src-rec">🎤</span> 每次回診要監測什麼</h3>
+        <ol class="notes">
+          <li><strong>臨床症狀／臨床評分（最重要）</strong>。<span class="src src-rec">🎤</span> 講者根據症狀做決定的機會，遠多於根據任何皮質醇數值。「一定要問症狀。」</li>
+          <li><strong>ACTH 刺激試驗</strong>：
+            <ul>
+              <li>在給藥後 <strong>2–4 小時</strong>開始，整個試驗在給藥後 6 小時內完成。</li>
+              <li>可以用 <strong>1 µg/kg</strong> 的合成 ACTH（診斷時用 5 µg/kg），在美國可以省下不少費用。</li>
+            </ul>
+          </li>
+        </ol>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>每次都要在同一個給藥後時間開始。</strong><span class="src src-rec">🎤</span> 這次 2 小時、下次 4 小時，就是拿蘋果比橘子。要讓護理師和櫃台知道，這隻狗每次回診都要排在差不多的時間。</div></div>
+        <div class="alert alert-info"><span class="alert-icon">📌</span><div>如果當初是用 ACTH 刺激試驗確診，且<strong>刺激後 1 小時皮質醇 &gt; 27 µg/dL</strong>，之後可能需要較高劑量才能控制。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🎯</div>
+      <h2>5. 治療目標與 Δ cortisol</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.9</span><span class="src src-rec">🎤</span> 治療目標</h3>
+        <figure class="fig"><img src="photos/13-treatment-targets.jpg" alt="Treatment Targets 投影片" loading="lazy"><figcaption>📄 p.9　治療目標；左下範例 Δ = −2.2，右上「MISSION OVER-ACCOMPLISHED」＝壓過頭</figcaption></figure>
+        <ul class="notes">
+          <li><strong>最重要：臨床症狀受到控制</strong>。臨床評分持續改善、越低越好，但不能出現腎上腺功能低下的症狀。</li>
+          <li>ACTH 刺激試驗：
+            <ul>
+              <li>刺激後 1 小時皮質醇<strong>約 5.0 µg/dL</strong>。<span class="src src-rec">🎤</span> 有一個可以容忍的範圍，要看臨床控制得多好來判讀。</li>
+              <li><strong>Δ cortisol 要是正值</strong>（Δ = 刺激後 − 刺激前）。</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.9</span><span class="src src-rec">🎤</span> Δ 不變或負值：最多 22%（Woolcock 2016）</h3>
+        <ul class="notes">
+          <li>範例：刺激後 1 小時 1.2、刺激前 3.4，Δ = −2.2。</li>
+          <li><span class="src src-rec">🎤</span> 講者回應早上的提問「刺激前比刺激後高怎麼辦」：<strong>除非狗在開始試驗時非常緊張</strong>，否則這代表可能<strong>控制過頭</strong>，trilostane 劑量太高。Woolcock 研究中的狗開始試驗時並不緊張。</li>
+          <li><span class="src src-rec">🎤</span> 研究中有一隻狗刺激前 5.8、刺激後也是 5.8（Δ = 0）。皮質醇數字看起來正常，但<strong>臨床上完全是 Addison</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 所以常被問「監測時為什麼一定要抽刺激前？」就是這個原因。少了這一管，<strong>約 1/4 的狗可能被誤判</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 講者團隊做的內科專科醫師問卷：<strong>超過 65%</strong> 看到 Δ 為負值或不變時，會判讀為壓過頭，選擇停藥或減藥。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-hand">✍️ 筆記</span> 老師：刺激前比較高，可能是「前面緊張、後面放鬆」</h3>
+        <ol class="notes">
+          <li><strong>0 分鐘採血時最緊張</strong>：剛到醫院、被保定、被抽血，壓力讓內生性 ACTH 上升，把皮質醇推高，所以刺激前偏高。</li>
+          <li><strong>等待的一小時慢慢放鬆</strong>：壓力造成的 ACTH 高峰消退，皮質醇被代謝掉。</li>
+          <li><strong>外源 ACTH 也推不上去</strong>：腎上腺被 trilostane 擋住，儲備很少；試驗又剛好落在給藥後藥效最強的時段。</li>
+        </ol>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><span class="src src-add">💡 補充</span> 緊張只能解釋「為什麼刺激前比較高」，<strong>不能把刺激後的低值合理化</strong>。這個範例刺激後只有 1.2 µg/dL，本身就代表儲備不足（依第 8 節：&lt; 2.0 或 Δ 為負值，停藥或減藥）。如果刺激後落在約 5 µg/dL、只是 Δ 很小，才比較可能是緊張造成的假象。講者的立場也是：<strong>沒有明顯緊張時，負 Δ 先當成壓過頭處理</strong>。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">📉</div>
+      <h2>6. 控制穩定之後與低皮質醇症</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.10</span><span class="src src-rec">🎤</span> 控制好了，然後呢？</h3>
+        <ul class="notes">
+          <li>臨床症狀和評分仍是<strong>最好的</strong>監測工具，所有決策都應以它為主。</li>
+          <li>多數內分泌專科醫師仍建議<strong>每年 1–2 次</strong>某種形式的皮質醇監測（每 6–12 個月），主要是<strong>篩檢低皮質醇症</strong>，因為它可能沒有症狀，只能靠檢查發現。</li>
+          <li>選項：ACTH 刺激試驗，或給藥前皮質醇（pre-pill cortisol）。</li>
+          <li><span class="src src-rec">🎤</span> 控制良好的狗，講者<strong>不會每 1–3 個月</strong>叫回來做刺激試驗。只有出現未控制的症狀時才叫回來調劑量，平常就是一般的年度檢查。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.11</span><span class="src src-rec">🎤</span> 低皮質醇症真的會發生</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>內容</th></tr>
+          <tr><td>發生率</td><td>2 年內約 <strong>15%</strong>，4 年內約 <strong>26%</strong></td></tr>
+          <tr><td>症狀</td><td>約 <strong>33% 沒有症狀</strong>；有症狀時也很模糊，最常見精神差、食慾下降</td></tr>
+          <tr><td>和劑量的關係</td><td>常常<strong>和 trilostane 劑量或用藥時間無關</strong></td></tr>
+          <tr><td>相關因素</td><td>常合併其他疾病，可能影響狗對 trilostane 的敏感度</td></tr>
+          <tr><td>處理</td><td>暫時停藥（drug holiday）和／或降劑量後再開始</td></tr>
+          <tr><td>預後</td><td>約 <strong>75% 在 6 個月內恢復</strong>；<span class="src src-rec">🎤</span> 約 <strong>25% 永久</strong>停留在 Addison 狀態</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 有些狗恢復後不需要再吃 trilostane，這可能是最好的結果。</li>
+          <li><span class="src src-rec">🎤</span> 這些狗<strong>不是全部</strong>在影像上看得到腎上腺出血，很多腎上腺看起來正常。所以原因不一定是出血，尤其是能恢復的那些。</li>
+          <li><span class="src src-rec">🎤</span> 目前有研究在看<strong>腸胃道健康</strong>是否會影響 trilostane 的反應（見第 18 節）。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-hand">✍️ 筆記</span> 真的發生 Addison，可能就無法逆轉</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>可逆（多數）</th><th>不可逆（約 1/4）</th></tr>
+          <tr><td>機轉</td><td>Trilostane 只是暫時擋住酵素</td><td>腎上腺皮質壞死或凋亡</td></tr>
+          <tr><td>病程</td><td>停藥後數週到數月恢復</td><td>永久腎上腺功能低下，終身補充</td></tr>
+        </table></div>
+        <h4><span class="src src-add">💡 補充</span> 比較可能是永久性的線索</h4>
+        <ul class="notes">
+          <li><strong>出現高血鉀、低血鈉</strong>：連礦物皮質素也缺，表示球狀帶也受損。</li>
+          <li>停藥後追蹤刺激試驗（例如每 4–6 週一次），皮質醇一直不回升。</li>
+          <li>停藥好幾個月，仍要靠類固醇補充維持。</li>
+        </ul>
+        <h4><span class="src src-add">💡 補充</span> 處置</h4>
+        <ol class="notes">
+          <li>停 trilostane。</li>
+          <li>有症狀時補充生理劑量 prednisolone；危象依 Addison crisis 處理。</li>
+          <li>電解質異常時加 DOCP 或 fludrocortisone（見 <a href="addisons-disease.html">11 Addison</a>）。</li>
+          <li>定期複驗：恢復了就觀察庫欣是否復發，必要時以較低劑量重新開始；沒恢復就當永久 Addison 管理。</li>
+        </ol>
+        <p class="muted"><span class="src src-add">💡 補充</span> Mitotane 是溶解腎上腺的藥，造成永久 Addison 的機會更高（第 10 節）。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🧪</div>
+      <h2>7. ACTH 刺激試驗 vs 給藥前皮質醇</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.12</span><span class="src src-rec">🎤</span> 用 ACTH 刺激試驗監測</h3>
+        <ul class="notes">
+          <li>原廠建議：維持臨床控制，並<strong>每 3 個月</strong>做一次刺激試驗，刺激後 1 小時皮質醇目標 <strong>1.45–9.1 µg/dL</strong>。</li>
+          <li>對刺激試驗的疑慮：
+            <ul>
+              <li>過去美國以外地區難以取得合成 ACTH。<span class="src src-rec">🎤</span> 尤其歐洲曾經缺貨，連刺激試驗都做不了，才推動了不需要 ACTH 的替代方法。</li>
+              <li>連續檢測的結果變異大，很難前後比較。</li>
+              <li>和臨床症狀相關性差。</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.13</span><span class="src src-rec">🎤</span> 為什麼刺激試驗和症狀對不起來？</h3>
+        <p class="p"><span class="src src-rec">🎤</span> 講者認為和<strong>皮質醇（cortisol）轉成 cortisone</strong> 有關。皮質醇是活性形式，會結合糖皮質素受體、造成症狀；cortisone 是沒有活性的代謝物。</p>
+        <ul class="notes">
+          <li>有報告指出 <strong>trilostane 會加速皮質醇轉成 cortisone</strong>，所以皮質醇下降的幅度遠大於 cortisone。</li>
+          <li><strong>刺激試驗沒有測 cortisone</strong>，所以可能皮質醇很低，狗卻仍有症狀。</li>
+          <li>可能的原因：
+            <ul>
+              <li>腎上腺以外的組織加速轉換？</li>
+              <li>Trilostane 擋住酵素後<strong>堆積的前驅物</strong>，影響了轉換速率？</li>
+              <li>Trilostane 和 ACTH（外源或內生）都會影響 <strong>11β-HSD</strong>。在羊的細胞實驗中，兩者會活化第 2 型（皮質醇 → cortisone 的方向）。</li>
+            </ul>
+          </li>
+          <li><span class="src src-rec">🎤</span> 狗和人對 trilostane 和 ACTH 的反應不同，目前有很多研究在找各物種的原因。</li>
+        </ul>
+        <p class="muted"><span class="src src-add">💡 補充</span> 組織中的 11β-HSD1 可以把 cortisone 再轉回皮質醇，所以血中皮質醇低，不代表組織層級沒有糖皮質素作用。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.14</span><span class="src src-rec">🎤</span> 給藥前皮質醇（pre-pill cortisol）</h3>
+        <ul class="notes">
+          <li>在<strong>下一劑 trilostane 該給的時間</strong>採血。劑量固定時，結果隨時間的變異比刺激試驗小。</li>
+          <li>Ramsey 團隊的研究建議範圍：<strong>1.45–5.0 µg/dL</strong>。</li>
+          <li><span class="src src-rec">🎤</span> <strong>時間很重要</strong>：飼主早上 6 點給藥、門診卻排在 10 點，結果就會受影響。可以請飼主在回診前幾天把給藥時間調到門診時間，或乾脆固定在早上第一個門診時間（例如 8 點）給藥。</li>
+        </ul>
+        <h4>研究的限制</h4>
+        <ul class="notes">
+          <li>「控制良好或不佳」是依<strong>飼主回報的症狀</strong>判定。</li>
+          <li>比較不著重偵測低皮質醇。<span class="src src-rec">🎤</span> 有些被歸為「控制良好」的狗，刺激後 1 小時皮質醇只有 0.25，講者認為這其實是<strong>控制過頭</strong>。</li>
+          <li>可能漏掉：<strong>無症狀的低皮質醇症</strong>，以及 <strong>Δ 為負值</strong>的狗。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🩺</div>
+      <h2>8. 講者怎麼監測 trilostane</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.15</span><span class="src src-rec">🎤</span> 監測流程</h3>
+        <figure class="fig"><img src="photos/13-how-i-monitor.jpg" alt="How I Monitor Trilostane" loading="lazy"><figcaption>📄 p.15　講者的監測流程（右上圖：控制良好時「腳尖試試水溫」）</figcaption></figure>
+        <div class="grid2">
+          <div class="card-mini"><h4>沒有症狀 = 控制良好</h4><ul>
+            <li><strong>給藥前皮質醇</strong>，每 6–12 個月一次（「試試水溫」）</li>
+            <li>≥ 1.45：大致排除壓過頭</li>
+            <li>&lt; 1.45：不代表一定壓過頭，但也不能排除，要做 <strong>ACTH 刺激試驗</strong>，或密切觀察、1 小時後再測</li>
+          </ul></div>
+          <div class="card-mini"><h4>有症狀 = 未控制</h4><ul>
+            <li><strong>ACTH 刺激試驗</strong>最合適</li>
+            <li>&gt; 7–9 µg/dL：增加 trilostane</li>
+            <li>2–7 µg/dL：考慮其他鑑別診斷</li>
+            <li>&lt; 2.0 µg/dL 或 Δ 為負值：停藥或減藥</li>
+          </ul></div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 早上有人問院內皮質醇檢驗。用給藥前皮質醇監測時，<strong>院內檢驗很有用</strong>：拿到 &lt; 1.45 的結果，可以當場再測或直接做刺激試驗，同一次門診就有答案，不必外送再叫回來。</li>
+          <li><span class="src src-rec">🎤</span> 有症狀時刺激試驗最好，因為它不只告訴你哪裡不對，也告訴你怎麼修正，以及<strong>加藥是否安全</strong>。Addison 的某些症狀（例如 PU/PD）也會和皮質醇過多很像。</li>
+          <li>以上數值只是一般性範例；刺激後的數字要依狗的臨床狀況來判讀。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.16</span><span class="src src-rec">🎤</span> 我的方法比你的好嗎？</h3>
+        <p class="p">講者最喜歡的研究之一（Bermejo 2021）比較了多種監測方法，<strong>沒有哪一種比較好</strong>。投影片的結語：「我們其實都是邊做邊想出來的！」</p>
+        <div class="quote">找出適合你的方法，然後在你的病患族群中一致地使用。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🩸</div>
+      <h2>9. 別忘了共病</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.17–18</span><span class="src src-rec">🎤</span> 常見共病與處置</h3>
+        <figure class="fig"><img src="photos/13-comorbidities.jpg" alt="Don't Forget to Recheck" loading="lazy"><figcaption>📄 p.18　共病與處置建議；右下為 metformin 組 3 個月後血糖下降（Miceli 2018）</figcaption></figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>共病</th><th>比例</th><th>講者做法</th></tr>
+          <tr><td><strong>高血壓</strong></td><td>47–82%；&gt; 40% 為重度（&gt; 180 mmHg）</td><td><span class="src src-rec">🎤</span> 只在診斷時就是<strong>重度</strong>才治療（amlodipine?）。多數在皮質醇控制後至少會稍微改善，太積極用 enalapril 可能在控制後造成低血壓。</td></tr>
+          <tr><td><strong>蛋白尿</strong></td><td>31–84%</td><td>避免<strong>同時</strong>開始 trilostane 和 ACEi／ARB。<span class="src src-rec">🎤</span> 先開始 trilostane，初期回診蛋白尿仍持續，再加 ACEi 或 ARB（如 telmisartan）。</td></tr>
+          <tr><td><strong>糖尿病</strong></td><td>約 10%</td><td>胰島素 ± 飲食，<strong>不要拖</strong>。<span class="src src-rec">🎤</span> 診斷庫欣時已有糖尿病，多半是永久性的；庫欣通常是把狗推過門檻的那一步。</td></tr>
+          <tr><td>預防糖尿病？</td><td></td><td><strong>Metformin 10 mg/kg q12h</strong>。<span class="src src-rec">🎤</span> 有一個研究用在庫欣犬，對預防糖尿病有正面效果，可以考慮。</td></tr>
+          <tr><td><strong>高凝血</strong></td><td></td><td>Clopidogrel?<span class="src src-rec">🎤</span> 相對安全、不太會傷害病患，尤其是<strong>血小板數達百萬以上</strong>時。</td></tr>
+          <tr><td><strong>膽道疾病／黏液囊腫</strong></td><td>約 20%</td><td>Ursodiol?<span class="src src-rec">🎤</span> 尤其是 Sheltie 等好發品種，可以當預防或延緩進展。</td></tr>
+          <tr><td><strong>肌肉僵直</strong></td><td></td><td><strong>控制庫欣後最不容易改善</strong>。<span class="src src-rec">🎤</span> 診斷時走路像木樁腿，之後大概一輩子都是。要先降低飼主的期待。</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> Trilostane 和 ACEi／ARB 要當成 NSAIDs 看待</h3>
+        <ul class="notes">
+          <li>和 Tardo 說的一樣：<strong>狗不吃或生病時，這些藥全部先停</strong>，繼續給副作用風險會大幅上升。</li>
+          <li>它們的副作用重疊很多。同時開始，狗出現腸胃不適時，<strong>分不出是哪個藥造成的</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 最常犯的錯</h3>
+        <div class="alert alert-danger"><span class="alert-icon">❗</span><div>診斷時發現輕度高血壓或蛋白尿，決定先等皮質醇控制，<strong>結果忘了回頭複查</strong>。沒有在診斷時處理的共病，控制後一定要確認它是消失了還是持續存在。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-hand">✍️ 筆記</span> 老師覺得可以加 clopidogrel，因為副作用還好</h3>
+        <ul class="notes">
+          <li>庫欣犬容易高凝血（凝血因子與纖維蛋白原上升、抗凝血酶下降、血小板活性增加），最怕的是<strong>肺栓塞</strong>。</li>
+          <li>Clopidogrel 副作用少（偶爾腸胃不適，嚴重出血少見），而且便宜。常用 1–2 mg/kg PO q24h。</li>
+        </ul>
+        <h4><span class="src src-add">💡 補充</span> 要留意的地方</h4>
+        <ul class="notes">
+          <li>ACVECC 的 CURATIVE 共識（2019）大致認為，<strong>單純庫欣</strong>的血栓風險不足以支持常規預防；合併其他風險因子（PLN、IMHA、腫瘤、準備手術、外源類固醇等）時才建議考慮。<em>（依記憶整理，引用前請核對原文）</em></li>
+          <li>庫欣的血栓多為靜脈性（PTE、門脈），理論上 rivaroxaban 等抗凝血劑更對症；clopidogrel 是抗血小板藥。</li>
+          <li>手術前約 5–7 天停藥；和 NSAIDs 併用會增加腸胃出血風險。</li>
+        </ul>
+        <div class="alert alert-success"><span class="alert-icon">✅</span><div><strong>合理做法：</strong>庫欣合併其他血栓風險因子時建議加；單純庫欣、沒有其他風險時，加了不太會有害，可以和飼主討論。講者也提到血小板數很高時更值得加。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">⚗️</div>
+      <h2>10. Mitotane（Lysodren®）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.20</span><span class="src src-rec">🎤</span> 腎上腺溶解療法</h3>
+        <ul class="notes">
+          <li>Trilostane 出現前的傳統藥物，對分泌皮質醇的<strong>腎上腺皮質細胞有細胞毒性</strong>。</li>
+          <li>仿單外使用。<span class="src src-rec">🎤</span> 人醫正在淘汰這個藥，越來越難取得、價格越來越貴，講者通常透過<strong>調劑藥局</strong>取得，比較便宜也比較好拿。</li>
+          <li>現在多保留給<strong>無法耐受 trilostane</strong>的狗，<span class="src src-rec">🎤</span> 也包括 Tardo 提到的、好幾個月都控制不好或劑量一直往上加的狗。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>階段</th><th>劑量</th><th>重點</th></tr>
+          <tr><td><strong>誘導期</strong></td><td>35–50 mg/kg/<strong>天</strong></td><td><span class="src src-rec">🎤</span> 依體表面積給：<strong>大型犬用 35、小型犬用 50</strong>。症狀一改變就盡快回診；最晚 5–7 天回診做刺激試驗</td></tr>
+          <tr><td><strong>維持期</strong></td><td>50–75 mg/kg/<strong>週</strong>，分次給</td><td>把控制時的「一天劑量」分到整週</td></tr>
+          <tr><td>消融法（舊）</td><td>75–100 mg/kg/天</td><td>刻意造成 Addison。<span class="src src-rec">🎤</span> Addison 確實比庫欣好監測，但罹病率和死亡率高，現在多數人不用；舊文獻會看到</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 最適合<strong>症狀很明顯、飼主容易在家觀察</strong>的狗，例如嚴重 PU/PD。飲水量一下降，就要飼主馬上帶回來確認。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.21</span><span class="src src-rec">🎤</span> 範例：21.4 kg、嚴重 PU/PD 與多食</h3>
+        <figure class="fig"><img src="photos/13-mitotane-example.jpg" alt="Mitotane 範例" loading="lazy"><figcaption>📄 p.21　Mitotane 誘導期到維持期的實際劑量</figcaption></figure>
+        <ol class="notes">
+          <li><strong>誘導</strong>：大型犬劑量 35 mg/kg/day × 21.4 kg ≈ <strong>750 mg/天</strong>。飼主在家觀察飲水、尿量和食慾。</li>
+          <li><strong>回診</strong>：症狀改善時，或 5–7 天後。還沒控制就再給 5 天，或給到症狀改變。</li>
+          <li><strong>第 10 天</strong>：PU/PD 和多食都消失。刺激試驗 0 小時 1.4、1 小時 3.7 µg/dL，確認控制。</li>
+          <li><strong>維持</strong>：一天 750 mg 改成<strong>每週 750 mg</strong>，週一、三、五各 250 mg。<span class="src src-rec">🎤</span> 怎麼分沒有科學根據，選錠劑好切、飼主好記的方式；講者喜歡一三五，飼主比較能持續。</li>
+          <li><strong>復發</strong>：PU/PD 又出現，就提高每週總量，750 → <strong>1000 mg/週</strong>：週一 375、週三 250、週五 375 mg。<span class="src src-rec">🎤</span> 也可以週一、週四各 500 mg，重點是每週總量和給藥頻率一致。</li>
+        </ol>
+        <h4><span class="src src-add">💡 補充</span> 換算與提醒</h4>
+        <ul class="notes">
+          <li>Lysodren 是 500 mg 可切錠，所以劑量會湊成 250 或 125 的倍數。</li>
+          <li>750 mg/週 ≈ 35 mg/kg/週，比講義寫的維持劑量 50–75 還低，算是保守起步；1000 mg/週 ≈ 47 mg/kg/週。</li>
+          <li>飼主發現<strong>食慾下降</strong>要立刻停藥回診；可備少量 prednisolone 應急。隨餐（含油脂）給可增加吸收。</li>
+          <li>給太多可能造成永久性 Addison（見第 6 節）。</li>
+        </ul>
+        <p class="p"><span class="src src-rec">🎤</span> 結論：可靠且有效，但屬仿單外使用，是<strong>無法耐受 trilostane 的狗</strong>的好選擇。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🧠</div>
+      <h2>11. 垂體切除術（Hypophysectomy）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.22</span><span class="src src-rec">🎤</span> 根治性療法與條件</h3>
+        <ul class="notes">
+          <li>手術移除垂體，是庫欣的<strong>根治性療法</strong>。</li>
+          <li>需要：
+            <ul>
+              <li><strong>技術極好的神經外科醫師</strong>。<span class="src src-rec">🎤</span> 在病患嘴裡一個很小的洞裡操作，需要大量時間和練習。</li>
+              <li>24/7 加護能力。</li>
+              <li>神經科、急重症、內科醫師和護理師組成的團隊。</li>
+            </ul>
+          </li>
+          <li>最危險的時期：
+            <ul>
+              <li><strong>圍手術期</strong>：死亡率 8–15%。<span class="src src-rec">🎤</span> 最擔心的是<strong>出血</strong>。</li>
+              <li><strong>術後 4–7 天</strong>：<span class="src src-rec">🎤</span> 重點在水分與電解質平衡，因為垂體和它分泌的荷爾蒙都被拿掉了。</li>
+            </ul>
+          </li>
+          <li>Texas A&amp;M 費用：<strong>小腫瘤約 15,000–18,000 美元</strong>；<span class="src src-rec">🎤</span> <strong>大腺瘤平均約 25,000 美元</strong>。有飼主從世界各地飛來做這個手術。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.23–25</span><span class="src src-rec">🎤</span> 手術方式（照片與影片）</h3>
+        <ul class="notes">
+          <li><strong>經蝶竇入路</strong>：從口腔、穿過軟顎，在垂體窩的高度進入顱底，鑽開垂體窩底部。</li>
+          <li><span class="src src-rec">🎤</span> 投影片上是一隻<strong>貓</strong>，是他們開過最大的腫瘤，正常腦組織被擠到顱腔前方。整天的手術，術後竟然恢復得不錯；術前／術後影像可以看到腫瘤原本的位置變成空腔。</li>
+          <li>腫瘤暴露後，神經外科醫師基本上就是把它「<strong>挖出來</strong>」。</li>
+          <li><strong>不可能 100% 移除</strong>，至少會留下顯微病灶，這和之後的復發有關。</li>
+          <li>手術時間：<span class="src src-rec">🎤</span> 小腫瘤通常 <strong>5–6 小時</strong>；大腫瘤可能 <strong>8–12 小時</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.26</span><span class="src src-rec">🎤</span> 術後照護</h3>
+        <figure class="fig"><img src="photos/13-hypophysectomy-postop.jpg" alt="垂體切除術後照護" loading="lazy"><figcaption>📄 p.26　術後照護；右圖這隻狗術後發生嚴重肌炎，雙眼突出，最後摘除雙眼</figcaption></figure>
+        <h4>術後立即期</h4>
+        <ul class="notes">
+          <li><strong>管理水分平衡與電解質</strong>：頻繁驗血、護理。<span class="src src-rec">🎤</span> 拿掉垂體會造成很嚴重的紊亂，需要頻繁調整輸液和電解質，有專職的急重症團隊可以減輕內科住院醫師的負擔。</li>
+          <li><strong>神經狀態與併發症</strong>。</li>
+          <li>手術時就放<strong>餵食管</strong>（給藥和營養）。</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><span class="src src-rec">🎤</span> <strong>照片中的狗</strong>：術後發生原因不明的<strong>嚴重肌炎</strong>，雙眼突出（exophthalmos），最後必須<strong>摘除雙眼</strong>。講者問過所有做這個手術的人，都不知道為什麼。這是他們唯一一次遇到這種併發症，提醒術後可能出現怪事。</div></div>
+        <h4>術後需要的補充</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>補充</th><th>原因</th><th>多少比例要終身</th></tr>
+          <tr><td><strong>糖皮質素</strong></td><td>沒有 ACTH</td><td>全部</td></tr>
+          <tr><td><strong>Levothyroxine</strong></td><td>沒有 TSH（次發性甲狀腺功能低下）</td><td>全部</td></tr>
+          <tr><td><strong>DDAVP</strong></td><td>中樞性尿崩症</td><td><span class="src src-rec">🎤</span> 術後<strong>全部</strong>都會開始；約 <strong>60%</strong> 需要終身</td></tr>
+          <tr><td><strong>乾眼症治療</strong></td><td>淚腺和瞼板腺的神經受損</td><td><span class="src src-rec">🎤</span> <strong>30–45%</strong> 術後發生；略少於一半需要長期治療</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-hand">✍️ 筆記</span> 30–45% 可能會造成乾眼症</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 原因是手術區域會傷到<strong>淚腺和瞼板腺的神經支配</strong>。</li>
+          <li><span class="src src-add">💡 補充</span> 經蝶竇入路靠近翼腭窩，控制淚腺分泌的副交感神經（顏面神經 → 大岩神經 → 翼腭神經節 → 淚腺）經過這裡。</li>
+          <li><span class="src src-add">💡 補充</span> 實務做法：
+            <ul>
+              <li><strong>術前</strong>先做 Schirmer 淚液試驗建立基準，術後定期追蹤。</li>
+              <li>淚液下降：人工淚液、cyclosporine 或 tacrolimus 眼藥；神經性乾眼可考慮 pilocarpine。</li>
+              <li>術前就告知飼主：除了終身吃藥，可能還要每天點眼藥。</li>
+            </ul>
+          </li>
+          <li><span class="src src-add">💡 補充</span> 為什麼不用補礦物皮質素？Aldosterone 主要受 RAAS 和血鉀調控，不靠 ACTH，球狀帶還能自己分泌。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.27</span><span class="src src-rec">🎤</span> 一定要主動告知飼主</h3>
+        <div class="alert alert-danger"><span class="alert-icon">❗</span><div><span class="src src-rec">🎤</span> Texas A&amp;M 開始提供這個手術後發現：飼主<strong>自己上網查到</strong>這個選項，而當初診斷時獸醫從沒提過，他們會非常生氣，甚至說再也不回原本的醫院。<strong>不要假設飼主不會選擇它</strong>，有時願意花錢、長途跋涉來做手術的人會讓你很驚訝。<br><strong>做法：提出這個選項；飼主拒絕就寫進病歷</strong>，以後他們不高興時，你有紀錄可以依靠。</div></div>
+        <div class="tbl-wrap"><table>
+          <tr><th>預後</th><th>數字</th></tr>
+          <tr><td>1 年存活率</td><td><strong>84–91%</strong></td></tr>
+          <tr><td>4 年存活率</td><td><strong>68–72%</strong></td></tr>
+          <tr><td>復發</td><td>約 23–27%，通常在術後 <strong>18 個月以後</strong></td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 這些通常是老狗，等到出現復發症狀時，可能已經接近壽命的尾聲。</li>
+          <li>復發風險較高：術前<strong>基礎 UCCR 較高</strong>；<strong>垂體/腦比（P:B ratio）較高</strong>（Tardo 講過，見 <a href="cushings-diagnosis-treatment.html">12</a>）。</li>
+          <li><strong>腫瘤越大，預後越差</strong>：大腺瘤更貴，術後併發症也更多。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">☢️</div>
+      <h2>12. 垂體放射治療</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.28</span><span class="src src-rec">🎤</span> 是治療大腫瘤，不是治療庫欣</h3>
+        <ul class="notes">
+          <li>只有約 <strong>20%（1/5）</strong>的狗 ACTH 分泌會下降，而且可能放療後好幾個月才看得到。</li>
+          <li><strong>大多數仍需要長期吃 trilostane</strong>。</li>
+          <li>用途：大腺瘤造成<strong>中樞神經症狀</strong>時，用來縮小腫瘤；放療後數個月腫瘤可能還在持續縮小。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 13 ══ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🧬</div>
+      <h2>13. 類固醇合成阻斷劑</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.30</span><span class="src src-rec">🎤</span> 合成路徑與各藥作用點</h3>
+        <figure class="fig"><img src="photos/13-steroidogenesis.jpg" alt="Steroidogenesis Blockers" loading="lazy"><figcaption>📄 p.30　皮質醇合成路徑；各色 ✕ 為不同藥物的作用點，* 為在動物身上研究過的藥</figcaption></figure>
+        <p class="p"><strong>路徑：</strong>膽固醇 →（StAR 運進粒線體，限速步驟）→ CYP11A1 → 孕烯醇酮 →（3β-HSD／CYP17A1）→ 17-OH 黃體素 → CYP21A2 → 11-去氧皮質醇 → CYP11B1 → <strong>皮質醇</strong>。最上游是 ACTH 結合 MC2R 啟動整條路徑。</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>顏色</th><th>藥物</th><th>作用點</th><th>證據</th></tr>
+          <tr><td>⬛</td><td><strong>ATR-101*</strong></td><td>抑制 ACAT1，斷掉膽固醇原料庫</td><td>犬小型研究</td></tr>
+          <tr><td>🟦</td><td><strong>Ketoconazole*</strong></td><td>CYP11A1、CYP17、CYP11B1</td><td>犬有使用，效果不穩</td></tr>
+          <tr><td>🟪</td><td>SF-1 反向促效劑</td><td>下調 MC2R 和 3β-HSD</td><td>體外實驗</td></tr>
+          <tr><td>🟥</td><td>Abiraterone</td><td>CYP17A1（CYP21A2、CYP11B1 打問號）</td><td>體外實驗</td></tr>
+          <tr><td>🟩</td><td>Osilodrostat</td><td>CYP11B1</td><td>Novartis 臨床前試驗</td></tr>
+          <tr><td>—</td><td><strong>Mitotane*</strong></td><td>溶解腎上腺皮質</td><td>長期使用經驗</td></tr>
+          <tr><td>（圖上沒畫）</td><td><strong>Trilostane</strong></td><td>3β-HSD（紫色 ✕ 的位置）</td><td>標準治療</td></tr>
+        </table></div>
+        <div class="alert alert-info"><span class="alert-icon">🎤</span><div><strong>Osilodrostat</strong>：Novartis 的藥，正在做人的臨床試驗，試驗中也在狗身上測試。但<strong>在狗會造成很嚴重的副作用</strong>，看起來不會是狗的長期選項，可能只適合人。</div></div>
+        <h4><span class="src src-add">💡 補充</span> 卡在哪一步很重要</h4>
+        <ul class="notes">
+          <li><strong>越上游</strong>（StAR、CYP11A1）：連 aldosterone 和性荷爾蒙一起擋，較容易礦物皮質素不足。</li>
+          <li><strong>越下游</strong>（CYP11B1）：選擇性高，但前驅物（11-去氧皮質固酮等）堆積，在人會造成高血壓、低血鉀。</li>
+          <li><strong>CYP17A1</strong>（abiraterone）：路徑被推向礦物皮質素那一側，人類同樣有高血壓、低血鉀。</li>
+          <li>Trilostane 擋 3β-HSD 後前驅物堆積，也可能是第 7 節「刺激試驗和症狀對不起來」的原因之一。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.31</span><span class="src src-rec">🎤</span> ATR-101</h3>
+        <ul class="notes">
+          <li><strong>ACAT1 選擇性抑制劑</strong>。ACAT1 把細胞內游離膽固醇酯化成膽固醇酯，膽固醇酯是腎上腺皮質合成荷爾蒙的原料庫。</li>
+          <li>抑制後膽固醇酯減少、<strong>游離膽固醇堆積</strong>，皮質細胞凋亡死亡。</li>
+          <li>研究：10 隻庫欣犬（7 隻 PDH、3 隻 ADH）。3 mg/kg SID 7 天，再 30 mg/kg SID 7 或 21 天。</li>
+          <li>結果：
+            <ul>
+              <li>刺激後皮質醇：<strong>9/10 下降</strong>，平均下降 50% ± 17%。</li>
+              <li>臨床症狀：7 隻改善、2 隻不變、1 隻惡化。</li>
+              <li>副作用：220 天內 4 次嘔吐、1 次腹瀉；ALT 上升、HCT 和白蛋白輕微下降，<span class="src src-rec">🎤</span> 不一定需要停藥。</li>
+            </ul>
+          </li>
+          <li><span class="src src-rec">🎤</span> 結論：值得進一步研究。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.32</span><span class="src src-rec">🎤</span> Ketoconazole</h3>
+        <ul class="notes">
+          <li>抗黴菌藥，抑制 P450scc、CYP17A1、CYP11B1。</li>
+          <li>劑量：5 mg/kg q12h 7 天，之後 12–15 mg/kg q12h。報告中成功率最高的是 5–25 mg/kg q12h（中位數 12.5）。</li>
+          <li>71% 的 ACVIM／ACVD 專科醫師認為超過一半的病例無效。</li>
+          <li>療效：
+            <ul>
+              <li>臨床改善 50–90%，<span class="src src-rec">🎤</span> 多數研究平均約 75%。</li>
+              <li>刺激後皮質醇 &lt; 10 µg/dL 約 69%。<span class="src src-rec">🎤</span> 但目標是約 5，&lt; 10 不代表臨床控制良好。</li>
+            </ul>
+          </li>
+          <li>副作用：ketoconazole 約 <strong>70%</strong>，trilostane 約 0–18%。厭食、嘔吐、腹瀉；&gt; 7.5 mg/kg q12h 時 ALT 可逆性上升。<span class="src src-rec">🎤</span> 劑量越高副作用越多。</li>
+        </ul>
+        <p class="p"><strong>多數人不認為它是好的長期選項。</strong></p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.33</span><span class="src src-rec">🎤</span> Carbenoxolone</h3>
+        <ul class="notes">
+          <li><strong>11β-HSD 抑制劑</strong>（負責皮質醇與 cortisone 轉換的酵素）。</li>
+          <li>ACTH 依賴型庫欣犬，60–80 mg/kg/天，6 週：基礎與刺激後皮質醇下降，但仍高於健康犬，<strong>PU/PD 持續</strong>。</li>
+          <li>全部改用 trilostane 後，<strong>全部達到控制與臨床緩解</strong>。<span class="src src-rec">🎤</span> 沒有比 trilostane 好。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 14 ══ -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🎯</div>
+      <h2>14. ACTH 阻斷劑：垂體腫瘤的受體</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.34</span><span class="src src-rec">🎤</span> 腫瘤位置與受體表現</h3>
+        <figure class="fig"><img src="photos/13-acth-blockers.jpg" alt="ACTH Blockers" loading="lazy"><figcaption>📄 p.34　垂體腫瘤位置、POMC 衍生物與受體表現（犬與人不同）</figcaption></figure>
+        <ul class="notes">
+          <li>腫瘤位置：<strong>前葉遠側部（pars distalis）約 70%</strong>，<strong>中間部（pars intermedia）約 30%</strong>。<span class="src src-rec">🎤</span> 位置不同，荷爾蒙濃度和藥效也可能不同。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>犬 ACTH 腫瘤</th><th>人 ACTH 腫瘤</th></tr>
+          <tr><td>受體表現</td><td><strong>SST2 最高</strong> &gt; 多巴胺 D2（中等）&gt; <strong>SST5 最低</strong></td><td><strong>SST5 最高</strong></td></tr>
+          <tr><td>理論上較對症的藥</td><td>Octreotide（SST2）</td><td>Pasireotide（SST5）</td></tr>
+          <tr><td>實際情況</td><td><span class="src src-rec">🎤</span> 理論上 octreotide 應該比較好，<strong>結果並不是</strong>（第 17 節）</td><td>Pasireotide 已核准</td></tr>
+        </table></div>
+        <div class="quote">記法：狗是 SST2，人是 SST5。<span class="quote-zh">Pasireotide 對 SST2 的親和力比 octreotide 低約 2.5 倍。</span></div>
+        <p class="muted"><span class="src src-add">💡 補充</span> 人類高皮質醇會下調促腎上腺皮質素細胞的 SST2，所以人的腫瘤主要剩 SST5。</p>
+        <ul class="notes">
+          <li>D2 中等表現：對應 <strong>selegiline、cabergoline</strong>。</li>
+          <li><strong>視黃酸、Gefitinib</strong>（體外有效）：阻斷 <strong>POMC 轉錄</strong>。POMC 是 ACTH 的前驅物（也會切出 α-MSH、β-endorphin 等），擋住轉錄就能降低 ACTH。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 15 ══ -->
+  <div class="section" id="s15">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🧠</div>
+      <h2>15. Selegiline 與 Cabergoline（多巴胺作用）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.35</span><span class="src src-rec">🎤</span> Selegiline</h3>
+        <ul class="notes">
+          <li>多巴胺促效作用 + 不可逆 MAO-B 抑制劑。提高中樞多巴胺，降低 ACTH；<strong>對中間部腫瘤效果最好</strong>（約 30% 的犬腫瘤）。<span class="src src-rec">🎤</span> 可惜生前沒有好方法知道腫瘤長在哪一部。</li>
+          <li><strong>單獨使用 1–2 mg/kg q24h：75–100% 無效</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 早期研究中多數飼主覺得狗變好了，推測是代謝產物 <strong>amphetamine</strong>（和 phenylethylamine）讓狗看起來更有精神，<strong>「是假象」</strong>，不是真的治療了庫欣。</li>
+          <li><strong>Selegiline 1 mg/kg SID + trilostane 0.5 mg/kg BID</strong>（n=15）：
+            <ul>
+              <li>臨床和皮質醇控制與單用 trilostane 相近。</li>
+              <li><strong>沒有出現 trilostane 相關的腎上腺變大</strong>，但內生性 ACTH 沒有差異，原因不明。</li>
+              <li>6 個月時三酸甘油酯較低（144 vs 295）。<span class="src src-rec">🎤</span> 但升高本來就不嚴重，臨床意義不明。</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.36</span><span class="src src-rec">🎤</span> Cabergoline</h3>
+        <figure class="fig"><img src="photos/13-cabergoline.jpg" alt="Cabergoline" loading="lazy"><figcaption>📄 p.36　Cabergoline 單獨使用與合併 trilostane</figcaption></figure>
+        <h4>單獨使用（Castillo 2008）</h4>
+        <ul class="notes">
+          <li>40 隻庫欣犬，<strong>23 mcg/kg 每週一、三、五</strong>。<span class="src src-rec">🎤</span> 這些是<strong>小腺瘤</strong>的狗。</li>
+          <li><strong>42.5% 有反應</strong>。1 年時，和 ketoconazole 相比：ACTH 下降、腫瘤縮小、存活率較高。</li>
+        </ul>
+        <h4>合併 trilostane（Golinelli，ACVIM 2024 摘要）</h4>
+        <ul class="notes">
+          <li>Cabergoline 23 mcg/kg q48h + trilostane 0.5 mg/kg q24h，對照單用 trilostane。</li>
+          <li>臨床評分、USG、內生性 ACTH、P:B ratio <strong>都沒有差異</strong>。</li>
+          <li><strong>可能減緩垂體腫瘤生長</strong>：合併組一開始腫瘤就比較高；1 年時只有單用 trilostane 組的 P:B ratio 比第 0 天高。<span class="src src-rec">🎤</span> 講者認為 <strong>P:B ratio 是比較重要的預後指標</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 適合<strong>擔心腫瘤長大</strong>的狗：trilostane 解除負回饋、內生性 ACTH 上升，可能刺激腫瘤；加上 cabergoline 試著抵消。</li>
+          <li><span class="src src-rec">🎤</span> 有報告對<strong>大腺瘤</strong>改成 <strong>23 mcg/kg 每天給</strong>，更積極地壓制腫瘤。</li>
+        </ul>
+        <h4><span class="src src-add">💡 補充</span> 解讀與實務</h4>
+        <ul class="notes">
+          <li>單獨使用的對照組是 ketoconazole（本身就不好），「比 ketoconazole 好」說服力有限。</li>
+          <li>合併研究是摘要、未經同儕審查；兩組基準不一致，「沒長大」可能部分是均值回歸。</li>
+          <li>劑量很小：10 kg 狗 = 0.23 mg，人用 0.5 mg 錠不好分，常需調劑；歐洲有獸醫用口服液（Galastop®，50 mcg/mL）。</li>
+          <li>副作用：嘔吐、食慾差、精神差，隨餐給可減輕。會抑制泌乳素，懷孕犬禁用。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 16 ══ -->
+  <div class="section" id="s16">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🥕</div>
+      <h2>16. 視黃酸（Retinoic Acid）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.37</span><span class="src src-rec">🎤</span> 機轉與犬的研究</h3>
+        <figure class="fig"><img src="photos/13-retinoic-acid.jpg" alt="Retinoic Acid" loading="lazy"><figcaption>📄 p.37　視黃酸：機轉、9-cis-RA 單獨與合併 trilostane；右側為三種異構物可互相轉換</figcaption></figure>
+        <p class="p"><span class="src src-rec">🎤</span> 講者認為這是<strong>從人醫來的、比較令人期待的替代療法之一</strong>。</p>
+        <ul class="notes">
+          <li>阻斷 <strong>POMC 轉錄</strong> → ACTH 下降；同時抑制腫瘤增生、增加分泌 ACTH 的腫瘤細胞死亡。</li>
+          <li><strong>9-cis-RA 2 mg/kg SID</strong>：
+            <ul>
+              <li>ACTH、α-MSH、UCCR 下降，症狀改善。</li>
+              <li><strong>22 隻中 21 隻腫瘤縮小</strong>。</li>
+              <li>唯一副作用：1 隻腳墊角化過度。</li>
+            </ul>
+          </li>
+          <li><strong>9-cis-RA + trilostane</strong>（用 3–4 mg/kg BID 仍只部分反應的狗）：
+            <ul>
+              <li><strong>8 隻中 5 隻臨床緩解</strong>，6 個月時垂體腫瘤縮小。</li>
+              <li>3 個月內逆轉 trilostane 造成的 ACTH 上升，6/8 恢復正常。</li>
+              <li>ALP、ALT、膽固醇、三酸甘油酯進一步改善。</li>
+            </ul>
+          </li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>市售維生素 A？對 PDH 無效。</strong><span class="src src-add">💡 補充</span> 市售的是 retinol（原料、儲存形式），要經過受嚴格調控的兩步轉換才會變成視黃酸；多吃只會存進肝臟，垂體濃度不會上升。要用的是<strong>處方的視黃酸藥物</strong>。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.38</span><span class="src src-rec">🎤</span> 取得與費用：9-cis vs 13-cis</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>9-cis-RA（alitretinoin）</th><th>13-cis-RA（isotretinoin, Accutane®）</th></tr>
+          <tr><td>取得</td><td>Toctino®、Hanzema®；<strong>美國買不到</strong>，網路藥局很貴</td><td>美國常用的痤瘡藥，容易取得</td></tr>
+          <tr><td>價格（30 顆）</td><td>約 768 美元</td><td>約 43 美元</td></tr>
+          <tr><td>犬的經驗</td><td>上述庫欣研究</td><td>1–3 mg/kg/day，用於皮膚、腫瘤適應症；<strong>尚無庫欣研究</strong></td></tr>
+          <tr><td>副作用</td><td></td><td>約 25%：三酸甘油酯／膽固醇上升、ALT／ALP／總膽紅素上升、<strong>乾眼症</strong>、<strong>強烈致畸胎</strong></td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 人類庫欣病人用 13-cis-RA 加 <strong>cabergoline</strong>：視黃酸提高促腎上腺皮質素細胞對多巴胺促效劑的敏感度，合併效果比單用任一種都好。</li>
+          <li><span class="src src-rec">🎤</span> 期待在庫欣犬身上也能藉此提高 cabergoline 的效果。</li>
+          <li><span class="src src-rec">🎤</span> 有繁殖用途或未絕育的動物不建議使用。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-hand">✍️ 筆記</span> 老師：比較新的人醫研究支持，可以考慮</h3>
+        <ul class="notes">
+          <li>講義右側的結構圖畫出 9-cis、13-cis、ATRA 三種異構物之間的<strong>雙向箭頭</strong>：它們在體內可以互相轉換。這是「用便宜的 13-cis 取代 9-cis」的依據。</li>
+          <li>人類 Cushing's disease 有小型研究用 isotretinoin，部分病人尿游離皮質醇下降或恢復正常；合併 cabergoline 更好。<em>（病例數與結果依記憶整理，未核對原文）</em></li>
+        </ul>
+        <h4><span class="src src-add">💡 補充</span> 在狗用 13-cis-RA 要注意</h4>
+        <ul class="notes">
+          <li>屬 off-label 嘗試，要充分告知飼主。</li>
+          <li>開始前及每 1–3 個月：血脂（庫欣犬本來就高）、肝指數、<strong>Schirmer 淚液試驗</strong>，配合 ACTH 或皮質醇追蹤療效。</li>
+          <li>家中有孕婦或可能懷孕的人<strong>不可徒手接觸藥物</strong>。</li>
+          <li>適合考慮：trilostane 高劑量仍部分反應、擔心腫瘤長大但不考慮手術或放療、想「垂體＋腎上腺」雙管齊下（13-cis-RA ± cabergoline + trilostane）。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 17 ══ -->
+  <div class="section" id="s17">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">💉</div>
+      <h2>17. 體抑素類似物</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.39</span><span class="src src-rec">🎤</span> Pasireotide 與 Octreotide</h3>
+        <figure class="fig"><img src="photos/13-somatostatin.jpg" alt="Somatostatin Analogs" loading="lazy"><figcaption>📄 p.39　體抑素類似物；pasireotide 在美國約 23,000 美元</figcaption></figure>
+        <h4>Pasireotide</h4>
+        <ul class="notes">
+          <li>結合 SST 1、2、3、5，對 SST5 親和力最強；狗的腫瘤主要表現 SST2。<span class="src src-rec">🎤</span> 雖然對「不是主要表現」的受體親和力較高，在狗身上<strong>反而比 octreotide 有效</strong>。</li>
+          <li>在 trilostane 或 mitotane 達到控制後加上去：<strong>6 隻 MRI 指標改善（腫瘤縮小），3 隻腫瘤變大</strong>。</li>
+          <li>單獨治療 PDH 6 個月：臨床症狀、ACTH、UCCR、<strong>腫瘤大小</strong>都下降。</li>
+          <li><span class="src src-rec">🎤</span> 美國只有一家廠商，不論劑量都賣 <strong>23,000 美元</strong>。有一位飼主真的買了，用在一隻狗身上，<strong>看到正面的臨床效果</strong>。劑量：<strong>0.03 mg/kg q12h</strong>。</li>
+        </ul>
+        <h4>Octreotide</h4>
+        <ul class="notes">
+          <li>在<strong>健康犬和胰島素瘤犬</strong>身上，降低 ACTH 或皮質醇都無效。<span class="src src-rec">🎤</span> 但這些研究<strong>不是在庫欣犬身上做的</strong>。</li>
+          <li>真正的用途：<strong>確認食物依賴型 HC</strong>，阻斷 GIP，防止餐後皮質醇上升（見第 2 節）。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>Pasireotide</th><th>Octreotide</th></tr>
+          <tr><td>主要受體</td><td>SST5（也結合 1、2、3）</td><td>SST2</td></tr>
+          <tr><td>理論匹配度（狗）</td><td>較差</td><td>較好</td></tr>
+          <tr><td>實際降 ACTH／皮質醇</td><td><strong>有效</strong></td><td>無效（非庫欣犬）</td></tr>
+          <tr><td>縮小腫瘤</td><td>有，個體差異大</td><td>無資料</td></tr>
+          <tr><td>主要用途</td><td>研究性治療</td><td><strong>診斷食物依賴型 HC</strong></td></tr>
+        </table></div>
+        <p class="muted"><span class="src src-add">💡 補充</span> 人醫經驗：pasireotide 常造成<strong>高血糖</strong>（SST5 抑制胰島素與腸泌素），也可能造成膽結石（抑制膽囊收縮）。庫欣犬本來就有約 10% 糖尿病、約 20% 膽囊黏液囊腫，用之前要考慮。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 18 ══ -->
+  <div class="section" id="s18">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🦠</div>
+      <h2>18. 腸–腦軸與菌叢失衡</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.40</span><span class="src src-rec">🎤</span> HPA 軸與腸道菌叢互相影響</h3>
+        <ul class="notes">
+          <li>慢性皮質醇過多或壓力：皮質醇進入循環 → 經腸肝循環進入消化道 → 腸道與微生物暴露在皮質醇中 → 再回到血液 → 代謝物出現在糞便。</li>
+          <li><strong>微生物群調節 HPA 軸，HPA 軸也調節微生物群</strong>。影響營養可利用性、膽酸代謝、短鏈脂肪酸（SCFA）生成和神經傳導物質。</li>
+          <li><span class="src src-rec">🎤</span> 庫欣犬的菌叢改變，可能也會<strong>影響 trilostane 的反應和控制</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.41</span><span class="src src-rec">🎤</span> 庫欣造成的菌叢失衡</h3>
+        <figure class="fig"><img src="photos/13-dysbiosis.jpg" alt="HC Induced Dysbiosis" loading="lazy"><figcaption>📄 p.41　庫欣引起的菌叢失衡與可能的治療方向</figcaption></figure>
+        <ul class="notes">
+          <li>庫欣犬：<strong>菌量減少、多樣性下降</strong>；<strong>變形菌門（Proteobacteria）增加</strong>、厚壁菌門（Firmicutes）減少。</li>
+          <li>人類：這些變化和 HbA1c、收縮壓、舒張壓、皮質醇正相關；伴隨發炎、LPS 上升、脂肪增加、胰島素阻抗。<strong>糞便移植（FMT）可提高胰島素敏感性</strong>。</li>
+          <li>慢性壓力下 SCFA 下降（人和狗），<span class="src src-rec">🎤</span> 會影響腸道上皮細胞健康。</li>
+        </ul>
+        <p class="muted"><span class="src src-add">💡 補充</span> 變形菌門含 LPS（內毒素），常被當成發炎、失衡的指標；厚壁菌門包含很多產丁酸菌。人類的相關性正好對到庫欣的共病：糖尿病、高血壓。</p>
+        <h4>可能的治療方向：益生菌？FMT？</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>方法</th><th>結果</th><th>證據</th></tr>
+          <tr><td><strong>五倍子單寧酸</strong>，14 天</td><td>皮質醇、ACTH 下降，糞便丁酸上升；<span class="src src-rec">🎤</span> 好菌增加</td><td><strong>犬</strong></td></tr>
+          <tr><td>Lactobacillus helveticus + Bifidobacterium longum</td><td>尿游離皮質醇下降</td><td>健康人</td></tr>
+          <tr><td>可分解皮質醇的細菌</td><td>皮質醇下降；<span class="src src-rec">🎤</span> 中樞神經發炎指標也下降</td><td>體外、小鼠</td></tr>
+        </table></div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>五倍子單寧酸的劑量單位不一致</strong>：講義寫 <strong>2.5 g/kg</strong>，講者口述是「<strong>每天 2.5 g</strong>」。<span class="src src-add">💡 補充</span> 若是每公斤體重，10 kg 狗一天要 25 g，量太大；比較可能是「每公斤飼料 2.5 g」或每天總量。引用前請查原文（Kang 2024／Yang 2022）。</div></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 小鼠研究使用<strong>含類 desmolase 酵素的益生菌</strong>，專門在腸道中分解皮質醇。之後人和伴侶動物的研究可能會往這個方向發展。</li>
+          <li><span class="src src-add">💡 補充</span> 已知例子如 <em>Clostridium scindens</em>，能切掉皮質醇側鏈、轉成雄性素類代謝物。</li>
+          <li><span class="src src-add">💡 補充</span> 目前屬<strong>輔助、研究性質</strong>，不能取代 trilostane。益生菌安全性高，對合併腸胃症狀或胰島素阻抗的狗可當輔助嘗試，選有標示菌株、有實證的產品。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 19 ══ -->
+  <div class="section" id="s19">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">📝</div>
+      <h2>Take-home、更正表與參考資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.42</span><span class="src src-rec">🎤</span> 總結</h3>
+        <ol class="notes">
+          <li><strong>Trilostane 是治療主力</strong>。反應不佳時，現在有一些替代或合併療法，未來可能還會更多。</li>
+          <li><span class="src src-rec">🎤</span> 要和飼主討論<strong>垂體切除術等根治性療法</strong>，你永遠不知道誰會接受。</li>
+          <li><strong>臨床症狀是最重要的監測工具</strong>，應主導大部分決策；給藥前皮質醇或 ACTH 刺激試驗作為輔助。</li>
+          <li><strong>別忘了處理持續存在的共病</strong>，尤其是診斷時沒有處理的。</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-add">💡 補充</span> 替代療法一覽</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>治療</th><th>定位</th><th>縮小腫瘤</th><th>實用性</th></tr>
+          <tr><td>Mitotane</td><td>無法耐受 trilostane</td><td>—</td><td>可用，需密切監測</td></tr>
+          <tr><td>垂體切除術</td><td>根治</td><td>移除</td><td>費用高、需專業團隊；要主動告知</td></tr>
+          <tr><td>放射治療</td><td>大腺瘤的神經症狀</td><td>✔</td><td>不能治庫欣</td></tr>
+          <tr><td>ATR-101</td><td>研究中</td><td>—</td><td>尚不可得</td></tr>
+          <tr><td>Ketoconazole</td><td>不建議長期</td><td>—</td><td>副作用約 70%</td></tr>
+          <tr><td>Selegiline</td><td>合併 trilostane</td><td>—</td><td>單用無效</td></tr>
+          <tr><td>Cabergoline</td><td>合併 trilostane，擔心腫瘤長大</td><td>可能減緩</td><td>可取得，劑量小</td></tr>
+          <tr><td>視黃酸</td><td>部分反應者合併</td><td>✔（9-cis）</td><td>9-cis 難取得；13-cis off-label</td></tr>
+          <tr><td>Pasireotide</td><td>研究性</td><td>✔（不一定）</td><td>約 23,000 美元</td></tr>
+          <tr><td>益生菌／菌叢</td><td>輔助</td><td>—</td><td>證據有限</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-fix">【更正】</span> 逐字稿轉文字錯誤對照</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>逐字稿</th><th>應為</th></tr>
+          <tr><td>prednisone is our mainstay of treatment</td><td>trilostane</td></tr>
+          <tr><td>triostatin / triamcinolone / triptane / trial stain / triolestan / triastate / tryptane / tamoxifen</td><td>trilostane</td></tr>
+          <tr><td>betadrol</td><td>Vetoryl</td></tr>
+          <tr><td>Dr. Carter / Dr. Tarter / Dr. Tardos / Dr. Harvey</td><td>Dr. Tardo（上一場）</td></tr>
+          <tr><td>cushionoid / cushyoid / fishoid / fistuloid / Cushionway / pushings / machines</td><td>cushingoid／Cushing's</td></tr>
+          <tr><td>hypercoarsalism / hypercornizolism / hypercholism</td><td>hypercortisolism</td></tr>
+          <tr><td>hypocalcemia / hypoparathyroidism（監測段落）</td><td>hypocortisolemia</td></tr>
+          <tr><td>Wilcock</td><td>Woolcock（2016）</td></tr>
+          <tr><td>free bio cortisol</td><td>pre-pill cortisol（給藥前皮質醇）</td></tr>
+          <tr><td>EUPD / PPD / PUD and polyneuropathy</td><td>PU/PD／PU/PD and polyphagia</td></tr>
+          <tr><td>insides（trilostane 和 ACEi/ARB 要當成…）</td><td>NSAIDs</td></tr>
+          <tr><td>preventative for the development of Cushing's</td><td>預防庫欣犬發生糖尿病（metformin）</td></tr>
+          <tr><td>gallbladder fistula</td><td>gallbladder mucocele</td></tr>
+          <tr><td>myotane / mitotin / mydaltin</td><td>mitotane</td></tr>
+          <tr><td>polyphasia</td><td>polyphagia（多食）</td></tr>
+          <tr><td>day ten on maintenance therapy</td><td>誘導期第 10 天</td></tr>
+          <tr><td>petroclival fossa / transcranial approach / sphenoid fossa</td><td>經蝶竇入路（transsphenoidal）至垂體窩</td></tr>
+          <tr><td>hypoparathyroidism（手術段落）</td><td>hypophysectomy</td></tr>
+          <tr><td>calf tumor</td><td>cat tumor（那隻貓）</td></tr>
+          <tr><td>DDADP / DDVP</td><td>DDAVP</td></tr>
+          <tr><td>nasal urine cortisol to creatinine ratio</td><td>basal UCCR</td></tr>
+          <tr><td>increased risk of surgery</td><td>increased risk of recurrence（復發）</td></tr>
+          <tr><td>osloosstat / Navarreus</td><td>osilodrostat／Novartis</td></tr>
+          <tr><td>ATR one and one / ACP one</td><td>ATR-101／ACAT1</td></tr>
+          <tr><td>esterification of free cortisol（ATR-101）</td><td>free cholesterol</td></tr>
+          <tr><td>three mix for K / 30 mix for K</td><td>3 mg/kg／30 mg/kg</td></tr>
+          <tr><td>clinical signs improved in 70%</td><td>7 隻（共 10 隻）</td></tr>
+          <tr><td>require or consider this a good long-term option</td><td>do not consider（不認為是好的長期選項）</td></tr>
+          <tr><td>Carbonoloxone 60 to 80 mcg per day</td><td>carbenoxolone 60–80 mg/kg/天</td></tr>
+          <tr><td>oxytide / serotide / zero type / sirolimus</td><td>octreotide／pasireotide</td></tr>
+          <tr><td>selective norbupergoline</td><td>selegiline 和 cabergoline</td></tr>
+          <tr><td>divinyl / PONC</td><td>gefitinib／POMC</td></tr>
+          <tr><td>Salenazine / sulidgine / sledge lean</td><td>selegiline</td></tr>
+          <tr><td>1 to 2 mcg once daily（selegiline）</td><td>1–2 mg/kg q24h</td></tr>
+          <tr><td>triptan at a half mcg per kg</td><td>trilostane 0.5 mg/kg q24h</td></tr>
+          <tr><td>retinol acetate / nicotinomic acid</td><td>retinoic acid／9-cis retinoic acid</td></tr>
+          <tr><td>tumor-dependent disease</td><td>pituitary-dependent（PDH）</td></tr>
+          <tr><td>cartilaginous cells</td><td>corticotroph cells（分泌 ACTH 的細胞）</td></tr>
+          <tr><td>reduce tumor volume, creatinine ratios</td><td>ACTH、α-MSH 和 UCCR 下降</td></tr>
+          <tr><td>adrenocortical ACTH</td><td>endogenous ACTH</td></tr>
+          <tr><td>one to three micrograms per day</td><td>1–3 mg/kg/day</td></tr>
+          <tr><td>dermatologic or ophthalmologic indications</td><td>講義為皮膚、腫瘤適應症</td></tr>
+          <tr><td>ACS</td><td>KCS（乾眼症）</td></tr>
+          <tr><td>carbamazepine / acupent</td><td>cabergoline／Accutane</td></tr>
+          <tr><td>metastat analogs / enplinoma</td><td>somatostatin analogs／insulinoma</td></tr>
+          <tr><td>Crohn's disease patients</td><td>Cushing's patients</td></tr>
+          <tr><td>Galactanic acid</td><td>gallnut tannic acid（五倍子單寧酸）</td></tr>
+          <tr><td>desmolyase</td><td>desmolase</td></tr>
+          <tr><td>prednisolone or ACTH stimulation tests（總結）</td><td>pre-pill cortisol or ACTH stimulation</td></tr>
+          <tr><td>suppurative conditions</td><td>comorbidities（共病）</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Bugbee A. <em>Hypercortisolism: drug monitoring &amp; alternative treatments.</em> VET-KU × Texas A&amp;M IM Conference, 2026-10-07（講義與課堂逐字稿「完整記錄」PDF）。</div>
+          <div class="ref-item">課堂錄音與逐字稿（Plaud）。<a href="https://web.plaud.ai/s/pub_a95e997c-f8de-4eb4-9804-d266116167eb::2vWJfU2T1m_44puBl-t4OQCEpXGmYjcb8ryu_iYX4CwyzJ2-YP4Hm3dBVXLj33lcx-QUepsCBM-mLAhD2nU-cwI" target="_blank" rel="noopener">連結</a>（逐字稿有轉文字錯誤，請對照本頁更正表）</div>
+          <div class="ref-item">ESVE Project ALIVE：<a href="https://www.esve.org/alive/search.aspx" target="_blank" rel="noopener">esve.org/alive</a>（名詞定義、庫欣臨床評分）。</div>
+          <div class="ref-item">Galac S, et al. Food-dependent hypercortisolism. <em>Domest Anim Endocrinol.</em> 2005；Arias et al. <em>J Vet Intern Med.</em> 2021。</div>
+          <div class="ref-item">Schofield I, et al. <em>J Vet Intern Med.</em> 2019；Nagata N, et al. <em>J Vet Intern Med.</em> 2017；Da Silva et al. <em>J Vet Behav.</em> 2021；Hoffman et al. <em>J Small Anim Pract.</em> 2019（飼主負擔與生活品質）。</div>
+          <div class="ref-item">Cook AK, et al. Compounded trilostane. <em>J Am Anim Hosp Assoc.</em> 2012；Arenas C, et al. <em>J Vet Intern Med.</em> 2013；Feldman EC. <em>J Am Vet Med Assoc.</em> 2011。</div>
+          <div class="ref-item">Bonadio CM, et al. <em>J Vet Intern Med.</em> 2014；Gouvea et al. <em>Domest Anim Endocrinol.</em> 2024（監測用 ACTH 劑量、預測所需劑量）。</div>
+          <div class="ref-item">Woolcock AD, et al. Negative or no change in Δ cortisol during trilostane monitoring. <em>J Am Vet Med Assoc.</em> 2016。</div>
+          <div class="ref-item">Bugbee A, et al. Survey of trilostane monitoring practices. <em>J Am Anim Hosp Assoc.</em> 2023。</div>
+          <div class="ref-item">King JB, Morton JM. <em>Vet J.</em> 2017；Appleman E, et al. <em>J Am Anim Hosp Assoc.</em> 2021；Lamoureux et al. <em>J Small Anim Pract.</em> 2023（trilostane 後低皮質醇症）。</div>
+          <div class="ref-item">Macfarlane L, Parkin T, Ramsey I. Pre-trilostane and three-hour post-trilostane cortisol to monitor trilostane therapy in dogs. <em>Vet Rec.</em> 2016；Ramsey I, et al. ACVIM abstract 2018。</div>
+          <div class="ref-item">Golinelli S, et al. <em>J Vet Intern Med.</em> 2021；Bermejo et al. <em>J Vet Intern Med.</em> 2021（監測方法比較）。</div>
+          <div class="ref-item">Miceli DD, et al. Metformin in dogs with hypercortisolism. <em>Open Vet J.</em> 2018。</div>
+          <div class="ref-item">Hanson JM, et al. <em>J Vet Intern Med.</em> 2005；van Rijn SJ, et al. <em>J Vet Intern Med.</em> 2016（垂體切除術）。</div>
+          <div class="ref-item">Langlois DK, et al. ATR-101 in dogs with hypercortisolism. <em>BMC Endocr Disord.</em> 2018；LaPensee CR, et al. <em>Endocrinology.</em> 2016。</div>
+          <div class="ref-item">Lien YH, Huang HP. <em>J Am Vet Med Assoc.</em> 2008；Behrend EN, et al. <em>J Am Vet Med Assoc.</em> 1999；Sanders K, et al. <em>Domest Anim Endocrinol.</em> 2018（ketoconazole、替代療法）。</div>
+          <div class="ref-item">Teshima T, et al. Carbenoxolone in dogs with ACTH-dependent hypercortisolism. <em>PLoS One.</em> 2016。</div>
+          <div class="ref-item">Reusch CE, et al. <em>J Vet Intern Med.</em> 1999；Braddock JA, et al. <em>Vet J.</em> 2004；Carvalho et al. <em>Res Vet Sci.</em> 2022（selegiline）。</div>
+          <div class="ref-item">Castillo VA, et al. Cabergoline in PDH. <em>Res Vet Sci.</em> 2008；Golinelli S, et al. ACVIM Forum abstract 2024。</div>
+          <div class="ref-item">Castillo V, et al. Retinoic acid in canine Cushing's. <em>Endocrinology.</em> 2006；<em>Res Vet Sci.</em> 2009；Micelli et al. ECVIM abstract 2020；Ramos et al. <em>Vet Dermatol.</em> 2022；White et al. <em>J Am Vet Med Assoc.</em> 1995。</div>
+          <div class="ref-item">de Bruin C, et al. <em>Endocrinology.</em> 2008；Castillo V, et al. Pasireotide in PDH. <em>Neuroendocrinology.</em> 2011；Lottati M, Bruyette DS. <em>J Am Vet Med Assoc.</em> 2018；Galac S, et al. <em>Vet J.</em> 2008。</div>
+          <div class="ref-item">Kiełbik P, Witkowska-Pilaszewicz O. <em>Animals.</em> 2024；Zhang et al. 2022；Kang et al. <em>Animals.</em> 2024；Yang et al. <em>Front Nutr.</em> 2022；Wang et al. <em>Adv Sci.</em> 2026（腸–腦軸與菌叢）。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="cushings-diagnosis-treatment.html">12 犬庫欣氏症：診斷與內科治療</a>。下一場將陸續整理更新。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
