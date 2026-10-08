@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>座談會 Q&amp;A：庫欣、Addison 與內分泌檢驗｜2026 Texas 內分泌研討會</title>
+<style>
+  :root {
+    --primary: #0F766E;
+    --primary-light: #CCFBF1;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0d2522;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9cc8c1; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #1f4a44;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9cc8c1; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9cc8c1;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #1f4a44;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #5f8f87;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0b4f49 0%, #14a395 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0d2522; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #1f4a44; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+</style>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 Texas 內分泌研討會</a>
+  <div class="logo">
+    <h2>14｜座談會 Q&amp;A：<br>庫欣、Addison 與內分泌檢驗</h2>
+    <p>Langlois · Bugbee · Tardo｜2026 年 10 月 7 日</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">座談總覽與講者</a>
+    <div class="nav-section">檢驗前的干擾</div>
+    <a href="#s1">1. 用過藥或外用類固醇，要停多久再驗</a>
+    <div class="nav-section">腎上腺腫瘤</div>
+    <a href="#s2">2. 偶然發現腎上腺腫塊，沒有症狀</a>
+    <a href="#s3">3. 刺激試驗、metanephrine 都陰性之後</a>
+    <div class="nav-section">Addison</div>
+    <a href="#s4">4. 嚴重低血鈉：何時開始 DOCP</a>
+    <a href="#s5">5. DOCP 加長效 methylprednisolone？</a>
+    <a href="#s6">6. 尿 cortisol 的切點與實驗室</a>
+    <div class="nav-section">庫欣</div>
+    <a href="#s7">7. 合併蛋白尿：ACEi/ARB 後高血鉀</a>
+    <a href="#s8">8. 刺激試驗正常但症狀沒控制</a>
+    <a href="#s9">9. 垂體腫瘤，飼主拒絕手術和放療</a>
+    <a href="#s10">10. 非典型表現：草酸鈣結石、只有 ALP 高</a>
+    <a href="#s11">11. 庫欣合併甲狀腺功能低下？</a>
+    <a href="#s12">12. 口服 dexamethasone 抑制試驗</a>
+    <a href="#s13">13. 五倍子單寧酸安全嗎</a>
+    <div class="nav-section">其他</div>
+    <a href="#s14">14. 極度肥胖貓的維持輸液量</a>
+    <a href="#s15">15. 貓只需要 0.5 U 胰島素</a>
+    <a href="#s16">Take-home、更正表與參考資料</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>座談會 Q&amp;A：庫欣、Addison 與內分泌檢驗（Panel Discussion）</h1>
+    <p>座談：Daniel Langlois（MSU）、Andrew Bugbee（Texas A&amp;M）、Antonio Tardo（UC Davis）</p>
+    <p>2026 年 10 月 7 日｜VET-KU × Texas A&amp;M 內科研討會｜場次 14（接續 11–13 的現場提問）</p>
+    <div class="tags">
+      <span class="tag">座談 Q&amp;A</span>
+      <span class="tag">外用類固醇與 HPA 軸</span>
+      <span class="tag">腎上腺偶發瘤</span>
+      <span class="tag">腎上腺 FNA</span>
+      <span class="tag">Metanephrine</span>
+      <span class="tag">DOCP 時機</span>
+      <span class="tag">尿 cortisol</span>
+      <span class="tag">蛋白尿與高血鉀</span>
+      <span class="tag">Trilostane 調整</span>
+      <span class="tag">非典型庫欣</span>
+      <span class="tag">胰島素 0.5 U</span>
+    </div>
+    <a class="rec-link" href="https://web.plaud.ai/s/pub_3a5f52e6-173f-4c03-85a5-ac1b579bccbf::jkHF9dVoMmC5ZUO9BYzjklPMVvnUpNo5sB8ePcI6c8ss28l-gKrk-Jea9hvRPWGLWhnIM3uZEQh9vQN-mRfWCQI" target="_blank" rel="noopener">🎧 聆聽座談錄音（Plaud）↗</a>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-rec">🎤 錄音</span> 座談逐字稿（盡量完整保留，依問題整理）
+    <span class="src src-add">💡 補充</span> 整理者補充（交叉參照、單位換算）
+    <span class="src src-fix">【更正】</span> 逐字稿轉文字錯誤（完整列表見最後一節）
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li><strong>耳藥、眼藥的類固醇</strong>也會抑制 HPA 軸：用一週含 dexamethasone 的耳藥就能抑制好幾週</li>
+      <li>外用類固醇停藥：用不到 1 個月，停約 2 週；超過 1 個月，至少停 3–4 週</li>
+      <li>腎上腺腫塊：先看<strong>對側腎上腺是否萎縮</strong>；FNA 相當安全，可分皮質或髓質</li>
+      <li>嗜鉻細胞瘤是陣發性分泌：<strong>收集 24 小時尿液</strong>，看 normetanephrine:creatinine</li>
+      <li>Addison 急救：前 12 小時很少需要 DOCP，<strong>輸液就是你的礦物皮質素</strong></li>
+      <li>尿 cortisol &gt; 40–55 nmol/L 幾乎可排除 Addison；確診需實驗室能測到 5–10 nmol/L</li>
+      <li>Trilostane 原本是為人類<strong>醛固酮增多症</strong>開發的：加 ACEi/ARB 特別容易高血鉀</li>
+      <li>蛋白尿：先 trilostane＋飲食＋魚油 4–6 週，UPC 很高（&gt; 10）才急著加 ACEi/ARB</li>
+      <li>刺激後 cortisol 在範圍內但症狀沒控制：在範圍高端就可以加量，SID 改 BID</li>
+      <li>只有 ALP 輕度上升不必驗庫欣；ALP 非常高、要做肝切片前可先篩 UCCR</li>
+    </ul>
+  </div>
+
+  <!-- ══ SECTION 0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🎙️</div>
+      <h2>座談總覽與講者</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>座談形式</h3>
+        <ul class="notes">
+          <li>10 月 7 日場次（<a href="addisons-disease.html">11 Addison</a>、<a href="cushings-diagnosis-treatment.html">12 庫欣診斷與治療</a>、<a href="cushings-monitoring-alternative-tx.html">13 庫欣監測與替代療法</a>）結束後的現場 Q&amp;A，聽眾提問，三位講者輪流回答。</li>
+          <li>錄音從第一個回答的中段開始，第一個問題沒有錄到。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>講者對照（依逐字稿內容判斷）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>逐字稿代號</th><th>講者</th><th>判斷依據</th></tr>
+          <tr><td>Speaker 1</td><td><strong>Daniel Langlois</strong>（MSU）</td><td>「我們的內分泌實驗室」、尿 cortisol 驗證工作（和 11 的內容一致）、「10 月 8 日我會再講甲狀腺」、稱 Speaker 4 為 Antonio</td></tr>
+          <tr><td>Speaker 2</td><td><strong>Andrew Bugbee</strong>（Texas A&amp;M）</td><td>魚油劑量、Schnauzer 草酸鈣結石、胰島素空針；被稱為「Dr. Bugbee」；回答五倍子單寧酸（13 講過）</td></tr>
+          <tr><td>Speaker 4</td><td><strong>Antonio Tardo</strong>（UC Davis）</td><td>引用自己 12 的反應不佳研究、Bologna 暑期課程、腎上腺細胞學</td></tr>
+          <tr><td>其他</td><td>聽眾</td><td>提問者</td></tr>
+        </table></div>
+        <p class="muted">逐字稿的代號是依聲音自動分的，偶爾會把同一人拆開或把不同人合併。以下依內容判斷回答者。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">⏳</div>
+      <h2>1. 用過藥或外用類固醇，要停多久再做 ACTH 刺激試驗</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">（問題沒錄到）從回答推測：狗已經用過幾天影響皮質醇的藥，要停多久才能做 ACTH 刺激試驗？</div>
+        <div class="a">
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 不管是一天、兩天還是三天，都可能影響 ACTH 刺激試驗。治療庫欣時，藥效要好幾週才到穩定，但<strong>即使只給一劑，也會有相當立即的效果</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 我會建議停<strong>大約兩週</strong>。理論上藥效持續 12–24 小時，但有些狗似乎有殘留效果。如果不急著知道答案，就等兩週。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">聽眾問：如果是間歇性使用<strong>外用類固醇</strong>，不是連續的全身性給藥，會影響 ACTH 刺激試驗的結果嗎？</div>
+        <div class="a">
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>絕對會</strong>，而且有很多例外情況。如果狗用了兩天耳藥，之後兩週都沒用，再用兩天，一個月後才來看診，大概沒問題。</li>
+            <li><span class="src src-rec">🎤</span> 但我們知道，<strong>只要一週含 dexamethasone 的耳藥，就足以抑制 HPA 軸好幾週</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 我們的內分泌實驗室收到的病例都會給我看。<strong>每年都有幾隻狗很可能被誤診成 Addison</strong>：獸醫確認過沒有吃口服類固醇，但狗其實在用含糖皮質素的<strong>眼藥或耳藥</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 停多久要看用了多久：
+              <ul>
+                <li>用<strong>不到一個月</strong>：停約<strong>兩週</strong>。</li>
+                <li>用<strong>超過一個月</strong>：我們不確定答案，但我通常要求<strong>至少 3–4 週</strong>的停藥期。</li>
+              </ul>
+            </li>
+          </ul>
+          <p class="p"><strong>Bugbee</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 我們常收到眼科轉診，懷疑庫欣，但狗正在點 prednisolone 眼藥。我們的做法是先讓眼科<strong>改用 NSAID 眼藥至少幾週</strong>，才開始評估庫欣。</li>
+            <li><span class="src src-rec">🎤</span> 也要看劑型：<strong>長效（depot）類固醇眼藥的停藥期似乎更長</strong>。眼科和皮膚科的外用類固醇都會影響這些檢查。</li>
+          </ul>
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 另一個角度：臨床症狀可能根本和類固醇無關。停藥後觀察狗的狀況再檢查。如果症狀消失、狗過得很好，也許就沒有理由再驗了。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">追問：我的病例是皮膚問題斷斷續續用類固醇噴劑好幾個月，但<strong>每個月只用一兩天</strong>，狗當時也很年輕。這樣會影響嗎？</div>
+        <div class="a">
+          <p class="p"><strong>Langlois</strong>：很難回答，因為沒有人知道確切答案，要看你在找什麼：</p>
+          <div class="grid2">
+            <div class="card-mini"><h4>懷疑 Addison</h4><ul>
+              <li>刺激試驗<strong>正常</strong>：可以很有信心地排除</li>
+              <li>反應<strong>偏低</strong>：要讓狗<strong>完全停藥</strong>後再做任何判斷</li>
+            </ul></div>
+            <div class="card-mini"><h4>懷疑庫欣（例如明顯 PU/PD）</h4><ul>
+              <li>一個月用幾次 prednisolone 噴劑，不太可能造成庫欣</li>
+              <li>刺激試驗或 LDDST 得到<strong>很有說服力的陽性</strong>：可以相信，因為類固醇只會壓低結果</li>
+              <li>結果<strong>不是陽性</strong>：先停藥再驗，不要就此放棄原本的診斷</li>
+            </ul></div>
+          </div>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div>對照 <a href="addisons-disease.html#s6">11 第 6 節</a>：Langlois 講過類固醇 7 天就會抑制 HPA 軸，外用類固醇也一樣。判讀邏輯：外源類固醇只會讓 cortisol <strong>偏低</strong>，所以「正常或陽性」的結果可以相信，「偏低或陰性」的結果要停藥後重驗。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🔍</div>
+      <h2>2. 偶然發現腎上腺腫塊，但狗沒有症狀</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">聽眾問：如果在腎上腺發現腫塊，但狗沒有特定症狀，該怎麼做？</div>
+        <div class="a">
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 可能是庫欣，也可能是其他疾病。即使表現很輕微，<strong>我仍會考慮庫欣</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 這沒有文獻報告，但我的印象是：<strong>腎上腺腫瘤的狗臨床症狀比 PDH 少</strong>。我看過只有幾項輕微異常、不太像庫欣的狗，病理結果是<strong>皮質癌</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 也可能是嗜鉻細胞瘤或其他腫瘤。我的做法是做<strong>細胞學</strong>，評估惡性與非惡性的特徵，想要更多資料判斷腫瘤的性質，再依此決定。</li>
+          </ul>
+          <p class="p"><strong>Bugbee</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 另一個問題是：<strong>沒有症狀的話，就算它會分泌皮質醇，你會治療嗎？</strong></li>
+            <li><span class="src src-rec">🎤</span> 診斷為偶發瘤（incidentaloma）且沒有症狀時，我比較傾向<strong>監測</strong>：看腫瘤是否快速長大、有沒有侵犯跡象。需要切就切，不管它有沒有功能。</li>
+            <li><span class="src src-rec">🎤</span> 我會<strong>量血壓</strong>，確認沒有高血壓。但我不會為了這個腫瘤做一大堆功能性檢查。這種情況我更擔心的是<strong>良性還是惡性、會不會長大造成問題</strong>。</li>
+          </ul>
+          <p class="p"><strong>Langlois</strong>（關於腎上腺 FNA）：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 現在有幾個研究顯示<strong>腎上腺 FNA 相當安全</strong>。我們做得比以前多，沒有遇到問題。</li>
+            <li><span class="src src-rec">🎤</span> 它<strong>無法告訴你腫瘤有沒有功能</strong>，但能很好地分辨是<strong>皮質病灶還是髓質病灶</strong>：
+              <ul>
+                <li>髓質：往嗜鉻細胞瘤的方向評估。</li>
+                <li>皮質：比較傾向做皮質醇相關檢查。</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🧪</div>
+      <h2>3. 腎上腺腫瘤：ACTH 刺激、metanephrine 都陰性之後</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">聽眾問：狗有腎上腺腫瘤，ACTH 刺激試驗庫欣陰性，血漿 metanephrine 和 normetanephrine 也陰性。Tardo 講過 ADH 不適合用 ACTH 刺激試驗。下一步該做 LDDST 還是直接做 HDDST？血漿 metanephrine 陰性能完全排除嗜鉻細胞瘤嗎？</div>
+        <div class="a">
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 可以有很多做法，但我會先問兩個問題：
+              <ol>
+                <li><strong>對側腎上腺多大？</strong>如果沒有腫瘤的那一側<strong>萎縮</strong>，我會更擔心腫瘤有某種功能。</li>
+                <li><strong>有沒有臨床症狀？</strong></li>
+              </ol>
+            </li>
+            <li><span class="src src-rec">🎤</span> 如同 Tardo 說的，<strong>LDDST 對腎上腺腫瘤族群比較好</strong>。如果因為對側萎縮或臨床特徵而懷疑庫欣，我會做 dexamethasone 抑制試驗，用你習慣的版本即可。</li>
+          </ul>
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 同意。也要看狗有沒有症狀、你對庫欣的懷疑有多高。<strong>做檢查前要先有臨床懷疑</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 我希望知道腫瘤的最終診斷（是不是惡性）。如果要手術，我通常會<strong>術前先用藥物治療幾週</strong>，可以減少皮質醇過多相關的併發症。所以<strong>下一步要做什麼，會決定你的診斷方式</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 我也很常用細胞學。即使 metanephrine 正常，細胞學也可能顯示是髓質腫瘤。單靠一項檢查很難確定腎上腺腫瘤的來源。</li>
+          </ul>
+          <p class="p"><strong>Bugbee</strong>（關於 metanephrine）：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 小心血漿 metanephrine，因為這些腫瘤是<strong>一天中陣發性分泌</strong>的。我們通常偏好<strong>尿液</strong>，比較穩定。</li>
+            <li><span class="src src-rec">🎤</span> 建議在 24 小時內<strong>收集多次尿液、混合後送驗</strong>。看的不只是濃度，<strong>normetanephrine:creatinine 比值</strong>可能更能反映嗜鉻細胞瘤的狀態。</li>
+            <li><span class="src src-rec">🎤</span> 擔心高血壓相關症狀或嗜鉻細胞瘤時，可以考慮這個選項。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">追問：尿液 metanephrine 的收集方式比較複雜，需要特殊的收集介質？</div>
+        <div class="a">
+          <p class="p"><strong>Bugbee</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 實驗室建議用<strong>硫酸酸化</strong>尿液。傳統上酸化可以穩定樣本約一週。</li>
+            <li><span class="src src-rec">🎤</span> 但其實不一定要酸化：<strong>混合後立刻冷凍，48 小時內送到實驗室</strong>，應該不會影響結果。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div>對照 <a href="cushings-diagnosis-treatment.html#s9">12 第 9 節</a>：ADH 的腫瘤可能失去 ACTH 受體，刺激試驗容易偽陰性，所以 LDDST 是比較好的篩檢。三位講者的共識：先看<strong>對側腎上腺</strong>和<strong>臨床症狀</strong>，再依「之後要不要手術」決定做多少檢查。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🚑</div>
+      <h2>4. Addison 嚴重低血鈉：DOCP 什麼時候開始</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">聽眾問：Addison 病例電解質極度異常（例如血鈉 110 或 115 mmol/L），我們會積極矯正電解質。這時要同時給 DOCP，還是等電解質恢復正常後再給？</div>
+        <div class="a">
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 每個人開始礦物皮質素的時間略有不同，但<strong>很少需要在住院前 12 小時內給</strong>。很多病例要到<strong>第二天</strong>才開始，因為那時確診結果才回來，我們也才確定是 Addison。</li>
+            <li><span class="src src-rec">🎤</span> 實際上，<strong>輸液就是你此時的礦物皮質素</strong>，所以輸液要非常積極。但不需要馬上給 DOCP。</li>
+          </ul>
+          <div class="alert alert-danger"><span class="alert-icon">❗</span><div><span class="src src-rec">🎤</span> <strong>警世病例</strong>：一隻如你描述的嚴重病例，一開始就給了 <strong>2.2 mg/kg 的 DOCP</strong>，接下來幾天又大量輸液 bolus。結果<strong>血鈉飆得太高，出現神經症狀</strong>，還發生<strong>水腫</strong>，應該是保留了太多水分。</div></div>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 需要快速給礦物皮質素的情況非常少。如果因為<strong>血壓</strong>問題覺得一定要給，我會給<strong>單劑口服 fludrocortisone</strong>，但連這樣都很少見。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div>補充：慢性低血鈉矯正太快有滲透性去髓鞘（ODS）風險，一般建議每 24 小時上升不超過約 10–12 mmol/L。DOCP 一次給足後無法撤回，加上積極輸液，鈉會上升得更快。2.2 mg/kg 是舊仿單劑量，Langlois 在 <a href="addisons-disease.html#s13">11 第 13 節</a>也談過現在多用較低劑量。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">💉</div>
+      <h2>5. Addison：DOCP 加長效 methylprednisolone 注射？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">聽眾問：DOCP 能不能搭配 methylprednisolone 注射，作為 Addison 的長期管理？</div>
+        <div class="a">
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 就「讓動物活下去」而言，<strong>絕對可以</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 但所有長效注射劑的問題是：<strong>每天的糖皮質素濃度不平穩</strong>。一開始慢慢上升，一兩週後達到高峰，所以這樣給的狗很可能在糖皮質素方面<strong>嚴重過量</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 我更支持<strong>每天低劑量 prednisolone</strong>。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🧫</div>
+      <h2>6. 尿 cortisol 的切點與實驗室能力</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">聽眾問：Langlois 提到 UCCR 是篩檢甚至鑑別 Addison 的好方法，我記得切點是 9？</div>
+        <div class="a">
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 這要回到<strong>你的實驗室能把 cortisol 定量到多低</strong>。其實不一定需要比值，<strong>單看尿 cortisol 濃度</strong>就可以。</li>
+          </ul>
+          <div class="tbl-wrap"><table>
+            <tr><th>用途</th><th>尿 cortisol</th><th>換算</th></tr>
+            <tr><td><strong>排除</strong> Addison</td><td>&gt; 40–55 nmol/L</td><td>約 1.5–2 µg/dL；幾乎 100% 可排除</td></tr>
+            <tr><td><strong>確診</strong> Addison</td><td>約 9 nmol/L 以下</td><td>約 0.3 µg/dL（講者口頭說「約 0.5，其實更低」）</td></tr>
+          </table></div>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 問題是你的實驗室能不能定量到這麼低。多數實驗室低於 <strong>27.5 nmol/L（1 µg/dL）</strong>就只報「&lt;」，這樣<strong>不能當確診檢查</strong>。要確診，實驗室要能定量到 <strong>5–10 nmol/L</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 內分泌學的問題之一：為了便宜、方便、能放在院內的免疫分析，我們<strong>放棄了很多表現更好的放射免疫分析（RIA）</strong>。以前測尿 cortisol 的 RIA 很好，我相信 <strong>Utrecht 大學仍用 RIA 測尿液</strong>。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">追問：差別只在方法學嗎？Immulite 和 RIA？</div>
+        <div class="a">
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 不只是方法學。過去廣泛使用的 RIA，定量下限約 <strong>5 nmol/L（約 0.2 µg/dL）</strong>，到這個濃度都很準。</li>
+            <li><span class="src src-rec">🎤</span> 現在的免疫分析多半是<strong>為人類設計</strong>的，儀器預設的線性範圍下限是 27.5 nmol/L，所以實驗室低於這個值就報「&lt;」。</li>
+            <li><span class="src src-rec">🎤</span> 其實可以<strong>修改原廠預設設定</strong>，一路測到 0 nmol/L。問題是準不準。我們做了不少驗證，<strong>0 不一定準，但到約 5 nmol/L 都很準</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 要和實驗室合作修改設定、更改軟體程式，並驗證低值。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">聽眾：所以每個實驗室都需要做內部驗證？</div>
+        <div class="a">
+          <p class="p"><strong>Langlois</strong>：<span class="src src-rec">🎤</span> 每個實驗室都應該自己做驗證，但要說服商業實驗室可能很難。目前除非實驗室能測到那麼低，否則<strong>沒有確診值</strong>；但它仍是<strong>比血清 cortisol 更好的篩檢</strong>。</p>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div>換算：<strong>1 µg/dL = 27.5 nmol/L</strong>。對照 <a href="addisons-disease.html#s8">11 第 8 節（尿 cortisol 與 UCCR）</a>，以及 <a href="cushings-diagnosis-treatment.html#s15">12 第 15 節</a>台灣與會醫師對院內與外送 cortisol 檢驗的討論：想用尿 cortisol 確診，先問實驗室的定量下限。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🫘</div>
+      <h2>7. 庫欣合併蛋白尿：加 ACEi/ARB 後高血鉀</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">聽眾問：庫欣犬合併蛋白尿，加了 ACEi/ARB 後出現<strong>高血鉀</strong>，但 ACTH 刺激試驗的 cortisol 仍在目標範圍。要調整 trilostane 劑量，還是加降鉀的藥？</div>
+        <div class="a">
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 很好的問題。我處理蛋白尿的方式是<strong>先用 trilostane</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 我們剛發表了一個研究（ACVIM），演講時沒時間講：trilostane 對蛋白尿的效果<strong>大部分在前 3 個月</strong>，但 <strong>3–6 個月之間仍有一些效果</strong>。對庫欣反應好的狗，通常蛋白尿也反應好。</li>
+            <li><span class="src src-rec">🎤</span> 3 個月後仍有<strong>嚴重</strong>蛋白尿，才用 ACEi 或 ARB（如 benazepril、telmisartan）。這時要<strong>小心血鉀</strong>，因為它們和 trilostane 作用在同一個系統（RAAS）。</li>
+            <li><span class="src src-rec">🎤</span> 量到高血鉀但不是控制過頭時，<strong>先確認不是假性高血鉀</strong>，例如<strong>溶血</strong>等很多因素。</li>
+            <li><span class="src src-rec">🎤</span> 確定是真的高血鉀，我會<strong>停 ACEi/ARB，保留 trilostane</strong>，看之後能不能改用較低劑量，或換一種方式。</li>
+          </ul>
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 很多人忘了或不知道：<strong>trilostane 是人醫開發失敗、被放棄的藥</strong>，原本設計來治療 <strong>Conn 氏症候群（原發性醛固酮增多症）</strong>。我們低估了 trilostane 對某些動物醛固酮的影響。</li>
+            <li><span class="src src-rec">🎤</span> 所以如果開始治療蛋白尿，這些動物似乎<strong>特別容易高血鉀</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 大部分庫欣犬只有<strong>輕到中度蛋白尿</strong>，短期內不會因此死亡，甚至根本不會。我通常<strong>等庫欣控制到最好</strong>才處理。<strong>UPC &gt; 10</strong> 時我可能會處理，其他多數狗我會慢慢來。</li>
+          </ul>
+          <p class="p"><strong>Bugbee</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 也要記得 <strong>ACEi/ARB 不是蛋白尿的第一線治療</strong>。應該先<strong>限制飲食蛋白</strong>，再加<strong>魚油</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 魚油劑量很高，約<strong>每天每公斤 0.25 g</strong>。飲食加魚油的最大效果需要 <strong>4–6 週</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 同時診斷蛋白尿和庫欣時：<strong>先開始 trilostane，前 4–6 週做飲食調整和魚油</strong>，之後才考慮 ACEi 或 ARB。</li>
+            <li><span class="src src-rec">🎤</span> 不考慮庫欣、單純蛋白尿的病患，用 ACEi/ARB 後<strong>鉀 6.5–7</strong> 的很常見，通常沒有心臟併發症；腎指數穩定、臨床狀況好，我不一定會改。但在 <strong>trilostane 病患</strong>，我會擔心高血鉀是<strong>醛固酮改變</strong>的表現。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div>對照 <a href="cushings-monitoring-alternative-tx.html#s9">13 第 9 節</a>：Bugbee 避免同時開始 trilostane 和 ACEi/ARB，兩者都要當成 NSAIDs 看待。三位講者的共識：<strong>先 trilostane（＋飲食、魚油），等 3 個月左右再評估要不要加 ACEi/ARB</strong>；加了之後密切追蹤血鉀。trilostane 犬出現高血鉀，也要想到醛固酮被抑制或醫源性 Addison（見 <a href="cushings-monitoring-alternative-tx.html#s6">13 第 6 節</a>）。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">⚖️</div>
+      <h2>8. 刺激試驗在範圍內，但症狀沒控制</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">聽眾問：用 trilostane 後，有時臨床症狀不穩定，但 ACTH 刺激試驗在正常範圍。會加量，還是考慮合併療法？</div>
+        <div class="a">
+          <p class="p"><strong>Bugbee</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 先看 trilostane 的給藥方式：<strong>一天一次就改兩次；一天兩次可以考慮三次</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 劑量一直加卻沒反應時，有時我會加 <strong>cabergoline</strong>。我也想加<strong>視黃酸</strong>，但要先累積一些經驗。我會先把 trilostane 的給藥方式最佳化，再考慮合併療法。</li>
+          </ul>
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 看 trilostane 治療犬的目標範圍，假設是 <strong>2–5 或 2–7</strong>，<strong>這是很大的範圍</strong>。一隻整天 cortisol 都在 5 的狗，<strong>可能其實沒有控制好</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 即使在目標範圍內，<strong>如果在高端，絕對有空間加量</strong>；一天一次的話，我會毫不猶豫改成一天兩次。</li>
+            <li><span class="src src-rec">🎤</span> 這些都只是範圍，主要由臨床表現引導。我通常讓這些狗落在<strong>範圍中段，甚至偏低一點</strong>。</li>
+          </ul>
+          <p class="p"><strong>Bugbee</strong>（補充）：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 呼應 Tardo 的反應良好 vs 反應不佳研究：兩組的<strong>內生性 ACTH 大約 14 vs 50 pg/mL</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 我有時會測這些狗的內生性 ACTH，<strong>如果約 50，就考慮加 cabergoline</strong> 當輔助，看能不能減輕內生性 ACTH 的上升。</li>
+            <li><span class="src src-rec">🎤</span> <strong>內生性 ACTH 在監測中被低估了</strong>，它可以幫忙判斷合併療法是否有幫助。</li>
+          </ul>
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 有些時候，<strong>症狀可能不是皮質醇過多造成的</strong>，例如其他繼發性疾病造成的 PU/PD。要看病患的全貌，不能只看單一數字。</li>
+            <li><span class="src src-rec">🎤</span> 如果還有其他皮質醇過多的跡象（血檢或其他顯示控制不好的線索），要在 trilostane 和其他因素之間權衡，<strong>改成一天兩次</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 一天三次是另一個選項，但劑量在一天中可能重疊，<strong>監測會比較困難</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 如果懷疑問題來自<strong>大腫瘤</strong>，cabergoline 可能有效。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div>對照 <a href="cushings-diagnosis-treatment.html#s13">12 第 13 節</a>：反應良好組 eACTH 14.4、反應不佳組 <strong>49.2 pg/mL</strong>（p = 0.007）。以及 <a href="cushings-monitoring-alternative-tx.html#s15">13 第 15 節</a>的 cabergoline 合併療法。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">🧠</div>
+      <h2>9. 垂體腫瘤只有神經症狀，飼主拒絕手術和放療</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">聽眾問：垂體有腫塊，狗只有神經症狀、食慾可能變差，沒有典型庫欣症狀。飼主拒絕手術和放射治療，下一步的診斷和治療？有藥物可以用嗎？</div>
+        <div class="a">
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 可以考慮 Bugbee 剛才講的藥物（cabergoline、視黃酸），但<strong>不要期待有很大的改變</strong>，尤其狗已經出現神經症狀和食慾下降。</li>
+            <li><span class="src src-rec">🎤</span> 大部分這類病患只能做<strong>支持療法和類固醇</strong>（腫瘤周圍可能有水腫）。</li>
+            <li><span class="src src-rec">🎤</span> 這種情況通常<strong>最好的選擇是放射治療或手術</strong>，如果有中心可以做的話。除此之外，我不會期待有大的改變。</li>
+            <li><span class="src src-rec">🎤</span> 如果只能用藥，我會建議 <strong>cabergoline 或視黃酸</strong>，作為可能的選項，但不抱期待。</li>
+          </ul>
+          <p class="p"><strong>Bugbee</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>Cabergoline 很安全</strong>。剛開始的前幾劑可能會嘔吐，之後通常耐受良好。是低風險的藥。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div>對照 <a href="cushings-monitoring-alternative-tx.html#s12">13 第 12 節</a>：放射治療主要用於大腺瘤造成的神經症狀。cabergoline 對大腺瘤也有每天 23 mcg/kg 的積極給法（13 第 15 節）。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🪨</div>
+      <h2>10. 非典型表現：只有草酸鈣結石、只有 ALP 高</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">聽眾問：庫欣要看臨床症狀才決定。如果狗唯一的表現是<strong>膀胱結石</strong>，可以據此開始檢查，或排除診斷嗎？</div>
+        <div class="a">
+          <p class="p"><strong>Bugbee</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 有趣的是，我們大約有 <strong>15–20 隻 Schnauzer</strong>，庫欣<strong>唯一的表現就是草酸鈣結石</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 所有標準的結石預防措施都做了，還是一直長結石，<strong>直到開始 trilostane</strong> 才停。</li>
+            <li><span class="src src-rec">🎤</span> 我確實認為有一群動物會<strong>沒有典型症狀</strong>，而以其他方式表現：例如 <strong>Sheltie 的膽囊黏液囊腫</strong>、<strong>高血壓</strong>，或伴隨 PU/PD、多食。</li>
+            <li><span class="src src-rec">🎤</span> 我不知道 Schnauzer 有什麼特別，但草酸鈣結石似乎和牠們的庫欣有關。</li>
+          </ul>
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 再強調一次：十幾年前發表的<strong>共識聲明</strong>，對哪些狗該驗非常嚴格，要有一定程度的實驗室證據和臨床症狀。</li>
+            <li><span class="src src-rec">🎤</span> 就像 Bugbee 說的，有些庫欣犬<strong>沒有典型症狀</strong>，而以其他問題表現。要小心先排除其他可能，再走庫欣檢查的路。但如果那是唯一的表現，<strong>我會毫不猶豫地篩檢或治療</strong>。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">追問：如果狗只有 ALP 高呢？要排除庫欣，還是去做切片？</div>
+        <div class="a">
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> ALP 不一樣。你在很多沒有庫欣的動物身上量 ALP，也會是高的。<strong>我不會只因為 ALP 高就驗庫欣</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 如果有其他問題，例如膽囊黏液囊腫、高血壓，那才是需要處理、需要檢查的。</li>
+          </ul>
+          <p class="p"><strong>Langlois</strong>（提出例外）：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 這就是我喜歡內分泌的原因：每個人都有一點不同。</li>
+            <li><span class="src src-rec">🎤</span> 老狗 <strong>ALP 200</strong>，大概只是正常變異。但如果是 <strong>1,500 或 2,000</strong>，你可能會有不同的做法。</li>
+            <li><span class="src src-rec">🎤</span> 我不想在我們醫院花 <strong>3,500 美元做腹腔鏡肝臟切片和膽囊採樣</strong>，所以這種情況我<strong>可能會先驗庫欣</strong>。這不代表我會治療，但可能讓我不必走到切片那一步。</li>
+            <li><span class="src src-rec">🎤</span> 我說的不是 200、300、400，而是嚴重得多的 ALP 上升。</li>
+          </ul>
+          <p class="p"><strong>Bugbee</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 這種情況比較好的檢查是 <strong>UCCR</strong>。很多飼主查了「Google 醫生」，堅信狗有庫欣。UCCR 正常，就能說我們排除了庫欣，是很好的折衷。</li>
+            <li><span class="src src-rec">🎤</span> 很多年輕獸醫來諮詢 ALP 上升該怎麼辦，我會說：如果你想從鑑別清單裡劃掉庫欣，就做 UCCR，不用花錢做影像，也不用花時間做血液檢查。<strong>但希望不是用 Immulite 2000 測的</strong>。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><span class="src src-add">💡 補充</span> Bugbee 對 Immulite 2000 的保留，對照 <a href="cushings-diagnosis-treatment.html#s6">12 第 6 節</a>：抗體改變後尿 cortisol 約低 70%，UCCR 敏感度只剩約 80%，「正常就排除」已不再可靠。台灣常見外送檢驗方法也要先確認。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🦋</div>
+      <h2>11. 庫欣合併甲狀腺功能低下？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">聽眾問：狗被懷疑甲狀腺功能低下，但又有庫欣。開始 trilostane 後，什麼時候驗 T4 最好？</div>
+        <div class="a">
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 我第一個問題會是：<strong>這隻狗真的是甲狀腺功能低下，還是在庫欣的情況下被診斷的？</strong>這是甲狀腺功能低下<strong>最常見的誤診原因之一</strong>：庫欣會壓低 T4，甚至 free T4。</li>
+            <li><span class="src src-rec">🎤</span> 先把庫欣<strong>控制到最好</strong>，看看狀況。如果仍有持續的症狀或疑慮，那時只看 total T4 不夠，要看<strong>完整的甲狀腺功能檢查：T4、free T4、TSH</strong>，提高診斷的信心。（他說 10 月 8 日會再談甲狀腺。）</li>
+            <li><span class="src src-rec">🎤</span> 「庫欣控制好」的定義：以<strong>臨床控制</strong>為主，再加上你用的 cortisol 監測支持。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">💊</div>
+      <h2>12. 口服 dexamethasone 抑制試驗可以取代 LDDST 嗎</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">聽眾問：口服 dexamethasone 抑制試驗（搭配尿 cortisol）可以在某些情況取代靜脈 LDDST 嗎？有準確度、敏感度、特異度的資料嗎？</div>
+        <div class="a">
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 文獻發表的資料通常是用<strong>不同的檢測方法</strong>，也就是 RIA。用最常見的免疫分析，我們<strong>沒有好的資料</strong>，所以我不用這個試驗。</li>
+            <li><span class="src src-rec">🎤</span> 例如 Utrecht 大學用 RIA 測尿 cortisol，和我們完全不同。如果你能用到 RIA，可以參考他們的結果，但我沒有這個試驗的經驗。</li>
+          </ul>
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 我們隨時可以打靜脈注射，Utrecht 發表的結果也<strong>沒有顯示比我們現在的做法更好</strong>。所以它只是另一個選項。而且如 Antonio 說的，他們測尿 cortisol 的方法比我們好得多。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 13 ══ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🌰</div>
+      <h2>13. 五倍子單寧酸安全嗎</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">聽眾問：第一次聽到五倍子單寧酸，查了文獻，研究用的是 <strong>13 隻幼年 beagle、14 天</strong>。我擔心用在我們的老年病患會造成<strong>腎損傷</strong>。</div>
+        <div class="a">
+          <p class="p"><strong>Bugbee</strong>：<span class="src src-rec">🎤</span> 當然。劑量和治療時間都還需要研究，才能知道單寧酸的長期影響。</p>
+        </div>
+      </div>
+      <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><span class="src src-add">💡 補充</span> 對照 <a href="cushings-monitoring-alternative-tx.html#s18">13 第 18 節</a>：研究對象是健康幼犬、為期 14 天，不是庫欣犬，也沒有長期安全資料；劑量單位（講義 2.5 g/kg vs 口述每天 2.5 g）也還沒確認。目前不建議用在臨床病患。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 14 ══ -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🐱</div>
+      <h2>14. 極度肥胖貓的維持輸液量</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">聽眾問：BCS 超過 9 的極度肥胖貓，很多又有潛在心臟病，維持輸液量要怎麼算？</div>
+        <div class="a">
+          <p class="p"><strong>Bugbee</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 肥胖病患用<strong>瘦體重或理想體重</strong>計算，再依監測結果往上或往下調。</li>
+            <li><span class="src src-rec">🎤</span> 尤其有嚴重腎病或心臟病時，<strong>用含脂肪的實際體重計算會太積極</strong>，超過病患實際所需。<strong>不要用實際體重算。</strong></li>
+          </ul>
+        </div>
+      </div>
+      <p class="muted"><span class="src src-add">💡 補充</span> BCS 與肥胖的評估見 <a href="obesity-weight-loss.html">09 肥胖與減重</a>。</p>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 15 ══ -->
+  <div class="section" id="s15">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">💉</div>
+      <h2>15. 貓只需要 0.5 U 胰島素，怎麼打準</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">聽眾問：改成濕食後，很多貓只需要很低的胰島素劑量。有些貓每次只需要 <strong>0.5 U</strong>：給 1 U 會低血糖，停掉又高血糖。前天你們說偏好胰島素筆，這種情況怎麼處理？</div>
+        <div class="a">
+          <p class="p"><strong>Bugbee</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 胰島素筆很好，因為劑量準確，但<strong>絕對不是必須</strong>。我們大部分的飼主用的是<strong>空針加藥瓶</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 半單位的問題是：在標準空針上用目測，這次 0.3、下次 0.7。</li>
+            <li><span class="src src-rec">🎤</span> 有<strong>附半單位刻度的胰島素空針</strong>。年長飼主可以用<strong>夾在空針上的放大鏡</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 多數胰島素也有<strong>兒童用胰島素筆</strong>，可以轉半單位。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">另一位聽眾追問：我們國家只買得到 U-100 的空針，刻度有的偏高有的偏低。這種情況有什麼建議？</div>
+        <div class="a">
+          <p class="p"><strong>Bugbee</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 空針大小不同，刻度密度也不同。可以找 <strong>0.5 cc 到 0.3 cc</strong> 的小空針，看能不能買到有半單位刻度的。</li>
+            <li><span class="src src-rec">🎤</span> 有時只能目測，這當然不理想。這種情況下，<strong>濃度較低的胰島素</strong>比較好：<strong>U-40 用目測抓半單位比 U-100 容易</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 如果只有這些可以用，就盡量做到最好，同時要知道血糖控制可能會稍微鬆一點。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div>對照 <a href="feline-diabetes.html">03 貓糖尿病</a>與 <a href="panel-qa.html">05 座談 Q&amp;A</a>。U-40 胰島素要配 U-40 空針，<strong>不可以和 U-100 空針混用</strong>，否則劑量會差 2.5 倍。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 16 ══ -->
+  <div class="section" id="s16">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">📝</div>
+      <h2>Take-home、更正表與參考資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>Take-home</h3>
+        <ol class="notes">
+          <li><strong>檢驗前先問所有類固醇</strong>，包括耳藥、眼藥、皮膚噴劑。外源類固醇只會壓低 cortisol：正常或陽性可信，偏低要停藥重驗。</li>
+          <li><strong>腎上腺腫塊</strong>：看對側是否萎縮、有沒有症狀、之後要不要手術，再決定檢查。FNA 可分皮質或髓質；嗜鉻細胞瘤用 24 小時混合尿的 normetanephrine:creatinine。</li>
+          <li><strong>Addison 急救</strong>不急著給 DOCP，積極輸液就好；大劑量 DOCP 加大量輸液可能讓鈉飆高、出現神經症狀和水腫。長期用每天低劑量 prednisolone，不用長效注射。</li>
+          <li><strong>尿 cortisol</strong> 是比血清 cortisol 好的 Addison 篩檢，但要確診，實驗室必須能定量到 5–10 nmol/L。</li>
+          <li><strong>庫欣合併蛋白尿</strong>：先 trilostane＋飲食＋魚油，約 3 個月後仍嚴重才加 ACEi/ARB，並追蹤血鉀。Trilostane 本來是治醛固酮增多症的藥。</li>
+          <li><strong>症狀沒控制但數字在範圍內</strong>：範圍很大，在高端就加量或改 BID；eACTH 高（約 50 pg/mL）可考慮加 cabergoline。</li>
+          <li><strong>庫欣可以不典型</strong>：Schnauzer 反覆草酸鈣結石、Sheltie 膽囊黏液囊腫、高血壓。只有輕度 ALP 上升則不必驗。</li>
+          <li><strong>庫欣犬的低 T4</strong> 常是庫欣造成的；先控制庫欣，再做 T4、fT4、TSH 完整評估。</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-fix">【更正】</span> 逐字稿轉文字錯誤對照</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>逐字稿</th><th>應為</th></tr>
+          <tr><td>H P axis</td><td>HPA 軸</td></tr>
+          <tr><td>workout（眼藥）</td><td>workup</td></tr>
+          <tr><td>Turtle spray / pred power</td><td>topical spray／prednisolone 噴劑</td></tr>
+          <tr><td>very puppy</td><td>very young（很年輕）</td></tr>
+          <tr><td>fissionoid / pushing / cushions / CASINGS</td><td>cushingoid／Cushing's（CASINGS 處應為 potassium）</td></tr>
+          <tr><td>litter sex</td><td>LDDST</td></tr>
+          <tr><td>area of a dreamer / low C P tumor</td><td>adrenal area／pheochromocytoma</td></tr>
+          <tr><td>metallicity and non-metallicity</td><td>malignancy and non-malignancy</td></tr>
+          <tr><td>game buster ... brain tumor</td><td>（語意不清）不做一大堆功能性檢查</td></tr>
+          <tr><td>hypokalemia case, like 110 or 115</td><td>低血鈉（hyponatremia），Na 110–115</td></tr>
+          <tr><td>DACP / 2.2 mixed particulate DACP</td><td>DOCP 2.2 mg/kg</td></tr>
+          <tr><td>back body weight / fat body weight</td><td>實際（含脂肪）體重</td></tr>
+          <tr><td>methoprednisolone</td><td>methylprednisolone</td></tr>
+          <tr><td>tamoxifen / vitamin C（加了之後高血鉀）</td><td>ACEi／ARB</td></tr>
+          <tr><td>hypercalcemia（同一問題）</td><td>hyperkalemia（高血鉀）</td></tr>
+          <tr><td>STH cortisol / aseptal range</td><td>ACTH 刺激 cortisol／acceptable range</td></tr>
+          <tr><td>chlorthal</td><td>trilostane</td></tr>
+          <tr><td>fludrocortisone first（蛋白尿）</td><td>trilostane first</td></tr>
+          <tr><td>the CAVM</td><td>ACVIM</td></tr>
+          <tr><td>pharoside</td><td>trilostane</td></tr>
+          <tr><td>azacitidine or enciminto</td><td>ACEi 或 ARB（如 benazepril、telmisartan）</td></tr>
+          <tr><td>brain system</td><td>RAAS（腎素–血管張力素系統）</td></tr>
+          <tr><td>tolerance / emolitic</td><td>假性高血鉀／hemolytic（溶血）</td></tr>
+          <tr><td>terbinafine / trazodone</td><td>ACEi/ARB／trilostane</td></tr>
+          <tr><td>triostin / trial stain / trialistain / mycus / tamperolene</td><td>trilostane</td></tr>
+          <tr><td>Conn syndrome or hyperaldosteronism</td><td>（正確）原發性醛固酮增多症</td></tr>
+          <tr><td>progeria</td><td>proteinuria</td></tr>
+          <tr><td>acid inhibitor</td><td>ACE inhibitor</td></tr>
+          <tr><td>S A T H stimulation test</td><td>ACTH stimulation test</td></tr>
+          <tr><td>transplant therapy</td><td>trilostane therapy</td></tr>
+          <tr><td>verdeline / verberdoline / vermillion</td><td>cabergoline</td></tr>
+          <tr><td>no case acid / ritonavir / mycace</td><td>retinoic acid（視黃酸）</td></tr>
+          <tr><td>Dr. Bucky / Dr. Bugby / Dr. Bagley</td><td>Dr. Bugbee</td></tr>
+          <tr><td>Dr. Target / Dr. Carter / Dr. Tadros / Anthony</td><td>Dr. Tardo（Antonio）</td></tr>
+          <tr><td>adaptive states of pH</td><td>endogenous ACTH（內生性 ACTH）</td></tr>
+          <tr><td>hyperkaliculism</td><td>hypercortisolism</td></tr>
+          <tr><td>mydriasis</td><td>（語意不清，應為其他控制不佳的跡象）</td></tr>
+          <tr><td>ACTG stimulation / three or two month</td><td>ACTH stimulation／adrenal tumor</td></tr>
+          <tr><td>midostil expression test</td><td>dexamethasone suppression test</td></tr>
+          <tr><td>pseudoaldosteronism / pheoimino / apheo</td><td>pheochromocytoma（嗜鉻細胞瘤）</td></tr>
+          <tr><td>Alloledex Dex</td><td>LDDST</td></tr>
+          <tr><td>hypervolism</td><td>hypercortisolism</td></tr>
+          <tr><td>FIO and normal adrenaline</td><td>normal metanephrine and normetanephrine</td></tr>
+          <tr><td>post-tally</td><td>episodic（陣發性分泌）</td></tr>
+          <tr><td>cholecystectomy and treatment</td><td>Cushing's（trilostane）treatment</td></tr>
+          <tr><td>arthritic / emolting of the tumor</td><td>（語意不清，應指腫瘤周圍水腫）</td></tr>
+          <tr><td>Doctor Daniel / acid disease</td><td>Dr. Daniel Langlois／Addison's disease</td></tr>
+          <tr><td>animals per liter</td><td>nmol/L</td></tr>
+          <tr><td>imulite / immuno</td><td>Immulite／immunoassay</td></tr>
+          <tr><td>radio nuclides / RRA</td><td>radioimmunoassay（RIA）</td></tr>
+          <tr><td>gold on tanning acid / please on tanning acid</td><td>gallnut tannic acid（五倍子單寧酸）</td></tr>
+          <tr><td>thirteen eagle puppies for updating fourteen days</td><td>13 隻幼年 beagle，14 天</td></tr>
+          <tr><td>gonadotropin in our postmenopausal patients / close on renal injury</td><td>用在老年病患／造成腎損傷</td></tr>
+          <tr><td>only two membranes / shims</td><td>只有 U-100 空針／syringes</td></tr>
+          <tr><td>bicameral regulation</td><td>glycemic regulation（血糖控制）</td></tr>
+          <tr><td>bladder milk</td><td>bladder stones（膀胱結石）</td></tr>
+          <tr><td>gushings</td><td>Cushing's</td></tr>
+          <tr><td>gallbladder mucosal formation / brachyury hypertension</td><td>gallbladder mucocele／hypertension</td></tr>
+          <tr><td>mucosia, gastromax</td><td>mucocele 等其他問題</td></tr>
+          <tr><td>out cost / outflow / outcross</td><td>ALP</td></tr>
+          <tr><td>yearline two thousand</td><td>Immulite 2000</td></tr>
+          <tr><td>oral examination / IELTS examination</td><td>oral dexamethasone suppression test／IV LDDST</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Panel Discussion: Veterinary Endocrinology in Small Animals. VET-KU × Texas A&amp;M IM Conference, 2026-10-07（座談逐字稿「完整記錄」PDF）。</div>
+          <div class="ref-item">座談錄音與逐字稿（Plaud）。<a href="https://web.plaud.ai/s/pub_3a5f52e6-173f-4c03-85a5-ac1b579bccbf::jkHF9dVoMmC5ZUO9BYzjklPMVvnUpNo5sB8ePcI6c8ss28l-gKrk-Jea9hvRPWGLWhnIM3uZEQh9vQN-mRfWCQI" target="_blank" rel="noopener">連結</a>（逐字稿有轉文字錯誤，請對照本頁更正表）</div>
+          <div class="ref-item">同日講座：<a href="addisons-disease.html">11 犬 Addison 氏症</a>（Langlois）、<a href="cushings-diagnosis-treatment.html">12 犬庫欣氏症：診斷與內科治療</a>（Tardo）、<a href="cushings-monitoring-alternative-tx.html">13 犬庫欣氏症：藥物監測與替代療法</a>（Bugbee）。</div>
+          <div class="ref-item">Golinelli S, Fracassi F, del Baldo F, et al. Evaluation of clinical, ultrasonographic, and clinicopathological findings in dogs with PDH and poor trilostane response. <em>J Vet Intern Med.</em> 2026（反應不佳組 eACTH 較高）。</div>
+          <div class="ref-item">Behrend EN, Kooistra HS, Nelson R, Reusch CE, Scott-Moncrieff JC. Diagnosis of spontaneous canine hyperadrenocorticism: 2012 ACVIM consensus statement (small animal). <em>J Vet Intern Med.</em> 2013;27:1292–1304（Langlois 提到的「十幾年前的共識聲明」）。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="cushings-monitoring-alternative-tx.html">13 犬庫欣氏症：藥物監測與替代療法</a>。下一場將陸續整理更新。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
