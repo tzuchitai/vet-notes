@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>犬甲狀腺功能低下：診斷難題與爭議｜2026 Texas 內分泌研討會</title>
+<style>
+  :root {
+    --primary: #0F766E;
+    --primary-light: #CCFBF1;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0d2522;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9cc8c1; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #1f4a44;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9cc8c1; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9cc8c1;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #1f4a44;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #5f8f87;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0b4f49 0%, #14a395 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0d2522; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #1f4a44; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 Texas 內分泌研討會</a>
+  <div class="logo">
+    <h2>17｜犬甲狀腺功能低下：<br>診斷難題與爭議</h2>
+    <p>Daniel K. Langlois｜2026 年 10 月 8 日</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">場次資訊與大綱</a>
+    <div class="nav-section">基礎</div>
+    <a href="#s1">1. 甲狀腺生理</a>
+    <a href="#s2">2. 甲低基礎與病因</a>
+    <a href="#s3">3. 淋巴球性甲狀腺炎的光譜</a>
+    <a href="#s4">4. 臨床表現與典型病例 Bo</a>
+    <a href="#s5">5. 治療與監測</a>
+    <div class="nav-section">挑戰一：少見病因</div>
+    <a href="#s6">6. 先天性甲低</a>
+    <div class="nav-section">挑戰二：診斷難題</div>
+    <a href="#s7">7. 各項檢測的價值與 TSH</a>
+    <a href="#s8">8. 非甲狀腺疾病與預測值</a>
+    <a href="#s9">9. 藥物：Archie</a>
+    <a href="#s10">10. 自體抗體與平衡透析</a>
+    <a href="#s11">11. 模稜兩可：Scout 與 Ellie Mae</a>
+    <div class="nav-section">挑戰三：爭議關聯</div>
+    <a href="#s12">12. 食道／喉部、攻擊性</a>
+    <a href="#s13">13. 動脈粥狀硬化與黏液水腫昏迷</a>
+    <div class="nav-section">甲亢</div>
+    <a href="#s14">14. 飲食性甲亢：哈瓦那犬與 Zippity</a>
+    <a href="#s15">15. 犬甲亢與甲狀腺腫瘤</a>
+    <div class="nav-section">課後</div>
+    <a href="#s16">16. 加碼病例：貓的 NTI</a>
+    <a href="#s17">17. 課後 Q&amp;A</a>
+    <a href="#s18">18. 延伸：讀懂商業實驗室報告</a>
+    <a href="#s19">Take-home、更正表與參考資料</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>犬甲狀腺功能低下：診斷難題、少見病因與爭議關聯</h1>
+    <p>主講：Daniel K. Langlois, DVM, DACVIM｜密西根州立大學（MSU）獸醫學院內科教授</p>
+    <p>2026 年 10 月 8 日｜VET-KU × Texas A&amp;M 內科研討會｜場次 17</p>
+    <div class="tags">
+      <span class="tag">Hypothyroidism</span>
+      <span class="tag">淋巴球性甲狀腺炎</span>
+      <span class="tag">TgAA／T4AA／T3AA</span>
+      <span class="tag">fT4 by ED</span>
+      <span class="tag">TSH</span>
+      <span class="tag">非甲狀腺疾病（NTI）</span>
+      <span class="tag">磺胺類</span>
+      <span class="tag">先天性甲低</span>
+      <span class="tag">視覺獵犬</span>
+      <span class="tag">動脈粥狀硬化</span>
+      <span class="tag">飲食性甲亢</span>
+      <span class="tag">Levothyroxine</span>
+    </div>
+    <a class="rec-link" href="https://web.plaud.ai/s/pub_c2bf0bd5-30db-41bb-81d4-61f4e3b841f0::fy9xMDdUT0vOvmRxGGj0MySfzhu1hWVSXa0AR5PW7RuujA047bcBbOvtxegetS6j1c_gPBFv-TJgmCP8j7wSMQI" target="_blank" rel="noopener">🎧 課堂錄音與逐字稿（Plaud）↗</a>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（頁碼＝講義投影片編號 1–57）
+    <span class="src src-rec">🎤</span> 課堂逐字稿
+    <span class="src src-photo">📸 現場</span> 課堂現場投影片（講義 PDF 沒有）
+    <span class="src src-hand">✍️ 筆記</span> 上課時記下的重點與提問
+    <span class="src src-add">💡 補充</span> 整理者補充（機轉、判讀、交叉參照）
+    <span class="src src-fix">【更正】</span> 逐字稿轉文字錯誤，以講義為準（完整列表見最後一節）
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li>大多數甲低很好診斷：症狀吻合＋支持性檢驗異常＋激素低。難的是<strong>不典型的病例</strong></li>
+      <li>甲狀腺炎與特發性萎縮<strong>是同一條光譜</strong>：抗體陽性 → TSH 升高 → 激素低、抗體轉陰</li>
+      <li><strong>TT4 用來排除</strong>（敏感但特異度約 75%）；只驗 TT4 的低值，PPV <strong>不到 50%，像擲硬幣</strong></li>
+      <li><strong>TSH 增加的是特異度，不是敏感度</strong>；約 25% 甲低犬 TSH 正常。低激素＋高 TSH 最有把握</li>
+      <li>多數藥物會降低 T4，但不影響 TSH；<strong>磺胺類例外</strong>，會讓 TSH 升高</li>
+      <li>T4AA／T3AA 多半造成 T4、T3 <strong>假性升高</strong>；高度懷疑甲低、TSH 高、T4 卻正常或偏高，就是線索</li>
+      <li>只有<strong>平衡透析法（ED）</strong>的 fT4 不受自體抗體影響；非透析的 fT4 一樣會被干擾</li>
+      <li>視覺獵犬的 TT4、fT4 生理性偏低；激素低、TSH 正常是<strong>最常見的會診難題</strong></li>
+      <li><strong>單純</strong>的巨食道症或喉麻痺、攻擊性：MSU 已<strong>不再例行驗甲狀腺</strong></li>
+      <li>嚴重高血脂（膽固醇平均約 1500 mg/dL）的甲低犬可能有<strong>動脈粥狀硬化</strong>，甲低是犬動脈粥狀硬化的第一名病因</li>
+      <li>狗的甲亢除了甲狀腺癌，也要問<strong>飲食</strong>（生肉、新奇罐頭）並仔細觸診頸部</li>
+      <li>停用 levothyroxine 後要等 <strong>4–8 週</strong>再複驗；非甲狀腺疾病可以讓 TT4 降到 1 nmol/L</li>
+    </ul>
+  </div>
+
+  <!-- ══ S0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🎯</div>
+      <h2>場次資訊與大綱</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 1、17</span><span class="src src-rec">🎤</span> 講者與大綱</h3>
+        <ul class="notes">
+          <li>講者 Daniel K. Langlois，DVM、DACVIM，MSU 獸醫學院內科教授。部分資料由 MSU 獸醫診斷實驗室（MSU‑VDL）的 Dr. Kent Refsal 與 Dr. Jean Brudvig 提供。</li>
+          <li><span class="src src-rec">🎤</span> 這一小時聚焦<strong>甲狀腺功能低下</strong>，下一小時由 Dr. Bugbee 講甲狀腺功能亢進。</li>
+          <li><span class="src src-rec">🎤</span> 講者喜歡水和海灘，但住在密西根，一年只有兩三個月能享受。另一個嗜好是排球，現在也當女兒排球隊的教練。</li>
+          <li><span class="src src-rec">🎤</span> 大部分病例來自 MSU 的內分泌實驗室，所以病史常常不完整。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>#</th><th>甲狀腺疾病的挑戰</th><th>內容</th></tr>
+          <tr><td>1</td><td>少見病因</td><td>先天性甲低、後天中樞性甲低</td></tr>
+          <tr><td>2</td><td>診斷難題</td><td>看懂完整甲狀腺套組、藥物與非甲狀腺疾病、模稜兩可或意外的結果</td></tr>
+          <tr><td>3</td><td>證據薄弱或有爭議的臨床關聯</td><td>食道或喉部疾病、行為改變與攻擊性、動脈粥狀硬化與神經疾病</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🧬</div>
+      <h2>1. 甲狀腺生理</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 2–3</span><span class="src src-rec">🎤</span> 激素合成與作用</h3>
+        <figure class="fig">
+          <img src="photos/17-02-physiology.jpg" alt="甲狀腺生理：下視丘-垂體-甲狀腺軸與濾泡細胞" loading="lazy">
+          <figcaption>📄 2：左為 TRH → TSH → T4/T3 的負回饋軸；右為甲狀腺濾泡細胞的激素合成（Bolton &amp; Panciera, JVIM 2023）</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 甲狀腺幾乎是體內<strong>唯一利用碘</strong>的器官：攝取的碘不是被排出，就是被甲狀腺使用。</li>
+          <li><span class="src src-rec">🎤</span> 合成步驟：
+            <strong>鈉碘共同運輸體（NIS）</strong>把碘從血液帶進甲狀腺細胞 → 送到頂端膜外 → <strong>甲狀腺過氧化酶（TPO）</strong>氧化碘 → 有機化，接到<strong>甲狀腺球蛋白（Tg）</strong>上，形成 MIT、DIT → 偶聯成 T3、T4 → 再被吞回細胞、分泌進血液。</li>
+          <li>血中 <strong>99% 的 T4、T3 和蛋白質結合</strong>，只有游離的 fT4、fT3 能進入細胞；而且<strong>只有 T3 能進入細胞核</strong>發揮作用。</li>
+          <li><span class="src src-rec">🎤</span> 很多組織都有脫碘酶，可以把 T4 轉成 T3。這可能就是為什麼 <strong>T4 比 T3 更能代表整體甲狀腺狀態</strong>。</li>
+          <li>甲狀腺激素是生長、成熟、代謝所必需。<strong>正常濃度時促進合成（anabolic），過量時促進分解（catabolic）</strong>。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：這張圖是後面所有判讀的基礎。原發性（甲狀腺壞掉）時 T4 低、TSH 高；中樞性（垂體或下視丘）時 T4 低，但 TSH 不會升高。後面提到的<strong>磺胺類</strong>抑制的正是 TPO，<strong>先天性激素合成障礙</strong>則是 TPO 或 NIS 的基因突變。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">📋</div>
+      <h2>2. 甲低基礎與病因</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 4</span><span class="src src-rec">🎤</span> 基本概念</h3>
+        <ul class="notes">
+          <li>犬常見的內分泌疾病，有人認為是第一名。文獻盛行率 0.07–0.2%；每位獸醫每年約 2–5 個新病例，同時追蹤的病例可能超過 10 隻。</li>
+          <li><span class="src src-rec">🎤</span> 在所有內分泌疾病中，甲低在多數情況下<strong>可能是最容易診斷、也最容易處理的</strong>：
+            <ul>
+              <li><strong>甲低</strong>：臨床症狀吻合、有支持性的檢驗異常、甲狀腺激素低</li>
+              <li><strong>甲狀腺功能正常</strong>：臨床健康、沒有支持性異常、激素正常</li>
+              <li><strong>治療</strong>：便宜、有效、容易監測</li>
+            </ul>
+          </li>
+          <li><span class="src src-rec">🎤</span> 「今天我們要專注在<strong>沒那麼直接</strong>的病例。」</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 5–7</span><span class="src src-rec">🎤</span> 中樞性與原發性；後天原發性甲低</h3>
+        <ul class="notes">
+          <li><strong>中樞性</strong>：問題在下視丘或垂體，最後造成 TSH 分泌減少。<strong>原發性</strong>：問題在甲狀腺本身。</li>
+          <li>犬的甲低 <strong>超過 95% 是原發性</strong>，而且絕大多數是<strong>後天</strong>的，不是先天。</li>
+          <li><span class="src src-rec">🎤</span> 好發品種很多，例如<strong>黃金獵犬、大丹犬、米格魯</strong>。中年疾病：平均 6–8 歲（0.5–15 歲），沒有明確的性別或結紮傾向。</li>
+          <li>傳統上分成兩種：<strong>淋巴球性甲狀腺炎</strong>（自體免疫）和<strong>特發性甲狀腺退化／萎縮</strong>。<span class="src src-rec">🎤</span> 但實際上它們<strong>很可能是同一條疾病光譜</strong>（見下一節）。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">🔬</div>
+      <h2>3. 淋巴球性甲狀腺炎的光譜</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 8–10</span><span class="src src-rec">🎤</span> 從亞臨床到末期</h3>
+        <div class="grid3">
+          <figure class="fig">
+            <img src="photos/17-08-subclinical.jpg" alt="亞臨床甲狀腺炎組織切片" loading="lazy">
+            <figcaption>📄 8：亞臨床期</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/17-09-progressive.jpg" alt="進行期甲狀腺炎組織切片" loading="lazy">
+            <figcaption>📄 9：進行期</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/17-10-endstage.jpg" alt="末期甲狀腺炎與特發性萎縮組織切片" loading="lazy">
+            <figcaption>📄 10：末期／特發性退化</figcaption>
+          </figure>
+        </div>
+        <div class="tbl-wrap"><table>
+          <tr><th>分期</th><th>組織學（🎤 講者描述）</th><th>甲狀腺激素</th><th>TSH</th><th>TgAA</th></tr>
+          <tr><td><strong>亞臨床</strong></td><td>濾泡和膠質大致正常，開始有藍色小點（主要是淋巴球，也有漿細胞）浸潤；只有極少量組織流失</td><td>正常</td><td>正常</td><td><strong>可能偏高</strong></td></tr>
+          <tr><td><strong>進行期</strong>（幾個月後）</td><td>發炎浸潤更多、受損組織更多，但仍有不少功能組織；身體要<strong>更努力</strong>才能維持正常激素</td><td>正常</td><td><strong>可能偏高</strong></td><td>高</td></tr>
+          <tr><td><strong>末期</strong>（一年後）</td><td>幾乎只剩纖維脂肪組織</td><td><strong>低</strong></td><td><strong>高</strong></td><td><strong>正常／陰性</strong></td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 末期抗體會轉陰，是因為已經<strong>沒有甲狀腺組織，沒有持續產生抗體的驅動力</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 所以「淋巴球性甲狀腺炎」和「特發性濾泡萎縮」不一定是兩種病，很多時候只是<strong>在光譜上的不同時間點抓到牠們</strong>。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🐕</div>
+      <h2>4. 臨床表現與典型病例 Bo</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 11</span><span class="src src-rec">🎤</span> 臨床表現</h3>
+        <div class="grid3">
+          <div class="card-mini"><h4>代謝</h4><ul>
+            <li>嗜睡、沒精神</li>
+            <li>肥胖或體重增加</li>
+            <li>運動不耐</li>
+            <li>怕冷</li>
+          </ul></div>
+          <div class="card-mini"><h4>皮膚</h4><ul>
+            <li>脫毛</li>
+            <li>皮脂漏、毛質差</li>
+            <li>色素沉著、粉刺</li>
+          </ul></div>
+          <div class="card-mini"><h4>其他</h4><ul>
+            <li>母犬生殖異常</li>
+            <li>心搏過緩、收縮力下降</li>
+            <li>各種神經病變</li>
+            <li>黏液水腫昏迷</li>
+          </ul></div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 「狗太胖、怎麼都減不下來」是很常見的主訴。</li>
+          <li><span class="src src-rec">🎤</span> <strong>大部分甲低犬其實是先看皮膚科</strong>，而不是內科。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 12–13</span><span class="src src-rec">🎤</span> 病例：Bo，5 歲已去勢公犬（黃金獵犬）</h3>
+        <p><strong>主訴：</strong>嗜睡、脫毛、色素沉著。<span class="src src-rec">🎤</span> 鼻樑有很不幸的脫毛型態，也有點胖。</p>
+        <div class="grid2">
+          <div class="tbl-wrap"><table>
+            <tr><th>一般檢驗</th><th>結果</th><th>參考值</th></tr>
+            <tr><td>HCT</td><td><strong>40 ↓</strong></td><td>41–55%</td></tr>
+            <tr><td>ALP</td><td><strong>107 ↑</strong></td><td>10–92 U/L</td></tr>
+            <tr><td>ALT</td><td>51</td><td>21–68 U/L</td></tr>
+            <tr><td>膽固醇</td><td><strong>488 ↑</strong></td><td>126–325 mg/dL</td></tr>
+          </table></div>
+          <div class="tbl-wrap"><table>
+            <tr><th>甲狀腺</th><th>結果</th><th>參考值</th></tr>
+            <tr><td>TT4</td><td><strong>5 ↓</strong></td><td>15–67 nmol/L</td></tr>
+            <tr><td>TT3</td><td><strong>0.0</strong></td><td>1.0–2.5 nmol/L</td></tr>
+            <tr><td>fT4</td><td><strong>2 ↓</strong></td><td>8–26 pmol/L</td></tr>
+            <tr><td>T4AA</td><td>19</td><td>&lt; 20%</td></tr>
+            <tr><td>T3AA</td><td><strong>13 ↑</strong></td><td>&lt; 10%</td></tr>
+            <tr><td>cTSH</td><td><strong>4.84 ↑</strong></td><td>&lt; 0.58 ng/mL</td></tr>
+            <tr><td>TgAA</td><td><strong>116 ↑</strong></td><td>&lt; 35%</td></tr>
+          </table></div>
+        </div>
+        <div class="alert alert-success"><span class="alert-icon">✅</span><div><strong>判讀</strong>：<span class="src src-rec">🎤</span> 輕度貧血、ALP 輕度上升、高膽固醇都是經典的支持性異常；T4、T3、fT4 都很低，抗體高，TSH 高。<strong>淋巴球性甲狀腺炎造成的原發性甲低，非常經典。</strong><br><span class="src src-add">💡 補充</span> T3AA 陽性代表 TT3 數值不可信，但 T3 本來就不是診斷甲低的好指標。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">💊</div>
+      <h2>5. 治療與監測</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 14</span><span class="src src-rec">🎤</span> Levothyroxine</h3>
+        <ul class="notes">
+          <li><strong>合成 T4 製劑</strong>，劑量約 <strong>0.02 mg/kg/天</strong>；每天給藥方式要一致（固定空腹或固定隨餐）；犬的半衰期短，可以 SID 或 BID；不同產品的反應可能不同。</li>
+          <li><span class="src src-rec">🎤</span> 在美國非常便宜，很多狗<strong>一年的藥大約 30 美元</strong>。</li>
+          <li><strong>避免其他產品</strong>：
+            <ul>
+              <li>T3 製劑半衰期短，而且<span class="src src-rec">🎤</span> 會<strong>失去甲狀腺酵素的調控</strong>，需要一天多次給藥，中毒風險較高</li>
+              <li>T3/T4 複方的比例可能不對</li>
+            </ul>
+          </li>
+          <li><strong>監測</strong>：代謝異常（數天到數週）比皮膚異常（數週到數月）恢復得快；新劑量後 2–4 週、之後每年 2 次，檢測 T4／fT4，最好加 TSH。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 15–16</span><span class="src src-rec">🎤</span> 採血時機</h3>
+        <div class="grid2">
+          <figure class="fig">
+            <img src="photos/17-15-levo-pk.jpg" alt="Levothyroxine 給藥後血清 T4 曲線，峰值 3–6 小時" loading="lazy">
+            <figcaption>📄 15：給藥後 T4 曲線（空腹 vs 隨餐，Le Traon 2008）；峰值在 3–6 小時</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/17-16-levo-pk-trough.jpg" alt="非峰值時採血也能得到資訊" loading="lazy">
+            <figcaption>📄 16：非峰值時採血也能得到資訊</figcaption>
+          </figure>
+        </div>
+        <ul class="notes">
+          <li>最佳採血時間：給藥後 <strong>3–6 小時</strong>；目標是<strong>參考範圍的中高段</strong>；低於中段代表不足。</li>
+          <li>不在峰值採血也有資訊：谷底仍偏高或中高 → 擔心過量；數值異常低 → 仍然不足，<strong>SID 給藥時尤其如此</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 在曲線上幾乎任何一點都能得到有用資訊；但若在 3–6 小時監測，希望看到中高段的數值，<strong>每天給一次的狗尤其如此</strong>。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：圖中<strong>空腹給藥的峰值明顯比隨餐高</strong>，這就是為什麼給藥方式要固定。如果狗有 T4AA，治療後的 TT4 一樣會被干擾，這時要改用 <strong>fT4 (ED)＋TSH</strong> 監測（見<a href="#s10">第 10 節</a>）。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🐶</div>
+      <h2>6. 先天性甲低</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 18</span><span class="src src-rec">🎤</span> 中樞性 vs 原發性</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>中樞性（缺乏 TSH）</h4><ul>
+            <li>單純缺 TSH，或垂體性侏儒症的一部分</li>
+            <li>遺傳機制不清楚</li>
+            <li><span class="src src-rec">🎤</span> 甲狀腺本身沒病，只是沒有 TSH → <strong>甲狀腺萎縮、變小</strong></li>
+            <li>品種：雪納瑞（迷你與巨型）、葡萄牙水犬、蘇格蘭獵鹿犬（？）</li>
+            <li><span class="src src-rec">🎤</span> MSU 那一區的經典品種是<strong>巨型雪納瑞</strong></li>
+          </ul></div>
+          <div class="card-mini"><h4>原發性</h4><ul>
+            <li><strong>激素合成障礙（dyshormonogenesis）</strong>：<span class="src src-rec">🎤</span> 最常見是 <strong>TPO 基因突變</strong>，也有 NIS 缺陷</li>
+            <li>甲狀腺未發育或發育不全（？）</li>
+            <li><span class="src src-rec">🎤</span> 有甲狀腺細胞，但做不出有功能的激素 → <strong>TSH 非常高 → 甲狀腺腫（goiter）</strong></li>
+            <li>品種：玩具狐㹴與 Tenterfield 㹴、西班牙水犬、西施犬與蝴蝶犬</li>
+          </ul></div>
+        </div>
+        <p><span class="src src-rec">🎤</span> 先天性甲低並不常見，MSU 一年大約只看到一兩例。10/9 另有一堂先天性甲低的課。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 19–20</span><span class="src src-rec">🎤</span> 甲狀腺腫：西施犬同窩病例</h3>
+        <figure class="fig">
+          <img src="photos/17-19-goiter.jpg" alt="先天性甲狀腺腫：兩側甲狀腺葉腫大與 MRI" loading="lazy">
+          <figcaption>📄 19：A、B 為同一隻狗的頸部腹側，RTL／LTL＝右／左甲狀腺葉，箭頭圈出腫大的範圍（Soler Arias 2018）；C 為頸部 MRI 橫切面，中間黑圓是氣管，箭頭指向兩側腫大的甲狀腺（González 2024）</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 一窩<strong>西施犬</strong>中有幾隻先天性原發性甲低，甲狀腺腫大到<strong>吞嚥困難</strong>才來就診，大約一年半內陸續安樂死。</li>
+          <li><span class="src src-rec">🎤</span> <strong>甲狀腺腫是原發性先天甲低的特徵</strong>，在狗身上非常少見。</li>
+          <li><span class="src src-rec">🎤</span> 第 20 張是同一篇報告的另一隻狗：幾個月大，仍有很明顯的幼犬毛、體型小、比例不對稱的侏儒。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：判讀腫大的甲狀腺時，<strong>年輕犬兩側對稱腫大</strong>要先想先天性甲狀腺腫；<strong>成犬或老犬、多為單側腫塊</strong>要想甲狀腺癌。預期檢驗：T4、fT4 低、<strong>TSH 高</strong>、TgAA 陰性。補充 levothyroxine 後 TSH 被抑制，甲狀腺腫通常會縮小。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 21</span><span class="src src-rec">🎤</span> 臨床特徵與診斷</h3>
+        <figure class="fig">
+          <img src="photos/17-21-congenital-signs.jpg" alt="先天性甲低：比例不對稱侏儒與骨骺發育不良" loading="lazy">
+          <figcaption>📄 21：上為患病的巨型雪納瑞幼犬（前）與同窩正常犬（後）；下為 X 光，骨骺骨化延遲、發育不良（Greco 1991）</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>可以有一般甲低的典型表現，也有先天性特有的：
+            <ul>
+              <li><strong>比例不對稱的侏儒症</strong>：<span class="src src-rec">🎤</span> 長骨比軀幹骨受影響更多，所以<strong>腿很短，但身體長度相對正常</strong></li>
+              <li>嗜睡、精神遲鈍</li>
+              <li>骨骼成熟延遲、換牙延遲、<strong>骨骺發育不良</strong>；<span class="src src-rec">🎤</span> 生長板閉合延遲，有很多骨科問題</li>
+              <li>頭骨寬、巨舌；模糊的中樞神經症狀、運動失調；心肌病（？）</li>
+            </ul>
+          </li>
+          <li><span class="src src-rec">🎤</span> 有些狗不是 8 週齡就發病，而是 <strong>3、4、5、6 個月大</strong>才被診斷。</li>
+          <li><strong>完整甲狀腺套組＋IGF‑1</strong>：
+            <ul>
+              <li><strong>TSH</strong> 用來區分原發性（TSH 很高）和中樞性（TSH 低）</li>
+              <li><strong>IGF‑1</strong> 用來判斷是垂體性侏儒（全垂體功能低下）還是單純缺 TSH</li>
+            </ul>
+          </li>
+          <li>預後通常不錯，但不如後天型確定；<span class="src src-rec">🎤</span> 部分取決於多早發現。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 22</span><span class="src src-rec">🎤</span> 病例：Maci，4 月齡母巨型雪納瑞</h3>
+        <p><strong>主訴：</strong>體型矮小（吻部與長骨短）、輕微嗜睡。<span class="src src-rec">🎤</span> 「確診時還沒那麼『巨型』。」</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>結果</th><th>參考值</th></tr>
+          <tr><td>TT4</td><td><strong>2 ↓</strong></td><td>11–60 nmol/L</td></tr>
+          <tr><td>TT3</td><td><strong>0.3 ↓</strong></td><td>0.8–2.1 nmol/L</td></tr>
+          <tr><td>fT4 (ED)</td><td><strong>0 ↓</strong></td><td>6–42 pmol/L</td></tr>
+          <tr><td>cTSH</td><td>0.13（正常低值）</td><td>&lt; 0.58 ng/mL</td></tr>
+          <tr><td>TgAA</td><td>4</td><td>&lt; 35%</td></tr>
+          <tr><td>IGF‑1</td><td>511（正常）</td><td>92–702 ng/mL</td></tr>
+        </table></div>
+        <div class="alert alert-success"><span class="alert-icon">✅</span><div><strong>判讀</strong>：<span class="src src-rec">🎤</span> 激素全部很低，TSH 在正常範圍低端 → <strong>先天性中樞性甲低</strong>。IGF‑1 正常，所以<strong>不是垂體性侏儒</strong>，是單純的先天性中樞性甲低。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">📊</div>
+      <h2>7. 各項檢測的價值與 TSH 的角色</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 24</span><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> 甲狀腺疾病的生物標記</h3>
+        <figure class="fig">
+          <img src="photos/17-24-biomarkers.jpg" alt="Ferguson 2007 犬甲狀腺診斷檢測比較表" loading="lazy">
+          <figcaption>📄 24：犬甲狀腺各項檢測比較（Ferguson, Vet Clin 2007）；「a/b」為兩個研究的數值</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>檢測</th><th>敏感度</th><th>特異度</th><th>準確度</th><th>重點</th></tr>
+          <tr><td>低 TT4</td><td>0.89 / 1.0</td><td>0.82 / 0.75</td><td>0.85</td><td>敏感度高，適合<strong>排除</strong></td></tr>
+          <tr><td>低 TT3</td><td>0.10</td><td>0.92</td><td>0.55</td><td>幾乎沒有診斷價值</td></tr>
+          <tr><td>低 fT4 (ED)</td><td>0.98 / 0.80</td><td>0.93 / 0.94</td><td><strong>0.95</strong></td><td>單一最準確</td></tr>
+          <tr><td>高 TSH</td><td>0.76 / 0.87</td><td>0.93 / 0.82</td><td>0.84</td><td>約 1/4 甲低犬 TSH 正常</td></tr>
+          <tr><td>低 TT4＋高 TSH</td><td>0.67 / 0.87</td><td><strong>0.98 / 0.92</strong></td><td>0.82</td><td>適合<strong>確診</strong></td></tr>
+          <tr><td>低 fT4D＋高 TSH</td><td>0.74 / 0.80</td><td><strong>0.98 / 0.97</strong></td><td>0.86</td><td>適合<strong>確診</strong></td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 低 TT4 是很敏感的指標，但特異度大概只有 <strong>75%</strong>。</li>
+          <li><span class="src src-rec">🎤</span> fT4 的準確度取決於<strong>怎麼測</strong>：是 Immulite 這類直接類似物法，還是平衡透析？單一指標裡，<strong>fT4 by ED 可能最準，但也不完美</strong>。</li>
+          <li><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> <strong>把 TSH 加進診斷，增加的是特異度，不是敏感度。</strong>約 <strong>25%</strong> 臨床甲低犬在確診時 TSH 是正常的，原因不明。</li>
+          <li><span class="src src-rec">🎤</span> 最有把握的診斷方式：<strong>甲狀腺激素低＋TSH 高</strong>。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：TSH 能提高特異度，主要是因為<strong>非甲狀腺疾病</strong>會壓低 T4，但 TSH 通常不會升高，所以「低 T4＋高 TSH」能篩掉生病但甲狀腺正常的狗。兩個例外：<strong>磺胺類</strong>會讓 TSH 升高（Archie），<strong>中樞性甲低</strong>的 TSH 不會升高（Maci）。<br><strong>記法</strong>：TT4 排除、TSH 搭配 T4 確診、fT4 (ED) 是單一檢測中最準的。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🏥</div>
+      <h2>8. 非甲狀腺疾病與預測值</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 25</span><span class="src src-rec">🎤</span> 非甲狀腺疾病（NTI，euthyroid sick syndrome）</h3>
+        <figure class="fig">
+          <img src="photos/17-25-nti.jpg" alt="Bolton 2024：住院犬入院、出院、2 週、4 週的甲狀腺激素" loading="lazy">
+          <figcaption>📄 25：住院犬在入院、出院、2 週、4 週的 T4 變化（Bolton 2024）</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> Bolton（現在在 Purdue）的研究：住院犬入院時不只 <strong>TT4 低，fT4 也低</strong>；病好之後，<strong>TT4 可能要幾週才會回升</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 26</span><span class="src src-rec">🎤</span> 總 T4 的臨床價值：預測值</h3>
+        <figure class="fig">
+          <img src="photos/17-26-ppv.jpg" alt="TT4 的 PPV 47%、NPV 97% 計算" loading="lazy">
+          <figcaption>📄 26：敏感度 90%、特異度 75%、盛行率 20%、驗 100 隻狗</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>甲低（20 隻）</th><th>非甲低（80 隻）</th></tr>
+          <tr><td>T4 低</td><td>18</td><td>20</td></tr>
+          <tr><td>T4 正常</td><td>2</td><td>60</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><strong>PPV</strong> = 18/38 = <strong>47%</strong>；<strong>NPV</strong> = 60/62 = <strong>97%</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 敏感度和特異度只是故事的一部分，臨床上更重要的是 PPV 和 NPV，而它們會<strong>隨族群盛行率改變</strong>：驗高盛行率族群，PPV 上升；驗低盛行率族群，PPV 下降。</li>
+          <li><span class="src src-rec">🎤</span> 美國的大問題：<strong>幾乎每一套老年健檢都包含 T4</strong>。問題不在廠商，而在判讀。實際盛行率可能遠低於 20%，<strong>單一個低 T4 幾乎就是擲硬幣</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 這就是為什麼甲低是美國<strong>最常被誤診的內分泌疾病之一</strong>。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">💉</div>
+      <h2>9. 藥物：Archie</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 27</span><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> 病例：Archie，1 歲已去勢公法鬥</h3>
+        <p><strong>病史：</strong>多重抗藥性膿皮症，正在使用 <strong>Apoquel 和 TMS（trimethoprim‑sulfa）</strong>；臨床穩定，院內生化發現 TT4 低，才送 MSU。</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>結果</th><th>參考值</th></tr>
+          <tr><td>TT4</td><td><strong>3 ↓</strong></td><td>9–52 nmol/L</td></tr>
+          <tr><td>TT3</td><td><strong>0.3 ↓</strong></td><td>0.5–1.4 nmol/L</td></tr>
+          <tr><td>fT4</td><td><strong>&lt; 4 ↓</strong></td><td>5–43 pmol/L</td></tr>
+          <tr><td>T4AA／T3AA</td><td>10 / 3</td><td>&lt; 20% / &lt; 10%</td></tr>
+          <tr><td>cTSH</td><td><strong>1.60 ↑</strong></td><td>&lt; 0.58 ng/mL</td></tr>
+          <tr><td>TgAA</td><td>1</td><td>&lt; 35%</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 講者先問：「TT4、TT3、fT4 都低，TSH 高，所以是甲低，開始治療？」接著自己回答：「<strong>不是甲低。</strong>」</li>
+          <li><span class="src src-rec">🎤</span> 主要元兇通常是<strong>類固醇和非類固醇抗炎藥</strong>，phenobarbital 也會。<strong>多數藥物會降低甲狀腺激素，但不影響 TSH</strong>。</li>
+          <li><span class="src src-rec">🎤</span> <strong>磺胺類抗生素是特例，會影響 TSH。</strong>Archie 是長期使用磺胺的狗。也有病例報告提到長期使用磺胺的狗（逐字稿這段轉寫不清楚，無法確定是否發展出臨床甲低）。</li>
+          <li><span class="src src-rec">🎤</span> 多數情況下，藥物會降低 T4、T3、fT4，但<strong>通常不會造成臨床甲低</strong>。驗甲低時一定要知道狗在吃什麼藥。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：支持藥物性的線索有：正在使用磺胺、<strong>只有 1 歲</strong>（後天甲低平均 6–8 歲）、<strong>TgAA 陰性</strong>、沒有臨床症狀。陷阱是：<strong>反覆膿皮症本身也可能是甲低的表現</strong>。磺胺抑制 TPO，影響是<strong>可逆</strong>的。處理方式：不要直接開 levothyroxine；能換抗生素（依培養與藥敏）就停掉磺胺，數週後再驗。Apoquel 目前沒有明顯影響甲狀腺檢驗的證據。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 28</span> 藥物對犬甲狀腺檢驗的影響（Bolton &amp; Panciera, JVIM 2022）</h3>
+        <figure class="fig">
+          <img src="photos/17-28-drugs.jpg" alt="藥物對犬甲狀腺功能檢驗的影響表" loading="lazy">
+          <figcaption>📄 28：Table 2，各藥物對 TT4、TT3、fT4、TSH 的影響</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>依機轉分類</th><th>藥物</th><th>型態</th></tr>
+          <tr><td><strong>真的抑制甲狀腺 → TSH 升高</strong>（最像真的甲低）</td><td>磺胺類（低劑量約 15 mg/kg BID 即可能、高劑量約 30 mg/kg BID）、Toceranib、Trilostane</td><td>T4／fT4 ↓、<strong>TSH ↑</strong></td></tr>
+          <tr><td><strong>只是壓低數字 → TSH 通常正常</strong></td><td>類固醇（免疫抑制劑量連 fT4 都下降）、長期 Phenobarbital（TSH 可能輕微上升）、Aspirin、Carprofen、Clomipramine、吸入麻醉</td><td>TT4 ↓（± fT4 ↓）</td></tr>
+          <tr><td><strong>幾乎沒有影響</strong></td><td>KBr、Zonisamide、Imepitoin、Propranolol</td><td>＝</td></tr>
+          <tr><td>可能升高</td><td>Amiodarone</td><td>TT4 ↑ 或 ＝</td></tr>
+        </table></div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>臨床習慣</strong>：看到 T4 低，先問三件事：<strong>有沒有生病（NTI）、有沒有吃藥、是什麼品種</strong>，再決定要不要相信這個數字。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">🧪</div>
+      <h2>10. 自體抗體與平衡透析</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 29</span><span class="src src-rec">🎤</span> 病例：Bitsy，3 歲母拉不拉多</h3>
+        <p><strong>主訴：</strong>一年胖了 20 磅，轉診獸醫高度懷疑甲低，但院內 <strong>TT4 竟然偏高</strong>。</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>結果</th><th>參考值</th></tr>
+          <tr><td>TT4（CLIA）</td><td><strong>77 ↑</strong></td><td>9–52 nmol/L</td></tr>
+          <tr><td>TT3（CLIA）</td><td><strong>2.3 ↑</strong></td><td>0.5–1.4 nmol/L</td></tr>
+          <tr><td>fT4 透析法（RIA）</td><td><strong>2 ↓</strong></td><td>6–42 pmol/L</td></tr>
+          <tr><td>T4AA</td><td><strong>67 ↑</strong></td><td>0–20%</td></tr>
+          <tr><td>T3AA</td><td><strong>76 ↑</strong></td><td>0–10%</td></tr>
+          <tr><td>TSH</td><td><strong>3.96 ↑</strong></td><td>0–0.58 ng/mL</td></tr>
+          <tr><td>TgAA</td><td><strong>170 ↑</strong></td><td>0–35%</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 「還有什麼跳出來？」<strong>TSH 非常高</strong>。T4 高、TSH 也高，對狗來說很不尋常：TSH 很高時，通常代表有什麼在驅使身體製造更多甲狀腺激素。</li>
+          <li><span class="src src-rec">🎤</span> 甲狀腺自體抗體非常高，代表有<strong>活動性淋巴球性甲狀腺炎</strong>；同樣重要的是 <strong>T4AA、T3AA 也很高</strong>，它們絕對會干擾市面上的 T4、T3 檢測。如果只驗 TT4，就會得到很意外的結果。</li>
+          <li><span class="src src-rec">🎤</span> <strong>不受影響的是 fT4 by ED。</strong></li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 30</span><span class="src src-rec">🎤</span> 自體抗體與甲狀腺炎</h3>
+        <figure class="fig">
+          <img src="photos/17-30-autoantibodies.jpg" alt="甲狀腺自體抗體：TgAA 與 T3/T4 自體抗體" loading="lazy">
+          <figcaption>📄 30：TgAA 與 T3/T4 自體抗體（照片為 TgAA ELISA 盤，Dr. Kent Refsal 提供）</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><strong>TgAA</strong>：淋巴球性甲狀腺炎的指標，敏感度與特異度都約 95%。<span class="src src-rec">🎤</span> 它告訴我們<strong>病因</strong>（有沒有甲狀腺炎），<strong>不是功能</strong>。TgAA 陽性不等於臨床甲低，但日後發生甲低的風險較高。</li>
+          <li><span class="src src-rec">🎤</span> 「我不知道其他地方有沒有在驗自體抗體，也不一定要驗。重點是<strong>要知道它們的存在</strong>。」</li>
+          <li><strong>T3/T4 自體抗體</strong>是 TgAA 的子集合，<span class="src src-rec">🎤</span> 絕對會干擾很多直接類似物法；<strong>多數情況造成 T4、T3 假性升高</strong>。有些 RIA 方法的影響方向相反，但現在應該很少實驗室用 RIA 測 TT4、TT3。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-add">💡 補充</span><span class="src src-hand">✍️ 筆記</span> 為什麼抗體會干擾？</h3>
+        <ul class="notes">
+          <li>大多數 T4 檢測是<strong>競爭型免疫分析</strong>，像搶椅子：試劑抗體是固定數量的「椅子」，實驗室加入一定量的<strong>標記 T4</strong>，和病患的 T4 一起搶。機器測的是標記 T4 坐到多少椅子，再<strong>反推</strong>病患 T4：標記 T4 坐得少 → 判讀 T4 高。</li>
+          <li>病患的 <strong>T4AA</strong> 會在半路<strong>攔截標記 T4</strong> → 坐上椅子的標記 T4 變少 → 機器誤以為病患 T4 很多 → <strong>假性升高</strong>。干擾方向取決於方法怎麼分離結合和游離部分，所以有 T4AA 時，最好直接把 TT4 視為<strong>不可信</strong>。</li>
+          <li><strong>非透析 fT4</strong>（直接類似物法）用的是標記 T4 類似物，它不會和正常結合蛋白結合，<strong>但 T4AA 還是會抓它</strong>，所以一樣會失真。</li>
+          <li>為什麼甲狀腺炎會有 T4AA／T3AA：T4、T3 本來就是在 <strong>Tg 分子上合成</strong>的，有些抗 Tg 的抗體剛好認得 Tg 上含激素的那一段，也就能抓住游離 T4／T3。</li>
+          <li><strong>甲狀腺炎不等於 T4／T3 一定被干擾</strong>：TgAA 本身不干擾，只有一部分 TgAA 陽性的狗有 T4AA／T3AA，而且 T3AA 比 T4AA 常見。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 31</span><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> 平衡透析法測游離 T4（fT4 by ED）</h3>
+        <figure class="fig">
+          <img src="photos/17-31-ed.jpg" alt="平衡透析法示意圖" loading="lazy">
+          <figcaption>📄 31：血清放在半透膜一側，只有游離 T4 能穿過；平衡後測量透析液中的激素</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><strong>ED＝Equilibrium Dialysis（平衡透析法）</strong>，是 fT4 的檢測方法，<strong>只修飾 fT4</strong>。講義和報告上的 fT4 (ed)、free T4 (eq dial)、Free T4 by dialysis、FT4D 都是同一件事。</li>
+          <li><span class="src src-rec">🎤</span> MSU 的做法：<strong>透析隔夜</strong>，洗掉抗體和很多干擾物質；游離 T4 穿過膜後，<strong>再用 RIA 測量</strong>。可能是更能代表狗真實 fT4 的指標。</li>
+          <li><strong>優點</strong>：更準確；在 NTI 時常維持正常；<strong>不受自體抗體影響</strong>（抗體是大分子 IgG，過不了膜，透析液裡完全沒有抗體）。</li>
+          <li><strong>缺點</strong>：<span class="src src-rec">🎤</span> 顯然是<strong>成本和時間</strong>，報告比較慢，也會讓套組變貴。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 32–34</span><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> Roosevelt、Jackpot、Cash</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>病例</th><th>主訴</th><th>TT4</th><th>fT4</th><th>T4AA／T3AA</th><th>TSH</th><th>TgAA</th><th>重點</th></tr>
+          <tr><td><strong>Roosevelt</strong><br>4 歲 M/N 比特</td><td>慢性嗜睡、脫毛；院內 TT4 正常</td><td>18（<strong>假性正常</strong>）</td><td>ED <strong>0 ↓</strong></td><td><strong>67 / 72 ↑</strong></td><td><strong>1.63 ↑</strong></td><td><strong>164 ↑</strong></td><td>抗體把 TT4、TT3 拉回參考範圍</td></tr>
+          <tr><td><strong>Jackpot</strong><br>7 歲 M/N 混種</td><td>嗜睡、體重增加、精神遲鈍</td><td>71（<strong>假性偏高</strong>）</td><td>ED <strong>1 ↓</strong></td><td><strong>60</strong> / 13</td><td><strong>2.11 ↑</strong></td><td><strong>120 ↑</strong></td><td>主要是 T4AA 高</td></tr>
+          <tr><td><strong>Cash</strong><br>2 歲 M/N 比特×牧羊犬</td><td>體重增加、高膽固醇；外檢 TT4 低、TSH 高，但 <strong>fT4 正常</strong></td><td>—</td><td>ED <strong>5 ↓</strong></td><td><strong>33 / 23 ↑</strong></td><td><strong>4.10 ↑</strong></td><td><strong>95 ↑</strong>（specific TgAA 132）</td><td><strong>直接類似物法的 fT4 也會被干擾</strong></td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> Roosevelt：<span class="src src-hand">✍️ 筆記</span> <strong>淋巴球性甲狀腺炎，抗體很高</strong>。只看 T4 就會漏診。講者的經驗是：<strong>自體抗體很高的狗，激素如果被影響，通常是異常偏高</strong>，這是很大的線索；但也有像 Roosevelt 這樣，只被拉回參考範圍的。</li>
+          <li><span class="src src-rec">🎤</span> Jackpot：T4AA 高、T3 沒有被拉高。TgAA 陽性的狗可能 T4AA、T3AA 都高，也可能只有其中一個，<strong>型態不一定</strong>。</li>
+          <li><span class="src src-rec">🎤</span> Cash：外部實驗室的 fT4 正常，但 TSH 高、臨床高度懷疑，所以送 MSU。<strong>所有沒有透析步驟的直接類似物法，fT4 一樣可能被影響</strong>；只驗 fT4 不保證不會被干擾。</li>
+          <li><span class="src src-rec">🎤</span> 很多狗沒有自體抗體，這時就無所謂；但當結果和臨床對不起來時，要想到這件事。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充：Roosevelt 在光譜上的位置</strong>：功能已經衰竭（fT4 ED 0、TSH 高），但 TgAA 仍然很高，也就是<strong>免疫攻擊還在、抗體還沒燒完</strong>，介於進行期和末期之間。治療後監測<strong>不能靠 TT4</strong>，要用 fT4 (ED)＋TSH（給藥後 4–6 小時，fT4 中高段、TSH 回到正常）。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef9c3">❓</div>
+      <h2>11. 模稜兩可：Scout 與 Ellie Mae</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 35</span><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> 病例：Scout，8 歲 M/N 捲毛犬（Cur）</h3>
+        <p><strong>主訴：</strong>體重增加、減重困難、曾經驗到 1 次 TT4 低。<span class="src src-rec">🎤</span> 「Cur」應該就是美國的中型混種犬。</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>結果</th><th>參考值</th></tr>
+          <tr><td>TT4</td><td>24</td><td>9–52 nmol/L</td></tr>
+          <tr><td>TT3</td><td>1.1</td><td>0.5–1.4 nmol/L</td></tr>
+          <tr><td>fT4</td><td>13（偏低但正常）</td><td>6–42 pmol/L</td></tr>
+          <tr><td>T4AA</td><td>11</td><td>&lt; 20%</td></tr>
+          <tr><td>T3AA</td><td><strong>53 ↑</strong></td><td>&lt; 10%</td></tr>
+          <tr><td>cTSH</td><td><strong>1.04 ↑</strong></td><td>&lt; 0.58 ng/mL</td></tr>
+          <tr><td>TgAA</td><td><strong>162 ↑</strong></td><td>&lt; 35%</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 有自體抗體，所以至少可以確定有<strong>淋巴球性甲狀腺炎</strong>，甲狀腺正在發生病變。但是臨床上甲低了嗎？</li>
+          <li><span class="src src-rec">🎤</span> 「<strong>我不確定。</strong>」TSH 高，代表身體要更努力才能維持正常激素；但 TT4、fT4 都還正常。MSU 的判讀報告大概會「非常搖擺、不下定論」。</li>
+          <li><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> 講者認為這隻狗<strong>正走向原發性甲低</strong>，只是不確定到了沒有。試驗性治療或等待複驗，<strong>沒有對錯</strong>。很多甲狀腺套組就是沒那麼清楚。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：T4AA 陰性，所以 TT4、fT4 <strong>可信</strong>；T3AA 陽性只影響 TT3。Scout 對應第 9 張的<strong>進行期（代償期）</strong>，也就是「亞臨床甲低」。有前瞻性研究追蹤 TgAA 陽性、但功能正常的狗一年，約 1/5 出現甲低的檢驗變化；Scout 已經同時有 TSH 升高，又往前走了一步。<br>
+        <strong>選項 A：觀察</strong>，每 3–6 個月驗 T4（或 fT4 ED）＋TSH，同時嚴格減重；嚴格控制飲食仍瘦不下來，也算是一個佐證。<br>
+        <strong>選項 B：試驗性治療</strong>，便宜安全；但要終生吃藥，開始後很難再評估自身功能，而且<strong>甲狀腺素過量時正常的狗也會變瘦</strong>，治療有效不能反推確實是甲低。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 36</span><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> 病例：Ellie Mae，2 歲 F/S 格雷伊獵犬</h3>
+        <p><strong>主訴：</strong>肩膀和大腿輕度脫毛、輕微皮脂漏。</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>結果</th><th>參考值</th></tr>
+          <tr><td>TT4</td><td><strong>7 ↓</strong></td><td>11–60 nmol/L</td></tr>
+          <tr><td>TT3</td><td>1.1</td><td>0.8–2.1 nmol/L</td></tr>
+          <tr><td>fT4</td><td><strong>7 ↓</strong></td><td>9–39 pmol/L</td></tr>
+          <tr><td>T4AA／T3AA</td><td>11 / 7</td><td>&lt; 20% / &lt; 10%</td></tr>
+          <tr><td>cTSH</td><td>0.22</td><td>&lt; 0.58 ng/mL</td></tr>
+          <tr><td>TgAA</td><td>1</td><td>&lt; 35%</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> T4、fT4 有點低，T3 正常，TSH 正常，抗體全部正常 → <strong>可能不是甲低</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 要注意品種特性。也許很多甲狀腺項目應該有<strong>品種專屬參考範圍</strong>：<strong>視覺獵犬的 TT4 和 fT4 比較低</strong>，在某些品種中 <strong>T3 也許是比較好的指標</strong>。這可能就是這隻狗的正常值。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：其他視覺獵犬（惠比特、薩路基、蘇格蘭獵鹿犬、愛爾蘭獵狼犬、蘇俄牧羊犬）也有類似現象。格雷伊大腿後側對稱稀毛常見於<strong>「禿大腿症候群」（bald thigh syndrome）</strong>，和甲狀腺無關。TSH 正常不能 100% 排除（約 1/4 甲低犬 TSH 正常），但 2 歲、抗體陰性、只有輕微皮膚問題，<strong>不應該治療</strong>。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 37</span><span class="src src-rec">🎤</span> 困難情境：甲狀腺激素低，但 TSH 正常</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 這可能是 MSU <strong>最常被會診的難題</strong>：該不該治療？沒有一個適用所有病例的答案。</li>
+          <li>臨床與檢驗異常都吻合，而且 <strong>fT4 by ED 低 → 治療</strong>。<span class="src src-rec">🎤</span> 症狀和檢驗都吻合、已排除其他會造成這些症狀的疾病、激素又低，經驗性治療絕對合理。</li>
+          <li>沒有臨床症狀或檢驗異常 → <strong>等待並複驗</strong>。<span class="src src-rec">🎤</span> 狗很穩定、沒什麼症狀，就建議等待複驗。</li>
+          <li><strong>不確定性無法避免</strong>。<span class="src src-rec">🎤</span> 這是少數真的會遇到「不知道是不是臨床甲低」的內分泌疾病之一。</li>
+          <li>試驗性治療在某些情況合理，前提是：已排除非甲狀腺疾病、TT4 重複驗都低、已做完整套組；風險低，可能也符合成本效益。</li>
+          <li><span class="src src-rec">🎤</span> 甲狀腺素便宜、好給、相對安全；最理想的情況是治療反應確認了診斷。但要小心，<strong>有些其他臨床症狀也可能對甲狀腺激素有反應</strong>。如果<strong>沒有反應</strong>，就代表症狀可能不是甲低造成的。MSU 並不常這麼做。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 38</span><span class="src src-rec">🎤</span> MSU 頂級甲狀腺套組</h3>
+        <ul class="notes">
+          <li>包含 <strong>TT4、TT3、fT4 (ED)、TSH、T3AA、T4AA、TgAA</strong>。MSU 醫院送到自己實驗室的每一個樣本都做全套，相當貴。</li>
+          <li><span class="src src-rec">🎤</span> 「我不是要你們把樣本送到 2000 英里外。」重點是要知道很多狗有淋巴球性甲狀腺炎、有些有自體抗體，就算不驗抗體也要<strong>保持警覺</strong>。</li>
+          <li><span class="src src-rec">🎤</span> <strong>臨床高度懷疑甲低、TSH 高，但 T4／T3 正常或偏高</strong>：就算驗不到抗體，這也是抗體存在的<strong>很大線索</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 講者問台下：這裡的 fT4 是用 Immulite 這類直接類似物法，還是有實驗室做透析？要看執業地點；就算沒有，只要知道有哪些因素會影響結果，<strong>還是可以有把握地執業</strong>。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0e7ff">🧠</div>
+      <h2>12. 爭議關聯：食道／喉部功能障礙、攻擊性</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 40–41</span><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> 食道與喉部功能障礙</h3>
+        <figure class="fig">
+          <img src="photos/17-40-megaeso.jpg" alt="喉部與食道功能障礙與甲低" loading="lazy">
+          <figcaption>📄 40：右圖為 Jaggy 1994 甲低犬治療前後的神經學數據</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>喉部無力或麻痺、食道功能障礙或巨食道症：常常對治療反應差，對飼主和生活品質影響很大，預後保留。</li>
+          <li>少數容易檢測又能治療的病因：腎上腺皮質功能低下（cortisol／ACTH 刺激）、甲低（甲狀腺套組）、重症肌無力（AChR 抗體）。</li>
+          <li>甲低的神經學表現（Jaggy 1994）：29 隻中 4 隻有巨食道症、5 隻有喉麻痺。</li>
+          <li><span class="src src-rec">🎤</span> 過去的病例報告認為甲低可能造成喉麻痺或巨食道症，<strong>大家希望是甲低，因為它好治</strong>。但後來幾個較大的世代研究（📄 41：Stanley 2010、Gaynor 1997）<strong>沒有證實</strong>甲低和<strong>單純</strong>喉麻痺或<strong>單純</strong>食道功能障礙之間有因果關係或強烈關聯。</li>
+          <li><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> 「單純」是指這是牠<strong>唯一的臨床異常</strong>。巨食道症的狗如果沒有其他生化或臨床證據顯示甲低，<strong>MSU 不會驗甲狀腺</strong>；8 歲拉不拉多來看喉麻痺，沒有其他有力證據，<strong>也不會驗</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 七八年前，每一隻食道或喉部功能障礙的狗都會驗甲狀腺；近年已經<strong>轉向不驗</strong>。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充：為什麼不再例行檢驗</strong>：(1) 後天喉麻痺常是<strong>老年發作喉麻痺多發性神經病變（GOLPP）</strong>的一部分，而中老年大型犬本來就是甲低好發族群，容易誤以為有因果；(2) 這些狗常有吸入性肺炎，<strong>NTI 會壓低 T4</strong>，加上驗前機率低，PPV 更差；(3) 治療甲低後，喉麻痺或巨食道症通常不會改善。<strong>有支持性證據</strong>（嗜睡、增重、皮膚症狀、高膽固醇、貧血）時才驗完整套組，最好等肺炎穩定後再驗。重症肌無力與 Addison 仍值得篩檢。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 42–43</span><span class="src src-rec">🎤</span> 攻擊性</h3>
+        <ul class="notes">
+          <li>甲低過去被認為和攻擊性有關，證據來自零星的個案報告和小型病例系列；部分行為專家建議驗甲狀腺；一些研究中的甲低診斷本身就有疑問。</li>
+          <li><span class="src src-rec">🎤</span> 大概 10–15 年前，美國很多行為專家把甲狀腺套組列入攻擊性的檢查。MSU 實驗室至今仍收到很多主訴為攻擊性的樣本。</li>
+          <li><strong>Toby，6 歲 M/N 柯基，嚴重護食攻擊</strong>：TT4 29、TT3 1.1、fT4 (ED) 23、T4AA 10、T3AA 6、TSH 0.20、TgAA 6，<span class="src src-rec">🎤</span> <strong>非常正常的甲狀腺套組</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 幾個較嚴謹的研究比較攻擊犬和對照組，並追蹤變化，一般來說<strong>沒有確切關聯</strong>。MSU 也已<strong>不再建議</strong>在這種情況驗甲狀腺。</li>
+        </ul>
+        <figure class="fig">
+          <img src="photos/17-43-aggression.jpg" alt="攻擊犬與對照犬甲狀腺數值比較" loading="lazy">
+          <figcaption>📄 43：攻擊犬 vs 對照組（Radosta 2012；Hrovat 2019）。攻擊犬的 TT4 反而稍高（30.3 vs 24.1），T4AA 較高但兩組都在正常範圍，其他項目沒有差異</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S13 ══ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">❤️</div>
+      <h2>13. 動脈粥狀硬化與黏液水腫昏迷</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 44–46</span><span class="src src-rec">🎤</span> 病例：9 歲未去勢公混種犬（Giralico 2021）</h3>
+        <ul class="notes">
+          <li>近期無力、嗜睡、食慾下降。理學檢查：黏膜黏稠、蒼白、黃疸；軀幹與尾根脫毛，BCS 8/9；嚴重沉鬱與四肢輕癱。</li>
+          <li>檢驗：<strong>ALT &gt; 4500 U/L</strong>、膽紅素 4.5 mg/dL、<strong>膽固醇 1272 mg/dL</strong>、三酸甘油酯 1118 mg/dL。</li>
+          <li><span class="src src-rec">🎤</span> 照片中的狗有所謂的<strong>「悲劇臉」</strong>，皮膚和皮下組織看起來軟軟的、水腫。</li>
+          <li><span class="src src-rec">🎤</span> 除了嚴重肝損傷，膽固醇 1300 對幾乎任何急性肝損傷來說都很不尋常，所以作者很擔心是甲低。<strong>甲低多數不會造成急性或嚴重的臨床疾病。</strong></li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>結果</th><th>參考值</th></tr>
+          <tr><td>TT4</td><td><strong>0</strong></td><td>9–45 nmol/L</td></tr>
+          <tr><td>TT3</td><td><strong>0.4 ↓</strong></td><td>0.8–2.1 nmol/L</td></tr>
+          <tr><td>fT4</td><td>9</td><td>6–42 pmol/L</td></tr>
+          <tr><td>T4AA／T3AA</td><td>10 / 11</td><td>0–20% / 0–10%</td></tr>
+          <tr><td>TSH</td><td><strong>0.97 ↑</strong></td><td>0–0.58 ng/mL</td></tr>
+          <tr><td>TgAA</td><td>11</td><td>0–35%</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 激素低本身說明不了太多，因為這是急性病的狗；<strong>有說服力的是 TSH 很高</strong>，所以很可能<strong>真的是甲低</strong>。（MSU 實驗室跑了這個套組，所以知道這個病例。）</li>
+          <li><span class="src src-rec">🎤</span> 狗沒有存活。剖檢在<strong>腦、心臟、腎臟</strong>都有動脈粥狀硬化病灶。</li>
+        </ul>
+        <figure class="fig">
+          <img src="photos/17-46-atherosclerosis.jpg" alt="剖檢：心臟、腦、腎臟的動脈粥狀硬化" loading="lazy">
+          <figcaption>📄 46：心臟、腦、腎臟的血管壁黃白色增厚（Giralico 2021）</figcaption>
+        </figure>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 47</span><span class="src src-rec">🎤</span> 「沒那麼有爭議」的關聯：中樞神經疾病與動脈粥狀硬化</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 相較於食道／喉部、攻擊性這些沒什麼關聯的，<strong>甲低在某些狗確實會造成嚴重的動脈粥狀硬化</strong>，證據相當有說服力。</li>
+          <li>回溯性病理研究中，<strong>甲低是犬動脈粥狀硬化的第一名潛在疾病</strong>。</li>
+          <li>很多報告描述神經症狀與動脈粥狀硬化的影像或病理：急性到慢性、前庭疾病、腦神經缺損、運動失調、癲癇、各種腦血管事件。</li>
+          <li><strong>膽固醇通常 &gt; 800 mg/dL（平均約 1500）</strong>。<span class="src src-rec">🎤</span> 這不是常見的甲低表現，通常是<strong>脂質代謝嚴重紊亂</strong>的狗。</li>
+          <li>其他器官系統也可能受影響（亞臨床？）；可能是黏液水腫昏迷的促成因素？</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：狗本來很少發生動脈粥狀硬化，<strong>看到時要先想甲低</strong>。黏液水腫昏迷的表現是<strong>心搏過緩＋低體溫＋意識遲鈍＋換氣不足</strong>，是甲低的急症。心臟相關內容見<a href="#s17">課後 Q&amp;A</a>。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S14 ══ -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ffedd5">🥩</div>
+      <h2>14. 飲食性甲亢：哈瓦那犬與 Zippity</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 48</span><span class="src src-rec">🎤</span> 病例：7 歲 M/C 哈瓦那犬（Morré 2017）</h3>
+        <ul class="notes">
+          <li>住在維吉尼亞州，<strong>3 週來喘、過動、有攻擊性</strong>。健康照護都有做，過去沒有健康問題，吃<strong>市售罐頭</strong>。<span class="src src-rec">🎤</span> 是對飼主很重要的狗（可能是展示犬）。</li>
+          <li>家庭獸醫照 X 光，懷疑輕微支氣管型態，開 <strong>prednisone</strong> 治療可能的支氣管炎。</li>
+          <li><strong>8 週前</strong>年度健檢就驗過甲狀腺：TT4 7.7（13–51）、fT4 &lt; 3.9（7.7–47.6），<strong>兩者都低</strong>。<span class="src src-rec">🎤</span> 狗沒有甲低症狀，所以沒處理，講者同意這個做法。</li>
+          <li>幾週後類固醇減量中再驗：TT4 &lt; 0.6、fT4 14。狗持續喘、過動、攻擊。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 49</span><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> 內科專科評估</h3>
+        <p><strong>病程進展：</strong>多喝多尿、體重下降、心雜音。專科醫師結果很意外，所以送了兩次。</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>Day 0</th><th>Day 17</th><th>參考值</th></tr>
+          <tr><td>TT4</td><td>11</td><td>5</td><td>11–60 nmol/L</td></tr>
+          <tr><td><strong>TT3</strong></td><td><strong>&gt; 4.7 ↑</strong></td><td><strong>4.3 ↑</strong></td><td>0.8–2.1 nmol/L</td></tr>
+          <tr><td>fT4 (ED)</td><td>13</td><td>6</td><td>6–42 pmol/L</td></tr>
+          <tr><td><strong>fT3</strong></td><td><strong>&gt; 18.6 ↑</strong></td><td><strong>16.6 ↑</strong></td><td>1.2–8.2 pmol/L</td></tr>
+          <tr><td>T4AA／T3AA</td><td>8 / 4</td><td>6 / 5</td><td>&lt; 20% / &lt; 10%</td></tr>
+          <tr><td>cTSH</td><td>0.10</td><td>0.00</td><td>&lt; 0.58 ng/mL</td></tr>
+          <tr><td>TgAA</td><td>3</td><td>3</td><td>&lt; 35%</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> T4、fT4 偏低或低正常，抗體陰性，TSH 低正常，但 <strong>T3 非常高，而且重複驗都很高</strong>。</li>
+          <li><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> 當時的推論：<strong>可能是分泌 T3 的功能性甲狀腺癌</strong>，於是轉診到 <strong>Virginia‑Maryland 獸醫學院</strong>做甲狀腺閃爍掃描。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 50–51</span><span class="src src-rec">🎤</span> 三級轉診：閃爍掃描與「有趣的甲狀腺結果」</h3>
+        <figure class="fig">
+          <img src="photos/17-50-scintigraphy.jpg" alt="甲狀腺閃爍掃描：腹側觀與左右側觀" loading="lazy">
+          <figcaption>📄 50：閃爍掃描。🎤 黑色攝取區其實<strong>只是唾液腺</strong>，頸部<strong>看不到任何甲狀腺組織</strong></figcaption>
+        </figure>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 黑色區域<strong>只是唾液腺</strong>，頸部沒有可見的甲狀腺組織。至少在甲狀腺的位置，<strong>看起來不像真的有甲狀腺腫瘤</strong>，完全沒有攝取。</li>
+          <li><span class="src src-rec">🎤</span> 在 Virginia‑Maryland：第一天（Day 51）驗一次，掃描當天早上（<strong>禁食 24 小時後</strong>，Day 52）再驗一次。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>Day 51</th><th>Day 52（禁食 24 小時後）</th><th>參考值</th></tr>
+          <tr><td>TT4</td><td>6</td><td>1</td><td>11–60 nmol/L</td></tr>
+          <tr><td><strong>TT3</strong></td><td><strong>4.1 ↑</strong></td><td><strong>0.1</strong></td><td>0.8–2.1 nmol/L</td></tr>
+          <tr><td>fT4 (ED)</td><td>5</td><td>2</td><td>6–42 pmol/L</td></tr>
+          <tr><td><strong>fT3</strong></td><td><strong>19.7 ↑</strong></td><td><strong>0.7</strong></td><td>1.2–8.2 pmol/L</td></tr>
+          <tr><td>T4AA／T3AA</td><td>8 / 5</td><td>6 / 6</td><td>&lt; 20% / &lt; 10%</td></tr>
+          <tr><td>cTSH</td><td>0.13</td><td>0.10</td><td>&lt; 0.58 ng/mL</td></tr>
+          <tr><td>TgAA</td><td>3</td><td>3</td><td>&lt; 35%</td></tr>
+        </table></div>
+        <div class="alert alert-success"><span class="alert-icon">✅</span><div><strong>答案</strong>：<span class="src src-rec">🎤</span> 「這隻狗怎麼了？——<strong>飲食</strong>。」這是<strong>飲食性甲亢</strong>。<br><span class="src src-add">💡 補充</span> 判讀邏輯：T3 半衰期只有幾小時，禁食 24 小時後停止攝入，TT3、fT3 就從極高掉到幾乎測不到（大約 4 個半衰期 → 1/16）。外源性激素抑制了 TSH，自身甲狀腺停工，所以 T4 低、掃描在甲狀腺的位置也看不到攝取。<strong>8 週前那次「T4 低」也是同一個機轉，不是甲低。</strong>教學重點：<strong>T4 低但臨床像甲亢</strong>（喘、過動、多喝多尿、體重下降），要驗 T3／fT3 和 TSH，並仔細問所有食物與零食。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 52–53</span><span class="src src-rec">🎤</span> 病例：Zippity，8 歲 F/S 邊境牧羊犬</h3>
+        <ul class="notes">
+          <li>在最近的狗展上在籠子裡發抖，焦慮緊張；理學檢查、CBC、生化都正常；<strong>事後才問出吃生肉飲食</strong>。TT4 156 nmol/L（15–67）。</li>
+          <li><span class="src src-rec">🎤</span> 吃的是<strong>甲狀腺激素濃度超高的市售生肉飲食</strong>；諮詢後停掉，激素就恢復正常。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>5 月</th><th>9 月（停生肉後）</th><th>參考值</th></tr>
+          <tr><td>TT4</td><td><strong>&gt; 156 ↑</strong></td><td>18</td><td>15–67 nmol/L</td></tr>
+          <tr><td>TT3</td><td>2.3</td><td>0.6</td><td>1.0–2.5 nmol/L</td></tr>
+          <tr><td>fT4</td><td><strong>49 ↑</strong></td><td>6</td><td>8–26 pmol/L</td></tr>
+          <tr><td>fT3</td><td><strong>&gt; 29.8 ↑</strong></td><td>2.4</td><td>4.5–12 pmol/L</td></tr>
+          <tr><td>T4AA／T3AA</td><td>7 / 5</td><td>12 / 3</td><td>&lt; 20 / &lt; 10</td></tr>
+          <tr><td>cTSH</td><td><strong>0.05</strong></td><td>0.13</td><td>&lt; 0.58 ng/mL</td></tr>
+          <tr><td>TgAA</td><td>7</td><td>5</td><td>&lt; 35%</td></tr>
+        </table></div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：9 月的 TT3、fT4、fT3 略低，是自身甲狀腺還在從長期抑制中恢復。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 54–55</span><span class="src src-rec">🎤</span> 「漢堡甲狀腺毒症」與犬的飲食性甲亢</h3>
+        <div class="grid2">
+          <figure class="fig">
+            <img src="photos/17-54-hamburger.jpg" alt="NEJM 1987 漢堡甲狀腺毒症" loading="lazy">
+            <figcaption>📄 54：NEJM 1987；121 例非甲狀腺腫型甲亢</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/17-55-dietary.jpg" alt="犬飲食性甲亢：生肉、新奇罐頭與 FDA 召回" loading="lazy">
+            <figcaption>📄 55：病理切片、FDA 公告與被召回的產品（Rodstein 2021）</figcaption>
+          </figure>
+        </div>
+        <ul class="notes">
+          <li>人醫在 1980 年代發生<strong>「漢堡甲狀腺毒症」</strong>：16 個月內 121 例非甲狀腺腫型甲亢，都吃了同一家屠宰廠用<strong>頸部修邊肉（含喉部組織 gullet）</strong>做的牛絞肉。</li>
+          <li>犬的元兇很多：生肉飲食、各種「新奇」罐頭、喉部組織零食；<strong>停掉該飲食後預後良好</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 2017–2018 年左右很受關注。名單上<strong>沒有 Royal Canin、Hill's、Purina</strong>，多半是<strong>新奇食品</strong>，很多是罐頭；講義的組織切片可以看到食物裡真的有甲狀腺組織。後來美國 FDA 召回了很多產品。</li>
+          <li><span class="src src-rec">🎤</span> 現在沒那麼多了，但還是偶爾會看到。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S15 ══ -->
+  <div class="section" id="s15">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🎗️</div>
+      <h2>15. 犬甲亢與甲狀腺腫瘤</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 56</span><span class="src src-rec">🎤</span> 犬甲亢</h3>
+        <ul class="notes">
+          <li>犬甲亢<strong>通常來自有功能的甲狀腺腫瘤</strong>；狗的甲狀腺腫塊 ≈ 癌；治療：甲狀腺切除、放射治療、I‑131。<span class="src src-rec">🎤</span> 「這點還是對的，沒有改變。」</li>
+          <li>但是：多數病例<strong>頸部摸得到腫塊</strong>；症狀通常來自<strong>腫塊壓迫</strong>；<strong>大部分甲狀腺癌沒有功能</strong>。</li>
+          <li>這也是應該做完整甲狀腺套組的另一個理由。</li>
+          <li><span class="src src-rec">🎤</span> 遇到甲亢的狗：<strong>仔細問飲食史、仔細觸診頸部</strong>。尤其是給「很健康的飲食」、自煮或生食的飼主。（MSU 實驗室收很多樣本，所以看到的病例可能有偏差。）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S16 ══ -->
+  <div class="section" id="s16">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">🐈</div>
+      <h2>16. 加碼病例：貓的非甲狀腺疾病</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> 13 歲 F/S 家貓短毛（DSH）</h3>
+        <p><span class="src src-rec">🎤</span> 因為提早講完，講者加碼一張原本刪掉的投影片。</p>
+        <figure class="fig">
+          <img src="photos/17-cat-nti-live.jpg" alt="現場投影片：13 歲貓，曾有肥大細胞瘤、每天 prednisolone、中度貧血" loading="lazy">
+          <figcaption>📸 現場：送檢病史為曾有肥大細胞瘤、目前每天使用 prednisolone、中度貧血（HCT 28%）</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>結果</th><th>參考值</th></tr>
+          <tr><td>TT4（CLIA）</td><td><strong>1 ↓</strong></td><td>9–46 nmol/L</td></tr>
+          <tr><td>TT3（CLIA）</td><td><strong>0.3 ↓</strong></td><td>0.5–1.2 nmol/L</td></tr>
+          <tr><td>fT4 透析法（RIA）</td><td>19</td><td>10–50 pmol/L</td></tr>
+          <tr><td>TSH（CLIA）</td><td>0.00</td><td>0.00–0.38 ng/mL</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 會診問題：這隻貓是不是甲低？答案：<strong>可能不是</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 前面一直在講狗的 NTI，但<strong>大家可能低估了 NTI 對貓的影響</strong>。兩個月後再送檢，已經停掉類固醇，<strong>甲狀腺套組完全正常</strong>。</li>
+          <li><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> <strong>NTI 可能是狗（這次是貓）被誤診為甲低最主要的原因。</strong>很多人誤以為 NTI 只會造成輕微變化，其實<strong>可以非常明顯</strong>，像這隻 TT4 只有 1。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：fT4 (ED) 正常、TSH 沒有升高 → 不是原發性甲低；這隻貓同時有 <strong>NTI 和類固醇</strong>的雙重影響。TT4 下降程度和病情嚴重度相關，TT4 越低，死亡率越高。<br>
+        <strong>犬貓的陷阱方向不同</strong>：狗的 NTI 主要造成<strong>誤診為甲低</strong>；貓的自發性甲低<strong>極罕見</strong>（多為醫源性，例如放射碘、甲狀腺切除、methimazole 過量，且 TSH 會升高），所以貓 NTI 更重要的影響是<strong>掩蓋甲亢</strong>：被掩蓋的甲亢 TT4 常在正常中高段、fT4 (ED) 偏高。另外，貓用的是犬 TSH 檢測，很多正常老貓 TSH 本來就驗不到。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S17 ══ -->
+  <div class="section" id="s17">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">💬</div>
+      <h2>17. 課後 Q&amp;A</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">Q1：病患沒有確診就一直在吃 levothyroxine，想之後重新檢驗，要停藥多久？</div>
+        <div class="a"><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> 證據不多。通常說<strong>至少 4 週</strong>；如果已經<strong>吃很久（好幾個月甚至好幾年）</strong>，通常建議<strong>至少 2 個月</strong>。所以是 <strong>4–8 週</strong>。<br>
+        <span class="src src-add">💡 補充</span> 原因：外源性 T4 會抑制 TSH，甲狀腺功能正常的狗自身甲狀腺會停工萎縮。停藥後藥物幾天內就代謝掉，但下視丘—垂體—甲狀腺軸要好幾週才恢復；太早驗會出現低 T4，恢復期 TSH 還可能短暫反彈升高，看起來像原發性甲低。<strong>TgAA 不受 levothyroxine 影響</strong>，不用停藥就能驗；陽性的話可以支持原本的診斷。復驗建議做完整套組。</div>
+      </div>
+      <div class="qa">
+        <div class="q">Q2：貓也有甲狀腺自體抗體嗎？臨床上常用「又老又瘦、T4 高」診斷甲亢，會不會因為抗體而過度診斷？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 簡短的答案是<strong>一般沒有</strong>。MSU 用不同方法找過貓的自體抗體；早期一直有人討論貓甲亢是不是一種橋本氏甲狀腺炎，答案<strong>大概不是</strong>。T4 高的老貓是真的甲亢，沒有在這些貓身上找到自體抗體。先天性甲低的貓一般也不是抗體陽性（10/9 有一堂貓先天性甲低的課）。<br>
+        有些貓被認為像狗一樣有後天原發性甲低，也許某個時間點抗體陽性，只是沒抓到。臨床上<strong>由整體表現決定判讀</strong>：又老又瘦、體重下降，是吻合的臨床表現，通常很直接。<strong>抗體在貓不是大問題。</strong></div>
+      </div>
+      <div class="qa">
+        <div class="q">Q3：院內篩檢偶爾看到 TT4 偏高，需要進一步檢查，還是重驗就好？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 會看到意外的結果，部分原因是很多狗在年度檢查時都會驗甲狀腺激素。<strong>輕度升高可能只是脈衝式分泌</strong>。<br>
+        關鍵問題是：<strong>有沒有任何臨床症狀提示甲亢？</strong>答案通常是沒有；如果有，就一定要深入檢查。不管怎樣，這些狗通常會在 <strong>1–2 個月後</strong>回來，做更完整的檢查：不只 TT4，還要驗 <strong>TSH</strong>，可以的話加上套組的其他項目。<br>
+        <span class="src src-add">💡 補充</span> 如果 TT4 高但 TSH 也高、臨床又像甲低，要想到 <strong>T4AA 造成假性升高</strong>（Bitsy）。</div>
+      </div>
+      <div class="qa">
+        <div class="q">Q4：TT4 低又有心搏過緩，但還不能確診甲低，會不會短期先給藥治療？</div>
+        <div class="a"><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> 有報告指出甲低犬有<strong>心搏過緩</strong>，有些甚至有<strong>輕度收縮功能障礙</strong>。但就講者所知，在<strong>後天原發性甲低</strong>中，這<strong>不會造成有臨床意義的心臟病</strong>。所以如果是甲低，就治療甲低；<strong>還沒有症狀就診斷的，通常不會給甲狀腺素</strong>。<br>
+        <strong>唯一的例外是先天性甲低</strong>：有幾篇報告顯示這些狗有<strong>嚴重收縮功能障礙</strong>，發展成類似 <strong>DCM 的表型</strong>。「我們知道這件事，是因為那些狗全都死了。」先天性的狗會考慮治療，因為比較擔心心臟病有臨床意義。一般的甲低，講者從來沒遇過需要專門治療收縮功能障礙或心搏過緩的情況。</div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-add">💡 補充</span> 甲低與心臟：背景知識</h3>
+        <ul class="notes">
+          <li><strong>機轉</strong>：T3 調控竇房結節律電流、β 受體數量與心肌鈣離子回收（SERCA）。甲低時竇房結放電變慢、對交感刺激反應變差、收縮力下降、舒張變慢，周邊血管阻力上升。</li>
+          <li><strong>可能的發現</strong>：竇性心搏過緩、脈搏弱；心電圖 QRS 低電壓、T 波倒置，偶有一度或二度房室阻斷；超音波縮短率下降。補充甲狀腺素後通常可逆（數週到數月）。</li>
+          <li><strong>嗜睡＋心搏過緩的鑑別</strong>：甲低、<strong>Addison（高血鉀，較緊急）</strong>、迷走張力高、病竇症候群（迷你雪納瑞、西高地白㹴）、房室阻斷、藥物、低體溫、顱內壓升高。</li>
+          <li><strong>已有心臟病的狗</strong>開始補充甲狀腺素：常從較低劑量開始（目標劑量的 1/4–1/2），再慢慢往上調，避免心臟失代償。</li>
+          <li><strong>麻醉</strong>：未治療的甲低犬容易心搏過緩、低血壓、低體溫、恢復延遲。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S18 ══ -->
+  <div class="section" id="s18">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🧾</div>
+      <h2>18. 延伸：讀懂商業實驗室報告（方法學）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-hand">✍️ 筆記</span><span class="src src-add">💡 補充</span> 一份 IDEXX 報告的判讀練習</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>報告數值</th><th>參考值</th><th>換算（× 12.87）</th></tr>
+          <tr><td>TT4</td><td><strong>10.7 µg/dL ↑</strong></td><td>1.0–4.0 µg/dL</td><td>≈ 138 nmol/L</td></tr>
+          <tr><td>fT4（非透析）</td><td><strong>&gt; 6.0 ng/dL ↑</strong></td><td>0.6–3.7 ng/dL</td><td>&gt; 77.2 pmol/L</td></tr>
+          <tr><td>cTSH</td><td><strong>&lt; 0.01 ↓</strong></td><td>0.05–0.42 ng/mL</td><td>單位相同</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><strong>先換單位</strong>：IDEXX 用美國慣用單位（µg/dL、ng/dL），MSU 用 SI 單位（nmol/L、pmol/L）。比較不同實驗室時要先確認單位和參考範圍。</li>
+          <li><strong>這個 fT4 不是 ED</strong>：報告附註建議生病的狗另外加驗「fT4 by equilibrium dialysis」或甲狀腺確認套組（fT4 ED＋cTSH＋TgAA），代表報告上的 fT4 是一般免疫分析法，<strong>一樣會被 T4AA 干擾</strong>。</li>
+          <li>報告附註也提到：沒有補充甲狀腺素的狗，T4 很高時<strong>可能是自體抗體造成</strong>，較少見的原因是甲狀腺腫瘤；cTSH 偏低<strong>不能單獨用來判斷</strong>，低 cTSH＋低 T4 常見於生病但甲狀腺正常的狗。</li>
+          <li><strong>關鍵在 TSH</strong>：TSH 是另一套檢測，<strong>不受 T4AA 干擾</strong>。T4AA 干擾的甲低犬（例如 Bitsy）TSH 會<strong>高</strong>；真正的甲狀腺毒症 TSH 會<strong>被抑制</strong>。這份報告 T4 很高、TSH 被抑制 → 比較像<strong>真正的甲狀腺毒症</strong>。</li>
+          <li><strong>下一步</strong>：有沒有吃 levothyroxine（醫源性過量，也要看是不是在峰值時採血）？吃什麼（生肉、新奇罐頭、喉部零食）？頸部有沒有腫塊？如果都沒有，或仍懷疑抗體干擾，加驗 fT4 by ED＋T4AA／TgAA。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>檢測</th><th>常見方法</th><th>會不會被 T4AA 干擾</th></tr>
+          <tr><td>TT4</td><td>CLIA／免疫分析</td><td><strong>會</strong></td></tr>
+          <tr><td>fT4（非透析，例如類似物法）</td><td>免疫分析</td><td><strong>會</strong></td></tr>
+          <tr><td><strong>fT4 by ED</strong></td><td>透析後再做 RIA</td><td><strong>不會</strong></td></tr>
+          <tr><td>cTSH</td><td>CLIA</td><td>不會（但低值區間分辨能力差）</td></tr>
+          <tr><td>TgAA</td><td>ELISA</td><td>不適用（本身就是測抗體）</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S19 ══ -->
+  <div class="section" id="s19">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🏁</div>
+      <h2>Take-home、更正表與參考資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>Take-home</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>型態</th><th>TT4</th><th>fT4 (ED)</th><th>TSH</th><th>TgAA</th><th>病例</th></tr>
+          <tr><td>典型原發性甲低（甲狀腺炎）</td><td>↓</td><td>↓</td><td>↑</td><td>↑</td><td>Bo</td></tr>
+          <tr><td>T4AA 干擾的甲低</td><td><strong>正常或 ↑</strong></td><td>↓</td><td>↑</td><td>↑</td><td>Bitsy、Roosevelt、Jackpot、Cash</td></tr>
+          <tr><td>甲狀腺炎代償期</td><td>正常</td><td>正常</td><td>↑</td><td>↑</td><td>Scout</td></tr>
+          <tr><td>先天性中樞性</td><td>↓</td><td>↓</td><td>正常／低</td><td>陰性</td><td>Maci</td></tr>
+          <tr><td>藥物（磺胺）</td><td>↓</td><td>↓</td><td><strong>↑</strong></td><td>陰性</td><td>Archie</td></tr>
+          <tr><td>視覺獵犬</td><td>↓</td><td>↓</td><td>正常</td><td>陰性</td><td>Ellie Mae</td></tr>
+          <tr><td>NTI＋類固醇</td><td>↓↓</td><td>正常</td><td>正常</td><td>—</td><td>13 歲貓</td></tr>
+          <tr><td>飲食性甲亢（T3 為主）</td><td>↓</td><td>低正常</td><td>被抑制</td><td>陰性</td><td>哈瓦那犬（T3 ↑↑）</td></tr>
+          <tr><td>飲食性甲亢</td><td>↑↑</td><td>↑</td><td>被抑制</td><td>陰性</td><td>Zippity</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3>更正表（逐字稿轉文字錯誤）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>逐字稿</th><th>應為</th></tr>
+          <tr><td>Dr. Luby</td><td>Dr. Bugbee（下一堂甲亢講者）</td></tr>
+          <tr><td>aldfox</td><td>ALP（alk phos）</td></tr>
+          <tr><td>apicual</td><td>Apoquel（oclacitinib）</td></tr>
+          <tr><td>immuline</td><td>Immulite（直接類似物法分析儀）</td></tr>
+          <tr><td>youth thyroid stick syndrome／euthanizing syndrome</td><td>euthyroid sick syndrome</td></tr>
+          <tr><td>non-biological hormones</td><td>non-thyroidal illness</td></tr>
+          <tr><td>dysplasia genesis</td><td>dyshormonogenesis（📄 18）</td></tr>
+          <tr><td>sodium iodine symporter</td><td>sodium iodide symporter（NIS）</td></tr>
+          <tr><td>thyroidulin</td><td>thyroglobulin</td></tr>
+          <tr><td>a ITSH</td><td>a high TSH</td></tr>
+          <tr><td>Jack ... seven-year-old male near men's</td><td>Jackpot，7 歲 M/N 混種（📄 33）</td></tr>
+          <tr><td>Courtney</td><td>Corgi（Toby，📄 42）</td></tr>
+          <tr><td>negative esophagus</td><td>megaesophagus</td></tr>
+          <tr><td>mirengial</td><td>laryngeal</td></tr>
+          <tr><td>atriochoroidic／atrophic（change、disease）</td><td>atherosclerotic（📄 46–47）</td></tr>
+          <tr><td>truly has hyperthyroidism（9 歲混種犬）</td><td>hypothyroidism（口誤；TSH 高）</td></tr>
+          <tr><td>not due to hyperthyroidism／truly clinically hyperthyroid（試驗性治療段落）</td><td>hypothyroidism（口誤）</td></tr>
+          <tr><td>Havanes</td><td>Havanese（哈瓦那犬）</td></tr>
+          <tr><td>Virginia, Maryland</td><td>Virginia‑Maryland College of Veterinary Medicine</td></tr>
+          <tr><td>Zippy</td><td>Zippity（📄 52）</td></tr>
+          <tr><td>contaminated with dolomite</td><td>混入含甲狀腺組織的頸部修邊肉（gullet，📄 54）</td></tr>
+          <tr><td>bradyparty</td><td>bradycardia</td></tr>
+          <tr><td>Langlo</td><td>Langlois</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Langlois DK. <em>Canine Thyroid Disorders.</em> VET-KU × Texas A&amp;M IM Conference, 2026-10-08（講義 57 張投影片、「完整記錄」逐字稿 PDF、現場投影片照片）。部分資料由 MSU‑VDL 的 Dr. Kent Refsal、Dr. Jean Brudvig 提供。</div>
+          <div class="ref-item">課堂錄音與逐字稿（Plaud）。<a href="https://web.plaud.ai/s/pub_c2bf0bd5-30db-41bb-81d4-61f4e3b841f0::fy9xMDdUT0vOvmRxGGj0MySfzhu1hWVSXa0AR5PW7RuujA047bcBbOvtxegetS6j1c_gPBFv-TJgmCP8j7wSMQI" target="_blank" rel="noopener">連結</a>（逐字稿有轉文字錯誤，請對照更正表）</div>
+          <div class="ref-item">Bolton TA, Panciera DL. <em>JVIM</em> 2022（藥物對犬甲狀腺檢驗的影響）；<em>JVIM</em> 2023（甲狀腺生理圖）。</div>
+          <div class="ref-item">Bolton TA, et al. <em>JVIM</em> 2024（住院犬的非甲狀腺疾病）。</div>
+          <div class="ref-item">Ferguson DC. Testing for hypothyroidism in dogs. <em>Vet Clin North Am Small Anim Pract.</em> 2007.</div>
+          <div class="ref-item">Le Traon G, et al. 2008（levothyroxine 空腹 vs 隨餐的藥物動力學）。</div>
+          <div class="ref-item">Greco DS, et al. <em>JVIM</em> 1991；Soler Arias EA, et al. <em>Domest Anim Endocrinol</em> 2018；González et al. <em>JVIM</em> 2024（先天性甲低）。</div>
+          <div class="ref-item">Jaggy A, et al. <em>JVIM</em> 1994；Stanley BJ, et al. <em>Vet Surg</em> 2010；Gaynor AR, et al. <em>JAVMA</em> 1997（神經、喉部與食道）。</div>
+          <div class="ref-item">Radosta LA, et al. <em>Vet J</em> 2012；Hrovat A, et al. <em>JVIM</em> 2019（攻擊性）。</div>
+          <div class="ref-item">Patterson JS, et al. <em>JAVMA</em> 1985；Liu SK, et al. <em>JAVMA</em> 1986；Vitale CL, Olby NJ. <em>JVIM</em> 2007；Blois SL, et al. <em>Can Vet J</em> 2008；Giralico et al. <em>Case Rep Vet Med</em> 2021（動脈粥狀硬化）。</div>
+          <div class="ref-item">Morré et al. <em>JAVMA</em> 2017（哈瓦那犬飲食性甲亢）；Rodstein et al. <em>TCAM</em> 2021（犬飲食性甲亢）。</div>
+          <div class="ref-item">Hedberg CW, et al. An outbreak of thyrotoxicosis caused by the consumption of bovine thyroid gland in ground beef. <em>N Engl J Med.</em> 1987;316:993–998.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="diabetic-cushingoid.html">16 糖尿病合併庫欣的狗：Sunny、Sierra、Dora</a>。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
