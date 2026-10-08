@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>糖尿病合併庫欣的狗：Sunny、Sierra、Dora｜2026 Texas 內分泌研討會</title>
+<style>
+  :root {
+    --primary: #0F766E;
+    --primary-light: #CCFBF1;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0d2522;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9cc8c1; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #1f4a44;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9cc8c1; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9cc8c1;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #1f4a44;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #5f8f87;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0b4f49 0%, #14a395 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0d2522; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #1f4a44; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+</style>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 Texas 內分泌研討會</a>
+  <div class="logo">
+    <h2>16｜糖尿病合併庫欣的狗</h2>
+    <p>Antonio Tardo｜2026 年 10 月 8 日</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">核心觀念與總覽</a>
+    <div class="nav-section">背景</div>
+    <a href="#s1">1. 機轉、盛行率與存活</a>
+    <a href="#s2">2. 互相懷疑的線索與危險因子</a>
+    <div class="nav-section">Sunny：胰島素阻抗</div>
+    <a href="#s3">3. Sunny 的診斷</a>
+    <a href="#s4">4. Trilostane 與合併監測</a>
+    <a href="#s5">5. 胰島素選擇：換成 NPH</a>
+    <a href="#s6">6. 高血脂與 fenofibrate</a>
+    <div class="nav-section">Sierra：血糖變異度</div>
+    <a href="#s7">7. Sierra 與血糖變異度</a>
+    <a href="#s8">8. 基礎型（長效）胰島素</a>
+    <a href="#s9">9. 起始劑量與轉換</a>
+    <div class="nav-section">Dora：SGLT-2 抑制劑</div>
+    <a href="#s10">10. Dora 與 SGLT-2i 文獻</a>
+    <a href="#s11">11. Dora 結果與 Del Baldo 病例系列</a>
+    <a href="#s12">12. 預防庫欣犬發生糖尿病</a>
+    <div class="nav-section">其他</div>
+    <a href="#s13">13. 課後 Q&amp;A</a>
+    <a href="#s14">Take-home、更正表與參考資料</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>糖尿病合併庫欣的狗：Sunny、Sierra、Dora</h1>
+    <p>主講：Antonio Tardo, DVM, PhD, Dipl. ECVIM-CA｜UC Davis 小動物內科助理教授</p>
+    <p>2026 年 10 月 8 日｜VET-KU × Texas A&amp;M 內科研討會｜場次 16</p>
+    <div class="tags">
+      <span class="tag">糖尿病合併庫欣</span>
+      <span class="tag">胰島素阻抗</span>
+      <span class="tag">糖尿病前期</span>
+      <span class="tag">Trilostane BID</span>
+      <span class="tag">CGM 監測流程</span>
+      <span class="tag">NPH</span>
+      <span class="tag">Fenofibrate</span>
+      <span class="tag">血糖變異度</span>
+      <span class="tag">Glargine U300</span>
+      <span class="tag">Degludec</span>
+      <span class="tag">胰島素轉換</span>
+      <span class="tag">SGLT-2 抑制劑</span>
+      <span class="tag">Velagliflozin</span>
+      <span class="tag">Detemir</span>
+    </div>
+    <a class="rec-link" href="https://web.plaud.ai/s/pub_f5d7b288-c6bc-4935-a803-b1fa78d097c7::Mk01TOdzyN3ic58ve2BJW_Q0ApZCUxlEmWlP76z3M7y1hVzjdyCw0ncBAcimU4sklKyjKajlmEhpOtvuQTTDpQI" target="_blank" rel="noopener">🎧 聆聽課堂錄音（Plaud）↗</a>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（頁碼為投影片編號）
+    <span class="src src-rec">🎤</span> 課堂逐字稿
+    <span class="src src-photo">📷 現場</span> 現場拍攝（講義未收錄）
+    <span class="src src-hand">✍️ 筆記</span> 上課筆記
+    <span class="src src-add">💡 補充</span> 整理者補充（機轉、交叉參照）
+    <span class="src src-fix">【更正】</span> 逐字稿轉文字錯誤，以講義為準（完整列表見最後一節）
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li>糖尿病犬最常見的共病就是庫欣：糖尿病犬約 <strong>23%</strong> 合併庫欣；合併兩病的中位存活期約<strong>減半</strong>（14 vs 28 個月）</li>
+      <li>庫欣犬<strong>空腹血糖 &gt; 100 mg/dL</strong> 就是糖尿病前期，要列入追蹤</li>
+      <li>糖尿病犬 <strong>USG 偏低</strong>要警覺：尿糖應該會把 USG 撐高</li>
+      <li>高血脂可能讓<strong>果糖胺假性升高或降低</strong></li>
+      <li>沒控制的糖尿病本身會造成庫欣檢查<strong>偽陽性</strong>，要有更多證據才診斷</li>
+      <li>Trilostane <strong>0.5–1 mg/kg BID、隨餐</strong>；開始 trilostane 時<strong>不要同時改胰島素</strong></li>
+      <li>講者：起始劑量低，所以庫欣第一次回診排在 <strong>3–4 週</strong>（Bugbee 認為 1–2 週）；糖尿病則每 2 週換一次 Libre，<strong>每 2–3 天</strong>就依數據調胰島素</li>
+      <li>IG 已在 80–250 但仍有症狀 → 該加強的是<strong>庫欣</strong>，不是糖尿病</li>
+      <li>嚴重胰島素阻抗：detemir 已停產時，<strong>NPH</strong> 可能是目前效力最強的選擇（但作用只有 8–10 小時）</li>
+      <li>血糖變異度大 → 優先換<strong>基礎型胰島素</strong>（glargine U300 或 degludec，選便宜的）；有共病者約一半需要 <strong>BID</strong></li>
+      <li>基礎型胰島素不處理餐後高峰 → <strong>增加餐次</strong></li>
+      <li>加 SGLT-2i 時<strong>一定要減胰島素</strong>；要治療的是狗，不是數字：注意 <strong>PU/PD 與體重下降</strong></li>
+      <li>犬對 velagliflozin 比貓<strong>敏感很多</strong>，貓的 1 mg/kg 對狗太高</li>
+    </ul>
+  </div>
+
+  <!-- ══ SECTION 0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🎯</div>
+      <h2>核心觀念與總覽</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.1</span><span class="src src-rec">🎤</span> 場次資訊</h3>
+        <ul class="notes">
+          <li>講者：Antonio Tardo（DVM, PhD, Dipl. ECVIM-CA），UC Davis 小動物內科助理教授。也是 <a href="pupd.html">01 PU/PD</a>、<a href="dka-hhs.html">08 DKA/HHS</a>、<a href="cushings-diagnosis-treatment.html">12 庫欣診斷與內科治療</a> 的講者，glargine U300 每日一次劑量調整研究的第一作者。</li>
+          <li>整場用三隻狗串起來，代表三種情境：</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>病例</th><th>情境</th><th>關鍵處置</th></tr>
+          <tr><td><strong>Sunny</strong></td><td>庫欣＋糖尿病，<strong>嚴重胰島素阻抗</strong></td><td>Trilostane BID、換 NPH、加 fenofibrate</td></tr>
+          <tr><td><strong>Sierra</strong></td><td>庫欣、沒有胰島素阻抗，<strong>血糖變異度大</strong></td><td>換 degludec BID、增加餐次</td></tr>
+          <tr><td><strong>Dora</strong></td><td>庫欣＋高血脂，<strong>胰島素阻抗＋變異度</strong></td><td>加 SGLT-2i（velagliflozin）、減 detemir</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-add">💡 補充</span> 與其他場次的關聯</h3>
+        <ul class="notes">
+          <li>胰島素種類、glargine U300、degludec 的基本介紹：見 <a href="canine-diabetes-insulin.html">02 犬糖尿病與胰島素</a>（Mott；講者說「這部分 Mott 已經講過」）。</li>
+          <li>SGLT-2i 在犬的仿單外使用：見 <a href="sglt2i-off-label.html">04 SGLT-2i 仿單外使用</a>。</li>
+          <li>基礎型胰島素搭配增加餐次：見 <a href="diabetic-nutrition.html">06 糖尿病營養</a>（Bugbee）。</li>
+          <li>LDDST 逃脫型、PDH 的超音波判讀、trilostane BID 的圖：見 <a href="cushings-diagnosis-treatment.html">12 犬庫欣氏症：診斷與內科治療</a>（講者多次提到「10/7 講過」）。</li>
+          <li>庫欣監測的 ALIVE 評分、給藥前皮質醇與 ACTH 刺激試驗的限制：見 <a href="cushings-monitoring-alternative-tx.html">13 庫欣監測與替代療法</a>（Bugbee）。</li>
+          <li>SGLT-2i 的 PU/PD 副作用、0.5 U 胰島素等問題：見 <a href="panel-qa-cushing-addison.html">14 座談會 Q&amp;A</a>。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">⚔️</div>
+      <h2>1. 機轉、盛行率與存活</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.2</span> 為什麼皮質醇會打敗胰臟</h3>
+        <ol class="notes">
+          <li><strong>周邊組織的胰島素敏感度下降</strong>：干擾胰島素受體與受體後的訊號傳遞。</li>
+          <li><strong>GLUT-4 表現量下降</strong>：肌肉和脂肪吸收的葡萄糖變少。</li>
+          <li><strong>肝臟糖質新生與肝醣分解增加</strong>：肝臟輸出的葡萄糖變多。</li>
+          <li><strong>胰臟 β 細胞失能</strong>：這一步會讓糖尿病變成永久性。</li>
+        </ol>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div>胰島素阻抗加上高胰島素血症：在 β 細胞還能代償的期間，這隻狗處於<strong>糖尿病前期</strong>。<span class="src src-add">💡 補充</span> 第 1–3 項是可逆的胰島素阻抗；β 細胞長期過勞衰竭（第 4 項）之後才回不去。這是第 12 節「預防」的理論基礎：趕在 β 細胞衰竭前介入。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.3</span><span class="src src-rec">🎤</span> 這種組合有多常見</h3>
+        <ul class="notes">
+          <li><strong>從糖尿病端看</strong>（Hess 等，JAVMA，221 隻糖尿病犬）：庫欣 23%、胰臟炎 13%、腫瘤 5%、甲狀腺功能低下 4%。最多約 <strong>25%</strong> 的糖尿病犬同時有庫欣。</li>
+          <li><span class="src src-rec">🎤</span> glargine U300 的研究裡，也有大約 20% 的糖尿病犬有庫欣。</li>
+          <li><strong>從庫欣端看</strong>（Miceli 等，Res Vet Sci 2017，阿根廷，235 隻庫欣犬，2011–2015）：
+            <ul class="notes">
+              <li>13.6%（32 隻）有糖尿病，其中 93.8% 是 PDH。</li>
+              <li>19 隻在庫欣確診時已經有糖尿病：12 隻兩病同時發現，7 隻先有糖尿病。</li>
+              <li>13 隻在庫欣確診後 <strong>2–11 個月</strong>才變成糖尿病。<span class="src src-rec">🎤</span> 可能很快，也可能幾個月甚至幾年後才發生。</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.4</span><span class="src src-rec">🎤</span> 為什麼這種組合很重要：存活期 14 vs 28 個月</h3>
+        <ul class="notes">
+          <li>同一篇阿根廷研究的存活曲線：<strong>庫欣＋糖尿病</strong>中位存活期 14 個月，<strong>只有庫欣</strong> 28 個月。</li>
+          <li><span class="src src-rec">🎤</span> 講者認為沒有特定的生理原因，比較可能是兩病同時存在時管理非常複雜、飼主花費很高，很多狗最後被安樂死。所以如果能避免兩病同時發生，就值得嘗試治療（見第 12 節）。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🔍</div>
+      <h2>2. 互相懷疑的線索與危險因子</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.5</span><span class="src src-rec">🎤</span> 糖尿病犬什麼時候要懷疑庫欣</h3>
+        <ul class="notes">
+          <li><strong>胰島素阻抗</strong>。<span class="src src-rec">🎤</span> 沒有明確的切點說超過 1 或 2 U/kg 就是阻抗。講者心裡的參考是：用新的基礎型胰島素時大約 <strong>2 U/kg/day</strong>。但重點不是數字本身，而是「劑量一直往上加，血糖卻控制不下來」的狗。</li>
+          <li><strong>血糖變異度明顯</strong>：一天之內或不同天之間血糖上上下下（見第 7 節）。</li>
+          <li><strong>糖尿病解釋不了的症狀</strong>：脫毛與皮膚變化、腹部膨大、肌肉萎縮、喘、多食，以及<strong>糖尿病控制好了卻仍持續 PU/PD</strong>。</li>
+          <li><strong>檢驗</strong>：ALP、GGT、結合球蛋白（haptoglobin）上升，持續高血脂，尿液低張或等張。</li>
+          <li><strong>超音波下腎上腺異常</strong>。<span class="src src-rec">🎤</span> 10/7 講過，腎上腺增生不太專一。但如果看到腎上腺腫塊，加上其他臨床症狀，就比較有參考價值。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.5</span><span class="src src-rec">🎤</span> 庫欣犬什麼時候要懷疑發生糖尿病</h3>
+        <ul class="notes">
+          <li><strong>PU/PD 突然加重</strong>。<span class="src src-rec">🎤</span> 一定要驗血糖和尿糖，這可能就是 PU/PD 大爆發的原因。</li>
+          <li><strong>突然出現白內障</strong>。</li>
+          <li>高血糖、糖尿。<span class="src src-rec">🎤</span> 每次庫欣回診都要量血糖。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.6</span><span class="src src-rec">🎤</span> 誰會變成糖尿病：235 隻庫欣犬依空腹血糖分組</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>組別</th><th>空腹血糖</th><th>n</th><th>狀態</th></tr>
+          <tr><td>A</td><td>&lt; 100 mg/dL</td><td>146</td><td>血糖正常</td></tr>
+          <tr><td>B</td><td>100–180 mg/dL</td><td>70</td><td>高血糖但未達糖尿病，未治療</td></tr>
+          <tr><td>C</td><td>&gt; 180 mg/dL</td><td>19</td><td>糖尿病</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li>後來新發生糖尿病的 13 隻中，<strong>10 隻來自 B 組</strong>，只有 3 隻來自 A 組。從初診到確診糖尿病間隔 2–11 個月。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>危險因子</th><th>講者說明 <span class="src src-rec">🎤</span></th></tr>
+          <tr><td>空腹血糖 &gt; 100 mg/dL（5.6 mmol/L）</td><td>最重要、最好記。空腹量到 &gt; 100，可能已經是糖尿病前期</td></tr>
+          <tr><td>三酸甘油酯 &gt; 2.5 mmol/L（約 221 mg/dL）</td><td rowspan="2">高血脂也是發展成糖尿病的危險因子</td></tr>
+          <tr><td>總膽固醇 &gt; 9.1 mmol/L（約 352 mg/dL）</td></tr>
+          <tr><td>UCCR &gt; 100 × 10⁻⁶</td><td>UCCR 很高</td></tr>
+          <tr><td>PDH</td><td>可能只是因為 PDH 本來就比 ADH 常見得多</td></tr>
+          <tr><td>未絕育母犬</td><td>庫欣加上黃體素造成的 GH 拮抗作用，兩種阻抗疊加</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🐕</div>
+      <h2>3. Sunny 的診斷</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.7–8</span><span class="src src-rec">🎤</span> 病例：Sunny</h3>
+        <ul class="notes">
+          <li>米克斯，已絕育母犬，12 歲，6.5 kg（小型犬）。</li>
+          <li>3 個月前在別家醫院確診糖尿病，用豬源 Lente 2.5 U q12h（0.4 U/kg），吃商業糖尿病處方飼料。</li>
+          <li>轉診獸醫的問題：「她有在打胰島素，但完全沒反應。我要繼續加劑量嗎？」<span class="src src-rec">🎤</span> 原院一直加胰島素，血糖卻控制不下來，所以轉診。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.9</span><span class="src src-rec">🎤</span> 臨床表現</h3>
+        <ul class="notes">
+          <li>嚴重 PU/PD；<strong>明顯多食</strong>（<span class="src src-rec">🎤</span> 整天都在跟飼主討東西吃）。</li>
+          <li>雙側白內障合併葡萄膜炎。</li>
+          <li>原院的血糖曲線持續 &gt; 500 mg/dL。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.10</span><span class="src src-rec">🎤</span> 血液與尿液檢查</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>結果</th><th>參考值</th></tr>
+          <tr><td>ALP</td><td><strong>4680 U/L</strong></td><td>42–180</td></tr>
+          <tr><td>GGT</td><td>17.2 U/L</td><td>0–5.8</td></tr>
+          <tr><td>ALT</td><td>97 U/L</td><td>20–55</td></tr>
+          <tr><td>血糖</td><td>462 mg/dL</td><td>70–125</td></tr>
+          <tr><td>果糖胺</td><td>537 µmol/L</td><td>222–382</td></tr>
+          <tr><td>膽固醇</td><td>488 mg/dL</td><td>140–350</td></tr>
+          <tr><td>三酸甘油酯</td><td>520 mg/dL</td><td>32–120</td></tr>
+          <tr><td>肌酸酐</td><td>0.6 mg/dL</td><td>0.65–1.35</td></tr>
+          <tr><td>尿比重</td><td><strong>1.020</strong></td><td>&gt; 1.030</td></tr>
+        </table></div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><span class="src src-rec">🎤</span> <strong>糖尿病犬 USG 偏低要小心</strong>：尿中的葡萄糖有重量，會把 USG 撐高，所以糖尿病犬的 USG 通常不低。如果 USG 偏低，可能有<strong>另一個病</strong>在造成 PU/PD。</div></div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><span class="src src-rec">🎤</span> <strong>高血脂會干擾果糖胺</strong>：可能造成假性升高，也可能假性降低。合併高血脂時，判讀果糖胺要保留。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 要不要驗庫欣？糖尿病沒控制時檢查的陷阱</h3>
+        <ul class="notes">
+          <li>可以做 ACTH 刺激試驗或 LDDST。</li>
+          <li><strong>沒控制好的糖尿病本身就可能造成庫欣檢查偽陽性</strong>。驗之前要有更多指向庫欣的證據，不能只靠一兩個臨床症狀。</li>
+          <li>Sunny 是因為糖尿病控制不下來才驗。這種狀況下，治療潛在疾病是改善糖尿病控制的唯一途徑，但仍要有足夠證據支持。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.11</span><span class="src src-rec">🎤</span> LDDST 與超音波</h3>
+        <figure class="fig"><img src="photos/16-sunny-lddst-us.jpg" alt="Sunny 的 LDDST 結果與腎上腺超音波" loading="lazy"><figcaption>📄 p.11　LDDST：基礎 3.18、4 小時 1.0、8 小時 3.27 µg/dL；超音波雙側腎上腺對稱性增大</figcaption></figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>LDDST</th><th>結果</th><th>參考值</th></tr>
+          <tr><td>基礎皮質醇</td><td>3.18 µg/dL</td><td>1.0–4.8</td></tr>
+          <tr><td>4 小時</td><td>1.0 µg/dL</td><td>&lt; 1.2</td></tr>
+          <tr><td>8 小時</td><td><strong>3.27 µg/dL</strong></td><td>&lt; 1.2</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 這是<strong>逃脫型</strong>（escape pattern）：T0 高、T4 回到參考範圍內、T8 又升高。10/7 講過，這個型態的陽性預測值不算高，但 Sunny 有很多其他支持庫欣的證據。</li>
+          <li>超音波：<strong>雙側腎上腺對稱性增大</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 飼主不願意做 CT，所以依超音波的腎上腺型態<strong>推定為 PDH</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.12</span><span class="src src-rec">🎤</span> 診斷與計畫</h3>
+        <ul class="notes">
+          <li><strong>診斷</strong>：糖尿病、PDH、糖尿病性白內障合併水晶體誘發葡萄膜炎。</li>
+          <li><strong>計畫</strong>：Trilostane q12h；繼續並調整胰島素；眼科用藥；兩個病用同一套排程監測。</li>
+          <li><span class="src src-rec">🎤</span> <strong>開始 trilostane 時不要同時改胰島素</strong>：皮質醇下降後胰島素阻抗可能減輕。先開始 trilostane，看狗的反應；需要時再繼續加胰島素，真的控制不了才考慮換胰島素種類。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">💊</div>
+      <h2>4. Trilostane 與合併監測</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.13</span><span class="src src-rec">🎤</span> 糖尿病犬使用 trilostane</h3>
+        <ul class="notes">
+          <li><strong>0.5–1 mg/kg q12h</strong>。</li>
+          <li><strong>一天兩次，不要一天一次</strong>：抑制皮質醇的效果只有 10–18 小時，BID 能更快控制症狀。<span class="src src-rec">🎤</span> 合併糖尿病的狗，BID 比較容易讓庫欣控制得穩定（10/7 已經給過 BID 控制較好的圖）。</li>
+          <li><strong>隨餐給</strong>：吸收好很多。</li>
+          <li><strong>劑量不隨體重線性增加</strong>：不論體重多少，起始劑量上限 30 mg q12h。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.14</span><span class="src src-rec">🎤</span> 庫欣與糖尿病的監測</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>庫欣</th><th>糖尿病</th></tr>
+          <tr><td>主要工具</td><td>病史與理學檢查（ALIVE 臨床評分）；檢驗：給藥前皮質醇或 ACTH 刺激試驗（目標 1.5–5.5 µg/dL）</td><td>連續血糖監測（CGM）</td></tr>
+          <tr><td>時程</td><td>第一次回診 <strong>3–4 週</strong></td><td>每 <strong>2 週</strong>一次，直到穩定</td></tr>
+          <tr><td>調整</td><td>改 trilostane 劑量或頻率</td><td>改胰島素劑量、頻率或種類</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 首先看臨床症狀，但很難判斷：PU/PD、多食等症狀，糖尿病、庫欣、高血脂都會造成，重疊很多。所以也需要客觀的檢驗方法：重複血檢、追蹤皮質醇（給藥前皮質醇或 ACTH 刺激試驗，限制 10/7 已討論過）。</li>
+          <li><span class="src src-rec">🎤</span> <strong>為什麼要 CGM</strong>：只看皮質醇或幾個血糖值，很難分辨狗的症狀是來自糖尿病還是庫欣。先用 CGM 確認血糖控制好了，症狀還在的話，就知道要加強的是庫欣。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">✍️</span><div><span class="src src-hand">✍️ 筆記</span><span class="src src-rec">🎤</span> <strong>回診時間：講者 3–4 週 vs Bugbee 1–2 週</strong><br>講者通常 3–4 週才做第一次庫欣回診。Bugbee 認為 1–2 週也可以。講者偏好 3–4 週，是因為他用<strong>低劑量起始</strong>，trilostane 過量的問題不多，所以大約一個月後才評估庫欣；糖尿病那一側則每 2 週換一次 Libre，直到穩定。<br><span class="src src-add">💡 補充</span> 兩者其實不衝突：1–2 週回診的重點是安全（有沒有皮質醇過低的徵兆、電解質），3–4 週才是決定 trilostane 劑量的時間點。糖尿病犬開始 trilostane 後胰島素需求可能下降，這部分由每 2 週的 CGM 回診負責。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.15</span><span class="src src-rec">🎤</span> 使用 CGM 的監測流程</h3>
+        <figure class="fig"><img src="photos/16-cgm-protocol.jpg" alt="使用 CGM 的糖尿病監測流程" loading="lazy"><figcaption>📄 p.15　確診 → D2–3、D7–10、D10–14 遠端調劑量 → D14 回診換新 Libre → 每 14 天重複直到穩定</figcaption></figure>
+        <ul class="notes">
+          <li><strong>確診時</strong>：病史、理學檢查、體重、CBC＋生化、糖化蛋白、裝第一個 Libre、飼主衛教（Libre 與胰島素怎麼用）。</li>
+          <li><strong>D2–3、D7–10、D10–14</strong>：看 CGM 數據，視需要調胰島素。<span class="src src-rec">🎤</span> 要把 Libre 用到最充分，<strong>不要等 14 天才調劑量</strong>。理想上每 2–3 天就調一次，尤其是非常穩定的基礎型胰島素，希望盡快改善控制。</li>
+          <li><strong>D14</strong>：病史、理學檢查、體重、CBC＋生化、糖化蛋白、換新的 Libre。每 2 週重複一次，直到穩定。</li>
+          <li><strong>穩定標準</strong>：沒有臨床症狀、體重正常、IG 80–250 mg/dL。<span class="src src-rec">🎤</span> 狗的血糖在這個範圍時，臨床症狀通常都控制得很好。如果這時還有症狀，就要加強庫欣的治療，而不是糖尿病。</li>
+          <li><strong>穩定後仍要每 3–6 個月定期回診</strong>。<span class="src src-rec">🎤</span> 飼主在家自己裝 Libre 之後，醫師可能就看不到這隻狗了。有庫欣等其他疾病時，回診要更頻繁，因為另一個病也需要追蹤。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.16</span><span class="src src-rec">🎤</span> Sunny：trilostane 和胰島素都往上調</h3>
+        <ul class="notes">
+          <li>Trilostane 5 mg（0.77 mg/kg）→ <strong>10 mg q12h</strong>（1.5 mg/kg）。<span class="src src-rec">🎤</span> 因為仍有症狀、仍有符合庫欣的異常，皮質醇也還高。</li>
+          <li>Lente 2.5 U（0.4 U/kg）→ <strong>9 U q12h</strong>（1.4 U/kg）。</li>
+        </ul>
+        <figure class="fig"><img src="photos/16-sunny-cgm-high.jpg" alt="Sunny 的 Libre 圖，全天高於 400" loading="lazy"><figcaption>📄 p.16　Libre 圖幾乎看不到曲線：血糖整天超過 400，超出顯示範圍。「現在該怎麼辦？」</figcaption></figure>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 講者問台下：要加 trilostane？加胰島素？還是換胰島素？台下回答「換胰島素」。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">💉</div>
+      <h2>5. 胰島素選擇：換成 NPH</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.17</span><span class="src src-rec">🎤</span> 胰島素藥理學：效力與作用時間</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>類別</th><th>產品</th></tr>
+          <tr><td>「短效」</td><td>Humulin R、Actrapid、Lispro</td></tr>
+          <tr><td>「中效」</td><td>NPH（Humulin、Novolin）、Lente（Vetsulin/Caninsulin）、Detemir（Levemir）、Glargine 100 U/mL（Lantus）、PZI（ProZinc）</td></tr>
+          <tr><td>「長效」（基礎型）</td><td>Glargine 300 U/mL（Toujeo）、Degludec（Tresiba）</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li>圖示：效力與作用時間呈反向關係，作用越長、效力越低。</li>
+          <li><span class="src src-rec">🎤</span> 作用時間會隨劑量改變：同一種胰島素，劑量加高，作用時間也會拉長。</li>
+          <li><span class="src src-rec">🎤</span> 慢性糖尿病管理不用短效胰島素，主要用中效和長效。</li>
+          <li><span class="src src-rec">🎤</span> <strong>胰島素阻抗的狗，講者以前的首選是 detemir</strong>，因為它比其他胰島素效力強很多。但 detemir 在歐洲和美國<strong>已經停產</strong>（亞洲是否還有不清楚），這是很大的問題。</li>
+          <li><span class="src src-rec">🎤</span> 基礎型胰島素效力比中效低。嚴重阻抗的狗，講者也會考慮中效胰島素，所以替 Sunny 選了 NPH。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.18</span><span class="src src-rec">🎤</span> NPH 胰島素</h3>
+        <ul class="notes">
+          <li>重組人類胰島素（100 U/mL），中效，作用約 4–10 小時。</li>
+          <li>劑量 0.25–0.5 U/kg BID，用人用 U-100 胰島素針筒。</li>
+          <li>Lente vs NPH 研究：每針中位劑量 <strong>Lente 0.61 U/kg</strong>（0.34–0.92） vs <strong>NPH 0.49 U/kg</strong>（0.23–0.68），P = 0.032。</li>
+          <li><span class="src src-rec">🎤</span> 達到良好控制所需的 NPH 劑量比 Lente 少，代表 NPH 效力較強，<strong>可能是目前手上效力最強的胰島素</strong>。缺點是一定要一天打兩次，不像基礎型胰島素。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.19</span><span class="src src-rec">🎤</span> 血糖最低點時間：NPH 作用較短</h3>
+        <figure class="fig"><img src="photos/16-nadir-lente-nph.jpg" alt="Lente 與 NPH 的血糖最低點時間分布" loading="lazy"><figcaption>📄 p.19　血糖最低點（nadir）出現時間的分布：左 Lente、右 NPH</figcaption></figure>
+        <ul class="notes">
+          <li>NPH 的最低點大約在給藥後 <strong>2–4 小時</strong>，作用時間比較短。</li>
+          <li><span class="src src-rec">🎤</span> NPH 的問題：作用可能撐不滿 12 小時。血糖控制約 8–10 小時，之後又升上來。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.20</span><span class="src src-rec">🎤</span> 回到 Sunny：換 NPH 後重新評估庫欣</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>用藥中 ACTH 刺激試驗</th><th>結果</th><th>參考值</th></tr>
+          <tr><td>刺激前皮質醇</td><td>1.7 µg/dL</td><td>1.0–4.8</td></tr>
+          <tr><td>刺激後皮質醇</td><td>3.8 µg/dL</td><td>1.5–5.5</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li>庫欣已控制，但仍<strong>持續高血脂</strong>：膽固醇 420 mg/dL（140–350）、三酸甘油酯 378 mg/dL（32–120）。</li>
+          <li><span class="src src-rec">🎤</span> 「還能多做什麼？」糖尿病和庫欣都治療了，高血脂還是沒下來。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ffedd5">🧈</div>
+      <h2>6. 高血脂與 fenofibrate</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 為什麼要治療持續的高血脂</h3>
+        <ul class="notes">
+          <li>講者常用 <strong>fenofibrate</strong> 和 <strong>bezafibrate</strong>，對控制高血脂效果很好。</li>
+          <li>像 Sunny 這樣持續高血脂的狗，講者擔心的是<strong>胰臟炎</strong>，所以只要高血脂持續就會治療。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.21</span><span class="src src-rec">🎤</span> Fenofibrate 也能幫助糖尿病嗎？（O'Kell 等，JVIM 2025）</h3>
+        <ul class="notes">
+          <li>16 隻自然發生、無併發症的糖尿病犬，fenofibrate 6–10 mg/kg q24h，共 21 天。<span class="src src-rec">🎤</span> 是 University of Florida 團隊（Mott 的同事）做的。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>指標</th><th>變化</th><th>P</th></tr>
+          <tr><td>三酸甘油酯</td><td>↓ 36%</td><td>0.002</td></tr>
+          <tr><td>膽固醇</td><td>↓ 20%</td><td>&lt; 0.0001</td></tr>
+          <tr><td>血清 LPS（脂多醣）</td><td>↓ 15%</td><td>0.03</td></tr>
+          <tr><td>HDL 比例</td><td>↑ 18.5%</td><td>&lt; 0.0001</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><strong>血糖控制沒有改變</strong>：平均 IG 299 → 306 mg/dL（P = 0.1）；血清細胞激素和 cPLI 也沒變。</li>
+          <li><span class="src src-rec">🎤</span> LPS 是腸道屏障受損的指標，糖尿病犬可能有腸道屏障破壞，而 fenofibrate 可能改善腸道屏障。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">✍️</span><div><span class="src src-hand">✍️ 筆記</span><span class="src src-rec">🎤</span> <strong>講者的看法和研究結論不同</strong><br>解讀這篇時要小心：收的是<strong>穩定</strong>的糖尿病犬，而且刻意<strong>排除共病</strong>，是非常「標準、穩定」的族群。在已經穩定的狗身上，本來就很難證明血糖控制有改變。講者的印象是：有些狗用了這類藥之後，尤其是有高血脂的狗，疾病控制會比較好。所以他自己還是會用。<br><span class="src src-add">💡 補充</span> 研究另外只追蹤 21 天、只有 16 隻，統計檢定力有限；「沒偵測到差異」不等於「沒有效果」。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.22</span><span class="src src-rec">🎤</span> Sunny 最終方案</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>藥物</th><th>劑量</th></tr>
+          <tr><td>Trilostane</td><td>10 mg q12h（1.5 mg/kg）</td></tr>
+          <tr><td>NPH 胰島素</td><td>10 U q12h（1.5 U/kg）</td></tr>
+          <tr><td>Fenofibrate</td><td>60 mg q24h（9.2 mg/kg）</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 結果比之前好很多。這是一隻持續高血糖的胰島素阻抗犬，原因可能是庫欣，也可能是高血脂；有時候不治療，高血脂就一直存在。這個藥物組合讓糖尿病達到良好控制，飼主對結果非常滿意。</li>
+          <li>Fenofibrate 的用藥門檻、肝指數、要用多久：見第 13 節 Q3–Q5。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">📈</div>
+      <h2>7. Sierra 與血糖變異度</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.23</span><span class="src src-rec">🎤</span> 病例：Sierra</h3>
+        <ul class="notes">
+          <li>騎士查理王小獵犬（CKCS），已絕育母犬，6 歲，6 kg，BCS 4/9。</li>
+          <li>豬源 Lente（Caninsulin）<strong>1 U q12h</strong>，商業糖尿病飼料。</li>
+          <li><span class="src src-rec">🎤</span> 有庫欣但<strong>沒有胰島素阻抗</strong>，類似「蜜月期」，胰島素劑量很低。主要問題是<strong>血糖變異度</strong>：有一天血糖整天偏高；另一天晚上高、白天又掉下來。</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><span class="src src-rec">🎤</span> <strong>飼主看到低血糖會做什麼？</strong>不管你怎麼交代，飼主看到血糖低就會餵餅乾、餵食物。結果變異度更大，情況更複雜。所以改善血糖變異度不只是為了狗（同時有低血糖風險和持續高血糖），也是為了飼主：血糖這樣上上下下，飼主會抓狂。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.24</span><span class="src src-rec">🎤</span> 血糖變異度（GV）的定義</h3>
+        <ul class="notes">
+          <li>GV 指血糖的起伏，包括低血糖和高血糖事件，可以發生在一天之內（日內變異），也可以發生在不同天之間（日間變異）。</li>
+          <li>人醫近年特別重視 GV，正逐漸成為另一個血糖控制目標，因為它和短期及長期的糖尿病併發症有關（Suh &amp; Kim 2015）。</li>
+          <li><span class="src src-rec">🎤</span> 犬貓還不確定。已知在<strong>貓</strong>，降低 GV 可能和較高的緩解機率有關。相關研究越來越多，GV 可能也應該成為我們的目標，很多病例都還有改善空間。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.25</span><span class="src src-rec">🎤</span> 血糖變異度的原因（Reusch 2019）</h3>
+        <figure class="fig"><img src="photos/16-gv-causes.jpg" alt="血糖變異度的原因" loading="lazy"><figcaption>📄 p.25　血糖變異度的原因：右側多為可處理的因素，左側多為無法處理的因素</figcaption></figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>可以處理（圖右側）</th><th>無法處理（圖左側，與糖尿病本身有關）</th></tr>
+          <tr><td>
+            胰島素技術問題<br>
+            飼主沒確實施打胰島素<br>
+            飼主沒遵守飲食建議<br>
+            使用干擾性藥物（例如類固醇）<br>
+            <strong>其他疾病</strong>（感染、胰臟炎、內分泌疾病、腎病）<br>
+            活動量與壓力程度不同
+          </td><td>
+            殘存 β 細胞數量不同<br>
+            胃排空障礙<br>
+            反調節機制失常<br>
+            胰島素敏感度變動<br>
+            胰島素吸收與降解不穩定
+          </td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 飲食管理可以改善 GV。最重要的可處理因素之一是<strong>其他疾病</strong>，而<strong>庫欣是糖尿病犬血糖變異度最常見的原因之一</strong>，這就是為什麼在這場談 GV。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.26</span><span class="src src-rec">🎤</span> CGM 實例：健康犬 vs 糖尿病犬</h3>
+        <figure class="fig"><img src="photos/16-cgm-healthy-vs-dm.jpg" alt="健康犬與糖尿病犬的 Libre 圖" loading="lazy"><figcaption>📄 p.26　Dog 1 健康；Dog 2 糖尿病（穩定）；Dog 3 糖尿病第 1 天出現多次 &lt; 70，第 2 天又偏高</figcaption></figure>
+        <ul class="notes">
+          <li>健康犬：血糖維持在很窄的範圍內，因為血糖上升時胰島素分泌就跟著增加。</li>
+          <li>糖尿病犬一定會有波動，只是程度不同。Dog 2 相當穩定；Dog 3（用 Lente）波動明顯，和 Sierra 一樣。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.27</span><span class="src src-rec">🎤</span> 改善血糖控制與變異度的策略</h3>
+        <ol class="notes">
+          <li>胰島素的選擇與施打方式（第一件可以做的事）</li>
+          <li>飲食：種類與餐次</li>
+          <li>SGLT-2 抑制劑（狗可以用，見第 10–11 節）</li>
+          <li>GLP-1 受體促效劑（<span class="src src-rec">🎤</span> 主要在貓，有研究顯示可降低糖尿病貓的 GV）</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🖊️</div>
+      <h2>8. 基礎型（長效）胰島素</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.28</span><span class="src src-rec">🎤</span> 犬用基礎型「長效」胰島素</h3>
+        <ul class="notes">
+          <li>「長效、藥動學曲線平坦、每天打一次」：<strong>Glargine U300</strong>（Toujeo；Tardo 2024）、<strong>Degludec</strong>（Tresiba；Mott 2025）。</li>
+          <li>重組人類胰島素類似物，設計來模擬基礎胰島素分泌。</li>
+          <li>皮下注射後緩慢、持久釋放：曲線平坦、作用時間長、<strong>日間變異較低</strong>（Miller 2021）。</li>
+          <li><span class="src src-rec">🎤</span> 要降低 GV，這兩種是目前最好的選擇。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 投影片</span><span class="src src-rec">🎤</span> Miller 等 JVIM 2021：三種胰島素的日間變異</h3>
+        <figure class="fig"><img src="photos/16-miller-cv.jpg" alt="Miller 2021 三種胰島素日間變異係數" loading="lazy"><figcaption>📄 講義未收錄的投影片　豬源 Lente（PL）、Glargine U300（IGla300）、Degludec（IDeg）q12h 時的日間變異係數（CV）</figcaption></figure>
+        <ul class="notes">
+          <li><strong>對象</strong>：7 隻未去勢的實驗用米格魯公犬，糖尿病由藥物誘發。</li>
+          <li><strong>q24h 階段</strong>：三種胰島素的日間變異沒有差異。</li>
+          <li><strong>q12h 階段</strong>：PL 的日間變異明顯較高（P = .01）。CV：<strong>PL 42.6 ± 6.8%</strong>、IGla300 30.1 ± 7.7%、IDeg 25.2 ± 7.0%。IGla300 vs IDeg 沒有差異（P = .46）。</li>
+          <li>PL 的 GVP（一天內的波動）比 IGla300 低（P = .02）。</li>
+          <li>三者的 IG &lt; 70 mg/dL 時間比例沒有差異。</li>
+          <li><strong>結論</strong>：degludec 和 IGla300 以 q12h 施打時日間變異較低，可能減少監測需求，而且不增加低血糖風險。</li>
+          <li><span class="src src-rec">🎤</span> CV 是衡量日間變異的指標。Lente 的 CV 比 glargine 和 degludec 高很多，所以想降低變異度就要用基礎型胰島素。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 長效胰島素的優勢只出現在 <strong>q12h</strong>；q24h 時三者沒有差異。Lente 也不是全面輸：一天內的波動（GVP）反而比 IGla300 小。研究限制：只有 7 隻、藥物誘發、沒有胰島素阻抗或共病，臨床病例的變異來源多很多。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.29–30</span><span class="src src-rec">🎤</span> Glargine U300 vs Degludec</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>Glargine U300（Tardo, JVIM 2024）</th><th>Degludec（Mott, JVIM 2025）</th></tr>
+          <tr><td>研究</td><td>95 隻，用 CGM 監測</td><td>33 隻，用 CGM 監測</td></tr>
+          <tr><td>施打頻率</td><td>q24h 56/95（59%），<strong>無共病時 72%</strong>；q12h 39/95（41%）</td><td>q24h 28/33（84%）；q12h 5/33（16%）</td></tr>
+          <tr><td>劑量</td><td>中位 1.9 U/kg/day（0.2–5.2）</td><td>中位 1.3 U/kg/day（0.4–2.2）</td></tr>
+          <tr><td>需加打餐前胰島素</td><td>5 隻（5%）</td><td>1 隻</td></tr>
+          <tr><td>臨床低血糖</td><td>6 隻（6%）</td><td>1 隻</td></tr>
+          <tr><td>達到控制的時間</td><td>中位 16 天（3–99）</td><td>中位 14 天（3–32）</td></tr>
+          <tr><td>費用（美國 Davis，GoodRx）</td><td>筆型每單位約 $0.25</td><td>每單位約 $0.10；加州胰島素方案 30 天份 $35</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> Mott 已經講過這兩種胰島素，這張只是總結。再提醒一次：它們<strong>效力比其他胰島素低</strong>，很容易就用到 glargine 約 <strong>2 U/kg/day</strong>、degludec <strong>超過 1 U/kg/day</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 講者不認為哪一種比較好，兩種都是很好的工具。<strong>依你所在國家的價格，選比較便宜的那一種</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.31</span><span class="src src-rec">🎤</span> Glargine U300 研究中的共病</h3>
+        <figure class="fig"><img src="photos/16-toujeo-concurrent.jpg" alt="Glargine U300 研究中有無共病的施打頻率與劑量" loading="lazy"><figcaption>📄 p.31　左：施打頻率（無共病 q24h 72%；有共病 50/50，P = 0.04）；右：每日胰島素劑量（P = 0.09）</figcaption></figure>
+        <ul class="notes">
+          <li>60%（57/95）有一種以上共病；最常見的是<strong>庫欣</strong>（20/57，35%）。</li>
+          <li><strong>施打頻率</strong>：無共病 q24h 72%、q12h 28%；有共病 q24h 50%、q12h 50%（P = 0.04）。</li>
+          <li><strong>劑量</strong>：有共病組較高，但未達顯著（P = 0.09）。</li>
+          <li><span class="src src-rec">🎤</span> 可以和飼主討論：開始基礎型胰島素時可以先一天一次，但如果狗也有庫欣或其他疾病，<strong>大約一半</strong>最後會需要一天兩次。共病會造成胰島素阻抗，所以達到控制所需的劑量可能也比較高。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🔄</div>
+      <h2>9. 基礎型胰島素：起始劑量與轉換</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.33</span><span class="src src-rec">🎤</span> 起始劑量與轉換規則</h3>
+        <figure class="fig"><img src="photos/16-basal-switching.jpg" alt="基礎型胰島素起始劑量與轉換" loading="lazy"><figcaption>📄 p.33　基礎型胰島素：起始劑量與轉換</figcaption></figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>情境</th><th>做法</th><th>例子</th></tr>
+          <tr><td>新診斷的狗</td><td><strong>0.5 U/kg SID</strong></td><td></td></tr>
+          <tr><td>原本用其他胰島素 q12h</td><td>目前 q12h 的每針劑量 <strong>+33%</strong>（無條件捨去），改成基礎型 q24h</td><td>15 U q12h → 20 U q24h</td></tr>
+          <tr><td>原本用其他胰島素 q24h</td><td>基礎型 q24h 用<strong>相同劑量</strong></td><td></td></tr>
+          <tr><td>餐後血糖高峰 &gt; 300 mg/dL（17 mmol/L）</td><td>加打 <strong>NPH 或豬源 Lente 0.25 U/kg BID</strong>（無條件捨去）</td><td></td></tr>
+          <tr><td>基礎型 q24h 改成 q12h</td><td>每針劑量 <strong>−30%</strong>（每日總量約 +40%）；第一次 BID 在最後一次 SID 的 <strong>24 小時後</strong>；觀察 <strong>3–5 天</strong>再評估</td><td>10 U q24h → 7 U q12h</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 這張是給大家帶回去用的總結，因為 10/7 或 10/8 有人問過怎麼從一種胰島素換成另一種。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 規則背後的邏輯：
+          <ul class="notes">
+            <li><strong>q12h → q24h</strong>：15 U × 2 = 30 U/day 改成 20 U/day，每日總量其實減少約 1/3。長效胰島素曲線平坦、作用長，總量較少就能涵蓋 24 小時；一律捨去是安全原則。</li>
+            <li><strong>q24h → q12h</strong>：需要改 BID 的狗通常是一針撐不住 24 小時，所以總量要增加；但長效胰島素作用接近或超過 24 小時，BID 會疊加，所以每針要減少。</li>
+            <li><strong>24 小時後才打第一劑 BID、觀察 3–5 天</strong>：避免疊加，並讓長效胰島素達到穩定狀態再調整。</li>
+            <li><strong>Toujeo 是 U-300</strong>：一定要用原廠筆型施打，不能用 U-100 針筒抽，否則劑量會變 3 倍。</li>
+            <li><strong>小型犬</strong>：筆型以 1 U 為一格，計算結果低於 1 U 時要調整做法（例如 Sierra）。</li>
+          </ul>
+        </div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.34</span><span class="src src-rec">🎤</span> Sierra 的結果：Degludec 1 U q12h、增加餐次</h3>
+        <figure class="fig"><img src="photos/16-sierra-cgm.jpg" alt="Sierra 使用 degludec BID 後的 Libre 圖" loading="lazy"><figcaption>📄 p.34　Degludec 1 U q12h、增加餐次：血糖大多落在範圍內，波動明顯變小</figcaption></figure>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 先用基礎型胰島素一天一次，但一次不夠，夜間有低血糖讀數，所以改成一天兩次。改 BID 後血糖控制好很多，仍有一些變異，但比之前好很多。</li>
+          <li><span class="src src-rec">🎤</span> 同時<strong>增加餐次</strong>。這很常見，Bugbee 也講過：基礎型胰島素不是設計來對付餐後高血糖的。如果看到明顯的餐後高峰，可以建議飼主一天多餵幾餐，通常能得到比較平的血糖曲線。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🧪</div>
+      <h2>10. Dora 與 SGLT-2i 文獻</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.35</span><span class="src src-rec">🎤</span> 病例：Dora</h3>
+        <ul class="notes">
+          <li><strong>診斷</strong>：庫欣（PDH）、高血脂（<span class="src src-rec">🎤</span> 非常頑固的高血脂）。</li>
+          <li><strong>治療</strong>：
+            <ul class="notes">
+              <li>Detemir（Levemir）6 U BID（1 U/kg）</li>
+              <li>Trilostane（Vetoryl）12 mg BID（2 mg/kg）</li>
+              <li>Bezafibrate 10 mg/kg SID</li>
+              <li>腸胃道低脂飲食</li>
+            </ul>
+          </li>
+          <li><strong>糖尿病控制不佳</strong>：胰島素阻抗造成 IG 持續偏高，加上血糖變異度大。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.36</span><span class="src src-rec">🎤</span> Dora 的 CGM：detemir 6 U（1 U/kg）</h3>
+        <figure class="fig"><img src="photos/16-dora-cgm-6u.jpg" alt="Dora 用 detemir 6 U 時的 Libre 圖" loading="lazy"><figcaption>📄 p.36　Levemir 6 U（1 U/kg）：連續 4 天大多在 250–400，只有一天比較好</figcaption></figure>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 血糖持續偏高，大部分時間都高；某一天好一點，甚至掉到低範圍，但整體控制不好。</li>
+          <li><span class="src src-rec">🎤</span> detemir <strong>1 U/kg 是非常高的劑量</strong>，因為它的效力比其他胰島素強很多。胰島素阻抗到這個程度，已經沒辦法再靠胰島素改善了。</li>
+          <li><span class="src src-rec">🎤</span> 講者的選擇：考慮 <strong>SGLT-2 抑制劑</strong>，用來降低胰島素劑量、改善糖尿病控制。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.37</span> SGLT-2 抑制劑的作用機轉</h3>
+        <figure class="fig"><img src="photos/16-sglt2-mechanism.jpg" alt="SGLT-2 抑制劑在腎臟近曲小管的作用" loading="lazy"><figcaption>📄 p.37　腎臟近曲小管：生理狀態 vs SGLT2i 治療（Vieira 等，Front Vet Sci 2025）</figcaption></figure>
+        <ul class="notes">
+          <li><span class="src src-add">💡 補充</span> 近曲小管前段（S1/S2）靠 SGLT2 回收約 90% 過濾的葡萄糖；抑制 SGLT2 後葡萄糖與鈉從尿中排出（糖尿、排鈉）。降糖作用不依賴胰島素，所以胰島素阻抗再強也有效。</li>
+          <li>圖右為貓用產品：bexagliflozin（Bexacat）、velagliflozin（Senvelgo）。在犬屬仿單外使用。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.38、40</span><span class="src src-rec">🎤</span> Canagliflozin 加 NPH（Box 等，JVIM 2024）</h3>
+        <ul class="notes">
+          <li>5 隻狗（3 隻絕育公、2 隻絕育母），<strong>糖尿病穩定</strong>。NPH 0.8 U/kg（0.4–1.1）q12h，劑量維持 20 個月不變。</li>
+          <li>Canagliflozin 口服每天一次（約 2–3 mg/kg）。</li>
+          <li><strong>10 天研究期間</strong>：沒有低血糖或 UTI 症狀；沒有嘔吐、腹瀉；喝水、排尿、食慾沒變；體重 T0 11.9 kg（7.4–42） vs T10 12 kg（7.2–42.5），P &gt; 0.05。</li>
+          <li><strong>結果</strong>：IG 顯著下降；BOHB 全部正常，沒有任何一隻發生 DKA。</li>
+          <li>⚠️ 低 IG 讀數的頻率和嚴重度增加 → <strong>胰島素加上 canagliflozin 時要減少胰島素劑量</strong>。<span class="src src-rec">🎤</span> 作者建議開始用藥時就降低胰島素，否則可能出現急性低血糖事件。</li>
+          <li><span class="src src-rec">🎤</span> 只有 5 隻，是很小的病例系列。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.41</span><span class="src src-rec">🎤</span> Enavogliflozin（DWP16001）：韓國團隊的兩篇研究</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>An 等 2024（前導研究）</th><th>An 等 2025（多中心 RCT）</th></tr>
+          <tr><td>對象與追蹤</td><td>19 隻穩定糖尿病犬，追蹤 1 年</td><td>61 隻糖尿病犬，追蹤 2 個月</td></tr>
+          <tr><td>血糖</td><td>空腹血糖、果糖胺下降</td><td>果糖胺、HbA1c 下降</td></tr>
+          <tr><td>胰島素需求</td><td>下降</td><td>下降（不顯著）</td></tr>
+          <tr><td>體重</td><td>3 個月後顯著下降</td><td>沒有改變</td></tr>
+          <tr><td>安全性</td><td>BOHB &lt; 1 mmol/L；沒有臨床低血糖</td><td>4 隻出現生化性低血糖</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 兩篇結果很類似：血糖控制改善、果糖胺改善、胰島素需求明顯下降。根據這些資料，決定讓 Dora 開始用 SGLT-2i。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">📉</div>
+      <h2>11. Dora 結果與 Del Baldo 病例系列</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.42</span><span class="src src-rec">🎤</span> 開始 velagliflozin 後</h3>
+        <figure class="fig"><img src="photos/16-dora-cgm-4u.jpg" alt="Dora 開始 SGLT-2i 後的 Libre 圖" loading="lazy"><figcaption>📄 p.42　綠色箭頭：開始 SGLT-2i 的時間點，血糖立刻下降</figcaption></figure>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 開始用藥後血糖立刻下降；隔天控制較好，但仍有變異度。之後幾天也有血糖往下掉的情形，也出現了一些低血糖讀數。</li>
+          <li><span class="src src-rec">🎤</span> 因為出現低血糖讀數，<strong>detemir 從 6 U 降到 4 U，再降到 3 U BID</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.43</span><span class="src src-rec">🎤</span> Detemir 3 U BID ＋ velagliflozin</h3>
+        <figure class="fig"><img src="photos/16-dora-cgm-3u.jpg" alt="Dora 用 detemir 3 U BID 加 velagliflozin 的 Libre 圖" loading="lazy"><figcaption>📄 p.43　3 U BID ＋ SGLT-2i：血糖大多落在範圍內，有一天出現 &lt; 70 的讀數</figcaption></figure>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 維持 velagliflozin 加 detemir，血糖控制好很多。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-photo">📷 現場</span><span class="src src-rec">🎤</span> Del Baldo 等（審稿中）：SGLT-2i 輔助治療控制不佳的糖尿病犬</h3>
+        <figure class="fig"><img src="photos/16-delbaldo-cgm-live.jpg" alt="Del Baldo 病例系列 CGM 指標" loading="lazy"><figcaption>📷 現場拍攝　A 平均血糖、B TIR、C TAR、D TBR；每條線是一隻狗，T1 = 1 個月、T2 = 2 個月</figcaption></figure>
+        <ul class="notes">
+          <li>回溯性病例系列，<span class="src src-rec">🎤</span> 目前在 JVIM 小幅修改（minor revision）階段。<strong>Dora 是其中一隻</strong>。</li>
+          <li><strong>7 隻打胰島素但控制不佳的狗</strong>。<span class="src src-rec">🎤</span> 和前面的研究最大的不同是族群：全部是<strong>控制不佳</strong>的糖尿病犬。共病：3/7 庫欣、1/7 甲狀腺功能低下、1/7 慢性腸病。</li>
+          <li><strong>用藥</strong>：4/7 velagliflozin（0.25–1 mg/kg PO SID）、3/7 canagliflozin（2 mg/kg PO SID）。</li>
+          <li><strong>結果</strong>（資料取自 Libre 的 AGP 報告）：平均血糖在 T1（1 個月）下降、T2（2 個月）維持；<strong>TIR 顯著改善</strong>、<strong>TAR 顯著下降</strong>。</li>
+          <li>⚠️ 但部分狗的 <strong>TBR 也上升</strong>，可能出現低血糖讀數，甚至低血糖，使用這個組合時要小心。</li>
+        </ul>
+        <figure class="fig"><img src="photos/16-delbaldo-safety-live.jpg" alt="Del Baldo 病例系列安全性與胰島素劑量" loading="lazy"><figcaption>📷 現場拍攝　左：胰島素劑量（U/kg/day）；右：ALIVE 糖尿病臨床評分（DCS）；照片為 Dora</figcaption></figure>
+        <ul class="notes">
+          <li>👍 沒有任何一隻發生 DKA 或臨床低血糖（只有低血糖讀數，沒有臨床症狀）。</li>
+          <li>6/7 隻 <strong>UPC 改善</strong>。</li>
+          <li>大多數狗的<strong>胰島素需求下降</strong>。</li>
+          <li>⚠️ <strong>3 隻因嚴重 PU/PD 和體重下降而停藥</strong>。<span class="src src-rec">🎤</span> 研究的主要問題在 ALIVE 臨床評分：有些狗體重下降、PU/PD，原因是 velagliflozin 或 canagliflozin。<strong>Dora 也是因為 PU/PD 和體重下降而停用 velagliflozin 的其中一隻</strong>，有些狗體重掉得很明顯。</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><span class="src src-rec">🎤</span> <strong>要治療數字，還是治療症狀？</strong>講者：「我要治療症狀。」<br>他認為這個研究的問題主要在<strong>劑量</strong>：一開始用 velagliflozin <strong>1 mg/kg</strong>，這是<strong>貓的劑量</strong>，但狗對它比貓敏感很多。現在他們用的 velagliflozin 劑量低很多，副作用仍然存在，但比這批病例輕微。<br>SGLT-2i 仍是一個選項，他們還在研究最適合狗的劑量，也在試其他 SGLT-2i，找最適合的藥物。</div></div>
+        <div class="alert alert-info"><span class="alert-icon">✍️</span><div><span class="src src-hand">✍️ 筆記</span> 和之前場次（<a href="sglt2i-off-label.html">04</a>）的差異：之前的研究（Box 2024、An 2024/2025）是在<strong>穩定</strong>的糖尿病犬上確認安全性、能不能省胰島素；這個研究是<strong>控制不佳、有共病</strong>的困難病例，追蹤到 2 個月，看到了 Box 10 天研究沒看到的 PU/PD 和體重下降。<br><span class="src src-fix">【更正】</span> 原本推測 Dora 是用 Toujeo 搭配 SGLT-2i；依逐字稿與講義 p.36 的筆型，Dora 用的是 <strong>detemir（Levemir）＋ velagliflozin</strong>。講義 p.42 的「4 U（1 U/kg）」應是投影片標示沿用前一張，實際是 detemir 從 6 U 減到 4 U。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🛡️</div>
+      <h2>12. 預防庫欣犬發生糖尿病</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.46</span><span class="src src-rec">🎤</span> Miceli 等 2012：低劑量 detemir</h3>
+        <ul class="notes">
+          <li>「注意！空腹血糖 &gt; 100 mg/dL」</li>
+          <li>介入性研究，26 隻 PDH 犬：</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>分組（空腹血糖）</th><th>結果</th></tr>
+          <tr><td>&lt; 100 mg/dL</td><td>沒有發生糖尿病</td></tr>
+          <tr><td>100–180，給 detemir 0.1 U/kg/day</td><td>沒有發生糖尿病</td></tr>
+          <tr><td>100–180，未治療</td><td><strong>7 隻中 6 隻變成糖尿病</strong></td></tr>
+        </table></div>
+        <ul class="notes">
+          <li>未給胰島素的高血糖犬，發生糖尿病的風險約高 <strong>13 倍</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 「可以預防糖尿病嗎？大概可以。」糖尿病前期（血糖 &gt; 100）的狗用 detemir 是安全的選項。也許我們應該更早給一點胰島素，或考慮其他治療。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.47</span><span class="src src-rec">🎤</span> 「我們能預防糖尿病嗎……但要怎麼做？」</h3>
+        <ul class="notes">
+          <li>漫畫中的選項：胰島素、SGLT-2 抑制劑、飼料、GLP-1 受體促效劑；牆上寫著「跟著你的心走……但證據在哪裡？」</li>
+          <li><span class="src src-rec">🎤</span> 講者認為 <strong>SGLT-2i 可能很適合</strong>這些狗：它們還有內生性胰島素分泌，和糖尿病貓的情況類似。</li>
+          <li><span class="src src-rec">🎤</span> SGLT-2i 的另一個好處是可以<strong>改善蛋白尿</strong>。病例系列中大部分狗開始 velagliflozin 或 canagliflozin 後蛋白尿都改善了。所以對庫欣犬可能有<strong>雙重適應症</strong>：預防糖尿病、治療蛋白尿。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> Miceli 2012 只有 26 隻狗；用 SGLT-2i 預防糖尿病目前沒有犬隻研究資料，屬於講者的推論。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 13 ══ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">💬</div>
+      <h2>13. 課後 Q&amp;A</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">Q1｜Sunny 換成 NPH，可以改用基礎型胰島素，或和 NPH 合併使用嗎？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 當然可以。講 NPH 只是給另一個選擇，他們現在用基礎型胰島素多很多。但 Sunny 的主要問題是<strong>嚴重胰島素阻抗</strong>：如果 Lente 已經用到 1 U/kg 以上，換成基礎型胰島素可能要用到 <strong>4–5 U/kg</strong>。這本身不是大問題，但要看品種，如果是大型犬，劑量會很大。NPH 是一個<strong>便宜、效力又比基礎型強很多</strong>的選項，缺點是要一天打兩次。也可以用 basal-bolus（基礎型加餐前胰島素）合併，但對飼主比較複雜：要用兩種胰島素，一天通常至少打三針。沒有一種胰島素適合所有病例，每隻狗都不一樣。</div>
+      </div>
+      <div class="qa">
+        <div class="q">Q2｜糖尿病或有其他共病的狗，你偏好 ACTH 刺激試驗還是 LDDST？還是兩個一起做？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 有其他疾病時，LDDST 的<strong>特異性低很多</strong>，如果只看這點，ACTH 刺激試驗可能是比較好的選擇。講者通常希望有更多資訊，所以多半是<strong>一種內分泌檢查加上影像</strong>，而且盡量取得腫瘤本身的影像（腦下垂體或腎上腺）。例如影像看到腦下垂體腫瘤，再加上一個陽性檢查，就沒有其他鑑別診斷了。如果沒辦法做影像，檢查結果又落在灰色地帶，就再做另一種檢查。他認為 ACTH 刺激試驗對這些狗是不錯的檢查。</div>
+      </div>
+      <div class="qa">
+        <div class="q">Q3｜糖尿病合併庫欣、三酸甘油酯和膽固醇偏高時，什麼數值開始用 fenofibrate？ <span class="src src-hand">✍️ 我的提問</span></div>
+        <div class="a"><span class="src src-rec">🎤</span> 講者<strong>沒有特定的數值</strong>。他的做法是：先盡可能治療好庫欣和糖尿病；如果高血脂持續，<strong>即使是輕度也會治療</strong>。如果很嚴重，又是另一個用藥理由：有些庫欣合併糖尿病的狗，確診時高血脂就非常嚴重，這時可以<strong>一開始就</strong>用 fenofibrate，以避免高血脂的併發症，最重要的就是<strong>胰臟炎</strong>。庫欣合併糖尿病的狗如果再發生胰臟炎，管理會變得很複雜，預後也可能很差，飼主可能因為種種問題失去動力。總結：沒有特定切點，但兩個病都治療後高血脂仍持續，就會用。</div>
+      </div>
+      <div class="qa">
+        <div class="q">Q4｜Fenofibrate 可能造成肝指數上升，發生時有什麼替代藥物？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 講者大量使用 bezafibrate 和 fenofibrate，自己從來沒看過肝指數上升，但文獻有報告，所以是可能的併發症。問題是目前沒有其他好的降血脂藥，其他藥物在犬貓都沒有好好研究過。文獻和他自己的經驗都是 fibrate 類相當安全，發生率通常<strong>低於 5%</strong>。可以試著在兩種 fibrate 之間<strong>互換</strong>，或<strong>降低劑量</strong>：劑量範圍 <strong>4–10 mg/kg</strong>，可以從低劑量開始，看有沒有效，沒效再往上加。</div>
+      </div>
+      <div class="qa">
+        <div class="q">Q5｜兩隻高三酸甘油酯、高膽固醇合併脂肪肝的狗，用 fibrate 約兩個月後數值恢復正常。要用多久？要終身使用嗎？需要減量嗎？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 最近一篇長期研究顯示，長期使用沒有併發症，所以講者通常讓狗<strong>一直吃下去</strong>。不過如果是在確診時同時開始糖尿病和庫欣的治療、又同時開始 fibrate，之後可以試著停藥看看。能停藥或減藥，對病患和飼主的花費都比較好。他會追蹤肝指數；這些病患本來就需要定期回診。不要忘了回診：糖尿病的狗有時候只看血糖，醫師根本沒看到狗。他會至少每 3–6 個月看一次，檢查這些藥有沒有造成問題。也可以試著停藥，沒有特定的建議；有些狗吃這個藥狀況很好，一停藥高血脂又回來。</div>
+      </div>
+      <div class="qa">
+        <div class="q">Q6｜之前被教要等血糖比較穩定後才做 ACTH 刺激試驗或 LDDST。血糖還很高時可以做嗎？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 理想上要先控制糖尿病，因為糖尿病本身是一種壓力狀態，光是這個壓力就可能讓檢查呈陽性。但有時候糖尿病就是控制不下來，因為控制不良正是來自另一個疾病，就像 Sunny。這時要診斷庫欣，而且不能只靠一個檢查。如果狗有脫毛、持續多食、持續高血脂、腎上腺異常等符合庫欣的表現，再加上陽性檢查，那就是庫欣，不用懷疑。要把所有證據放在一起看，而不是只看檢查數字；同時記得疾病本身可能造成偽陽性。講者通常會先管理糖尿病<strong>幾週</strong>，如果控制不了，才去驗庫欣。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 14 ══ -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">📌</div>
+      <h2>Take-home、更正表與參考資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>Take-home</h3>
+        <ol class="notes">
+          <li>糖尿病犬打胰島素沒反應時，先找庫欣和高血脂，不要只是一直加胰島素。</li>
+          <li>庫欣犬空腹血糖 &gt; 100 mg/dL 就是糖尿病前期；低劑量 detemir 可能預防糖尿病。</li>
+          <li>Trilostane 低劑量 BID、隨餐；開始時不同時改胰島素；庫欣 3–4 週評估，糖尿病每 2 週 CGM、每 2–3 天調劑量。</li>
+          <li>血糖已在 80–250 仍有症狀 → 加強庫欣治療。</li>
+          <li>嚴重阻抗：考慮 NPH（效力強、便宜，但要 BID、作用 8–10 小時）。</li>
+          <li>變異度大：基礎型胰島素（選便宜的），有共病者約一半需要 BID；配合增加餐次。</li>
+          <li>持續高血脂要治療，主要是預防胰臟炎；fibrate 4–10 mg/kg，肝指數上升少見（&lt; 5%）。</li>
+          <li>SGLT-2i 有潛力（TIR 改善、胰島素減量、UPC 改善），但要減胰島素、注意 PU/PD 與體重下降；犬的劑量要比貓低很多。</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-fix">【更正】</span> 逐字稿轉文字錯誤對照</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>逐字稿</th><th>正確</th></tr>
+          <tr><td>hyperproliferism / hypercoagulism / hyperprolactinism / hypoproteinemia / hypoketosis / hyperkinesis</td><td>hypercortisolism（庫欣）</td></tr>
+          <tr><td>Dr. Michele / Dr. Minceri（阿根廷）</td><td>Miceli</td></tr>
+          <tr><td>shell insulin</td><td>glargine U300 研究</td></tr>
+          <tr><td>PUD / UPT / PPD / CVD / QPD / PUPD / UBD</td><td>PU/PD</td></tr>
+          <tr><td>insulmia</td><td>glucosuria（尿糖）</td></tr>
+          <tr><td>sudden appearance of color</td><td>cataract（白內障）</td></tr>
+          <tr><td>glycated blood glucose（&gt; 100）</td><td>fasting blood glucose</td></tr>
+          <tr><td>BCCR</td><td>UCCR</td></tr>
+          <tr><td>PTH / GH（腦下垂體 vs 腎上腺）</td><td>PDH / ADH</td></tr>
+          <tr><td>non-cached premenstruals</td><td>intact females（未絕育母犬）</td></tr>
+          <tr><td>Sammy / Sonia / Sandy / Sanding（Sunny 段落）</td><td>Sunny</td></tr>
+          <tr><td>Tara</td><td>Sierra</td></tr>
+          <tr><td>Nora / Sonia（Dora 段落）</td><td>Dora</td></tr>
+          <tr><td>renal bed / the bed</td><td>referring vet（轉診獸醫）</td></tr>
+          <tr><td>polydactyly</td><td>polyphagia（多食）</td></tr>
+          <tr><td>UBI</td><td>uveitis（葡萄膜炎）</td></tr>
+          <tr><td>fructose moi</td><td>fructosamine</td></tr>
+          <tr><td>urine specific gravity was 120</td><td>1.020</td></tr>
+          <tr><td>CTSD test / tonsil suppression test / PLD DSD</td><td>ACTH stimulation test / dexamethasone suppression test / LDDST</td></tr>
+          <tr><td>pushing / bushing / cushion</td><td>Cushing's</td></tr>
+          <tr><td>10 zero / 10 eight</td><td>T0 / T8</td></tr>
+          <tr><td>adrenal medullary</td><td>adrenomegaly（腎上腺增大）</td></tr>
+          <tr><td>triamcinolone / triostat / thyroid stand / fasting</td><td>trilostane</td></tr>
+          <tr><td>trial of 10.5 milligram</td><td>trilostane 5 mg（講義 p.16）</td></tr>
+          <tr><td>sulfonyl medication</td><td>眼科用藥（葡萄膜炎）</td></tr>
+          <tr><td>Doctor Pak</td><td>Dr. Bugbee</td></tr>
+          <tr><td>libra / liver / delivery graph / liberated alpha</td><td>Libre（CGM）</td></tr>
+          <tr><td>pre-tailus</td><td>pre-trilostane（給藥前）</td></tr>
+          <tr><td>hypervolemia / polycythemia（症狀重疊）</td><td>hypercortisolism / hyperlipidemia</td></tr>
+          <tr><td>hypoglycemia（Sunny「仍有異常」、Fenofibrate Q3「嚴重」）</td><td>hyperlipidemia / hypercortisolism（依上下文）</td></tr>
+          <tr><td>can insulin / lent / Caninsulin</td><td>Lente（Caninsulin/Vetsulin）</td></tr>
+          <tr><td>MPH / STH</td><td>NPH</td></tr>
+          <tr><td>phenol fiber / fabric / beta fiber / depenofibrate / phenolphthaleate / phenytoin / phenobarbital / beta-hibret / five layer</td><td>fenofibrate / fibrates / bezafibrate</td></tr>
+          <tr><td>lipoprotein apheresis</td><td>LPS（lipopolysaccharide，脂多醣）</td></tr>
+          <tr><td>Dr. Mote / Doctor Mont / Dr. Moore</td><td>Dr. Mott</td></tr>
+          <tr><td>Doctor Baghi / Dr. Bajpai</td><td>Dr. Bugbee</td></tr>
+          <tr><td>hypolipidemia</td><td>hyperlipidemia</td></tr>
+          <tr><td>dementia of this patient</td><td>management（飼主對結果很滿意）</td></tr>
+          <tr><td>thin cap</td><td>cats（貓）</td></tr>
+          <tr><td>GLP-2 inhibitors / H I T inhibitors / GCF2 / H2R inhibitors</td><td>SGLT-2 inhibitors</td></tr>
+          <tr><td>largein / detre / tricyclic / babrolac</td><td>glargine / degludec</td></tr>
+          <tr><td>Tujiao</td><td>Toujeo</td></tr>
+          <tr><td>most of the cases it was hypothyroidism</td><td>hypercortisolism（講義 p.31：35%）</td></tr>
+          <tr><td>70.2 percent</td><td>72%</td></tr>
+          <tr><td>a million dosage of two units per kid</td><td>a median dosage of 2 U/kg/day</td></tr>
+          <tr><td>levarin</td><td>Levemir（detemir）</td></tr>
+          <tr><td>two mics per kg</td><td>trilostane 2 mg/kg</td></tr>
+          <tr><td>GVM / GDM</td><td>JVIM</td></tr>
+          <tr><td>compound glifosin / glargacin / carben glycosin / candilavus</td><td>canagliflozin</td></tr>
+          <tr><td>acute ischemic events</td><td>hypoglycemic events</td></tr>
+          <tr><td>inan glycosid</td><td>enavogliflozin（DWP16001）</td></tr>
+          <tr><td>90 stable diabetic patients</td><td>19 隻（講義 p.41）</td></tr>
+          <tr><td>sildenafil / sevelo / Cymbalvo / semagliflozin / metaglycosin / enalapril</td><td>velagliflozin（Senvelgo）</td></tr>
+          <tr><td>time window range</td><td>time below range（TBR）</td></tr>
+          <tr><td>HP report</td><td>AGP report（Libre）</td></tr>
+          <tr><td>albumin score</td><td>ALIVE score</td></tr>
+          <tr><td>one per two cups</td><td>1 mg/kg</td></tr>
+          <tr><td>mild hypoglycemia（預防研究）</td><td>mild hyperglycemia</td></tr>
+          <tr><td>ambipidure diureno</td><td>（無法辨識，可能是改善血糖控制）</td></tr>
+          <tr><td>kick / kid</td><td>kg</td></tr>
+          <tr><td>Speaker 2 的部分發言</td><td>多為講者 Tardo 或主持人</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Tardo A. <em>Managing the diabetic cushingoid dog.</em> VET-KU × Texas A&amp;M IM Conference, 2026-10-08（講義、現場照片與課堂逐字稿「完整記錄」PDF）。</div>
+          <div class="ref-item">課堂錄音與逐字稿（Plaud）。<a href="https://web.plaud.ai/s/pub_f5d7b288-c6bc-4935-a803-b1fa78d097c7::Mk01TOdzyN3ic58ve2BJW_Q0ApZCUxlEmWlP76z3M7y1hVzjdyCw0ncBAcimU4sklKyjKajlmEhpOtvuQTTDpQI" target="_blank" rel="noopener">連結</a>（逐字稿有轉文字錯誤，請對照本頁更正表）</div>
+          <div class="ref-item">Hess RS, et al. Concurrent disorders in dogs with diabetes mellitus: 221 cases (1993–1998). <em>JAVMA</em> 2000;217:1166–1173.</div>
+          <div class="ref-item">Miceli DD, Pignataro OP, Castillo VA. Concurrent hyperadrenocorticism and diabetes mellitus in dogs. <em>Res Vet Sci</em> 2017;115:425–431.</div>
+          <div class="ref-item">Miceli DD, et al. Low dose of insulin detemir controls glycaemia, insulinemia and prevents diabetes mellitus progression in the dog with pituitary-dependent hyperadrenocorticism. <em>Res Vet Sci</em> 2012;93:114–120.</div>
+          <div class="ref-item">Macfarlane L, Parkin T, Ramsey I. Pre-trilostane and three-hour post-trilostane cortisol to monitor trilostane therapy in dogs. <em>Vet Rec</em> 2016;179:597.</div>
+          <div class="ref-item">O'Kell AL, et al. Effect of fenofibrate on markers of gut barrier function in dogs with naturally occurring diabetes mellitus. <em>JVIM</em> 2025;39:e70125.</div>
+          <div class="ref-item">Miceli DD, et al. Fenofibrate treatment for severe hypertriglyceridemia in dogs. <em>Domest Anim Endocrinol</em> 2021;74:106578.</div>
+          <div class="ref-item">Suh S, Kim JH. Glycemic variability: how do we measure it and why is it important? <em>Diabetes Metab J</em> 2015;39:273–282.</div>
+          <div class="ref-item">Miller M, et al. Day-to-day variability of porcine lente, insulin glargine 300 U/mL and insulin degludec in diabetic dogs. <em>JVIM</em> 2021;35:2131–2139.</div>
+          <div class="ref-item">Tardo AM, et al. A dose titration protocol for once-daily insulin glargine 300 U/mL for the treatment of diabetes mellitus in dogs. <em>JVIM</em> 2024;38:2120–2128.</div>
+          <div class="ref-item">Mott J, et al. Insulin degludec 100 U/mL for treatment of spontaneous diabetes mellitus in dogs. <em>JVIM</em> 2025;39:e17303.</div>
+          <div class="ref-item">Vieira AB, et al. Sodium-glucose co-transporter 2 inhibitors: a pleiotropic drug in humans with promising results in cats. <em>Front Vet Sci</em> 2025;12:1480977.</div>
+          <div class="ref-item">Box JR, et al. Effect of SGLT2 inhibitor canagliflozin on interstitial glucose concentration in insulin-treated diabetic dogs. <em>JVIM</em> 2024;38:1353–1358.</div>
+          <div class="ref-item">An JH, et al. Effect of DWP16001 as an add-on therapy to insulin for diabetic dogs: a pilot study. <em>Vet Med Sci</em> 2024;10:e1454.</div>
+          <div class="ref-item">An JH, et al. Differential glycemic effects of DWP16001 in diabetic dogs according to baseline glycemic status: a multicenter randomized controlled trial. <em>BMC Vet Res</em> 2025;21:512.</div>
+          <div class="ref-item">Del Baldo F, Pergolese V, Tardo AM, Bresciani F, Fracassi F. Use of SGLT-2 inhibitors as adjunct therapy in insulin-treated diabetic dogs with poor glycemic control: a retrospective case series. 審稿中。</div>
+          <div class="ref-item">Nelson V, et al. Prevalence of signs of lower urinary tract disease and positive urine culture in dogs with diabetes mellitus. <em>JVIM</em> 2023;37:550–555.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="endocrine-neoplasia.html">15 內分泌腫瘤：胰島素瘤與嗜鉻細胞瘤</a>。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
