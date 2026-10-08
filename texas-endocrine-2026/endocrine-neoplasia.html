@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>內分泌腫瘤：胰島素瘤與嗜鉻細胞瘤｜2026 Texas 內分泌研討會</title>
+<style>
+  :root {
+    --primary: #0F766E;
+    --primary-light: #CCFBF1;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0d2522;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9cc8c1; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #1f4a44;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9cc8c1; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9cc8c1;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #1f4a44;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #5f8f87;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0b4f49 0%, #14a395 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0d2522; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #1f4a44; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+</style>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 Texas 內分泌研討會</a>
+  <div class="logo">
+    <h2>15｜內分泌腫瘤：<br>胰島素瘤與嗜鉻細胞瘤</h2>
+    <p>Andrew Bugbee｜2026 年 10 月 8 日</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">核心觀念與總覽</a>
+    <div class="nav-section">胰島素瘤（Rambo）</div>
+    <a href="#s1">1. 病例與低血糖鑑別</a>
+    <a href="#s2">2. 流行病學、行為與症狀</a>
+    <a href="#s3">3. 診斷：I:G 比值與影像</a>
+    <a href="#s4">4. 急救與採樣時機</a>
+    <a href="#s5">5. 長期內科治療與藥物</a>
+    <a href="#s6">6. 手術、預後與 Rambo 結果</a>
+    <div class="nav-section">嗜鉻細胞瘤（Arthur）</div>
+    <a href="#s7">7. 病例與高血壓鑑別</a>
+    <a href="#s8">8. 兒茶酚胺與腫瘤行為</a>
+    <a href="#s9">9. 臨床表現與高血壓型態</a>
+    <a href="#s10">10. 診斷：影像、FNA、尿液</a>
+    <a href="#s11">11. 治療與術前 α 阻斷</a>
+    <a href="#s12">12. 預後與 Arthur 結果</a>
+    <div class="nav-section">其他</div>
+    <a href="#s13">13. 升糖素瘤</a>
+    <a href="#s14">14. 課後 Q&amp;A</a>
+    <a href="#s15">Take-home、更正表與參考資料</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>內分泌腫瘤：胰島素瘤與嗜鉻細胞瘤</h1>
+    <p>主講：Andrew Bugbee, DVM, DACVIM｜Texas A&amp;M 首席醫療長（CMO）、臨床教授</p>
+    <p>2026 年 10 月 8 日｜VET-KU × Texas A&amp;M 內科研討會｜場次 15</p>
+    <div class="tags">
+      <span class="tag">副腫瘤性低血糖</span>
+      <span class="tag">胰島素瘤</span>
+      <span class="tag">I:G 比值</span>
+      <span class="tag">葡萄糖急救</span>
+      <span class="tag">Toceranib</span>
+      <span class="tag">部分胰臟切除</span>
+      <span class="tag">嗜鉻細胞瘤</span>
+      <span class="tag">陣發性高血壓</span>
+      <span class="tag">尿 normetanephrine</span>
+      <span class="tag">α 阻斷劑</span>
+      <span class="tag">腎上腺切除</span>
+      <span class="tag">升糖素瘤</span>
+    </div>
+    <a class="rec-link" href="https://web.plaud.ai/s/pub_ea3fa2e6-be22-4552-9b24-eb13a3c43c8a::zzDjQ1rrcYu_QEs8PsbgC-wsOWxs4VQIv2On0aDMhyuma4BFqqEnQ9D1Oj3X4wJ4yCWNZrZc9jYoqzeomZefWgI" target="_blank" rel="noopener">🎧 聆聽課堂錄音（Plaud）↗</a>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（頁碼為 PDF 頁數）
+    <span class="src src-rec">🎤</span> 課堂逐字稿
+    <span class="src src-hand">✍️ 筆記</span> 上課筆記
+    <span class="src src-add">💡 補充</span> 整理者補充（機轉、交叉參照）
+    <span class="src src-fix">【更正】</span> 逐字稿轉文字錯誤，以講義為準（完整列表見最後一節）
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li>副腫瘤性低血糖<strong>不等於</strong>胰島素瘤；也可能是分泌 IGF 的非胰島細胞腫瘤</li>
+      <li>胰島素瘤一律<strong>當惡性</strong>：診斷時約 50% 已轉移</li>
+      <li>症狀是<strong>陣發性</strong>的，常在<strong>飯後</strong>加重；血糖正常一次不能排除</li>
+      <li>急診看到低血糖：<strong>先抽血清，再推葡萄糖</strong></li>
+      <li>葡萄糖從低劑量開始、慢慢給，<strong>症狀一停就停</strong>；目標是沒症狀，不是正常血糖</li>
+      <li>超音波常看不到胰島素瘤，<strong>顯影 CT</strong> 才是首選影像</li>
+      <li>內科：少量多餐（4–6 餐）、避免單醣、prednisone、<strong>toceranib</strong></li>
+      <li>有轉移<strong>仍值得手術</strong>：切掉原發腫瘤，術後血糖比較好控制</li>
+      <li>嗜鉻細胞瘤：<strong>血壓正常不能排除</strong>；血壓越高越要懷疑</li>
+      <li><strong>尿 normetanephrine:creatinine</strong> 最能和庫欣區分，但仍有重疊</li>
+      <li><strong>先 α、後 β</strong>：α 阻斷劑至少 3 天後才加 β 阻斷劑</li>
+      <li>術前 α 阻斷沒有改善存活，美國多數醫院已改為<strong>盡快手術</strong></li>
+    </ul>
+  </div>
+
+  <!-- ══ SECTION 0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🎯</div>
+      <h2>核心觀念與總覽</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.1–2</span><span class="src src-rec">🎤</span> 場次資訊</h3>
+        <ul class="notes">
+          <li>講者：Andrew Bugbee（DVM, DACVIM），Texas A&amp;M 首席醫療長、臨床教授。也是 <a href="diabetic-nutrition.html">06 糖尿病營養</a>、<a href="obesity-weight-loss.html">09 肥胖與減重</a>、<a href="cushings-monitoring-alternative-tx.html">13 庫欣監測與替代療法</a> 的講者。</li>
+          <li><span class="src src-rec">🎤</span> 這是當天早上臨時調整的場次，接下來是 Tardo 的「糖尿病合併庫欣的狗」。</li>
+          <li><span class="src src-rec">🎤</span> 整場用兩隻狗串起來：<strong>Rambo</strong>（胰島素瘤，兩週前在 Texas A&amp;M 看的病例）和 <strong>Arthur</strong>（嗜鉻細胞瘤，講者在 University of Georgia 時的病患，「這輩子最喜歡的病患」）。最後補充升糖素瘤。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-add">💡 補充</span> 三種腫瘤一覽</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>胰島素瘤</th><th>嗜鉻細胞瘤</th><th>升糖素瘤</th></tr>
+          <tr><td>來源</td><td>胰臟 β 細胞</td><td>腎上腺髓質嗜鉻細胞</td><td>胰臟 α 細胞</td></tr>
+          <tr><td>過量激素</td><td>胰島素</td><td>兒茶酚胺（多為正腎上腺素）</td><td>升糖素</td></tr>
+          <tr><td>主要問題</td><td>低血糖</td><td>高血壓、心搏過速</td><td>糖尿病、肝皮症候群</td></tr>
+          <tr><td>確診檢查</td><td>低血糖時的胰島素／血糖比值</td><td>尿 normetanephrine:creatinine</td><td>血漿升糖素</td></tr>
+          <tr><td>首選影像</td><td>顯影 CT</td><td>超音波／CT（評估血管侵犯）</td><td>影像找胰臟腫塊</td></tr>
+          <tr><td>首選治療</td><td>部分胰臟切除</td><td>腎上腺切除</td><td>手術切除</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-add">💡 補充</span> 與其他場次的關聯</h3>
+        <ul class="notes">
+          <li>胰島素生理、GLUT-2 與葡萄糖感知：見 <a href="canine-diabetes-insulin.html">02 犬糖尿病與胰島素</a>。</li>
+          <li>腎上腺腫塊、FNA、尿 metanephrine 收集方式：見 <a href="panel-qa-cushing-addison.html">14 座談會 Q&amp;A</a> 第 3 題（Bugbee 已先講過一次）。</li>
+          <li>嗜鉻細胞瘤常被誤認為庫欣；腎上腺腫瘤懷疑庫欣時用 LDDST：見 <a href="cushings-diagnosis-treatment.html">12 犬庫欣氏症：診斷與內科治療</a>。</li>
+          <li>升糖素是胰島素的「邪惡表親」、會造成胰島素阻抗：見 <a href="obesity-weight-loss.html">09 肥胖與減重</a> 的升糖素段落。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🚑</div>
+      <h2>1. 病例 Rambo 與低血糖鑑別</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.3</span><span class="src src-rec">🎤</span> Rambo：12 歲已結紮公犬，拉布拉多</h3>
+        <ul class="notes">
+          <li><strong>主訴</strong>：在家突然倒下，之後多次癲癇，飼主緊急送到 Texas A&amp;M 急診。</li>
+          <li><strong>檢傷</strong>：TPR 正常；側躺、意識遲鈍；全身細微肌肉顫抖，臉部疑似局部性癲癇。<span class="src src-rec">🎤</span> 急診團隊當時不確定是神經性還是代謝性。</li>
+          <li><strong>觸診</strong>：前腹部器官腫大。<span class="src src-rec">🎤</span> 輕度，研判可能是肝腫大，當時不擔心。</li>
+          <li><strong>緊急檢查</strong>：血糖機（AlphaTrak 3）測得 <strong>24 mg/dL</strong>，重度低血糖；ALP 上升；尿蛋白 1+；USG 1.043，濃縮能力正常。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.4</span><span class="src src-rec">🎤</span> 低血糖的鑑別診斷</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>類別</th><th>原因</th><th>Rambo 的評估 <span class="src src-rec">🎤</span></th></tr>
+          <tr><td><strong>假性</strong></td><td>血液未離心、放太久才分析</td><td>24 太低，不像假性；而且是馬上用血糖機測的</td></tr>
+          <tr><td><strong>消耗增加</strong></td><td>紅血球增多、類白血病反應、敗血症、<strong>副腫瘤</strong></td><td>最擔心的類別，尤其是副腫瘤</td></tr>
+          <tr><td><strong>生成減少</strong></td><td>Addison／皮質醇低下、肝合成衰竭、極度長期飢餓、新生或幼齡</td><td>肝功能檢查不支持肝衰竭；一直正常進食；不是幼犬。Addison 當時還沒完全排除</td></tr>
+          <tr><td><strong>醫源性</strong></td><td>外源性胰島素</td><td>家中沒有胰島素</td></tr>
+          <tr><td><strong>中毒</strong></td><td>木糖醇</td><td>沒有接觸史</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.5</span><span class="src src-rec">🎤</span> 副腫瘤性低血糖：不等於胰島素瘤</h3>
+        <ul class="notes">
+          <li><strong>胰島素瘤</strong>：β 細胞腫瘤，是副腫瘤性低血糖<strong>最常見</strong>的原因。</li>
+          <li><strong>非胰島細胞腫瘤</strong>：
+            <ul class="notes">
+              <li><strong>平滑肌肉瘤</strong>：<span class="src src-rec">🎤</span> 可能是最常見的非胰島細胞腫瘤，多在腸胃道。影像除了找轉移，也要確認腹腔裡沒有其他腫瘤。</li>
+              <li>肝腫瘤、肝細胞癌。</li>
+              <li>多種器官的上皮癌。<span class="src src-rec">🎤</span> 尤其是乳腺。</li>
+              <li>腫瘤負荷很大，例如淋巴母細胞性白血病。<span class="src src-rec">🎤</span> 機制和紅血球增多症類似：細胞越多，吃掉的葡萄糖越多。</li>
+            </ul>
+          </li>
+          <li><span class="src src-rec">🎤</span> 腫瘤分泌的不一定是胰島素，也可能是<strong>類胰島素生長因子</strong>（IGF），一樣會造成低血糖。診斷時要記得這一點。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 非胰島細胞腫瘤主要分泌 IGF-2，這時血中胰島素是被<strong>抑制</strong>的（偏低）。所以「低血糖但胰島素也低」會把方向導向非胰島細胞腫瘤；「低血糖但胰島素正常或偏高」才指向胰島素瘤。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🔬</div>
+      <h2>2. 胰島素瘤：流行病學、腫瘤行為與症狀</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.6</span><span class="src src-rec">🎤</span> 流行病學</h3>
+        <ul class="notes">
+          <li>雪貂遠多於犬。<span class="src src-rec">🎤</span> 小型哺乳類獸醫最常看到，雪貂是這個病的代表動物。貓非常罕見，所以實務上幾乎都是狗。</li>
+          <li>中年到老年，平均約 <strong>9 歲</strong>。</li>
+          <li>中大型犬遠多於小型犬。<span class="src src-rec">🎤</span> 不代表 Maltese 不會發生，但典型就是像 Rambo 這樣的拉布拉多體型。</li>
+          <li><strong>80% 是單一腫瘤</strong>，生長緩慢。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.7</span><span class="src src-rec">🎤</span> 一律當惡性：轉移與存活</h3>
+        <ul class="notes">
+          <li>診斷時約 <strong>50%</strong> 已經可以偵測到轉移。<span class="src src-rec">🎤</span> 通常先到區域淋巴結和腹腔，肺和肝也是早期常見轉移部位。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>分期</th><th>治療後中位存活期（MST）</th></tr>
+          <tr><td>只有胰臟腫塊，沒有轉移</td><td>約 <strong>785 天</strong></td></tr>
+          <tr><td>胰臟腫塊＋淋巴結轉移</td><td>約 <strong>547 天</strong></td></tr>
+          <tr><td>胰臟腫塊＋遠端轉移（肝、肺等）</td><td>約 <strong>217 天</strong>（不到一年）</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.8</span><span class="src src-rec">🎤</span> 臨床症狀：陣發性，而且飯後加重</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 胰島素是從腫瘤<strong>陣發性</strong>分泌的，所以症狀也是一陣一陣的，很像胰島素過量的病患。</li>
+          <li>全身無力、嗜睡、常常躺著。</li>
+          <li>運動失調、定向感混亂。</li>
+          <li>運動不耐：<span class="src src-rec">🎤</span> 不太想起來跑、玩丟接球。</li>
+          <li><strong>食慾增加</strong>，可能伴隨<strong>體重增加</strong>。<span class="src src-rec">🎤</span> 血糖下降時，神經系統會正常地刺激食慾來補充葡萄糖，所以會有找食物的行為。有報告指出，診斷前長期低血糖的動物常常變胖。</li>
+          <li>肌肉抽動、顫抖：<span class="src src-rec">🎤</span> 就像 Rambo，可能被誤認為局部性癲癇。</li>
+          <li>虛脫、癲癇。</li>
+          <li><strong>大餐後症狀常加重</strong>：<span class="src src-rec">🎤</span> 一天餵一兩次的狗，正常份量的一餐就足以刺激過量的胰島素分泌。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🧪</div>
+      <h2>3. 診斷：胰島素／血糖比值與影像</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.9</span><span class="src src-rec">🎤</span> 基本檢查</h3>
+        <ul class="notes">
+          <li>CBC、生化、UA：低血糖可能非常嚴重（&lt;30 mg/dL）。<span class="src src-rec">🎤</span> Rambo 在 24 還活著，講者覺得很驚人。</li>
+          <li>其他項目常常沒有異常，主要用來<strong>排除</strong>敗血症、紅血球增多症、肝衰竭等。</li>
+          <li><strong>狗可能間歇性血糖正常</strong>：腫瘤是陣發性分泌胰島素。<span class="src src-rec">🎤</span> 如果狗在家反覆嗜睡、到急診時血糖剛好正常，鑑別診斷一開始可能就不會列入胰島素瘤。</li>
+          <li>懷疑很高時，可能要<strong>禁食並連續測血糖</strong>，等症狀出現、記錄到低血糖。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.10</span><span class="src src-rec">🎤</span> 正常的胰島素調控</h3>
+        <ul class="notes">
+          <li>主要由<strong>門脈血糖</strong>調控：β 細胞上的 <strong>GLUT-2</strong> 持續取樣門脈血糖，經由「葡萄糖感知」決定分泌多少胰島素。</li>
+          <li>正常血糖約 80–120 mg/dL，此時胰島素分泌很少。</li>
+          <li>&gt;110 mg/dL 時胰島素分泌增加；<strong>&lt;60 mg/dL 時應該完全不分泌</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 所以血糖 24 的 Rambo，體內應該<strong>沒有任何胰島素</strong>在分泌。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.11–12</span><span class="src src-rec">🎤</span> 確診：胰島素／血糖比值</h3>
+        <ul class="notes">
+          <li>正常狗低血糖時應該測不到胰島素。<strong>低血糖卻有正常或偏高的胰島素</strong>，就是不正常的生理反應。</li>
+          <li><strong>並非胰島素瘤特有</strong>：其他會分泌胰島素的腫瘤也會這樣。</li>
+          <li>一定要在<strong>低血糖時（&lt;60 mg/dL）</strong>、<strong>給葡萄糖之前</strong>採樣。<span class="src src-rec">🎤</span> 沒有低血糖會影響比值，可能造成偽陰性。</li>
+        </ul>
+        <div class="quote">比值 = 血清胰島素（μU/mL）× 100 ÷（血清葡萄糖（mg/dL）− 30）<span class="quote-zh">比值 &gt; 30：可能是分泌胰島素的腫瘤。血糖 &lt; 30 mg/dL 時，分母用 1。</span></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 大多數參考實驗室會幫你算好。</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><span class="src src-rec">🎤</span> 講者說最常見的錯誤：急診一看到血糖 24，第一個動作就是去拿葡萄糖。<strong>一開始推葡萄糖，就沒辦法做胰島素／血糖比值了。</strong>所以採樣要快，才能盡快給葡萄糖又不影響診斷。</div></div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 這個公式就是「校正胰島素／血糖比值」（AIGR）。分母減 30 會在血糖很低時把比值放大，敏感度高但偽陽性也多。很多人也直接判讀：<strong>血糖 &lt;60 時，胰島素落在參考範圍中上段或偏高，就算不恰當分泌</strong>。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.13</span><span class="src src-rec">🎤</span> 影像學：CT 才是首選</h3>
+        <div class="grid2">
+          <div>
+            <ul class="notes">
+              <li><strong>腹部超音波</strong>：<span class="src src-rec">🎤</span> 雖然現在很容易取得，但<strong>不是</strong>首選。除非胰臟病灶夠大，否則很少看得到。<strong>看不到胰臟腫塊不能排除胰島素瘤。</strong>超音波的用處是排除腸胃道、肝臟等非胰島細胞腫瘤，以及找轉移。</li>
+              <li><strong>胸腔 X 光</strong>：找肺轉移。<span class="src src-rec">🎤</span> 老年動物本來就會做一般轉移檢查，而胰島素瘤診斷時可能已有肺轉移。</li>
+              <li><strong>顯影 CT</strong>：<span class="src src-rec">🎤</span> 首選。找胰臟內有顯影增強的腫塊，偵測腫塊和全身轉移都比超音波敏感。</li>
+            </ul>
+          </div>
+          <figure class="fig"><img src="photos/15-ct-insulinoma.jpg" alt="胰島素瘤 CT" loading="lazy"><figcaption>📄 p.13　顯影 CT：箭頭為胰臟左側的顯影增強腫塊</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">💉</div>
+      <h2>4. 治療原則、急救與採樣時機</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.14</span><span class="src src-rec">🎤</span> 治療原則：做到剛好就好</h3>
+        <ul class="notes">
+          <li><strong>內科治療</strong>：適合初期穩定，尤其是準備送手術的病患。<span class="src src-rec">🎤</span> 一開始可能都有反應，但效果短暫，之後會產生抗性、症狀變嚴重；MST 也比手術短。</li>
+          <li><strong>手術切除</strong>（部分胰臟切除）：首選，存活較長，術後血糖較好控制。</li>
+        </ul>
+        <div class="quote">Do just enough to stop / prevent clinical signs. Don't overdo it!<span class="quote-zh">做到剛好足以停止或預防症狀就好，不要過度。給太多葡萄糖會刺激腫瘤分泌更多胰島素，讓症狀更嚴重，形成惡性循環。</span></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.15</span><span class="src src-rec">🎤</span> 低血糖急救</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>步驟</th><th>做法</th></tr>
+          <tr><td><strong>50% 葡萄糖推注</strong></td><td>一般劑量 0.25–1.0 mL/kg，至少 1:4 用生理食鹽水稀釋後 IV。0.25 mL/kg 約可使血糖上升 <strong>~50 mg/dL</strong>。<br><span class="src src-rec">🎤</span> 胰島素瘤病患要<strong>從低劑量開始</strong>，有時甚至低於 0.25 mL/kg。</td></tr>
+          <tr><td><strong>給法</strong></td><td>緩慢輸注，<strong>神經症狀一改善或癲癇一停就停</strong>，避免衝過頭。</td></tr>
+          <tr><td><strong>CRI</strong></td><td>推注穩定後，點滴中加葡萄糖到 <strong>2.5–5%</strong>。1 L 點滴加 50 mL 的 50% 葡萄糖約為 2.5%。<br><span class="src src-rec">🎤</span> 超過 5% 對胰島素瘤病患有點冒險，而且要放<strong>中心靜脈導管</strong>，避免高濃度葡萄糖造成靜脈炎。</td></tr>
+          <tr><td><strong>升糖素</strong></td><td>CRI 10–15 ng/kg/min。<span class="src src-rec">🎤</span> 通常不需要；用在對葡萄糖補充有抗性的嚴重副腫瘤性低血糖，可誘發胰島素阻抗，讓葡萄糖更有效。</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.16</span><span class="src src-rec">🎤</span> 懷疑胰島素瘤時：採樣時機</h3>
+        <ul class="notes">
+          <li>要做胰島素／血糖比值，必須<strong>在給葡萄糖之前</strong>，而且病患<strong>正處於低血糖</strong>（&lt;60 mg/dL）時抽血。</li>
+          <li><span class="src src-rec">🎤</span> 只要有一點點懷疑，急診就先抽這管。抽生化時多抽一點，剩下的血清就能拿來送驗。</li>
+          <li><span class="src src-rec">🎤</span> 狗正在癲癇而先給了葡萄糖，<strong>不是世界末日</strong>，先穩定病患沒關係。之後要診斷時，停掉葡萄糖、等血糖再降下來，再抽血送胰島素／血糖比值。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">💊</div>
+      <h2>5. 長期內科治療與藥物</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.17</span><span class="src src-rec">🎤</span> 飲食與類固醇</h3>
+        <ul class="notes">
+          <li><strong>飲食</strong>：不要一天一兩大餐，改成 24 小時內多次少量。<span class="src src-rec">🎤</span> <strong>一天 4–6 餐</strong>最理想。高蛋白、高脂肪、複合碳水化合物，<strong>避免單醣</strong>。<span class="src src-rec">🎤</span> 多數獸醫會選糖尿病處方飼料或高纖飼料。</li>
+          <li><strong>Prednisone／prednisolone</strong> 0.5–2 mg/kg/day PO：誘發胰島素阻抗、增加肝臟糖質新生。<span class="src src-rec">🎤</span> 通常從低劑量開始，往上調到能控制血糖的劑量。</li>
+          <li><span class="src src-rec">🎤</span> 再提醒一次：目標<strong>不是正常血糖</strong>，而是不會引起低血糖症狀的血糖。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-hand">✍️ 筆記</span> 避免單糖，因為會促使胰島素分泌</h3>
+        <p class="p"><span class="src src-add">💡 補充</span> 胰島素瘤細胞<strong>不是完全不理會血糖</strong>。它在低血糖時仍會自主分泌胰島素，但血糖一升高，它還是會反應，而且常常比正常 β 細胞更強。所以吃單糖會造成這樣的循環：</p>
+        <div class="quote">單糖快速吸收 → 血糖急升 → 腫瘤大量釋放胰島素 → 血糖急降、甚至低於進食前（反彈性低血糖）→ 出現症狀</div>
+        <ul class="notes">
+          <li>這和 <strong>p.8 大餐後症狀加重</strong>、<strong>p.15 葡萄糖症狀一停就停</strong>是同一個機制。</li>
+          <li>高蛋白、高脂肪、複合碳水化合物吸收慢，血糖曲線平緩；少量多餐也是為了不讓血糖大起大落。</li>
+          <li>飼主衛教：避免零食、餅乾、含糖食物。發作時可以在牙齦塗少量糖漿救急，但狗能吃東西後要盡快餵正餐並就醫，<strong>不能長期靠餵糖維持</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.18–19</span><span class="src src-rec">🎤</span> 藥物治療</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>藥物</th><th>機轉</th><th>講者評價</th></tr>
+          <tr><td><strong>Toceranib（Palladia）</strong></td><td>酪胺酸激酶抑制劑</td><td><strong>首選</strong>。2.4–2.9 mg/kg PO q48h，或一、三、五給藥（方便飼主）。合併飲食和類固醇時 <strong>MST 656 天</strong>，<strong>66.7%</strong> 完全、部分緩解或疾病穩定（Olivares 2022）。<br><span class="src src-rec">🎤</span> 存活期和「沒有轉移」的分期差不多，相當好。腫瘤科最推薦的就是它，「在我手上是最有效的選項」。</td></tr>
+          <tr><td><strong>Diazoxide</strong></td><td>打開 K⁺ 通道 → β 細胞過極化 → 鈣流入減少 → 胰島素分泌減少；也增加兒茶酚胺釋放，造成輕度胰島素阻抗</td><td><span class="src src-rec">🎤</span> 傳統用藥。效果不穩定、腸胃副作用很多，Palladia 上市後已經不太用。</td></tr>
+          <tr><td><strong>Octreotide</strong></td><td>體抑素類似物</td><td>效果不一、不可靠。<span class="src src-rec">🎤</span> 價格也是問題。</td></tr>
+          <tr><td><strong>Streptozocin</strong></td><td>烷化劑，結構像葡萄糖，經葡萄糖感知進入 β 細胞後殺死細胞</td><td>副作用多，<strong>不建議</strong>。<span class="src src-rec">🎤</span> β 細胞被殺掉，常常因此發生<strong>糖尿病</strong>。</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🔪</div>
+      <h2>6. 手術、預後與 Rambo 的結果</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.20</span><span class="src src-rec">🎤</span> 部分胰臟切除術</h3>
+        <ul class="notes">
+          <li>通常是單一病灶：質地硬的球狀結節，多數 <strong>&lt;3 cm</strong>。</li>
+          <li><strong>不太可能根治</strong>：幾乎 100% 有微小轉移（至少到區域淋巴結）。<span class="src src-rec">🎤</span> 講者從不讓飼主期待這是可以治癒的病。</li>
+          <li><strong>有轉移仍需要手術</strong>：看得到的轉移灶能切就切；就算切不完，<strong>切掉原發腫瘤</strong>也讓術後的內科控制容易很多。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.21</span><span class="src src-rec">🎤</span> 預後</h3>
+        <div class="grid2">
+          <div>
+            <p class="p"><strong>MST &gt; 1 年</strong></p>
+            <ul class="notes">
+              <li>接受手術</li>
+              <li>術後幾乎沒有症狀</li>
+              <li>沒有轉移，或只轉移到區域淋巴結</li>
+            </ul>
+          </div>
+          <div>
+            <p class="p"><strong>MST &lt; 1 年</strong></p>
+            <ul class="notes">
+              <li>只做內科治療</li>
+              <li>手術後仍持續低血糖、有症狀</li>
+              <li>有遠端轉移</li>
+            </ul>
+          </div>
+        </div>
+        <p class="p"><span class="src src-rec">🎤</span> 最糟的情況是做了手術、術後還是低血糖有症狀：飼主花了很貴的手術費，卻仍落在預後最差的那一端。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.22</span><span class="src src-rec">🎤</span> Rambo 的結果</h3>
+        <ul class="notes">
+          <li>幾天後拿到胰島素／血糖比值：<strong>159</strong>（參考值 &lt;30），強烈支持分泌胰島素的腫瘤。</li>
+          <li>低劑量葡萄糖輸注就止住癲癇。</li>
+          <li>胸腹 CT：胰臟有顯影增強腫塊，沒看到明顯轉移。<span class="src src-rec">🎤</span> 但講者懷疑腹腔裡至少已有轉移。</li>
+          <li>飼主無法負擔手術，改為：
+            <ul class="notes">
+              <li>少量多餐：<span class="src src-rec">🎤</span> 依飼主工作安排，一天 4–6 餐</li>
+              <li>Prednisone 1.0 mg/kg/day</li>
+              <li>Palladia 2.5 mg/kg q48h</li>
+            </ul>
+          </li>
+          <li><span class="src src-rec">🎤</span> 講者說不清楚他現在的狀況，希望很好。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🩸</div>
+      <h2>7. 病例 Arthur 與高血壓鑑別</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.23</span><span class="src src-rec">🎤</span> Arthur：14 歲已結紮公犬，Bassador（巴吉度 × 拉布拉多）</h3>
+        <ul class="notes">
+          <li><strong>主訴</strong>：急性虛脫、陣發性運動失調。<span class="src src-rec">🎤</span> 飼主說他有時好像看不見，在家裡迷迷糊糊、會撞到東西。就診約 3 週前流過一次鼻血。</li>
+          <li><strong>身體檢查</strong>：心跳 160 bpm。<span class="src src-rec">🎤</span> 住院當然會緊張，但對一隻相對放鬆的 Bassador 來說還是偏高。<strong>視網膜出血</strong>、前腹部器官腫大。</li>
+          <li><strong>緊急檢查</strong>：血壓 160 mmHg；ALP、ALT、膽固醇上升，輕度氮血症；USG 1.050，尿蛋白 <strong>4+</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.24</span><span class="src src-rec">🎤</span> 高血壓的鑑別診斷（ACVIM 高血壓共識）</h3>
+        <figure class="fig"><img src="photos/15-htn-differentials.jpg" alt="高血壓鑑別診斷表" loading="lazy"><figcaption>📄 p.24　各疾病在犬的高血壓盛行率（ACVIM Hypertension Consensus Statement）</figcaption></figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>疾病</th><th>犬的高血壓盛行率（表中各研究）</th></tr>
+          <tr><td>慢性腎病</td><td>9–93%</td></tr>
+          <tr><td>急性腎損傷</td><td>87%；入院時 15–37%，住院期間 62–81%</td></tr>
+          <tr><td>庫欣氏症</td><td>20–80%</td></tr>
+          <tr><td>糖尿病</td><td>24–67%</td></tr>
+          <tr><td>肥胖</td><td>影響小</td></tr>
+          <tr><td>Conn 氏症（原發性醛固酮增多症）</td><td>罕見疾病</td></tr>
+          <tr><td><strong>嗜鉻細胞瘤</strong></td><td><strong>43%、86%、54.5–65%</strong></td></tr>
+          <tr><td>甲狀腺功能低下</td><td>不常見</td></tr>
+          <tr><td>短吻品種</td><td>無盛行率資料</td></tr>
+        </table></div>
+        <p class="p"><span class="src src-rec">🎤</span> 考慮到 Arthur 的病史，最擔心的是嗜鉻細胞瘤。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">⚗️</div>
+      <h2>8. 嗜鉻細胞瘤：兒茶酚胺與腫瘤行為</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.25</span><span class="src src-rec">🎤</span> 定義與流行病學</h3>
+        <ul class="notes">
+          <li>具功能性的<strong>嗜鉻細胞</strong>腫瘤，起源於腎上腺髓質，過量製造兒茶酚胺。</li>
+          <li>犬遠多於貓（貓很罕見）。</li>
+          <li>診斷時平均 <strong>11–12 歲</strong>，95% ≥ 7 歲。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.26</span><span class="src src-rec">🎤</span> 兒茶酚胺為什麼造成高血壓</h3>
+        <ul class="notes">
+          <li>腎上腺素和正腎上腺素負責「戰或逃」反應。</li>
+          <li>高濃度時有 <strong>α1 + β1</strong> 作用：血管收縮、心臟收縮力 ↑、心跳 ↑。</li>
+          <li>結果就是<strong>高血壓</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.27</span><span class="src src-rec">🎤</span> 合成、分泌與代謝</h3>
+        <figure class="fig"><img src="photos/15-catecholamines.jpg" alt="兒茶酚胺合成路徑" loading="lazy"><figcaption>📄 p.27　L-酪胺酸 → L-DOPA → 多巴胺 → 正腎上腺素 → 腎上腺素</figcaption></figure>
+        <ul class="notes">
+          <li>正常分泌比例：犬 <strong>70% 腎上腺素、30% 正腎上腺素</strong>；貓 60%／40%。</li>
+          <li>分泌是陣發性的。<span class="src src-rec">🎤</span> 希望你不是整天都處在戰或逃狀態，所以只在壓力時分泌。</li>
+          <li>代謝成<strong>甲腎上腺素類（metanephrines）</strong>，即沒有活性的代謝物，和游離兒茶酚胺一起<strong>從尿液排出</strong>。<span class="src src-rec">🎤</span> 診斷就是利用這個排泄過程。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 兒茶酚胺本身陣發性釋放、半衰期很短，直接測容易漏掉；腫瘤細胞內會持續把它代謝成 metanephrines，所以測 metanephrines 比較敏感，也是第 10 節尿液檢查的基礎。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.28</span><span class="src src-rec">🎤</span> 腫瘤行為</h3>
+        <ul class="notes">
+          <li>多數過度分泌<strong>正腎上腺素</strong>。</li>
+          <li><strong>&gt;90% 單側</strong>，另一側通常正常。</li>
+          <li><strong>鈣化很少見</strong>。<span class="src src-rec">🎤</span> 這點和其他惡性腎上腺腫瘤不同：腎上腺看到鈣化，可以把嗜鉻細胞瘤在鑑別清單上往後排。</li>
+          <li><strong>50% 局部侵犯</strong>。<span class="src src-rec">🎤</span> 會侵入周圍結構或血管，例如膈腹靜脈，右側則是後腔靜脈。最好用 CT 評估。</li>
+          <li>應<strong>視為惡性</strong>：可轉移到肝、淋巴結、腎、骨、中樞神經；診斷時 <strong>10%</strong> 有肺轉移。</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><span class="src src-fix">【更正】</span> 逐字稿聽起來像是講者說「嗜鉻細胞瘤主要過度分泌<strong>腎上腺素</strong>」，但講義 p.28 寫的是<strong>正腎上腺素</strong>，p.34 的數據也是 normetanephrine（正腎上腺素的代謝物）最能區分，所以以講義為準。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">📈</div>
+      <h2>9. 臨床表現與高血壓型態</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.29</span><span class="src src-rec">🎤</span> 臨床表現</h3>
+        <ul class="notes">
+          <li><strong>高血壓造成的標的器官傷害</strong>（最主要）：
+            <ul class="notes">
+              <li>視網膜出血或剝離、急性失明。<span class="src src-rec">🎤</span> Arthur 在家間歇性迷糊、看不見，研判是視網膜部分剝離或嚴重出血。</li>
+              <li>虛脫、中風、癲癇、意識遲鈍、運動失調。</li>
+              <li>急性腎損傷（或慢性腎病）。</li>
+              <li><strong>鼻出血</strong>：<span class="src src-rec">🎤</span> 高血壓讓鼻腔血管破裂，造成間歇性流鼻血，就像 Arthur。</li>
+            </ul>
+          </li>
+          <li>心搏過速、快速性心律不整。<span class="src src-rec">🎤</span> 是零星出現的，不一定剛好抓到。</li>
+          <li>多喝多尿。</li>
+          <li>嗜睡、虛弱、焦慮。<span class="src src-rec">🎤</span> 戰或逃反應失控，會顯得坐立不安。</li>
+          <li>休息時呼吸急促、喘氣。</li>
+          <li>厭食、嘔吐、腹瀉、體重減輕。</li>
+        </ul>
+        <p class="muted">講義旁註：症狀可能零星或間歇出現，而且大多很模糊。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.30</span><span class="src src-rec">🎤</span> 四種高血壓型態</h3>
+        <p class="p"><span class="src src-rec">🎤</span> 常見誤解：嗜鉻細胞瘤一定持續高血壓或持續心搏過速。實際上有四種表現：</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>型態</th><th>特點 <span class="src src-rec">🎤</span></th></tr>
+          <tr><td>持續高血壓＋陣發性飆高</td><td>最好診斷：什麼時候量都高，嚴重程度隨分泌起伏</td></tr>
+          <tr><td><strong>平時正常＋陣發性飆高</strong></td><td>最讓人挫折的型態。講者認為 <strong>Arthur 就是這一型</strong>，所以才會間歇性失明</td></tr>
+          <tr><td>持續高血壓</td><td>輕中度持續偏高，適應環境、不緊張後也不會降；可能沒有器官傷害</td></tr>
+          <tr><td>血壓正常</td><td>測不到高血壓，只能靠標的器官傷害或心臟異常來推測</td></tr>
+        </table></div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>血壓正常不能排除嗜鉻細胞瘤！</strong>血壓越高，越可能是嗜鉻細胞瘤。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🧪</div>
+      <h2>10. 診斷：檢驗、超音波、FNA 與尿液 metanephrines</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.31</span><span class="src src-rec">🎤</span> 一般檢查與心電圖</h3>
+        <ul class="notes">
+          <li>CBC、生化、UA 都是非特異性變化：貧血、ALP 和 ALT 上升、USG 低、蛋白尿。</li>
+          <li>ECG／遙測監測：心搏過速、快速性心律不整，常是陣發性的。<span class="src src-rec">🎤</span> <strong>遙測比較好</strong>，比較有機會抓到陣發性分泌；可能看到竇性心搏過速或心室性心律。</li>
+          <li><strong>常被誤認為庫欣</strong>：<span class="src src-rec">🎤</span> 有腎上腺腫瘤、生化異常、高血壓或蛋白尿，看起來都很像庫欣，有時兩個病要同時判斷。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.32</span><span class="src src-rec">🎤</span> 超音波</h3>
+        <ul class="notes">
+          <li>單側結節或腫塊，<strong>右側 &gt;60%</strong>。<span class="src src-rec">🎤</span> 很不幸，右側比較容易侵入後腔靜脈。</li>
+          <li>超過一半直徑 ≥ 4.0–5.0 cm。<span class="src src-rec">🎤</span> 但也可能是腎上腺內很小的結節。</li>
+          <li>鈣化很少見。</li>
+          <li><strong>腫瘤栓塞很常見</strong>，侵入後腔靜脈。<span class="src src-rec">🎤</span> 但<strong>不代表不能手術</strong>，可以切開靜脈把侵入的腫瘤一起取出。</li>
+          <li><strong>對側腎上腺通常正常</strong>：<span class="src src-rec">🎤</span> 可以和腎上腺依賴型庫欣區分。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.32</span><span class="src src-rec">🎤</span> 細針抽吸會引發高血壓危象嗎？</h3>
+        <p class="p">講義打了問號：「FNA？會有高血壓危象的風險？」</p>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 以前大家很怕抽吸腎上腺腫塊會刺激兒茶酚胺釋放、引發高血壓危象。</li>
+          <li><span class="src src-rec">🎤</span> 現在的證據顯示<strong>相當安全</strong>。講者團隊<strong>常常做</strong>，沒有因抽吸而引發危象。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 細胞學能分辨皮質還是髓質（神經內分泌）來源，但不能單獨確診嗜鉻細胞瘤（見第 14 節 Q1）。Tardo 在 <a href="panel-qa-cushing-addison.html">14 座談會</a> 第 3 題也說，即使 metanephrine 正常，細胞學仍可能顯示髓質腫瘤。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.33</span><span class="src src-rec">🎤</span> 尿液 metanephrines：首選檢查</h3>
+        <ul class="notes">
+          <li>檢測尿中游離的 normetanephrine 和 metanephrine：<strong>&gt; 4 倍參考上限</strong>才算支持嗜鉻細胞瘤。</li>
+          <li><strong>Normetanephrine:creatinine 比值</strong>最有幫助：參考值 37–223 nmol/mmol（<span class="src src-rec">🎤</span> 各實驗室不同），嗜鉻細胞瘤犬中位數 <strong>523</strong>（147–3270）。</li>
+          <li>檢體至少 5–10 mL 尿液。<span class="src src-rec">🎤</span> 最好請飼主在一天中收集多次尿液，放冷凍庫保存。</li>
+          <li>保存：
+            <ul class="notes">
+              <li>酸化（0.15 g sulfamic acid）可穩定 1 週。<span class="src src-rec">🎤</span> 有些實驗室會提供加了穩定劑的管子。</li>
+              <li>未酸化就盡快冷凍，可穩定 48 小時。<span class="src src-rec">🎤</span> 已證實<strong>不一定要酸化</strong>，冷凍後 48 小時內送到實驗室即可。</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.34</span><span class="src src-rec">🎤</span> 哪個比值最能區分？</h3>
+        <figure class="fig"><img src="photos/15-urine-metanephrines.jpg" alt="尿液兒茶酚胺與 metanephrine 比值散佈圖" loading="lazy"><figcaption>📄 p.34　健康犬（Healthy）、庫欣（HAC）、嗜鉻細胞瘤（PHEO）的尿液比值；綠框為 normetanephrine:creatinine</figcaption></figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>指標（:creatinine）</th><th>結果</th></tr>
+          <tr><td>腎上腺素</td><td>HAC 和 PHEO 都高於健康犬，兩病重疊大</td></tr>
+          <tr><td>Metanephrine</td><td>三組幾乎無法區分</td></tr>
+          <tr><td>正腎上腺素</td><td>PHEO 偏高，但和 HAC 重疊</td></tr>
+          <tr><td><strong>Normetanephrine</strong></td><td><strong>PHEO 明顯高於健康犬和 HAC</strong>（p&lt;0.05），最有鑑別力</td></tr>
+        </table></div>
+        <p class="p"><span class="src src-rec">🎤</span> 但仍有重疊，庫欣犬也可能偏高，結果要小心判讀。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">💊</div>
+      <h2>11. 治療與術前 α 阻斷</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.35</span><span class="src src-rec">🎤</span> 先 α、後 β</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>藥物</th><th>講義劑量</th><th>說明</th></tr>
+          <tr><td><strong>Prazosin</strong>（α 阻斷）</td><td>0.5–2.0 mg/kg PO q8–12h</td><td>首選初始治療之一</td></tr>
+          <tr><td><strong>Phenoxybenzamine</strong>（α 阻斷）</td><td>0.2–2.5 mg PO q12h</td><td>首選初始治療之一</td></tr>
+          <tr><td><strong>Atenolol</strong>（β 阻斷）</td><td>0.25–1.0 mg/kg PO q12–24h</td><td>用於持續高血壓或心搏過速；<strong>α 阻斷劑 ≥ 3 天後</strong>才開始</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 不要先給 β 阻斷劑：用 β 阻斷劑壓心跳，會引起<strong>反射性高血壓</strong>，讓症狀更糟。先給 prazosin 或 phenoxybenzamine 至少 3 天、讓它發揮作用，再考慮加 atenolol。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 更精確的機轉是：β 阻斷後少了 β2 的血管擴張作用，α 受體的血管收縮<strong>沒有對抗</strong>（unopposed α），可能造成高血壓危象。</div></div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><span class="src src-add">💡 補充</span> 劑量單位請自行查證：講義寫 prazosin「0.5–2.0 mg/kg」，但常見參考資料多為<strong>每隻犬 0.5–2 mg</strong>（mg/dog）。Phenoxybenzamine 講義寫 mg（未寫 /kg），文獻常見 <strong>0.25 mg/kg q12h 起始、逐步調到 2.5 mg/kg q12h</strong>。開藥前請以 Plumb's 等藥典為準。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.36</span><span class="src src-rec">🎤</span> 其他降血壓藥</h3>
+        <ul class="notes">
+          <li>Amlodipine、telmisartan、ACEi、hydralazine，可能要合併使用。</li>
+          <li><span class="src src-rec">🎤</span> 持續高血壓時，<strong>amlodipine</strong> 大概是最有效、最可靠的。</li>
+          <li><span class="src src-rec">🎤</span> Thiazide 和 ACEi 可以用，但降壓效果較溫和，約降 15–20 mmHg。血壓 220 的狗光靠這些不夠。</li>
+          <li><span class="src src-rec">🎤</span> <strong>陣發性飆高的病例最難處理</strong>：用藥也許能控制一整天的基礎血壓，但很難預測何時飆高。如果用藥去壓飆高，非飆高時段反而會<strong>低血壓</strong>。有時只能接受飆高無法完全控制，因為低血壓造成器官傷害和持續高血壓一樣糟。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.36–37</span><span class="src src-rec">🎤</span> 腎上腺切除：術前要先用 α 阻斷劑嗎？</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 腎上腺切除是首選治療。傳統認為術前要先用 α 阻斷劑，這<strong>常讓手術延後至少 2 週</strong>。</li>
+          <li><span class="src src-slide">📄 p.37</span> University of Georgia 的研究（Enright et al.）：53 隻接受腎上腺切除的嗜鉻細胞瘤犬。
+            <ul class="notes">
+              <li>麻醉中 46/53 隻出現高血壓、16/53 隻出現心律不整。</li>
+              <li><strong>術前用過 α 阻斷劑的犬，術中收縮壓反而高了將近 20%</strong>。</li>
+              <li>全部撐過手術，44 隻存活到出院；出院犬 MST 1169 天（3.2 年）；懷疑復發 3 隻、轉移 8 隻。</li>
+              <li>結論：<strong>術前 α 阻斷劑和存活改善沒有關聯</strong>。</li>
+            </ul>
+          </li>
+          <li><span class="src src-rec">🎤</span> 因此美國多數醫院<strong>已不再建議術前先用藥</strong>，而是盡快手術。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 這是回溯性研究，有用 α 阻斷劑的犬可能本來就比較嚴重，各機構做法仍不一致。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">📋</div>
+      <h2>12. 預後與 Arthur 的結果</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.38</span><span class="src src-rec">🎤</span> 預後</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>腎上腺切除、沒有轉移</th><th>內科治療</th></tr>
+          <tr><td>短期</td><td>圍手術期死亡率約 <strong>13–48%</strong>；Grimes 等人約 <strong>16%</strong> 未能存活到出院</td><td>—</td></tr>
+          <tr><td>長期</td><td>最長報告約 4 年；Grimes 等人 MST <strong>3.2 年</strong></td><td>數月到約 1 年</td></tr>
+          <tr><td>死因</td><td>—</td><td>高血壓併發症、腫瘤長大或轉移、腫瘤破裂出血</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 手術且沒有轉移的預後最好，但「還是不算好」。圍手術期死亡率很高，所以診斷後要<strong>盡快</strong>送手術。</li>
+          <li><span class="src src-rec">🎤</span> 早期報告的圍手術期死亡率高達 48%；Grimes 的研究看較近期的族群，降到 16%。</li>
+          <li><span class="src src-rec">🎤</span> 內科治療沒有好的數據，一般說數月到最多一年。腫瘤也可能長大到破裂，造成腹腔出血而致命。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.39</span><span class="src src-rec">🎤</span> Arthur 的結果</h3>
+        <ul class="notes">
+          <li>影像：<strong>左側</strong>腎上腺腫塊 4 × 4 cm；可能合併慢性胰臟炎。</li>
+          <li>內分泌篩檢（排除腫瘤的其他功能）：
+            <ul class="notes">
+              <li>總 T4 = 2.8（參考值 1.0–4.0），正常。</li>
+              <li>ACTH 刺激：0 小時 2.3、1 小時 14.4，不符合庫欣。<span class="src src-rec">🎤</span> 提醒：<strong>ACTH 刺激試驗不是腎上腺腫塊犬診斷庫欣的最佳檢查</strong>。</li>
+            </ul>
+          </li>
+          <li>Normetanephrine:creatinine = <strong>683</strong>（參考值 &lt;223），非常高，符合嗜鉻細胞瘤。</li>
+          <li><strong>腎上腺切除成功</strong>，術前<strong>沒有</strong>先用 α 阻斷劑，術後狀況良好。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 683 約為參考上限的 3 倍，接近嗜鉻細胞瘤犬的中位數 523；配合單側腫塊、對側正常和臨床表現，支持診斷。腫瘤在左側，也提醒「右側較常見」不代表左側就不是。腎上腺腫瘤懷疑庫欣時改用 LDDST，見 <a href="cushings-diagnosis-treatment.html">12</a> 和 <a href="panel-qa-cushing-addison.html">14 第 3 題</a>。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 13 ══ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">🐾</div>
+      <h2>13. 升糖素瘤</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 p.40</span><span class="src src-rec">🎤</span> 犬胰臟 α 細胞的罕見腫瘤</h3>
+        <ul class="notes">
+          <li>貓沒有報告。</li>
+          <li>過量分泌升糖素：<span class="src src-rec">🎤</span> 就像糖尿病課講的，升糖素是胰島素的「邪惡表親」。
+            <ul class="notes">
+              <li>胰島素阻抗 → <strong>糖尿病</strong>：多喝多尿、多食、體重下降、厭食、腹瀉、嗜睡。</li>
+              <li>和<strong>肝皮症候群</strong>有關：黏膜皮膚交界處、腳墊、腹部有病灶；潰瘍處常繼發細菌感染。</li>
+            </ul>
+          </li>
+          <li><strong>診斷</strong>：臨床症狀、好發族群、皮膚病灶。<span class="src src-rec">🎤</span> 看到肝皮症候群樣的病灶，就要去找胰臟腫瘤。影像看到胰臟腫塊，做抽吸或切片；血漿升糖素上升。</li>
+          <li><strong>治療</strong>：手術切除；體抑素類似物（octreotide）可減少分泌。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 升糖素過多會讓肝臟大量消耗胺基酸去做糖質新生，造成低胺基酸血症，皮膚和腳墊因此壞死，也就是表淺壞死溶解性皮膚炎（SND）典型的腳墊結痂龜裂。靜脈補充胺基酸常有幫助。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 14 ══ -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">💬</div>
+      <h2>14. 課後 Q&amp;A</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">Q1｜無法做尿液檢查時，FNA 可以診斷嗜鉻細胞瘤嗎？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 不足以確診。細胞學可以告訴你比較像上皮癌還是神經內分泌腫瘤；如果是神經內分泌型，會比較支持嗜鉻細胞瘤，而不是皮質的腺癌或腺瘤，但不能當作確定診斷。</div>
+      </div>
+      <div class="qa">
+        <div class="q">Q2｜可以送人醫實驗室驗血漿 metanephrines 嗎？可靠嗎？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 血漿的問題在於<strong>陣發性分泌</strong>：濃度是暫時的，可能測不到明確升高，得重複檢測好幾次。尿液比較穩定，在膀胱裡「不會跑掉」。如果懷疑很高、血漿卻沒抓到，最好讓病患住院接遙測，<strong>在心臟或高血壓發作時採樣</strong>，提高測到的機會。</div>
+      </div>
+      <div class="qa">
+        <div class="q">Q3｜影像意外發現腎上腺腫瘤，沒有症狀、血檢也正常，多大要切？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 要看其他目標。任何可能有問題或是癌的病灶，考慮切除都合理。但偶然發現的腎上腺病灶，講者常會<strong>1–2 個月後複查</strong>：如果變大、改變或侵犯，就更有理由切除；如果沒有變化、狗也沒有症狀，就定期追蹤。沒有在長、摸不到的腫瘤，不急著送手術對病患不算傷害。</div>
+      </div>
+      <div class="qa">
+        <div class="q">Q4｜選擇內科治療、超音波看到後腔靜脈侵犯或腫瘤栓塞，要給 clopidogrel 嗎？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 不手術的話可以考慮，但要看腫瘤大小：大腫瘤可能<strong>破裂出血</strong>，會比較擔心；小腫瘤應該可以。如果要送手術，先不要給，等術後看狀況再決定。</div>
+      </div>
+      <div class="qa">
+        <div class="q">Q5｜胰島素瘤用高濃度葡萄糖治療，會不會讓神經細胞脫水、引發癲癇，形成惡性循環？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 講者想不到有哪個病例讓他擔心滲透壓造成的體液移動。不處理低血糖症狀本身就是問題。神經組織的體液移動風險主要和<strong>慢性程度</strong>有關，長期異常再快速矯正才容易造成去髓鞘或細胞體積變化。穩定胰島素瘤病患時，這通常不是他會擔心的事。</div>
+      </div>
+      <div class="qa">
+        <div class="q">Q6｜Palladia 有些狗無法耐受隔天給，只能一三五給；控制不住時要增加頻率還是合併其他藥？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 通常是 Palladia 加類固醇（加飲食）的組合。2.4–2.9 mg/kg 是胰島素瘤研究的平均範圍，<strong>低於其他適應症的仿單劑量</strong>，所以研究中有些狗用更低的劑量、更低的頻率。用得越久、越有抗性時，常會往上調，例如從一週三次調到每 48 小時一次。講者會先告訴飼主：一開始可能很好，但<strong>內科治療終究會控制不住</strong>。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 15 ══ -->
+  <div class="section" id="s15">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">📝</div>
+      <h2>Take-home、更正表與參考資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-add">💡 補充</span> 總結</h3>
+        <ol class="notes">
+          <li><strong>胰島素瘤</strong>：低血糖時先抽血再給糖；葡萄糖給到症狀消失就停；CT 分期；有轉移仍值得手術；內科以少量多餐、prednisone、toceranib 為主。</li>
+          <li><strong>嗜鉻細胞瘤</strong>：血壓正常不能排除；尿 normetanephrine:creatinine 最能和庫欣區分；FNA 相對安全；β 阻斷劑一定在 α 阻斷劑之後。</li>
+          <li><strong>術前 α 阻斷</strong>沒有改善存活，趨勢是確診後盡快手術。</li>
+          <li><strong>升糖素瘤</strong>：糖尿病合併肝皮症候群樣皮膚病灶時，要想到去找胰臟腫瘤。</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-fix">【更正】</span> 逐字稿轉文字錯誤對照</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>逐字稿</th><th>應為</th></tr>
+          <tr><td>Dr. Bubby</td><td>Dr. Bugbee</td></tr>
+          <tr><td>Dr. Tartar</td><td>Dr. Tardo（下一場）</td></tr>
+          <tr><td>Rainbow</td><td>Rambo</td></tr>
+          <tr><td>Alcontrack 3</td><td>AlphaTrak 3（血糖機）</td></tr>
+          <tr><td>fatty megalie</td><td>hepatomegaly（肝腫大）</td></tr>
+          <tr><td>mild elevated albumin</td><td>elevated ALP（講義）</td></tr>
+          <tr><td>serum concentration was adequate</td><td>urine concentration（USG）adequate</td></tr>
+          <tr><td>hypoparathyroidism（低血糖鑑別）</td><td>hypoadrenocorticism（Addison）</td></tr>
+          <tr><td>paraneoplastic hyperglycemia（乳腺癌）</td><td>hypoglycemia</td></tr>
+          <tr><td>barbs</td><td>ferrets（雪貂）</td></tr>
+          <tr><td>MEMM database</td><td>minimum database</td></tr>
+          <tr><td>PG / B24</td><td>BG 24</td></tr>
+          <tr><td>biotumors</td><td>非胰島細胞腫瘤（other tumors）</td></tr>
+          <tr><td>Lugarn</td><td>glucagon</td></tr>
+          <tr><td>severe pancreatic hypopigmentation</td><td>severe paraneoplastic hypoglycemia</td></tr>
+          <tr><td>hypovolemic injury（葡萄糖稀釋）</td><td>高張溶液造成的血管傷害／靜脈炎</td></tr>
+          <tr><td>allow them to become hypovolemic again</td><td>hypoglycemic again</td></tr>
+          <tr><td>melphalan / Palidii / paladil / felty / bavandia / gladiol</td><td>Palladia（toceranib）</td></tr>
+          <tr><td>inguinal mass（Rambo 的 CT）</td><td>pancreatic mass（講義）</td></tr>
+          <tr><td>encephaloma / scleroma / salinomas</td><td>insulinoma</td></tr>
+          <tr><td>Rivas / Bas Town</td><td>Bassador（巴吉度 × 拉布拉多）</td></tr>
+          <tr><td>episodic anoxia</td><td>episodic ataxia</td></tr>
+          <tr><td>apistaxis / apneustaxis / apnea</td><td>epistaxis（鼻出血）</td></tr>
+          <tr><td>chromophobe cell tumor</td><td>chromaffin cell tumor（嗜鉻細胞）</td></tr>
+          <tr><td>theophylline cytoma / buccal chromosomata / PLO / Theo / FIA dogs / pediatric myelodysplasias</td><td>pheochromocytoma／pheo</td></tr>
+          <tr><td>phreno pulmonary sarcoma</td><td>pheochromocytoma</td></tr>
+          <tr><td>overproducing mostly your epinephrine</td><td>norepinephrine（講義 p.28）</td></tr>
+          <tr><td>frontal abdominal vein</td><td>phrenicoabdominal vein（膈腹靜脈）</td></tr>
+          <tr><td>caudal vein of cave / adrenal cavea / beta cavea</td><td>caudal vena cava（後腔靜脈）</td></tr>
+          <tr><td>phenotomy</td><td>venotomy（靜脈切開）</td></tr>
+          <tr><td>peroxisomal spikes</td><td>paroxysmal spikes（陣發性飆高）</td></tr>
+          <tr><td>urine mineralocorticoids</td><td>urine metanephrines</td></tr>
+          <tr><td>etenolol</td><td>atenolol</td></tr>
+          <tr><td>Pressure is 220. I'm saying losartan…</td><td>前後文為 amlodipine 最有效（血壓 220 時 ACEi 不夠）</td></tr>
+          <tr><td>adrenallectomy / atrialectomy</td><td>adrenalectomy</td></tr>
+          <tr><td>hemobag</td><td>hemoabdomen（腹腔出血）</td></tr>
+          <tr><td>12 and 4</td><td>total T4</td></tr>
+          <tr><td>pachydermias syndrome / congenital syndrome</td><td>hepatocutaneous syndrome（肝皮症候群）</td></tr>
+          <tr><td>sicklement</td><td>signalment</td></tr>
+          <tr><td>plasma ghrelin</td><td>plasma glucagon</td></tr>
+          <tr><td>statin analog</td><td>somatostatin analog</td></tr>
+          <tr><td>lumimetry</td><td>telemetry</td></tr>
+          <tr><td>myctovigal</td><td>asymptomatic（無症狀）</td></tr>
+          <tr><td>perigril / monocle perigril</td><td>clopidogrel</td></tr>
+          <tr><td>anemia（Q5）</td><td>hypoglycemia</td></tr>
+          <tr><td>Doctor / Patient（說話者標記）</td><td>全部是講者 Bugbee</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Bugbee A. <em>Endocrine neoplasia.</em> VET-KU × Texas A&amp;M IM Conference, 2026-10-08（講義與課堂逐字稿「完整記錄」PDF）。</div>
+          <div class="ref-item">課堂錄音與逐字稿（Plaud）。<a href="https://web.plaud.ai/s/pub_ea3fa2e6-be22-4552-9b24-eb13a3c43c8a::zzDjQ1rrcYu_QEs8PsbgC-wsOWxs4VQIv2On0aDMhyuma4BFqqEnQ9D1Oj3X4wJ4yCWNZrZc9jYoqzeomZefWgI" target="_blank" rel="noopener">連結</a>（逐字稿有轉文字錯誤，請對照本頁更正表）</div>
+          <div class="ref-item">Olivares et al. Toceranib in dogs with insulinoma. <em>Vet Rec.</em> 2022（講義 p.18）。</div>
+          <div class="ref-item">Acierno MJ, et al. ACVIM consensus statement: guidelines for the identification, evaluation, and management of systemic hypertension in dogs and cats. <em>J Vet Intern Med.</em> 2018（講義 p.24）。</div>
+          <div class="ref-item">Enright D, Dickerson VM, Grimes JA, Townsend S, Thieman Mankin KM. Short- and long-term survival after adrenalectomy in 53 dogs with pheochromocytomas with or without alpha-blocker therapy（講義 p.37）。</div>
+          <div class="ref-item">Grimes et al.（腎上腺切除後圍手術期死亡率約 16%、MST 3.2 年；講義 p.38）。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="panel-qa-cushing-addison.html">14 座談會 Q&amp;A：庫欣、Addison 與內分泌檢驗</a>。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
