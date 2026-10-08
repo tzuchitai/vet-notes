@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>貓甲狀腺功能亢進：診斷、治療與監測｜2026 Texas 內分泌研討會</title>
+<style>
+  :root {
+    --primary: #0F766E;
+    --primary-light: #CCFBF1;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0d2522;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9cc8c1; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #1f4a44;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9cc8c1; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9cc8c1;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #1f4a44;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #5f8f87;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0b4f49 0%, #14a395 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0d2522; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #1f4a44; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 Texas 內分泌研討會</a>
+  <div class="logo">
+    <h2>18｜貓甲狀腺功能亢進：<br>診斷、治療與監測</h2>
+    <p>Andrew Bugbee｜2026 年 10 月 8 日</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">場次資訊與錄音說明</a>
+    <div class="nav-section">疾病與診斷</div>
+    <a href="#s1">1. 流行病學與病理</a>
+    <a href="#s2">2. 臨床症狀與理學檢查</a>
+    <a href="#s3">3. 最小資料庫與共病</a>
+    <a href="#s4">4. 甲亢與腎臟</a>
+    <a href="#s5">5. TT4、fT4 與 TSH</a>
+    <a href="#s6">6. 貓最佳化 TSH（TruForma）</a>
+    <a href="#s7">7. TSH 的意義與 Archie</a>
+    <div class="nav-section">治療</div>
+    <a href="#s8">8. 治療選項與 y/d 處方飼料</a>
+    <a href="#s9">9. Methimazole：劑量與副作用</a>
+    <a href="#s10">10. 經皮劑型與監測</a>
+    <a href="#s11">11. 長期使用與抗藥</a>
+    <a href="#s12">12. 放射碘 I-131</a>
+    <div class="nav-section">治療後</div>
+    <a href="#s13">13. 亞臨床甲低</a>
+    <a href="#s14">14. 預後</a>
+    <a href="#s15">15. 課後提問與補充</a>
+    <a href="#s16">Take-home、更正表與參考資料</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>貓甲狀腺功能亢進：診斷、治療與監測</h1>
+    <p>主講：Andrew Bugbee, DVM, DACVIM｜Texas A&amp;M 獸醫學院醫療長、臨床教授</p>
+    <p>2026 年 10 月 8 日｜VET-KU × Texas A&amp;M 內科研討會｜場次 18</p>
+    <div class="tags">
+      <span class="tag">Hyperthyroidism</span>
+      <span class="tag">TT4／fT4 by ED</span>
+      <span class="tag">貓最佳化 TSH</span>
+      <span class="tag">TruForma</span>
+      <span class="tag">CKD 被掩蓋</span>
+      <span class="tag">Hill's y/d</span>
+      <span class="tag">Methimazole</span>
+      <span class="tag">經皮劑型</span>
+      <span class="tag">I-131</span>
+      <span class="tag">醫源性甲低</span>
+      <span class="tag">Levothyroxine</span>
+    </div>
+    <a class="rec-link" href="https://web.plaud.ai/s/pub_e4b67d15-e0b1-46a2-a718-502f3d0625d7::EtBiJ59X4RRvkybfqbBSmpYusokWuVvb_Ub82wrqTAfqDUofN5vZdoADNKqcq5OhQ3rSs3zXAjOMOmV_YM2sxwI" target="_blank" rel="noopener">🎧 課堂錄音與逐字稿（Plaud）↗</a>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（頁碼＝講義 PDF 頁碼 1–48）
+    <span class="src src-rec">🎤</span> 課堂逐字稿（從講義第 24 頁左右開始）
+    <span class="src src-hand">✍️ 提問</span> 整理時提出的問題
+    <span class="src src-add">💡 補充</span> 整理者補充（機轉、判讀、交叉參照）
+    <span class="src src-fix">【更正】</span> 逐字稿轉文字錯誤，以講義為準（完整列表見最後一節）
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li>8 歲以上的貓<strong>每年驗 TT4</strong>；約 90% 的病例只要 TT4 就能診斷</li>
+      <li><strong>不要讓 CKD 貓維持輕度甲亢</strong>：甲亢會造成腎絲球高血壓，加速 CKD。先治甲亢，再處理腎病</li>
+      <li><strong>絕對不要只用 fT4 篩檢</strong>：部分甲狀腺功能正常的貓 fT4 也會偏高。fT4 一定要和 TT4（± TSH）一起看</li>
+      <li><strong>TSH 下降是甲亢最早的指標</strong>。TSH 從測得到變成測不到的貓，多數在 <strong>6–12 個月內</strong>變成明顯甲亢</li>
+      <li>犬用 cTSH 偵測下限 0.03 ng/mL，貓最佳化 TSH 是 <strong>0.008 ng/mL</strong>；cTSH「測不到」的 PPV 只有約 22%</li>
+      <li>y/d 必須是<strong>唯一的食物</strong>，而且<strong>不能和 methimazole 併用</strong></li>
+      <li>Methimazole 除了腸胃不適（改經皮劑型即可）之外，<strong>其他副作用都要停藥</strong>，換劑型沒有用</li>
+      <li>治療中的監測<strong>一定要驗 TSH</strong>：約 30% 的 methimazole 或 I-131 治療貓會出現 TT4 正常、TSH 升高的亞臨床甲低</li>
+      <li>Methimazole 劑量接近 <strong>10 mg BID</strong> 時，要想到腺癌或異位組織</li>
+      <li>做 I-131 前 <strong>TSH 必須測不到</strong>；停 methimazole 1–2 週（至少 5 天）、停 y/d 2–4 週</li>
+      <li>甲低＋氮血症的貓存活最差；補 levothyroxine 可以延長存活，<strong>任何 TSH 升高都值得和飼主討論補充</strong></li>
+    </ul>
+  </div>
+
+  <!-- ══ S0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🎯</div>
+      <h2>場次資訊與錄音說明</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 1–2</span> 講者</h3>
+        <ul class="notes">
+          <li>講題〈Hot Cats! Managing Feline Hyperthyroidism〉。"Hot" 是雙關：甲亢貓代謝旺盛、體溫偏高。</li>
+          <li>講者 Andrew Bugbee，DVM、DACVIM，Texas A&amp;M 獸醫學院醫療長兼臨床教授，之前在喬治亞大學（UGA）。</li>
+          <li>這堂接在 Langlois 的<a href="canine-hypothyroidism.html">犬甲狀腺功能低下（17）</a>之後。</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>錄音範圍</strong>：逐字稿從講義第 24 頁（TruForma）左右開始，前半段（流行病學、症狀、腎臟、TT4／fT4）沒有錄到，第 1–23 頁的內容以講義為主、加上整理者補充。逐字稿最後主持人說「Thank you, Dr. Mike」，應為 Dr. Bugbee 的轉文字錯誤。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">📊</div>
+      <h2>1. 流行病學與病理</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 3–5</span> 基本概念</h3>
+        <ul class="notes">
+          <li>1978 年在紐約首次被診斷；現在盛行率約 <strong>10%</strong>。</li>
+          <li>老貓的疾病：<strong>95% 在 8 歲以上</strong>，確診時平均 13 歲。<strong>共病很常見</strong>（CKD、心臟、腸胃）。</li>
+          <li>貓遠多於狗。狗的甲亢多半是醫源性（levothyroxine 過量）或甲狀腺癌（還有飲食性，見 <a href="canine-hypothyroidism.html">17</a>）。</li>
+          <li><strong>70% 為兩側病變</strong>。病理：腺瘤樣增生、腺瘤、腺癌（<strong>&lt; 3%</strong>）。</li>
+          <li><strong>異位甲狀腺組織</strong>可以在舌根到心基部之間的任何位置。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：兩側病變佔多數，所以單側甲狀腺切除容易復發；胸腔內的異位組織摸不到也切不到，這時 I-131 最有優勢。異位組織對 methimazole 的反應也像腺癌一樣差（見第 11 節）。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🔥</div>
+      <h2>2. 臨床症狀與理學檢查</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 6–8</span> 症狀：從「代謝」去想</h3>
+        <ul class="notes">
+          <li>甲狀腺激素影響全身每個細胞。正常 T4 是小火慢燒，太多是<strong>熊熊烈火</strong>，太少是火熄了。</li>
+          <li><strong>常見</strong>：體重減輕、<strong>食慾旺盛</strong>、被毛雜亂無光、嘔吐／下痢、行為改變（躁動、坐立不安、攻擊）、PU/PD。</li>
+          <li><strong>淡漠型甲亢</strong>（約 6%）：症狀相反，厭食、體重增加、嗜睡。</li>
+          <li><strong>高血壓造成的標的器官傷害</strong>：急性失明、視網膜剝離、眼睛變色或前房出血、急性中樞神經症狀或癲癇。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 9–10</span> 理學檢查與 thyroid slip</h3>
+        <ul class="notes">
+          <li>被毛變化、過度理毛；BCS／MCS 偏低。</li>
+          <li>聽診：心搏過速、心雜音、奔馬律。</li>
+          <li>腸道增厚，摸起來像繩子（"ropey"）。投影片另提到陣發性運動障礙（paroxysmal dyskinesia）。</li>
+          <li><strong>Thyroid slip</strong>：腫大的甲狀腺會往頸部下方沉，要從喉部一路摸到胸腔入口。胸腔內的異位組織<strong>摸不到 slip</strong>。</li>
+        </ul>
+        <figure class="fig">
+          <img src="photos/18-10-thyroid-slip.jpg" alt="Thyroid slip 觸診示意" loading="lazy">
+          <figcaption>📄 10：腫大的甲狀腺沿頸部下沉；從喉部摸到胸腔入口</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🧪</div>
+      <h2>3. 最小資料庫與共病</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 11</span> 最小資料庫</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>CBC</th><th>生化</th><th>尿液</th><th>其他</th></tr>
+          <tr><td>紅血球增多</td><td><strong>ALT 上升（最常見）</strong>、ALP 上升、氮血症（約 10–20%）、± 高磷</td><td>USG 不一、± 蛋白尿、± 酮體、± 活性沉渣（UTI）</td><td><strong>血壓</strong></td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 12</span> 會被誤認成其他疾病的變化</h3>
+        <ul class="notes">
+          <li><strong>肝指數</strong>可能很高：講者看過 ALT &gt; 900 U/L，肝臟切片卻沒有病變。<strong>不應延後治療</strong>。</li>
+          <li><strong>心臟變化像 HCM</strong>（也可能像限制型或未分類心肌病）：先拍胸腔 X 光排除 CHF，<strong>甲亢控制後再做心臟超音波</strong>。</li>
+          <li><strong>腸道變化像 IBD 或淋巴瘤</strong>：判讀超音波要小心。<strong>做腸道切片前一定要先排除 T4 過高！</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dbeafe">🫘</div>
+      <h2>4. 甲亢與腎臟</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 13–15</span> 甲亢會掩蓋 CKD，而且讓它變更糟</h3>
+        <ul class="notes">
+          <li>甲亢提高 GFR，<strong>掩蓋</strong>腎臟病，但這種提高是有害的。</li>
+          <li>肌肉量少的貓，肌酸酐會<strong>高估腎功能</strong>，可以加驗 <strong>SDMA</strong>（IRIS-kidney.com）。</li>
+          <li>腎絲球微血管靜水壓（P<sub>GC</sub>）：正常像澆花的水管，甲亢像<strong>高壓清洗機</strong>，會傷害腎元、<strong>加速 CKD</strong>。</li>
+          <li><strong>迷思：CKD 貓維持輕度甲亢比較好？不！</strong> 任何程度的甲亢都會加速腎功能流失（腎絲球高血壓、蛋白尿、RAAS 活化）。<strong>先治甲亢，之後再處理 CKD。</strong></li>
+        </ul>
+        <figure class="fig">
+          <img src="photos/18-14-gfr-hose.jpg" alt="甲亢與 GFR：水管與高壓清洗機" loading="lazy">
+          <figcaption>📄 14：甲亢讓腎絲球微血管靜水壓上升，像高壓清洗機，反而加速 CKD 惡化</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">🔬</div>
+      <h2>5. TT4、fT4 與 TSH</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 16–18</span> 甲狀腺軸與美國的檢驗選項</h3>
+        <ul class="notes">
+          <li>腦下垂體前葉的 TSH 刺激甲狀腺分泌 TT4、fT4。甲亢時 TT4、fT4 ↑↑↑，負回饋讓 TSH <strong>很低或測不到</strong>。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>類型</th><th>例子</th><th>可驗項目</th></tr>
+          <tr><td>外送檢驗所</td><td>Michigan State、Idexx、Antech</td><td>TT4、fT4 by ED、犬 TSH</td></tr>
+          <tr><td>大型院內儀器</td><td>Immulite</td><td>TT4、犬 TSH</td></tr>
+          <tr><td>桌上型院內儀器</td><td>Idexx Catalyst</td><td>只有犬 TT4</td></tr>
+          <tr><td>桌上型院內儀器</td><td>TruForma（Zomedica）</td><td>TT4、<strong>貓最佳化 TSH</strong></td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 19</span> 總甲狀腺素（TT4）</h3>
+        <ul class="notes">
+          <li>TT4 = 游離 T4 ＋ 蛋白結合 T4。<strong>約 90% 的病例只要 TT4</strong>。</li>
+          <li>建議：<strong>8 歲以上的貓每年驗</strong>，生病的成貓也驗。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 20</span> TT4 落在正常偏高（例：3.6 µg/dL，參考值 1.0–4.0）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>鑑別診斷</th><th>說明</th></tr>
+          <tr><td>正常貓</td><td>參考範圍本來就包含靠近上限的健康貓</td></tr>
+          <tr><td>輕度甲亢的老貓</td><td><strong>T4 隨年齡下降</strong>，健康老貓多在中段到偏低；14 歲貓 3.6 其實是「偏高」</td></tr>
+          <tr><td>甲亢 ＋ 非甲狀腺疾病抑制</td><td>其他疾病把原本更高的 TT4 壓進正常範圍，甲亢被藏起來</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><strong>一定要評估病患</strong>：臨床症狀？理學檢查？生化？投影片用兩張照片對比：瘦巴巴猛吃的貓 vs. 胖胖狀態好的貓，同樣 3.6 意義不同。</li>
+          <li><strong>高度懷疑甲亢</strong>時加驗 <strong>fT4 by ED ＋ TSH</strong>：fT4 ↑ ＋ TSH ↓ → 很可能是甲亢。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>fT4</th><th>TSH</th><th>判讀（💡 補充）</th></tr>
+          <tr><td>↑</td><td>↓／測不到</td><td><strong>很可能是甲亢</strong></td></tr>
+          <tr><td>正常</td><td>正常</td><td>比較可能是正常貓</td></tr>
+          <tr><td>↑</td><td>正常</td><td>不支持甲亢；可能是其他疾病讓 fT4 偏高（見第 15 節）</td></tr>
+          <tr><td>正常</td><td>測不到</td><td>可能是早期甲亢；若用犬 cTSH，也可能只是測不到這隻貓的 TSH</td></tr>
+        </table></div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：其他選項還有 2–8 週後重驗 TT4（真的甲亢通常會繼續上升）、先治療潛在疾病再驗，或轉診做閃爍掃描。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 21</span> 為什麼不能只驗 fT4？</h3>
+        <ul class="notes">
+          <li>部分<strong>甲狀腺功能正常</strong>的貓 fT4 會輕度偏高，單獨使用會造成<strong>偽陽性</strong>。</li>
+          <li><strong>絕對不要只用 fT4 篩檢！</strong> fT4 只能和 TT4（± TSH）一起判讀。</li>
+          <li>例：TT4 2.3（1–4）、fT4 <strong>50</strong>（11–40）、TSH 0.3（0.2–0.6）→ <strong>很可能是正常的</strong>。要評估病患、症狀與檢驗。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 22</span> TSH 的問題</h3>
+        <ul class="notes">
+          <li>TSH 檢驗用<strong>犬抗體（cTSH）</strong>，設計上擅長抓甲低的「高 TSH」，<strong>不擅長偵測低濃度</strong>。</li>
+          <li>cTSH 測不到所有貓的 TSH：低於偵測下限就報 ND，形成<strong>假的「測不到」</strong>。例：TT4 3、fT4 30、TSH ND。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🧫</div>
+      <h2>6. 貓最佳化 TSH（TruForma）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 23</span> 偵測下限更低</h3>
+        <figure class="fig">
+          <img src="photos/18-23-truforma.jpg" alt="TruForma 貓最佳化 TSH 與犬 cTSH 比較" loading="lazy">
+          <figcaption>📄 23：犬 TSH 偵測下限 0.03 ng/mL，TruForma 貓最佳化 TSH 可測到 0.008 ng/mL（Peterson et al. JAVMA 2024；Brassard et al. JFMS 2026）</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>診斷甲亢（Peterson 2024）</th><th>貓最佳化 TSH</th><th>犬 cTSH</th></tr>
+          <tr><td>敏感度</td><td><strong>90.5%</strong></td><td>79.9%</td></tr>
+          <tr><td>特異度</td><td><strong>98.9%</strong></td><td>76.7%</td></tr>
+          <tr><td>陽性預測值</td><td><strong>86.9%</strong></td><td>21.7%</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li>Brassard et al.（JFMS 2026）：特異度 97%、PPV 94%。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：用犬 cTSH 得到「TSH 測不到」時，只有約兩成真的是甲亢，因為很多正常貓的 TSH 本來就低於 0.03。貓最佳化 TSH 能把正常貓的 TSH 測出來，「測不到」才真正有意義。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 24</span><span class="src src-rec">🎤</span> 適合用在哪裡</h3>
+        <ul class="notes">
+          <li>搭配 TT4 做<strong>甲亢篩檢</strong>。</li>
+          <li>偵測<strong>早期或發展中的甲亢</strong>。<span class="src src-rec">🎤</span> TSH 通常是貓開始發病時最先下降的指標。</li>
+          <li>± 治療期間監測是否變成<strong>甲狀腺低下</strong>。<span class="src src-rec">🎤</span> 雖然它是為了偵測低濃度而設計，治療甲亢時仍可用來抓甲低，研究顯示敏感度與 PPV 都優於傳統 TSH。</li>
+          <li>TruForma 在診斷甲亢、以及確認非甲亢貓 TSH 正常這兩方面，都優於標準 TSH 檢驗。</li>
+        </ul>
+        <figure class="fig">
+          <img src="photos/18-24-truforma-2.jpg" alt="TruForma 用於治療中監測甲低" loading="lazy">
+          <figcaption>📄 24：箭頭指向「治療中監測甲低」——表格是偵測治療後甲低的表現；只看 T4 敏感度只有 45.5%</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>偵測治療後甲低</th><th>貓最佳化 TSH</th><th>犬 cTSH</th><th>只看 T4</th></tr>
+          <tr><td>敏感度</td><td><strong>100%</strong></td><td>100%</td><td>45.5%</td></tr>
+          <tr><td>陽性預測值</td><td><strong>100%</strong></td><td>81.2%</td><td>71.9%</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🐱</div>
+      <h2>7. TSH 的意義與 Archie</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 25</span><span class="src src-rec">🎤</span> 為什麼 TSH 重要</h3>
+        <ul class="notes">
+          <li><strong>TSH 降低是甲亢最早的指標。</strong></li>
+          <li>第一次驗、TT4 正常但 TSH 測不到：<span class="src src-rec">🎤</span> 單一一次的結果很難解讀。如果用 cTSH，可能只是沒測到；如果用貓最佳化 TSH，可能是早期甲亢。</li>
+          <li><span class="src src-rec">🎤</span> 理想的情況是<strong>定期追蹤 TSH</strong>：原本測得到，現在下降或突然測不到，這隻貓很可能正在走向甲亢。<strong>多數失去 TSH 的貓會在 6–12 個月內變成明顯甲亢。</strong></li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 26</span><span class="src src-rec">🎤</span> 病例：Archie（講者自己的貓，11 歲 M/N Ragdoll）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>2024 年度健檢</th><th>2025 年複檢</th></tr>
+          <tr><td>TT4（1–4）</td><td>3.1</td><td>3.6</td></tr>
+          <tr><td>fT4（11–40）</td><td>28</td><td>33</td></tr>
+          <tr><td>TSH（0.2–0.6）</td><td>0.38</td><td><strong>ND</strong></td></tr>
+          <tr><td>判讀</td><td>正常</td><td><strong>可能是早期甲亢</strong></td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 用的是貓最佳化 TSH，所以講者相信 Archie 真的低於該檢驗 0.008 ng/mL 的偵測下限。「我幾乎可以打賭，接下來 6–12 個月他就會明顯升高。」</li>
+          <li>處置：6 個月後複檢，有症狀就提早。</li>
+        </ul>
+        <figure class="fig">
+          <img src="photos/18-26-archie.jpg" alt="Archie 2024 與 2025 甲狀腺檢驗" loading="lazy">
+          <figcaption>📄 26：Archie 的 TT4 仍在參考範圍內，但 TSH 從 0.38 變成測不到</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🥫</div>
+      <h2>8. 治療選項與 y/d 處方飼料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 27</span><span class="src src-rec">🎤</span> 四種治療</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>根治性</th><th>內科控制</th></tr>
+          <tr><td>放射碘（I-131）、甲狀腺切除術</td><td>Hill's y/d、Methimazole</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 講者是內科醫師不是外科醫師，所以不談甲狀腺切除，但要知道它是選項之一。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 28–30</span><span class="src src-rec">🎤</span> Hill's y/d</h3>
+        <ul class="notes">
+          <li>限碘飲食：一般飼料碘含量 ≥ 0.46 ppm，y/d ≤ 0.2 ppm。碘經由<strong>鈉碘同向轉運體（NIS）</strong>被甲狀腺攝取，原料不足就做不出 T4。</li>
+          <li><strong>貓只能吃這個！</strong> <span class="src src-rec">🎤</span> 只要吃到含碘高的東西就會復發。<strong>半室外的貓、多貓家庭</strong>（彼此吃不同食物）很難控制好。</li>
+          <li>適口性可能是問題。</li>
+          <li>通常 <strong>4–8 週</strong>控制；T4 越高越久，有些貓花了 6 個月。<span class="src src-rec">🎤</span> 嚴重的病例可能等不了 1–2 個月，要先用其他治療。但現在越來越早發現，y/d 對大多數貓是好選項。</li>
+          <li><strong>不要和 methimazole 併用。</strong><span class="src src-rec">🎤</span> 單用 y/d 造成甲低的風險可以忽略，併用 methimazole 時甲低機率會大幅上升。要用就是<strong>單一療法</strong>。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">💊</div>
+      <h2>9. Methimazole：劑量與副作用</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 31–32</span><span class="src src-rec">🎤</span> 機轉與劑量</h3>
+        <ul class="notes">
+          <li>抑制 <strong>TPO</strong>，阻斷 T4／T3 合成；<strong>不會破壞異常組織</strong>。<span class="src src-rec">🎤</span> 把甲狀腺細胞想成倉庫，TPO 是組裝激素的工人，methimazole 把工人打倒、工廠停工。</li>
+          <li>起始：每隻貓 <strong>1.25–2.5 mg PO q12h</strong>。<span class="src src-rec">🎤</span> 講者通常從 2.5 mg 開始，很輕微的甲亢才用 1.25 mg。</li>
+          <li>每 <strong>2 週</strong>依監測結果調整，每次以<strong>每日 1.25–2.5 mg</strong> 的幅度（受限於錠劑大小）。</li>
+          <li>例：1.25 mg BID → 早 2.5 mg、晚 1.25 mg → 再 2 週仍未控制 → 2.5 mg BID。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 33</span><span class="src src-rec">🎤</span> 副作用</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>副作用</th><th>課堂補充</th></tr>
+          <tr><td><strong>直接腸胃不適</strong></td><td>最常見。給藥後 <strong>30 分鐘到 2 小時</strong>嘔吐或下痢，每次都會重複，飼主很快就會打電話來</td></tr>
+          <tr><td>醫源性甲低</td><td>見第 13 節；過去 10 年改變了所有治療方式的監測</td></tr>
+          <tr><td><strong>臉部抓傷</strong></td><td>強烈搔癢，貓會把臉上的皮抓掉；講者看過抓到<strong>露出顏面骨</strong>的貓</td></tr>
+          <tr><td>肝毒性、血液惡液質（血小板減少、嗜中性球減少）</td><td>前 1–2 個月監測 CBC、生化；撐過這段時間之後就不太會發生，不必長期追蹤</td></tr>
+          <tr><td>重症肌無力</td><td>多以<strong>巨食道</strong>表現（逆流、食道狹窄）；可逆，停藥後約 <strong>2 週內</strong>恢復</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 34</span><span class="src src-rec">🎤</span> 副作用怎麼處理</h3>
+        <ul class="notes">
+          <li><strong>腸胃不適</strong>：改<strong>經皮劑型</strong>，或改用 y/d、I-131。</li>
+          <li><strong>甲低，沒有症狀</strong>（TT4 正常、TSH 高）：可密切監測。<span class="src src-rec">🎤</span> 但現在多數人建議<strong>減量或暫停用藥</strong>，再以較低劑量恢復。若同時出現新的或惡化的氮血症，TSH 升高更重要。</li>
+          <li><strong>甲低，有症狀</strong>（TT4 低、TSH 高）：<strong>停用 methimazole</strong>，考慮 levothyroxine 0.1 mg/天。<span class="src src-rec">🎤</span> 這會影響存活。停藥後甲狀腺通常在<strong>幾週內</strong>恢復正常。</li>
+          <li><strong>其他所有副作用 → 必須停藥！</strong> 改 y/d 或轉診 I-131（或由熟練的外科醫師做甲狀腺切除）。</li>
+        </ul>
+        <div class="alert alert-danger"><span class="alert-icon">🚫</span><div><span class="src src-rec">🎤</span> <strong>換劑型沒有用</strong>：這些副作用是對 methimazole 本身的反應，不管口服或經皮都一樣。講者看過一隻口服時出現臉部抓傷的貓，被改成經皮劑型繼續用，結果抓到整張臉沒有皮、露出骨頭才來看診。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🩹</div>
+      <h2>10. 經皮劑型與監測</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 35</span><span class="src src-rec">🎤</span> 經皮 Methimazole</h3>
+        <ul class="notes">
+          <li>適合：兇的貓、焦慮不讓人碰嘴的貓、飼主餵不了藥、口服腸胃不適。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>口服</th><th>經皮</th></tr>
+          <tr><td>控制所需劑量</td><td>多數 2.5–5 mg BID</td><td>多數<strong>至少 5 mg BID</strong></td></tr>
+          <tr><td>達到完整效果</td><td>約 2 週</td><td>約 3–4 週</td></tr>
+          <tr><td>回診調劑量</td><td>每 2 週</td><td>每 3–4 週</td></tr>
+          <tr><td>起始劑量</td><td colspan="2">一樣是 2.5 mg BID</td></tr>
+        </table></div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><span class="src src-rec">🎤</span> 經皮劑型<strong>不要太快加量</strong>：還沒等到完整效果就一再加量，劑量會疊加，最後過量。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 36</span><span class="src src-rec">🎤</span> Methimazole 監測</h3>
+        <ul class="notes">
+          <li>複檢 <strong>TT4 和 TSH</strong>：口服 2 週後、經皮 3–4 週後；前 1–2 個月加做 CBC 和生化。</li>
+          <li><span class="src src-rec">🎤</span> 以前只驗 TT4。Aldridge 等人（Auburn，JVIM 2015）發現約 <strong>33%</strong> methimazole 治療貓 TT4 正常但 <strong>TSH 升高</strong>，只看 TT4 會以為一切正常；其中 <strong>39%</strong> 出現氮血症。不處理的話，這些貓會<strong>早死至少 2 年</strong>。</li>
+          <li>所以現在 methimazole 或 I-131 的監測都<strong>必須包含 TSH</strong>。</li>
+          <li>目標：<strong>TT4 在正常範圍中至偏低段，且 TSH 正常</strong>。<span class="src src-rec">🎤</span> 講者認為只要在參考範圍內就夠了，<strong>不要矯枉過正</strong>：造成甲低和留下輕度甲亢一樣糟。</li>
+        </ul>
+        <figure class="fig">
+          <img src="photos/18-36-mmi-monitoring.jpg" alt="Methimazole 監測：Aldridge JVIM 2015" loading="lazy">
+          <figcaption>📄 36：Aldridge et al. JVIM 2015;29:862–868——33% TSH 升高，其中 39% 出現氮血症</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">📈</div>
+      <h2>11. 長期使用與抗藥</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 37</span><span class="src src-rec">🎤</span> 控制之後</h3>
+        <ul class="notes">
+          <li><strong>改 q24h</strong>：<span class="src src-rec">🎤</span> 一開始用 BID 是為了減少腸胃副作用。控制穩定、用藥至少約 1 個月且沒有副作用後，可以把兩次合併成一天一次（2.5 mg BID → 5 mg SID），提高飼主順從性。</li>
+          <li><strong>劑量 &gt; 10 mg BID 仍無效</strong>：<span class="src src-rec">🎤</span> 有些貓用到 10–15 mg BID。接近 10 mg BID 時要警覺：<strong>甲狀腺腺癌對 methimazole 有抗性，異位甲狀腺組織的表現也像腺癌</strong>（雖然是良性）。轉診做 CT，或更好的是<strong>閃爍掃描</strong>。</li>
+          <li><strong>用了好幾年後失效</strong>：<span class="src src-rec">🎤</span> methimazole 只阻斷酵素，不破壞組織，甲狀腺腫會持續長大，需要更多藥。例如 5 mg BID 控制了 4 年突然失控，不一定是腺癌（但要列入鑑別）。8–10 歲就確診的貓，這輩子很可能需要加量。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef9c3">☢️</div>
+      <h2>12. 放射碘 I-131</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 38</span><span class="src src-rec">🎤</span> 基本資料</h3>
+        <ul class="notes">
+          <li>和甲狀腺切除同屬根治性治療。破壞過度活躍的組織，<strong>保留被抑制的正常細胞</strong>，讓正常細胞之後「醒來」恢復製造激素。</li>
+          <li>大多是<strong>單次皮下注射</strong>；隔離規定各州不同，平均約 <strong>5 天</strong>。<span class="src src-rec">🎤</span> 人類病患打完隔天就回家、尿液直接進一般汙水系統，動物的規定嚴格得多。</li>
+          <li>費用：講者在 UGA 時約 <strong>2,500 美元</strong>。</li>
+          <li>單次注射成功率約 <strong>90–95%</strong>；≤ 5% 治療失敗需要第二次注射；&lt; 5% 復發（<span class="src src-rec">🎤</span> 不是治療出錯，而是之後又長出功能亢進的組織，任何時間都可能發生）。</li>
+          <li>飼主選擇的原因：33% 想要根治、25% 無法餵藥。</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><span class="src src-rec">🎤</span> 講者一定會先告知飼主：<strong>做了 I-131 仍可能需要餵藥</strong>。如果造成臨床甲低，就得吃 levothyroxine。通常是暫時的，但飼主要在同意注射前就了解。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 39</span><span class="src src-rec">🎤</span> 轉診前要先試 Methimazole 嗎？</h3>
+        <ul class="notes">
+          <li>多數機構<strong>已不要求</strong>，因為不管結果如何，都還是建議治療甲亢。</li>
+          <li>值得考慮的情況：<strong>未治療、且有明顯氮血症</strong>的貓（IRIS 第 2 期後段以上，肌酸酐 &gt; 2.5）。<span class="src src-rec">🎤</span> 打了 I-131 之後貓帶有放射性，能接觸、治療的程度非常有限。先試藥是為了看 CKD 被揭露後有多嚴重，評估在隔離期間會不會代償失調。</li>
+          <li>肌酸酐 &lt; 2.5（IRIS 1 期、2 期前段）不需要。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 40</span><span class="src src-rec">🎤</span> 轉診前準備</h3>
+        <ul class="notes">
+          <li><strong>主動告知飼主</strong>有 I-131 這個選項。數據：64% 由獸醫告知，42% 自己上網查到。<span class="src src-rec">🎤</span> 「不用餵藥」和「被迫餵藥」的差別，會影響飼主對獸醫建議的滿意度。</li>
+          <li><strong>全身狀況穩定</strong>：至少 CBC、生化、尿檢，± 影像，盡量把異常都查清楚。目的只有一個：確保貓能自己在隔離室待約 5 天。</li>
+          <li><span class="src src-rec">🎤</span> 講者遇過死在隔離期間的貓，都有已知共病，例如一隻大細胞型腸道淋巴瘤的貓（飼主因為無法餵藥仍堅持治療）。死在隔離室很麻煩：代謝停止讓 I-131 排不掉，<strong>遺體要放到同位素衰變夠了才能處理</strong>。所以對穩定度要求很嚴。</li>
+          <li><strong>TT4 高、TSH 測不到</strong>。<span class="src src-rec">🎤</span> 「TSH 沒有測不到，我就不打 I-131。」TSH 會刺激甲狀腺細胞攝碘；只要有 TSH，正常細胞也會吃進放射碘而被殺死，治療後甲低的機率就會上升。</li>
+          <li><strong>停 methimazole 1–2 週</strong>（至少 5 天）。<span class="src src-rec">🎤</span> I-131 本身不需要停藥；機構如果不做閃爍掃描，前一天停藥、隔天打也可以。但多數機構用閃爍掃描決定劑量，methimazole 會增加鎝（technetium）的攝取，讓甲亢看起來比實際嚴重。病情嚴重撐不了 2 週也沒關係，至少 5 天。</li>
+          <li><strong>停 y/d 2–4 週</strong>。<span class="src src-rec">🎤</span> 證據不多，但身體處於缺碘狀態，一給碘就會全部吸走。吃 y/d 期間打 I-131，<strong>一定會造成治療後甲低</strong>。</li>
+          <li>常合作的機構，先問清楚他們的停藥規定。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 41</span><span class="src src-rec">🎤</span> I-131 的作用原理</h3>
+        <figure class="fig">
+          <img src="photos/18-41-i131-mechanism.jpg" alt="I-131 作用原理示意" loading="lazy">
+          <figcaption>📄 41：中間是功能亢進的細胞，周圍藍色是被抑制的正常細胞</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>功能亢進的細胞吸收 I-131；健康、被抑制的細胞不應吸收。</li>
+          <li>I-131 放出 β 射線，只殺死 <strong>1–2 mm</strong> 內的細胞，所以能保住大部分正常細胞。</li>
+          <li>治療前 <strong>TSH 測不到</strong>，有助於確認正常細胞處於被抑制狀態。</li>
+          <li>正常細胞在 1–3 個月內醒來（<span class="src src-rec">🎤</span> 通常至少要 1 個月）。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 42</span><span class="src src-rec">🎤</span> 治療後監測</h3>
+        <ul class="notes">
+          <li>驗 <strong>TT4 和 TSH</strong>，在 <strong>1、3、6、12 個月</strong>複檢。</li>
+          <li>多數 1 個月內控制，完整反應可達 3–6 個月。很多機構<strong>3 個月前不會再打第二次</strong>，避免造成甲低。</li>
+          <li>&lt; 5% 出現<strong>臨床甲低</strong>：需要 levothyroxine（0.1 mg/貓 q24h 起始），<span class="src src-rec">🎤</span> 有臨床甲低就要補充，才有預後上的好處。通常 1–3 個月內正常細胞醒來，可以停藥。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S13 ══ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0e7ff">📉</div>
+      <h2>13. 亞臨床甲低（醫源性甲低）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 43</span><span class="src src-rec">🎤</span> 定義與發生率</h3>
+        <ul class="notes">
+          <li>約 <strong>30%</strong> 的治療貓會發生：methimazole 約 30%，I-131 也約 30%。</li>
+          <li>診斷：<strong>TT4 正常 ＋ TSH 升高</strong>。<strong>一定要監測 TSH！</strong></li>
+          <li><span class="src src-rec">🎤</span> 例：TT4 正常，看起來控制得很好，但 TSH <strong>1.47</strong>，對貓來說是非常高的值，代表身體在「大喊」需要更多甲狀腺激素。</li>
+          <li><span class="src src-rec">🎤</span> <strong>I-131 劑量的演變</strong>：講者當住院醫師時，每隻貓都打固定的 <strong>4 mCi</strong>，遠超過多數貓所需，加上當時只驗 TT4，很多甲低都沒被抓到。發現這個問題後，多數機構降低劑量，現在常見 <strong>&lt; 1 到 3 mCi</strong>，並以閃爍掃描決定。</li>
+          <li><span class="src src-rec">🎤</span> <strong>兩側病變</strong>要破壞的組織多，給<strong>較低</strong>劑量；<strong>單側腺瘤</strong>通常可以給較高劑量，因為另一側被抑制、不會受影響。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 44</span><span class="src src-rec">🎤</span> 為什麼要在意</h3>
+        <ul class="notes">
+          <li>15–49% 治療後出現氮血症；<strong>甲低的貓更容易</strong>。</li>
+          <li>甲狀腺功能正常、出現氮血症：存活 <strong>2.8 年</strong> vs. 沒有氮血症 4.3 年。</li>
+          <li>甲低、出現氮血症：存活顯著更短，<strong>456 天 vs. 905 天</strong>。這群貓的預後最差。</li>
+          <li><span class="src src-rec">🎤</span> 補充甲狀腺素可以移除這個負面預後因子，把貓推回存活較好的那一邊。有趣的是<strong>生活品質通常不受影響，受影響的是壽命長度</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 45</span><span class="src src-rec">🎤</span> 我把貓治成甲低了！？</h3>
+        <figure class="fig">
+          <img src="photos/18-45-levo-survival.jpg" alt="醫源性甲低的處置" loading="lazy">
+          <figcaption>📄 45：非氮血症貓補 levothyroxine 存活 1037 天 vs. 不補 768 天；右下是講者那隻永久甲低的貓</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>情況</th><th>處置</th></tr>
+          <tr><td>沒有症狀 ＋ TSH ↑ ＋ <strong>沒有</strong>新的／惡化的氮血症</td><td>補充，或每月監測 TT4／TSH；TSH 常在 1–3 個月內恢復</td></tr>
+          <tr><td>TSH ↑ ＋ <strong>新的／惡化的氮血症</strong></td><td><strong>補充！</strong> Levothyroxine 0.1 mg/天，每 2 週調整直到 TSH 正常</td></tr>
+          <tr><td>正在用 methimazole</td><td>減量；<span class="src src-rec">🎤</span> 即使減量或繼續用，仍建議補充到 TSH 正常</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> <strong>「惡化的氮血症」</strong>：肌酸酐比治療前基準值上升 <strong>&gt; 20%</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 新研究顯示，<strong>沒有氮血症</strong>的 TSH 升高貓補 levothyroxine 也能延長存活（1037 vs. 768 天）。所以新的建議是：<strong>任何 TSH 升高，都要和飼主討論補充 levothyroxine</strong>。</li>
+          <li>通常 6 個月內恢復，但可能是永久的。<span class="src src-rec">🎤</span> 講者住院醫師時治療的自己的貓就永久甲低，每天兩次 levothyroxine 吃了約 6 年。這就是為什麼要先告訴飼主：做了 I-131 不代表以後都不用餵藥。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S14 ══ -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">📊</div>
+      <h2>14. 預後</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 46</span><span class="src src-rec">🎤</span> 氮血症決定預後</h3>
+        <figure class="fig">
+          <img src="photos/18-46-prognosis.jpg" alt="預後：氮血症與治療方式" loading="lazy">
+          <figcaption>📄 46：左為治療前有無 CKD 的存活；右為 methimazole、methimazole＋I-131、I-131 的存活曲線（Peterson et al. JAVMA 2024；Milner et al. JAVMA 2006）</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>治療前或治療後出現氮血症，存活都會下降；<strong>治療前後都有氮血症</strong>的貓預後最差。沒有氮血症的貓，存活通常相當好。</li>
+          <li>依治療方式：I-131 &gt; methimazole。<span class="src src-rec">🎤</span> 但講者認為差距<strong>不大</strong>，不會跟飼主說 I-131 比較好。</li>
+          <li>治療後生活品質：<strong>I-131 = methimazole</strong>。<span class="src src-rec">🎤</span> 講者兩者同等推薦，讓飼主依目標和預算決定。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：講者在投影片寫 I-131 &gt; methimazole、在台上卻說差距不大，兩者並不矛盾——研究顯示有存活優勢，但講者認為臨床上不足以成為推薦某一種治療的理由。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 47–48</span> 參考資源</h3>
+        <ul class="notes">
+          <li>2023 AAHA 犬貓內分泌疾病指引（Bugbee 為第一作者）。</li>
+          <li>2016 AAFP 貓甲狀腺機能亢進處置指引（JFMS）。</li>
+          <li>課後問題併入座談會。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S15 ══ -->
+  <div class="section" id="s15">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">❓</div>
+      <h2>15. 課後提問與補充</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-hand">✍️ 提問</span><span class="src src-add">💡 補充</span> 甲狀腺功能正常的貓，fT4 為什麼會輕微偏高？（📄 21）</h3>
+        <div class="qa">
+          <div class="q">核心觀念</div>
+          <div class="a">血中 T4 超過 99.9% 和蛋白質結合，fT4 不到 0.1%。結合狀態稍微被干擾（例如游離比例從 0.05% 變 0.08%），fT4 就上升 60%，TT4 卻幾乎不變。甲狀腺的分泌量其實沒有增加。</div>
+        </div>
+        <div class="tbl-wrap"><table>
+          <tr><th>原因</th><th>機轉</th></tr>
+          <tr><td><strong>非甲狀腺疾病（NTI）</strong>——最主要</td><td>約 6–20% 生病但甲狀腺正常的貓 fT4（ED）偏高（Peterson et al. JAVMA 2001）。尿毒素、游離脂肪酸和 T4 搶結合位置；低白蛋白讓結合蛋白變少；組織的 T4 轉運被抑制；肝臟脫碘酶活性下降讓清除變慢</td></tr>
+          <tr><td>藥物</td><td>Heparin（試管內產生游離脂肪酸）、furosemide、部分 NSAIDs 會把 T4 從蛋白上擠下來</td></tr>
+          <tr><td>檢體與檢驗</td><td>脂血、存放不當、分析誤差；參考範圍涵蓋 95%，本來就有約 2.5% 正常貓高於上限</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li>NTI 貓的典型組合：<strong>TT4 正常或偏低、fT4 偏高、TSH 正常</strong>。</li>
+          <li>回到 📄 21 的例子：TT4 在正常範圍<strong>中段</strong>、TSH <strong>正常</strong>，兩者都不像甲亢，只有 fT4 不合 → 很可能是正常的，下一步是找出那個其他疾病。</li>
+          <li><strong>fT4 的用途是「確認」，不是「篩檢」</strong>。單看 fT4 偏高就診斷甲亢，可能讓一隻其實是 CKD 的貓吃 methimazole，腎功能更差。</li>
+          <li>交叉參照：<a href="canine-hypothyroidism.html">17 犬甲低</a>第 16 節的 13 歲貓 NTI 病例。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-hand">✍️ 提問</span><span class="src src-add">💡 補充</span> TT4 落在正常偏高要怎麼想？（📄 20）</h3>
+        <ul class="notes">
+          <li>先看貓：沒有症狀就定期追蹤；有甲亢樣症狀就加驗 fT4 by ED ＋ TSH，fT4 高、TSH 低就很可能是甲亢。</li>
+          <li>特別注意「<strong>甲亢 ＋ 其他疾病</strong>」：NTI 把 TT4 壓進正常範圍，但對 fT4 的影響較小，所以這時 fT4 才派得上用場——前提一樣是和 TT4、TSH 一起看。</li>
+          <li>詳細的鑑別表見第 5 節。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S16 ══ -->
+  <div class="section" id="s16">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🏁</div>
+      <h2>Take-home、更正表與參考資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>Take-home：檢驗組合怎麼讀</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>情境</th><th>TT4</th><th>fT4 (ED)</th><th>TSH</th><th>判讀／處置</th></tr>
+          <tr><td>典型甲亢</td><td>↑↑</td><td>↑</td><td>測不到</td><td>治療</td></tr>
+          <tr><td>正常偏高、高度懷疑</td><td>高正常</td><td>↑</td><td>↓／測不到</td><td>很可能甲亢</td></tr>
+          <tr><td>NTI、甲狀腺正常</td><td>正常／↓</td><td>↑</td><td>正常</td><td>找其他疾病（📄 21）</td></tr>
+          <tr><td>早期甲亢（Archie）</td><td>正常</td><td>正常</td><td>測不到（貓最佳化）</td><td>6 個月後複檢</td></tr>
+          <tr><td>控制良好</td><td>中至低正常</td><td>—</td><td>正常</td><td>維持</td></tr>
+          <tr><td>亞臨床甲低</td><td>正常</td><td>—</td><td>↑</td><td>減量／補 levothyroxine，討論補充</td></tr>
+          <tr><td>臨床甲低</td><td>↓</td><td>—</td><td>↑</td><td>停 methimazole、補 levothyroxine</td></tr>
+          <tr><td>可以打 I-131</td><td>↑</td><td>—</td><td><strong>測不到</strong></td><td>停 MMI 1–2 週、y/d 2–4 週</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3>更正表（逐字稿轉文字錯誤）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>逐字稿</th><th>應為</th></tr>
+          <tr><td>Dr. Mike</td><td>Dr. Bugbee</td></tr>
+          <tr><td>as the heart or cat starts</td><td>as the cat starts</td></tr>
+          <tr><td>Beyond optimized TSA testing</td><td>feline-optimized TSH testing</td></tr>
+          <tr><td>0.8 nanogram per milliliter</td><td>0.008 ng/mL（📄 23）</td></tr>
+          <tr><td>diet as well as metformin</td><td>diet as well as methimazole</td></tr>
+          <tr><td>built whitey／Hills I.D.／feline idi／BILV-1D／pills like white D</td><td>Hill's y/d</td></tr>
+          <tr><td>cats who are five years old, one out of nine</td><td>（轉文字不清，意指嚴重甲亢的貓）</td></tr>
+          <tr><td>other hypothyroidism therapies／sole therapy for hypothyroidism</td><td>hyperthyroidism（口誤）</td></tr>
+          <tr><td>the thymus／benzodiazepine／immunosuppressant／thiamazole／thiazol／metimazole／thymusol／eumethosal／methadone</td><td>methimazole（thiamazole 為同一藥物的歐洲名）</td></tr>
+          <tr><td>iodine-induced thyrotoxicity</td><td>iatrogenic hypothyroidism</td></tr>
+          <tr><td>facial psoriasis／facial furitis</td><td>facial pruritus</td></tr>
+          <tr><td>new or progressive thyrotoxicemia／edema／euthyemia／azoemia</td><td>azotemia</td></tr>
+          <tr><td>Transcarb</td><td>Transdermal</td></tr>
+          <tr><td>iodogenic</td><td>iatrogenic</td></tr>
+          <tr><td>Charlie Aldred／Charlie Allport（Canada, Auburn）</td><td>C. Aldridge 等人（Auburn），JVIM 2015（📄 36）</td></tr>
+          <tr><td>about 40% of that 33% also developed hypothyroidism</td><td>39% 出現氮血症（📄 36）</td></tr>
+          <tr><td>cufal dosing</td><td>q12h（BID）dosing</td></tr>
+          <tr><td>a non-therapeutic therapy</td><td>a non-definitive therapy</td></tr>
+          <tr><td>a toxic thyroid tissue</td><td>ectopic thyroid tissue</td></tr>
+          <tr><td>Iodine-31／I131／R31／Iron 31／I141／viral 31</td><td>I-131</td></tr>
+          <tr><td>severe hypothyroidism（肌酸酐 &lt; 2.5 段落）</td><td>severe azotemia／decompensation</td></tr>
+          <tr><td>talk about with hypoplastic</td><td>（轉文字不清）</td></tr>
+          <tr><td>sign out of office on their own via the internet</td><td>find out on their own via the internet（📄 40）</td></tr>
+          <tr><td>centigrphy</td><td>scintigraphy</td></tr>
+          <tr><td>happy fibrocytes</td><td>happy thyrocytes（正常甲狀腺細胞）</td></tr>
+          <tr><td>start producing adequate amounts of iodine 31</td><td>thyroid hormone</td></tr>
+          <tr><td>We can talk about levothyroxine and TSH</td><td>TT4 and TSH（📄 42）</td></tr>
+          <tr><td>up to 50% of cats post-treatment</td><td>15–49%（📄 44）</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Bugbee A. <em>Hot Cats! Managing Feline Hyperthyroidism.</em> VET-KU × Texas A&amp;M IM Conference, 2026-10-08（講義 48 頁、「完整記錄」逐字稿 PDF）。</div>
+          <div class="ref-item">課堂錄音與逐字稿（Plaud）。<a href="https://web.plaud.ai/s/pub_e4b67d15-e0b1-46a2-a718-502f3d0625d7::EtBiJ59X4RRvkybfqbBSmpYusokWuVvb_Ub82wrqTAfqDUofN5vZdoADNKqcq5OhQ3rSs3zXAjOMOmV_YM2sxwI" target="_blank" rel="noopener">連結</a>（從講義第 24 頁左右開始；有轉文字錯誤，請對照更正表）</div>
+          <div class="ref-item">Aldridge C, Behrend EN, Martin LG, et al. Evaluation of thyroid-stimulating hormone, total thyroxine, and free thyroxine concentrations in hyperthyroid cats receiving methimazole treatment. <em>J Vet Intern Med.</em> 2015;29:862–868.</div>
+          <div class="ref-item">Peterson ME, et al. <em>JAVMA</em> 2024（貓最佳化 TSH；治療後甲低與存活）。</div>
+          <div class="ref-item">Brassard et al. <em>J Feline Med Surg</em> 2026（TruForma 貓最佳化 TSH）。</div>
+          <div class="ref-item">Blunschi et al. <em>Vet Sci</em> 2025；Williams TL, Peak KJ, et al. <em>JVIM</em> 2010；Williams TL, Elliott J, et al. <em>JVIM</em> 2010；Adams WH, et al. <em>Vet Radiol Ultrasound</em> 1997（治療後氮血症與甲低）。</div>
+          <div class="ref-item">Milner RJ, et al. Survival times for cats with hyperthyroidism treated with iodine 131, methimazole, or both. <em>JAVMA</em> 2006.</div>
+          <div class="ref-item">Peterson ME, Melián C, Nichols R. Measurement of serum concentrations of free thyroxine, total thyroxine, and total triiodothyronine in cats with hyperthyroidism and cats with nonthyroidal disease. <em>JAVMA</em> 2001;218:529–536（💡 補充引用）。</div>
+          <div class="ref-item">Bugbee A, et al. 2023 AAHA Selected Endocrinopathies of Dogs and Cats Guidelines. <em>JAAHA</em> 2023;59:113–135.</div>
+          <div class="ref-item">Carney HC, et al. 2016 AAFP Guidelines for the Management of Feline Hyperthyroidism. <em>J Feline Med Surg</em> 2016;18:400–416.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="canine-hypothyroidism.html">17 犬甲狀腺功能低下：診斷難題、少見病因與爭議關聯</a>。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
