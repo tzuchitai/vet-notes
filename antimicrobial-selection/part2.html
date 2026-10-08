@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>知菌知藥 Part 2｜呼吸道感染與肺炎的抗生素選擇</title>
+<style>
+  :root {
+    --primary: #5B3EBD;
+    --primary-light: #EDE9FE;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #1e1533;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #a89cc8; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #392a5c;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #a89cc8; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #a89cc8;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #392a5c;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #6b5c8f;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #4c2f9e 0%, #7c3aed 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #1e1533; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #392a5c; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── SOURCE BADGES / PENDING ── */
+  .src { display:inline-block; font-size:11px; font-weight:600; padding:1px 7px; border-radius:10px; margin-left:6px; vertical-align:2px; }
+  .src-slide { background:#e0f2fe; color:#0369a1; }
+  .src-note { background:#fce7f3; color:#be185d; }
+  .src-supp { background:#f1f5f9; color:#475569; }
+  .pending { border:2px dashed var(--border); border-radius:8px; padding:14px 16px; color:var(--text-muted); font-size:13.5px; background:#f8fafc; }
+  .hl { color:#15803d; font-weight:600; }
+  .bug-neg { background:#fdf2f8; border-color:#fbcfe8; }
+  .bug-neg h4 { color:#be185d; }
+  .bug-myco { background:#f0fdf4; border-color:#bbf7d0; }
+  .bug-myco h4 { color:#15803d; }
+  .bug-pos { background:#f5f3ff; border-color:#ddd6fe; }
+  .bug-pos h4 { color:#6d28d9; }
+  .card-mini .lbl { font-size:11.5px; font-weight:700; color:var(--text-muted); margin-top:8px; }
+</style>
+</head>
+
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="../index.html">← 回首頁</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 知菌知藥系列</a>
+  <div class="logo">
+    <h2>知菌知藥 Part 2<br>呼吸道感染與肺炎的抗生素選擇</h2>
+    <p>梅醫師｜2026 年 10 月 8 日</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">每個呼吸道病例的 9 個問題</a>
+    <a href="#q1">Q1 真的是細菌感染嗎</a>
+    <a href="#q2">Q2 吸入性 vs. 社區型</a>
+    <a href="#q3">Q3 易感因素</a>
+    <a href="#q4">Q4 BAL 或 ETW</a>
+    <a href="#q5">Q5 常見病原</a>
+    <a href="#q6">Q6 經驗性選藥</a>
+    <a href="#q7">Q7 監測治療反應</a>
+    <a href="#q8">Q8 何時停藥</a>
+    <a href="#q9">Q9 處理風險因子</a>
+    <a href="#sc">病例情境：藥敏怎麼選</a>
+    <a href="#parcey">病例：Parcey</a>
+    <a href="#iscaid">ISCAID 指引資源</a>
+    <a href="#ref">參考資料</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>知菌知藥 Part 2｜呼吸道感染與肺炎的抗生素選擇</h1>
+    <p>主講：梅醫師｜知菌知藥系列第二堂</p>
+    <p>2026 年 10 月 8 日｜知菌知藥系列 2 / 3</p>
+    <div class="tags">
+      <span class="tag">吸入性肺炎</span>
+      <span class="tag">社區型肺炎</span>
+      <span class="tag">CIRDC</span>
+      <span class="tag">BAL / ETW</span>
+      <span class="tag">Bordetella</span>
+      <span class="tag">Mycoplasma</span>
+      <span class="tag">Doxycycline</span>
+    </div>
+  </div>
+
+  <div class="alert alert-info">
+    <span class="alert-icon">📝</span>
+    <div>
+      <b>標記說明</b>：
+      <span class="src src-slide">📽 講義</span> 投影片內容
+      <span class="src src-note">✍️ 筆記</span> 課堂筆記
+      <span class="src src-supp">📘 補充</span> 整理時補充的背景說明（非課堂內容）
+    </div>
+  </div>
+
+  <div class="subsection" style="background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px 22px; margin-bottom:28px;">
+    <h3>🎯 本堂學習目標 <span class="src src-slide">📽 講義</span></h3>
+    <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:6px;">上完這堂課，應該能夠：</p>
+    <ol class="notes">
+      <li>💊 應用抗生素治療的原則</li>
+      <li>🩺 列出呼吸道常見的細菌病原</li>
+      <li>💉 列出第一線抗生素用藥方案，並擬定治療計畫</li>
+    </ol>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li>先問「真的是細菌感染嗎？」——吸入不一定有細菌感染，可能只是化學性發炎</li>
+      <li>白血球正常不代表沒有肺炎或早期敗血症——看 SIRS 指標與抹片毒性變化</li>
+      <li>有慢性回流病史 → 優先想吸入性肺炎，並找出吸入的原因</li>
+      <li>支持細菌性肺炎時，送需氧培養＋Mycoplasma 培養（± 厭氧）；病患不穩定先治療、晚點再採樣</li>
+      <li>有敗血症徵象時，抗生素必須在 1–2 小時內給予</li>
+      <li>無敗血症：單用 β-lactam（ampicillin、amox-clav／amp-sulbactam、cefazolin）；有敗血症：enrofloxacin ＋ ampicillin 或 clindamycin</li>
+      <li>CIRDC 相關肺炎：Bordetella 與 Mycoplasma 首選都是 doxycycline</li>
+      <li>Bordetella 對 amox-clav 抗藥性高；Mycoplasma 沒有細胞壁，β-lactam 無效</li>
+      <li>Enterococcus 對 cephalosporin、clindamycin 天生抗藥，用 amoxicillin 反而有效</li>
+      <li>第三代 cephalosporin（含 Convenia）涵蓋範圍沒有比較廣，梅醫師較少使用</li>
+      <li>IV sulbactam 抑制 β-lactamase 的能力遠弱於 PO clavulanic acid</li>
+      <li>狗肺炎可用 CRP 監測治療反應；住院期間 X 光不一定完全變好，看臨床症狀</li>
+      <li>停藥看臨床症狀：最晚 10–14 天重新評估，不再一律 4–6 週</li>
+      <li>住院先注射、出院依藥敏降階口服（例：IV pip/tazo → PO TMS）；meropenem 是保留藥</li>
+      <li>反覆肺炎可考慮霧化 amikacin；長期 TMS 可能造成甲狀腺功能低下</li>
+    </ul>
+  </div>
+
+  <!-- ══ SECTION 0：9 個問題 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">🫁</div>
+      <h2>每個呼吸道病例都要問的 9 個問題 <span class="src src-slide">📽 講義</span></h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <ol class="notes">
+        <li>這真的是細菌感染嗎？還有哪些鑑別診斷也很可能？</li>
+        <li>如果是，這是吸入性肺炎（aspiration pneumonia）還是社區型肺炎（community-acquired pneumonia）？</li>
+        <li>這隻狗有沒有肺炎的易感因素（predisposing factor）？</li>
+        <li>什麼時候決定做 BAL（支氣管肺泡灌洗）或 ETW（氣管內灌洗）？</li>
+        <li>吸入性肺炎與社區型肺炎各有哪些常見病原？</li>
+        <li>根據常見病原，經驗性用藥要選什麼？</li>
+        <li>如何監測治療反應？</li>
+        <li>什麼時候停藥？</li>
+        <li>能不能處理易感／風險因子？</li>
+      </ol>
+      <div class="quote">選藥是第 6 步——前面 5 個問題沒回答，選藥就只是猜。</div>
+    </div>
+  </div>
+
+  <!-- ══ Q1 ══ -->
+  <div class="section" id="q1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">❓</div>
+      <h2>Q1｜這真的是細菌感染嗎？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>鑑別診斷：咳嗽、呼吸困難＋肺部浸潤，不一定是細菌 <span class="src src-supp">📘 補充</span></h3>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>感染性但非細菌</h4>
+            <ul><li>病毒（CIRDC 病毒、犬流感、犬瘟熱）</li><li>黴菌</li><li>寄生蟲（肺線蟲、心絲蟲）</li></ul>
+          </div>
+          <div class="card-mini">
+            <h4>非感染性</h4>
+            <ul><li>心因性肺水腫</li><li>吸入性化學性肺炎（pneumonitis）</li><li>嗜酸性支氣管肺病</li><li>腫瘤、肺出血、肺栓塞</li><li>非心因性肺水腫</li></ul>
+          </div>
+        </div>
+        <p style="font-size:13px; color:var(--text-muted); margin-top:6px;">投影片標題「The opposite can occur!」暗示前一張講的是相反情況——<b>白血球升高也不一定是細菌感染</b>（壓力、類固醇、發炎、腫瘤都可能）。前一張投影片未取得，此處依標題推論。</p>
+      </div>
+
+
+      <div class="subsection">
+        <h3>反過來也會發生！白血球正常 ≠ 沒有感染 <span class="src src-slide">📽 講義</span></h3>
+        <ul class="notes">
+          <li><b>白血球像正常</b>也可能見於：
+            <ul class="notes">
+              <li>肺炎／感染</li>
+              <li>早期敗血症</li>
+            </ul>
+          </li>
+          <li>要另外找<b>全身性發炎反應症候群（SIRS）</b>的徵象：
+            <ul class="notes">
+              <li>TPR 評估（體溫、心跳、呼吸）</li>
+              <li>灌流不良／低血壓</li>
+              <li>明顯低血氧</li>
+              <li>退行性左移（degenerate left shift）</li>
+              <li>血液培養陽性——但肺炎病例<b>很少做</b></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3>投影片範例 CBC <span class="src src-slide">📽 講義</span></h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>項目</th><th>結果</th><th>參考值</th></tr>
+            <tr style="background:#fef2f2"><td><b>WBC</b></td><td><b>11,440 /µL</b></td><td>6,000–13,000</td></tr>
+            <tr style="background:#fef2f2"><td><b>Neutrophils</b></td><td><b>9,209 /µL</b>（備註：少量輕度毒性變化）</td><td>3,000–10,500</td></tr>
+            <tr><td>Lymphocytes</td><td>1,373 /µL</td><td>1,000–4,000</td></tr>
+            <tr><td>Monocytes</td><td>629 /µL</td><td>150–1,200</td></tr>
+            <tr><td>Hct</td><td>39.6 %（L）</td><td>40–55</td></tr>
+            <tr><td>Reticulocytes</td><td>23,500 /µL</td><td>7,000–65,000</td></tr>
+            <tr><td>Platelets</td><td>273,000 /µL（可見血小板凝集）</td><td>150,000–400,000</td></tr>
+          </table>
+        </div>
+        <p style="font-size:13px; color:var(--text-muted); margin-top:6px;">投影片紅框標示：WBC 與嗜中性球數量都在參考範圍內，但抹片可見嗜中性球毒性變化。</p>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">📘</span>
+        <div><b>補充：</b>數字正常時，<b>血液抹片</b>常是關鍵——毒性變化或桿狀核（band）增加，代表骨髓正在加速釋放嗜中性球，即使總數還沒升高也提示有明顯發炎。不要因為 WBC 正常就排除細菌性肺炎，要結合臨床、影像與 SIRS 指標判斷。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ Q2 ══ -->
+  <div class="section" id="q2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🔀</div>
+      <h2>Q2｜吸入性肺炎 or 社區型肺炎？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>本例判斷 <span class="src src-slide">📽 講義</span></h3>
+        <ul class="notes">
+          <li>因為有<b>慢性回流（chronic regurgitation）病史</b>，比較可能是<b>吸入性肺炎</b>。</li>
+        </ul>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">📘</span>
+        <div><b>補充：為什麼要先分這兩類？</b> 兩者的常見病原不同（Q5），經驗性選藥也就不同（Q6）。吸入性肺炎多為口咽／腸道來源的混合菌；社區型肺炎則常與 CIRDC（犬傳染性呼吸道疾病複合症）病原相關，例如 <i>Bordetella</i>、<i>Mycoplasma</i>、<i>Streptococcus</i>。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ Q3 ══ -->
+  <div class="section" id="q3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#cffafe">🧬</div>
+      <h2>Q3｜這隻狗有肺炎的易感因素嗎？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>答案：有！ <span class="src src-slide">📽 講義</span></h3>
+        <p style="font-size:14px; margin-bottom:8px;">吸入性肺炎的風險因子（<span class="hl">綠字</span>為投影片上特別標示的項目）：</p>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>上呼吸道／咽喉</h4>
+            <ul>
+              <li><span class="hl">短吻品種（brachycephaly）</span></li>
+              <li><span class="hl">咽部、喉部功能異常</span></li>
+              <li>氣道塌陷（airway collapse）</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>食道／胃</h4>
+            <ul>
+              <li><span class="hl">食道功能異常、食道炎</span></li>
+              <li>巨食道症（megaesophagus）</li>
+              <li><span class="hl">食道裂孔疝氣（hiatal hernia）</span></li>
+              <li><span class="hl">胃排空延遲</span></li>
+              <li><span class="hl">回流</span>／嘔吐</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>醫源性／事件</h4>
+            <ul>
+              <li>近期麻醉</li>
+              <li>異物吸入</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>防禦機制缺陷</h4>
+            <ul>
+              <li>免疫缺陷</li>
+              <li>纖毛運動障礙（ciliary dyskinesia）</li>
+              <li>原發性腫瘤</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">📘</span>
+        <div><b>補充：</b>綠字項目（短吻、咽喉／食道功能異常、食道炎、食道裂孔疝氣、胃排空延遲、回流）剛好是短吻犬呼吸道阻塞症候群（BOAS）常合併的上消化道問題，推測本例（Bunny）是一隻有慢性回流的短吻犬。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ Q4 ══ -->
+  <div class="section" id="q4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">💉</div>
+      <h2>Q4｜什麼時候做 BAL 或 ETW？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>原則 <span class="src src-slide">📽 講義</span></h3>
+        <ul class="notes">
+          <li>若檢查結果<b>支持細菌性肺炎</b> → 建議送<b>需氧菌培養＋Mycoplasma 培養</b>（± 厭氧培養）。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>但要同時考量 <span class="src src-slide">📽 講義</span></h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th style="width:34%">考量</th><th>重點</th></tr>
+            <tr><td>病患穩定度</td><td><span class="hl">是否依賴氧氣？</span>依賴氧氣的病患，採樣（尤其需麻醉的 BAL）風險高</td></tr>
+            <tr><td>診斷資源是否可得</td><td><span class="hl">有敗血症徵象時，抗生素應在 1–2 小時內給予</span>——不能為了等採樣而延誤治療</td></tr>
+            <tr><td>先前或目前的抗生素使用／暴露</td><td>影響培養結果與抗藥性的可能</td></tr>
+            <tr><td>對先前／目前抗生素療程的反應</td><td>治療反應不佳 → 更有理由採樣培養</td></tr>
+          </table>
+        </div>
+        <h4>病例 Bunny <span class="src src-note">✍️ 筆記</span></h4>
+        <ul class="notes">
+          <li>Bunny <b>呼吸困難</b>，所以<b>不能馬上進行灌洗（lavage）</b>——病患不穩定時，先穩定、先給經驗性抗生素，等狀況允許再採樣。</li>
+        </ul>
+        <p style="font-size:13px; color:var(--text-muted); margin-top:6px;">投影片附圖：經口氣管灌洗操作示意，出自 <a href="https://www.cliniciansbrief.com/article/transoral-tracheal-transtracheal-airway-wash" target="_blank" rel="noopener">Clinician's Brief：Transoral Tracheal &amp; Transtracheal Airway Wash</a>。</p>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">📘</span>
+        <div><b>補充：</b>ETW（endotracheal wash）只需短暫麻醉插管、經氣管內管灌洗，較 BAL 快速；BAL 可取得較遠端的肺泡檢體，但通常需支氣管鏡與較深的麻醉，對氧合不佳的病患風險較大。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ Q5 ══ -->
+  <div class="section" id="q5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">🦠</div>
+      <h2>Q5｜吸入性 vs. 社區型肺炎的常見病原</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="alert alert-warn" style="margin-top:0;">
+        <span class="alert-icon">ℹ️</span>
+        <div>本題沒有取得課堂投影片，以下依 ISCAID 2017 及常見文獻整理；CIRDC 病原的課堂內容見 Q6。</div>
+      </div>
+      <div class="grid2">
+        <div class="card-mini">
+          <h4>吸入性肺炎 <span class="src src-supp">📘 補充</span></h4>
+          <ul>
+            <li>口咽／腸道來源，<b>常為混合感染</b></li>
+            <li>革蘭氏陰性：<i>E. coli</i>、<i>Klebsiella</i>、<i>Pasteurella</i></li>
+            <li>革蘭氏陽性：<i>Streptococcus</i>、<i>Staphylococcus</i>、<i>Enterococcus</i></li>
+            <li><i>Mycoplasma</i>、厭氧菌</li>
+            <li>反覆住院、先前用過抗生素 → 多重抗藥菌風險高（見病例情境的 <i>E. coli</i>）</li>
+          </ul>
+        </div>
+        <div class="card-mini">
+          <h4>社區型肺炎（CIRDC 相關） <span class="src src-supp">📘 補充</span></h4>
+          <ul>
+            <li><i>Bordetella bronchiseptica</i></li>
+            <li><i>Mycoplasma</i> spp.（如 <i>M. cynos</i>）</li>
+            <li><i>Streptococcus equi</i> subsp. <i>zooepidemicus</i></li>
+            <li>常在病毒感染（犬副流感、犬流感等）之後繼發</li>
+            <li>多見於收容所、寄宿、幼犬等群聚環境</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ Q6 ══ -->
+  <div class="section" id="q6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">💊</div>
+      <h2>Q6｜經驗性選藥：從病原到用藥方案</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>CIRDC 肺炎三大類病原與首選藥物 <span class="src src-slide">📽 講義</span></h3>
+        <div class="grid3">
+          <div class="card-mini bug-neg">
+            <h4>革蘭氏陰性｜<i>Bordetella bronchiseptica</i></h4>
+            <div class="lbl">首選</div>
+            <ul><li><b>Doxycycline</b></li></ul>
+            <div class="lbl">可考慮</div>
+            <ul><li>Azithromycin</li></ul>
+            <div class="lbl">抗藥性</div>
+            <ul><li><i>Bordetella</i> 對 <b>amoxicillin-clavulanate</b> 抗藥性高</li></ul>
+          </div>
+          <div class="card-mini bug-myco">
+            <h4>無細胞壁｜<i>Mycoplasma</i> spp.</h4>
+            <div class="lbl">首選</div>
+            <ul><li><b>Doxycycline</b></li></ul>
+            <div class="lbl">可考慮</div>
+            <ul><li>Fluoroquinolones</li><li>Macrolides</li><li>Chloramphenicol</li></ul>
+            <div class="lbl">抗藥性</div>
+            <ul><li><b>β-lactam</b>（為什麼？見下方）</li></ul>
+          </div>
+          <div class="card-mini bug-pos">
+            <h4>革蘭氏陽性｜<i>Streptococcus</i> spp.、<i>Staphylococcus</i> spp.</h4>
+            <div class="lbl">首選</div>
+            <ul><li><b>β-lactam ± β-lactamase 抑制劑</b></li></ul>
+            <div class="lbl">可考慮</div>
+            <ul><li>Cephalosporin</li><li>Clindamycin</li><li>Doxycycline</li><li>TMS</li></ul>
+            <div class="lbl">抗藥性</div>
+            <ul><li><i>Staphylococcus</i>：methicillin 抗藥性（後天獲得）</li></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>ISCAID 2017 呼吸道指引 Table 1：第一線藥物 <span class="src src-slide">📽 講義</span></h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th style="width:40%">感染類型</th><th>第一線藥物選擇</th></tr>
+            <tr><td>貓急性細菌性上呼吸道感染（URI）</td><td>Doxycycline 或 amoxicillin PO</td></tr>
+            <tr><td>貓慢性細菌性 URI</td><td>Doxycycline 或 amoxicillin PO；有培養藥敏（C&amp;S）就依結果選</td></tr>
+            <tr><td>犬傳染性呼吸道疾病複合症（CIRDC，細菌部分）</td><td>Doxycycline 或 amoxicillin-clavulanate PO</td></tr>
+            <tr><td>細菌性支氣管炎（犬、貓）</td><td>Doxycycline PO；必要時依臨床反應與 C&amp;S 調整</td></tr>
+            <tr><td>與其他動物密切接觸、<b>沒有全身症狀</b>（發燒、沉鬱、脫水）的肺炎</td><td>Doxycycline PO；必要時依臨床反應與 C&amp;S 調整</td></tr>
+            <tr><td>肺炎，<b>有或無敗血症</b>臨床證據</td><td><b>注射</b> fluoroquinolone ＋ penicillin 或 clindamycin 起始；之後依臨床反應與 C&amp;S 改口服</td></tr>
+            <tr><td>膿胸（犬、貓）</td><td>注射 fluoroquinolone ＋ penicillin 或 clindamycin，<b>合併治療性灌洗</b>；之後依臨床反應與 C&amp;S 改口服</td></tr>
+          </table>
+        </div>
+        <p style="font-size:13px; color:var(--text-muted); margin-top:6px;">出處：Lappin MR, et al. <i>J Vet Intern Med</i> 2017（見參考資料）。</p>
+      </div>
+      <div class="alert alert-warn">
+        <span class="alert-icon">⚠️</span>
+        <div><b>對照上方 CIRDC 投影片：</b>指引把 amoxicillin-clavulanate 列為 CIRDC 第一線選項之一，但講者特別提醒 <i>Bordetella</i> 對 amoxicillin-clavulanate 抗藥性高，所以 CIRDC 首選仍是 doxycycline。</div>
+      </div>
+
+      <div class="subsection">
+        <h3>目前建議：細菌性肺炎有沒有敗血症？ <span class="src src-slide">📽 講義</span></h3>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>無敗血症</h4>
+            <ul>
+              <li>Ampicillin</li>
+              <li>Amoxicillin-clavulanic acid（PO）或 ampicillin-sulbactam（IV）</li>
+              <li>Cefazolin</li>
+            </ul>
+          </div>
+          <div class="card-mini" style="border-color:#86efac; background:#f0fdf4;">
+            <h4>有敗血症 ⬅</h4>
+            <ul>
+              <li><b>Enrofloxacin ＋ ampicillin</b>，或</li>
+              <li><b>Enrofloxacin ＋ clindamycin</b></li>
+            </ul>
+          </div>
+        </div>
+        <p style="font-size:13px; color:var(--text-muted); margin-top:6px;">投影片照片：一隻法鬥在氧氣箱中（短吻犬＋需要氧氣，與 Q3、Q4 的情境相符）。</p>
+      </div>
+
+      <div class="subsection">
+        <h3>要不要兩種抗生素一起用？ <span class="src src-slide">📽 講義</span> <span class="src src-note">✍️ 筆記</span></h3>
+        <p style="font-size:14px; margin-bottom:8px;"><b>Riffe CI, Heinz JA, Patterson CA, Cook AK, Yankin I.</b> <i>There is no significant difference in the treatment of aspiration pneumonia in dogs with ampicillin-sulbactam versus ampicillin-sulbactam and enrofloxacin.</i> J Am Vet Med Assoc. 2025;263(8):1–9.</p>
+        <ul class="notes">
+          <li>吸入性肺炎的狗，單用 <b>ampicillin-sulbactam（AS）</b>與 <b>AS ＋ enrofloxacin</b> 兩組，疾病嚴重度、生命徵象與白血球總數都相近。</li>
+          <li>但 40 隻單用 AS 的狗中，有 <b>13 隻</b>在中位數 <b>26 小時</b>後被加上 enrofloxacin。</li>
+        </ul>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">📘</span>
+        <div><b>補充：怎麼解讀？</b>對<b>沒有敗血症</b>的吸入性肺炎，一開始單用 β-lactam 是合理的，不必常規雙藥；但約三分之一的狗在第一天左右因反應不佳被加藥，所以單藥起始時要<b>密切監測</b>，惡化就要升級。有敗血症時仍依上方建議直接雙藥合併。研究設計與結果細節請以原文為準。</div>
+      </div>
+
+      <div class="subsection">
+        <h3>為什麼重症肺炎要「Fluoroquinolone ＋ penicillin」？兩類藥的涵蓋範圍互補 <span class="src src-slide">📽 講義</span></h3>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>β-lactam（± 增效型／加 β-lactamase 抑制劑）</h4>
+            <ul>
+              <li>肺部穿透性<b>好</b></li>
+              <li>涵蓋：<b>革蘭氏陽性很好</b>、厭氧菌；革蘭氏陰性<b>不可預測</b></li>
+              <li>不涵蓋：<i>Mycoplasma</i>、<i>Pseudomonas</i></li>
+              <li><span class="hl">Sulbactam（IV）作為 β-lactamase 抑制劑，比 clavulanic acid（PO）弱很多</span></li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>Fluoroquinolone（第二代）</h4>
+            <ul>
+              <li>肺部／組織穿透性<b>極好</b></li>
+              <li>涵蓋：<b>革蘭氏陰性很好</b>、<i>Mycoplasma</i></li>
+              <li>不涵蓋：厭氧菌、腸球菌（enterococci）、鏈球菌（streptococci）</li>
+            </ul>
+          </div>
+        </div>
+        <h4>美國的 IV 選擇 <span class="src src-note">✍️ 筆記</span></h4>
+        <ul class="notes">
+          <li>在美國要打 IV，就只能打 IV 的 amoxicillin（胺基青黴素類），沒有 IV 的 amoxicillin-clavulanate。</li>
+        </ul>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">📘</span>
+        <div><b>補充：</b>美國沒有 IV amoxicillin-clavulanate 劑型，注射用的是 ampicillin 或 ampicillin-sulbactam；但如投影片所說，sulbactam 抑制 β-lactamase 的能力比 clavulanic acid 弱很多，所以 IV ampicillin-sulbactam 不能等同口服 amoxicillin-clavulanate 的涵蓋範圍。第二代 fluoroquinolone 指 enrofloxacin、marbofloxacin 等；兩類藥一個補陽性菌與厭氧菌、一個補陰性菌與 <i>Mycoplasma</i>，這就是 ISCAID 建議重症肺炎合併使用的原因。</div>
+      </div>
+
+      <div class="subsection">
+        <h3>Convenia 與第三代 cephalosporin <span class="src src-note">✍️ 筆記</span></h3>
+        <ul class="notes">
+          <li>梅醫師<b>比較不會使用 Convenia（cefovecin）</b>。</li>
+          <li>對革蘭氏陰性菌也比較不會使用第三代 cephalosporin——它的<b>涵蓋範圍並沒有比較廣</b>。</li>
+        </ul>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">📘</span>
+        <div>
+          <b>補充：「第三代」不等於「更廣效」</b>
+          <ul class="notes" style="margin-top:4px;">
+            <li>從第一代到第三代，cephalosporin 是<b>用革蘭氏陽性的效力換取部分革蘭氏陰性</b>，不是單純往上加；對 <i>Staphylococcus</i> 反而通常較第一代弱。</li>
+            <li>第三代仍<b>不涵蓋</b> <i>Mycoplasma</i>、<i>Enterococcus</i>、多數厭氧菌，cefovecin 也不涵蓋 <i>Pseudomonas</i>——肺炎常見的幾個病原剛好都漏掉。</li>
+            <li>Cefovecin 是長效注射劑（單次注射作用約 14 天），一旦出現不良反應或培養結果需要換藥時<b>無法停藥</b>，而且長時間低濃度暴露不利於抗藥性管理。</li>
+            <li>Cefovecin 屬第三代 cephalosporin，在 WHO 分類中屬「最高優先重要抗菌藥物」（HPCIA），抗菌藥物管理原則上應保留，不作為經驗性首選。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="alert alert-info">
+        <span class="alert-icon">📘</span>
+        <div>
+          <b>補充：為什麼 Mycoplasma 對 β-lactam 天生抗藥？</b> β-lactam 的作用是抑制細胞壁（peptidoglycan）合成；Mycoplasma 根本沒有細胞壁，藥物沒有作用目標。同理，所有作用在細胞壁的藥物（如 cephalosporin、vancomycin）都無效。<br>
+          <b>Methicillin 抗藥（MRSP／MRSA）：</b>細菌獲得 <i>mecA</i> 基因，產生對 β-lactam 親和力低的 PBP2a，幾乎所有 β-lactam（含 cephalosporin、amoxicillin-clavulanate）都會失效。
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>Enterococcus：「簡單的藥反而有效」 <span class="src src-note">✍️ 筆記</span></h3>
+        <ul class="notes">
+          <li><i>Enterococcus</i> 用 <b>amoxicillin</b> 會有效，反而換成「比較複雜、比較高階」的抗生素會沒有效。</li>
+          <li><i>Enterococcus</i> <b>不能用 cephalosporin</b>——有天生抗藥性（intrinsic resistance）。</li>
+          <li>治療 <i>Staphylococcus</i> 常用的 <b>clindamycin</b> 也<b>不能治療 <i>Enterococcus</i></b>，同樣是天生抗藥。</li>
+        </ul>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">📘</span>
+        <div>
+          <b>補充：天生抗藥的機轉</b>
+          <ul class="notes" style="margin-top:4px;">
+            <li><b>所有 cephalosporin</b>（包括第三代、Convenia）——<i>Enterococcus</i> 的 PBP（尤其 PBP5）對 cephalosporin 親和力低</li>
+            <li><b>Clindamycin</b>——<i>E. faecalis</i> 帶有 <i>lsa</i> 基因（ABC 外排幫浦），對 lincosamide 天生抗藥</li>
+            <li>TMS——體內可利用外源性葉酸，<b>藥敏報告即使顯示 S 也不能用</b></li>
+            <li>Aminoglycoside 單用——細胞壁通透性差，低濃度天生抗藥</li>
+          </ul>
+          <b>天生抗藥代表不需要看藥敏就知道不能用</b>；若藥敏報告出現這些藥為 S，應視為不可信。
+          而 <i>E. faecalis</i> 通常對 amoxicillin／ampicillin 仍敏感，所以「升級」到 cephalosporin 反而是降級。<i>E. faecium</i> 則常對 ampicillin 抗藥，需看藥敏。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ Q7 ══ -->
+  <div class="section" id="q7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">📈</div>
+      <h2>Q7｜如何監測治療反應？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>用診斷工具監測：C-reactive protein（CRP） <span class="src src-slide">📽 講義</span> <span class="src src-note">✍️ 筆記</span></h3>
+        <ul class="notes">
+          <li>狗可以用 <b>CRP 監測肺炎</b>的治療反應——前提是<b>檢驗結果出得快</b>（turnaround time 短）才有幫助。</li>
+        </ul>
+        <h4>範例：同一隻狗的 CRP 變化</h4>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>時間點</th><th>CRP（mg/L）</th><th>參考值</th></tr>
+            <tr><td>入院</td><td><b>212.3</b>（H）</td><td rowspan="3">0.0–12.0<br><span style="font-size:12px;color:var(--text-muted)">報告註明：部分正常狗可高達 22 mg/L</span></td></tr>
+            <tr><td>2 天後</td><td><b>75.9</b>（H）</td></tr>
+            <tr><td>7 天後</td><td><b>7.5</b>（正常）</td></tr>
+          </table>
+        </div>
+        <p style="font-size:13px; color:var(--text-muted); margin-top:6px;">投影片右側盒鬚圖（Fernandes et al.，年份被遮住）：CRP 在診斷時明顯升高（中位數約 100 mg/L 上下，最高 &gt; 500），治療 1 週、3 週及短期／長期追蹤時都降到接近 0。</p>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">📘</span>
+        <div><b>補充：</b>CRP 是急性期蛋白，半衰期短（約 1 天內），發炎控制後下降很快，所以比 WBC 或胸腔 X 光更早反映治療反應——X 光的改善通常落後臨床好幾天到幾週。圖表很可能出自 Fernandes Rodrigues 等人在 <i>JVIM</i> 發表的研究：吸入性肺炎的狗在臨床改善且 CRP 恢復正常時停藥，復發並沒有增加（細節請以原文為準）。這也連到 Q8「何時停藥」。</div>
+      </div>
+
+      <div class="subsection">
+        <h3>影像監測：X 光 vs. 床邊超音波 <span class="src src-slide">📽 講義</span></h3>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>連續胸腔 X 光——住院期間幫助較小</h4>
+            <ul>
+              <li>影像改善可能<b>落後於臨床緩解</b></li>
+              <li>需要保定 ± 鎮靜</li>
+            </ul>
+          </div>
+          <div class="card-mini" style="border-color:#86efac; background:#f0fdf4;">
+            <h4>連續 POCUS／Vet BLUE® 肺部超音波（若可行）</h4>
+            <ul>
+              <li>評估肺部徵象、胸腔積液、輸液耐受度、<b>胃內容量</b>（腸阻塞／ileus 會增加再次吸入性肺炎的風險）</li>
+              <li><b>不需保定</b></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <ul class="notes" style="margin-bottom:10px;">
+        <li><span class="src src-note" style="margin-left:0;">✍️ 筆記</span> 住院期間 X 光<b>不一定會完全變好</b>，要看臨床症狀判斷。</li>
+      </ul>
+      <div class="alert alert-info">
+        <span class="alert-icon">📘</span>
+        <div><b>補充：</b>呼吸困難的病患（例如 Bunny）保定、拍 X 光本身就有風險，床邊超音波可以在籠內做。Vet BLUE 是固定幾個胸壁位置的肺部超音波掃描流程，看 B-line（肺間質／肺泡水分增加）與肺實質化（consolidation）的範圍變化；輸液耐受度則是看 B-line 是否增加、有無積液，判斷能不能再給液體。胃內容量大代表胃排空差，回流／嘔吐再吸入的風險高，可考慮促進胃腸蠕動或抽胃。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ Q8 ══ -->
+  <div class="section" id="q8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef9c3">⏹️</div>
+      <h2>Q8｜什麼時候停藥？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="quote">Clinical signs, clinical signs, clinical signs!——看臨床症狀決定停藥。</div>
+
+      <div class="subsection">
+        <h3>傳統做法 vs. ISCAID 指引 <span class="src src-slide">📽 講義</span> <span class="src src-note">✍️ 筆記</span></h3>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>傳統教科書：4–6 週</h4>
+            <ul>
+              <li>細菌性肺炎治療 <b>4–6 週</b>，或 <b>X 光恢復正常後再多給 1–2 週</b></li>
+              <li>但在狗和貓，<b>缺乏證據</b>支持需要這麼長的療程</li>
+              <li>嚴重肺部病灶或免疫缺陷的病患，可能仍需較長療程</li>
+            </ul>
+          </div>
+          <div class="card-mini" style="border-color:#86efac; background:#f0fdf4;">
+            <h4>ISCAID 2017 建議</h4>
+            <ul>
+              <li>開始治療後<b>最晚 10–14 天重新評估</b></li>
+              <li>到這個時間點，要不要延長療程，<b>依臨床、血液學與影像學的追蹤結果決定</b></li>
+              <li>需要更多研究評估短於 4–6 週的療程</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">📘</span>
+        <div><b>補充：</b>這裡和 Q7 串起來——X 光改善會落後臨床，若硬要等 X 光完全乾淨再多給 1–2 週，療程常被不必要地拉長。實務上是 10–14 天回診時，看症狀是否緩解、CRP（Q7）是否恢復正常，再決定停藥或延長，而不是一開始就開 4–6 週。</div>
+      </div>
+
+      <div class="subsection">
+        <h3>ISCAID 2017 各類呼吸道感染的療程（原文核對） <span class="src src-supp">📘 補充</span></h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th style="width:36%">感染類型</th><th>指引建議療程</th></tr>
+            <tr><td>貓急性細菌性 URI</td><td>Doxycycline 經驗性給 <b>7–10 天</b></td></tr>
+            <tr><td>貓慢性細菌性 URI</td><td>至少 <b>7 天</b>；有效則持續到臨床緩解後再 <b>1 週</b></td></tr>
+            <tr><td>CIRDC（細菌部分）</td><td>Doxycycline 經驗性給 <b>7–10 天</b></td></tr>
+            <tr><td>細菌性支氣管炎</td><td>Doxycycline <b>7–10 天</b>；有效則持續到症狀緩解後 <b>1 週</b></td></tr>
+            <tr><td><b>肺炎</b></td><td>傳統 4–6 週（缺乏證據）；<b>最晚 10–14 天重新評估</b>，再依臨床、血液、影像決定是否延長</td></tr>
+            <tr><td>膿胸</td><td>至少 <b>3 週</b>，理想 <b>4–6 週</b></td></tr>
+          </table>
+        </div>
+        <p style="font-size:13px; color:var(--text-muted); margin-top:6px;">注意：ISCAID 2017 對肺炎寫的是「10–14 天」<b>重新評估</b>的時間點，不是建議療程；「7–10 天」是 URI、CIRDC、支氣管炎的療程。</p>
+      </div>
+
+      <div class="subsection">
+        <h3>對照：其他部位感染的療程 <span class="src src-note">✍️ 筆記</span></h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th style="width:30%">感染部位</th><th>課堂筆記</th><th>指引對照 <span class="src src-supp">📘 補充</span></th></tr>
+            <tr><td>泌尿道（散發性膀胱炎）</td><td><b>3–5 天</b></td><td>與 ISCAID 2019 一致（見 Part 1）</td></tr>
+            <tr><td>腎臟（腎盂腎炎）</td><td><b>7–10 天</b></td><td>ISCAID 2019 寫 <b>10–14 天</b>（缺乏獸醫資料、參考人醫）；講者採較短療程</td></tr>
+            <tr><td>肝膽</td><td><b>4–6 週</b></td><td>ISCAID 目前沒有肝膽感染指引；4–6 週是常見的專家建議，同樣缺乏研究支持</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">📘</span>
+        <div><b>補充：</b>療程長短主要看<b>感染部位</b>與<b>感染源能否控制</b>：膀胱黏膜表淺、抗生素在尿中濃度高，所以最短；腎實質需要較長；肝膽（膽囊炎、膽管肝炎）常有膽汁淤積、膽泥或結構問題，感染源難清除，療程最長。人醫腎盂腎炎已有 7 天（fluoroquinolone）有效的研究，可能是講者採 7–10 天的依據——實際引用來源以講者為準。</div>
+      </div>
+
+      <div class="subsection">
+        <h3>2017 年之後的證據 <span class="src src-note">✍️ 筆記</span></h3>
+        <ul class="notes">
+          <li>2017 年 ISCAID 指引之後，有<b>比較多研究支持較短的療程</b>。</li>
+          <li>吸入性肺炎要縮短療程，同時要<b>想清楚吸入的原因</b>——原因沒處理，停藥後還會再吸入。</li>
+        </ul>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">📘</span>
+        <div><b>補充：</b>短療程能成功的前提，是「這次感染」已經控制住；但吸入性肺炎的復發多半不是治療不夠久，而是又吸入了一次。所以與其把抗生素拉長來「預防」，不如找出並處理吸入的原因（回流、巨食道、喉麻痺、胃排空延遲、麻醉後等，見 Q3）——這就是 Q9 要問的事。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ Q9 ══ -->
+  <div class="section" id="q9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🛠️</div>
+      <h2>Q9｜能不能處理易感／風險因子？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="alert alert-warn" style="margin-top:0;">
+        <span class="alert-icon">ℹ️</span>
+        <div>本題沒有取得課堂投影片；課堂上相關的實例是 Parcey（食道蠕動差＋胃食道逆流，易感因素無法根除），見下方病例一節。以下為整理時的補充。</div>
+      </div>
+      <div class="subsection">
+        <h3>依 Q3 的風險因子逐項處理 <span class="src src-supp">📘 補充</span></h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th style="width:32%">風險因子</th><th>可以做的事</th></tr>
+            <tr><td>短吻犬呼吸道阻塞（BOAS）</td><td>手術矯正上呼吸道（軟顎、鼻孔、喉囊）可同時改善回流與胃腸症狀</td></tr>
+            <tr><td>回流、食道炎、胃食道逆流</td><td>制酸（如 PPI）、胃黏膜保護；控制體重</td></tr>
+            <tr><td>胃排空延遲、ileus</td><td>促進腸胃蠕動藥物；住院時用超音波監測胃內容量（Q7），必要時抽胃</td></tr>
+            <tr><td>巨食道症、食道蠕動差</td><td>直立餵食（如 Bailey chair）、調整食物質地、少量多餐；找原發病因（重症肌無力、甲狀腺功能低下、腎上腺皮質功能低下等）</td></tr>
+            <tr><td>近期麻醉</td><td>術前適當禁食、減少易致嘔吐的藥物、術後監測回流</td></tr>
+            <tr><td>喉部功能異常</td><td>評估喉麻痺；手術（如 tie-back）後吸入風險反而增加，需與飼主溝通</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="quote">處理不了的風險因子，就要接受肺炎會復發——此時重點是早期辨識、短療程治療，而不是長期預防性用抗生素。</div>
+    </div>
+  </div>
+
+  <!-- ══ 病例情境 ══ -->
+  <div class="section" id="sc">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🧩</div>
+      <h2>病例情境：同一張藥敏報告，三種選法</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>氣管灌洗需氧培養：大量 <i>Escherichia coli</i> <span class="src src-slide">📽 講義</span></h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>藥物</th><th>判讀</th><th>MIC（µg/mL）</th></tr>
+            <tr><td>Amikacin</td><td><span class="badge badge-green">S</span></td><td>≤4</td></tr>
+            <tr><td>Ampicillin</td><td><span class="badge badge-red">R</span></td><td>&gt;8</td></tr>
+            <tr><td>Augmentin（amox-clav）</td><td><span class="badge badge-red">R</span></td><td>&gt;8</td></tr>
+            <tr><td>Cefazolin</td><td><span class="badge badge-red">R</span></td><td>&gt;32</td></tr>
+            <tr><td>Cefovecin</td><td><span class="badge badge-purple">無判讀</span></td><td>&gt;8</td></tr>
+            <tr><td>Cefpodoxime</td><td><span class="badge badge-red">R</span></td><td>&gt;8</td></tr>
+            <tr><td>Ceftazidime</td><td><span class="badge badge-yellow">I</span></td><td>8</td></tr>
+            <tr><td>Cephalexin</td><td><span class="badge badge-purple">無判讀</span></td><td>&gt;16</td></tr>
+            <tr><td>Chloramphenicol</td><td><span class="badge badge-green">S</span></td><td>4</td></tr>
+            <tr><td>Doxycycline</td><td><span class="badge badge-red">R</span></td><td>&gt;8</td></tr>
+            <tr><td>Enrofloxacin</td><td><span class="badge badge-red">R</span></td><td>&gt;4</td></tr>
+            <tr><td>Gentamicin</td><td><span class="badge badge-green">S</span></td><td>1</td></tr>
+            <tr><td>Imipenem</td><td><span class="badge badge-green">S</span></td><td>≤1</td></tr>
+            <tr><td>Marbofloxacin</td><td><span class="badge badge-purple">無判讀</span></td><td>&gt;4</td></tr>
+            <tr><td>Orbifloxacin</td><td><span class="badge badge-purple">無判讀</span></td><td>&gt;8</td></tr>
+            <tr><td>Piperacillin/tazobactam</td><td><span class="badge badge-green">S</span></td><td>≤8</td></tr>
+            <tr><td>Pradofloxacin</td><td><span class="badge badge-purple">無判讀</span></td><td>&gt;2</td></tr>
+            <tr><td>Tetracycline</td><td><span class="badge badge-red">R</span></td><td>&gt;16</td></tr>
+            <tr><td>Trim/sulfa（TMS）</td><td><span class="badge badge-green">S</span></td><td>≤0.5</td></tr>
+          </table>
+        </div>
+        <p style="font-size:13px; color:var(--text-muted); margin-top:6px;">敏感（S）的只剩：amikacin、chloramphenicol、gentamicin、imipenem、piperacillin/tazobactam、TMS——多重抗藥的 <i>E. coli</i>。</p>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">📘</span>
+        <div><b>補充：「NO INTERP」是什麼？</b>代表這個藥對這種細菌（或這個感染部位）<b>沒有建立 breakpoint</b>，實驗室只能給 MIC、無法判 S／I／R——不等於敏感，不能拿來用。這也是 Part 1 講的「breakpoint 依菌種與部位而定」。另外 ampicillin、cefazolin、enrofloxacin、doxycycline 全部 R，代表前面 Q6 的經驗性用藥在這隻狗上都會失敗，凸顯 Q4 採樣培養的價值。</div>
+      </div>
+
+      <div class="subsection">
+        <h3>Scenario 1：病況穩定、能吃口服藥回家、沒有過敏或品種禁忌 <span class="src src-slide">📽 講義</span></h3>
+        <p style="font-size:14px; margin-bottom:8px;">選項 A–D 都是住院用藥（amikacin、chloramphenicol、meropenem、pip/tazo），答案是：</p>
+        <div class="quote">E. TMS（只有口服）</div>
+        <ul class="notes">
+          <li>組織穿透性極好</li>
+          <li><b>膿胸不要用</b>（厭氧菌）</li>
+          <li>注意副作用，<b>尤其使用超過 7 天</b></li>
+        </ul>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">📘</span>
+        <div><b>補充：</b>TMS 的副作用（乾眼症 KCS、多發性關節炎／過敏反應、肝毒性、血液異常、甲狀腺功能下降）大多與劑量及療程長短相關；杜賓犬等品種風險較高（見 Part 1 第十一節）。超過 7 天建議做 Schirmer tear test 等追蹤。膿胸常合併厭氧菌，而 TMS 在膿液、壞死組織中效果差。</div>
+      </div>
+
+      <div class="subsection">
+        <h3>Scenario 2：住院病患，優先注射給藥 <span class="src src-slide">📽 講義</span> <span class="src src-note">✍️ 筆記</span></h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th style="width:22%">選項</th><th>優點</th><th>缺點／注意</th><th style="width:26%">課堂重點</th></tr>
+            <tr><td><b>A. Amikacin</b><br>（只有 IV）</td><td>—</td><td>組織穿透性<b>差</b>；腎毒性、神經肌肉阻斷；<span style="color:#b91c1c">沒有口服藥可以帶回家</span></td><td>穿透性差，會有神經肌肉方面的副作用</td></tr>
+            <tr><td><b>B. Chloramphenicol</b><br>（IV 或 PO）</td><td><span style="color:#15803d">組織穿透性極好</span></td><td>口服腸胃不適；骨髓抑制</td><td>在這裡<b>比 amikacin 好</b></td></tr>
+            <tr><td><b>C. Meropenem</b><br>（IV 或 SC）</td><td><span style="color:#15803d">組織穿透性好到極好</span>；耐受性好</td><td><span style="color:#b91c1c">沒有口服藥，但可以在家皮下注射</span>；敏感性由 imipenem 推論（同類藥）</td><td>可以打 SC，但屬於<b>保留用的後線抗生素</b></td></tr>
+            <tr><td><b>D. Piperacillin/tazobactam</b><br>（只有 IV）</td><td><span style="color:#15803d">組織穿透性通常好（依部位）</span></td><td><span style="color:#b91c1c">沒有口服藥可以帶回家</span></td><td>比較難取得，但<b>不算後線藥</b>，可建議優先於 meropenem 使用</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">📘</span>
+        <div><b>補充：</b>Aminoglycoside 在酸性、膿性、低氧的環境中活性下降，且進入支氣管分泌物的濃度低，這是它用於肺炎「穿透性差」的原因。Chloramphenicol 對人有罕見但不可逆的再生不良性貧血風險，飼主與工作人員接觸時要戴手套。Carbapenem（meropenem、imipenem）是人醫治療多重抗藥菌的最後防線，獸醫使用應保留給沒有其他選擇的情況。</div>
+      </div>
+
+      <div class="subsection">
+        <h3>Scenario 3：先注射、再降階回家 <span class="src src-slide">📽 講義</span></h3>
+        <ul class="notes">
+          <li>ISCAID 指引的共識：危及生命的疾病，在等待檢驗結果時先給<b>經驗性</b>抗生素，之後<b>依藥敏結果降階（de-escalation）</b>。</li>
+          <li>住院期間，無論肺炎嚴重程度，工作小組一般都建議<b>注射給藥</b>。</li>
+        </ul>
+        <div class="quote">住院時先打 IV piperacillin/tazobactam，出院改口服 TMS 帶回家。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 病例 Parcey ══ -->
+  <div class="section" id="parcey">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🐶</div>
+      <h2>病例：Parcey，11 歲已結紮母巴吉度獵犬</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>病史與就診狀況 <span class="src src-slide">📽 講義</span></h3>
+        <ul class="notes">
+          <li>病史：<b>反覆發生、對抗生素有反應的吸入性肺炎</b>；吞嚥攝影（VFSS）證實<b>食道蠕動嚴重下降</b>及<b>胃食道逆流</b>。</li>
+          <li>這次因<b>呼吸窘迫加劇</b>就診，需要立即給予<b>高流量鼻導管氧氣（HFNO）</b>。</li>
+          <li>目前<b>沒有使用任何抗生素</b>。</li>
+          <li>T 99°F（37.2°C）、HR 160、RR 80。</li>
+        </ul>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">📘</span>
+        <div><b>補充：用 9 個問題套進去</b>
+          <ul class="notes" style="margin-top:4px;">
+            <li><b>Q1／SIRS：</b>體溫偏低（狗正常約 38–39°C）、心搏過速、呼吸急促——依常用的犬 SIRS 標準（體溫異常、HR &gt; 120、RR &gt; 20、WBC 異常，符合 ≥ 2 項），她已經符合 SIRS，應視為可能有敗血症，抗生素要在 1–2 小時內給（Q4）。</li>
+            <li><b>Q2、Q3：</b>食道蠕動差＋胃食道逆流，明確是吸入性肺炎，且易感因素無法根除。</li>
+            <li><b>Q4：</b>需要 HFNO 代表依賴氧氣，不適合馬上麻醉灌洗——和 Bunny 一樣，先經驗性治療。</li>
+            <li><b>Q6：</b>有敗血症徵象 → 依目前建議考慮 enrofloxacin ＋ ampicillin（或 clindamycin）。反覆住院、多次用過抗生素，要考慮抗藥菌的可能。</li>
+          </ul>
+          （以上為整理時的推論，後續以講者的病例討論為準。）
+        </div>
+      </div>
+      <div class="subsection">
+        <h3>Parcey 的教訓：吸入不一定等於細菌感染 <span class="src src-slide">📽 講義</span></h3>
+        <p style="font-size:14px; margin-bottom:8px;"><b>Cook S, Greensmith T, Humm K.</b> <i>Successful management of aspiration pneumopathy without antimicrobial agents: 14 dogs (2014–2021).</i> J Small Anim Pract. 2021;62(12):1108–1113.</p>
+        <ol class="notes">
+          <li>不是每隻吸入的狗都有細菌感染。</li>
+          <li>症狀可能來自<b>化學性發炎</b>（胃酸等吸入物造成的刺激）。</li>
+          <li>免疫功能正常的狗，即使有細菌感染，也可能<b>不用抗生素就緩解</b>。</li>
+          <li>ISCAID 指引：可以<b>不治療</b>，或<b>注射 β-lactam</b>（ampicillin、ampicillin-sulbactam 或第一代 cephalosporin cefazolin）可能就足夠。</li>
+          <li><b>Parcey 這次沒用抗生素是因為疏忽；有敗血症徵象的狗，仍然應該在 1–2 小時內給抗生素。</b></li>
+        </ol>
+      </div>
+      <div class="alert alert-warn">
+        <span class="alert-icon">⚠️</span>
+        <div><b>重點：</b>這個病例和研究不是要大家「吸入性肺炎不用給抗生素」。從投影片脈絡看，Parcey 是因為疏忽漏給抗生素（看起來沒有用抗生素也度過了），但她就診時已符合 SIRS——<b>有敗血症徵象就必須給</b>。可以考慮不給或只給簡單 β-lactam 的，是病況穩定、沒有全身性症狀、免疫正常的狗。</div>
+      </div>
+      <div class="subsection">
+        <h3>反覆發作的肺炎：霧化 amikacin <span class="src src-note">✍️ 筆記</span></h3>
+        <ul class="notes">
+          <li>之前<b>反覆發作肺炎</b>的病例，可以考慮 <b>amikacin 霧化（nebulization）</b>。</li>
+          <li>這隻狗之前長期吃 <b>TMS</b>，吃到<b>甲狀腺功能低下、變得很胖</b>，所以改用霧化 amikacin。</li>
+        </ul>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">📘</span>
+        <div>
+          <b>補充：</b>
+          <ul class="notes" style="margin-top:4px;">
+            <li><b>為什麼用霧化？</b>前面 Scenario 2 提到 amikacin 注射時肺部穿透性差、又有腎毒性；霧化直接把藥送到氣道，局部濃度高、全身吸收少，可避開腎毒性與神經肌肉副作用。獸醫的研究證據仍有限，霧化也可能誘發支氣管收縮，第一次使用要觀察。</li>
+            <li><b>TMS 與甲狀腺：</b>Sulfonamide 會抑制甲狀腺過氧化酶（thyroid peroxidase），長期使用可造成醫源性甲狀腺功能低下（體重增加、嗜睡等），通常停藥後可恢復——這就是 Scenario 1 提醒「使用超過 7 天要注意副作用」的原因之一。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3>呼吸道抗發炎用藥 <span class="src src-note">✍️ 筆記</span></h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th style="width:36%">藥物</th><th>用法</th></tr>
+            <tr><td><b>Fluticasone</b> 吸入劑</td><td>搭配 <b>AeroDawg</b>（犬用吸藥輔助器／spacer）</td></tr>
+            <tr><td><b>Dexamethasone SP</b></td><td><b>0.05–0.1 mg/kg IV q24h</b></td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">📘</span>
+        <div><b>補充：</b>
+          <ul class="notes" style="margin-top:4px;">
+            <li><b>Fluticasone</b> 是吸入型類固醇，直接作用在氣道、全身副作用少；狗無法配合直接吸，需用 AeroDawg 這類 spacer 加面罩，按壓後讓狗呼吸數次（常見做法約 7–10 次呼吸）。適合長期控制氣道發炎。</li>
+            <li><b>Dexamethasone SP</b>（sodium phosphate，可靜脈注射）0.05–0.1 mg/kg 屬抗發炎劑量，用於住院期間急性、嚴重的氣道發炎。注意 dex SP 標示濃度與實際 dexamethasone 含量可能不同（依藥廠標示），換算前先看清楚。</li>
+            <li>吸入性傷害初期以化學性發炎為主（見上方 Cook 2021），抗發炎治療的角色在此；但類固醇可能增加感染風險，有細菌性肺炎時要權衡。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">📘</span>
+        <div><b>補充：</b>這就是 Q1「真的是細菌感染嗎？」的實例——吸入後的「吸入性肺炎（pneumonitis，化學性傷害）」和「細菌性肺炎（pneumonia）」常無法馬上區分，所以文獻改用「aspiration pneumopathy」這個較中性的詞。吸入後最初的 24–48 小時多半是化學性發炎，之後才可能繼發細菌感染。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ ISCAID 指引資源 ══ -->
+  <div class="section" id="iscaid">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">🔗</div>
+      <h2>ISCAID 指引資源整理</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p style="font-size:14px; margin-bottom:10px;">講者介紹的 <a href="https://www.iscaid.org/guidelines" target="_blank" rel="noopener">ISCAID 指引頁面</a>，把各器官系統與病原的指引集中在一起。以下為頁面上的連結整理（2026-10 查閱）：</p>
+      <div class="grid2">
+        <div class="card-mini">
+          <h4>細菌感染｜器官系統</h4>
+          <ul>
+            <li><a href="https://www.sciencedirect.com/science/article/pii/S109002331830460X" target="_blank" rel="noopener">泌尿道：ISCAID 2019 更新版</a></li>
+            <li><a href="https://onlinelibrary.wiley.com/doi/10.1111/jvim.14627" target="_blank" rel="noopener">呼吸道：ISCAID 2017（本堂主要依據）</a></li>
+            <li><a href="https://onlinelibrary.wiley.com/doi/10.1111/vde.13342" target="_blank" rel="noopener">皮膚：2025 ISCAID 膿皮症指引</a></li>
+            <li><a href="https://www.oahn.ca/resources/antimicrobial-infographics/" target="_blank" rel="noopener">Ontario Animal Health Network 抗菌藥物資訊圖表</a></li>
+          </ul>
+        </div>
+        <div class="card-mini">
+          <h4>細菌感染｜病原</h4>
+          <ul>
+            <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3040842/" target="_blank" rel="noopener">Leptospira：ACVIM consensus（2011）</a></li>
+            <li><a href="https://onlinelibrary.wiley.com/doi/10.1111/jsap.12328" target="_blank" rel="noopener">Leptospira：European consensus（2015）</a></li>
+            <li><a href="https://onlinelibrary.wiley.com/doi/10.1111/jvim.15085" target="_blank" rel="noopener">Borrelia（萊姆病）：ACVIM consensus（2018 更新）</a></li>
+            <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4324656/" target="_blank" rel="noopener">Ehrlichia／Anaplasma：歐洲獸醫師指引（2015）</a></li>
+            <li><a href="https://www.abcdcatsvets.org/guidelines-infections/" target="_blank" rel="noopener">ABCD 貓細菌感染指引</a></li>
+          </ul>
+        </div>
+        <div class="card-mini">
+          <h4>國際與各國抗菌藥物指引</h4>
+          <ul>
+            <li><a href="https://www.mdpi.com/2079-6382/10/4/409" target="_blank" rel="noopener">歐洲小動物合理用藥指引總覽與評估（2021）</a></li>
+            <li><a href="https://vetantibiotics.fvas.unimelb.edu.au/" target="_blank" rel="noopener">澳洲獸醫處方指引</a></li>
+            <li><a href="https://www.fecava.org/wp-content/uploads/2020/01/FECAVA-Recommendations-for-Appropriate-Antimicrobial-ENGLISH-1.pdf" target="_blank" rel="noopener">FECAVA 建議（2020）</a></li>
+            <li><a href="https://wsava.org/global-guidelines/" target="_blank" rel="noopener">WSAVA 全球指引</a></li>
+            <li><a href="https://www.canadianveterinarians.net/veterinary-resources/antimicrobial-stewardship-resources/cvma-guidelines-for-veterinary-antimicrobial-use/" target="_blank" rel="noopener">加拿大 CVMA 指引（需註冊）</a></li>
+          </ul>
+        </div>
+        <div class="card-mini">
+          <h4>抗菌藥物管理（stewardship）與感染控制</h4>
+          <ul>
+            <li><a href="https://www.aaha.org/globalassets/02-guidelines/2022-antimicrobial/2022-aafp_aaha-antimicrobial-stewardship-guidelines.pdf" target="_blank" rel="noopener">2022 AAFP/AAHA 抗菌藥物管理指引</a></li>
+            <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4895515/" target="_blank" rel="noopener">ACVIM 治療性抗菌藥物使用與抗藥性共識（2015）</a></li>
+            <li><a href="https://arsi.umn.edu/sites/arsi.umn.edu/files/2020-06/Handook_Final_3June2020.pdf" target="_blank" rel="noopener">伴侶動物抗菌藥物管理手冊（UMN，2020）</a></li>
+            <li><a href="https://www.aaha.org/globalassets/02-guidelines/infection-control/icpb_guidelines.pdf" target="_blank" rel="noopener">AAHA 感染控制與生物安全（2018）</a></li>
+            <li><a href="https://www.oahn.ca/resources/ipc-best-practices/" target="_blank" rel="noopener">OAHN 小動物診所感染預防與控制</a></li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--text-muted); margin-top:8px;">同一頁另有病毒（FIP、貓反轉錄病毒）、寄生蟲（CAPC、ESCCAP、心絲蟲、利什曼）、黴菌與人畜共通傳染病的指引，可直接到 ISCAID 頁面展開查看。</p>
+    </div>
+  </div>
+
+  <!-- ══ 參考資料 ══ -->
+  <div class="section" id="ref">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📚</div>
+      <h2>參考資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="ref-list">
+        <div class="ref-item">Lappin MR, et al. Antimicrobial use guidelines for treatment of respiratory tract disease in dogs and cats: Antimicrobial Guidelines Working Group of the International Society for Companion Animal Infectious Diseases. <em>J Vet Intern Med.</em> 2017;31(2):279–294. <a href="https://onlinelibrary.wiley.com/doi/10.1111/jvim.14627" target="_blank" rel="noopener">連結</a></div>
+        <div class="ref-item">Riffe CI, Heinz JA, Patterson CA, Cook AK, Yankin I. There is no significant difference in the treatment of aspiration pneumonia in dogs with ampicillin-sulbactam versus ampicillin-sulbactam and enrofloxacin. <em>J Am Vet Med Assoc.</em> 2025;263(8):1–9. <a href="https://doi.org/10.2460/javma.24.10.0673" target="_blank" rel="noopener">doi:10.2460/javma.24.10.0673</a></div>
+        <div class="ref-item">Cook S, Greensmith T, Humm K. Successful management of aspiration pneumopathy without antimicrobial agents: 14 dogs (2014–2021). <em>J Small Anim Pract.</em> 2021;62(12):1108–1113. <a href="https://doi.org/10.1111/jsap.13409" target="_blank" rel="noopener">doi:10.1111/jsap.13409</a></div>
+        <div class="ref-item">Clinician's Brief. <em>Transoral Tracheal &amp; Transtracheal Airway Wash.</em> <a href="https://www.cliniciansbrief.com/article/transoral-tracheal-transtracheal-airway-wash" target="_blank" rel="noopener">連結</a></div>
+        <div class="ref-item">梅醫師．知菌知藥系列 Part 2．2026 年 10 月 8 日。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一篇：<a href="part1.html" style="background:none;color:var(--primary);padding:0;">Part 1 抗菌藥物選擇與泌尿道感染</a>｜Part 3 將陸續整理更新。</p>
+    <a href="index.html">回到系列列表 →</a>
+  </div>
+
+</div><!-- /main -->
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
