@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>貓的腎上腺疾病：高醛固酮症、多激素與性激素腫瘤｜2026 Texas 內分泌研討會</title>
+<style>
+  :root {
+    --primary: #0F766E;
+    --primary-light: #CCFBF1;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0d2522;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9cc8c1; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #1f4a44;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9cc8c1; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9cc8c1;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #1f4a44;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #5f8f87;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0b4f49 0%, #14a395 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0d2522; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #1f4a44; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 Texas 內分泌研討會</a>
+  <div class="logo">
+    <h2>22｜貓的腎上腺疾病：<br>高醛固酮症、多激素與性激素腫瘤</h2>
+    <p>Daniel K. Langlois｜講義版</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">場次資訊與大綱</a>
+    <div class="nav-section">原發性高醛固酮症（PHA）</div>
+    <a href="#s1">1. 醛固酮與 Conn 症候群</a>
+    <a href="#s2">2. 貓 PHA：病因與盛行</a>
+    <a href="#s3">3. 三隻貓，哪一隻是 PHA？</a>
+    <a href="#s4">4. 臨床與檢驗特徵</a>
+    <a href="#s5">5. 為什麼常被漏診</a>
+    <a href="#s6">6. 診斷檢測</a>
+    <a href="#s7">7. 治療</a>
+    <div class="nav-section">多激素腫瘤</div>
+    <a href="#s8">8. 病例 Mr. Hudson</a>
+    <a href="#s9">9. 黃體素與皮質酮：沒那麼少見</a>
+    <div class="nav-section">其他腎上腺疾病</div>
+    <a href="#s10">10. 貓庫欣氏症</a>
+    <a href="#s11">11. 病例 Sam：雄性素腫瘤</a>
+    <div class="nav-section">總結</div>
+    <a href="#s12">Take-home 與參考資料</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>貓的腎上腺疾病：高醛固酮症、多激素與性激素分泌腫瘤</h1>
+    <p>主講：Daniel K. Langlois, DVM, DACVIM｜密西根州立大學（MSU）獸醫學院內科教授</p>
+    <p>VET-KU × Texas A&amp;M 內科研討會｜場次 22｜Langlois Lecture 5</p>
+    <div class="tags">
+      <span class="tag">Primary hyperaldosteronism</span>
+      <span class="tag">Conn 症候群</span>
+      <span class="tag">低血鉀</span>
+      <span class="tag">高血壓</span>
+      <span class="tag">CK 升高</span>
+      <span class="tag">醛固酮判讀</span>
+      <span class="tag">Spironolactone</span>
+      <span class="tag">腎上腺切除</span>
+      <span class="tag">黃體素／皮質酮</span>
+      <span class="tag">貓庫欣</span>
+      <span class="tag">皮膚脆弱症候群</span>
+      <span class="tag">雄性素腫瘤</span>
+      <span class="tag">陰莖倒刺</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（頁碼＝講義投影片編號 1–62）
+    <span class="src src-add">💡 補充</span> 整理者補充（機轉、判讀、交叉參照）
+    <br><span class="muted">目前是<strong>講義版</strong>：還沒有課堂錄音與逐字稿。講者在課堂上公布的答案（例如「哪一隻貓是 PHA」）之後會補上。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li>狗的功能性腎上腺腫瘤以<strong>皮質醇</strong>為主；貓則以<strong>醛固酮</strong>最常見，其次是多激素腫瘤</li>
+      <li>貓 PHA 兩大臨床特徵：<strong>高血壓</strong>、<strong>多發性肌病</strong>；三大生化特徵：<strong>低血鉀、CK 升高、代謝性鹼中毒</strong></li>
+      <li>低血鉀＋高血壓常被歸給 CKD 或甲亢，但甲亢很少造成嚴重高血壓或嚴重低血鉀；CKD 除非很嚴重或厭食，也少見嚴重低血鉀</li>
+      <li><strong>中老年、低血鉀又高血壓的貓都該驗 PHA</strong>；單獨低血鉀或單獨高血壓（&gt;180 mmHg）也要考慮</li>
+      <li>實務診斷：<strong>低血鉀當下</strong>測醛固酮。&gt;1000 pmol/L 強烈懷疑（約 90% 病貓）；800–1000 可疑；400–800 不太像腫瘤</li>
+      <li>再加上<strong>超音波找到腎上腺腫塊</strong>。醛固酮／腎素比在美國買不到，抑制試驗的價值仍不明</li>
+      <li>手術可治癒，腺瘤與腺癌的中位存活都是 1–3 年；但病貓多半是 13 歲上下、有共病，手術費約 4500–5000 美元</li>
+      <li>內科：amlodipine 控血壓、葡萄糖酸鉀補鉀、<strong>spironolactone 1–4 mg/kg q24h</strong> 拮抗醛固酮</li>
+      <li>PHA 貓若有<strong>糖尿病或皮膚變化</strong>，要驗黃體素／皮質酮：約 1/4 的 PHA 貓黃體素 &gt;10 nmol/L</li>
+      <li>對側腎上腺萎縮＝有糖皮質激素作用，術後可能<strong>暫時性 Addison</strong>；切除後部分貓糖尿病會緩解</li>
+      <li>貓庫欣：&gt;80% 有糖尿病、&gt;50% 皮膚變薄、1/3 皮膚脆弱；首選 <strong>LDDST（劑量是狗的 10 倍）</strong>，治療首選 trilostane</li>
+      <li>公貓結紮後出現<strong>陰莖倒刺</strong>、尿臭、亂尿尿：想到分泌雄性素（androstenedione）的腎上腺腫瘤</li>
+    </ul>
+  </div>
+
+  <!-- ══ S0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🎯</div>
+      <h2>場次資訊與大綱</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 1–2</span> 講者與大綱</h3>
+        <ul class="notes">
+          <li>講者 Daniel K. Langlois，DVM、DACVIM，MSU 獸醫學院內科教授。</li>
+          <li>主軸：<strong>高醛固酮症</strong>，以及<strong>多激素與性激素異常</strong>。</li>
+          <li>以病例帶出：如何辨識、診斷、處理。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 3</span> 功能性腎上腺腫瘤：狗 vs. 貓</h3>
+        <figure class="fig">
+          <img src="photos/22-03-functional-tumors.jpg" alt="狗與貓功能性腎上腺腫瘤的分泌激素排序" loading="lazy">
+          <figcaption>📄 3：字越大代表越常見</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>排序</th><th>狗</th><th>貓</th></tr>
+          <tr><td>最常見</td><td><strong>皮質醇</strong>（壓倒性多數）</td><td><strong>醛固酮</strong></td></tr>
+          <tr><td>其次</td><td>嗜鉻細胞瘤</td><td>多激素</td></tr>
+          <tr><td></td><td>其他：罕見</td><td>性激素</td></tr>
+          <tr><td></td><td></td><td>皮質醇</td></tr>
+          <tr><td></td><td></td><td>嗜鉻細胞瘤</td></tr>
+        </table></div>
+        <p class="p"><span class="src src-add">💡</span> 對照前面幾場：狗的腎上腺腫塊先想庫欣（📖 <a href="cushings-diagnosis-treatment.html">12</a>）和嗜鉻細胞瘤（📖 <a href="endocrine-neoplasia.html">15</a>）；貓的腎上腺腫塊，第一個要想的是醛固酮。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🧬</div>
+      <h2>1. 醛固酮與 Conn 症候群</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 4–5</span> 醛固酮的作用與分泌調控</h3>
+        <ul class="notes">
+          <li>主要的<strong>礦物皮質素</strong>，由腎上腺皮質<strong>球狀帶（zona glomerulosa）</strong>分泌。</li>
+          <li>作用在腎臟<strong>遠曲小管（DRT）與集尿管（CD）</strong>：
+            <ul class="notes">
+              <li><strong>主細胞（principal cells）</strong>：再吸收 Na⁺、排出 K⁺</li>
+              <li><strong>間細胞（intercalated cells）</strong>：Na⁺/H⁺ 交換（排 H⁺）</li>
+            </ul>
+          </li>
+          <li>分泌的主要刺激：<strong>血漿 K⁺</strong> 與 <strong>RAAS</strong>；ACTH 與 Na⁺ 是次要因素。</li>
+        </ul>
+        <figure class="fig">
+          <img src="photos/22-05-raas.jpg" alt="腎素-血管張力素-醛固酮系統示意圖" loading="lazy">
+          <figcaption>📄 5：RAAS。肝臟的血管張力素原 → 腎素 → 血管張力素 I → 肺臟 ACE → 血管張力素 II → 腎上腺分泌醛固酮 → 保鈉保水、血壓上升</figcaption>
+        </figure>
+        <p class="p"><span class="src src-add">💡</span> 把作用位置記起來，PHA 的三個生化特徵就推得出來：主細胞排 K⁺ → <strong>低血鉀</strong>；間細胞排 H⁺ → <strong>代謝性鹼中毒</strong>；保鈉保水 → <strong>高血壓</strong>。低血鉀再造成<strong>低血鉀性肌病與 CK 升高</strong>。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 6–8</span> Conn 症候群與人類的 PHA</h3>
+        <figure class="fig">
+          <img src="photos/22-06-conn.jpg" alt="Jerome Conn 與 1955 年 Annals of Internal Medicine 論文" loading="lazy">
+          <figcaption>📄 6：Dr. Jerome Conn 在 1955 年描述「有趣的症狀組合，以及迷人的電解質代謝紊亂」</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><strong>Conn 症候群</strong>＝功能性腎上腺皮質腫瘤造成的原發性高醛固酮症（PHA）。</li>
+          <li>人類 PHA 的病因（由常見到少見）：<strong>雙側特發性增生</strong> &gt; Conn 症候群（腺瘤）&gt; 原發性腎上腺增生 &gt; 腎上腺皮質癌 &gt; 家族性 &gt; 異位性（Young 2007）。</li>
+          <li><span class="src src-add">💡</span> 人類 PHA 以雙側增生為主，貓則以單側腫瘤為主（下一節）。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🐈</div>
+      <h2>2. 貓 PHA：病因與盛行</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 9</span> 第一個病例（1983）</h3>
+        <div class="grid2">
+          <figure class="fig">
+            <img src="photos/22-09-first-case-1983.jpg" alt="1983 年第一例貓 PHA 的腎上腺皮質癌" loading="lazy">
+            <figcaption>📄 9：Eger et al., JSAP 1983</figcaption>
+          </figure>
+          <ul class="notes">
+            <li>1983 年首次報告。</li>
+            <li>全身無力，低血鉀 <strong>1.7 mmol/L</strong>。</li>
+            <li>血清與尿液醛固酮「偏高」。</li>
+            <li>尿毒症逐漸惡化、身體衰弱。</li>
+            <li>剖檢：<strong>腎上腺皮質癌（ACC）</strong>。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 10</span> 病因</h3>
+        <figure class="fig">
+          <img src="photos/22-10-etiology.jpg" alt="貓 PHA 病因：腎上腺皮質腫瘤與雙側增生" loading="lazy">
+          <figcaption>📄 10：右下為 Javadi et al. 的論文〈Primary hyperaldosteronism, a mediator of progressive renal disease in cats〉</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><strong>腎上腺皮質腫瘤</strong>為主：
+            <ul class="notes">
+              <li>最常見<strong>單側</strong></li>
+              <li>腺瘤與腺癌都有</li>
+              <li>少數是雙側腫瘤</li>
+            </ul>
+          </li>
+          <li><strong>雙側增生？</strong>（問號：存在，但角色仍有爭議）</li>
+          <li><span class="src src-add">💡</span> Javadi 等人的論文提出：雙側結節性增生造成的低度 PHA，可能是部分貓 CKD 惡化的推手。這也是 📄 25「氮血症是 PHA 的後果還是巧合？」的背景。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 11</span> 報告越來越多</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>年代</th><th>PubMed 發表數（hyperaldosteronism cat veterinary）</th></tr>
+          <tr><td>1980–1989</td><td>1</td></tr>
+          <tr><td>1990–1999</td><td>4</td></tr>
+          <tr><td>2000–2009</td><td>約 10</td></tr>
+          <tr><td>2010–2019</td><td>約 15</td></tr>
+        </table></div>
+        <p class="p"><span class="src src-add">💡</span> 增加的主要是「有人去驗」，不一定是疾病真的變多。這就是第 5 節「有認知才有診斷」的意思。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🔎</div>
+      <h2>3. 三隻貓，哪一隻是 PHA？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 12、15、18</span> 三隻貓的病史</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>Cat 1</th><th>Cat 2</th><th>Cat 3</th></tr>
+          <tr><td>訊號</td><td>14 歲 F/S DSH</td><td>9 歲 F/S DSH</td><td>15 歲 M/N DSH</td></tr>
+          <tr><td>病史（3 個月）</td><td>PU/PD、<strong>視覺異常</strong>、體重減輕</td><td>PU/PD、<strong>無力</strong>、體重減輕</td><td>PU/PD、嘔吐、體重減輕、<strong>食慾增加</strong></td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 13–14、16–17、19–20</span> 生化檢驗</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>參考值</th><th>Cat 1</th><th>Cat 2</th><th>Cat 3</th></tr>
+          <tr><td>BUN (mg/dL)</td><td>19–36</td><td><strong>135 H</strong></td><td><strong>39 H</strong></td><td>33</td></tr>
+          <tr><td>Creatinine (mg/dL)</td><td>1.0–2.3</td><td><strong>3.8 H</strong></td><td>2.1</td><td>1.7</td></tr>
+          <tr><td>Na (mmol/L)</td><td>145–155</td><td>148</td><td>154</td><td>148</td></tr>
+          <tr><td>K (mmol/L)</td><td>3.8–5.4</td><td><strong>3.3 L</strong></td><td><strong>2.2 L</strong></td><td><strong>3.6 L</strong></td></tr>
+          <tr><td>Cl (mmol/L)</td><td>110–123</td><td>111</td><td>119</td><td>111</td></tr>
+          <tr><td>HCO₃⁻ (mmol/L)</td><td>13–22</td><td><strong>11 L</strong></td><td><strong>25 H</strong></td><td>18</td></tr>
+          <tr><td>Ca (mg/dL)</td><td>9.1–10.7</td><td>10.4</td><td>10.4</td><td>10.0</td></tr>
+          <tr><td>P (mg/dL)</td><td>2.7–5.7</td><td><strong>6.1 H</strong></td><td>5.0</td><td>4.5</td></tr>
+          <tr><td>Mg (mg/dL)</td><td>1.8–2.5</td><td>2.3</td><td>2.3</td><td>2.0</td></tr>
+          <tr><td>TP／Alb (g/dL)</td><td>6.5–7.8／3.0–3.9</td><td>6.9／3.4</td><td>7.0／3.2</td><td>6.5／3.0</td></tr>
+          <tr><td>Globulin (g/dL)</td><td>2.8–4.7</td><td>3.5</td><td>3.8</td><td>3.5</td></tr>
+          <tr><td>Glucose (mg/dL)</td><td>78–143</td><td>98</td><td>113</td><td>140</td></tr>
+          <tr><td>ALP (U/L)</td><td>13–48</td><td>44</td><td>16</td><td><strong>244 H</strong></td></tr>
+          <tr><td>ALT (U/L)</td><td>25–76</td><td>52</td><td>71</td><td><strong>202 H</strong></td></tr>
+          <tr><td>AST (U/L)</td><td>14–36</td><td>19</td><td>30</td><td>34</td></tr>
+          <tr><td>CK (U/L)</td><td>46–490</td><td>388</td><td><strong>975 H</strong></td><td>404</td></tr>
+          <tr><td>Chol (mg/dL)</td><td>72–248</td><td>205</td><td>172</td><td>99</td></tr>
+        </table></div>
+        <p class="muted">Amylase、膽紅素皆在參考範圍內，未列出。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 21</span> 哪一隻貓有 PHA？</h3>
+        <figure class="fig">
+          <img src="photos/22-21-which-cat.jpg" alt="頸部腹屈的 PHA 貓與切除的腎上腺腫瘤" loading="lazy">
+          <figcaption>📄 21：上為低血鉀性肌病造成頸部腹屈的貓，下為切除的腎上腺腫瘤（Boland &amp; Barrs 2017）</figcaption>
+        </figure>
+        <p class="p"><span class="src src-add">💡</span> <strong>整理者的判讀（講者答案待逐字稿確認）</strong>：</p>
+        <ul class="notes">
+          <li><strong>Cat 2 最典型</strong>：嚴重低血鉀（2.2）、<strong>CK 升高</strong>（975）、<strong>HCO₃⁻ 偏高</strong>（代謝性鹼中毒）、主訴無力，三個生化特徵全中；腎指數只有輕度異常。</li>
+          <li><strong>Cat 1 不能排除</strong>：看起來像 CKD（BUN 135、Cr 3.8、P 6.1、HCO₃⁻ 11 的酸中毒），但<strong>視覺異常</strong>是高血壓性視網膜病變的線索（📄 24）。CKD 也會低血鉀，PHA 也會讓腎病惡化（📄 10），而且 PHA 的鹼中毒可能被腎衰竭的酸中毒抵消。</li>
+          <li><strong>Cat 3 也不能排除</strong>：食慾增加、嘔吐、ALP／ALT 升高，先想<strong>甲亢</strong>；但輕度低血鉀仍值得驗醛固酮，因為甲亢很少造成明顯低血鉀（📄 27）。</li>
+          <li>📄 21 的標題是「Which Cat Has PHA?」，下一張直接講 PHA 的特徵。講者的用意很可能是：<strong>三隻都可能是</strong>，只看 CKD 或甲亢的外表會漏診。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🩺</div>
+      <h2>4. 臨床與檢驗特徵</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 22</span> 2 個臨床特徵＋3 個生化特徵</h3>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>臨床特徵</h4>
+            <ul>
+              <li>高血壓</li>
+              <li>多發性肌病（polymyopathy）</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>生化特徵</h4>
+            <ul>
+              <li>低血鉀</li>
+              <li>CK 升高</li>
+              <li>代謝性鹼中毒</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 23</span> 低血鉀性肌病</h3>
+        <figure class="fig">
+          <img src="photos/22-23-ventroflexion.jpg" alt="兩隻低血鉀性肌病、頸部腹屈的貓" loading="lazy">
+          <figcaption>📄 23：低血鉀性肌病的貓</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>投影片是兩隻頸部腹屈（ventroflexion）、低頭站不穩的貓。</li>
+          <li><span class="src src-add">💡</span> 頸部腹屈是貓低血鉀性肌病的典型姿勢，因為貓沒有項韌帶。其他鑑別：甲亢、硫胺素缺乏、重症肌無力、有機磷中毒。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 24</span> 高血壓的眼部表現</h3>
+        <figure class="fig">
+          <img src="photos/22-24-hypertension-eye.jpg" alt="貓高血壓：泡狀視網膜剝離、視網膜出血、前房出血" loading="lazy">
+          <figcaption>📄 24：左為泡狀視網膜剝離、中為視網膜出血、右為前房出血（hyphema）</figcaption>
+        </figure>
+        <p class="p"><span class="src src-add">💡</span> Cat 1 的「視覺異常」就是在提示這個。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 25</span> 其他和高血壓相關的發現</h3>
+        <ul class="notes">
+          <li><strong>氮血症常見</strong>：是 PHA 造成的，還是剛好一起出現？</li>
+          <li><strong>心臟病與心雜音常見</strong>。</li>
+          <li>可能有<strong>神經症狀</strong>。</li>
+          <li><strong>摸得到腹部腫塊很少見</strong>。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef9c3">🕵️</div>
+      <h2>5. 為什麼常被漏診</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 26</span> 講者的提問</h3>
+        <div class="quote">過去 2 年，你診斷過幾例 PHA？<span class="quote-zh">過去 2 年，你為了 PHA 驗過幾次？</span></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 27</span> 有認知，才有診斷</h3>
+        <ul class="notes">
+          <li>同時有低血鉀和高血壓時，常被歸給 <strong>CKD 或甲亢</strong>：
+            <ul class="notes">
+              <li>甲亢<strong>很少</strong>造成嚴重高血壓或嚴重低血鉀。</li>
+              <li>CKD 除非很嚴重，或同時厭食，否則<strong>很少</strong>造成嚴重低血鉀。</li>
+            </ul>
+          </li>
+          <li>高血壓常被歸給 CKD 或特發性／原發性高血壓（在獸醫很少見），沒有深入檢查就開始治療。</li>
+        </ul>
+        <div class="quote">→ 中老年、低血鉀又高血壓的貓，都應該驗 PHA<span class="quote-zh">→ 只有低血鉀，或只有高血壓（&gt;180 mmHg）的貓，也要考慮 PHA</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🧪</div>
+      <h2>6. 診斷檢測</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 28</span> 醛固酮檢測的選項</h3>
+        <div class="grid2">
+          <ul class="notes">
+            <li><strong>單次血中醛固酮</strong>：要考慮實驗室與檢測方法、生理狀態（例如當下血鉀）。</li>
+            <li><strong>醛固酮／腎素比（ARR）</strong>：黃金標準？</li>
+            <li><strong>尿液醛固酮／肌酸酐比（UACR）</strong></li>
+            <li><strong>抑制試驗</strong>：「疾病是分泌過多，就試著去抑制它」，用 fludrocortisone 或 telmisartan。</li>
+            <li>→ 都要<strong>搭配影像學</strong>。</li>
+          </ul>
+          <figure class="fig">
+            <img src="photos/22-28-uacr.jpg" alt="42 隻健康貓的尿液醛固酮肌酸酐比" loading="lazy">
+            <figcaption>📄 28：42 隻健康貓的 UACR 分布（Djajadiningrat-Laanen et al., JVIM 2008）</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 29</span> 醛固酮／腎素比：黃金標準？</h3>
+        <figure class="fig">
+          <img src="photos/22-29-arr.jpg" alt="PHA 貓的醛固酮、血漿腎素活性與比值" loading="lazy">
+          <figcaption>📄 29：Javadi et al., Domest Anim Endocrinol 2005</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>美國<strong>沒有商業化檢驗</strong>。</li>
+          <li>沒有診斷效能驗證。</li>
+          <li>零星病例的血漿腎素活性（PRA）<strong>沒有被抑制</strong>（傳聞報告）。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 理論上原發性高醛固酮的腎素應該被壓低、比值升高；但如果腎素沒被壓低，比值就失去鑑別力。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 30–31</span> 抑制試驗</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>試驗</th><th>做法</th><th>結論</th></tr>
+          <tr><td>Fludrocortisone（尿液）</td><td>0.05 mg/kg PO q12h × 4 天；第 0 天與第 4 天測 UACR</td><td rowspan="2">臨床價值不明：尿液版結果互相矛盾，血清版缺乏後續研究（Djajadiningrat-Laanen 2008、2013；Matsuda 2015）</td></tr>
+          <tr><td>Fludrocortisone（血清／血漿）</td><td>0.05 mg/kg PO q12h × 3 劑；第 0 天與第 2 天測醛固酮</td></tr>
+          <tr><td>Telmisartan</td><td>2 mg/kg PO 一次；給藥前與 60／90 分鐘測醛固酮</td><td><strong>無法區分</strong> PHA 貓與健康中老年貓，或可能有續發性高醛固酮的貓（Fabres et al., JVIM 2023）</td></tr>
+        </table></div>
+        <figure class="fig">
+          <img src="photos/22-31-telmisartan.jpg" alt="Telmisartan 抑制試驗結果" loading="lazy">
+          <figcaption>📄 31：PHA、CKD、甲亢與健康貓的醛固酮變化重疊</figcaption>
+        </figure>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 32</span> 實務診斷</h3>
+        <figure class="fig">
+          <img src="photos/22-32-practical-aldo.jpg" alt="PHA 貓與非 PHA 貓的血漿醛固酮濃度" loading="lazy">
+          <figcaption>📄 32：Djajadiningrat-Laanen et al., JVIM 2013；Kurtz et al., JVIM 2023</figcaption>
+        </figure>
+        <p class="p">在<strong>低血鉀當下</strong>測醛固酮：</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>醛固酮（pmol/L）</th><th>判讀</th></tr>
+          <tr><td><strong>&gt;1000</strong></td><td>強烈懷疑 PHA（約 90% 的病貓落在這裡）</td></tr>
+          <tr><td>800–1000</td><td>模稜兩可、可疑</td></tr>
+          <tr><td>400–800</td><td>不太像腫瘤；可能是特發性增生、非腎上腺疾病（NAI），或正常變異</td></tr>
+        </table></div>
+        <p class="p">再加上<strong>超音波找到腎上腺腫塊</strong>。</p>
+        <p class="p"><span class="src src-add">💡</span> 為什麼要在低血鉀時測：正常貓低血鉀時醛固酮應該被壓低，這時醛固酮還很高就是「不適當」的分泌。補鉀把血鉀拉回來後再測，正常反應和 PHA 會更難區分。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">💊</div>
+      <h2>7. 治療</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 33</span> 手術的考量</h3>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>手術有機會治癒</h4>
+            <ul>
+              <li>各研究中位存活 1–3 年</li>
+              <li>腺瘤與腺癌差不多</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>但是……</h4>
+            <ul>
+              <li>病貓年紀大（中位數 13 歲）</li>
+              <li>共病多</li>
+              <li>本來的預期壽命？</li>
+              <li>手術費 4500–5000 美元</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 34</span> 直接處理腎上腺？Trilostane 或 Lysodren</h3>
+        <figure class="fig">
+          <img src="photos/22-34-trilostane-lysodren.jpg" alt="Trilostane 與 Lysodren 在貓腎上腺疾病的角色" loading="lazy">
+          <figcaption>📄 34：右為 mitotane 治療貓庫欣的病例報告（Schwedes, JSAP），連續 ACTH 刺激試驗的皮質醇逐漸被壓低</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><strong>Trilostane</strong>：
+            <ul class="notes">
+              <li>對大多數 PHA 貓<strong>沒有明顯幫助</strong>。</li>
+              <li>分泌性激素和雄性素的腫瘤，零星報告有「部分」改善。</li>
+              <li>可能最適合留給典型的庫欣病例。</li>
+            </ul>
+          </li>
+          <li><strong>Lysodren（mitotane）</strong>：
+            <ul class="notes">
+              <li>庫欣以外的病例幾乎沒有資料。</li>
+              <li>換個給藥方式也許比較能耐受？</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 35</span> 內科治療</h3>
+        <figure class="fig">
+          <img src="photos/22-35-medical-mx.jpg" alt="Amlodipine、葡萄糖酸鉀、Spironolactone" loading="lazy">
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>類別</th><th>藥物</th><th>劑量</th></tr>
+          <tr><td rowspan="2">症狀治療</td><td>Amlodipine（2.5 mg 錠）</td><td>¼–½ 錠 PO q24h</td></tr>
+          <tr><td>葡萄糖酸鉀（Tumil-K）</td><td>2–4 mEq PO q12h</td></tr>
+          <tr><td>標靶治療</td><td>Spironolactone（醛固酮受體拮抗劑）</td><td>1–4 mg/kg PO q24h</td></tr>
+        </table></div>
+        <p class="p"><span class="src src-add">💡</span> 補鉀要搭配監測血鉀，嚴重低血鉀（&lt;2.5）合併肌無力時通常需要先住院靜脈補鉀。Spironolactone 在貓有<strong>臉部潰瘍性皮膚炎</strong>的報告（緬因貓），用藥後要留意臉部皮膚。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🐾</div>
+      <h2>8. 病例 Mr. Hudson：醛固酮＋黃體素＋皮質酮</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 36</span> 病史</h3>
+        <p class="p">Mr. Hudson，10 歲 M/N DSH。</p>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>問題</h4>
+            <ul>
+              <li>無力、低血鉀</li>
+              <li>高血壓</li>
+              <li>右側腎上腺腫塊</li>
+              <li>糖尿病</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>目前治療</h4>
+            <ul>
+              <li>Insulin glargine</li>
+              <li>Amlodipine</li>
+              <li>葡萄糖酸鉀</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 37–38</span> 生化檢驗</h3>
+        <div class="grid2">
+          <div class="tbl-wrap"><table>
+            <tr><th>項目</th><th>結果</th><th>參考值</th></tr>
+            <tr><td>BUN (mg/dL)</td><td>26</td><td>19–36</td></tr>
+            <tr><td>Creatinine (mg/dL)</td><td>1.4</td><td>1.0–2.3</td></tr>
+            <tr><td>Na (mmol/L)</td><td><strong>144 L</strong></td><td>145–155</td></tr>
+            <tr><td>K (mmol/L)</td><td><strong>3.4 L</strong></td><td>3.8–5.4</td></tr>
+            <tr><td>Cl (mmol/L)</td><td><strong>81 L</strong></td><td>110–123</td></tr>
+            <tr><td>HCO₃⁻ (mmol/L)</td><td><strong>40 H</strong></td><td>13–22</td></tr>
+            <tr><td>Na/K</td><td><strong>42 H</strong></td><td>28–40</td></tr>
+            <tr><td>Anion gap</td><td>26</td><td>15–28</td></tr>
+            <tr><td>Osmolality calc</td><td>319</td><td>302–323</td></tr>
+            <tr><td>Ca／P (mg/dL)</td><td>10.3／4.5</td><td>9.1–10.7／2.7–5.7</td></tr>
+            <tr><td>Mg (mg/dL)</td><td><strong>1.4 L</strong></td><td>1.8–2.5</td></tr>
+          </table></div>
+          <div class="tbl-wrap"><table>
+            <tr><th>項目</th><th>結果</th><th>參考值</th></tr>
+            <tr><td>TP／Alb (g/dL)</td><td>7.8／3.6</td><td>6.5–7.8／3.0–3.9</td></tr>
+            <tr><td>Globulin (g/dL)</td><td>4.2</td><td>2.8–4.7</td></tr>
+            <tr><td>Glucose (mg/dL)</td><td><strong>385 H</strong></td><td>78–143</td></tr>
+            <tr><td>ALP (U/L)</td><td><strong>81 H</strong></td><td>13–48</td></tr>
+            <tr><td>ALT (U/L)</td><td><strong>271 H</strong></td><td>25–76</td></tr>
+            <tr><td>AST (U/L)</td><td><strong>263 H</strong></td><td>14–36</td></tr>
+            <tr><td>CK (U/L)</td><td>207</td><td>46–490</td></tr>
+            <tr><td>Chol (mg/dL)</td><td><strong>256 H</strong></td><td>72–248</td></tr>
+            <tr><td>Iron (µg/dL)</td><td>65</td><td>45–157</td></tr>
+          </table></div>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> HCO₃⁻ 40 加上嚴重低氯（81）＝明顯的低氯性代謝性鹼中毒；低血鉀、低血鎂都符合醛固酮過多。高血糖、ALP／ALT 升高、高膽固醇則是糖尿病控制不佳（也可能有其他類固醇的作用）。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 39–41</span> 有趣的發現</h3>
+        <div class="grid2">
+          <figure class="fig">
+            <img src="photos/22-39-hudson.jpg" alt="Mr. Hudson 的外觀" loading="lazy">
+            <figcaption>📄 39：Mr. Hudson 的外觀（被毛凌亂、皮膚變化）</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/22-40-steroidogenesis.jpg" alt="腎上腺類固醇合成路徑，圈出黃體素與皮質酮" loading="lazy">
+            <figcaption>📄 40：類固醇合成路徑，圈出<strong>黃體素</strong>與<strong>皮質酮</strong>，兩者都在醛固酮的上游</figcaption>
+          </figure>
+        </div>
+        <div class="tbl-wrap"><table>
+          <tr><th>檢驗</th><th>結果</th><th>參考值</th></tr>
+          <tr><td>基礎皮質醇</td><td>21 nmol/L</td><td>15–97</td></tr>
+          <tr><td>ACTH 刺激後皮質醇</td><td><strong>68 nmol/L（偏低）</strong></td><td>97–207</td></tr>
+          <tr><td>黃體素（progesterone）</td><td><strong>26 nmol/L</strong></td><td>≤2</td></tr>
+          <tr><td>皮質酮（corticosterone）</td><td><strong>205 nmol/L</strong></td><td>≤32</td></tr>
+          <tr><td>左側腎上腺</td><td colspan="2"><strong>很小（&lt;3 mm）</strong></td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 42</span> 多激素分泌：醛固酮、黃體素、皮質酮</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>表現</th><th>可能的元兇</th></tr>
+          <tr><td>胰島素阻抗與糖尿病</td><td>黃體素 ± 皮質酮</td></tr>
+          <tr><td>皮膚變化</td><td>皮質酮 ± 黃體素</td></tr>
+          <tr><td>對側腎上腺萎縮、HPA 軸被抑制</td><td>可能是皮質酮</td></tr>
+        </table></div>
+        <p class="p"><span class="src src-add">💡</span> 皮質酮有糖皮質激素作用，會負回饋壓低 ACTH，所以對側腎上腺萎縮、ACTH 刺激後皮質醇反應不足。這不是 Addison，而是腫瘤分泌的「另一種糖皮質激素」取代了皮質醇。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 43</span> 結果</h3>
+        <figure class="fig">
+          <img src="photos/22-43-hudson-outcome.jpg" alt="Mr. Hudson 的術後結果與病理切片" loading="lazy">
+        </figure>
+        <ul class="notes">
+          <li>腎上腺切除手術順利、沒有併發症。</li>
+          <li>術後出現<strong>暫時性 Addison 氏症</strong>：
+            <ul class="notes">
+              <li>ACTH 刺激試驗結果</li>
+              <li>腎上腺萎縮</li>
+              <li>皮質酮的作用？</li>
+            </ul>
+          </li>
+          <li>術後 <strong>2 個月糖尿病緩解</strong>。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">📊</div>
+      <h2>9. 黃體素與皮質酮：沒那麼少見</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 44–47</span> 依醛固酮濃度分組（Langlois et al., JVIM 2021）</h3>
+        <div class="grid2">
+          <figure class="fig">
+            <img src="photos/22-44-p4-by-aldo.jpg" alt="醛固酮越高，黃體素越高" loading="lazy">
+            <figcaption>📄 44：醛固酮越高，黃體素越高</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/22-45-corticosterone-by-aldo.jpg" alt="醛固酮越高，皮質酮越高" loading="lazy">
+            <figcaption>📄 45：醛固酮越高，皮質酮越高</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/22-46-p4-corticosterone.jpg" alt="黃體素與皮質酮高度相關" loading="lazy">
+            <figcaption>📄 46：黃體素與皮質酮高度相關（ρ = 0.74，P &lt; .001）</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/22-47-cortisol-by-aldo.jpg" alt="醛固酮最高組的皮質醇反而較低" loading="lazy">
+            <figcaption>📄 47：皮質醇沒有跟著升高，醛固酮 &gt;3000 那組反而較低</figcaption>
+          </figure>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> 📄 47 呼應 Mr. Hudson：皮質酮升高把 HPA 軸壓下去，皮質醇反而偏低。所以這類貓驗皮質醇看不出問題，要直接驗黃體素和皮質酮。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 48</span> 主要發現</h3>
+        <ul class="notes">
+          <li>將近 <strong>25%</strong> 的 PHA 貓，黃體素 &gt;10 nmol/L。</li>
+          <li>PHA 貓的皮質酮濃度高了 <strong>10 倍</strong>。</li>
+          <li>→ 多激素腎上腺腫瘤<strong>不罕見</strong>。</li>
+          <li>→ 激素升高的幅度大到可能有臨床意義。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 49</span> 10 隻分泌醛固酮＋黃體素腫瘤的貓（Harro et al., JVIM 2021）</h3>
+        <figure class="fig">
+          <img src="photos/22-49-harro-2021.jpg" alt="Harro 2021 回溯性研究摘要" loading="lazy">
+        </figure>
+        <ul class="notes">
+          <li>10 隻貓都是<strong>單側</strong>腎上腺腫瘤。</li>
+          <li>腎上腺切除的貓有 3 隻達到<strong>糖尿病緩解</strong>。</li>
+          <li>做腎上腺切除的貓存活 &gt;1 年；只用內科治療的 4 隻中有 2 隻存活 &gt;1 年；2 隻沒有治療。</li>
+          <li>結論：分泌醛固酮的腎上腺腫瘤，尤其合併糖尿病時，要考慮多種皮質類固醇異常。手術和內科都可能長期存活，但<strong>只有手術的貓出現糖尿病緩解</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 50</span> 重要觀念</h3>
+        <ul class="notes">
+          <li>PHA 貓若有<strong>糖尿病或皮膚異常</strong>，要提高警覺：去驗<strong>黃體素</strong>。</li>
+          <li>對側腎上腺<strong>萎縮</strong>：
+            <ul class="notes">
+              <li>代表有糖皮質激素的作用</li>
+              <li>是術後腎上腺功能不足的風險因子</li>
+            </ul>
+          </li>
+          <li>部分貓的糖尿病會緩解 → 強力支持手術。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🩹</div>
+      <h2>10. 貓庫欣氏症</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 51</span> 和狗的異同</h3>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>相似</h4>
+            <ul>
+              <li>老貓（中位數 10 歲）</li>
+              <li>PDH／ADH 的比例類似</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>不同</h4>
+            <ul>
+              <li>組織對糖皮質激素的敏感度不同，<strong>醫源性庫欣很少見</strong></li>
+              <li><strong>沒有</strong>類固醇誘導的 ALP 同功酶</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 52–53</span> 臨床表現</h3>
+        <div class="grid2">
+          <figure class="fig">
+            <img src="photos/22-52-cushing-features.jpg" alt="貓庫欣：皮膚變薄、脫毛" loading="lazy">
+            <figcaption>📄 52：Boland &amp; Barrs, JFMS 2017</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/22-53-fragile-skin.jpg" alt="貓皮膚脆弱症候群：皮膚撕裂" loading="lazy">
+            <figcaption>📄 53：皮膚脆弱症候群（Boland &amp; Barrs, JFMS 2017）</figcaption>
+          </figure>
+        </div>
+        <ul class="notes">
+          <li><strong>胰島素阻抗</strong>：&gt;80% 有糖尿病，血糖常控制不好。</li>
+          <li><strong>皮膚異常</strong>：&gt;50% 皮膚萎縮變薄；<strong>33%</strong> 有皮膚脆弱症候群。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 54</span> 診斷檢測</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>檢測</th><th>敏感度</th><th>特異度</th><th>備註</th></tr>
+          <tr><td>UCCR</td><td colspan="2">在貓價值不大</td><td></td></tr>
+          <tr><td>LDDST</td><td>高（&gt;80%？）</td><td>中等／未知</td><td>dexamethasone 劑量是狗的 <strong>10 倍</strong></td></tr>
+          <tr><td>ACTH 刺激試驗</td><td>差（30–50%）</td><td>中等到好（80%）</td><td></td></tr>
+        </table></div>
+        <div class="quote">貓的檢測很複雜<span class="quote-zh">LDDST 是首選；MSU 也會例行加做 ACTH 刺激試驗；超音波能進一步提高懷疑</span></div>
+        <p class="p"><span class="src src-add">💡</span> 貓的 LDDST 用 <strong>0.1 mg/kg</strong> dexamethasone IV（狗是 0.01 mg/kg），0、4、8 小時採血。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 55</span> 內科治療</h3>
+        <figure class="fig">
+          <img src="photos/22-55-trilostane-cats.jpg" alt="Trilostane 治療貓庫欣 15 例" loading="lazy">
+          <figcaption>📄 55：Mellett Keith, Bruyette, Stanley. Trilostane therapy for treatment of spontaneous hyperadrenocorticism in cats: 15 cases (2004–2012)</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>Lysodren 耐受性差，效果也不穩定。</li>
+          <li>可以做雙側腎上腺切除。</li>
+          <li><strong>Trilostane 是首選</strong>：中位存活 &gt;600 天；劑量比狗<strong>高</strong>。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🐈‍⬛</div>
+      <h2>11. 病例 Sam：分泌雄性素的腎上腺腫瘤</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 56</span> 病史</h3>
+        <p class="p">Sam，7 歲 M/N DSH。</p>
+        <ul class="notes">
+          <li>主訴：<strong>亂尿尿</strong>
+            <ul class="notes">
+              <li>18 個月來越來越嚴重，沒有排尿困難或尿淋漓。</li>
+              <li>尿在任何新東西、角落、床上。</li>
+              <li>行為改變：叫得比較多、比較黏人。</li>
+            </ul>
+          </li>
+          <li>看了很多次、驗了很多次，常規血檢和尿檢都沒有明顯異常。</li>
+          <li>試過的治療：抗生素（懷疑 UTI）、環境調整、泌尿處方飼料。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 57–58</span> 關鍵發現：陰莖倒刺</h3>
+        <div class="grid2">
+          <figure class="fig">
+            <img src="photos/22-57-penile-barbs.jpg" alt="結紮公貓出現陰莖倒刺" loading="lazy">
+            <figcaption>📄 57：已結紮的公貓卻有陰莖倒刺</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/22-58-androgen-pathway.jpg" alt="內生性雄性素合成路徑" loading="lazy">
+            <figcaption>📄 58：內生性雄性素的合成路徑</figcaption>
+          </figure>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> 貓的陰莖倒刺依賴雄性素，結紮後約 6 週就會退化。結紮公貓有倒刺，代表體內有雄性素來源：先想隱睪或結紮不完全，再想腎上腺。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 59</span> 進一步檢查</h3>
+        <ul class="notes">
+          <li>CT：右側腎上腺 1.2 × 1.2 × 1.3 cm；左側 0.5 × 0.5 × 1.2 cm。</li>
+          <li>ACTH 刺激試驗：皮質醇前後正常；睪固酮前後正常；<strong>androstenedione 前後都升高</strong>。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 只驗睪固酮會漏掉。Androstenedione 是睪固酮的前驅物，要特別點名去驗（MSU 的性激素套組有）。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 60</span> 結果</h3>
+        <figure class="fig">
+          <img src="photos/22-60-sam-outcome.jpg" alt="治療前後的 androstenedione 與陰莖外觀" loading="lazy">
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>時間</th><th>Androstenedione 基礎值</th><th>ACTH 後</th></tr>
+          <tr><td>參考值</td><td>0.1–0.6 ng/mL</td><td>0.5–2.8 ng/mL</td></tr>
+          <tr><td>治療前</td><td><strong>0.9（高）</strong></td><td>2.7</td></tr>
+          <tr><td>治療後</td><td>0.1</td><td><strong>0.3（低）</strong></td></tr>
+        </table></div>
+        <p class="p">投影片背景是治療前後的陰莖照片，後來倒刺消失。<span class="src src-add">💡</span> 講義沒寫治療方式，從右腎上腺腫大推測是右側腎上腺切除；術後 ACTH 刺激反應偏低，也符合對側腎上腺被抑制。待逐字稿確認。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 61</span> 少見……但也許沒那麼少見（Erger et al., 8 隻分泌雄性素的腎上腺腫瘤）</h3>
+        <figure class="fig">
+          <img src="photos/22-61-androgen-8-cats.jpg" alt="8 隻分泌雄性素腎上腺腫瘤貓的病例表" loading="lazy">
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>病例</th><th>訊號</th><th>飼主主訴</th><th>病程</th><th>理學檢查</th></tr>
+          <tr><td>1</td><td>7 歲 M/C</td><td>亂尿、尿臭、叫、體重減輕、過動</td><td>18 個月</td><td>陰莖倒刺、頭大且寬</td></tr>
+          <tr><td>2</td><td>7 歲 M/C</td><td>亂尿、尿臭、叫、體重減輕、攻擊、多食</td><td>1 年</td><td>陰莖倒刺、胸骨旁心雜音、膀胱脹大</td></tr>
+          <tr><td>3</td><td>7 歲 F/S</td><td>亂尿、尿臭、攻擊</td><td>1 年</td><td><strong>陰蒂肥大</strong></td></tr>
+          <tr><td>4</td><td>10 歲 F/S</td><td>亂尿、尿臭、叫、體重減輕、嘔吐</td><td>6 個月</td><td>頭大且寬</td></tr>
+          <tr><td>5</td><td>8 歲 M/C</td><td>亂尿、尿臭</td><td>&gt;3 個月</td><td>陰莖倒刺</td></tr>
+          <tr><td>6</td><td>15 歲 F/S</td><td>亂尿、尿臭、叫</td><td>2 個月</td><td>正常</td></tr>
+          <tr><td>7</td><td>11 歲 M/C</td><td>亂尿、尿臭、體重減輕</td><td>3 天</td><td>陰莖倒刺</td></tr>
+          <tr><td>8</td><td>9 歲 M/C</td><td>攻擊</td><td>1 週</td><td>陰莖倒刺、胸骨旁心雜音</td></tr>
+        </table></div>
+        <p class="p"><span class="src src-add">💡</span> 共通點：<strong>亂尿＋尿臭＋行為改變（叫、攻擊）</strong>，公貓看倒刺、母貓看陰蒂、兩性都可能「頭大且寬」（像未結紮公貓的臉頰）。結紮過的貓出現發情行為，就要想到這個病。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🏁</div>
+      <h2>Take-home 與參考資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>貓的功能性腎上腺腫瘤：一張表</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>類型</th><th>線索</th><th>關鍵檢驗</th><th>治療</th></tr>
+          <tr><td>醛固酮（PHA）</td><td>低血鉀、高血壓、CK ↑、代謝性鹼中毒、頸部腹屈、視網膜病變</td><td>低血鉀時醛固酮 &gt;1000 pmol/L＋超音波腎上腺腫塊</td><td>腎上腺切除；或 amlodipine＋補鉀＋spironolactone</td></tr>
+          <tr><td>多激素（醛固酮＋黃體素／皮質酮）</td><td>PHA＋糖尿病／皮膚變化；對側腎上腺萎縮、ACTH 刺激反應低</td><td>黃體素、皮質酮</td><td>手術（可讓糖尿病緩解），術後注意暫時性 Addison</td></tr>
+          <tr><td>皮質醇（庫欣）</td><td>難控制的糖尿病、皮膚變薄、皮膚脆弱症候群</td><td>LDDST（0.1 mg/kg）、ACTH 刺激、超音波</td><td>Trilostane（劑量比狗高）；腎上腺切除</td></tr>
+          <tr><td>性激素（雄性素）</td><td>亂尿、尿臭、叫、攻擊、陰莖倒刺、陰蒂肥大、頭大</td><td>性激素套組（androstenedione）</td><td>腎上腺切除；trilostane 零星部分改善</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item"><span>Langlois DK. <em>Feline Adrenal Gland Diseases.</em> VET-KU × Texas A&amp;M IM Conference, 2026（講義 62 張投影片）。</span></div>
+          <div class="ref-item"><span>Young WF. Primary aldosteronism: renaissance of a syndrome. <em>Clin Endocrinol (Oxf).</em> 2007;66:607–618.</span></div>
+          <div class="ref-item"><span>Eger CE, et al. <em>J Small Anim Pract.</em> 1983（第一例貓 PHA）。</span></div>
+          <div class="ref-item"><span>Javadi S, et al. Primary hyperaldosteronism, a mediator of progressive renal disease in cats. <em>Domest Anim Endocrinol.</em> 2005.</span></div>
+          <div class="ref-item"><span>Djajadiningrat-Laanen SC, et al. <em>JVIM</em> 2008；<em>JVIM</em> 2013（UACR、fludrocortisone 抑制試驗、醛固酮判讀）。</span></div>
+          <div class="ref-item"><span>Matsuda M, et al. <em>J Vet Diagn Invest.</em> 2015（fludrocortisone 抑制試驗）。</span></div>
+          <div class="ref-item"><span>Fabres V, et al. <em>JVIM</em> 2023（telmisartan 抑制試驗）。</span></div>
+          <div class="ref-item"><span>Kurtz M, et al. <em>JVIM</em> 2023（PHA 與其他疾病貓的基礎醛固酮）。</span></div>
+          <div class="ref-item"><span>Boland LA, Barrs VR. Peculiarities of feline hyperadrenocorticism. <em>J Feline Med Surg.</em> 2017.</span></div>
+          <div class="ref-item"><span>Langlois DK, et al. <em>JVIM</em> 2021（PHA 貓的黃體素與皮質酮）。</span></div>
+          <div class="ref-item"><span>Harro CC, et al. Retrospective study of aldosterone and progesterone secreting adrenal tumors in 10 cats. <em>JVIM</em> 2021.</span></div>
+          <div class="ref-item"><span>Mellett Keith AM, Bruyette D, Stanley S. Trilostane therapy for treatment of spontaneous hyperadrenocorticism in cats: 15 cases (2004–2012). <em>JVIM</em> 2013.</span></div>
+          <div class="ref-item"><span>Schwedes CS. Mitotane (o,p'-DDD) treatment in a cat with hyperadrenocorticism. <em>J Small Anim Pract.</em></span></div>
+          <div class="ref-item"><span>Erger CG, et al. Case report: Androgen-secreting adrenocortical tumors in eight cats.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>同一位講者：<a href="addisons-disease.html">11 Addison 氏症</a>、<a href="canine-hypothyroidism.html">17 犬甲狀腺功能低下</a>。狗的腎上腺：<a href="cushings-diagnosis-treatment.html">12 庫欣的診斷與治療</a>、<a href="endocrine-neoplasia.html">15 內分泌腫瘤（嗜鉻細胞瘤）</a>。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
