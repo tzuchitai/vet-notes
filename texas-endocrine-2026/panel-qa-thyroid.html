@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>座談會 Q&amp;A：甲狀腺與糖尿病｜2026 Texas 內分泌研討會</title>
+<style>
+  :root {
+    --primary: #0F766E;
+    --primary-light: #CCFBF1;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0d2522;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9cc8c1; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #1f4a44;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9cc8c1; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9cc8c1;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #1f4a44;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #5f8f87;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0b4f49 0%, #14a395 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0d2522; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #1f4a44; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 Texas 內分泌研討會</a>
+  <div class="logo">
+    <h2>19｜座談會 Q&amp;A：<br>甲狀腺與糖尿病</h2>
+    <p>Langlois、Tardo、Bugbee｜2026 年 10 月 8 日</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">場次資訊與講者對照</a>
+    <div class="nav-section">貓甲亢</div>
+    <a href="#s1">1. 拿不到貓 TSH、TT4 不高</a>
+    <a href="#s2">2. 診斷一定要甲狀腺掃描嗎？</a>
+    <a href="#s3">3. 老貓 TT4 稍高、共病多</a>
+    <a href="#s4">4. 驗不起 TSH 時的 TT4 目標</a>
+    <a href="#s5">5. 心臟：心超時機、clopidogrel、原有用藥</a>
+    <a href="#s6">6. 人用 methimazole、y/d 低蛋白</a>
+    <div class="nav-section">犬甲低</div>
+    <a href="#s7">7. NTI vs. 早期甲狀腺炎</a>
+    <a href="#s8">8. 試驗性治療要看多久</a>
+    <a href="#s9">9. 治療中的監測</a>
+    <a href="#s10">10. 高 TgAA 狗怎麼監測</a>
+    <a href="#s11">11. 年度健檢要驗 TT4 嗎？</a>
+    <a href="#s12">12. 甲狀腺腫瘤術前要驗嗎？</a>
+    <div class="nav-section">現場檢驗報告</div>
+    <a href="#s13">13. 四份甲狀腺報告</a>
+    <div class="nav-section">其他</div>
+    <a href="#s14">14. 胰島素、GLP-1、嗜鉻細胞瘤</a>
+    <a href="#s15">Take-home 與更正表</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>座談會 Q&amp;A：甲狀腺與糖尿病（Panel Discussion）</h1>
+    <p>座談：Daniel Langlois（MSU）、Antonio Tardo（UC Davis）、Andrew Bugbee（Texas A&amp;M）</p>
+    <p>2026 年 10 月 8 日｜VET-KU × Texas A&amp;M 內科研討會｜場次 19（接續 17–18 的現場提問）</p>
+    <div class="tags">
+      <span class="tag">座談 Q&amp;A</span>
+      <span class="tag">高正常 TT4</span>
+      <span class="tag">犬 TSH 用在貓</span>
+      <span class="tag">Thyroid slip</span>
+      <span class="tag">甲亢與心臟</span>
+      <span class="tag">人用 methimazole</span>
+      <span class="tag">NTI vs. 甲狀腺炎</span>
+      <span class="tag">Levothyroxine 監測</span>
+      <span class="tag">TgAA</span>
+      <span class="tag">I-131 後灰色地帶</span>
+      <span class="tag">Exenatide</span>
+      <span class="tag">胰島素轉換</span>
+    </div>
+    <a class="rec-link" href="https://web.plaud.ai/s/pub_86ca94fc-f861-414a-93cd-eaad15edbbd0::288f2xO86adyTiotxEko-RlL2zWP-ZYkyvI3QU4FkOSkliRUrfvyJi5iDQmUCIk1TK_LbeB6JxoXvLR7BwAftAI" target="_blank" rel="noopener">🎧 座談會錄音與逐字稿（Plaud）↗</a>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-rec">🎤</span> 座談會逐字稿
+    <span class="src src-photo">📸 現場</span> 現場投影片照片
+    <span class="src src-hand">✍️ 筆記</span> 上課時記下的重點
+    <span class="src src-add">💡 補充</span> 整理者補充（交叉參照、判讀）
+    <span class="src src-fix">【更正】</span> 逐字稿轉文字錯誤（完整列表見最後一節）
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li>拿不到貓 TSH 時，<strong>高正常 TT4＋吻合的症狀</strong>可以做 methimazole 試驗性治療，但症狀要<strong>很快改善</strong>（不再掉體重、多食與 PU/PD 幾天到幾週內改善）</li>
+      <li>體重掉了 30% 卻只有高正常 TT4 → 先想<strong>腸胃道疾病</strong>等其他病</li>
+      <li>犬 TSH（Immulite）用在貓也可以；<strong>高正常 TT4＋TSH 測不到</strong>就很有說服力</li>
+      <li>輕微、早期的甲亢可能摸不到甲狀腺；但病情明顯卻完全摸不到 → 想到<strong>異位組織</strong></li>
+      <li>甲亢貓很少因甲亢突然進入心衰竭，<strong>先控制甲狀腺</strong>，原有心臟用藥短期內不必改</li>
+      <li>人用 methimazole 沒問題；<strong>trilostane 要用動物用藥</strong>（複方調劑品質不穩）</li>
+      <li>NTI：有明顯的其他疾病、激素低、<strong>TSH 正常</strong>；早期甲狀腺炎：<strong>TSH 先升高</strong>；TSH 高＋TT4 高 → 想到自體抗體干擾</li>
+      <li>Levothyroxine 監測：TT4＋TSH，<strong>給藥後 3–6 小時</strong>採血，目標 TT4 高正常、TSH 在參考範圍下半段</li>
+      <li>試驗性治療：檢驗異常約 <strong>2 週</strong>改善，肥胖、被毛要<strong>好幾個月</strong>；同樣重要的是排除其他疾病</li>
+      <li>自體抗體在開始治療後<strong>還會存在好幾個月</strong>，持續干擾 TT4 與非透析 fT4</li>
+      <li>I-131 後 TSH 升高、腎功能穩定 → 可以先密切追蹤；肌酸酐上升 → 補充</li>
+    </ul>
+  </div>
+
+  <!-- ══ S0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🎯</div>
+      <h2>場次資訊與講者對照</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <ul class="notes">
+          <li>接在 <a href="canine-hypothyroidism.html">17 犬甲低（Langlois）</a>與 <a href="feline-hyperthyroidism.html">18 貓甲亢（Bugbee）</a>之後的座談會；也有人問前兩天的糖尿病議題。後半段 Langlois 秀了幾份 MSU 內分泌實驗室收到的甲狀腺報告。</li>
+        </ul>
+        <h3>講者對照（依逐字稿內容判斷）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>逐字稿</th><th>講者</th><th>判斷依據</th></tr>
+          <tr><td>Speaker 1</td><td>主持人</td><td>點人發問、宣布晚上的 reception</td></tr>
+          <tr><td>Speaker 2</td><td><strong>Daniel Langlois</strong>（MSU）</td><td>「我們的內分泌實驗室」、秀檢驗報告；Tardo 說「as Daniel said」</td></tr>
+          <tr><td>Speaker 4</td><td><strong>Antonio Tardo</strong>（UC Davis）</td><td>被稱為 Antonio／Anthony；「我今天的課有一張胰島素轉換的投影片」</td></tr>
+          <tr><td>Speaker 8</td><td><strong>Andrew Bugbee</strong>（推測）</td><td>被問到新的 AAFP 指引時回答「我沒有參與」</td></tr>
+          <tr><td>其他</td><td>現場提問者</td><td></td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🐱</div>
+      <h2>1. 拿不到貓 TSH，症狀像甲亢、TT4 卻不高</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">我們國家沒有貓最佳化 TSH。老貓症狀很像甲亢，但 TT4 沒有升高（高正常），該怎麼辦？</div>
+        <div class="a">
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 就像 Dr. Bugbee 說的，90–95% 的病例不需要 TSH：症狀吻合的貓，TT4 會明顯升高。</li>
+            <li><span class="src src-rec">🎤</span> 但他說得對，<strong>參考範圍是用健康成貓建立的</strong>。如果用 12–17 歲的貓重做，參考範圍可能會更低。</li>
+            <li><span class="src src-rec">🎤</span> 沒有 fT4 和 TSH 時只能盡力而為：<strong>高正常 TT4＋吻合的症狀</strong>，做 <strong>methimazole 試驗性治療並沒有錯</strong>。但症狀要真的、而且<strong>很快</strong>改善。</li>
+            <li><span class="src src-rec">🎤</span> 很輕微的甲亢不應該有嚴重的症狀。如果貓<strong>掉了 30% 體重，TT4 卻只是高正常</strong>，我會更擔心是<strong>腸胃道疾病</strong>或其他疾病造成的。</li>
+          </ul>
+          <p class="p"><strong>多快算「很快」？</strong>（Langlois）</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 看是哪個症狀：<strong>體重增加</strong>可能要幾週到幾個月，但<strong>不應該再繼續掉體重</strong>，這應該相當快。</li>
+            <li><span class="src src-rec">🎤</span> <strong>多食、PU/PD</strong> 通常幾天到幾週就改善。</li>
+          </ul>
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 貓也可以用<strong>犬 TSH</strong>。商業實驗室用 Immulite 測的犬 TSH，足以協助診斷甲亢或甲低，只是不如 TruForma 敏感。</li>
+          </ul>
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> MSU 的 Immulite 也還是用犬 TSH 抗體。TruForma 可能更好，但絕大多數情況用犬 TSH 就夠了。</li>
+            <li><span class="src src-rec">🎤</span> 雖然偵測下限沒有 TruForma 那麼低，<strong>高正常 TT4＋TSH 被壓到偵測下限以下</strong>，我覺得相當有說服力。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：和 <a href="feline-hyperthyroidism.html#s6">18 第 6 節</a>的數據搭配看：單獨用犬 cTSH「測不到」來診斷，PPV 只有約 22%；但前提是<strong>高正常 TT4＋症狀</strong>都已經指向甲亢時，TSH 測不到就成為有力的支持證據。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ S2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🔍</div>
+      <h2>2. 診斷甲亢一定要做甲狀腺掃描嗎？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">（主持人）以前討論一篇論文時，有人堅持一定要有甲狀腺掃描才能診斷甲亢。症狀、TT4 升高、掃描三者都要嗎？還是兩個就夠了？</div>
+        <div class="a">
+          <p class="p"><strong>Langlois</strong>（回答聚焦在 thyroid slip）：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> Mark Peterson 早期報告的大型病例群，幾乎每隻貓都摸得到 thyroid slip，但那些都是比較典型的甲亢。</li>
+            <li><span class="src src-rec">🎤</span> 現在越來越早發現，我認為大多數貓還是摸得到，但確實有一些貓<strong>摸不到甲狀腺腫</strong>。所以<strong>不會因為摸不到就排除甲亢</strong>，特別是很輕微的甲亢。</li>
+            <li><span class="src src-rec">🎤</span> 反過來，如果甲亢很明顯、頸部卻完全摸不到，我反而會擔心是<strong>異位組織</strong>。</li>
+          </ul>
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 對我來說，掃描是考慮下一步的依據，例如飼主想做放射碘治療或手術時。（逐字稿這段辨識不清）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">👵</div>
+      <h2>3. 老貓 TT4 稍高、症狀不明顯又有很多共病，要治療嗎？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">很老的貓 TT4 稍高，但因為已經有很多共病，症狀不明顯。需要治療，還是持續追蹤就好？</div>
+        <div class="a">
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> TT4 只是輕度升高、沒有症狀，我通常<strong>不治療</strong>。藥物是用來治療症狀的，沒有症狀要治療什麼？</li>
+            <li><span class="src src-rec">🎤</span> 唯一的例外是飼主想做根治性治療，但我還是會等到 T4 更明確升高。</li>
+            <li><span class="src src-rec">🎤</span> 另一個原因是前面提到的 CKD 被揭露：這種病患做放射碘後，崩潰的機率可能比較高。</li>
+          </ul>
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 同意。老貓很麻煩，因為老貓會得腸胃病，也會得內分泌病，TT4 又落在模稜兩可的區間。</li>
+            <li><span class="src src-rec">🎤</span> <strong>症狀很嚴重、TT4 卻幾乎沒變</strong> → 更擔心是原發性腸胃疾病，通常往那個方向查。</li>
+            <li><span class="src src-rec">🎤</span> <strong>異常很輕微</strong> → 像 Antonio 說的，等一段時間再驗。真的甲亢，數值會<strong>持平或慢慢上升</strong>。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">💰</div>
+      <h2>4. 驗 TSH 很貴：TT4 在上半段就不會甲低嗎？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">TSH 要外送、要花錢。文獻建議治療後把 TT4 維持在參考範圍下半段。如果治療後 TT4 在<strong>上半段</strong>，可以假設沒有造成亞臨床甲低嗎？</div>
+        <div class="a">
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 我認為這<strong>大致上是合理的假設</strong>。TT4 在上半段，TSH 很高的機率不大，雖然有時候會有意外的結果。</li>
+            <li><span class="src src-rec">🎤</span> 在你的條件下，這是很實際的做法，可能不驗 TSH 也還過得去。只是要確定貓在這個劑量下<strong>控制得好，不是仍在甲亢邊緣</strong>。</li>
+          </ul>
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 完全同意。之所以建議維持在下半段，是因為 TT4 會波動，維持低一點可以確保貓不會還是甲亢。</li>
+            <li><span class="src src-rec">🎤</span> 無法驗 TSH 時，就看<strong>臨床症狀、體重、肌酸酐</strong>，用院內能驗的項目做決定，這樣就可以了。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：反過來說，TT4 在<strong>下半段</strong>時最需要驗 TSH——第 13 節的第一份報告就是 TT4 在中段偏低、TSH 卻很高的例子。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ S5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">❤️</div>
+      <h2>5. 甲亢與心臟：心超時機、clopidogrel、原有用藥與高血壓</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">Dr. Bugbee 說甲亢控制後再做心臟超音波。要等多久？4–8 週還是更久？</div>
+        <div class="a">
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 心肌病本身就很常見，可能和甲亢無關、同時存在。也可能是甲亢拖太久，需要更長時間才會改善。</li>
+            <li><span class="src src-rec">🎤</span> 沒有明確的時間，我會<strong>依心臟科醫師的建議</strong>安排複查。</li>
+          </ul>
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 我們會告訴飼主（坦白說沒有科學證據）：還有心雜音或疑慮的話，在 I-131 後 <strong>1 個月和 3 個月</strong>複查；<strong>3 個月時還有心雜音就做心超</strong>。這只是剛好和回診時間對齊，不是因為證據顯示到那時應該已經恢復。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">確診甲亢時已經有 HCM 表現、左心房很大，要立刻加 clopidogrel，還是等一陣子複查後再加？（怕之後發生 ATE）</div>
+        <div class="a">
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 一般來說，左心房真的很大，我們的心臟科會開 Plavix（clopidogrel）。</li>
+            <li><span class="src src-rec">🎤</span> 來做 I-131 的貓，我們常請飼主<strong>先等一下</strong>，因為一打完，貓在隔離室大約一週不會吃任何藥。所以<strong>不算緊急</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 如果是用藥物控制、要很久才能控制，<strong>加上去大概也沒有壞處</strong>，很多心臟科醫師會這樣做。但心臟科圈內的爭議比內分泌圈多，不確定有沒有標準答案。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">已經在吃心臟藥（ACE 抑制劑等），後來才診斷甲亢。開始 methimazole 時要停掉心臟藥嗎？</div>
+        <div class="a">
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> ACE 抑制劑對心臟病有沒有實際效果本身就有爭議，但這些藥相對溫和，<strong>短期內大概不需要改</strong>，追蹤看看即可。</li>
+            <li><span class="src src-rec">🎤</span> 早期甲亢研究中 <strong>50%</strong> 的貓有心雜音，很多有結構性心臟病，但<strong>真正進入充血性心衰竭的非常少</strong>。短期內不常見到貓因為甲亢突然心衰竭，所以有時間<strong>先控制甲狀腺</strong>。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">確診甲亢前就已經有高血壓、在吃藥呢？methimazole 後可能出現氮血症，要先停藥嗎？</div>
+        <div class="a">
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 全身性高血壓可以是甲亢的表現，但<strong>不算常見</strong>；也可能是 CKD 的表現，要小心是不是正在發展 CKD。</li>
+            <li><span class="src src-rec">🎤</span> 我通常<strong>先開始 methimazole，再重新評估血壓</strong>；仍然高血壓就加降壓藥。</li>
+            <li><span class="src src-rec">🎤</span> ACE 抑制劑對這種高血壓的效果不大。有疑慮的話，就照常給藥、治療高血壓，回診再依結果決定。</li>
+          </ul>
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 看病例而定。如果是輕到中度高血壓，我大概會停掉 ACE 抑制劑、不再繼續用。我們擔心有臨床意義的高血壓時，多半用的是 <strong>amlodipine</strong>，而不是 ACE 抑制劑。</li>
+            <li><span class="src src-rec">🎤</span> 多數甲亢貓沒有高血壓，有的通常也是輕到中度，短期內不太需要擔心。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">💊</div>
+      <h2>6. 人用 methimazole、y/d 的低蛋白、新指引</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">動物用藥缺貨，我們改用人用藥。劑量和監測要調整嗎？</div>
+        <div class="a">
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>Langlois</strong>：人用 methimazole 已經用了幾十年，用學名藥取代動物用藥沒有什麼疑慮，多年來我們都這樣做。</li>
+            <li><span class="src src-rec">🎤</span> <strong>Tardo</strong>：<strong>trilostane 不一樣</strong>。有證據顯示複方調劑的 trilostane 品質有問題，所以我只用動物用藥。</li>
+            <li><span class="src src-rec">🎤</span> <strong>Langlois</strong>：完全同意。Methimazole 沒問題，trilostane 我會比較擔心。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">Hill's y/d 蛋白質偏低，對肌肉分數低的甲亢貓，利大於弊嗎？</div>
+        <div class="a">
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> Hill's 認為它適合合併 <strong>CKD 第 1–2 期</strong>的甲亢貓，有適度的蛋白質限制，我想這大概是對的、合理的。</li>
+            <li><span class="src src-rec">🎤</span> 但它不是我的首選。一般的甲亢貓我多半用 methimazole 或 I-131；飼主真的想避開這兩種時，用 y/d 也可以。</li>
+            <li><span class="src src-rec">🎤</span> CKD <strong>第 3–4 期</strong>時，y/d 的限制（蛋白質、磷）可能不夠。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">上一版貓甲亢共識是 2016 年 AAFP，新的什麼時候出來？</div>
+        <div class="a">
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> Langlois 以為 Bugbee 有參與；Bugbee（推測為 Speaker 8）表示沒有參與，不知道何時會出。主持人也提醒 ACVIM 共識和 AAFP 指引是不同的東西。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0e7ff">🐕</div>
+      <h2>7. 狗：非甲狀腺疾病 vs. 早期甲狀腺炎</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">沒有 TgAA、T3AA 這些檢驗，要怎麼區分非甲狀腺疾病（euthyroid sick）和早期甲狀腺炎？</div>
+        <div class="a">
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> NTI 最大的特點是當下有<strong>明顯的其他疾病</strong>，甲狀腺激素可能很低。fT4 by ED 比較能抵抗這些變化，但一樣可能受影響。<strong>多數 NTI 的 TSH 維持正常</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 很早期的甲狀腺炎，<strong>TSH 通常在激素掉出參考範圍之前就先升高</strong>。所以兩者型態不同。</li>
+            <li><span class="src src-rec">🎤</span> 如果有大量自體抗體，測到的 T4 可能<strong>假性偏高</strong>，但那隻狗的 TSH 會很高。<strong>TSH 高＋TT4 高</strong>，就是嚴重甲狀腺炎、自體抗體干擾的線索。NTI 的狗沒有自體抗體、TSH 不高、激素低，是兩種不同的樣貌。</li>
+            <li><span class="src src-rec">🎤</span> 另一個選項是 <strong>TSH 刺激試驗</strong>，但現場沒有人的國家拿得到合成 TSH（Tardo 提到泰國沒有）。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tbl-wrap"><table>
+        <tr><th>💡 整理</th><th>TT4</th><th>fT4 (ED)</th><th>TSH</th><th>其他</th></tr>
+        <tr><td>非甲狀腺疾病</td><td>↓</td><td>正常或 ↓</td><td><strong>正常</strong></td><td>有明顯的其他疾病</td></tr>
+        <tr><td>早期甲狀腺炎</td><td>正常</td><td>正常</td><td><strong>↑（先升）</strong></td><td>TgAA 陽性</td></tr>
+        <tr><td>甲狀腺炎＋自體抗體干擾</td><td><strong>假性 ↑</strong></td><td>↓</td><td><strong>↑</strong></td><td>T4AA 陽性</td></tr>
+      </table></div>
+    </div>
+  </div>
+
+  <!-- ══ S8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">⏱️</div>
+      <h2>8. 狗的 levothyroxine 試驗性治療要看多久？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">沒有可靠的實驗室驗 fT4 和 TSH。狗只有輕微的被毛問題或肥胖，懷疑甲低想做試驗性治療，要等多久看改善？</div>
+        <div class="a">
+          <p class="p"><strong>Langlois</strong>：</p>
+          <div class="tbl-wrap"><table>
+            <tr><th>項目</th><th>改善時間</th></tr>
+            <tr><td>高血脂</td><td>約 2 週內</td></tr>
+            <tr><td>肝指數輕度上升</td><td>1–2 週</td></tr>
+            <tr><td>輕度貧血</td><td>約 2 週</td></tr>
+            <tr><td>精神、活動力</td><td>很快，但<strong>任何動物</strong>補甲狀腺素都可能變得比較有活力，不具特異性</td></tr>
+            <tr><td>被毛等外觀</td><td>好幾個月</td></tr>
+            <tr><td><strong>肥胖</strong></td><td>最慢，要好幾個月</td></tr>
+          </table></div>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 想要找支持證據，就看<strong>檢驗異常有沒有相對快速改善</strong>。但這些也可能只是因為給了過多的甲狀腺素，不管狗有沒有甲低。</li>
+            <li><span class="src src-rec">🎤</span> 做試驗性治療時，同樣重要的是：不只要有把握牠有甲低，也要<strong>有把握牠沒有別的病</strong>。前面排除得越多，越能放心做試驗。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">📋</div>
+      <h2>9. 甲低狗治療中的監測</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">甲低的監測有不同做法：驗 TT4 就好，還是整套？</div>
+        <div class="a">
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 我會驗 <strong>TT4 和 TSH</strong>，因為 TSH 能反映 T4 真正的生物活性。TSH 還高，可能代表 T4 還沒達到理想濃度。</li>
+            <li><span class="src src-rec">🎤</span> 多數情況從標準劑量開始，大多一直用同一個劑量；偶爾需要調整，沒什麼大不了。</li>
+            <li><span class="src src-rec">🎤</span> 也會追蹤<strong>診斷時所有的異常</strong>（膽固醇、貧血等）。<strong>1 個月</strong>第一次抽血；正常的話 <strong>3–4 個月</strong>再驗，之後<strong>至少一年兩次</strong>。</li>
+          </ul>
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 完全同意，我也喜歡 TT4＋TSH。但要記得是 <strong>SID 還是 BID</strong> 給藥，以及是不是真的在<strong>給藥後 3–6 小時</strong>採血。給藥後 10 小時和 3–6 小時的數值會差很多。</li>
+            <li><span class="src src-rec">🎤</span> 給藥後 3–6 小時：理想是 <strong>TT4 高正常、TSH 在參考範圍下半段</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 給藥後 10 小時：可以接受較低的 TT4，但 TSH 不應該很高，否則代表狗有很多時間處於甲低狀態。</li>
+          </ul>
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 有趣的是，人醫只用 TSH 監測。我有些狗劑量已經很高，TSH 還是持續偏高，不知道該不該以 TSH 正常為目標。人醫的唯一目標就是 TSH 正常。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">🧪</div>
+      <h2>10. TgAA 很高的狗，治療後怎麼監測？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">TgAA 很高、TSH 高，臨床上覺得是甲低，但 T4 可能假性偏高。治療後 TT4 不準，要怎麼監測？</div>
+        <div class="a">
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 就像我秀的那份報告（第 13 節的狗），理想上要驗 <strong>fT4 by ED</strong>。沒有的話很難，只能看<strong>其他檢驗異常</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 很多狗<strong>自體抗體會隨時間轉陰</strong>，但需要時間。短期內就用合理的劑量、看檢驗異常有沒有改善，並<strong>避免補充過量</strong>。</li>
+            <li><span class="src src-rec">🎤</span> T4 不能看，但 <strong>TSH 還是可以看</strong>。沒有 fT4 by ED 時，<strong>TT4＋TSH 一起</strong>監測是好方法。</li>
+            <li><span class="src src-rec">🎤</span> 不是每個自體抗體高的病患都會干擾檢驗，我不希望大家帶走這個錯誤印象。但如果有干擾，就要這樣做。</li>
+          </ul>
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 也要記得<strong>非甲狀腺疾病</strong>：過度診斷甲低最常見的原因，就是把 NTI 的狗當甲低治療。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🩺</div>
+      <h2>11. 狗的年度健檢要驗 TT4 嗎？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">狗的年度健檢，建議驗 TT4 嗎？</div>
+        <div class="a">
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 很好的問題，也很有爭議。TT4 便宜又容易驗，很多綜合生化套組都有。不少內分泌專家很反對，因為它似乎導致<strong>甲低過度診斷</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 我不知道哪個對，但<strong>臨床症狀很少或沒有的動物，TT4 低不能作為甲低的診斷依據</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 我的問題不在實驗室把它放進套組，而是我們獸醫有時候會解讀錯。結果異常時，要確實做<strong>更完整的甲狀腺檢驗</strong>。</li>
+          </ul>
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 一樣。如果要我額外加 T4，我會說不要。狗沒有症狀、也沒有懷疑腫瘤，<strong>單純篩檢沒有意義</strong>：影響 T4 的變數太多，常常會偏低，然後你得跟飼主解釋為什麼低，比驗本身還複雜。</li>
+            <li><span class="src src-rec">🎤</span> 但如果它在老年套組裡、驗出來異常，就照 Daniel 說的進一步檢查。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dbeafe">🔪</div>
+      <h2>12. 狗甲狀腺區腫塊，手術前要驗甲狀腺嗎？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">朋友的病例：狗甲狀腺區域有腫塊，超音波和 CT 都指向甲狀腺（異位甲狀腺病灶），沒有特別的症狀。手術前要驗 T4、fT4 嗎？還是直接開刀送病理？如果有甲亢或甲低，要先治療嗎？</div>
+        <div class="a">
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>超過 75% 的甲狀腺癌沒有功能</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 我們通常<strong>術前和術後都會驗</strong>，因為有時候能提示術後可能發生什麼，但<strong>通常不會延後手術</strong>。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S13 ══ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef9c3">📑</div>
+      <h2>13. 現場的四份甲狀腺報告（MSU 內分泌實驗室）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> 報告一：15 歲 F/S DSH，methimazole BID 治療中</h3>
+        <figure class="fig">
+          <img src="photos/18-overtreated-case-live.jpg" alt="15 歲 F/S DSH methimazole 治療中的甲狀腺報告" loading="lazy">
+          <figcaption>📸 TT4 21（9–46）、TT3 0.4 L、fT4 by ED 19（10–50）、TSH 9.24 H（0–0.38）</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 實驗室被問到：methimazole 的劑量要怎麼調？TT4 21 很明確在參考範圍內，fT4 by ED 19 也是。你可能會想「劑量不用動」。</li>
+          <li><span class="src src-rec">🎤</span> 但內分泌醫師建議一起驗 TSH。這隻貓 <strong>TSH 非常高</strong>，代表我們其實<strong>過度治療</strong>了。這正是 Dr. Bugbee 講的，TSH 在監測上的價值。</li>
+          <li><span class="src src-hand">✍️</span> 如果沒有驗 TSH，可能會一直給 methimazole，就有點 overtreated。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-hand">✍️ 筆記</span><span class="src src-rec">🎤</span> 報告二：5 歲 F/S 混種犬，甲低、levothyroxine 治療中</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>結果</th><th>參考值</th></tr>
+          <tr><td>TT4（CLIA）</td><td>38</td><td>9–52 nmol/L</td></tr>
+          <tr><td>TT3（CLIA）</td><td>1.0</td><td>0.5–1.4 nmol/L</td></tr>
+          <tr><td>fT4（CLIA，非透析）</td><td><strong>&gt; 77 H</strong></td><td>5–43 pmol/L</td></tr>
+          <tr><td>TSH（CLIA）</td><td>0.02</td><td>0.00–0.58 ng/mL</td></tr>
+          <tr><td>fT4 by dialysis（RIA）</td><td><strong>26</strong></td><td>6–42 pmol/L</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 這隻狗原本是用 <strong>fT4 by ED 低＋TSH 高</strong>診斷，診斷相當有說服力；後來用 levothyroxine 治療，實驗室接到電話詢問。</li>
+          <li><span class="src src-rec">🎤</span> 牠有<strong>非常嚴重的自體抗體</strong>。重點是：<strong>自體抗體不會一開始治療就神奇消失</strong>，這隻狗的抗體持續了好幾個月，所以只看 TT4 和（非透析）fT4 不是好方法，實驗室加做了平衡透析。</li>
+          <li><span class="src src-rec">🎤</span> 自體抗體不只讓診斷變複雜，<strong>治療後好幾個月</strong>都可能還在造成混淆。</li>
+          <li><span class="src src-hand">✍️</span> Autoantibody 會干擾 CLIA。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：以 fT4 by ED 26（中段）和 TSH 0.02 來看，levothyroxine 劑量是適當的；如果只看 CLIA fT4 &gt; 77，會誤以為補過量而減藥。詳細機轉見 <a href="canine-hypothyroidism.html#s10">17 第 10 節</a>。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span><span class="src src-rec">🎤</span> 報告三：15 歲 N/M DSH，I-131 後 1 個月與 3 個月</h3>
+        <figure class="fig">
+          <img src="photos/18-post-i131-case-live.jpg" alt="15 歲 N/M DSH I-131 後兩次甲狀腺報告" loading="lazy">
+          <figcaption>📸 上：I-131 後 1 個月（TT4 4 L、TT3 &lt;0.3 L、fT4 by ED 7 L、TSH 0.15）；下：3 個月（TT4 10、TT3 0.3 L、fT4 18、TSH 0.77 H）</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 兩份都是在 MSU 做 I-131 的貓的監測報告。貓<strong>臨床狀況良好、沒有氮血症</strong>。重點是：這些判斷<strong>不是非黑即白</strong>。</li>
+          <li><span class="src src-rec">🎤</span> <strong>1 個月</strong>：甲狀腺激素低（Langlois 口述「T3 竟然正常」，但投影片 TT3 &lt; 0.3 偏低、TSH 0.15 正常，推測是指 TSH）。實驗室的解讀是「我們也不確定」：貓沒有氮血症、沒有症狀，<strong>也許就等待、複驗</strong>。</li>
+          <li><span class="src src-rec">🎤</span> <strong>3 個月</strong>：TT4 在參考範圍最底端、T3 低、<strong>TSH 現在升高</strong>。Langlois 認為是從亞臨床<strong>正在變成臨床甲低</strong>。</li>
+        </ul>
+        <div class="qa">
+          <div class="q">3 個月這份，要治療嗎？</div>
+          <div class="a">
+            <p class="p"><strong>Tardo</strong>：</p>
+            <ul class="notes">
+              <li><span class="src src-rec">🎤</span> TSH 升高時，要<strong>檢查腎功能</strong>。如果同時肌酸酐、BUN 上升，就有治療的理由。</li>
+              <li><span class="src src-rec">🎤</span> 如果腎功能穩定正常，我大概會<strong>繼續追蹤</strong>，看這是不是正常的反應：TSH 升高是在刺激正常甲狀腺細胞重新製造 T4。沒有黑白分明的答案。</li>
+            </ul>
+            <p class="p"><strong>Langlois</strong>：</p>
+            <ul class="notes">
+              <li><span class="src src-rec">🎤</span> 這隻貓要<strong>非常密切追蹤</strong>。我其實不太想馬上開始補充，因為牠可能很快恢復功能，多數貓都會。Dr. Bugbee 自己的貓就是例外，終生甲低。</li>
+              <li><span class="src src-rec">🎤</span> 同意 Antonio：腎功能完全正常的話，我會密切觀察，看牠能不能恢復正常甲狀腺功能。</li>
+            </ul>
+            <p class="p"><strong>Tardo</strong>：</p>
+            <ul class="notes">
+              <li><span class="src src-rec">🎤</span> 我也有不好的經驗：一直追蹤，某個時間點腎功能變差，才想「也許早該治療」。我們總說治療對腎臟的影響是動態的，恢復後應該會回來，但我不確定。T4 長期處於異常狀態，也可能是發展 CKD 的另一個風險因子。有些病例腎功能的變化真的讓我很意外。</li>
+              <li><span class="src src-rec">🎤</span> <strong>Langlois</strong>：確實會發生，我也不知道正確答案。很多病例表現不一樣，這就是內分泌的挑戰。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：兩次之間<strong>沒有補充</strong>，TT4 是自己回升的，TSH 從 1 個月的「還沒醒」到 3 個月升高，正是正常細胞在恢復的過程。這和 18 講的「任何 TSH 升高都要和飼主討論補充」（Peterson 2024，非氮血症貓補充也延長存活）有一點張力；座談會兩位講者的實務做法是：<strong>腎功能穩定就密切追蹤，肌酸酐上升就補</strong>。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span><span class="src src-rec">🎤</span> 報告四：5 歲 M/N DSH，終生症狀的甲低貓</h3>
+        <figure class="fig">
+          <img src="photos/18-young-cat-hypot4-live.jpg" alt="5 歲 M/N DSH 甲低報告" loading="lazy">
+          <figcaption>📸 TT4 0 L、TT3 0.4 L、fT4 by ED 3 L、TSH &gt; 12.00 H；終生輕度運動失調、矮小、被毛雜亂、心搏過緩、喜歡找熱源</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> <strong>Langlois</strong>：終生體型矮小、被毛雜亂、心搏過緩，臨床上就是甲低。看這份報告，我 <strong>100% 確定是原發性甲低</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 有趣、而我沒有答案的問題是：才 5 歲、症狀很久了，<strong>會不會是先天性的</strong>？</li>
+          <li><span class="src src-rec">🎤</span> <strong>Tardo</strong>：明天（10/9）的課會講更多先天性的內容，留到那時候。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S14 ══ -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">💉</div>
+      <h2>14. 其他：胰島素選擇與轉換、GLP-1、嗜鉻細胞瘤</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">糖尿病策略：用基礎型胰島素降低整體血糖，餐後血糖升太高時再加中效胰島素，你怎麼看？</div>
+        <div class="a">
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 每個病例都不同，沒有適合所有病例的最佳胰島素。</li>
+            <li><span class="src src-rec">🎤</span> <strong>血糖變異度大</strong> → 基礎型是首選。</li>
+            <li><span class="src src-rec">🎤</span> <strong>胰島素阻抗</strong>，特別是大狗 → 仍會考慮 <strong>NPH</strong>。原本首選是 detemir（低劑量就能控制得很好），但現在沒有 detemir 了。阻抗時也可以用基礎型，但要有心理準備劑量會非常高，而且要搭配餐前的 bolus。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">中效胰島素 BID（例如 2–3 U）控制不好，想換成基礎型 SID，劑量怎麼換？</div>
+        <div class="a">
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>Tardo</strong>：從中效 BID 換成基礎型，通常<strong>每針劑量多 30%</strong>，改成一天一次。今天的課有一張投影片整理了所有轉換規則。</li>
+          </ul>
+          <div class="alert alert-info"><span class="alert-icon">💡</span><div>投影片的規則是 <strong>+33%（無條件捨去）</strong>，例：15 U q12h → 20 U q24h。詳見 <a href="diabetic-cushingoid.html#s9">16 第 9 節</a>。</div></div>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">（前兩天的議題）貓要用 GLP-1 促效劑的話，怎麼用、劑量、要監測哪些副作用？</div>
+        <div class="a">
+          <p class="p"><strong>Tardo</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 研究過的是 <strong>exenatide 長效型</strong>，但目前美國和歐洲都買不到。如果有，劑量是 <strong>200 µg/kg，每週一次</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 適應症：<strong>降低血糖變異度</strong>。也有研究評估用來維持緩解，但用或不用 exenatide 沒有差別，所以目前唯一的適應症是降低變異度。</li>
+            <li><span class="src src-rec">🎤</span> 副作用：腸胃道問題、噁心，也可能<strong>延遲胃排空</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 現在有 SGLT2 抑制劑，簡單得多、而且是動物用核准藥，可以用在同樣的適應症。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">腎上腺切除時，一碰到腎上腺就出現心搏過速（短暫的上心室或心室性），術中該怎麼處理？β 阻斷劑還是 α 阻斷劑？</div>
+        <div class="a">
+          <p class="p"><strong>Langlois</strong>：</p>
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> 我不是心臟科、也不是外科，但我認為 β 阻斷少數真正的適應症之一，就是<strong>嗜鉻細胞瘤造成的心律不整</strong>。所以第一線我會給 β 阻斷，或 <strong>esmolol CRI</strong>。</li>
+            <li><span class="src src-rec">🎤</span> 通常是上心室性心搏過速，但嗜鉻細胞瘤也可能造成心室性心搏過速，這大概是 β 阻斷<strong>真的能治療心室性心搏過速</strong>的少數情況之一。</li>
+          </ul>
+        </div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>補充</strong>：嗜鉻細胞瘤病患要先有足夠的 <strong>α 阻斷（phenoxybenzamine）</strong>才給 β 阻斷，避免 α 作用失去抵抗而加重高血壓。術前準備見 <a href="endocrine-neoplasia.html">15 內分泌腫瘤</a>。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S15 ══ -->
+  <div class="section" id="s15">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🏁</div>
+      <h2>Take-home 與更正表</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>Take-home</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>情境</th><th>座談會的做法</th></tr>
+          <tr><td>老貓症狀像甲亢、TT4 高正常、沒有貓 TSH</td><td>可用犬 TSH；或 methimazole 試驗，症狀要很快改善；體重掉很多就先查腸胃道</td></tr>
+          <tr><td>老貓 TT4 稍高、沒有症狀</td><td>不治療，等待複驗；真的甲亢會持平或上升</td></tr>
+          <tr><td>治療後驗不起 TSH</td><td>TT4 在上半段大致不會有亞臨床甲低；看症狀、體重、肌酸酐</td></tr>
+          <tr><td>甲亢合併心臟病、高血壓</td><td>先控制甲狀腺；原有用藥短期不必改；大左心房可考慮 clopidogrel</td></tr>
+          <tr><td>I-131 後 TSH 升高</td><td>腎功能穩定 → 密切追蹤；肌酸酐上升 → 補 levothyroxine</td></tr>
+          <tr><td>甲低狗監測</td><td>TT4＋TSH，給藥後 3–6 小時；1 個月、3–4 個月、之後一年兩次</td></tr>
+          <tr><td>高 TgAA 狗</td><td>fT4 by ED 最好；沒有就 TT4＋TSH＋檢驗異常，避免補過量</td></tr>
+          <tr><td>狗甲狀腺腫瘤</td><td>術前術後都驗，但不延後手術（&gt; 75% 沒有功能）</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3>更正表（逐字稿轉文字錯誤）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>逐字稿</th><th>應為</th></tr>
+          <tr><td>filai TFS／TAs and TSH</td><td>feline TSH／fT4 and TSH</td></tr>
+          <tr><td>leg normal height, in leg total T4</td><td>high-normal total T4</td></tr>
+          <tr><td>Dr. Bovim／Dr. Bugby／Dr. Bumpy／Dr. Bag</td><td>Dr. Bugbee</td></tr>
+          <tr><td>benzoal trial</td><td>methimazole trial</td></tr>
+          <tr><td>PUD</td><td>PU/PD</td></tr>
+          <tr><td>true formula／true former</td><td>TruForma</td></tr>
+          <tr><td>FIA prolongsism／a FIA</td><td>pheochromocytoma</td></tr>
+          <tr><td>cobays／voider</td><td>cohorts／goiter</td></tr>
+          <tr><td>avitaminism／troponinopathy</td><td>hyperthyroidism／cardiomyopathy</td></tr>
+          <tr><td>phenazol／methenol／thymus／metformin／tamoxadol</td><td>methimazole</td></tr>
+          <tr><td>triamcinolone（藥品品質段落）</td><td>trilostane</td></tr>
+          <tr><td>Hills Whitey</td><td>Hill's y/d</td></tr>
+          <tr><td>widening</td><td>phosphorus restriction（推測）</td></tr>
+          <tr><td>Uterine Syndrome</td><td>euthyroid sick syndrome</td></tr>
+          <tr><td>HDM／CAD／diastolic hypertension</td><td>HCM／CKD／systemic hypertension</td></tr>
+          <tr><td>copro</td><td>clopidogrel</td></tr>
+          <tr><td>suloxine／Seloxine／suloxan</td><td>Soloxine（levothyroxine）</td></tr>
+          <tr><td>monitoring of the antibodies is one of the easiest</td><td>monitoring of hypothyroidism is one of the easiest（推測）</td></tr>
+          <tr><td>azoospermia</td><td>azotemia（推測）</td></tr>
+          <tr><td>euthymic／labradorite</td><td>azotemic／hyperthyroid</td></tr>
+          <tr><td>antenatal signs</td><td>non-thyroidal illness</td></tr>
+          <tr><td>G protein／JP one</td><td>GLP-1</td></tr>
+          <tr><td>first chance to Inhibitors</td><td>SGLT2 inhibitors</td></tr>
+          <tr><td>Dr. Ludwig</td><td>Dr. Bugbee（推測）</td></tr>
+          <tr><td>TB4／CSH</td><td>TT4／TSH</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">10/8 座談會 Q&amp;A（Veterinary Endocrinology Panel Discussion）「完整記錄」逐字稿 PDF；VET-KU × Texas A&amp;M IM Conference, 2026-10-08。</div>
+          <div class="ref-item">座談會錄音與逐字稿（Plaud）。<a href="https://web.plaud.ai/s/pub_86ca94fc-f861-414a-93cd-eaad15edbbd0::288f2xO86adyTiotxEko-RlL2zWP-ZYkyvI3QU4FkOSkliRUrfvyJi5iDQmUCIk1TK_LbeB6JxoXvLR7BwAftAI" target="_blank" rel="noopener">連結</a>（有轉文字錯誤，請對照更正表）</div>
+          <div class="ref-item">相關場次：<a href="canine-hypothyroidism.html">17 犬甲狀腺功能低下（Langlois）</a>、<a href="feline-hyperthyroidism.html">18 貓甲狀腺功能亢進（Bugbee）</a>、<a href="diabetic-cushingoid.html">16 糖尿病合併庫欣（Tardo）</a>。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="feline-hyperthyroidism.html">18 貓甲狀腺功能亢進：診斷、治療與監測</a>。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
