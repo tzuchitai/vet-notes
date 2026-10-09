@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>犬高血鈣：以病例為基礎的診斷與處置｜2026 Texas 內分泌研討會</title>
+<style>
+  :root {
+    --primary: #0F766E;
+    --primary-light: #CCFBF1;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0d2522;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9cc8c1; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #1f4a44;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9cc8c1; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9cc8c1;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #1f4a44;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #5f8f87;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0b4f49 0%, #14a395 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0d2522; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #1f4a44; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 Texas 內分泌研討會</a>
+  <div class="logo">
+    <h2>21｜犬高血鈣：<br>以病例為基礎的診斷與處置</h2>
+    <p>Daniel K. Langlois｜2026 年 10 月 9 日</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">場次資訊與大綱</a>
+    <div class="nav-section">基礎</div>
+    <a href="#s1">1. 病例 Jet 與血鈣的三種型態</a>
+    <a href="#s2">2. 鑑別診斷與口訣</a>
+    <a href="#s3">3. 鈣磷調控：三種荷爾蒙</a>
+    <a href="#s4">4. 生化線索與嚴重度</a>
+    <a href="#s5">5. 病例 Penelope：愛迪生</a>
+    <a href="#s6">6. 高血鈣的傷害與臨床表現</a>
+    <div class="nav-section">診斷</div>
+    <a href="#s7">7. 診斷思路與檢驗套組</a>
+    <a href="#s8">8. 病例 Riley：PTH「適當與否」</a>
+    <a href="#s9">9. 病例 Peggy：腎性次發性副甲亢</a>
+    <a href="#s10">10. 病例 Janie：PTHrP 與惡性高血鈣</a>
+    <a href="#s11">11. 病例 Storm：維生素 D 中毒</a>
+    <div class="nav-section">治療</div>
+    <a href="#s12">12. 治療原則與藥物</a>
+    <a href="#s13">13. 病例 Champ：一個病例講完所有鈣</a>
+    <div class="nav-section">加碼與課後</div>
+    <a href="#s14">14. 加碼病例 Ziggy：低血鈣</a>
+    <a href="#s15">15. 課後 Q&amp;A</a>
+    <a href="#s16">Take-home、病例總表、更正表與參考資料</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>犬高血鈣：以病例為基礎的診斷與處置</h1>
+    <p>主講：Daniel K. Langlois, DVM, DACVIM｜密西根州立大學（MSU）獸醫學院內科教授</p>
+    <p>2026 年 10 月 9 日｜VET-KU × Texas A&amp;M 內科研討會｜場次 21</p>
+    <div class="tags">
+      <span class="tag">Hypercalcemia</span>
+      <span class="tag">離子鈣 iCa</span>
+      <span class="tag">PTH 依賴／非依賴</span>
+      <span class="tag">原發性副甲亢</span>
+      <span class="tag">PTHrP</span>
+      <span class="tag">淋巴瘤</span>
+      <span class="tag">肛門囊腺癌</span>
+      <span class="tag">維生素 D 中毒</span>
+      <span class="tag">腎性次發性副甲亢</span>
+      <span class="tag">Zoledronate</span>
+      <span class="tag">VDDR 1A</span>
+    </div>
+    <a class="rec-link" href="https://web.plaud.ai/s/pub_5e68505a-8a39-4c70-8d26-4aa36ec70703::Bc5nRODPXk71ovOsn2hfZfIkYEJzYBP1fAP-seXE2YgGaIP-LvbiffKebQEbdNufez2z417S-fXGm-suJO_fpQI" target="_blank" rel="noopener">🎧 課堂錄音與逐字稿（Plaud）↗</a>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（頁碼＝講義投影片編號 1–47）
+    <span class="src src-rec">🎤</span> 課堂逐字稿
+    <span class="src src-photo">📸 現場</span> 課堂現場投影片（講義 PDF 沒有）
+    <span class="src src-hand">✍️ 筆記</span> 上課時記下的重點與提問
+    <span class="src src-add">💡 補充</span> 整理者補充（機轉、判讀、交叉參照）
+    <span class="src src-fix">【更正】</span> 逐字稿轉文字錯誤，以講義為準（完整列表見最後一節）
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li><strong>狗的高血鈣永遠不能忽略</strong>：狗沒有「特發性高血鈣」，那是貓的診斷</li>
+      <li><strong>總鈣不能準確預測 iCa</strong>，校正公式不可靠；但 <strong>tCa &gt; 13.5 mg/dL</strong> 時 iCa 幾乎一定高，不必等結果再開始找病因</li>
+      <li><strong>一定要看磷</strong>：磷低或正常偏低 → PTH 依賴（PTH 或 PTHrP）；磷正常偏高或高 → 非 PTH 依賴</li>
+      <li>輕度氮血症不會造成高血鈣，輕度高血鈣也不會造成氮血症</li>
+      <li><strong>重度</strong>高血鈣幾乎只有三種：<strong>惡性腫瘤、原發性副甲亢、維生素 D 中毒</strong></li>
+      <li>高血鈣常常是疾病的<strong>標記</strong>，不是病因；輕度時多半只有 PU/PD 或結石</li>
+      <li>高血鈣一定要<strong>直腸觸診</strong>，MSU 每年都有幾例是驗完血才摸到肛門囊腫塊</li>
+      <li>判讀 PTH 要問<strong>「適當還是不適當」</strong>：iCa 高時，PTH 落在參考區間上 1/3 就是不適當</li>
+      <li><strong>PTHrP 敏感度差、特異度高</strong>：陰性不能排除腫瘤，陽性強烈指向腫瘤</li>
+      <li><strong>淋巴瘤是高血鈣最常見的原因</strong></li>
+      <li><strong>確診前絕對不要給類固醇</strong>：一劑就可能讓淋巴瘤緩解，效果可持續數天到數週</li>
+      <li>脫水或氮血症的動物<strong>不要用 furosemide</strong>；治療前先採好 iCa、PTH、PTHrP、25-OH-D 的檢體</li>
+    </ul>
+  </div>
+
+  <!-- ══ S0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🎯</div>
+      <h2>場次資訊與大綱</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 1–2</span><span class="src src-rec">🎤</span> 講者與大綱</h3>
+        <ul class="notes">
+          <li>講者 Daniel K. Langlois，DVM、DACVIM，MSU 獸醫學院內科教授。部分病例資料由 MSU 內分泌實驗室的 <strong>Dr. Jean Brudvig</strong> 提供。</li>
+          <li><span class="src src-rec">🎤</span> 鈣的內容太多（狗和貓、高和低），所以這一小時<strong>只講狗的高血鈣</strong>，最後加碼一個低血鈣病例。</li>
+          <li><span class="src src-rec">🎤</span> 開場閒聊：密西根的休倫湖（Lake Huron）看起來像海邊，但一踩進水就知道是密西根，不是泰國。小孩喜歡在湖邊找 <strong>Petoskey stone</strong>（化石珊瑚），是五大湖區的「聖杯級」石頭。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>#</th><th>大綱</th></tr>
+          <tr><td>1</td><td>鈣磷恆定：相關荷爾蒙</td></tr>
+          <tr><td>2</td><td>高血鈣的臨床後果</td></tr>
+          <tr><td>3</td><td>診斷思路</td></tr>
+          <tr><td>4</td><td>惡性腫瘤與維生素 D 檢驗套組</td></tr>
+          <tr><td>5</td><td>治療原則</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🐕</div>
+      <h2>1. 病例 Jet 與血鈣的三種型態</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 3–4</span><span class="src src-rec">🎤</span> Jet，12 歲公（已結紮）傑克羅素㹴</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 飼主是 MSU 的馬外科醫師，帶狗來內科評估 <strong>PU/PD</strong>：幾個月前開始，慢慢變嚴重。</li>
+          <li>USG 1.006–1.011（低張到等張尿）。除了輕度 PU/PD，<strong>狗精神非常好</strong>，飼主沒有其他擔心。</li>
+          <li><span class="src src-rec">🎤</span> 原本的獸醫在之前的檢驗發現輕度高血鈣；到 MSU 時，講者會稱為<strong>中度</strong>高血鈣。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>結果</th><th>參考區間</th></tr>
+          <tr><td>BUN / Crea</td><td>17 / 0.8</td><td>12–27 / 0.6–1.5 mg/dL</td></tr>
+          <tr><td><strong>Ca</strong></td><td><strong>13.9 H</strong></td><td>9.5–10.8 mg/dL</td></tr>
+          <tr><td><strong>P</strong></td><td><strong>2.6 L</strong></td><td>2.7–5.4 mg/dL</td></tr>
+          <tr><td>ALP</td><td>107 H</td><td>10–92 U/L</td></tr>
+          <tr><td>電解質、蛋白、白蛋白、球蛋白</td><td colspan="2">都正常</td></tr>
+        </table></div>
+        <p class="p">答案在第 3 節揭曉。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 5–6</span><span class="src src-rec">🎤</span> 血鈣的三種型態</h3>
+        <figure class="fig">
+          <img src="photos/21-05-ca-fractions.jpg" alt="血鈣的三種型態：游離、蛋白結合、複合" loading="lazy">
+          <figcaption>📄 5：游離（離子）鈣約 50%、蛋白結合約 40–45%、複合鈣約 5–10%</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>型態</th><th>比例</th><th>說明</th></tr>
+          <tr><td><strong>游離（離子）鈣 iCa</strong></td><td>約 45–50%</td><td>唯一有生物活性、受荷爾蒙調控的部分，<strong>判斷是不是病理性高血鈣只看它</strong>。用血氣分析儀、i-STAT 或送內分泌實驗室測</td></tr>
+          <tr><td>蛋白結合鈣</td><td>約 40–45%</td><td>80% 結合白蛋白、20% 結合球蛋白（α、β 球蛋白等）</td></tr>
+          <tr><td>複合鈣</td><td>約 5–10%</td><td>和檸檬酸、磷酸、碳酸氫根、乳酸、硫酸等非蛋白陰離子結合</td></tr>
+        </table></div>
+        <figure class="fig">
+          <img src="photos/21-06-tca-vs-ica.jpg" alt="總鈣升高或降低時離子鈣的可能變化" loading="lazy">
+          <figcaption>📄 6：總鈣升高時，iCa 可能升高也可能正常；總鈣降低時，iCa 可能正常也可能降低</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 總鈣改變常伴隨 iCa 改變，但<strong>也有很多時候不會</strong>。每一種疾病可能影響不同的鈣池，所以在診斷走太遠之前，要先<strong>測 iCa 確認</strong>總鈣的升高。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span><span class="src src-rec">🎤</span> 總鈣不是 iCa 的準確預測指標</h3>
+        <figure class="fig">
+          <img src="photos/21-tca-13.5-live.jpg" alt="現場投影片：總鈣大於 13.5 mg/dL 可預期離子性高血鈣" loading="lazy">
+          <figcaption>📸 現場（第 6 張的動畫補充框）</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><strong>總鈣無法準確預測 iCa</strong>：使用校正公式要小心；「預測 iCa」可能有參考價值；要確認是病理性高血鈣，請直接測 iCa。</li>
+          <li><span class="src src-rec">🎤</span> 文獻上有很多校正公式，最簡單的是用白蛋白校正，但<strong>幾乎每個研究都顯示這些預測公式不準</strong>。</li>
+          <li><strong>實務考量：總鈣 &gt; 13.5 mg/dL 時，可以預期 iCa 是升高的。</strong><span class="src src-rec">🎤</span> 總鈣 14、15 的病例當然還是要測 iCa，但<strong>不需要等結果才開始診斷</strong>，可以直接開始找病因。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：13.5 是判斷「是不是真的高血鈣」的切點。總鈣介於參考上限到 13.5 之間是灰色地帶，一定要測 iCa。本堂課的 Riley（11.7）、Peggy（12.1）、Penelope（12.5）都落在這個區間，結果三隻的 iCa 各不相同。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">📋</div>
+      <h2>2. 鑑別診斷與口訣</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 7–8</span><span class="src src-rec">🎤</span> 鑑別診斷與發生率</h3>
+        <p class="p">鑑別診斷：惡性腫瘤、原發性副甲狀腺亢進、維生素 D 過多、骨溶解、愛迪生氏症、肉芽腫性疾病、腎臟病。<span class="src src-rec">🎤</span> 有些由荷爾蒙媒介，有些不是。</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>犬</th><th>貓</th></tr>
+          <tr><td>惡性腫瘤 45–50%</td><td>特發性 45%</td></tr>
+          <tr><td>原發性副甲狀腺亢進 35–40%</td><td>惡性腫瘤 45%</td></tr>
+          <tr><td>愛迪生氏症 10%</td><td>原發性副甲狀腺亢進 6%</td></tr>
+          <tr><td>維生素 D 2%</td><td>其他 4%</td></tr>
+          <tr><td>其他 4%</td><td></td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 狗的第一名是腫瘤（<strong>淋巴瘤、多發性骨髓瘤、肛門囊腺癌</strong>，也有其他腫瘤的報告），原發性副甲亢緊追在後，愛迪生第三，維生素 D 中毒第四。比例依研究而有些差異。</li>
+          <li><span class="src src-rec">🎤</span> 不管是哪一種，<strong>都是很有意義的疾病</strong>。</li>
+        </ul>
+        <div class="quote">There is never a valid reason to ignore hypercalcemia in a dog.<span class="quote-zh">狗的高血鈣，永遠沒有可以忽略它的理由。任何真正的病理性高血鈣都值得完整的診斷檢查。</span></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span><span class="src src-rec">🎤</span> 高血鈣的記憶口訣</h3>
+        <figure class="fig">
+          <img src="photos/21-mnemonics-live.jpg" alt="現場投影片：HARD-IONS-G 與 DRAGON-SHIT 口訣" loading="lazy">
+          <figcaption>📸 現場：美國學生常用的兩組口訣</figcaption>
+        </figure>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>HARD-IONS-G</h4>
+            <ul>
+              <li><strong>H</strong>yperparathyroidism 副甲狀腺亢進</li>
+              <li><strong>A</strong>ddison's disease 愛迪生氏症</li>
+              <li><strong>R</strong>enal disease 腎臟病</li>
+              <li><strong>D</strong>（Vitamin D）維生素 D 過多</li>
+              <li><strong>I</strong>diopathic 特發性</li>
+              <li><strong>O</strong>steolytic bone disease 溶骨性骨病</li>
+              <li><strong>N</strong>eoplasia 腫瘤</li>
+              <li><strong>S</strong>purious / lab error 假性升高／檢驗誤差</li>
+              <li><strong>G</strong>ranulomatous inflammation 肉芽腫性發炎</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>DRAGON-SHIT</h4>
+            <ul>
+              <li><strong>D</strong>（Vitamin D）維生素 D 過多</li>
+              <li><strong>R</strong>enal disease 腎臟病</li>
+              <li><strong>A</strong>ddison's disease 愛迪生氏症</li>
+              <li><strong>G</strong>ranulomatous inflammation 肉芽腫性發炎</li>
+              <li><strong>O</strong>steolytic bone disease 溶骨性骨病</li>
+              <li><strong>N</strong>eoplasia 腫瘤</li>
+              <li><strong>S</strong>purious / lab error 假性升高／檢驗誤差</li>
+              <li><strong>H</strong>yperparathyroidism 副甲狀腺亢進</li>
+              <li><strong>I</strong>diopathic 特發性</li>
+              <li><strong>T</strong>oxin（Vit D rodenticides）毒物（維生素 D 類殺鼠劑）</li>
+            </ul>
+          </div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 講者特別強調：<strong>特發性只發生在貓，不是狗</strong>。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：口訣比講義第 7 張多了<strong>假性升高、特發性、毒物</strong>三項。假性升高的常見原因有脂血或溶血干擾比色法、一歲以下幼犬生理性偏高、高蛋白血症（總鈣上升但 iCa 正常）。毒物最常見的是膽鈣化醇類殺鼠劑和人用的 calcipotriol 乾癬藥膏。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">🧬</div>
+      <h2>3. 鈣磷調控：三種荷爾蒙</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 9</span><span class="src src-rec">🎤</span> 鈣（與磷）的調控因子</h3>
+        <figure class="fig">
+          <img src="photos/21-09-regulation.jpg" alt="鈣磷調控的直接荷爾蒙作用與其他因子" loading="lazy">
+          <figcaption>📄 9</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><strong>直接作用的荷爾蒙</strong>：主要是 PTH 和維生素 D；次要是降鈣素（講者認為比較像「允許性」或次要的角色）。</li>
+          <li><strong>其他因子</strong>：酸鹼狀態、蛋白結合、皮質醇／糖皮質素、水合與血容量狀態（腎灌流下降會減少鈣的過濾）、腎功能。<span class="src src-rec">🎤</span> 任何一項失調都可能打亂血鈣。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 10</span><span class="src src-rec">🎤</span> 簡化總結：「我是個簡化主義者」</h3>
+        <figure class="fig">
+          <img src="photos/21-10-simplistic-summary.jpg" alt="PTH、骨化三醇、降鈣素的來源、作用器官與淨效果" loading="lazy">
+          <figcaption>📄 10：上方是三種荷爾蒙的比較表，下方是作用示意圖</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>PTH</th><th>骨化三醇 Calcitriol</th><th>降鈣素 Calcitonin</th></tr>
+          <tr><td>來源</td><td>副甲狀腺主細胞</td><td>飲食，經肝、腎轉化</td><td>甲狀腺 C 細胞</td></tr>
+          <tr><td>主要作用器官</td><td>腎小管</td><td>小腸</td><td>骨骼</td></tr>
+          <tr><td>作用</td><td>促進腎臟再吸收鈣、排出磷</td><td>促進腸道吸收鈣和磷</td><td>抑制蝕骨細胞骨吸收</td></tr>
+          <tr><td><strong>淨效果</strong></td><td><strong>↑Ca ↓PO₄</strong></td><td><strong>↑Ca ↑PO₄</strong></td><td><strong>↓Ca ↓PO₄</strong></td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> PTH 作用在<strong>遠端腎小管和集尿管</strong>。既然淨效果是升鈣降磷，<strong>低血鈣和高血磷</strong>就是 PTH 分泌的兩大驅動因子。</li>
+          <li><span class="src src-rec">🎤</span> 和人不同，<strong>狗貓的維生素 D 大多來自飲食</strong>，在肝臟、腎臟經過轉化才變成最強效的形式。</li>
+          <li><span class="src src-rec">🎤</span> 講者會用這張表來看生化：<strong>依照生化的變化，哪一種調控因子可能失調了？</strong></li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 11</span><span class="src src-rec">🎤</span> 回到 Jet：鈣高、磷低</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 不用再往下查，就有很好的線索：高血鈣<strong>很可能是 PTH 或類 PTH 物質在驅動</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 答案：<strong>典型的原發性副甲狀腺亢進</strong>（run of the mill hyperparathyroidism）。</li>
+          <li><span class="src src-hand">✍️ 筆記</span> 因為鈣高磷低，代表是 PTH 在驅動。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：鈣高磷低只代表「PTH 或 PTHrP」在作用，<strong>肛門囊腺癌（PTHrP）也是同樣型態</strong>，所以還是要直腸觸診和觸診淋巴結。Jet 支持原發性副甲亢的地方：老年犬、精神好、腎指數正常（磷低沒有被腎臟干擾）、沒有其他系統性異常。下一步通常是測 iCa＋PTH、頸部超音波找結節，治療後要監測術後低血鈣。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🔍</div>
+      <h2>4. 生化線索與嚴重度</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 12–13</span><span class="src src-rec">🎤</span> 三條生化線索</h3>
+        <ol class="notes">
+          <li><strong>一定要看磷</strong>
+            <ul>
+              <li>磷低或正常偏低：<strong>PTH 依賴性</strong>（PTH，或某些腫瘤分泌的 PTHrP）</li>
+              <li>磷正常偏高或升高：<strong>非 PTH 依賴性</strong></li>
+              <li><span class="src src-rec">🎤</span> 內分泌永遠有灰色地帶：磷落在參考區間中間時，就沒有好的線索。</li>
+            </ul>
+          </li>
+          <li><strong>氮血症</strong>（常常是「雞生蛋、蛋生雞」的問題）
+            <ul>
+              <li>輕度氮血症不太可能造成高血鈣；輕度高血鈣也不太可能造成氮血症</li>
+              <li><span class="src src-rec">🎤</span> 講者說「腎病常造成高血鈣、高血鈣常造成腎病」是<strong>錯誤的觀念</strong>。例子：<strong>總鈣 17 加上輕度氮血症</strong>，氮血症不太可能是高血鈣的原因；<strong>總鈣 12.5 加上腎指數爆表</strong>，鈣也不太可能是氮血症的原因。</li>
+            </ul>
+          </li>
+          <li><strong>高血鈣的程度</strong>
+            <ul>
+              <li>每一種鑑別診斷都可能造成輕到中度高血鈣</li>
+              <li><strong>愛迪生、腎臟病、肉芽腫性發炎、溶骨性骨病</strong>很少造成重度高血鈣</li>
+              <li><strong>重度</strong>高血鈣通常是<strong>惡性腫瘤、原發性副甲亢或維生素 D 中毒</strong></li>
+              <li><span class="src src-rec">🎤</span> 講者提到德州的團隊可能會遇到黴菌感染（histoplasmosis、blastomycosis）偶爾造成比較中度的高血鈣。</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-hand">✍️ 提問</span><span class="src src-rec">🎤</span> 輕度、中度、重度怎麼分？</h3>
+        <p class="p">上課時想問講者的問題。<strong>講義沒有給明確的分級切點</strong>，以下是講義和錄音裡零散提到的數字：</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>出處</th><th>內容</th></tr>
+          <tr><td><span class="src src-rec">🎤</span> Jet</td><td>總鈣 <strong>13.9</strong>：「我大概會稱為<strong>中度</strong>」</td></tr>
+          <tr><td><span class="src src-rec">🎤</span> 臨床表現</td><td>進入<strong>中到重度、總鈣 &gt; 14</strong> 後，開始出現腸胃症狀</td></tr>
+          <tr><td><span class="src src-rec">🎤</span> Janie</td><td>總鈣 <strong>14.9</strong>：「開始進入<strong>中到重度</strong>的範圍」</td></tr>
+          <tr><td><span class="src src-slide">📄 17</span></td><td>心血管和神經症狀很少見，除非 <strong>Ca &gt; 17.0 mg/dL</strong></td></tr>
+          <tr><td><span class="src src-photo">📸 現場</span></td><td>總鈣 &gt; 13.5 時可預期 iCa 升高（這是確認高血鈣的切點，不是嚴重度分級）</td></tr>
+        </table></div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：教科書常見的大約分法（總鈣，mg/dL）是輕度到約 13–14、中度約 14–16、重度 &gt; 約 16，但各書不完全相同。判斷嚴重度時也要一起看 <strong>Ca × P</strong>、上升速度（急性比慢性危險），以及有沒有臨床症狀或腎傷害。依講者口述，13.9 已經算中度，所以 MSU 的切點可能比上述數字低一些。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🐕</div>
+      <h2>5. 病例 Penelope：愛迪生</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 14–15</span><span class="src src-rec">🎤</span> Penelope，5 歲母（已絕育）吉娃娃</h3>
+        <ul class="notes">
+          <li>急診就診：<strong>極度沉鬱、低體溫</strong>；3 天食慾下降到廢絕，嘔吐 2 天，就診當天虛脫。</li>
+          <li>CBC：血液濃縮（PCV 55%）；USG 1.026。<span class="src src-rec">🎤</span> 以當時的水合狀態，尿液沒有適當濃縮。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>結果</th><th>參考區間</th></tr>
+          <tr><td>BUN / Crea</td><td><strong>102 H / 3.7 H</strong></td><td>12–27 / 0.6–1.5 mg/dL</td></tr>
+          <tr><td>Na / K / <strong>Na:K</strong></td><td><strong>127 L / 8.6 H / 15 L</strong></td><td>139–151 / 3.9–5.1 / 29–37</td></tr>
+          <tr><td>Cl / HCO₃</td><td>95 L / 10 L</td><td>106–115 / 16–27 mmol/L</td></tr>
+          <tr><td><strong>Ca / P</strong></td><td><strong>12.5 H / 14.0 H</strong></td><td>9.5–10.8 / 2.7–5.4 mg/dL</td></tr>
+          <tr><td>TP / ALT</td><td>7.3 H / 80 H</td><td></td></tr>
+          <tr><td>Chol</td><td><strong>88 L</strong></td><td>126–325 mg/dL</td></tr>
+        </table></div>
+        <div class="qa">
+          <div class="q">🗳 現場投票：這個高血鈣造成病理變化了嗎？</div>
+          <div class="a"><span class="src src-rec">🎤</span> 很多人選「<strong>沒有造成實質的臨床異常</strong>」，這是對的。輕度高血鈣不太可能驅動很多病理變化。這隻狗是<strong>愛迪生氏症</strong>，她病得非常重，但那是愛迪生造成的，<strong>不是鈣</strong>。</div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-hand">✍️ 筆記</span> addison</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：低鈉高鉀（Na:K 15）、低膽固醇、血液濃縮、尿液沒有濃縮（鈉流失造成腎髓質濃度梯度流失），都是典型的愛迪生危象。高血鈣的原因包括缺乏皮質醇（腎臟和腸道的鈣吸收增加）、血液濃縮，以及高血磷讓複合鈣增加，所以 iCa 常常只有正常到輕度升高。不需要針對鈣治療，用生理食鹽水和糖皮質素治療愛迪生，鈣通常會自己恢復。和後面 Storm 的區分關鍵就是 <strong>Na:K</strong>（Storm 是 39）。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">⚠️</div>
+      <h2>6. 高血鈣的傷害與臨床表現</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 16</span><span class="src src-rec">🎤</span> 鈣的有害作用</h3>
+        <ul class="notes">
+          <li><strong>腎因性尿崩症</strong>：高血鈣干擾 ADH 的正常結合和訊號傳遞</li>
+          <li><strong>腎小管損傷</strong>：腎血管收縮 → GFR 下降、腎缺血</li>
+          <li><strong>軟組織礦化</strong>：Ca × P &gt; 60–80 時器官功能障礙的風險增加。<span class="src src-rec">🎤</span> 講者學生時代被教了很多這個，但其實<strong>很有爭議</strong>，還有很多其他因素。</li>
+          <li>尿石症（含鈣結石）</li>
+          <li>腸道蠕動改變</li>
+          <li>神經肌肉與心血管異常（少見）</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 17</span><span class="src src-rec">🎤</span> 實務上</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 輕到中度高血鈣<strong>很不可能</strong>出現上述大部分變化。很多輕度病例是<strong>偶然發現</strong>，沒有任何後遺症；有症狀的話，通常只是 <strong>PU/PD</strong> 或容易長<strong>膀胱結石</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 其他臨床症狀通常是<strong>原發疾病</strong>造成的：淋巴瘤合併高血鈣的狗，多半是因為淋巴瘤而生病，不是鈣；愛迪生、腎病也一樣。</li>
+          <li><strong>鈣特異性症狀的典型進展</strong>：泌尿 → 腸胃 → 沉鬱 → 虛弱
+            <ul>
+              <li><span class="src src-rec">🎤</span> 中到重度、總鈣 &gt; 14 時，可能出現腸胃症狀：嘔吐、食慾下降、下痢或便秘都有可能</li>
+              <li>鈣再更高：沉鬱、虛弱</li>
+              <li>心血管和神經症狀很少見，除非 <strong>Ca &gt; 17.0 mg/dL</strong></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="quote">Hypercalcemia is more of a marker for disease rather than a driver of disease.<span class="quote-zh">在很多病例中，高血鈣比較像是疾病的標記，而不是疾病的驅動者。中到重度高血鈣則是例外。</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🩺</div>
+      <h2>7. 診斷思路與檢驗套組</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 18</span><span class="src src-rec">🎤</span> 診斷考量</h3>
+        <ul class="notes">
+          <li><strong>初步理學檢查和常規檢驗常常就有線索</strong>
+            <ul>
+              <li>仔細觸診淋巴結、<strong>直腸觸診</strong></li>
+              <li>用血磷判斷 PTH 依賴或非依賴</li>
+              <li>CBC、生化、尿檢可能提供更多證據</li>
+            </ul>
+          </li>
+          <li>→ <strong>找腫瘤</strong>：胸腹腔影像，淋巴結、脾臟、肝臟細針抽吸</li>
+          <li>→ <strong>荷爾蒙評估</strong>：測 PTH、PTHrP、25-羥基維生素 D</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">🔎</span><div><span class="src src-rec">🎤</span> 「如果一開始沒做直腸觸診，<strong>趕快跑回去做</strong>，確認沒有肛門囊腺癌。」MSU <strong>每年至少有幾次</strong>是血檢結果出來後才摸到肛門囊腫塊，這沒關係，但高血鈣一定要回頭檢查。<br><span class="src src-hand">✍️ 筆記</span> anal sac mass（rectal exam）</div></div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：肛門囊腺癌約 25% 會高血鈣，幾乎都是 PTHrP 造成，生化上和原發性副甲亢一樣是鈣高磷低。腫瘤可能不到 1 公分，只有直腸觸診摸得到。肛門囊在 4 點和 8 點鐘方向，兩側都要摸；手指盡量往前伸，摸<strong>腰下（髂內、薦骨）淋巴結</strong>，這是最常見的轉移位置。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 19</span><span class="src src-rec">🎤</span> 惡性腫瘤／維生素 D 檢驗套組</h3>
+        <ul class="notes">
+          <li>美國有多家商業實驗室提供，很多最後在 <strong>MSU 內分泌實驗室</strong>檢驗；也有其他實驗室提供維生素 D 檢驗。</li>
+          <li>檢驗項目：iCa、PTH、PTHrP、25-OH 維生素 D，可以單項送：
+            <ul>
+              <li><strong>惡性腫瘤套組</strong>：iCa ＋ PTH ＋ PTHrP</li>
+              <li><strong>維生素 D 套組</strong>：iCa ＋ PTH ＋ 25-OH 維生素 D</li>
+            </ul>
+          </li>
+          <li><span class="src src-rec">🎤</span> 其他國家很多人用<strong>人醫實驗室</strong>測這些荷爾蒙；MSU 的 PTH 檢測本身就是人用的檢驗（見課後 Q&amp;A）。</li>
+          <li><span class="src src-rec">🎤</span> MSU 的 <strong>PTHrP 檢驗目前暫停</strong>，接下來幾個月不提供，希望不久後恢復。</li>
+        </ul>
+        <div class="quote">Think "appropriate or inappropriate" rather than "normal or abnormal."<span class="quote-zh">不要問數值正不正常，要問以這隻動物當下的生理狀態，這個數值適不適當。</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🐕</div>
+      <h2>8. 病例 Riley：PTH「適當與否」</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 20–21</span><span class="src src-photo">📸 現場</span><span class="src src-rec">🎤</span> Riley，11 歲公（已結紮）米克斯</h3>
+        <ul class="notes">
+          <li>主訴：<strong>反覆尿結石</strong>。4 個月前膀胱切開取出<strong>草酸鈣結石</strong>，轉診前 2 週又發現結石。</li>
+          <li>其他方面健康，預防保健都有按時做。回顧病歷：<strong>長期輕度高血鈣</strong>。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>結果</th><th>參考區間</th></tr>
+          <tr><td>BUN / Crea</td><td>19 / 1.1</td><td>12–27 / 0.6–1.5 mg/dL</td></tr>
+          <tr><td>Ca / P</td><td><strong>11.7 H</strong> / 2.9</td><td>9.5–10.8 / 2.7–5.4 mg/dL</td></tr>
+          <tr><td><span class="src src-photo">📸</span> <strong>iCa</strong></td><td><strong>1.53 H</strong></td><td>1.25–1.45 mmol/L</td></tr>
+          <tr><td><span class="src src-photo">📸</span> <strong>PTH</strong></td><td><strong>8.5</strong></td><td>1.1–10.6 pmol/L</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 「這是我最喜歡的內分泌例子，因為很少有事情完美吻合，到處都是灰色地帶。」</li>
+          <li><span class="src src-rec">🎤</span> 答案：<strong>很可能是原發性副甲狀腺亢進</strong>。iCa 高應該抑制 PTH 分泌，PTH 卻還在 8.5，對 iCa 升高來說是<strong>不適當</strong>的。</li>
+          <li><span class="src src-rec">🎤</span> 很多原發性副甲亢的狗，<strong>PTH 仍在參考區間內，只是落在最上端</strong>。</li>
+          <li><span class="src src-hand">✍️ 筆記</span> iCa 高、PTH 8.5。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：(8.5 − 1.1) ÷ (10.6 − 1.1) ≈ <strong>78%</strong>，落在參考區間上 1/3。如果只看有沒有標 H，這份 PTH 會被當成「正常」而排除副甲狀腺疾病。總鈣只有 11.7（&lt; 13.5），iCa 卻是高的，也驗證了灰色地帶一定要測 iCa。輕度高血鈣只表現成反覆草酸鈣結石：PTH 讓血鈣升高，過濾出去的鈣變多，形成高尿鈣。<strong>草酸鈣結石（尤其是復發）的狗一定要驗血鈣</strong>。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 22</span><span class="src src-rec">🎤</span> 用 iCa 分類高血鈣</h3>
+        <figure class="fig">
+          <img src="photos/21-22-classification.jpg" alt="依 PTH 在參考區間的位置分類高血鈣" loading="lazy">
+          <figcaption>📄 22：左圖為原發性副甲亢（腺瘤自主分泌，不受鈣的負回饋控制）；右圖為非 PTH 依賴性（其他來源讓 iCa 升高，正常的副甲狀腺被抑制）</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>PTH（在 iCa 升高時）</th><th>分類</th></tr>
+          <tr><td>≥ 參考區間上 1/2 到上 1/3</td><td><strong>PTH 依賴性</strong>（原發性副甲亢）</td></tr>
+          <tr><td>低，被抑制（約參考區間下 1/3）</td><td><strong>非 PTH 依賴性</strong></td></tr>
+          <tr><td>介於兩者之間</td><td>不明確；可能是早期原發性副甲亢？<span class="src src-rec">🎤</span> 只能隔一段時間再評估</td></tr>
+        </table></div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：以 MSU 參考區間 1.1–10.6 pmol/L 換算，上 1/3 約 ≥ 7.4，上 1/2 約 ≥ 5.9，下 1/3 約 ≤ 4.3。落在中間時可以 2–4 週後重測 iCa 和 PTH，或直接做頸部超音波，同時繼續篩檢腫瘤。有腎病的狗可能同時有腎性次發性副甲亢，這套分類容易失準。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🐕</div>
+      <h2>9. 病例 Peggy：腎性次發性副甲亢</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 23–24</span><span class="src src-photo">📸 現場</span><span class="src src-rec">🎤</span> Peggy，7 歲母（已絕育）馬爾濟斯</h3>
+        <ul class="notes">
+          <li>只是送到內分泌實驗室的檢體，送檢單上的主訴只寫「<strong>氮血症？</strong>」，其他病史和資料都很少。原本的獸醫送了惡性腫瘤套組和生化。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>結果</th><th>參考區間</th></tr>
+          <tr><td>BUN / Crea</td><td><strong>82 H / 3.8 H</strong></td><td>12–27 / 0.6–1.5 mg/dL</td></tr>
+          <tr><td>Na / HCO₃</td><td>152 H / 15 L</td><td></td></tr>
+          <tr><td>Ca / P</td><td><strong>12.1 H / 8.3 H</strong></td><td>9.5–10.8 / 2.7–5.4 mg/dL</td></tr>
+          <tr><td><span class="src src-photo">📸</span> <strong>PTH</strong></td><td><strong>42.1 H</strong></td><td>1.1–10.6 pmol/L</td></tr>
+          <tr><td><span class="src src-photo">📸</span> <strong>iCa</strong></td><td><strong>1.35</strong></td><td>1.25–1.45 mmol/L</td></tr>
+          <tr><td><span class="src src-photo">📸</span> <strong>PTHrP</strong></td><td><strong>0.0</strong></td><td>0.0–1.0 pmol/L</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 答案：<strong>腎性次發性副甲狀腺亢進</strong>。PTH 的分泌主要被<strong>腎臟因素</strong>（高血磷、腎病）驅動。</li>
+          <li><span class="src src-rec">🎤</span> 腎病動物的總鈣<strong>幾乎可以是任何數值</strong>（低、正常、高都有），但 <strong>iCa 很少真的升高</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 這<strong>不是病理性高血鈣</strong>。這隻狗需要的是處理腎病，也許加上治療腎性次發性副甲亢，而不是處理高血鈣。</li>
+          <li><span class="src src-hand">✍️ 筆記</span> renal secondary hyperparathyroidism，iCa usually not high。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：總鈣高、iCa 正常，是因為腎功能下降時磷酸、硫酸、檸檬酸等陰離子累積，和鈣形成<strong>複合鈣</strong>。PTH 升高是因為磷滯留直接刺激副甲狀腺，加上腎臟製造的骨化三醇減少（骨化三醇原本會抑制 PTH）。這是維持 iCa 的<strong>適當</strong>代償。和 Riley 對照：<strong>Riley 的 PTH「正常」卻是有病的；Peggy 的 PTH 很高，副甲狀腺反而功能正常</strong>。少數長期慢性腎病的病例會變成自主分泌，iCa 也升高，稱為三級副甲亢，所以是「usually」not high。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🐕</div>
+      <h2>10. 病例 Janie：PTHrP 與惡性高血鈣</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 25–26</span><span class="src src-photo">📸 現場</span><span class="src src-rec">🎤</span> Janie，5 歲母（已絕育）拳師犬</h3>
+        <ul class="notes">
+          <li>主訴：高血鈣評估。<strong>3 個月沉鬱、食慾下降、體重減輕</strong>；1 個月 PU/PD。</li>
+          <li>6 週前發現總鈣和 iCa 升高。原本的獸醫做了 CBC、生化、尿檢、胸腹部 X 光、基礎皮質醇，<strong>都沒找到原因</strong>。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>結果</th><th>參考區間</th></tr>
+          <tr><td>BUN / Crea</td><td>31 H / 1.4</td><td>12–27 / 0.6–1.5 mg/dL</td></tr>
+          <tr><td>K / Cl</td><td>3.7 L / 105 L</td><td></td></tr>
+          <tr><td>Ca / P</td><td><strong>14.9 H</strong> / 5.2</td><td>9.5–10.8 / 2.7–5.4 mg/dL</td></tr>
+          <tr><td>ALP / ALT</td><td><strong>248 H / 168 H</strong></td><td>10–92 / 21–68 U/L</td></tr>
+          <tr><td><span class="src src-photo">📸</span> <strong>PTH</strong></td><td><strong>1.2</strong></td><td>1.1–10.6 pmol/L</td></tr>
+          <tr><td><span class="src src-photo">📸</span> <strong>iCa</strong></td><td><strong>1.66 H</strong></td><td>1.25–1.45 mmol/L</td></tr>
+          <tr><td><span class="src src-photo">📸</span> <strong>PTHrP</strong></td><td><strong>0.0</strong></td><td>0.0–1.0 pmol/L</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 總鈣開始進入中到重度範圍；肝指數輕度上升；中度的離子性高血鈣；<strong>PTH 被抑制在參考區間最底部</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 現場投票答案 B：<strong>雖然 PTHrP 是 0，這隻狗還是很可能是惡性腫瘤造成的高血鈣</strong>。</li>
+          <li><span class="src src-hand">✍️ 筆記</span> 即使 PTHrP 不高，這隻還是惡性高血鈣。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：磷正常偏高、PTH 被抑制，屬於非 PTH 依賴性。腎指數接近正常、皮質醇正常，排除腎病和愛迪生。拳師犬是淋巴瘤好發品種，加上慢性消耗和肝指數上升，懷疑造血系統腫瘤浸潤肝臟。下一步：腹部超音波（X 光看不到浸潤性病灶）、肝脾和淋巴結細針抽吸，必要時測骨化三醇；也要鑑別黴菌性肉芽腫，它同樣是 PTH 被抑制、PTHrP 陰性。講者沒有公布 Janie 的最終診斷。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 27</span><span class="src src-rec">🎤</span> PTHrP（副甲狀腺素相關蛋白）</h3>
+        <ul class="notes">
+          <li>全名 <strong>Parathyroid Hormone–related Protein</strong>。正常存在於很多組織，但濃度非常非常低，<strong>血中很少驗得到</strong>；正常生理功能還不清楚。</li>
+          <li><span class="src src-rec">🎤</span> 和 PTH 結構相似，但不完全相同，大約 <strong>75–80% 同源</strong>。能結合 PTH 受體，產生和 PTH 一樣的生物效果。</li>
+          <li>許多物種「<strong>惡性腫瘤體液性高血鈣</strong>」（humoral hypercalcemia of malignancy）的經典原因。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 28</span><span class="src src-rec">🎤</span> 惡性腫瘤相關高血鈣：多種機制</h3>
+        <figure class="fig">
+          <img src="photos/21-28-hhm-mechanisms.jpg" alt="惡性腫瘤相關高血鈣：體液型與局部型" loading="lazy">
+          <figcaption>📄 28：左為體液型（腫瘤釋放體液因子，遠距離作用在骨骼和腎臟）；右為局部型（實體腫瘤骨轉移、多發性骨髓瘤、造血系統腫瘤浸潤骨髓）。兩者都透過刺激蝕骨細胞骨吸收、增加腎小管鈣再吸收來升鈣（Rosol TJ 等，DiBartola 2000）</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>腫瘤</th><th>高血鈣比例</th><th>機制</th></tr>
+          <tr><td><strong>淋巴瘤</strong></td><td>20–40%</td><td>有些分泌 PTHrP；有些<strong>自行合成骨化三醇</strong>；有些機制不明</td></tr>
+          <tr><td><strong>肛門囊頂泌腺腺癌</strong></td><td>25%</td><td>通常是 <strong>PTHrP</strong></td></tr>
+          <tr><td>多發性骨髓瘤</td><td>偶發</td><td>可能是<strong>骨溶解</strong></td></tr>
+          <tr><td>其他各種腫瘤</td><td></td><td>上述任何一種或多種</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> <strong>淋巴瘤可能是美國最常見的高血鈣原因</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span><span class="src src-rec">🎤</span> PTHrP 的敏感度與特異度</h3>
+        <figure class="fig">
+          <img src="photos/21-pthrp-sens-spec-live.jpg" alt="現場投影片：PTHrP 敏感度差、特異度高" loading="lazy">
+          <figcaption>📸 現場（第 28 張的動畫補充框）</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><strong>PTHrP 低或正常，不能排除惡性腫瘤</strong></li>
+          <li><strong>PTHrP 升高，強烈暗示惡性腫瘤</strong></li>
+          <li>→ <strong>敏感度差，但特異度高</strong>。<span class="src src-rec">🎤</span> PTHrP 是體液性惡性高血鈣的標記，但惡性高血鈣還有很多其他原因。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：可以用 SpPIn／SnNOut 記：特異度高的檢驗，陽性可以確診（PTHrP 陽性 → 全力找腫瘤）；PTHrP 敏感度不高，所以陰性不能排除。檢體沒冷凍或延遲送檢會讓 PTHrP 降解，也會造成偽陰性。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🐕</div>
+      <h2>11. 病例 Storm：維生素 D 中毒</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 29–30、33</span><span class="src src-photo">📸 現場</span><span class="src src-rec">🎤</span> Storm，6 歲母（已絕育）拉布拉多</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 急診病例。「我不能告訴你病史，因為會洩漏答案。」</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>結果</th><th>參考區間</th></tr>
+          <tr><td>BUN / Crea</td><td>67 H / 2.1 H</td><td>12–27 / 0.6–1.5 mg/dL</td></tr>
+          <tr><td>Na / Na:K</td><td>155 H / 39 H</td><td>139–151 / 29–37</td></tr>
+          <tr><td><strong>Ca / P</strong></td><td><strong>17.1 H / 7.1 H</strong></td><td>9.5–10.8 / 2.7–5.4 mg/dL</td></tr>
+          <tr><td><span class="src src-photo">📸</span> <strong>PTH</strong></td><td><strong>&lt; 0.5 L</strong></td><td>1.1–10.6 pmol/L</td></tr>
+          <tr><td><span class="src src-photo">📸</span> <strong>iCa</strong></td><td><strong>2.3 H</strong></td><td>1.25–1.45 mmol/L</td></tr>
+          <tr><td><span class="src src-photo">📸</span> <strong>25-OH 維生素 D</strong></td><td><strong>3470 H</strong></td><td>109–423 nmol/L</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 不需要病史或荷爾蒙，<strong>鈣很高、磷也高</strong>的型態，光看生化就<strong>排除了所有 PTH 依賴性原因</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 腎臟病非常輕微，<strong>不是高血鈣的原因，比較可能是反過來</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 答案：25-OH-D 明顯升高，這隻狗<strong>已知誤食殺鼠劑</strong>。殺鼠劑有很多種，其中一些含維生素 D。</li>
+          <li><span class="src src-hand">✍️ 筆記</span> vitamin D；rule out PTH dependent；renal disease is mild。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：Na:K 39 正常，排除愛迪生（對照 Penelope 的 15）。Ca × P ≈ 121，軟組織礦化與急性腎傷害的風險很高。25-OH-D 約是上限的 8 倍，代表來源是膽鈣化醇或麥角鈣化醇（殺鼠劑、補充品、飼料配方錯誤）；calcipotriol 乾癬藥膏或骨化三醇不會讓 25-OH-D 升高。25-OH-D 是脂溶性、半衰期長達數週，所以高血鈣可能持續好幾週，要積極且持久地治療（輸液 → furosemide → 類固醇 → 雙磷酸鹽），並長期監測。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 31–32</span><span class="src src-rec">🎤</span> 維生素 D 檢驗：測的是哪一種？</h3>
+        <figure class="fig">
+          <img src="photos/21-32-vitd-pathway.jpg" alt="維生素 D 代謝路徑：皮膚、肝臟 25-羥化、腎臟 1α-羥化" loading="lazy">
+          <figcaption>📄 32：貓狗皮膚經 UV 合成維生素 D 的能力非常有限，必須靠飲食；肝臟轉成骨化二醇（25-OH-D，紅圈），腎臟再轉成骨化三醇</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>維生素 D 是前驅荷爾蒙，要經過兩步活化。例外：<strong>部分淋巴球、巨噬細胞／組織球可以自己製造骨化三醇</strong>（肉芽腫和淋巴瘤升鈣的機制之一）。</li>
+          <li>D3＝膽鈣化醇（動物來源）；D2＝麥角鈣化醇（植物來源）。</li>
+          <li><strong>骨化二醇 Calcidiol</strong>＝25-羥基維生素 D，25(OH)D；<strong>骨化三醇 Calcitriol</strong>＝1,25-二羥基維生素 D，1,25(OH)₂D，是天然維生素 D 代謝物中活性最強的。</li>
+          <li><span class="src src-rec">🎤</span> 可以測骨化三醇，但<strong>多半測的是 25-OH-D</strong>，也就是 1α-羥化酶作用之前、在肝臟的儲存形式。</li>
+          <li><span class="src src-rec">🎤</span> 25-OH-D 是<strong>攝取量的好指標</strong>：中毒、飲食相關問題都能反映，但<strong>不一定反映下游</strong>的狀況。對殺鼠劑或飲食配方錯誤造成的維生素 D 過量，它非常好用。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">💊</div>
+      <h2>12. 治療原則與藥物</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 34</span><span class="src src-rec">🎤</span> 初步處置回顧</h3>
+        <ol class="notes">
+          <li>發現總鈣升高：狗的高血鈣不會是「特發性」。臨界值時 1–2 週後重驗總鈣；測 iCa 確認是病理性高血鈣</li>
+          <li>理學檢查和常規檢驗常常就指向診斷（淋巴結、直腸觸診）</li>
+          <li>測 PTH、PTHrP，必要時加測維生素 D；通常先驗 PTH ± PTHrP</li>
+          <li>找潛藏的腫瘤</li>
+        </ol>
+        <p class="p"><span class="src src-rec">🎤</span> 很多病例光靠<strong>病史、理學檢查和生化</strong>，就能對發生什麼事有很好的概念。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 35</span><span class="src src-rec">🎤</span> 治療考量</h3>
+        <ul class="notes">
+          <li><strong>治療原發疾病最有效</strong></li>
+          <li><strong>很多高血鈣病例不需要針對鈣治療</strong>。先問三個問題：
+            <ul>
+              <li>高血鈣是中到重度嗎？</li>
+              <li>高血鈣造成臨床症狀了嗎？</li>
+              <li>這些症狀或變化有潛在的病理意義嗎？</li>
+            </ul>
+          </li>
+          <li><strong>治療不應該妨礙診斷</strong></li>
+          <li><strong>治療不能比疾病本身更糟！</strong></li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 36</span><span class="src src-rec">🎤</span> 治療藥物（BSAVA 第 4 版第 21 章 p.226）</h3>
+        <figure class="fig">
+          <img src="photos/21-36-treatment-table.jpg" alt="BSAVA 高血鈣治療表與三類藥物重點" loading="lazy">
+          <figcaption>📄 36：Table 21.4 高血鈣的治療（＊在英國未核准用於犬隻）</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>類別</th><th>藥物</th><th>劑量</th><th>適應症</th><th>備註</th></tr>
+          <tr><td rowspan="2">① 擴充血容量</td><td>皮下 0.9% 生理食鹽水</td><td>75–100 mL/kg q24h</td><td>輕度</td><td>有周邊水腫時禁用</td></tr>
+          <tr><td>靜脈 0.9% 生理食鹽水</td><td>5 mL/kg/h</td><td>中到重度</td><td>鬱血性心衰竭、高血壓要小心</td></tr>
+          <tr><td>① 利尿劑</td><td>Furosemide</td><td>2 mg/kg IV、SC、PO q8–12h</td><td>中到重度</td><td><strong>使用前必須先擴充血容量</strong></td></tr>
+          <tr><td rowspan="2">② 糖皮質素</td><td>Prednisolone</td><td>1 mg/kg IV、SC、PO q12–24h</td><td rowspan="2">中到重度</td><td rowspan="2"><strong>在找到病因前使用，可能讓確診變困難</strong></td></tr>
+          <tr><td>Dexamethasone</td><td>0.1–0.22 mg/kg IV、SC q12h</td></tr>
+          <tr><td>抑制骨吸收</td><td>Calcitonin＊</td><td>先 4 IU/kg IV 輸注，再 4–8 IU/kg SC q12–24h</td><td>維生素 D 中毒</td><td>效果可能很短暫；可能嘔吐、厭食</td></tr>
+          <tr><td rowspan="4">③ 雙磷酸鹽</td><td>Etidronate（EHDP）＊</td><td>5–15 mg/kg q12–24h</td><td>中到重度慢性</td><td>昂貴</td></tr>
+          <tr><td>Clodronate＊</td><td>20–25 mg/kg，4 小時 IV 輸注</td><td>中到重度慢性</td><td>昂貴</td></tr>
+          <tr><td>Pamidronate＊</td><td>1.3–2.0 mg/kg 加入 150 mL 生理食鹽水，2 小時 IV 輸注；1–3 週後可重複</td><td>中到重度；<strong>犬維生素 D 中毒研究完整</strong></td><td>昂貴</td></tr>
+          <tr><td>Alendronate＊</td><td>5–20 mg PO 每週一次，禁食一夜後給藥，確保吞下</td><td>貓特發性高血鈣</td><td>安全性與療效尚待報告；Ohio State 初步研究顯示安全有效</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><strong>生理食鹽水</strong>：矯正脫水、促進利尿，鈉本身也增加鈣排出。<span class="src src-rec">🎤</span> 院內急性處置時，<strong>較高速率的 0.9% 生理食鹽水通常是首選</strong>。</li>
+          <li><strong>Furosemide</strong>：進一步增加腎臟排鈣，<strong>必須在補水、擴充血容量之後</strong>才用。</li>
+          <li><strong>糖皮質素</strong>：減少骨吸收和腸道吸收、增加腎臟排鈣，<strong>會讓淋巴瘤細胞溶解！</strong><span class="src src-rec">🎤</span> 沒先確診就用，可能讓疾病惡化或被掩蓋。</li>
+          <li><strong>雙磷酸鹽</strong>：減少蝕骨細胞數量和活性，比較適合長期控制。<span class="src src-rec">🎤</span> MSU 目前最常用兩種：<strong>alendronate</strong>（口服錠劑，每週給一兩次）、急性時用 <strong>zoledronate</strong>。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：表中沒有 zoledronate，它是作用更強的新一代雙磷酸鹽，輸注時間短。雙磷酸鹽有腎毒性，氮血症病患要先補足水分並監測腎指數。兩類惡性高血鈣（體液型、局部型）的共同終點都是蝕骨細胞骨吸收，所以雙磷酸鹽有效，但它只控制鈣，不治療腫瘤。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 37</span><span class="src src-rec">🎤</span> 各疾病的臨床考量</h3>
+        <ul class="notes">
+          <li><strong>原發性副甲亢</strong>：有些內科治療比疾病還糟；alendronate 效果不一。→ 副甲狀腺切除，還是「和後果共存」？
+            <ul><li><span class="src src-rec">🎤</span> 治療就是<strong>移除副甲狀腺腫瘤</strong>。讓原發性副甲亢的狗在家打皮下輸液或吃 prednisone，<strong>PU/PD 不會改善</strong>。</li></ul>
+          </li>
+          <li><strong>愛迪生和肉芽腫性疾病</strong>：很少需要治療高血鈣本身。</li>
+          <li><strong>需要內科降鈣的病例</strong>：中到重度高血鈣，最常見於維生素 D 中毒或惡性腫瘤，偶爾是原發性副甲亢。<span class="src src-rec">🎤</span> MSU 的經驗：真正需要針對降鈣的，通常是<strong>維生素 D 中毒、非常嚴重的副甲亢、部分惡性腫瘤</strong>。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S13 ══ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🐕</div>
+      <h2>13. 病例 Champ：一個病例講完所有鈣</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 38</span><span class="src src-rec">🎤</span> Champ，4 歲公（已結紮）拉布拉多貴賓</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 約三年前的病例。「美國現在到處都是 doodle。」</li>
+          <li>主訴：高血鈣加腎衰竭；1–2 週進行性沉鬱、食慾下降、嘔吐。</li>
+          <li>原本獸醫的檢驗：氮血症（BUN 60、Crea 3.3）、<strong>Ca 18.5 mg/dL</strong>（沒有驗磷）、等張尿。</li>
+          <li>住院一晚打點滴和抗生素（怕是腎臟感染），穩定後轉到州內的私人專科醫院。</li>
+          <li><strong>飼主拒絕所有檢查和治療建議，帶狗回家</strong>。<span class="src src-rec">🎤</span> 她很生氣，覺得醫院只是想騙錢。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 39</span><span class="src src-rec">🎤</span> 其他病史：飼主是人醫內科醫師</h3>
+        <ul class="notes">
+          <li>不滿意診斷建議，決定「<strong>自己治療她的狗</strong>」，開始：
+            <ul>
+              <li>0.9% 生理食鹽水 2 L 皮下，1 天</li>
+              <li><strong>Furosemide 100 mg PO 每天一次，2–3 天</strong></li>
+              <li><strong>Prednisone 100 mg PO 每天一次，2–3 天</strong></li>
+            </ul>
+          </li>
+          <li><span class="src src-rec">🎤</span> 講者推測藥是她自己弄來的，在美國這是非常違法的。</li>
+          <li><span class="src src-rec">🎤</span> 飼主說<strong>第一天狗好一點，第二、三天又變差</strong>，之後轉到 MSU 急重症科（ECCM）。</li>
+          <li><span class="src src-hand">✍️ 筆記</span> 主人自己治療，一開始有比較好，後來狀況不好。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 40–41</span><span class="src src-photo">📸 現場</span><span class="src src-rec">🎤</span> MSU 第一天</h3>
+        <ul class="notes">
+          <li>理學檢查：除了<strong>嚴重脫水</strong>，沒有明顯異常。</li>
+          <li>CBC、生化、尿檢、尿液培養；<strong>胸腔 X 光正常、腹部超音波正常</strong>；送惡性腫瘤套組。</li>
+          <li>治療：靜脈輸液、止吐（ondansetron、Cerenia）等支持療法。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>結果</th><th>參考區間</th></tr>
+          <tr><td>BUN / Crea</td><td><strong>134 H / 4.7 H</strong></td><td>比轉診前更差</td></tr>
+          <tr><td>K / Cl / HCO₃</td><td>3.4 L / 94 L / 27</td><td><span class="src src-rec">🎤</span> 符合利尿劑和嘔吐</td></tr>
+          <tr><td>Ca</td><td><strong>12.4 H</strong></td><td>從 18.5 降下來</td></tr>
+          <tr><td>ALT / AST</td><td>80 H / 43 H</td><td>輕度上升</td></tr>
+          <tr><td><span class="src src-photo">📸</span> <strong>PTH</strong></td><td><strong>12.4 H</strong></td><td>1.1–10.6 pmol/L</td></tr>
+          <tr><td><span class="src src-photo">📸</span> <strong>iCa</strong></td><td><strong>1.39</strong>（正常）</td><td>1.25–1.45 mmol/L</td></tr>
+          <tr><td><span class="src src-photo">📸</span> <strong>PTHrP</strong></td><td><strong>0.0</strong></td><td>0.0–1.0 pmol/L</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 42–45</span><span class="src src-rec">🎤</span> 住院經過</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>時間點</th><th>tCa</th><th>BUN / Crea</th><th>經過</th></tr>
+          <tr><td>轉診前</td><td>18.5</td><td>60 / 3.3</td><td>初診</td></tr>
+          <tr><td>MSU 第一天（📄 41）</td><td>12.4</td><td>134 / 4.7</td><td>飼主自行治療後：鈣降、腎臟惡化</td></tr>
+          <tr><td>輸液後（📄 42）</td><td><strong>15.3</strong></td><td>52 / 2.9</td><td>氮血症改善，但<strong>鈣又跳高</strong>；Na 156 H</td></tr>
+          <tr><td>Zoledronate 後（📄 44）</td><td><strong>10.8</strong></td><td>30 / 2.5</td><td>臨床好很多；CK 348 H</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li>📄 43：繼續輸液與支持療法；加驗<strong>傳染病（鉤端螺旋體、芽生菌）</strong>和<strong>基礎皮質醇</strong>，<strong>全部正常</strong>；重送惡性腫瘤套組（等待中）；針對高血鈣給 <strong>Zoledronate 0.1 mg/kg IV 輸注</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 給完雙磷酸鹽，狗看起來好很多，鈣也降了，氮血症雖未正常但改善。</li>
+          <li>📄 45：<span class="src src-rec">🎤</span> 飼主受不了「所有不必要的檢查」，<strong>沒有確診就帶狗回家</strong>，說需要時再回診。第二次惡性腫瘤套組 3 天後才出來。</li>
+          <li><span class="src src-hand">✍️ 筆記</span> 治療後鈣更高，後來給降鈣藥（zoledronate，雙磷酸鹽）有好一點。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>第二次惡性腫瘤套組（出院後回報）</th><th>結果</th></tr>
+          <tr><td>PTH</td><td>1.2 pmol/L（被抑制）</td></tr>
+          <tr><td>iCa</td><td><strong>1.99 mmol/L（高）</strong></td></tr>
+          <tr><td>PTHrP</td><td><strong>0</strong></td></tr>
+        </table></div>
+        <p class="muted"><span class="src src-rec">🎤</span> 這組數值只來自錄音，沒有拍到投影片。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 46</span><span class="src src-photo">📸 現場</span><span class="src src-rec">🎤</span> 三週後：又變差、又回來</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 一段時間沒消息，飼主打電話給醫院院長，很生氣狗又生病了、說醫院是一群白痴。出院約<strong>三週後</strong>回診。</li>
+          <li><span class="src src-hand">✍️ 筆記</span> 但後來出院後又變差又回來。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>結果</th><th>參考區間</th></tr>
+          <tr><td>BUN / Crea</td><td>43 H / 1.8 H</td><td></td></tr>
+          <tr><td>Ca / P</td><td><strong>15.5 H</strong> / 3.2</td><td>9.5–10.8 / 2.7–5.4 mg/dL</td></tr>
+          <tr><td>ALT / AST</td><td><strong>138 H / 64 H</strong></td><td>21–68 / 16–41 U/L</td></tr>
+          <tr><td><span class="src src-photo">📸</span> <strong>PTH</strong></td><td><strong>0.8 L</strong></td><td>1.1–10.6 pmol/L</td></tr>
+          <tr><td><span class="src src-photo">📸</span> <strong>iCa</strong></td><td><strong>1.99 H</strong></td><td>1.25–1.45 mmol/L</td></tr>
+          <tr><td><span class="src src-photo">📸</span> <strong>PTHrP</strong></td><td><strong>5.6 H</strong></td><td>0.0–1.0 pmol/L</td></tr>
+        </table></div>
+        <figure class="fig">
+          <img src="photos/21-champ-outcome-live.jpg" alt="現場投影片：Champ 的結果，大細胞淋巴瘤" loading="lazy">
+          <figcaption>📸 現場：Outcome。重做超音波發現肝門淋巴結腫大、低回音，脾臟回音不均質；脾臟與淋巴結細胞學 → <strong>大細胞淋巴瘤</strong>；飼主選擇安樂死</figcaption>
+        </figure>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span> 講者的解讀：三次套組各是什麼狀態？</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>套組</th><th>PTH</th><th>iCa</th><th>PTHrP</th><th>講者解讀</th></tr>
+          <tr><td>第一次（MSU 第一天）</td><td>12.4 ↑</td><td>1.39 正常</td><td>0</td><td>類固醇讓淋巴瘤<strong>暫時緩解</strong>；當時看到的其實是<strong>腎性次發性副甲亢</strong></td></tr>
+          <tr><td>第二次（出院後回報）</td><td>1.2 ↓</td><td>1.99 ↑</td><td>0</td><td>腫瘤<strong>開始脫離緩解</strong>，但 PTHrP 還是低，說明 <strong>PTHrP 不敏感、只是特異</strong></td></tr>
+          <tr><td>第三次（三週後）</td><td>0.8 ↓</td><td>1.99 ↑</td><td><strong>5.6 ↑</strong></td><td>類固醇和先前的藥物都代謝掉了，<strong>一切都被揭露</strong></td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span><span class="src src-rec">🎤</span> 重要教訓</h3>
+        <figure class="fig">
+          <img src="photos/21-lessons-live.jpg" alt="現場投影片：Champ 病例的重要教訓" loading="lazy">
+          <figcaption>📸 現場：Important Lessons</figcaption>
+        </figure>
+        <ol class="notes">
+          <li><strong>治療要小心</strong>
+            <ul>
+              <li><strong>脫水的動物不應該使用 furosemide</strong></li>
+              <li><strong>有氮血症，或中到重度氮血症的動物，使用 furosemide 要極度小心（最好不要用）</strong></li>
+              <li><span class="src src-rec">🎤</span> 飼主這樣做讓狗變得非常、非常糟。</li>
+            </ul>
+          </li>
+          <li><strong>糖皮質素會掩蓋淋巴瘤的診斷</strong>
+            <ul>
+              <li><span class="src src-rec">🎤</span> 有個誤解是要吃好幾天類固醇才會影響。其實<strong>一劑類固醇就可能讓淋巴瘤部分或完全緩解</strong></li>
+              <li>停藥後緩解可能<strong>持續數天到數週</strong></li>
+              <li><strong>在取得診斷之前，絕對不要給類固醇</strong></li>
+            </ul>
+          </li>
+          <li><strong>高血鈣的治療會干擾荷爾蒙評估</strong>：在診斷流程早期就採好 iCa、PTH、PTHrP、25-OH-D 的檢體</li>
+          <li><strong>淋巴瘤是高血鈣最常見的原因！！</strong></li>
+        </ol>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：飼主只補了一天皮下輸液，卻連給 2–3 天 furosemide，造成脫水惡化（Crea 3.3 → 4.7）、低鉀低氯和濃縮性鹼中毒。停用類固醇後，即使持續輸液，鈣仍從 12.4 反彈到 15.3，代表病因還在。第一次超音波正常，很可能是 prednisone 讓腫瘤縮小。<strong>如果第一天就先採檢體、再做淋巴結和脾臟細針抽吸，可能第一週就確診。</strong></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S14 ══ -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">🐶</div>
+      <h2>14. 加碼病例 Ziggy：低血鈣</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span><span class="src src-rec">🎤</span> 「有趣」的鈣病例：Ziggy，1.5 歲公約克夏</h3>
+        <ul class="notes">
+          <li><strong>主訴</strong>：間歇性發作焦慮、躁動、喘氣，以及<strong>明顯的抽搐（tetany）</strong>；反覆驗到<strong>低血鈣</strong>。<span class="src src-rec">🎤</span> 來急診時有臉部抽動、肌肉僵直。</li>
+          <li>多次到急診和原本獸醫院處理低血鈣症狀。<span class="src src-rec">🎤</span> 每次驗血氣、診斷嚴重低血鈣、輸注葡萄糖酸鈣，飼主就拒絕其他檢查。</li>
+          <li>因為經濟因素，<strong>只做了很少的檢查</strong>。初次 iCa <strong>3.3 mg/dL</strong>（參考值 5.1–5.8）。</li>
+          <li>Tums（碳酸鈣）劑量逐漸增加，目前<strong>每天 1250 mg</strong>。<span class="src src-rec">🎤</span> 對一隻小約克夏來說，這是非常大量的口服鈣。</li>
+          <li><strong>推定診斷：原發性副甲狀腺機能低下</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span><span class="src src-rec">🎤</span> 服用碳酸鈣期間的檢驗</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>結果</th><th>參考區間</th></tr>
+          <tr><td>BUN / Crea</td><td>21 / 0.7</td><td>12–27 / 0.6–1.5 mg/dL</td></tr>
+          <tr><td>Na / K / Cl / HCO₃</td><td>145 / 4.0 / 113 / 22</td><td>都正常</td></tr>
+          <tr><td><strong>Ca</strong></td><td><strong>9.0 L</strong></td><td>9.5–10.8 mg/dL</td></tr>
+          <tr><td><strong>P</strong></td><td><strong>3.8</strong></td><td>2.7–5.4 mg/dL</td></tr>
+          <tr><td>Mg</td><td>1.9</td><td>1.7–2.3 mg/dL</td></tr>
+          <tr><td>TP / Alb</td><td>6.0 / 3.0</td><td>都正常</td></tr>
+        </table></div>
+        <div class="tbl-wrap"><table>
+          <tr><th>荷爾蒙（iCa 正常偏低時）</th><th>結果</th><th>參考區間</th></tr>
+          <tr><td>iCa</td><td>1.28</td><td>1.25–1.45 mmol/L</td></tr>
+          <tr><td><strong>PTH</strong></td><td><strong>13.30 H</strong></td><td>1.10–10.60 pmol/L</td></tr>
+          <tr><td>25-OH 維生素 D</td><td>364</td><td>112–366 nmol/L</td></tr>
+          <tr><td><strong>骨化三醇 Calcitriol</strong></td><td><strong>21.0</strong></td><td>20.0–78.0 pmol/L</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 飼主不願意停用碳酸鈣（怕再發作抽搐），所以只能在吃鈣的情況下採檢體。總鈣只有一點點低，但這是在<strong>大量補鈣</strong>之下。</li>
+          <li><span class="src src-rec">🎤</span> 低血鈣的鑑別診斷：副甲狀腺機能低下、<strong>乙二醇（防凍劑）中毒</strong>、嚴重腎病、胰臟炎、<strong>產後子癇</strong>、各種維生素 D 缺乏或<strong>佝僂病</strong>。</li>
+          <li><span class="src src-rec">🎤</span> <strong>PTH 其實有點高，所以應該不是原發性副甲狀腺機能低下</strong>。其實從生化就能看出來：原發性副甲狀腺機能低下應該是<strong>低鈣、高磷</strong>，這隻狗的磷卻是低或正常偏低。</li>
+          <li><span class="src src-rec">🎤</span> 25-OH-D 代表飲食攝取足夠；PTH 有點高；iCa 正常偏低；但<strong>骨化三醇在參考區間最底部</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 答案：<strong>遺傳性佝僂病</strong>，腎臟的 <strong>1α-羥化酶功能不正常</strong>，無法以適當速率把 25-OH-D 轉成骨化三醇。「你不會看到很多這種病例，但很酷，所以放進來讓大家享受。」</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span> 遺傳性佝僂病：VDDR 1A</h3>
+        <figure class="fig">
+          <img src="photos/21-ziggy-vddr-live.jpg" alt="現場投影片：維生素 D 代謝路徑與各型 VDDR 的缺陷位置" loading="lazy">
+          <figcaption>📸 現場：Hereditary Rickets: VDDR1A（VDDR＝Vitamin D–Dependent Rickets，維生素 D 依賴性佝僂病）</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>步驟</th><th>酵素／位置</th><th>對應疾病</th></tr>
+          <tr><td>D2/D3 → 25(OH)D</td><td>肝臟 <strong>CYP2R1</strong>（25-羥化酶）</td><td>VDDR 1B</td></tr>
+          <tr><td>25(OH)D → 1,25(OH)₂D</td><td>腎臟 <strong>CYP27B1</strong>（1α-羥化酶）</td><td><strong>VDDR 1A ← Ziggy</strong></td></tr>
+          <tr><td>骨化三醇作用於細胞</td><td><strong>VDR</strong>（維生素 D 受體）、HNRNPC</td><td>VDDR 2（受體阻抗，骨化三醇反而高）</td></tr>
+          <tr><td>維生素 D 被過度分解</td><td>肝臟 <strong>CYP3A4</strong></td><td>VDDR 3</td></tr>
+          <tr><td>正常去活化</td><td><strong>CYP24A1</strong>（24-羥化酶）</td><td>—</td></tr>
+        </table></div>
+        <p class="p">骨化三醇的作用（圖右）：↑腎小管鈣再吸收、↑腸道鈣吸收、↑蝕骨細胞骨吸收。</p>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：「適當與否」一樣適用於低血鈣。低血鈣時 PTH 應該升高（Ziggy 有）；PTH 高時骨化三醇也應該升高（Ziggy 沒有），所以問題就卡在這兩者之間。治療要補<strong>骨化三醇本身</strong>（活性型，可以跳過缺陷的那一步），而不是一般的維生素 D；補上後碳酸鈣的需求通常可以大幅減少，要定期監測 iCa 避免變成高血鈣。這個病例也說明推定診斷要驗證：沒驗 PTH 就推定副甲狀腺機能低下，方向是錯的。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S15 ══ -->
+  <div class="section" id="s15">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">💬</div>
+      <h2>15. 課後 Q&amp;A</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">Q1：用乙醇消融（ethanol ablation）治療副甲狀腺腫瘤，成功率如何？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 很長一段時間到現在，多數人（包括 MSU）還是做<strong>手術切除副甲狀腺</strong>。乙醇消融曾經名聲不好，因為 UC Davis 的團隊做<strong>射頻消融（radiofrequency ablation）</strong>做得非常好；但現在乙醇消融又回來了，很多地方在做，<strong>近期報告的效果和 UC Davis 的射頻消融差不多</strong>。MSU 沒做是因為沒有願意做的放射科醫師。如果你的醫院有熟練的放射科醫師，在有經驗的人手上，這是<strong>合理的治療選擇</strong>。</div>
+      </div>
+      <div class="qa">
+        <div class="q">Q2：Cinacalcet 治療副甲狀腺亢進，有新的看法嗎？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 沒有新的。文獻結果好壞參半，講者看過幾篇摘要。依他的經驗，<strong>狗的副甲亢內科治療遠不如人醫那麼可預測</strong>：MSU 試過很多東西，結果不一；偶爾有效，但效果也只是中等。Wisconsin 的團隊幾年前研究過，結果<strong>很不一致</strong>，有些狗數值有變化，但不一定伴隨明顯的臨床改善。簡短答案：「沒有新的。」</div>
+      </div>
+      <div class="qa">
+        <div class="q">Q3：獸醫實驗室能驗的荷爾蒙有限，把動物的血送人醫實驗室驗，可行嗎？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 好問題。如果沒有獸醫的檢驗管道，<strong>PTH 和 25-OH 維生素 D</strong> 很多人醫醫院都有在驗，願意幫忙的話是合理的。做法：除了病患的檢體，<strong>同時送 2–3 隻「健康」動物的對照檢體</strong>，因為人醫實驗室不會有狗貓的參考區間。這不是在建立參考區間，但至少可以比較，例如在找原發性副甲狀腺亢進或機能低下時。<br>獸醫用的很多抗體本來就是給人醫實驗室用的，只是經過調整、驗證後用在獸醫。所以很多實驗室的 PTH 或維生素 D 代謝物檢驗<strong>可能</strong>適用於狗貓，雖然不能保證。</div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：Cinacalcet 是擬鈣劑（calcimimetic），作用在副甲狀腺的鈣感受器，讓副甲狀腺「以為」鈣已經夠高而減少分泌 PTH，人醫用於副甲亢。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ S16 ══ -->
+  <div class="section" id="s16">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">📌</div>
+      <h2>Take-home、病例總表、更正表與參考資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>一句話流程</h3>
+        <div class="quote">發現高血鈣 → 測 iCa 確認（tCa &gt; 13.5 可直接開始）→ 看磷（PTH 依賴或非依賴）→ 看嚴重度 → 觸診淋巴結和直腸 → PTH／PTHrP／25-OH-D 用「適當與否」判讀 → 先採檢體、確診前不給類固醇<span class="quote-zh">高血鈣多半是疾病的標記；治療原發疾病最有效，治療不能妨礙診斷，也不能比疾病更糟。</span></div>
+      </div>
+      <div class="subsection">
+        <h3>病例總表</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>病例</th><th>tCa</th><th>P</th><th>iCa</th><th>PTH</th><th>PTHrP</th><th>25-OH-D</th><th>診斷</th></tr>
+          <tr><td>Jet（JRT）</td><td>13.9</td><td>↓</td><td>—</td><td>—</td><td>—</td><td>—</td><td>原發性副甲亢</td></tr>
+          <tr><td>Penelope（吉娃娃）</td><td>12.5</td><td>↑↑</td><td>—</td><td>—</td><td>—</td><td>—</td><td>愛迪生（Na:K 15）</td></tr>
+          <tr><td>Riley（米克斯）</td><td>11.7</td><td>正常偏低</td><td>↑</td><td>上 1/3（<strong>不適當</strong>）</td><td>—</td><td>—</td><td>原發性副甲亢</td></tr>
+          <tr><td>Peggy（馬爾濟斯）</td><td>12.1</td><td>↑</td><td>正常</td><td>↑↑（<strong>適當</strong>）</td><td>0</td><td>—</td><td>腎性次發性副甲亢</td></tr>
+          <tr><td>Janie（拳師犬）</td><td>14.9</td><td>正常偏高</td><td>↑</td><td>被抑制</td><td>0</td><td>—</td><td>惡性腫瘤（非 PTHrP 機制）</td></tr>
+          <tr><td>Storm（拉布拉多）</td><td>17.1</td><td>↑</td><td>↑↑</td><td>被抑制</td><td>—</td><td>↑↑↑</td><td>維生素 D 中毒（殺鼠劑）</td></tr>
+          <tr><td>Champ（拉布拉多貴賓）</td><td>18.5</td><td>—</td><td>正常 → ↑</td><td>↑ → 被抑制</td><td>0 → 0 → ↑</td><td>—</td><td>大細胞淋巴瘤（被類固醇掩蓋）</td></tr>
+          <tr><td>Ziggy（約克夏）</td><td>低</td><td>正常</td><td>正常偏低（補鈣中）</td><td>↑</td><td>—</td><td>正常偏高（骨化三醇最低點）</td><td>VDDR 1A 遺傳性佝僂病</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3>更正表（逐字稿轉文字錯誤）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>逐字稿</th><th>應為</th></tr>
+          <tr><td>Dr. Langmaa／Dr. Long</td><td>Dr. Langlois</td></tr>
+          <tr><td>Dr. Jean Rudnick</td><td>Dr. Jean Brudvig（📄 1）</td></tr>
+          <tr><td>lactose, sucrose（複合鈣的陰離子）</td><td>lactate, sulfate 等（📄 5）</td></tr>
+          <tr><td>Hard Ion G／Dragon Boot</td><td>HARD-IONS-G／DRAGON-SHIT（📸 現場）</td></tr>
+          <tr><td>Jed</td><td>Jet</td></tr>
+          <tr><td>hemocompensated</td><td>hemoconcentrated（血液濃縮）</td></tr>
+          <tr><td>heteroblastia</td><td>histoplasmosis／blastomycosis（推測）</td></tr>
+          <tr><td>lability profile</td><td>malignancy profile</td></tr>
+          <tr><td>ETh levels are at 1.2（Janie）</td><td>PTH 1.2</td></tr>
+          <tr><td>PTH is zero（Janie）</td><td>PTHrP 0.0</td></tr>
+          <tr><td>ionizing acidity</td><td>ionized calcium</td></tr>
+          <tr><td>highPT PT/PT/PT</td><td>high PTHrP</td></tr>
+          <tr><td>There's an anemia（Storm、Champ）</td><td>azotemia（氮血症）</td></tr>
+          <tr><td>storms</td><td>Storm</td></tr>
+          <tr><td>measuring calcitriol or 25 hydroxy vitamin D</td><td>measuring 25-hydroxyvitamin D</td></tr>
+          <tr><td>occult nephritis</td><td>occult neoplasia（潛藏的腫瘤）</td></tr>
+          <tr><td>acetylene fillers</td><td>saline／isotonic fluids</td></tr>
+          <tr><td>If you put it on bread</td><td>pred（prednisone）</td></tr>
+          <tr><td>four-year-old male neutered Labrador</td><td>Labradoodle（📄 38）</td></tr>
+          <tr><td>eistosthenuric</td><td>isosthenuric</td></tr>
+          <tr><td>Superior thyroid hormone ... Nine. Calcium is actually at one point four</td><td>Parathyroid hormone 12.4；ionized calcium 1.39（📸）</td></tr>
+          <tr><td>zoledronic</td><td>zoledronate</td></tr>
+          <tr><td>They've had no T cell</td><td>large cell lymphoma（📸 Outcome）</td></tr>
+          <tr><td>thioridazine to a dehydrated or asyndemic animal</td><td>furosemide to a dehydrated or azotemic animal</td></tr>
+          <tr><td>markers of calcium and phosphorus bone metastases</td><td>markers of calcium and phosphorus metabolism</td></tr>
+          <tr><td>Bosutinib was out of its system</td><td>先前用的藥物（類固醇等）已代謝掉（推測）</td></tr>
+          <tr><td>one-year-old male Dorking</td><td>Yorkie（投影片寫 1.5 歲）</td></tr>
+          <tr><td>technical events／petnic crisis</td><td>tetanic events／tetanic crisis</td></tr>
+          <tr><td>samples in the face of a more severe hypercalcemia（Ziggy）</td><td>hypocalcemia</td></tr>
+          <tr><td>we even measured calcium</td><td>calcitriol</td></tr>
+          <tr><td>radio catheter</td><td>radiofrequency</td></tr>
+          <tr><td>Santa Park</td><td>cinacalcet</td></tr>
+          <tr><td>primary hyper or hypothyroidism（Q3）</td><td>primary hyper- or hypoparathyroidism</td></tr>
+          <tr><td>Kelsey is complicated</td><td>calcium is complicated</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Langlois DK. <em>Hypercalcemia in Dogs: Case-based approach to management.</em> VET-KU × Texas A&amp;M IM Conference, 2026-10-09（講義 47 張投影片、「完整記錄」逐字稿 PDF、現場投影片照片）。部分資料由 Dr. Jean Brudvig 提供。</div>
+          <div class="ref-item">課堂錄音與逐字稿（Plaud）。<a href="https://web.plaud.ai/s/pub_5e68505a-8a39-4c70-8d26-4aa36ec70703::Bc5nRODPXk71ovOsn2hfZfIkYEJzYBP1fAP-seXE2YgGaIP-LvbiffKebQEbdNufez2z417S-fXGm-suJO_fpQI" target="_blank" rel="noopener">連結</a>（逐字稿有轉文字錯誤，請對照更正表）</div>
+          <div class="ref-item">BSAVA Manual of Canine and Feline Endocrinology, 4th ed., Chapter 21, p.226（Table 21.4 高血鈣的治療）。</div>
+          <div class="ref-item">Rosol TJ, et al. Disorders of calcium. In: DiBartola SP, ed. <em>Fluid Therapy in Small Animal Practice</em>, 2nd ed. WB Saunders, 2000:108–162（Figure 15-8）。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="feline-congenital-hypothyroidism.html">20 貓先天性與成貓型甲狀腺功能低下</a>。相關：<a href="addisons-disease.html">11 愛迪生</a>、<a href="endocrine-neoplasia.html">15 內分泌腫瘤</a>。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
