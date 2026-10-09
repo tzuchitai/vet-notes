@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>貓先天性與成貓型甲狀腺功能低下｜2026 Texas 內分泌研討會</title>
+<style>
+  :root {
+    --primary: #0F766E;
+    --primary-light: #CCFBF1;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0d2522;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9cc8c1; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #1f4a44;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9cc8c1; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9cc8c1;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #1f4a44;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #5f8f87;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0b4f49 0%, #14a395 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0d2522; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #1f4a44; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 Texas 內分泌研討會</a>
+  <div class="logo">
+    <h2>20｜貓先天性與成貓型<br>甲狀腺功能低下</h2>
+    <p>Antonio Tardo｜2026 年 10 月 9 日</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">場次資訊與錄音說明</a>
+    <div class="nav-section">病例與診斷</div>
+    <a href="#s1">1. 病例：一窩英國短毛貓</a>
+    <a href="#s2">2. 生長遲緩的鑑別診斷</a>
+    <a href="#s3">3. 血液檢查與 X 光</a>
+    <a href="#s4">4. 甲狀腺檢驗結果</a>
+    <a href="#s5">5. IGF-1 為什麼低？</a>
+    <div class="nav-section">疾病背景</div>
+    <a href="#s6">6. 盛行率與病因</a>
+    <a href="#s7">7. 臨床特徵</a>
+    <a href="#s8">8. 該驗哪一項？TSH</a>
+    <a href="#s9">9. 核醫掃描與甲狀腺腫</a>
+    <div class="nav-section">治療與追蹤</div>
+    <a href="#s10">10. Levothyroxine 與監測</a>
+    <a href="#s11">11. 三隻幼貓一年追蹤</a>
+    <div class="nav-section">成貓型</div>
+    <a href="#s12">12. 成貓自發性原發甲低</a>
+    <div class="nav-section">課後</div>
+    <a href="#s13">13. 課後 Q&amp;A</a>
+    <a href="#s14">Take-home、更正表與參考資料</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>貓先天性與成貓型甲狀腺功能低下：診斷、病理與 Levothyroxine 治療</h1>
+    <p>主講：Antonio Tardo, DVM, PhD, Dipl. ECVIM-CA｜UC Davis 小動物內科助理教授</p>
+    <p>2026 年 10 月 9 日｜VET-KU × Texas A&amp;M 內科研討會｜場次 20（Tardo 本次研討會最後一場）</p>
+    <div class="tags">
+      <span class="tag">Congenital hypothyroidism</span>
+      <span class="tag">不成比例侏儒</span>
+      <span class="tag">骨骺發育不良</span>
+      <span class="tag">TSH 最佳單一檢驗</span>
+      <span class="tag">犬用 TSH</span>
+      <span class="tag">IGF-1 偏低</span>
+      <span class="tag">Dyshormonogenesis</span>
+      <span class="tag">Levothyroxine</span>
+      <span class="tag">成貓自發性甲低</span>
+      <span class="tag">氮血症</span>
+      <span class="tag">胰島素阻抗</span>
+    </div>
+    <a class="rec-link" href="https://web.plaud.ai/s/pub_8087d07d-4d2f-4cad-b704-42844146f5cb::53wQGuMxa5qMVXgZkTalSGO-WWMJyyVjJhS1KPyudfRJVb4n7wpOtIbUuQvWSB3u03dE_l8vX76tUxfNZoOJFwI" target="_blank" rel="noopener">🎧 課堂錄音與逐字稿（Plaud）↗</a>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（編號＝投影片編號 1–37，講義缺 14–16）
+    <span class="src src-rec">🎤</span> 課堂逐字稿
+    <span class="src src-photo">📸 現場</span> 課堂現場照片
+    <span class="src src-hand">✍️ 筆記</span> 上課時記下的重點
+    <span class="src src-add">💡 補充</span> 整理者補充（機轉、判讀、交叉參照）
+    <span class="src src-fix">【更正】</span> 逐字稿轉文字錯誤，以講義為準（完整列表見最後一節）
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li>先天性甲低是幼貓<strong>生長遲緩最常見的內分泌原因</strong>；「長不大＋遲鈍＋便秘」就要想到</li>
+      <li>幼貓血少時，優先順序是<strong>甲狀腺 → 生化 → CBC</strong>；只能驗一項就驗 <strong>TSH</strong></li>
+      <li><strong>犬用 TSH 可以用在貓</strong>：診斷甲低看的是升高端，犬用試劑在高值端可靠</li>
+      <li>幼貓的 TT4 生理上應<strong>高於成貓參考值</strong>；TT4「只是剛好低於下限」對幼貓來說已經很低</li>
+      <li>目前沒有「貓甲低但 TSH 正常」的報告：<strong>TSH 正常大致可以排除</strong>（講者估 80–90% 把握）</li>
+      <li><strong>不要在甲低幼貓身上診斷 GH 缺乏</strong>：先治甲狀腺，再重測 IGF-1（這窩 1 個月內恢復）</li>
+      <li>貓以<strong>激素合成障礙</strong>（多為 TPO 缺陷）為主；缺陷可以是部分的，所以有些貓到成年才被發現</li>
+      <li>Levothyroxine <strong>20–40 µg/kg/天</strong>，幼貓用口服液、<strong>常秤重、依體重調整</strong>；沒跟上體重是治療不足最常見的原因</li>
+      <li>監測：一天一次 → 晚間給藥後 12 小時；一天兩次 → 給藥後 4–6 小時。<strong>TSH 還高就加量</strong></li>
+      <li>早期治療的幼貓一年後體重、檢驗、X 光都正常，<strong>就是正常的貓</strong></li>
+      <li>成貓型：胖、懶、毛差；<strong>不明原因氮血症（腎臟超音波正常）</strong>或控制不好的糖尿病要想到；TT4 約 1/4 正常，<strong>TSH 100% 升高</strong></li>
+    </ul>
+  </div>
+
+  <!-- ══ S0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🎯</div>
+      <h2>場次資訊與錄音說明</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <ul class="notes">
+        <li><span class="src src-slide">📄 1</span> 講題〈Feline congenital hypothyroidism〉。講者 Antonio Tardo，UC Davis 小動物內科助理教授；病例來自他之前在義大利 Bologna 大學的團隊（Golinelli, Tardo et al., <em>Vet Sci</em> 2022）。</li>
+        <li><span class="src src-rec">🎤</span> 錄音 09:01–09:22，約 15 分鐘演講加 7 分鐘提問。Speaker 1 = Tardo，其他編號是現場聽眾和主持人。</li>
+        <li><span class="src src-rec">🎤</span> 這是 Tardo 本次研討會的最後一場，結尾他感謝主辦單位、Texas A&amp;M、贊助商和聽眾。</li>
+        <li><span class="src src-add">💡 補充</span> 呼應前一天座談會：<a href="panel-qa-thyroid.html">19 座談會</a>報告四那隻 5 歲、終生矮小的甲低貓，Tardo 當時說「明天的課會講更多先天性的內容」，答案見第 6 節的「部分缺陷」。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ S1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🐱</div>
+      <h2>1. 病例：一窩英國短毛貓</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 2–3</span><span class="src src-rec">🎤</span> 病史</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 一位同事兼飼主傳來一張 <strong>6 週齡</strong>的照片：中間 3 隻看起來比較小、有點捲毛。Tardo 第一眼覺得「都一樣啊，擔心什麼？」</li>
+          <li>英國短毛貓一窩 5 隻，<strong>3 隻發病</strong>（2 母 1 公），就診時 2 月齡。</li>
+          <li>喝母奶 4 週後改吃市售幼貓飼料；已驅蟲、開始打疫苗；之前沒有病史。</li>
+          <li>主訴：
+            <ol class="notes">
+              <li>最近幾週長得比同窩慢（約差 2 週）</li>
+              <li>精神差、比較不愛玩</li>
+              <li><strong>學習困難</strong>：兄弟姊妹已經會用貓砂盆，牠們還不會</li>
+              <li>排便次數減少，其中一隻明顯便秘</li>
+            </ol>
+          </li>
+        </ul>
+        <div class="quote">生長遲緩 ＋ 遲鈍 ＋ 便秘</div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 4</span><span class="src src-rec">🎤</span> 理學檢查：外觀特徵</h3>
+        <figure class="fig">
+          <img src="photos/20-04-pe.jpg" alt="一窩英國短毛貓，中間三隻為發病幼貓" loading="lazy">
+          <figcaption>📄 4　中間 3 隻是發病幼貓；單看照片差異不明顯</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 頭寬、脖子短、四肢短、身體短而方（<strong>不成比例侏儒</strong>）。</li>
+          <li><span class="src src-rec">🎤</span> <strong>幼毛滯留</strong>（retained kitten coat）、耳廓<strong>向腹側捲曲</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 眼睛顏色偏淡（淺藍）、<strong>輕度低體溫</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 其中一隻腹部觸診可摸到<strong>糞塊</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 5</span> 乳齒萌發延遲</h3>
+        <figure class="fig">
+          <img src="photos/20-05-teeth.jpg" alt="發病幼貓與同齡健康同窩的牙齒比較" loading="lazy">
+          <figcaption>📄 5　左：發病幼貓；右：同齡健康同窩，乳犬齒已經長出</figcaption>
+        </figure>
+        <p class="p">甲狀腺素帶動骨骼和牙齒發育：牙齒、生長板、椎體都會受影響。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🔍</div>
+      <h2>2. 生長遲緩的鑑別診斷</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 6</span><span class="src src-rec">🎤</span> 兩大類：非內分泌 vs 內分泌</h3>
+        <figure class="fig">
+          <img src="photos/20-06-ddx-box.jpg" alt="Feldman Box 2-3 生長遲緩原因" loading="lazy">
+          <figcaption>📄 6　Feldman, Canine and Feline Endocrinology 4th ed., Box 2-3</figcaption>
+        </figure>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>非內分泌原因</h4>
+            <ul>
+              <li>體質性、家族性、營養不良</li>
+              <li>任何嚴重慢性病（含慢性感染）</li>
+              <li>心臟（左→右分流）、肺臟</li>
+              <li>吞嚥問題（血管環異常、巨食道）</li>
+              <li>腸胃／胰臟（寄生蟲、吸收不良、EPI）</li>
+              <li>肝臟（PSS、肝醣儲積症）</li>
+              <li>血液、腎臟、免疫、中樞神經</li>
+              <li>骨骼發育異常（軟骨發育不良）</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>內分泌原因</h4>
+            <ul>
+              <li>GH／IGF-1 缺乏（垂體性侏儒）</li>
+              <li><strong>甲狀腺功能低下</strong></li>
+              <li>糖皮質素過多（內生或<strong>外源性</strong>）</li>
+              <li>糖尿病</li>
+              <li>腎上腺皮質功能低下</li>
+              <li>維生素 D 代謝異常（佝僂症）</li>
+            </ul>
+          </div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 幾乎所有疾病都可能造成生長遲緩。這個病例是<strong>不成比例侏儒＋遲鈍</strong>，所以往內分泌、特別是甲低去想。</li>
+          <li><span class="src src-rec">🎤</span> <strong>甲低是生長遲緩最常見的內分泌原因</strong>，在貓尤其如此。<span class="src src-fix">【更正】</span>逐字稿作 "arteriosclerosis"。</li>
+          <li><span class="src src-rec">🎤</span> 幼貓用糖皮質素也會造成生長遲緩，用藥時要小心。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 7</span> 從病史與理學檢查縮小範圍</h3>
+        <figure class="fig">
+          <img src="photos/20-07-ddx-clues.jpg" alt="生長遲緩問診線索" loading="lazy">
+          <figcaption>📄 7　Feldman, Fracassi, Peterson, Feline Endocrinology, 2019</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>線索</th><th>優先考慮</th></tr>
+          <tr><td>飲食不當？</td><td>換飼料後再秤重</td></tr>
+          <tr><td>離乳後回吐？</td><td>血管環異常、巨食道</td></tr>
+          <tr><td>下痢或糞便量大？</td><td>吸收不良</td></tr>
+          <tr><td>多喝多尿？</td><td>腎、肝、糖尿病、尿崩症</td></tr>
+          <tr><td><strong>精神遲鈍（obtunded）？</strong></td><td><strong>甲低</strong>、肝性腦病</td></tr>
+          <tr><td>四肢相對軀幹短</td><td>甲低、軟骨發育不良</td></tr>
+          <tr><td>對稱性脫毛</td><td>甲低、GH 缺乏</td></tr>
+          <tr><td>心搏過速或心雜音</td><td>心臟病</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 遲鈍是甲低的典型表現，所以人醫稱為<strong>呆小症（cretinism）</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 課後補充（見 Q&amp;A 6）：非內分泌原因中，<strong>寄生蟲要最先、最快排除</strong>；其次是肝臟（PSS）和吸收不良。內分泌原因中先天性甲低最常見，其他都很少見。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🧪</div>
+      <h2>3. 血液檢查與 X 光</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 8</span><span class="src src-rec">🎤</span> 檢查規劃：血量是限制</h3>
+        <ul class="notes">
+          <li>最小資料庫：CBC、生化、理學檢查、<strong>糞檢（再查一次寄生蟲）</strong>。</li>
+          <li>甲狀腺功能：TT4，<strong>最重要的是 TSH</strong>。</li>
+          <li>IGF-1：另一個可能的內分泌原因是腦下垂體功能不足（GH 缺乏）。</li>
+          <li>全身 X 光：看骨化中心和骨骼異常。</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>600 g 的幼貓不可能什麼都驗。</strong>Tardo 的順序：<strong>甲狀腺 → 生化 → CBC</strong>；甲狀腺裡只能選一項就選 <strong>TSH</strong>。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 9</span><span class="src src-rec">🎤</span> CBC 與生化</h3>
+        <figure class="fig">
+          <img src="photos/20-09-cbc-chem.jpg" alt="發病幼貓 CBC 與生化" loading="lazy">
+          <figcaption>📄 9　發病幼貓的 CBC 與生化</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><strong>輕度貧血</strong>：Hct 26.9%、Hb 9.1 g/dL、RBC 6.01；網狀紅血球 30,100/µL（非再生性）。</li>
+          <li><span class="src src-rec">🎤</span> 幼貓的 Hct 本來就比成貓參考值低，所以他們<strong>同時驗了健康同窩</strong>：和兄弟姊妹比，發病貓確實貧血。</li>
+          <li><strong>高膽固醇 307 mg/dL</strong>：講者強調這是提示甲狀腺功能異常的重要線索。<span class="src src-fix">【更正】</span>逐字稿作 "hyperchloremia"。</li>
+          <li>輕度低蛋白（TP 5.35 g/dL）；肌酸酐 1.23、BUN 59 都在成貓範圍內。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：幼貓肌肉量少，肌酸酐本來就比成貓低。肌酸酐 1.23 套成貓參考值是「正常」，但對 2 月齡幼貓可能已經偏高，符合甲低造成的 GFR 下降（第 7 節）。<span class="src src-hand">✍️ 筆記</span>同一個道理也適用於 TT4：參考值是成貓的。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 10–11</span><span class="src src-rec">🎤</span> X 光：發病幼貓 vs 健康同窩</h3>
+        <figure class="fig">
+          <img src="photos/20-10-rad-lateral.jpg" alt="側面 X 光，上為發病幼貓、下為健康同窩" loading="lazy">
+          <figcaption>📄 10　側面觀。<span class="src src-rec">🎤</span> 上排是發病幼貓，下排是健康同窩，可以直接比較</figcaption>
+        </figure>
+        <figure class="fig">
+          <img src="photos/20-11-rad-vd.jpg" alt="腹背面 X 光與重點" loading="lazy">
+          <figcaption>📄 11　腹背面。DX = 義大利文 destra（右側標記）</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><strong>骨化中心出現延遲、礦化不足</strong>（股骨、肱骨，兩側）。<span class="src src-rec">🎤</span>「誇張到看起來<strong>這隻貓沒有關節</strong>」。</li>
+          <li><strong>椎體短、立方形，沒有終板</strong>。</li>
+          <li><strong>瀰漫性骨骺發育不良</strong>（epiphyseal dysgenesis）。</li>
+          <li><strong>中度腸胃道擴張</strong>：<span class="src src-rec">🎤</span>這隻就是便秘的那隻。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充：為什麼會這樣</strong>：甲狀腺素是生長板軟骨細胞成熟和軟骨內骨化必需的，缺乏時軟骨停在軟骨階段。骨化中心出現時常是<strong>不規則、點狀、碎裂</strong>（stippled）的。鑑別：營養性次發性副甲狀腺亢進（全身骨密度低、皮質薄、折疊骨折）、佝僂症（生長板變寬呈杯狀）、黏多醣儲積症（臉部異常、角膜混濁）、骨軟骨發育不良（摺耳貓）。X 光只能提示，確診靠 TSH。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🦋</div>
+      <h2>4. 甲狀腺檢驗結果</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <figure class="fig">
+        <img src="photos/20-12-thyroid-tests.jpg" alt="三隻幼貓的 TT4 與 TSH" loading="lazy">
+        <figcaption>📄 12　三隻發病幼貓的甲狀腺功能；左下為甲狀腺濾泡示意圖（濾泡細胞、膠質、濾泡旁 C 細胞）</figcaption>
+      </figure>
+      <div class="tbl-wrap"><table>
+        <tr><th></th><th>F1</th><th>F2</th><th>M1</th><th>參考值</th></tr>
+        <tr><td>TT4（nmol/L）</td><td>—（血量不夠）</td><td><strong>12.9</strong></td><td><strong>6.44</strong>（偵測下限附近）</td><td>15–42</td></tr>
+        <tr><td>TSH（ng/mL）</td><td><strong>5.44</strong></td><td><strong>6.20</strong></td><td><strong>12.00</strong>（儀器上限，實際 ≥12）</td><td>0.03–0.30</td></tr>
+        <tr><td>約為上限倍數</td><td>≈18×</td><td>≈21×</td><td>≥40×</td><td></td></tr>
+      </table></div>
+      <ul class="notes">
+        <li><span class="src src-rec">🎤</span> M1 的 12 是<strong>這台機器能測的最高值</strong>，超過 12 就測不出來。</li>
+        <li><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> 這是<strong>犬用 TSH</strong>。前一天也有人問過：懷疑甲低時可以用犬用 TSH，因為我們看的是<strong>上限那一端</strong>，犬用試劑在這裡沒有問題。</li>
+        <li><span class="src src-rec">🎤</span> TT4：一隻剛好低於參考值，一隻在偵測下限。</li>
+        <li><span class="src src-rec">🎤</span> 生長中的幼貓，TT4 應該要<strong>高於</strong>（成貓）參考範圍。所以 TT4「只是剛好低於下限」，對幼貓來說其實非常不夠。</li>
+      </ul>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：犬用 TSH 的弱點在<strong>低值端</strong>（偵測下限 0.03，很多正常貓也測不到，所以對甲亢的分辨力差，見 <a href="feline-hyperthyroidism.html">18</a>）。診斷甲低看的是「大幅升高」，剛好落在它可靠的範圍。送外部實驗室時，確認報告用的是貓的參考值。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ S5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">❓</div>
+      <h2>5. IGF-1 為什麼低？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 13</span> 三隻 IGF-1 都低</h3>
+        <figure class="fig">
+          <img src="photos/20-13-igf1.jpg" alt="三隻幼貓 IGF-1" loading="lazy">
+          <figcaption>📄 13　診斷時（53 日齡）IGF-1：F1 100.6、F2 27.5、M1 117.5 ng/mL（參考值 200–400）</figcaption>
+        </figure>
+        <p class="p"><span class="src src-rec">🎤</span> 那牠們到底是先天性甲低、垂體性侏儒，還是兩個都有？Tardo 說他當時也很困惑，於是去「我的安全地帶：PubMed」。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 17</span><span class="src src-photo">📸 現場</span> Quante 2010：甲低幼貓的 IGF-1 與肝功能異常</h3>
+        <figure class="fig">
+          <img src="photos/20-17-quante-2010.jpg" alt="Quante 2010 病例報告" loading="lazy">
+          <figcaption>📄 17　Quante S, Fracassi F, … Reusch CE. J Feline Med Surg 2010;12:487–490</figcaption>
+        </figure>
+        <figure class="fig">
+          <img src="photos/20-quante-abstract-live.jpg" alt="現場投影的 PubMed 摘要" loading="lazy">
+          <figcaption>📸 現場投影的 PubMed 摘要，黃框是重點句</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>7 月齡公貓，<strong>慢性便秘＋生長遲緩</strong>；不成比例侏儒、輕度骨骼異常、<strong>摸得到甲狀腺</strong>。</li>
+          <li>確診：TT4 低，<strong>打 TSH 後仍低</strong>；內生性 TSH 升高；核醫掃描異常。</li>
+          <li>黃框重點：<strong>肝功能檢查異常＋IGF-1 低</strong>，甲狀腺素治療 <strong>6 週後兩者都恢復正常</strong>，臨床症狀也改善。</li>
+          <li>作者結論：表現差異大；症狀不典型時要和 <strong>PSS</strong>、<strong>GH 缺乏</strong>鑑別；甲低本身就可能造成肝功能異常和 IGF-1 低，判讀要小心。</li>
+          <li><span class="src src-rec">🎤</span> 這篇的作者之一是 Tardo 的指導教授（Fracassi）。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>Quante 2010</th><th>初診</th><th>治療 6 週後</th><th>參考值</th></tr>
+          <tr><td>餐後膽酸（µmol/L）</td><td><strong>76.3</strong></td><td>14.1</td><td>≤25</td></tr>
+          <tr><td>氨耐受試驗後（µmol/L）</td><td><strong>133.9</strong></td><td>47.7</td><td>&lt; 基礎值 2 倍</td></tr>
+          <tr><td>TT4（nmol/L）</td><td><strong>2.5</strong></td><td>14.2</td><td>12.87–51.5</td></tr>
+          <tr><td>rhTSH 刺激後 TT4</td><td><strong>5.1</strong></td><td>—</td><td>&gt;25.7</td></tr>
+          <tr><td>內生性 TSH（ng/mL）</td><td><strong>3.4</strong></td><td>—</td><td>&lt;0.03–0.19</td></tr>
+          <tr><td>IGF-1（ng/mL）</td><td><strong>104</strong></td><td>214</td><td>185–525</td></tr>
+        </table></div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>兩個臨床陷阱</strong>：① 長不大＋遲鈍＋膽酸／氨上升，很容易被當成 <strong>PSS</strong> 去做影像甚至手術評估；② 侏儒＋IGF-1 低，很像<strong>垂體性侏儒</strong>。兩者之前都先驗 TSH。</div></div>
+        <p class="p"><span class="src src-add">💡 補充</span> 螢幕下方的 Similar articles：Lim CK et al. <em>Congenital hypothyroidism and concurrent renal insufficiency in a kitten.</em> J S Afr Vet Assoc 2014，可以和第 7 節「甲低降低 GFR」連起來看。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 18</span><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> 可能的原因：目前不知道</h3>
+        <figure class="fig">
+          <img src="photos/20-18-why-igf1.jpg" alt="IGF-1 低的可能原因" loading="lazy">
+          <figcaption>📄 18　編號 1、3、4，第 2 項不在投影片上</figcaption>
+        </figure>
+        <ol class="notes">
+          <li><strong>同時合併先天性 GH 缺乏</strong>：三隻同窩同時發生，不太可能；<span class="src src-rec">🎤</span>也從沒被報告過。<span class="src src-fix">【更正】</span>逐字稿誤作 "concurrent congenital hypothyroidism"，投影片是 hyposomatotropism。</li>
+          <li value="3"><strong>肝功能下降</strong>：IGF-1 由肝臟在 GH 刺激下製造，肝功能不好就做不出來。</li>
+          <li><strong>甲低本身造成</strong>：<span class="src src-rec">🎤</span>講者認為<strong>最可能</strong>。甲狀腺素參與 IGF-1 的生成；補 levothyroxine 後 IGF-1 上升。</li>
+        </ol>
+        <div class="quote">不要在甲低幼貓身上診斷 GH 缺乏。先治療甲狀腺，再重測 IGF-1。</div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充：目前提出的機轉</strong>（多來自人類和大鼠，貓沒有資料）：T3 促進腦下垂體 GH 基因表現，甲低時 GH 合成和分泌下降、對刺激反應變弱（Valcavi 1987）；嚴重原發甲低兒童因 TRH 長期刺激造成腦下垂體增生，可出現治療後可逆的「假性 GH 缺乏」；肝臟對 GH 的反應也可能下降。很可能是多因素合併。另外，甲狀腺素也<strong>直接</strong>作用在生長板，所以侏儒不只是 IGF-1 的問題。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 19</span> 診斷：先天性甲狀腺功能低下</h3>
+        <ul class="notes">
+          <li>TT4 低，TSH 為參考上限的 20–40 倍</li>
+          <li>X 光瀰漫性骨骺發育不良</li>
+          <li>IGF-1 低 → 治療後再評估</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">📊</div>
+      <h2>6. 盛行率與病因</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 20</span><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> 貓約 80 例 vs 人 1/1400–2800</h3>
+        <figure class="fig">
+          <img src="photos/20-20-prevalence.jpg" alt="先天性甲低盛行率" loading="lazy">
+          <figcaption>📄 20　右：Jacob H, Peters C. Arch Dis Child Educ Pract Ed 2015（ESPE 共識指引）</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>貓：文獻約 <strong>80 例</strong>；人類新生兒：<strong>1/1400–2800</strong>。</li>
+          <li><span class="src src-hand">✍️ 筆記</span> 人比較多，但那是因為人有<strong>例行新生兒篩檢</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 人要篩檢，是因為新生兒很小的時候<strong>沒有症狀</strong>，但甲狀腺素缺乏會造成神經系統發育異常（呆小症），所以越早知道越好。貓應該也一樣，只是沒有篩檢計畫。</li>
+          <li><span class="src src-rec">🎤</span> 多數病貓<strong>早夭</strong>，或因<strong>神經症狀</strong>、<strong>難以處理的嚴重便秘／巨結腸</strong>被安樂死。這可能是它「很少見」的原因，所以「也許沒那麼少見」。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：人類發生率本身也隨篩檢方式改變。早期約 1/3000–4000，TSH 判定門檻降低後抓到更多輕度病例，才變成現在的數字。人的數字是「系統性找出來的」，貓的 80 例是「碰巧被發現的」，不能直接比。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 21</span><span class="src src-rec">🎤</span> 病因：發育不全 vs 激素合成障礙</h3>
+        <figure class="fig">
+          <img src="photos/20-21-etiology.jpg" alt="甲狀腺發育不全與激素合成障礙" loading="lazy">
+          <figcaption>📄 21　左：甲狀腺發育不全；右：濾泡細胞內激素合成的各步驟（紅叉為可能的缺陷點）</figcaption>
+        </figure>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>甲狀腺發育不全（dysgenesis）</h4>
+            <ul>
+              <li>甲狀腺沒有正常發育：發育不良或完全沒有</li>
+              <li><strong>在貓比較少見</strong></li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>激素合成障礙（dyshormonogenesis）</h4>
+            <ul>
+              <li>甲狀腺正常存在，但做不出激素</li>
+              <li><strong>在貓比較常見</strong></li>
+              <li>通常是<strong>甲狀腺過氧化酶（TPO）</strong>的問題，也可能是其他酵素步驟</li>
+            </ul>
+          </div>
+        </div>
+        <div class="alert alert-success"><span class="alert-icon">🔑</span><div><span class="src src-rec">🎤</span> <strong>缺陷可以是完全的，也可以是部分的。</strong>這解釋了為什麼有些幼貓症狀很重，有些只有少數症狀；部分缺陷的貓能存活，所以有時到<strong>好幾個月甚至好幾年後</strong>才被診斷，治療需要的劑量也比較低（第 11 節，最終劑量 10 vs 20 µg/kg）。<br><span class="src src-add">💡 補充</span> 這正好回答 <a href="panel-qa-thyroid.html">19 座談會</a>報告四：5 歲、終生矮小、TSH &gt;12 的貓，很可能就是部分缺陷的先天性甲低。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">📋</div>
+      <h2>7. 臨床特徵（23 隻幼貓）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <figure class="fig">
+        <img src="photos/20-22-clinical-features.jpg" alt="Feldman Table 19.2 先天性甲低臨床特徵" loading="lazy">
+        <figcaption>📄 22　Feldman, Fracassi, Peterson, Feline Endocrinology, 2019, Table 19.2（23 隻）</figcaption>
+      </figure>
+      <div class="grid2">
+        <div class="card-mini">
+          <h4>症狀與理學檢查</h4>
+          <ul>
+            <li><strong>不成比例侏儒 96%</strong></li>
+            <li>頭大 87%、<strong>遲鈍 87%</strong></li>
+            <li><strong>便秘 74%</strong></li>
+            <li>腹部膨大 61%、乳齒滯留 52%</li>
+            <li>幼毛滯留 39%、步態異常／虛弱 30%</li>
+            <li>心搏過緩 22%、低體溫 17%、巨舌 9%</li>
+          </ul>
+        </div>
+        <div class="card-mini">
+          <h4>檢驗與影像</h4>
+          <ul>
+            <li>輕度貧血 37%</li>
+            <li>高膽固醇 25%</li>
+            <li><strong>氮血症 11%</strong></li>
+            <li>骨化中心閉合延遲／骨骺發育不良 71%</li>
+            <li>核醫：兩側對稱腫大、攝取增加 100%（11/11）</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="notes">
+        <li><span class="src src-rec">🎤</span> 最重要的兩個：<strong>不成比例侏儒</strong>和<strong>便秘</strong>。幼貓便秘就應該評估甲狀腺功能。</li>
+        <li><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> <strong>氮血症是因為甲狀腺功能會影響 GFR</strong>：甲狀腺素低 → GFR 下降 → 肌酸酐上升。</li>
+      </ul>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：GFR 下降的機轉包括心輸出量下降、腎血流減少、腎血管阻力上升、RAAS 活性下降，屬於功能性、可逆的變化。成貓型也一樣（第 12 節，29% 氮血症）。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ S8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🩸</div>
+      <h2>8. 該驗哪一項？TSH</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <figure class="fig">
+        <img src="photos/20-23-which-test.jpg" alt="甲狀腺檢驗比較表" loading="lazy">
+        <figcaption>📄 23　原標題 "hormanal" 為 hormonal 的拼字錯誤</figcaption>
+      </figure>
+      <div class="tbl-wrap"><table>
+        <tr><th>檢驗</th><th>優點</th><th>限制</th><th>評語</th></tr>
+        <tr><td><strong>Total T4</strong></td><td>敏感度尚可到好</td><td>非甲狀腺疾病、藥物會讓它下降</td><td>參考值依實驗室、方法、<strong>年齡</strong>而異</td></tr>
+        <tr><td><strong>Free T4（透析法）</strong></td><td>較不受非甲狀腺疾病影響</td><td>很多甲低貓 fT4 仍正常</td><td>和狗不同，在貓 fT4 比 TT4 多不了多少 → <strong>不建議</strong></td></tr>
+        <tr style="background:#fefce8"><td><strong>TSH（犬用或貓用）</strong></td><td><strong>敏感度極佳、特異度好</strong></td><td>貓專用試劑不普及</td><td><strong>診斷貓甲低的最佳單一檢驗</strong></td></tr>
+        <tr><td><strong>TSH 刺激試驗</strong></td><td>敏感度、特異度尚可到好</td><td>貴，rhTSH 不一定買得到</td><td>基礎值模稜兩可時可以確診</td></tr>
+      </table></div>
+      <div class="quote">生長遲緩的幼貓，如果只能驗一項，就驗 TSH。</div>
+      <ul class="notes">
+        <li><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> <strong>TT4</strong>：年輕動物（幼貓、幼犬）的 TT4 通常偏高，甚至高於參考範圍，因為我們用的是<strong>成年動物的參考值</strong>。「我通常預期它偏高，而這隻貓不是甲亢，只是生長中的貓正常的甲狀腺功能。」</li>
+        <li><span class="src src-rec">🎤</span> <strong>fT4</strong>：在先天性甲低不是重要的檢驗，所以這個族群通常不驗。</li>
+        <li><span class="src src-rec">🎤</span> <strong>TSH</strong>：只有犬用的就用犬用，有貓用的更好。抽一點點血驗 TSH，<strong>大多數時候本身就能診斷</strong>，人醫也是這樣做。</li>
+        <li><span class="src src-rec">🎤</span> <strong>TSH 刺激試驗</strong>：這窩貓也做了，<strong>只是為了研究</strong>，打 TSH 前後 TT4 一樣。重組 TSH 不普及，有的國家也很貴。</li>
+      </ul>
+      <div class="alert alert-success"><span class="alert-icon">🔑</span><div><span class="src src-hand">✍️ 筆記</span><span class="src src-rec">🎤</span> <strong>目前沒有「貓甲低但 TSH 正常」的病例報告，所以貓可以用 TSH 排除甲低</strong>（課後 Q&amp;A 1）。Tardo 補充：內分泌沒有 100%，以目前資料，TSH 正常大概有 <strong>80–90%</strong> 把握不是甲低。<br>這和狗不同：約 1/3 的甲低狗 TSH 正常，狗不能用 TSH 排除（見 <a href="canine-hypothyroidism.html">17</a>）。</div></div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：TSH 適合<strong>排除</strong>；確診要 TSH 升高＋TT4 低（或低正常）＋符合的臨床表現。TSH 輕度升高也見於非甲狀腺疾病恢復期、甲亢治療後。例外：極罕見的中樞性甲低（TSH 不升），以及已經在吃 levothyroxine 的貓。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ S9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">☢️</div>
+      <h2>9. 核醫掃描與甲狀腺腫</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <figure class="fig">
+        <img src="photos/20-24-scintigraphy.jpg" alt="先天性甲低貓核醫掃描" loading="lazy">
+        <figcaption>📄 24　a（側面）、b（腹背面）為診斷時，c 為 levothyroxine 治療 12 個月後。S = 唾液腺，H = 心臟</figcaption>
+      </figure>
+      <div class="grid2">
+        <div class="card-mini">
+          <h4>發育不全型</h4>
+          <ul>
+            <li>看不到甲狀腺組織</li>
+            <li>攝取很低或測不到</li>
+          </ul>
+        </div>
+        <div class="card-mini">
+          <h4>激素合成障礙型</h4>
+          <ul>
+            <li>攝取增加</li>
+            <li>兩葉對稱腫大（甲狀腺腫）</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="notes">
+        <li><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> <strong>老師通常不做</strong>：甲狀腺激素檢驗就足以診斷。<span class="src src-fix">【更正】</span>逐字稿作 "thyroid nodules are enough"。</li>
+        <li><span class="src src-rec">🎤</span> 圖中這隻治療後甲狀腺完全恢復正常大小。甲狀腺會變大，是因為 TSH 拚命刺激，但酵素壞了做不出激素。</li>
+        <li><span class="src src-rec">🎤</span> 理學檢查大約<strong>一半的貓摸得到甲狀腺腫</strong>。甲狀腺腫要<strong>幾個月</strong>才長得出來，通常 <strong>5–6 月齡之後</strong>才摸得到；這窩 2 月齡的幼貓完全沒有甲狀腺腫，只是時間還不夠。</li>
+      </ul>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：判讀時拿唾液腺當基準，正常貓甲狀腺和唾液腺亮度約 1:1；b 圖頸部的濃聚遠亮於唾液腺。c 圖補充 T4 後 TSH 被抑制，甲狀腺腫消退。兩型都用 levothyroxine，核醫掃描不改變治療，主要用於分型、遺傳諮詢或研究。實務替代：頸部觸診、超音波。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ S10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">💊</div>
+      <h2>10. Levothyroxine 與監測</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <figure class="fig">
+        <img src="photos/20-25-treatment.jpg" alt="治療投影片" loading="lazy">
+        <figcaption>📄 25　左下禁止飼料碗圖示：空腹給藥</figcaption>
+      </figure>
+      <div class="subsection">
+        <h3>劑量與劑型</h3>
+        <ul class="notes">
+          <li><strong>Levothyroxine sodium 20–40 µg/kg/天 PO</strong>，一天一次或分兩次。</li>
+          <li><span class="src src-rec">🎤</span> Tardo <strong>偏好一天一次</strong>：幼貓很小，一窩又不只一隻發病，一天一次對照顧者容易得多。</li>
+          <li><strong>幼貓優先用口服液</strong>：長得很快，容易依體重調整。</li>
+          <li><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> <strong>劑量要隨體重增加調整</strong>（Q&amp;A 2：沒跟上體重是治療不足最常見的原因）。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充：為什麼要口服液</strong>：600 g 幼貓 × 20–40 µg/kg = 每天 12–24 µg，錠劑 50／100 µg 要切成 1/4 以下，誤差很大。也要注意：<strong>總劑量</strong>隨體重增加，但<strong>每公斤劑量</strong>會隨年紀下降（一年後 10–20 µg/kg）。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> 採血時間</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>給藥方式</th><th>何時驗 TT4 與 TSH</th></tr>
+          <tr><td>一天一次（晚上給）</td><td><strong>晚間給藥後約 12 小時</strong>（投影片寫法）</td></tr>
+          <tr><td>一天兩次</td><td><strong>給藥後 4–6 小時</strong>（高峰）</td></tr>
+        </table></div>
+        <p class="p"><span class="src src-add">💡 補充</span> TSH 反映一段時間的整體狀態，比較不受採血時間影響，所以<strong>調整主要看 TSH</strong>；每次追蹤用同一個時間點，前後才能比較。</p>
+      </div>
+      <div class="subsection">
+        <h3>治療目標</h3>
+        <ul class="notes">
+          <li><strong>TT4：參考範圍上半部</strong>。<span class="src src-rec">🎤</span>多數幼貓甚至希望 TT4 <strong>高於</strong>參考範圍（成貓參考值）。</li>
+          <li><strong>TSH：回到參考範圍內</strong>。</li>
+          <li><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> 如前一天說過的，<strong>TSH 還高，代表對這隻貓來說 T4 還不夠</strong>，要增加劑量。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>TSH</th><th>TT4</th><th>解讀</th><th>處理</th></tr>
+          <tr><td>高</td><td>低</td><td>劑量不足（或沒確實餵藥、吸收差）</td><td>確認餵藥 → 依新體重加量</td></tr>
+          <tr><td>高</td><td>正常</td><td><strong>仍然不夠</strong></td><td>加量</td></tr>
+          <tr><td>正常</td><td>上半部／略高</td><td>達標</td><td>維持，依體重追蹤</td></tr>
+          <tr><td>低／測不到</td><td>明顯高於範圍</td><td>可能過量</td><td>減量；注意心搏過速、體重下降、過動</td></tr>
+        </table></div>
+        <p class="muted">💡 犬用 TSH 低值端分辨力差，判斷過量要靠 TT4 明顯偏高加上臨床症狀。</p>
+      </div>
+      <div class="subsection">
+        <h3>追蹤頻率</h3>
+        <ul class="notes">
+          <li>1 個月後回診，第一年內每 <strong>2–3 個月</strong>一次。</li>
+          <li><span class="src src-rec">🎤</span> 一年之後每 6 個月；之後一年一到兩次即可。「<strong>早期診斷的話，牠們就是正常的貓</strong>。」</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">📈</div>
+      <h2>11. 三隻幼貓一年追蹤</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 26–27</span> 外觀與 X 光</h3>
+        <figure class="fig">
+          <img src="photos/20-26-6-months.jpg" alt="同一窩幼貓 6 個月後" loading="lazy">
+          <figcaption>📄 26　6 個月後：體型大很多，<span class="src src-rec">🎤</span>牙齒萌發也明顯改善</figcaption>
+        </figure>
+        <figure class="fig">
+          <img src="photos/20-27-rad-followup.jpg" alt="治療 1 個月後 X 光" loading="lazy">
+          <figcaption>📄 27　Levothyroxine 治療 1 個月：骨化重新開始，生長中心和椎體外觀恢復正常（影像提供：Prof. Alessia Diana, University of Bologna）</figcaption>
+        </figure>
+        <p class="p"><span class="src src-rec">🎤</span> 開始 levothyroxine 後改善非常快，X 光的骨骺和骨化中心異常也一樣。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 28</span><span class="src src-rec">🎤</span> 體重</h3>
+        <figure class="fig">
+          <img src="photos/20-28-bw-followup.jpg" alt="體重追蹤" loading="lazy">
+          <figcaption>📄 28　BS = 品種參考值、CH = 甲低幼貓、HS = 健康同窩（Golinelli S, Tardo AM, et al., Vet Sci 2022）</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>時間點：第 0 天（出生）、<strong>第 53 天（診斷）</strong>、第 83 天（治療 1 個月）、約 6 個月、約 1 年。</li>
+          <li><span class="src src-rec">🎤</span> BS 是他們<strong>問卷調查英短繁殖者</strong>得來的各年齡體重（繁殖者通常會記錄幼貓體重）。</li>
+          <li>出生時三組一樣；診斷時 CH 明顯比 HS 輕（*）；治療 1 個月開始追上品種參考值；6 個月時同窩仍較大；<strong>1 年時完全一樣</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 早期診斷，牠們會像正常動物一樣，也沒有併發症。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 29</span><span class="src src-rec">🎤</span> IGF-1</h3>
+        <figure class="fig">
+          <img src="photos/20-29-igf1-followup.jpg" alt="IGF-1 追蹤" loading="lazy">
+          <figcaption>📄 29　陰影為參考值 200–400 ng/mL</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>診斷時低；<strong>治療 1 個月恢復正常</strong>；6 個月時<strong>高於</strong>參考範圍；1 年時又回到正常。</li>
+          <li><span class="src src-rec">🎤</span> 6 個月時偏高<strong>是正常的</strong>：生長中的動物 IGF-1 本來就會高於（成年）參考範圍，和 TT4 的道理一樣。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 30</span><span class="src src-rec">🎤</span> TT4 與 TSH</h3>
+        <figure class="fig">
+          <img src="photos/20-30-thyroid-followup.jpg" alt="TT4 與 TSH 追蹤" loading="lazy">
+          <figcaption>📄 30　第 365 天最終劑量 10、18、20 µg/kg/天</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>TT4 診斷時低、1 個月時正常。<span class="src src-rec">🎤</span>「這幾隻要找到正確劑量並不容易。」</li>
+          <li><strong>6 個月時有些貓 TSH 又很高</strong>（F2 約 7.5，M1 也略升），所以持續加量，直到 TSH 正常。</li>
+          <li>1 年時每一隻的 TSH 都正常了。</li>
+          <li><span class="src src-rec">🎤</span> 最終劑量差很多：一隻只要 <strong>10 µg/kg/天</strong>，其他是 18、20。原因是<strong>部分缺陷</strong>的貓受影響較輕，需要的劑量較低；<strong>劑量非常個體化</strong>。</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>治療中只看 TT4 會被誤導</strong>：M1 在第 185 天 TT4 在範圍內，但 TSH 仍偏高。F2 的 TSH 回升，應該是劑量沒跟上體重增加。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🐈</div>
+      <h2>12. 成貓自發性原發甲低（Cobucci 2026，17 隻）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 31</span> 貓甲低的三種臨床型態</h3>
+        <ul class="notes">
+          <li><strong>醫源性</strong>（甲亢治療後）：最常見（＋）</li>
+          <li><strong>先天性</strong>：少見（－）</li>
+          <li><strong>成貓自然發生</strong>：少見（－）</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 32</span><span class="src src-rec">🎤</span> 族群與就診原因</h3>
+        <figure class="fig">
+          <img src="photos/20-32-adult-signalment.jpg" alt="成貓自發性甲低 17 隻" loading="lazy">
+          <figcaption>📄 32　Cobucci GC, … Fracassi F, … Peterson ME. J Feline Med Surg 2026</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 幾個月前才發表，是<strong>目前最大的成貓自發性甲低病例系列</strong>。之前文獻全部只有約 18 例，這篇 <strong>17 隻</strong>。<span class="src src-fix">【更正】</span>逐字稿作 "70 cases"。</li>
+          <li>2–14 歲（中位數 8），16/17 家貓短毛，10/17 公貓。<span class="src src-rec">🎤</span>可能有公貓傾向，但罕見病很難談品種／性別傾向。</li>
+          <li>就診原因：精神差 58.8%、<strong>肥胖（BCS ≥6/9）58.8%</strong>、皮膚變化 47.1%、<strong>摸得到甲狀腺腫 41.2%</strong>、糖尿病惡化 11.8%、心搏過緩 11.8%、上呼吸道喘鳴 5.9%、聲音改變 5.9%。</li>
+          <li><span class="src src-rec">🎤</span> 摸到甲狀腺腫時，<strong>通常不會想到甲低</strong>。Tardo 的做法：TT4 低時想到甲低，就驗 TSH；TSH 高就是診斷。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 33</span><span class="src src-rec">🎤</span> 症狀與檢驗</h3>
+        <figure class="fig">
+          <img src="photos/20-33-adult-signs-labs.jpg" alt="成貓甲低症狀與檢驗" loading="lazy">
+          <figcaption>📄 33　症狀到確診中位數 12 個月（2–96 個月）</figcaption>
+        </figure>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>飼主觀察到的症狀</h4>
+            <ul>
+              <li>精神差 76.5%</li>
+              <li>毛質差 52.9%</li>
+              <li>體重增加／肥胖 52.9%</li>
+              <li>便秘 11.8%、嘔吐 11.8%</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>檢驗</h4>
+            <ul>
+              <li><strong>氮血症 29.4%</strong></li>
+              <li>高膽固醇、貧血、高血糖各 17.6%</li>
+              <li>尿比重低 11.8%</li>
+              <li>TT4 低 76.5%</li>
+              <li><strong>TSH 高 100%</strong></li>
+            </ul>
+          </div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 肥胖、<strong>怎麼減都減不下來</strong>的貓，要把甲低列入鑑別。</li>
+          <li><span class="src src-rec">🎤</span> <strong>成貓型便秘不常見</strong>，和先天型不同。</li>
+          <li><span class="src src-rec">🎤</span> Mark Peterson 另一個病例系列中，約 <strong>30% 的貓有 PU/PD</strong>。這和狗不同，原因不明。</li>
+          <li><span class="src src-rec">🎤</span> 症狀中位數一年才確診：罕見、難以懷疑的病就會這樣慢性地拖著。</li>
+          <li><span class="src src-rec">🎤</span> <strong>氮血症</strong>：Tardo 的經驗是，成貓有氮血症但<strong>腎臟超音波完全正常</strong>時，要想到甲低、評估甲狀腺功能。<span class="src src-fix">【更正】</span>逐字稿作 "atypia／adrenal neoplasia"。</li>
+          <li><span class="src src-rec">🎤</span> <strong>甲低會造成胰島素阻抗</strong>，治療甲低後糖尿病會改善。講者提到的機轉是甲低時 <strong>GH 分泌增加</strong>（逐字稿此段轉文字不清）。</li>
+          <li><span class="src src-rec">🎤</span><span class="src src-hand">✍️ 筆記</span> <strong>TT4 只有約 75% 偏低</strong>，也就是 <strong>T4 可以正常</strong>：「在參考範圍內，但對那隻貓來說<strong>不夠</strong>。」TSH 100% 升高，仍是最好的檢驗。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：「甲低使 GH 增加」在狗有研究支持：誘發性原發甲低的狗，腦下垂體 GH 細胞會轉分化成同時分泌 TSH 與 GH 的細胞，出現 GH 過度分泌（Diaz-Espiñeira 2008）。這和第 5 節<strong>幼貓 IGF-1 偏低</strong>方向相反，貓的 GH 軸在甲低時到底怎麼變化，目前資料不多。<br>T4 正常的可能原因：代償期（高 TSH 把剩餘組織推到極限，類似人的亞臨床甲低）、甲狀腺腫型、每隻貓的個體基準不同。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 34</span><span class="src src-rec">🎤</span> 影像、治療與兩個關聯</h3>
+        <figure class="fig">
+          <img src="photos/20-34-adult-imaging-tx.jpg" alt="成貓甲低影像與治療" loading="lazy">
+          <figcaption>📄 34　下方掃描：a 頸部明顯濃聚（甲狀腺腫型）、b 只見唾液腺（萎縮型）</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>甲狀腺影像：<strong>58.8% 萎縮型</strong>（看不到或明顯變少）、<strong>41.2% 甲狀腺腫型</strong>（兩側腫大、攝取增加）。<span class="src src-rec">🎤</span>和幼貓一樣，兩種型態都有。</li>
+          <li>Levothyroxine 起始中位數 <strong>100 µg/隻/天</strong>（50–150），約 <strong>20 µg/kg</strong>，和先天型差不多。</li>
+          <li><strong>兩個要記住的關聯</strong>：
+            <ol class="notes">
+              <li><strong>不明原因氮血症</strong>：治療後肌酸酐下降，除了 1 隻都恢復正常。<span class="src src-rec">🎤</span>成貓、腎臟沒有異常、有氮血症又胖，就想到甲低。</li>
+              <li><strong>控制不好的糖尿病</strong>：2 隻在治療後<strong>達到緩解</strong>。<span class="src src-rec">🎤</span>一隻是 Bologna 的病例，另一隻來自其他中心。</li>
+            </ol>
+          </li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 35</span><span class="src src-rec">🎤</span> 治療前後</h3>
+        <figure class="fig">
+          <img src="photos/20-35-adult-graphs.jpg" alt="治療前後 TT4、TSH、肌酸酐" loading="lazy">
+          <figcaption>📄 35　a TT4（µg/dL）、b TSH（ng/mL，對數軸）、c 肌酸酐（mg/dL）；紅 = 甲低時，藍 = levothyroxine 治療後，三者 P &lt; 0.001</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>TT4：多數低，<strong>部分在參考範圍內</strong>；治療後正常或在上限／略高於上限。</li>
+          <li>TSH：多數<strong>高於 1 ng/mL</strong>（犬用 TSH 上限 0.3），<span class="src src-rec">🎤</span>和 Tardo 的經驗一致。治療後多數恢復，但<strong>仍有幾隻偏高</strong>：找到正確劑量並不容易。</li>
+          <li>肌酸酐：治療前有輕度氮血症傾向，治療後多數正常，1 隻仍有氮血症。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S13 ══ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">💬</div>
+      <h2>13. 課後 Q&amp;A</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">1. 狗的甲低約 1/3 TSH 在正常範圍。貓 TSH 正常，是否也不能排除甲低？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 貓比較像人，人醫只驗 TSH。以目前發表的資料，<strong>沒有 TSH 正常的貓甲低病例</strong>，所以 TSH 正常大概可以排除。內分泌從來不是非黑即白，希望未來有更多資料；以現況來說，TSH 正常大約有 <strong>80–90%</strong> 把握不是甲低。<span class="src src-hand">✍️ 筆記</span></div>
+      </div>
+      <div class="qa">
+        <div class="q">2. 幼貓 20–40 µg/kg/天，體重一直增加，需要經常依體重調整劑量嗎？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 是。不需要每幾週就回診，但要教飼主<strong>經常秤重、自己依體重調整劑量</strong>，所以偏好口服液。一開始非常小的時候，劑型本身就很難抓準劑量，長大後就容易很多。請飼主記錄體重，有疑問就聯絡。<strong>沒有依體重調整，是治療不足最常見的原因。</strong></div>
+      </div>
+      <div class="qa">
+        <div class="q">3. 第一年治療後、成年了，還要同時監測 TT4 和 TSH 嗎？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 每年驗一到兩次，之後一年一次大概就夠了。一年後如果找到正確劑量，牠們不再長大，通常維持同一劑量。但如果有<strong>吸收不良</strong>或其他影響藥物代謝的疾病，可能需要調整。慢性內分泌病就是要定期檢查，看有沒有需要改劑量。</div>
+      </div>
+      <div class="qa">
+        <div class="q">4. 甲低幼貓 IGF-1 也低，要怎麼和 GH 缺乏區分？補 levothyroxine 後多久 IGF-1 會上升？</div>
+        <div class="a">
+          <span class="src src-rec">🎤</span> 診斷當下<strong>沒有辦法區分</strong>。外觀可以提供一點線索：甲低是<strong>不成比例侏儒</strong>，垂體性侏儒通常是<strong>成比例侏儒</strong>，但光看外觀很難判斷。建議<strong>先驗甲狀腺功能</strong>，異常就治療；之後如果還是長不好，再驗 IGF-1。<br>
+          這窩三隻在<strong>治療 1 個月</strong>後驗 IGF-1 就完全正常了。幼貓如果長得很快、沒有症狀，不需要驗 IGF-1，因為垂體性侏儒很少見；年輕、長不好、有理由懷疑時才驗。
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">5. 有沒有檢查母貓的甲狀腺？母貓的甲狀腺問題會不會和幼貓有關？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 沒有。母貓外觀是正常的英短、沒有症狀，所以沒驗。但這是好問題，因為這<strong>可能是家族性問題</strong>；他們建議繁殖者<strong>不要再用這隻母貓繁殖</strong>。母貓也可能之後發展成成貓型，不知道，所以也該留意幼貓的母親。</div>
+      </div>
+      <div class="qa">
+        <div class="q">6. 類似表現的貓，除了甲低，鑑別診斷的前兩三名是什麼？</div>
+        <div class="a"><span class="src src-rec">🎤</span> 清單很長。肝臟問題（PSS 或其他肝功能不全）、吸收不良，<strong>寄生蟲要很快排除</strong>，因為這是這個族群生長遲緩很常見的原因。內分泌方面，先天性甲低最常見，其他都很少見。另一個常見原因是<strong>糖皮質素</strong>：如果貓正在用，你大概已經有答案了，停藥看牠會不會長。幼犬幼貓用糖皮質素都要小心。</div>
+      </div>
+      <div class="qa">
+        <div class="q">7. 糖尿病貓的胰島素阻抗，多常和甲低有關？</div>
+        <div class="a">
+          <span class="src src-rec">🎤</span> 在貓<strong>很少見</strong>，因為成貓型甲低本身就少見。Tardo 只遇過一隻：當時只是篩檢驗 T4，沒有懷疑甲低；那隻貓沒什麼症狀，只有一些皮膚變化，胖，但糖尿病貓本來就常胖。<br>
+          在狗則是<strong>每一隻甲低狗都可能有胰島素阻抗</strong>，治療甲低後血糖控制通常改善，有些可以減少胰島素。甲低在狗是最常見的疾病之一，在貓很少見。<br>
+          那隻貓約 9–10 歲，糖尿病一陣子後因控制不好轉診，結果發現甲低，<strong>同時還有肢端肥大症</strong>，可能是多重內分泌病。治療甲低後糖尿病目前仍在緩解。（逐字稿關於 cabergoline 的一句轉文字不清。）肢端肥大症會在後面的場次講。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S14 ══ -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🏠</div>
+      <h2>Take-home、更正表與參考資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 36</span> Take-home messages</h3>
+        <ol class="notes">
+          <li><strong>生長遲緩的主要鑑別診斷之一</strong>：盛行率被低估。<span class="src src-rec">🎤</span>繁殖者說幼貓「跟不上」時，一定要驗 TT4 和 TSH。</li>
+          <li><strong>TSH 是最好的單一檢驗</strong>：只看 TT4 會被誤導，不論診斷時或治療中。<span class="src src-rec">🎤</span>血少、預算少，只驗 TSH 通常就夠了。</li>
+          <li><strong>IGF-1 低要小心</strong>：先治甲狀腺，再重測。</li>
+          <li><strong>早期治療能讓生長恢復正常</strong>：體重、檢驗、X 光都改善。</li>
+          <li><strong>成貓型也存在</strong>：常被忽略；肥胖、精神差、不明原因氮血症的貓要想到。<span class="src src-rec">🎤</span>「你們是專科醫師，要把這個病放在心上，因為你可以改變那隻貓的結局。」</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-fix">【更正】</span> 逐字稿轉文字錯誤對照</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>逐字稿</th><th>應為</th></tr>
+          <tr><td>arteriosclerosis is the most common condition that causes drop failure</td><td>hypothyroidism is the most common (endocrine) cause of growth failure</td></tr>
+          <tr><td>hypotranism／creatinism</td><td>hypothyroidism／cretinism</td></tr>
+          <tr><td>arbovirus／arbovirism／hypotrichosis／apoptoroid／acotroyd／apodorism／apatolysis／arthrogryposis／hypotonia／hypothermism／hypothermia</td><td>hypothyroidism</td></tr>
+          <tr><td>conjugal hypothermism／conjugal hypothermia</td><td>congenital hypothyroidism</td></tr>
+          <tr><td>trichotillomania</td><td>cretinism（神經系統發育異常）</td></tr>
+          <tr><td>earcot</td><td>kitten coat（幼毛）</td></tr>
+          <tr><td>film pieces on palpation</td><td>fecal masses（糞塊）</td></tr>
+          <tr><td>outdone</td><td>obtunded（遲鈍）</td></tr>
+          <tr><td>vegetative</td><td>regurgitation（回吐）</td></tr>
+          <tr><td>albinism</td><td>alopecia（脫毛）</td></tr>
+          <tr><td>body cancer derived from liver insufficiency</td><td>hepatic encephalopathy（轉文字不清，依📄 7）</td></tr>
+          <tr><td>PUD</td><td>PU/PD</td></tr>
+          <tr><td>hyperchloremia</td><td>hypercholesterolemia</td></tr>
+          <tr><td>tower test</td><td>thyroid panel</td></tr>
+          <tr><td>K9SH／KSH／BPSH／SH／pH</td><td>canine TSH／TSH</td></tr>
+          <tr><td>folin assay</td><td>feline assay</td></tr>
+          <tr><td>epifascial degeneration／diffuse atypicality genesis</td><td>epiphyseal dysgenesis</td></tr>
+          <tr><td>anteciply／LTC blits／HA</td><td>healthy sibling（HS）</td></tr>
+          <tr><td>IgG1／AKF one／ITF one／IGF one</td><td>IGF-1</td></tr>
+          <tr><td>concurrent congenital hypothyroidism（IGF-1 原因 1）</td><td>concurrent congenital hyposomatotropism</td></tr>
+          <tr><td>TGH</td><td>GH</td></tr>
+          <tr><td>shear force, increase in creatine</td><td>lower GFR, increased creatinine</td></tr>
+          <tr><td>thyroid genesis</td><td>thyroid dysgenesis</td></tr>
+          <tr><td>dysmorphogenesis</td><td>dyshormonogenesis</td></tr>
+          <tr><td>tyroperosinase</td><td>thyroid peroxidase（TPO）</td></tr>
+          <tr><td>DDCs</td><td>（轉文字不清，指缺陷）</td></tr>
+          <tr><td>natriuretic thyroid tissue</td><td>no visible／atrophic thyroid tissue</td></tr>
+          <tr><td>thyroid nodules are enough</td><td>thyroid hormone tests are enough</td></tr>
+          <tr><td>levotuxin／levetiracetam／levodopa sin／levodarson／levotiroxine</td><td>levothyroxine</td></tr>
+          <tr><td>10 microgram per kick per day</td><td>10 µg/kg/day</td></tr>
+          <tr><td>British Shorter／Breton cat</td><td>British Shorthair</td></tr>
+          <tr><td>70 cases</td><td>17 cats（📄 32）</td></tr>
+          <tr><td>leather chip</td><td>lethargy</td></tr>
+          <tr><td>morphological changes（50%）</td><td>dermatologic changes（📄 32）</td></tr>
+          <tr><td>poor acord／air core changes</td><td>poor hair coat</td></tr>
+          <tr><td>atypia／atopy／azoospermia／adrenal neoplasia</td><td>azotemia</td></tr>
+          <tr><td>hypoglycemia</td><td>hyperglycemia（📄 33）</td></tr>
+          <tr><td>MGLH is the most modern hypoglycemic drug</td><td>（轉文字不清，GH 與胰島素阻抗相關）</td></tr>
+          <tr><td>gut remission</td><td>diabetic remission</td></tr>
+          <tr><td>20 meq per kg</td><td>20 µg/kg</td></tr>
+          <tr><td>Fiona</td><td>the owner（飼主）</td></tr>
+          <tr><td>cosmal absorption</td><td>malabsorption</td></tr>
+          <tr><td>teropuncture／third puncture</td><td>thyroid function</td></tr>
+          <tr><td>Thai boy in the queen</td><td>thyroid status of the queen（母貓）</td></tr>
+          <tr><td>sepsisian</td><td>portosystemic shunt（PSS）</td></tr>
+          <tr><td>macromegaly／hypomegaly／chromegaly</td><td>acromegaly</td></tr>
+          <tr><td>Dr. Montes</td><td>（轉文字不確定，指後面肢端肥大症場次的講者）</td></tr>
+          <tr><td>Dr. Tavola／Phil</td><td>Dr. Tardo</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Tardo A. <em>Feline congenital hypothyroidism.</em> VET-KU × Texas A&amp;M IM Conference, 2026-10-09（講義 17 頁 2-up、「完整記錄」逐字稿 PDF）。</div>
+          <div class="ref-item">課堂錄音與逐字稿（Plaud）。<a href="https://web.plaud.ai/s/pub_8087d07d-4d2f-4cad-b704-42844146f5cb::53wQGuMxa5qMVXgZkTalSGO-WWMJyyVjJhS1KPyudfRJVb4n7wpOtIbUuQvWSB3u03dE_l8vX76tUxfNZoOJFwI" target="_blank" rel="noopener">連結</a>（有轉文字錯誤，請對照更正表）</div>
+          <div class="ref-item">Golinelli S, Tardo AM, et al. <em>Vet Sci</em> 2022（三隻英短先天性甲低幼貓的一年追蹤）。</div>
+          <div class="ref-item">Quante S, Fracassi F, Gorgas D, Kircher PR, Boretti FS, Ohlerth S, Reusch CE. Congenital hypothyroidism in a kitten resulting in decreased IGF-I concentration and abnormal liver function tests. <em>J Feline Med Surg</em> 2010;12:487–490.</div>
+          <div class="ref-item">Cobucci GC, Teyssandier S, … Fracassi F, … Peterson ME. Spontaneous adult-onset primary hypothyroidism in 17 cats. <em>J Feline Med Surg</em> 2026.</div>
+          <div class="ref-item">Feldman EC, Fracassi F, Peterson ME. <em>Feline Endocrinology.</em> Edra, 2019（Table 19.2）。</div>
+          <div class="ref-item">Feldman EC, Nelson RW, Reusch CE, Scott-Moncrieff JCR. <em>Canine and Feline Endocrinology.</em> 4th ed. 2015（Box 2-3）。</div>
+          <div class="ref-item">Jacob H, Peters C. Screening, diagnosis and management of congenital hypothyroidism: European Society for Paediatric Endocrinology Consensus Guideline. <em>Arch Dis Child Educ Pract Ed</em> 2015;100:260–263.</div>
+          <div class="ref-item">Valcavi R, et al. <em>Clin Endocrinol</em> 1987;27:85–90；Schmid C, et al. <em>Clin Endocrinol</em> 2006;65:706–711（甲狀腺狀態與 GH／IGF-1 軸）。</div>
+          <div class="ref-item">Lim CK, Rosa CT, de Witt Y, Schoeman JP. Congenital hypothyroidism and concurrent renal insufficiency in a kitten. <em>J S Afr Vet Assoc</em> 2014;85:1144（💡 補充引用，現場 PubMed 畫面）。</div>
+          <div class="ref-item">Diaz-Espiñeira MM, et al. Functional and morphological changes in the adenohypophysis of dogs with induced primary hypothyroidism. <em>Domest Anim Endocrinol</em> 2008（💡 補充引用：犬甲低與 GH 過度分泌）。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="panel-qa-thyroid.html">19 座談會 Q&amp;A：甲狀腺與糖尿病</a>。相關：<a href="canine-hypothyroidism.html">17 犬甲低</a>、<a href="feline-hyperthyroidism.html">18 貓甲亢</a>。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
