@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>貓的生長激素過多：糖尿病貓的常見病因｜2026 Texas 內分泌研討會</title>
+<style>
+  :root {
+    --primary: #0F766E;
+    --primary-light: #CCFBF1;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0d2522;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9cc8c1; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #1f4a44;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9cc8c1; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9cc8c1;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #1f4a44;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #5f8f87;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0b4f49 0%, #14a395 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0d2522; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #1f4a44; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 Texas 內分泌研討會</a>
+  <div class="logo">
+    <h2>23｜貓的生長激素過多：<br>糖尿病貓常見的病因</h2>
+    <p>Jocelyn Mott｜2026 年 10 月 9 日</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">場次資訊與大綱</a>
+    <div class="nav-section">認識 HS</div>
+    <a href="#s1">1. 盛行率與名詞</a>
+    <a href="#s2">2. 病因與 GH–IGF-1 軸</a>
+    <a href="#s3">3. 臨床表現</a>
+    <div class="nav-section">診斷</div>
+    <a href="#s4">4. IGF-1 怎麼判讀</a>
+    <a href="#s5">5. 影像與其他檢查</a>
+    <a href="#s6">6. 病例 Valentine</a>
+    <div class="nav-section">治療</div>
+    <a href="#s7">7. 腦下垂體切除</a>
+    <a href="#s8">8. 放射治療</a>
+    <a href="#s9">9. 針對 GH 的內科藥物</a>
+    <a href="#s10">10. 胰島素與 SGLT2 抑制劑</a>
+    <a href="#s11">11. 緩和治療：Rico 與 Mout Kitty</a>
+    <div class="nav-section">延伸與總結</div>
+    <a href="#s12">12. 沒有糖尿病的 HS、是或不是測驗</a>
+    <a href="#s13">Take-home 與參考資料</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>貓的生長激素過多（Hypersomatotropism）：糖尿病貓的常見病因</h1>
+    <p>主講：Jocelyn Mott, DVM, DACVIM (SAIM), FACVIM (feline and canine diabetes)</p>
+    <p>2026 年 10 月 9 日｜VET-KU × Texas A&amp;M 內科研討會｜場次 23</p>
+    <div class="tags">
+      <span class="tag">Hypersomatotropism</span>
+      <span class="tag">肢端肥大症</span>
+      <span class="tag">1/4 糖尿病貓</span>
+      <span class="tag">IGF-1</span>
+      <span class="tag">偽陰性／偽陽性</span>
+      <span class="tag">腦下垂體切除</span>
+      <span class="tag">放射治療</span>
+      <span class="tag">Pasireotide</span>
+      <span class="tag">Cabergoline</span>
+      <span class="tag">Pegvisomant</span>
+      <span class="tag">SGLT2 抑制劑</span>
+      <span class="tag">低血糖</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（頁碼＝講義投影片編號 1–49）
+    <span class="src src-photo">📸 現場</span> 課堂現場投影片（講義 PDF 沒有）
+    <span class="src src-hand">✍️ 筆記</span> 上課時記下的重點
+    <span class="src src-add">💡 補充</span> 整理者補充（機轉、判讀、交叉參照）
+    <br><span class="muted">目前是<strong>講義＋現場照片版</strong>，還沒有課堂逐字稿。標 💡 的是整理者的推論，之後會對照講者的說法。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li>生長激素過多（HS）<strong>不是罕見病</strong>：約 <strong>1/4 的糖尿病貓</strong>是 HS</li>
+      <li>多數 HS 貓<strong>沒有典型肢端肥大外觀</strong>（來院時 &lt;25%），主訴就是糖尿病</li>
+      <li>糖尿病控制差，<strong>體重卻增加、肌肉量好</strong>：想到 HS</li>
+      <li>HS 貓也可能控制得不錯、會低血糖、或曾經緩解又復發</li>
+      <li>篩檢用 <strong>IGF-1</strong>；PPV 高，但小心偽陰性和偽陽性</li>
+      <li><strong>還沒打胰島素時 IGF-1 可能偏低</strong>（肝臟需要門脈胰島素）：開始胰島素 <strong>6–8 週後</strong>再驗</li>
+      <li>長期胰島素、肥胖、淋巴瘤、甲亢都會影響 IGF-1</li>
+      <li>確診靠 IGF-1 升高＋<strong>腦部 MRI／CT</strong>；但最多 25% 看不到腫塊</li>
+      <li><strong>腦下垂體切除</strong>最好：糖尿病緩解 71–92%（中位 9 天），但要終身補 levothyroxine、類固醇，常需 DDAVP</li>
+      <li><strong>放射治療</strong>比較普及，但效果慢又難預測，降到最低胰島素劑量中位要 285–399 天</li>
+      <li>內科：pasireotide 有效但極貴；<strong>cabergoline</strong> 便宜口服，35% 緩解，小腫瘤、IGF-1 &lt;1500 最適合</li>
+      <li>只打胰島素：存活最短、生活品質最差；目標是<strong>改善症狀、避免低血糖</strong>，不是緩解</li>
+    </ul>
+  </div>
+
+  <!-- ══ S0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🎯</div>
+      <h2>場次資訊與大綱</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 1</span> 講者</h3>
+        <ul class="notes">
+          <li>講者 Jocelyn Mott，DVM、DACVIM（小動物內科）、FACVIM（貓與犬糖尿病）。前幾天也講過犬糖尿病（📖 <a href="canine-diabetes-insulin.html">02</a>）、貓糖尿病（📖 <a href="feline-diabetes.html">03</a>）、SGLT2i 仿單外使用（📖 <a href="sglt2i-off-label.html">04</a>）。</li>
+          <li>標題：「生長激素過多：貓糖尿病的常見病因」。</li>
+          <li><span class="src src-add">💡</span> 名詞：HS＝hypersomatotropism；HS-DM＝生長激素過多引起的糖尿病。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🌍</div>
+      <h2>1. 盛行率與名詞</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 2–4</span> 各國的盛行率</h3>
+        <figure class="fig">
+          <img src="photos/23-02-prevalence.jpg" alt="各國糖尿病貓中 HS 的盛行率地圖" loading="lazy">
+          <figcaption>📄 2：糖尿病貓中 HS 的比例</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>國家</th><th>糖尿病貓中 HS 的比例</th></tr>
+          <tr><td>美國</td><td>26%</td></tr>
+          <tr><td>英國</td><td>24.8%</td></tr>
+          <tr><td>荷蘭</td><td>21.3%</td></tr>
+          <tr><td>澳洲</td><td>16%</td></tr>
+          <tr><td>阿根廷</td><td>14.9%</td></tr>
+          <tr><td>瑞士</td><td>12.5%</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li>很多研究只在<strong>血糖控制差、而且有典型肢端肥大外觀</strong>時才篩檢 HS。</li>
+          <li>英國的研究<strong>不管外觀、所有糖尿病貓都篩檢</strong>，結果很多貓 IGF-1 升高、有腦下垂體腫瘤。</li>
+          <li>症狀不明顯時，盛行率很可能被<strong>低估</strong>。</li>
+        </ul>
+        <div class="quote">每 4 隻糖尿病貓就有 1 隻是 HS<span class="quote-zh">📄 4：不是罕見疾病</span></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 5</span> 生長激素過多 vs. 肢端肥大症</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>名詞</th><th>意思</th></tr>
+          <tr><td>Hypersomatotropism（生長激素過多）</td><td>生長激素分泌過多的<strong>症候群</strong>（講的是激素）</td></tr>
+          <tr><td>Acromegaly（肢端肥大症）</td><td>生長激素過多造成的<strong>特徵性外觀變化</strong>（講的是外觀）</td></tr>
+        </table></div>
+        <p class="p"><span class="src src-add">💡</span> 所以用「HS」比較精確：很多貓 GH 過多，卻還沒有肢端肥大的外觀。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🧠</div>
+      <h2>2. 病因與 GH–IGF-1 軸</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 6</span> 病因</h3>
+        <figure class="fig">
+          <img src="photos/23-06-etiology.jpg" alt="腦下垂體腺瘤的 CT 與病理，以及 pars distalis 位置" loading="lazy">
+          <figcaption>📄 6：腦下垂體腺瘤（Borgeat et al., 2018）；右為前葉遠側部（pars distalis）的位置</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>貓：<strong>腦下垂體前葉遠側部（pars distalis）的功能性生長激素細胞腺瘤</strong>，分泌過多 GH。</li>
+          <li>比較少見的是生長激素細胞<strong>增生</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 7</span> GH–IGF-1 軸</h3>
+        <figure class="fig">
+          <img src="photos/23-07-gh-igf1-axis.jpg" alt="健康與 HS 時的 GH-IGF-1 調控" loading="lazy">
+          <figcaption>📄 7：健康與 HS 時 GH–IGF-1 軸的調控</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>下視丘：<strong>GHRH 刺激</strong>、<strong>體抑素（somatostatin）和多巴胺抑制</strong>腦下垂體分泌 GH。</li>
+          <li>GH 作用在<strong>肝臟</strong>，讓肝臟製造 <strong>IGF-1</strong>；GH 和 IGF-1 一起作用在肌肉、脂肪、骨骼。</li>
+          <li>正常時 IGF-1 和 GH 會<strong>負回饋</strong>抑制下視丘和腦下垂體。HS 時腺瘤不理會負回饋，持續分泌 GH。</li>
+          <li><span class="src src-add">💡</span> GH 本身會造成<strong>胰島素阻抗</strong>（抗胰島素作用），這就是 HS 引起糖尿病的原因。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span> 下視丘與腦下垂體激素及其目標器官</h3>
+        <figure class="fig">
+          <img src="photos/23-live-pituitary-hormones-circled.jpg" alt="現場投影片：下視丘與腦下垂體激素，圈出 ACTH、TSH、GH、ADH" loading="lazy">
+          <figcaption>📸 現場：講者圈出 ACTH、TSH、GH、ADH</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>下視丘激素</th><th>腦下垂體激素</th><th>目標器官</th></tr>
+          <tr><td>GnRH（+）</td><td>FSH／LH</td><td>性腺</td></tr>
+          <tr><td>CRH（+）</td><td><strong>ACTH</strong></td><td>腎上腺皮質</td></tr>
+          <tr><td>TRH（+）</td><td><strong>TSH</strong></td><td>甲狀腺</td></tr>
+          <tr><td>PRH（+）、多巴胺（−）</td><td>泌乳素</td><td>乳腺</td></tr>
+          <tr><td>GHRH（+）、體抑素（−）</td><td><strong>GH</strong></td><td>肝臟（及全身）</td></tr>
+          <tr><td colspan="2">後葉（神經直接延伸）：<strong>ADH</strong>、催產素</td><td>腎臟、乳腺</td></tr>
+        </table></div>
+        <p class="p"><span class="src src-add">💡</span> 這張圖解釋了兩件事：</p>
+        <ul class="notes">
+          <li><strong>內科藥物的原理</strong>：體抑素類似物（pasireotide）和多巴胺促效劑（cabergoline），就是模仿下視丘的「煞車」。</li>
+          <li><strong>腦下垂體切除後要補什麼</strong>：GH 是治療目標；ACTH、TSH、ADH 一起被拿掉，所以術後要補<strong>糖皮質激素、levothyroxine、DDAVP</strong>。醛固酮主要受 RAAS 和血鉀控制，通常不用補。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🐈</div>
+      <h2>3. 臨床表現</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 8–11</span> 好發族群與常見表現</h3>
+        <ul class="notes">
+          <li>中位年齡 <strong>11 歲</strong>（4–19 歲）；沒有品種好發；<strong>公貓多於母貓</strong>。</li>
+          <li>通常因為<strong>糖尿病的症狀</strong>來院，常沒有典型外觀，但<strong>極度多食</strong>。</li>
+          <li><strong>難控制的糖尿病</strong>是常見主訴。</li>
+          <li><strong>糖尿病控制很差，體重卻增加、肌肉量好＝想到 HS！</strong></li>
+          <li>但 HS 貓也可能：用一般胰島素劑量就<strong>控制得很好</strong>；因打胰島素而<strong>低血糖</strong>；有<strong>緩解後又復發</strong>的病史。</li>
+          <li>症狀發展緩慢，確診前平均已經 <strong>11.2 個月</strong>。來院時只有不到 25% 被懷疑有肢端肥大外觀。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 一般糖尿病貓控制差時會變瘦、肌肉流失；HS 貓因為 GH 的合成代謝作用，反而體重增加、肌肉維持得好。這是很實用的線索。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 12</span> 臨床症狀與出現時機</h3>
+        <figure class="fig">
+          <img src="photos/23-12-clinical-signs-table.jpg" alt="HS 常見臨床症狀表" loading="lazy">
+          <figcaption>📄 12：Niessen et al. 的臨床症狀表；右上為後肢蹠行站姿</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>症狀</th><th>出現時機</th></tr>
+          <tr><td>多尿多渴</td><td>早期＋晚期</td></tr>
+          <tr><td>多食（可能很極端）</td><td>早期＋晚期</td></tr>
+          <tr><td>體重增加</td><td>早期＋晚期</td></tr>
+          <tr><td>腎臟腫大、肝臟腫大</td><td>早期＋晚期</td></tr>
+          <tr><td>下顎前突、寬臉</td><td>通常只在晚期</td></tr>
+          <tr><td>收縮期心雜音</td><td>早期＋晚期</td></tr>
+          <tr><td>吸氣喘鳴（呼吸道）</td><td>通常只在晚期</td></tr>
+          <tr><td>蹠行站姿（血糖控制好後可恢復）</td><td>早期＋晚期</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><strong>跛行</strong>：早期和晚期都可能。</li>
+          <li><strong>中樞神經症狀</strong>比較晚出現：癲癇、失明、行為改變、四肢輕癱。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 13–20</span> 肢端肥大的外觀</h3>
+        <div class="grid3">
+          <figure class="fig">
+            <img src="photos/23-13-broad-face.jpg" alt="寬臉" loading="lazy">
+            <figcaption>📄 13：<strong>寬臉</strong>，37%</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/23-14-clubbed-paws.jpg" alt="腳掌變大" loading="lazy">
+            <figcaption>📄 14：<strong>腳掌變大</strong>，13%；僵硬或活動困難 10%</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/23-15-prognathia.jpg" alt="下顎前突與牙縫變寬" loading="lazy">
+            <figcaption>📄 15：<strong>下顎前突</strong>，18%；牙縫變寬</figcaption>
+          </figure>
+        </div>
+        <ul class="notes">
+          <li>📄 16：外觀變化很慢，<strong>飼主常常沒發現</strong>。</li>
+          <li>📄 17–20：講者用「長得像演員 Ron Perlman 的貓」開玩笑，比對寬臉、粗厚五官的樣子。</li>
+          <li><span class="src src-add">💡</span> 比較舊的照片和現在，或問飼主「臉是不是變大了」，有時比理學檢查更容易發現。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span> 一般糖尿病 vs. HS 引起的糖尿病</h3>
+        <div class="grid2">
+          <figure class="fig">
+            <img src="photos/23-live-hs-dm-differ.jpg" alt="現場投影片：一般糖尿病和 HS 糖尿病的治療與監測不同" loading="lazy">
+            <figcaption>📸 現場：「一般糖尿病貓和 HS 糖尿病貓，治療和監測不一樣」</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/23-live-bubble-causes.jpg" alt="現場投影片：HS 引起的糖尿病泡泡圖" loading="lazy">
+            <figcaption>📸 現場：HS 引起的糖尿病同時帶有 HS 和第 2 型糖尿病體質</figcaption>
+          </figure>
+        </div>
+        <ul class="notes">
+          <li>泡泡圖左邊：生長激素過多（GH、IGF-1）、HS 的治療。右邊：第 2 型糖尿病體質（肥胖、年齡、性別、室內飼養、類固醇使用史）、第 2 型糖尿病的治療。中間：HS 引起的糖尿病。</li>
+          <li><span class="src src-add">💡</span> HS 貓也可能同時是肥胖、老年、公貓、室內貓，所以光看「典型糖尿病貓」的樣子分不出來；治療上兩邊都要顧。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>一般糖尿病（第 2 型）</th><th>HS 引起的糖尿病</th></tr>
+          <tr><td>緩解機會</td><td>早期積極控制、低醣飲食有機會</td><td>只控制血糖幾乎不會緩解；要處理腦下垂體</td></tr>
+          <tr><td>胰島素</td><td>一般劑量</td><td>常需高劑量；GH 脈衝式分泌，需求忽高忽低</td></tr>
+          <tr><td>目標</td><td>控制好、追求緩解</td><td>改善症狀、避免低血糖，<strong>寧可少給</strong></td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🧪</div>
+      <h2>4. IGF-1 怎麼判讀</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 21–22</span> 為什麼驗 IGF-1，不驗 GH</h3>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>生長激素（GH）</h4>
+            <ul>
+              <li>脈衝式分泌 → 偽陰性</li>
+              <li>美國沒有商業化檢測</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>IGF-1</h4>
+            <ul>
+              <li>HS 的篩檢工具</li>
+              <li>持續升高，反映過去 24 小時的 GH 分泌</li>
+              <li>需要有<strong>門脈胰島素</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span> 怎麼判讀 IGF-1（講義 PDF 沒有這張）</h3>
+        <figure class="fig">
+          <img src="photos/23-live-igf1-interpret.jpg" alt="現場投影片：How to Interpret IGF-1" loading="lazy">
+        </figure>
+        <ul class="notes">
+          <li>陽性預測值高，<strong>但要小心偽陰性和偽陽性！！！</strong></li>
+          <li><strong>開始打胰島素前</strong>，IGF-1 可能低於切點（偽陰性）
+            <ul class="notes">
+              <li>肝臟要有門脈胰島素才會釋放 IGF-1</li>
+              <li>考慮在開始胰島素 <strong>6–8 週後</strong>驗（或重驗）</li>
+              <li>屆時 IGF-1 會上升</li>
+            </ul>
+          </li>
+          <li><strong>長期打胰島素</strong>，即使沒有 HS，IGF-1 也可能超過切點（偽陽性）</li>
+          <li><strong>淋巴瘤、甲亢</strong>等共病會影響 IGF-1</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 胰島素會讓肝臟的 GH 受體表現上升。剛診斷、嚴重缺胰島素的貓，肝臟對 GH 有「阻抗」，GH 再高也做不出 IGF-1。所以<strong>新診斷糖尿病貓第一次 IGF-1 正常，不能排除 HS</strong>。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 23</span> IGF-1 濃度示意圖</h3>
+        <figure class="fig">
+          <img src="photos/23-23-igf1-concentrations.jpg" alt="各組糖尿病貓的 IGF-1 濃度示意圖" loading="lazy">
+          <figcaption>📄 23：紅線為切點 1000 ng/mL；兩個黑色箭頭標出偽陰性與偽陽性</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>控制不好的糖尿病，IGF-1 可能偏高（<strong>特異度低</strong>）。</li>
+          <li>HS 引起的糖尿病還沒治療時，IGF-1 可能偏低（<strong>敏感度低</strong>），打胰島素後才上升。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>組別</th><th>典型值（ng/mL）</th><th>範圍</th><th>和切點 1000 的關係</th></tr>
+          <tr><td>未治療的糖尿病</td><td>約 200</td><td>約 50–350</td><td>全部低於。<strong>左邊箭頭：偽陰性陷阱</strong></td></tr>
+          <tr><td>控制良好的糖尿病</td><td>約 350</td><td>約 100–480</td><td>低於</td></tr>
+          <tr><td>控制不好的糖尿病</td><td>約 500</td><td>約 250–1000</td><td>上限碰到紅線。<strong>上方箭頭：偽陽性陷阱</strong></td></tr>
+          <tr><td>肢端肥大症</td><td>約 1500</td><td>約 450–2000</td><td>多數超過，但下限掉到 1000 以下</td></tr>
+        </table></div>
+        <p class="p"><span class="src src-add">💡</span> 示意圖，不是精確數據。判讀原則：</p>
+        <ul class="notes">
+          <li>已打胰島素一段時間、IGF-1 明顯 &gt;1000 → 高度懷疑 HS。</li>
+          <li>還沒打胰島素、IGF-1 低 → 不能排除，6–8 週後重驗。</li>
+          <li>IGF-1 在 1000 附近、又是控制不好的糖尿病 → 灰色地帶，看臨床表現和影像。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">🩻</div>
+      <h2>5. 影像與其他檢查</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 24</span> 腦下垂體影像</h3>
+        <figure class="fig">
+          <img src="photos/23-24-pituitary-imaging.jpg" alt="腦下垂體影像與腦下垂體切除前後 CT" loading="lazy">
+          <figcaption>📄 24：HS 貓腦下垂體腺瘤，切除前與術後 3 個月的 CT（van Bokhorst et al.，25 隻貓的腦下垂體切除評估）</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><strong>MRI（比較敏感）</strong>或 CT。</li>
+          <li><strong>看不到腫塊不能完全排除</strong>：最多 25% 的貓是陰性，因為腫瘤太小或是增生。</li>
+          <li>其他異常：頭骨變厚、皮膚和皮下組織變厚、<strong>鼻咽變窄</strong>。</li>
+          <li>兩側<strong>顴弓之間的距離</strong>：肢端肥大的切點為母貓 <strong>70 mm</strong>、公貓 <strong>76 mm</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 25</span> 其他輔助檢查</h3>
+        <figure class="fig">
+          <img src="photos/23-25-ancillary.jpg" alt="輔助檢查：心臟超音波" loading="lazy">
+        </figure>
+        <ul class="notes">
+          <li><strong>心臟超音波、胸腔 X 光</strong>：可能看到 HCM、心臟變大、心衰竭。</li>
+          <li><strong>腹部超音波</strong>：兩側腎上腺變大、胰臟變厚、兩側腎臟變大、主觀上肝臟變大。</li>
+          <li><strong>X 光</strong>：關節炎、下顎變大。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> GH 會讓內臟器官和軟組織都變大。確診後要做全身評估，這些結果也會影響麻醉風險和治療選擇。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🐾</div>
+      <h2>6. 病例 Valentine（現場病例）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span> 病史</h3>
+        <figure class="fig">
+          <img src="photos/23-live-valentine.jpg" alt="現場投影片：Valentine 病史" loading="lazy">
+        </figure>
+        <ul class="notes">
+          <li>12 歲已結紮母貓（F/S DSH）。</li>
+          <li>2023 年 7 月：診斷糖尿病。</li>
+          <li>2024 年 10 月：IGF-1 &gt;1200 ng/mL；<strong>腦下垂體巨腺瘤</strong>。用 cabergoline 和 glargine U-100 治療。</li>
+          <li>2024 年 11 月：放射治療。</li>
+          <li>2025 年 1 月：IGF-1 仍 &gt;1200 ng/mL，<strong>仍是糖尿病</strong>。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 從糖尿病到確診隔了 15 個月（呼應 📄 11 的平均 11.2 個月）。放射治療後 2 個月 IGF-1 沒降、仍需胰島素，符合 📄 29–30：放射治療效果慢、IGF-1 通常不會明顯下降。「&gt;1200」可能是實驗室的檢測上限。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span> 檢查結果</h3>
+        <figure class="fig">
+          <img src="photos/23-live-valentine-workup.jpg" alt="現場投影片：Valentine 的檢查結果" loading="lazy">
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>檢查</th><th>結果</th><th>💡 意義</th></tr>
+          <tr><td>血糖</td><td>350 mg/dL</td><td>胰島素阻抗</td></tr>
+          <tr><td>肌酸酐</td><td>1.6 mg/dL</td><td>GH 會增加腎絲球過濾率，可能掩蓋腎病</td></tr>
+          <tr><td>PCV</td><td>32%</td><td>正常偏低</td></tr>
+          <tr><td>血壓</td><td><strong>180 mmHg</strong></td><td>嚴重高血壓範圍</td></tr>
+          <tr><td>心臟科會診</td><td>結構和功能都正常</td><td>還沒出現 GH 造成的心肌變化</td></tr>
+          <tr><td>T4</td><td><strong>0.8 µg/dL</strong></td><td>可能是非甲狀腺疾病（NTI），或巨腺瘤壓迫造成 TSH 不足；要驗 fT4、TSH 區分</td></tr>
+          <tr><td>IGF-1</td><td>&gt;1200 ng/mL</td><td>GH 過多</td></tr>
+          <tr><td>尿比重／UPC</td><td>1.024／<strong>2.2</strong></td><td>明顯蛋白尿（貓 &gt;0.4 即為蛋白尿）</td></tr>
+          <tr><td>腹部超音波</td><td><strong>肝腫大</strong>；空腸肌層輕度多處增厚</td><td>器官腫大；腸道增厚要鑑別發炎性腸病 vs. 小細胞淋巴瘤（淋巴瘤也會影響 IGF-1）</td></tr>
+          <tr><td>MRI</td><td>蝶鞍偏左側大型巨腺瘤；<strong>軟顎中度增厚、鼻咽狹窄</strong></td><td>GH 讓上呼吸道軟組織增生，麻醉與拔管風險高</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🔪</div>
+      <h2>7. 腦下垂體切除</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 26–27</span> 腦下垂體切除的優缺點</h3>
+        <figure class="fig">
+          <img src="photos/23-26-hypophysectomy-ct.jpg" alt="經蝶骨腦下垂體切除與術前術後 CT" loading="lazy">
+          <figcaption>📄 26：Fenn et al.，腦下垂體切除治療 68 隻 HS 糖尿病貓的效果</figcaption>
+        </figure>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>🟢 優點</h4>
+            <ul>
+              <li>糖尿病緩解 <strong>71–92%</strong>，中位 <strong>9 天</strong></li>
+              <li>沒緩解的，胰島素劑量也大幅下降</li>
+              <li>IGF-1 恢復正常 <strong>90%</strong></li>
+              <li>飼主認為生活品質「極好」</li>
+              <li>存活 <strong>2.3–3.7 年</strong></li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>🔴 缺點</h4>
+            <ul>
+              <li>能做的地方少、很貴</li>
+              <li>死亡率 <strong>4–15%</strong></li>
+              <li><strong>終身</strong>補激素：levothyroxine、糖皮質激素</li>
+              <li>± DDAVP：尿崩症可能是暫時的</li>
+              <li><strong>58–72%</strong> 需要長期 DDAVP</li>
+              <li>37–50% 飼主擔心術後點 DDAVP 眼藥</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span> 經蝶骨腦下垂體切除術</h3>
+        <figure class="fig">
+          <img src="photos/23-live-hypophysectomy-surgery.jpg" alt="現場投影片：手術擺位與術野" loading="lazy">
+          <figcaption>📸 現場：左為頭部固定架（Carrera head apparatus）撐開嘴巴的擺位；右上為經口切開軟顎的術野</figcaption>
+        </figure>
+        <p class="p"><span class="src src-hand">✍️</span> 手術中<strong>每隔一段時間要放鬆</strong>，因為下巴不能撐開太久。</p>
+        <p class="p"><span class="src src-add">💡</span> 貓嘴巴撐到最大時，下顎冠狀突會壓迫<strong>上頜動脈</strong>，而它是貓視網膜和腦部的主要血流來源。撐太久可能造成術後<strong>失明</strong>或神經症狀。牙科、口腔手術用開口器時也一樣要注意。Valentine 這類軟顎增厚的貓，經口入路更困難。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 28</span> 飼主觀點：術前術後的生活品質</h3>
+        <figure class="fig">
+          <img src="photos/23-28-owner-qol.jpg" alt="腦下垂體切除前後飼主評估的生活品質" loading="lazy">
+          <figcaption>📄 28：Shelton, Jepson, Church, Fenn, Scudder</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><strong>92–100%</strong> 的飼主願意再做一次手術。</li>
+          <li>改善的項目：飼主的擔心、寵物看起來不舒服、低血糖、視力（四項 P 值 0.01–0.039）。</li>
+          <li>術後的<strong>多食、體重增加、DDAVP 給藥</strong>對生活品質有負面影響。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 圖的 Y 軸是 IWIS（項目加權影響分數），0 分＝沒有負面影響，越負越差。術後大部分的點集中在 0 附近。跟飼主溝通時，可以同時說明「幾乎都覺得值得」和「術後要長期補藥、控制體重」。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef9c3">☢️</div>
+      <h2>8. 放射治療</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 29</span> 優缺點</h3>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>🟢 優點</h4>
+            <ul>
+              <li>比較普及</li>
+              <li><strong>大腫瘤、有神經症狀</strong>的貓獲益最多</li>
+              <li>有神經症狀的貓 2/3 在 <strong>3 週內</strong>明顯改善</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>🔴 缺點</h4>
+            <ul>
+              <li>需要<strong>多次麻醉</strong></li>
+              <li>效果多變、難預測，反應可能延遲<strong>幾週到幾年</strong></li>
+              <li>IGF-1（和 GH）通常不會明顯下降，肢端肥大外觀持續惡化</li>
+              <li>失明少見；可能甲狀腺功能低下、癲癇</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 30</span> 立體定位放射治療（SRT）的結果</h3>
+        <ul class="notes">
+          <li>糖尿病緩解（暫時或永久）<strong>32%</strong>。</li>
+          <li>胰島素需求下降 <strong>95%</strong>；降到最低劑量的中位時間 <strong>285–399 天</strong>，這段期間要密切監測血糖。</li>
+          <li>糖尿病復發 <strong>38%</strong>。</li>
+          <li>中位存活：SRT <strong>1072 天</strong>，傳統分次放射 508–840 天。</li>
+        </ul>
+        <p class="p"><span class="src src-hand">✍️</span> 有時候做完放射治療，血糖要<strong>等一段時間才會下降</strong>，要等到降下來才能不用打胰島素，但<strong>不知道要等到什麼時候</strong>。</p>
+        <p class="p"><span class="src src-add">💡</span> 放射線是讓腫瘤細胞在分裂時慢慢死去，GH 是逐漸下降。最大的風險是：胰島素阻抗突然減輕時，原本的高劑量變成過量 → <strong>低血糖</strong>。適合用連續血糖監測或居家驗血糖，看到下降趨勢就減量。判斷有沒有效要看<strong>胰島素劑量</strong>，不是看 IGF-1（Valentine 就是 IGF-1 沒降）。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span> 不是每隻貓都能麻醉</h3>
+        <figure class="fig">
+          <img src="photos/23-live-anesthesia-candidates.jpg" alt="現場投影片：嚴重肢端肥大或共病的貓可能不適合麻醉" loading="lazy">
+        </figure>
+        <div class="quote">嚴重肢端肥大或同時有共病的貓，可能不適合麻醉做手術或放射治療<span class="quote-zh">📸 現場</span></div>
+        <p class="p"><span class="src src-add">💡</span> 麻醉風險來自 GH 本身造成的問題：上呼吸道軟組織增生（插管困難、拔管後阻塞）、心肌肥厚／心衰竭、高血壓、腎病、控制差的糖尿病、巨腺瘤。越早發現 HS，越有機會在還能麻醉時做確定性治療。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">💊</div>
+      <h2>9. 針對 GH 的內科藥物</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 32</span><span class="src src-photo">📸 現場</span> 貓腦下垂體的受體</h3>
+        <div class="grid2">
+          <figure class="fig">
+            <img src="photos/23-32-pituitary-receptors.jpg" alt="貓腦下垂體受體表現" loading="lazy">
+            <figcaption>📄 32：Scudder et al., 2018</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/23-live-receptor-binding.jpg" alt="現場投影片：藥物與受體結合" loading="lazy">
+            <figcaption>📸 現場：腫瘤細胞膜上的受體與藥物</figcaption>
+          </figure>
+        </div>
+        <ul class="notes">
+          <li>貓的腦下垂體有體抑素受體（SSTR1、SSTR2、SSTR5）和 D2 多巴胺受體（DRD2）。</li>
+          <li>HS 貓的腫瘤 <strong>SSTR1、SSTR5 多於 SSTR2</strong>。</li>
+          <li>Octreotide 只結合 SSTR2，這可能是它<strong>通常無效</strong>的原因。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>藥物</th><th>類別</th><th>結合的受體</th></tr>
+          <tr><td>Pasireotide</td><td>多受體型體抑素類似物</td><td>SSTR1、2、3、5</td></tr>
+          <tr><td>Octreotide</td><td>傳統體抑素類似物</td><td>只有 SSTR2</td></tr>
+          <tr><td>Cabergoline</td><td>多巴胺促效劑</td><td>D2</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 33</span> 體抑素類似物：Pasireotide</h3>
+        <ul class="notes">
+          <li>多受體結合型：降低 IGF-1、減少外源胰島素需求、<strong>38% 糖尿病緩解</strong>。</li>
+          <li>注射劑型（短效和長效 LAR，商品名 Signifor LAR 40／60 mg）。</li>
+          <li>副作用：腹瀉、低血糖。</li>
+          <li>在美國貴到難以負擔：<strong>每針 2 萬美元</strong>（約 67.7 萬泰銖）。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 長效劑型是每月一次。開始用藥時要預先減少胰島素，GH 一降，胰島素阻抗會很快減輕。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span> Cabergoline</h3>
+        <figure class="fig">
+          <img src="photos/23-live-cabergoline.jpg" alt="現場投影片：Cabergoline 優缺點" loading="lazy">
+          <figcaption>📸 現場：Miceli et al., 2021；Corsini et al., 2022</figcaption>
+        </figure>
+        <p class="p">長效多巴胺促效劑，對 D₂ 受體親和力高。</p>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>🟢 優點</h4>
+            <ul>
+              <li>最適合<strong>小腫瘤、IGF-1 &lt;1500 ng/mL</strong></li>
+              <li>對 IGF-1：無效、下降（35%）到恢復正常（26%）</li>
+              <li><strong>35% 糖尿病緩解</strong>，中位 3 個月</li>
+              <li>對腫瘤大小：縮小到無效</li>
+              <li><strong>便宜、口服</strong></li>
+              <li>飼主覺得生活品質改善</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>🔴 缺點</h4>
+            <ul>
+              <li><strong>13%</strong> 低血糖</li>
+              <li>需要密切監測血糖</li>
+              <li>部分 HS 貓無效</li>
+              <li>腸胃道副作用、食慾下降</li>
+              <li>一隻用胰島素＋SGLT2i 的貓，<strong>加上 cabergoline 後發生 DKA</strong></li>
+            </ul>
+          </div>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> DKA 的可能機轉：cabergoline 讓食慾下降 → 吃得少、胰島素被減量 → SGLT2i 讓血糖看起來不高，身體卻缺胰島素 → <strong>正常血糖型 DKA</strong>（📖 <a href="dka-hhs.html">08</a>）。併用 SGLT2i 時加 cabergoline，要注意食慾並驗酮體。劑量可參考 📄 34 病例：10 µg/kg PO q48h。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span><span class="src src-slide">📄 34</span> Pegvisomant（Somavert®）</h3>
+        <figure class="fig">
+          <img src="photos/23-live-pegvisomant.jpg" alt="現場投影片：Pegvisomant 作用機轉" loading="lazy">
+        </figure>
+        <ul class="notes">
+          <li><strong>競爭性 GH 受體拮抗劑</strong>，是經基因改造的 GH。</li>
+          <li>和 GH 受體結合，但<strong>不啟動訊號傳遞</strong>（JAK2 → STAT5／MAPK → IGF-1 基因表現）。</li>
+          <li>降低肝臟分泌 IGF-1，<strong>和血中 GH 濃度無關</strong>。</li>
+          <li>美國價格<strong>每月 1.2 萬美元</strong>（約 40.6 萬泰銖）。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 像一把插得進鎖孔、卻轉不動的假鑰匙。和 pasireotide、cabergoline 不同，它不管腫瘤，而是阻斷全身的 GH 作用；腫瘤本身沒被治療，GH 甚至可能因失去負回饋而更高，只能用 IGF-1 監測。</p>
+        <figure class="fig">
+          <img src="photos/23-34-pegv-cabergoline-case.jpg" alt="Pegvisomant 加 cabergoline 治療 19 歲貓的病例" loading="lazy">
+          <figcaption>📄 34：「Pegvisomant 合併 cabergoline 治療一隻 HS 貓」</figcaption>
+        </figure>
+        <p class="p">📄 34 病例：19 歲 F/S DSH，肢端肥大＋糖尿病。</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>階段</th><th>治療</th><th>結果</th><th>天數</th></tr>
+          <tr><td>1. 基準</td><td>診斷 HS＋糖尿病</td><td>IGF-1 4430 ng/mL；胰島素 2 IU/kg</td><td>0</td></tr>
+          <tr><td>2. Cabergoline 單獨</td><td>10 µg/kg PO q48h</td><td>IGF-1 4501；仍需胰島素</td><td>0–30</td></tr>
+          <tr><td>3. PEGV＋cabergoline</td><td>PEGV 1 mg/kg SC q24h＋cabergoline</td><td>IGF-1 第 10 天降到 396；第 7 天停胰島素</td><td>0–10</td></tr>
+          <tr><td>4. PEGV 減量</td><td>q48h</td><td>IGF-1 286–290；<strong>糖尿病緩解</strong></td><td>30–60</td></tr>
+          <tr><td>5. 每週 PEGV</td><td>q7d</td><td>IGF-1 270；檢驗正常；不需胰島素</td><td>120–180</td></tr>
+          <tr><td>6. 追蹤</td><td>共 6 個月</td><td>IGF-1 正常、糖尿病緩解、心臟功能和生活品質改善</td><td>180</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-add">💡</span> 四種針對 GH 的藥物比較</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>藥物</th><th>作用位置</th><th>給藥</th><th>貓的證據</th><th>價格</th></tr>
+          <tr><td>Octreotide</td><td>腫瘤 SSTR2</td><td>注射</td><td>通常無效</td><td>—</td></tr>
+          <tr><td>Pasireotide</td><td>腫瘤 SSTR1、2、3、5</td><td>每月注射</td><td>最好，38% 緩解</td><td>每針 2 萬美元</td></tr>
+          <tr><td>Cabergoline</td><td>腫瘤 D2</td><td>口服</td><td>35% 緩解</td><td>便宜</td></tr>
+          <tr><td>Pegvisomant</td><td>全身 GH 受體</td><td>注射</td><td>病例報告</td><td>每月 1.2 萬美元</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">💉</div>
+      <h2>10. 胰島素與 SGLT2 抑制劑</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 35–37</span> 只用胰島素</h3>
+        <figure class="fig">
+          <img src="photos/23-35-insulin-alone-cgm.jpg" alt="只用胰島素時的血糖曲線" loading="lazy">
+          <figcaption>📄 35：連續血糖監測，血糖波動很大</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>只用胰島素：<strong>中位存活最短、生活品質最差</strong>；可能需要高劑量；血糖變異很大。</li>
+          <li>GH 是<strong>脈衝式分泌</strong>，胰島素阻抗會波動，胰島素需求可能劇烈改變。</li>
+          <li><strong>低血糖是最大的擔心</strong>，也可能因臨床低血糖來院：單次發生 25%，多次發生 50%。</li>
+          <li>治療目標：<strong>改善但不追求正常化</strong>臨床症狀、盡量避免低血糖；<strong>寧可給太少，不要給太多</strong>；<strong>緩解不是目標</strong>。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 📄 37 用《冰與火之歌》Ned Stark 的梗：「永遠要提防低血糖的偷襲！」</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 38–39</span> SGLT2 抑制劑：ECVIM 2025 摘要</h3>
+        <p class="p">Mishra, Behrend, Niessen：〈大型糖尿病貓的好消息：SGLT2 抑制劑用於貓 HS／肢端肥大症〉</p>
+        <ul class="notes">
+          <li>13 隻 HS＋糖尿病貓，胰島素加 bexagliflozin（6 隻）或 velagliflozin（7 隻）。</li>
+          <li>2 隻停掉胰島素；最高血糖中位數下降。</li>
+          <li>血酮 0.2–7.8 mmol/L（10 隻有測）；<strong>沒有臨床低血糖、沒有 DKA</strong>。</li>
+          <li>中位追蹤 202 天（5–405）。</li>
+          <li>結論：SGLT2i 看起來有希望，改善生活品質、臨床和生化指標。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 40</span> Velagliflozin 用於 8 隻 HS 糖尿病貓</h3>
+        <p class="p">Del Baldo, Corsini, Bresciani, Pergolese, Tirelli, Tardo, Fracassi</p>
+        <ul class="notes">
+          <li>糖尿病臨床評分改善 6/8；FreeStyle Libre 指標改善。</li>
+          <li>7 天後胰島素劑量就比基準低；沒有臨床低血糖；2 隻停掉胰島素。</li>
+          <li><strong>1 隻 DKA</strong>；1 隻急性腎損傷（原本就有 CKD）。</li>
+          <li>結論：velagliflozin 不論併用胰島素或單獨使用，都能改善 HS 糖尿病貓的控制。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 41</span> 非理想候選貓的 SGLT2i 經驗（Vanneste et al.）</h3>
+        <ul class="notes">
+          <li>第一隻：新診斷糖尿病＋HS，用 Senvelgo（velagliflozin），<strong>2 週內</strong>控制血糖，同時用 cabergoline。</li>
+          <li>第二隻：糖尿病＋HS＋慢性腹瀉，用胰島素、Senvelgo 和 cabergoline；<strong>5 個月後嚴重低血糖</strong>，胰島素減量、停 cabergoline。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 第二隻正是 cabergoline 讓 GH 下降後，胰島素需求變少的例子。SGLT2i 的 DKA 風險見 📖 <a href="sglt2i-off-label.html">04</a>；HS 貓有內源性胰島素時比較適合，但要驗酮體。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🕯️</div>
+      <h2>11. 緩和治療：Rico 與 Mout Kitty</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 42</span> 緩和治療</h3>
+        <ul class="notes">
+          <li>只打胰島素：有低血糖風險。</li>
+          <li>不治療：死於<strong>心衰竭、喉部阻塞、中樞神經症狀</strong>和其他器官衰竭。</li>
+          <li>注意並處理共病：關節病變、心衰竭、腎衰竭、呼吸困難、神經症狀、無法進食。</li>
+          <li>止痛藥、餵食管、抗癲癇藥等。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span> 治療的全貌</h3>
+        <figure class="fig">
+          <img src="photos/23-live-bubble-treatment.jpg" alt="現場投影片：肢端肥大引起的糖尿病要處理的所有項目" loading="lazy">
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>類別</th><th>內容</th></tr>
+          <tr><td>肢端肥大症治療</td><td>腦下垂體切除、放射治療、內科（cabergoline、pasireotide、octreotide、pegvisomant）</td></tr>
+          <tr><td>第 2 型糖尿病治療</td><td>胰島素、SGLT2i</td></tr>
+          <tr><td>上呼吸道阻塞</td><td>—</td></tr>
+          <tr><td>心臟</td><td>HCM、心衰竭、高血壓</td></tr>
+          <tr><td>關節炎</td><td>NSAIDs、Solensia、gabapentin</td></tr>
+          <tr><td>神經疾病</td><td>失明、癲癇、運動失調</td></tr>
+          <tr><td>腎病</td><td>輸液、食慾刺激劑、磷結合劑、飲食、止吐藥、Varenzin、darbepoetin</td></tr>
+        </table></div>
+        <p class="p"><span class="src src-add">💡</span> Solensia（frunevetmab）是貓用抗 NGF 單株抗體，每月注射止關節疼痛；Varenzin（molidustat）是貓用口服 HIF 穩定劑，治療 CKD 貧血。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span> Rico 的後續</h3>
+        <figure class="fig">
+          <img src="photos/23-live-rico-update.jpg" alt="現場投影片：Rico 的後續" loading="lazy">
+        </figure>
+        <ul class="notes">
+          <li>依 MRI <strong>不適合手術</strong>；飼主選擇不做放射治療。</li>
+          <li>用 cabergoline，<strong>沒有改善</strong>。</li>
+          <li>目前 <strong>glargine U-100 100 單位 q12h</strong>。</li>
+          <li>活動力下降，非常不舒服。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 每次 100 單位是極端的胰島素阻抗（一般貓 1–5 單位），GH 一個脈衝下降就可能嚴重低血糖。活動力差可能來自肢端肥大性關節病變。Rico 前段的病例沒有拍到，待逐字稿補。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 43–48</span> 病例 Mout Kitty</h3>
+        <ul class="notes">
+          <li>14 歲 F/S DSH；2018 年因甲亢做過放射碘治療。</li>
+          <li>2022 年 3 月診斷糖尿病：ProZinc 3 U SQ q12h，反應差。</li>
+          <li>4 月改 glargine U-100 4 U q12h；6 月加到 7 U q12h。</li>
+          <li>8 月：<strong>流口水、吃東西時食物掉出來</strong>。</li>
+          <li>理學檢查：很兇！<strong>下顎增厚變硬</strong>；<strong>舌下有軟組織腫塊或增厚</strong>。</li>
+        </ul>
+        <div class="grid2">
+          <figure class="fig">
+            <img src="photos/23-44-mout-kitty-exam.jpg" alt="Mout Kitty 理學檢查" loading="lazy">
+            <figcaption>📄 44：下顎增厚、舌下軟組織增厚</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/23-45-mout-kitty-cgm-before.jpg" alt="Mout Kitty 治療前血糖曲線" loading="lazy">
+            <figcaption>📄 45：連續血糖監測，三天幾乎都在 350 mg/dL 以上（平均約 400）</figcaption>
+          </figure>
+        </div>
+        <ul class="notes">
+          <li>IGF-1 308 nmol/L（<strong>2355 ng/mL</strong>）；飼主拒絕腦部影像；診斷：很可能是 HS；開始 cabergoline。</li>
+          <li>2022 年 10 月：cabergoline 治療後<strong>多次低血糖</strong>、進食困難，飼主選擇<strong>安樂死</strong>。</li>
+        </ul>
+        <div class="grid2">
+          <figure class="fig">
+            <img src="photos/23-47-mout-kitty-cgm-after.jpg" alt="Mout Kitty cabergoline 後血糖曲線" loading="lazy">
+            <figcaption>📄 47：cabergoline 後血糖大幅下降，出現低於範圍的紅色段（低血糖）</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/23-48-mout-kitty-outcome.jpg" alt="Mout Kitty 2022 年 10 月" loading="lazy">
+            <figcaption>📄 48：2022 年 10 月</figcaption>
+          </figure>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> 這個病例同時示範了兩件事：(1) 口腔軟組織和下顎的變化會讓貓<strong>吃不下</strong>，是緩和期常見的生活品質問題；(2) cabergoline 有效時，原本的胰島素劑量會變成過量，要<strong>預先減量</strong>。另外，這隻貓之前做過放射碘治療，IGF-1 判讀時也要想到甲狀腺狀態的影響。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">❓</div>
+      <h2>12. 沒有糖尿病的 HS、是或不是測驗</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span> 沒有糖尿病的貓也會有 HS 嗎？</h3>
+        <figure class="fig">
+          <img src="photos/23-live-nondiabetic-hs.jpg" alt="現場投影片：沒有糖尿病的貓也會有 HS 嗎" loading="lazy">
+        </figure>
+        <ul class="notes">
+          <li><strong>HCM</strong> 貓中 6.7% 是 HS。</li>
+          <li><strong>過重或肥胖</strong>貓中 8.75%；IGF-1 和體重、BCS 呈正向線性相關。</li>
+          <li><strong>慢性腎病</strong>貓中 5.8%。</li>
+          <li>沒有糖尿病、IGF-1 &gt;1000 ng/mL（± 肢端肥大外觀 ± 腦下垂體變大）的貓：68% 有肢端肥大外觀、36% 有 CKD、44% 有高血壓。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 會。β 細胞撐得住胰島素阻抗時血糖還正常。HCM、肥胖、CKD 的貓，尤其有寬臉、大腳掌的，可以考慮驗 IGF-1；但胖貓的 IGF-1 本來就偏高，是另一個偽陽性來源。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-photo">📸 現場</span> 是或不是？五隻貓</h3>
+        <div class="grid3">
+          <figure class="fig"><img src="photos/23-live-quiz-1078.jpg" alt="IGF-1 1078" loading="lazy"><figcaption>IGF-1 1078</figcaption></figure>
+          <figure class="fig"><img src="photos/23-live-quiz-orange.jpg" alt="IGF-1 >1200" loading="lazy"><figcaption>IGF-1 &gt;1200：Yes</figcaption></figure>
+          <figure class="fig"><img src="photos/23-live-quiz-tabby-white.jpg" alt="IGF-1 >1200" loading="lazy"><figcaption>IGF-1 &gt;1200：Yes</figcaption></figure>
+          <figure class="fig"><img src="photos/23-live-quiz-314.jpg" alt="IGF-1 314" loading="lazy"><figcaption>IGF-1 314</figcaption></figure>
+          <figure class="fig"><img src="photos/23-live-quiz-tabby.jpg" alt="IGF-1 >1200" loading="lazy"><figcaption>IGF-1 &gt;1200：Yes</figcaption></figure>
+        </div>
+        <div class="tbl-wrap"><table>
+          <tr><th>貓</th><th>IGF-1（ng/mL）</th><th>螢幕上的答案</th><th>💡 判讀</th></tr>
+          <tr><td>暹羅貓</td><td>1078</td><td>照片沒拍到圈</td><td>剛好超過 1000 的灰色地帶，要看臨床表現與影像</td></tr>
+          <tr><td>橘貓</td><td>&gt;1200</td><td><strong>Yes</strong></td><td>明確超過切點</td></tr>
+          <tr><td>長毛虎斑白貓</td><td>&gt;1200</td><td><strong>Yes</strong></td><td>同上</td></tr>
+          <tr><td>黑白貓</td><td>314</td><td>照片只拍到紅圈動畫一半</td><td>如果還沒打胰島素，可能是偽陰性陷阱</td></tr>
+          <tr><td>虎斑貓</td><td>&gt;1200（投影片寫 nmol/L，應為 ng/mL）</td><td><strong>Yes</strong></td><td>明確超過切點</td></tr>
+        </table></div>
+        <p class="p"><span class="src src-add">💡</span> 重點：從照片幾乎看不出誰是 HS，有幾隻看起來就是普通的貓，只能靠驗 IGF-1。兩隻沒圈到的答案待逐字稿確認。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S13 ══ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🏁</div>
+      <h2>Take-home 與參考資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 49</span> 重點</h3>
+        <ul class="notes">
+          <li>肢端肥大症<strong>不是罕見疾病</strong>：占所有糖尿病貓的 <strong>25%</strong>。</li>
+          <li>任何<strong>已治療但控制不好</strong>的糖尿病貓、以及<strong>任何</strong>糖尿病貓，都要懷疑。</li>
+          <li>典型外觀<strong>不一定會出現</strong>。</li>
+          <li>診斷：IGF-1 升高＋腦部 CT／MRI。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>治療選項一覽</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>選項</th><th>糖尿病緩解</th><th>優點</th><th>缺點</th></tr>
+          <tr><td>腦下垂體切除</td><td>71–92%，中位 9 天</td><td>IGF-1 正常化 90%；存活 2.3–3.7 年</td><td>少數中心、死亡率 4–15%、終身補激素</td></tr>
+          <tr><td>放射治療（SRT）</td><td>32%（復發 38%）</td><td>普及；神經症狀改善快</td><td>多次麻醉；效果慢且難預測</td></tr>
+          <tr><td>Pasireotide</td><td>38%</td><td>證據最好的內科藥</td><td>每針 2 萬美元；腹瀉、低血糖</td></tr>
+          <tr><td>Cabergoline</td><td>35%，中位 3 個月</td><td>便宜、口服</td><td>13% 低血糖、腸胃道副作用、部分無效</td></tr>
+          <tr><td>SGLT2i＋胰島素</td><td>少數停胰島素</td><td>改善血糖、減少胰島素</td><td>要監測酮體（DKA）</td></tr>
+          <tr><td>只用胰島素</td><td>不是目標</td><td>—</td><td>存活最短、生活品質最差、低血糖</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item"><span>Mott J. <em>Hypersomatotropism: A Common Cause of Feline Diabetes Mellitus.</em> VET-KU × Texas A&amp;M IM Conference, 2026-10-09（講義 49 張投影片、現場投影片照片）。</span></div>
+          <div class="ref-item"><span>Niessen SJM, Church DB, Forcada Y. Hypersomatotropism, acromegaly, and hyperadrenocorticism and feline diabetes mellitus. <em>Vet Clin North Am Small Anim Pract.</em></span></div>
+          <div class="ref-item"><span>Niessen SJM, et al. Feline acromegaly: an underdiagnosed endocrinopathy? <em>JVIM</em> 2007.</span></div>
+          <div class="ref-item"><span>Reusch C. Feline diabetes mellitus. In: <em>Canine and Feline Endocrinology</em>, 4th ed.</span></div>
+          <div class="ref-item"><span>Borgeat K, et al. 2018（貓腦下垂體腺瘤）。</span></div>
+          <div class="ref-item"><span>van Bokhorst KL, et al. Evaluation of hypophysectomy for treatment of hypersomatotropism in 25 cats.</span></div>
+          <div class="ref-item"><span>Fenn J, Kenny PJ, …, Niessen SJM. Efficacy of hypophysectomy for the treatment of hypersomatotropism-induced diabetes mellitus in 68 cats.</span></div>
+          <div class="ref-item"><span>Shelton E, Jepson R, Church D, Fenn J, Scudder C. Owner points of view and perceived quality of life of diabetic cats pre- and post-hypophysectomy for hypersomatotropism.</span></div>
+          <div class="ref-item"><span>Scudder CJ, et al. 2018（貓腦下垂體 SSTR 與 D2 受體表現）。</span></div>
+          <div class="ref-item"><span>Gostelow R, Scudder C, …, Niessen SJM. Pasireotide long-acting release treatment for diabetic cats with underlying hypersomatotropism.</span></div>
+          <div class="ref-item"><span>Miceli DD, et al. 2021；Corsini A, et al. 2022（cabergoline）。</span></div>
+          <div class="ref-item"><span>Mishra P, Behrend E, Niessen S. Big news for big diabetic cats: SGLT2 inhibitors in feline hypersomatotropism/acromegaly. ECVIM 2025 摘要。</span></div>
+          <div class="ref-item"><span>Del Baldo F, Corsini A, …, Tardo AM, Fracassi F. Effects of velagliflozin in 8 cats with diabetes mellitus and hypersomatotropism.</span></div>
+          <div class="ref-item"><span>Vanneste A, et al. SGLT2 inhibitor therapy in diabetic cats: first clinical experiences with non-ideal candidates.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>同一位講者：<a href="feline-diabetes.html">03 貓糖尿病</a>、<a href="sglt2i-off-label.html">04 SGLT2i 仿單外使用</a>、<a href="spectrum-of-care.html">07 糖尿病的照護光譜</a>。上一場：<a href="feline-adrenal-disease.html">22 貓的腎上腺疾病</a>。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
