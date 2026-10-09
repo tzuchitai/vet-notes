@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>座談會 Q&amp;A：貓內分泌、高血鈣與副甲狀腺｜2026 Texas 內分泌研討會</title>
+<style>
+  :root {
+    --primary: #0F766E;
+    --primary-light: #CCFBF1;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0d2522;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9cc8c1; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #1f4a44;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9cc8c1; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9cc8c1;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #1f4a44;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #5f8f87;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0b4f49 0%, #14a395 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0d2522; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #1f4a44; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 Texas 內分泌研討會</a>
+  <div class="logo">
+    <h2>24｜座談會 Q&amp;A：<br>貓內分泌、高血鈣與副甲狀腺</h2>
+    <p>Langlois、Mott、Tardo｜2026 年 10 月 9 日</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">場次資訊與講者對照</a>
+    <div class="nav-section">鈣與副甲狀腺</div>
+    <a href="#s1">1. 高血鈣的輕中重度與治療門檻 ✍️</a>
+    <a href="#s2">2. 貓特發性高血鈣的營養管理 ✍️</a>
+    <a href="#s3">3. 人醫實驗室驗 PTH：方法差異</a>
+    <a href="#s4">4. 遺傳性佝僂病：成年後能減藥嗎</a>
+    <a href="#s5">5. 術後副甲狀腺機能低下</a>
+    <a href="#s6">6. 只吃生雞胸的藪貓：鈣磷都高</a>
+    <div class="nav-section">糖尿病與生長激素</div>
+    <a href="#s7">7. IGF-1 什麼時候驗</a>
+    <a href="#s8">8. 沒做 IGF-1 就試 cabergoline？</a>
+    <a href="#s9">9. 生長激素過多合併庫欣？</a>
+    <a href="#s10">10. 緩解後又出現糖尿：能用 SGLT2i 嗎</a>
+    <a href="#s11">11. Icodec 在貓「失效」</a>
+    <a href="#s12">12. 只扎針不打胰島素也能控糖？</a>
+    <div class="nav-section">甲狀腺與腎上腺</div>
+    <a href="#s13">13. 先天性甲低要終身用藥嗎</a>
+    <a href="#s14">14. 醛固酮檢體和鉀的時間差</a>
+    <a href="#s15">15. 腎上腺切除後對側腎上腺變大</a>
+    <a href="#s16">16. 次發性醛固酮增多與高血鉀</a>
+    <a href="#s17">更正表與參考資料</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>座談會 Q&amp;A：貓內分泌、高血鈣與副甲狀腺（Panel Discussion）</h1>
+    <p>座談：Daniel Langlois（MSU）、Jocelyn Mott、Antonio Tardo（UC Davis）</p>
+    <p>2026 年 10 月 9 日｜VET-KU × Texas A&amp;M 內科研討會｜場次 24（接續 20–23 的現場提問，研討會最後一場座談）</p>
+    <div class="tags">
+      <span class="tag">座談 Q&amp;A</span>
+      <span class="tag">高血鈣分級</span>
+      <span class="tag">貓特發性高血鈣</span>
+      <span class="tag">Alendronate 顎骨壞死</span>
+      <span class="tag">PTH 檢驗方法</span>
+      <span class="tag">遺傳性佝僂病</span>
+      <span class="tag">術後副甲狀腺機能低下</span>
+      <span class="tag">IGF-1 時機</span>
+      <span class="tag">Cabergoline 與 DKA</span>
+      <span class="tag">SGLT2i 與腎糖尿</span>
+      <span class="tag">Icodec</span>
+      <span class="tag">醛固酮與鉀</span>
+    </div>
+    <a class="rec-link" href="https://web.plaud.ai/s/pub_fb95c1f3-3bf8-43c7-9615-48818c0616ac::thptG3S1KAPXF-Prj4izb2iu17W7032QDYi6flA4kO8CXBKJyoYf0y9nvCTroVFvyszszEoZwscPPB39hJJ19wI" target="_blank" rel="noopener">🎧 座談會錄音與逐字稿（Plaud）↗</a>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-rec">🎤</span> 座談會逐字稿
+    <span class="src src-hand">✍️ 我的提問</span> 我在座談會上問的問題
+    <span class="src src-add">💡 補充</span> 整理者補充（交叉參照、判讀）
+    <span class="src src-fix">【更正】</span> 逐字稿轉文字錯誤（完整列表見最後一節）
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li>Langlois 的高血鈣分級（總鈣）：<strong>&lt; 13.5 輕度、13.5–15 中度、&gt; 15 重度</strong>；輕度通常只有 PU/PD，不急著針對鈣治療</li>
+      <li>貓特發性高血鈣：<strong>先試營養</strong>（纖維、草酸、飼料鈣磷比），和營養師合作；年輕貓不要輕易長期用 alendronate（<strong>顎骨壞死、顎骨骨折</strong>）</li>
+      <li>醛固酮要搭配<strong>同一時間的鉀</strong>判讀；懷疑時多抽一管血。醛固酮很穩定，冷藏 1–2 天沒問題</li>
+      <li>人醫實驗室驗 PTH：很多人用的檢驗應該可行，但第一次用新實驗室，要問方法並<strong>附健康對照檢體</strong></li>
+      <li>遺傳性佝僂病：生長期需要骨化三醇＋碳酸鈣，<strong>成年後需求通常下降</strong>，但多半還需少量骨化三醇；只看血鈣可能漏掉骨折與骨痛</li>
+      <li>術後副甲狀腺機能低下：把 iCa 維持在<strong>參考區間最低點甚至略低</strong>，才能刺激副甲狀腺恢復；調整後 6–8 週再驗 PTH</li>
+      <li>IGF-1：打了胰島素之後<strong>隨時可以驗</strong>，不必等血糖控制好；剛診斷時驗到高就有答案，正常或偏低要開始胰島素後再驗</li>
+      <li>懷疑生長激素過多卻不驗 IGF-1 直接試 cabergoline：驗 IGF-1 可能更便宜；cabergoline 造成嘔吐、食慾差，可能誘發 <strong>DKA</strong></li>
+      <li>CGM 一直在 120–200 mg/dL 卻有糖尿 → 沒超過腎閾值，要想<strong>腎性糖尿</strong>；CKD 第 3–4 期不建議用 SGLT2i</li>
+      <li>CKD 用降蛋白尿藥物時高血鉀：先<strong>減藥或停藥</strong>，K &gt; 6.5–7 才考慮查醛固酮；真正的低醛固酮很少見</li>
+    </ul>
+  </div>
+
+  <!-- ══ S0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🎯</div>
+      <h2>場次資訊與講者對照</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <ul class="notes">
+          <li>10/9 的座談會，接在 <a href="feline-congenital-hypothyroidism.html">20 貓甲低（Tardo）</a>、<a href="hypercalcemia.html">21 犬高血鈣（Langlois）</a>、<a href="feline-adrenal-disease.html">22 貓腎上腺疾病</a>、<a href="feline-hypersomatotropism.html">23 貓生長激素過多（Mott）</a>之後，也是整個研討會最後一場座談。</li>
+          <li>我在這場問了<strong>高血鈣輕中重度怎麼分、什麼時候開始降鈣</strong>，以及追問<strong>貓特發性高血鈣的營養管理</strong>（第 1、2 節）。</li>
+        </ul>
+        <h3>講者對照（依逐字稿內容判斷）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>逐字稿</th><th>講者</th><th>判斷依據</th></tr>
+          <tr><td>Speaker 6</td><td><strong>Daniel Langlois</strong>（MSU）</td><td>回答高血鈣、PTH 檢驗（「我們的實驗室收到犀牛的檢體」）、佝僂病、醛固酮；提到「Jocelyn 前幾天的課」</td></tr>
+          <tr><td>Speaker 1</td><td><strong>Jocelyn Mott</strong></td><td>回答 IGF-1 時機、cabergoline、SGLT2i（呼應 23 號生長激素過多）</td></tr>
+          <tr><td>Speaker 3</td><td><strong>Antonio Tardo</strong>（UC Davis）</td><td>「我們剛到美國」；回答先天性甲低；提到他們發表的肢端肥大症貓病例</td></tr>
+          <tr><td>Speaker 8</td><td>我（提問）</td><td>高血鈣分級與營養管理</td></tr>
+          <tr><td>其他</td><td>主持人、現場提問者</td><td></td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">📏</div>
+      <h2>1. 高血鈣的輕中重度與治療門檻 ✍️</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q"><span class="src src-hand">✍️ 我的提問</span> 您怎麼定義輕度、中度、重度高血鈣？鈣到什麼程度，會開始用降鈣治療？</div>
+        <div class="a">
+          <p class="p"><span class="src src-rec">🎤</span> <strong>Langlois</strong>：大家的定義都略有不同，以他自己來說（總鈣，mg/dL）：</p>
+          <div class="tbl-wrap"><table>
+            <tr><th>分級</th><th>總鈣</th><th>臨床</th></tr>
+            <tr><td>輕度</td><td><strong>&lt; 13.5</strong></td><td>有症狀的話，通常只有 PU/PD，不太會有其他症狀</td></tr>
+            <tr><td>中度</td><td><strong>13.5 – 約 15</strong></td><td></td></tr>
+            <tr><td>重度</td><td><strong>&gt; 15</strong></td><td></td></tr>
+          </table></div>
+          <ul class="notes">
+            <li>依疾病而定，但總鈣在 13.5 以下時，他通常<strong>不會急著用很多藥</strong>。每個人的門檻略有不同，也要看是什麼疾病。</li>
+            <li><strong>例外是貓的特發性高血鈣</strong>：仍要看有沒有臨床症狀。總鈣 13.5 的特發性高血鈣貓，他會<strong>先試各種營養方法</strong>。</li>
+            <li>很多人用 <strong>alendronate</strong>，但長年使用有<strong>顎骨壞死、顎骨骨折</strong>等風險。要確定用這類藥，是在治療<strong>真正需要治療</strong>的高血鈣。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：13.5 這個數字和 <a href="hypercalcemia.html#s1">21 號</a>的「tCa &gt; 13.5 時幾乎一定是 iCa 升高」是同一條線：在 Langlois 的分法裡，13.5 以下的輕度高血鈣，一定要測 iCa 確認；13.5 以上的中、重度，可以直接開始找病因。套到 21 號的病例：Riley 11.7、Peggy 12.1、Penelope 12.5 是輕度；Jet 13.9、Janie 14.9 是中度；Storm 17.1、Champ 18.5 是重度。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ S2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🥣</div>
+      <h2>2. 貓特發性高血鈣的營養管理 ✍️</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q"><span class="src src-hand">✍️ 我的提問</span> 您提到貓的特發性高血鈣會用營養方法，是指纖維嗎？</div>
+        <div class="a">
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>Langlois</strong>：方法很多，例如調整<strong>飲食中的草酸成分</strong>、調整<strong>纖維量</strong>。他通常會和<strong>營養師</strong>合作。效果有時只有輕到中等，但可能就足以控制症狀。</li>
+            <li><span class="src src-rec">🎤</span> 如果貓沒有症狀，總鈣只有 12.5，他除了營養管理之外可能不會做太多，特別是<strong>中年貓、可能還能活十年</strong>的情況。他不太願意讓這種貓吃好幾年的 alendronate。</li>
+            <li><span class="src src-rec">🎤</span> <strong>Mott</strong>：輕到中度高血鈣，她<strong>一定先試營養</strong>。</li>
+            <li><span class="src src-rec">🎤</span> <strong>Tardo</strong>：最近有一篇高血鈣營養管理的研究，除了飼料的鈣含量，也看<strong>鈣磷比</strong>，他印象中是 <strong>1.2–1.4</strong>（要看原文確認）。他也常用某款高纖飼料（逐字稿寫「GSC」，無法辨識），改善效果不錯，可能是纖維的作用。沒反應的話才考慮 alendronate，但限制很多。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：貓特發性高血鈣是排除診斷：iCa 升高、磷正常、PTH 被抑制或正常偏低、PTHrP 和 25-OH-D 正常。常見的飲食調整方向包括高纖飲食、腎臟處方飼料，以及避免酸化飲食；營養無效時才用 prednisolone 或 alendronate。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ S3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🧪</div>
+      <h2>3. 人醫實驗室驗 PTH：方法差異</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">文獻上 PTH 有不同檢驗方法（RIA、LC-MS/MS），差異很大。如果照課堂上說的送人醫實驗室，方法不同會影響結果嗎？</div>
+        <div class="a">
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>Langlois</strong>：檢驗方法很多，很難一概而論。他只能說，<strong>有些人用的檢驗應該可以正常測狗貓的 PTH</strong>，但不是全部都適用，很大程度取決於實驗室。</li>
+            <li>如果是常用、信任的實驗室，大概沒問題。但懷疑副甲狀腺亢進或機能低下，又是<strong>第一次用新的實驗室</strong>，就要問清楚他們用什麼方法，並<strong>一起送幾隻健康動物的檢體</strong>當參考。</li>
+            <li>至少<strong>放射免疫分析（RIA）</strong>的 PTH 檢驗適用於很多物種：MSU 實驗室收過<strong>犀牛和動物園動物</strong>的檢體，檢驗似乎都能用。但<strong>參考區間會不同</strong>，需要實驗室的保證或相關知識。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：呼應 <a href="hypercalcemia.html#s15">21 號課後 Q&amp;A 第 3 題</a>。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ S4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">🦴</div>
+      <h2>4. 遺傳性佝僂病：成年後能減藥嗎</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">接續 21 號的 Ziggy：我遇過一隻佝僂病的貓，長大後可以減量，甚至停掉骨化三醇和碳酸鈣。這樣正常嗎？</div>
+        <div class="a">
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>Langlois</strong>：要看類型。遺傳性佝僂病有很多種，突變在不同路徑上：有的是 <strong>25-羥化酶</strong>缺陷，有的是 <strong>1α-羥化酶</strong>缺陷，有的是<strong>骨化三醇受體</strong>本身有問題。</li>
+            <li>幾乎所有類型在<strong>生長期</strong>需求都比較高，通常需要<strong>骨化三醇加碳酸鈣</strong>；<strong>成年後需求通常會下降</strong>。MSU 看過的少數病例，多半還需要一些骨化三醇，但比幼犬時少很多。</li>
+            <li><span class="src src-rec">🎤</span> <strong>Tardo</strong>：這類病例<strong>很難監測</strong>。如果只看血鈣，補充後血鈣可能正常，但動物還是可能出現<strong>骨折或骨痛</strong>，也要小心補過頭造成的鈣化。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：見 <a href="hypercalcemia.html#s14">21 號第 14 節 Ziggy（VDDR 1A）</a>的代謝路徑表。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ S5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">⚡</div>
+      <h2>5. 術後副甲狀腺機能低下</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">一隻狗切除（應為）肛門囊腺癌 3 天後癲癇發作。總蛋白正常，總鈣和 iCa 都低；給葡萄糖酸鈣後停止抽搐，之後開骨化三醇。PTH 很低，治療 5 個月後再驗還是低。目前骨化三醇約 2.7 ng/kg/天。PTH 有可能恢復正常嗎？</div>
+        <div class="a">
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>Langlois</strong>：很棘手，但他認為有機會。就像原發性副甲亢的狗，切除任何<strong>分泌過多 PTH（或類 PTH 物質）的組織</strong>後，副甲狀腺可能要<strong>幾週到幾個月</strong>才會恢復。</li>
+            <li>關鍵是：<strong>沒有刺激，副甲狀腺就不會恢復</strong>。他會把鈣維持在<strong>略低於參考區間</strong>：低到能刺激副甲狀腺，但不至於出現臨床症狀。如果還沒這樣做，這是第一步：<strong>進一步調降骨化三醇</strong>。</li>
+            <li>類比：<strong>腎上腺依賴型庫欣</strong>的狗切除腎上腺後，有些竟然<strong>好幾年都是愛迪生</strong>。如果挑戰之後還是不恢復，可能就要終身治療。</li>
+            <li><span class="src src-rec">🎤</span> <strong>Tardo</strong>：同意。他也遇過不明原因、手術後一直沒恢復的病例，需要很低劑量的骨化三醇維持正常血鈣。他總是把鈣維持在<strong>低範圍</strong>，就是為了刺激副甲狀腺，但有時還是沒用。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">追問：目前 iCa 約 1.2–1.3（參考區間 1.2–1.4），要再降低嗎？改成隔天給藥的話，什麼時候重驗 PTH？</div>
+        <div class="a">
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>Langlois</strong>：<strong>一定要再降</strong>，因為副甲狀腺一直沒有受到刺激。目標不是中段，而是<strong>參考區間最低點，甚至略低</strong>，例如 <strong>iCa 1.1–1.2</strong>。這隻動物也許在 1.3 時很舒服，但不再壓低，副甲狀腺就沒有理由工作。</li>
+            <li>調整後大約 <strong>6–8 週</strong>再重驗 PTH。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：逐字稿寫「adenocarcinoma of the endosac」，加上 Langlois 用「切除分泌過多 PTH 的組織」來解釋，推測是<strong>肛門囊腺癌</strong>：腫瘤長期分泌 PTHrP，正常副甲狀腺被抑制萎縮，切除腫瘤後就出現低血鈣。這是 <a href="hypercalcemia.html#s10">21 號 PTHrP</a> 的延伸。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ S6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🐆</div>
+      <h2>6. 只吃生雞胸的藪貓：鈣磷都高</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">多年前一隻 7 個月大的藪貓（serval）因骨折就診，X 光見皮質骨很薄、三處骨折，總鈣、iCa、磷都很高。飼主只餵生雞胸肉，否認給維生素 D。營養性次發性副甲亢應該是鈣正常或偏低、磷高，為什麼鈣也高？</div>
+        <div class="a">
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>Langlois</strong>：很有趣的血檢。你說得對，典型的營養性佝僂病，磷很高時鈣應該正常或正常偏低。他唯一能合理化的是：<strong>測鈣時正好有多處病理性骨折</strong>，可能有鈣從骨頭釋放到血中（溶骨性骨病本來就是高血鈣的原因之一）。他會想知道有沒有<strong>追蹤重驗</strong>看數值變化，但承認這只是推論。</li>
+            <li><span class="src src-rec">🎤</span> <strong>Tardo</strong>、<strong>Mott</strong>：也會懷疑飲食本身是否還有別的東西。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">📈</div>
+      <h2>7. IGF-1 什麼時候驗</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">糖尿病貓沒有驗到血酮，能不能假設牠還有足夠的內生性胰島素，可以在開始打胰島素之前就驗 IGF-1？如果改用 SGLT2i 而不打胰島素呢？</div>
+        <div class="a">
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>Mott</strong>：<strong>不知道</strong>，就像剛診斷時判斷能不能用 SGLT2i、胰島素夠不夠一樣，我們無從得知。如果檢驗不貴，診斷時就驗也無妨：<strong>驗到高就有答案；正常或偏低，就在開始胰島素後再驗</strong>。</li>
+            <li>用 SGLT2i 的話，她大概<strong>等兩個月</strong>。如果貓沒有發生 DKA，代表至少有足夠的內生性胰島素，這時驗 IGF-1 應該就可靠。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">建議開始胰島素約一個月後驗 IGF-1，那要等血糖控制好才驗嗎？</div>
+        <div class="a">
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>Mott</strong>：<strong>不用</strong>。只要有打胰島素，<strong>隨時可以驗</strong>。如果胰島素劑量不低、控制還是很差，就可以驗。長期打胰島素可能讓 IGF-1 稍微升高，但她想不到有哪次因此影響診斷。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：<a href="feline-hypersomatotropism.html">23 號</a>建議開始胰島素 6–8 週後再驗；這裡的重點是「有胰島素作用」比「血糖控制好」重要。剛診斷時門脈胰島素不足，IGF-1 可能偽低。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ S8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">💊</div>
+      <h2>8. 沒做 IGF-1 就試 cabergoline？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">生長激素過多的貓存活期較短。如果外觀等線索很可疑，但飼主不願意檢驗，可以直接試 cabergoline 嗎？</div>
+        <div class="a">
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>Mott</strong>：cabergoline 算安全，可能有腸胃副作用（不吃、嘔吐、下痢）。但算下來，<strong>直接驗 IGF-1 可能比試 cabergoline、裝 CGM 監測還便宜</strong>。直接送 MSU 大約 <strong>140 美元</strong>；透過 IDEXX 或 Antech 轉送 MSU，各層加價後會變貴，但她還是覺得比較便宜。</li>
+            <li><span class="src src-rec">🎤</span> <strong>Tardo</strong>：要小心，cabergoline 如果造成<strong>食慾下降</strong>，可能促發 <strong>DKA</strong>。他們發表的肢端肥大症貓病例中，有一隻開始 cabergoline 後嘔吐，<strong>兩天後就 DKA</strong>。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">🧠</div>
+      <h2>9. 生長激素過多合併庫欣？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">生長激素過多的貓有時兩側腎上腺都變大，有腦下垂體變大又有腎上腺變大的情況。庫欣、糖尿病、生長激素過多之間有關聯嗎？</div>
+        <div class="a">
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>Mott</strong>：不常見但有可能兩者兼有。比較常見的是生長激素過多；貓的庫欣本來就不常見，兩者合併非常少見。</li>
+            <li><strong>腦下垂體腫瘤可以分泌不只一種荷爾蒙</strong>，也可能同時分泌 ACTH，只是文獻報告不多。</li>
+            <li>庫欣貓通常症狀很明顯（例如<strong>皮膚變薄</strong>），所以多半會<strong>先發現庫欣</strong>，再發現生長激素過多。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🩸</div>
+      <h2>10. 緩解後又出現糖尿：能用 SGLT2i 嗎</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">一隻貓曾經嚴重急性腎傷害合併慢性腎病和 DKA。救回來後第一年打胰島素，第二年緩解；一年半後出現糖尿。不確定是腎性糖尿還是糖尿病復發。CGM 大約 120–200 mg/dL，食慾正常，只吃罐頭。能用 SGLT2i 嗎？血糖正常時用安全嗎？</div>
+        <div class="a">
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>Mott</strong>：健康貓用 SGLT2i 不會低血糖。但這隻有腎病：<strong>第 3、4 期的貓沒有試過</strong>，而且腎臟要有足夠的 SGLT2 才有效，慢性腎病的貓可能剩不多，所以她<strong>大概不會用</strong>。</li>
+            <li><span class="src src-rec">🎤</span> <strong>Tardo</strong>：可以的話用胰島素，也許<strong>一天一次</strong>就夠，因為還有內生性胰島素；或是胰島素加 SGLT2i 合併使用（降低低血糖機會，SGLT2i 沒效時也有胰島素），但要小心低血糖。</li>
+            <li><span class="src src-rec">🎤</span> <strong>Langlois</strong>：如果血糖真的都在 120–200，他會很驚訝糖尿是高血糖造成的。他可能<strong>什麼都不做</strong>，只針對很輕微的亞臨床高血糖調整飲食。</li>
+            <li><span class="src src-rec">🎤</span> <strong>Mott</strong>：沒超過腎閾值，問題就變成：<strong>為什麼會糖尿？是不是腎臟本身的問題？</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">💉</div>
+      <h2>11. Icodec 在貓「失效」</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">（來自中國的獸醫）我們有兩種基礎胰島素：degludec 和 icodec。有些貓用 icodec 一個月後好像出現阻抗，不管打幾單位都高血糖；換成 degludec 有效，一個月後再換回 icodec 又有效。怎麼解釋？</div>
+        <div class="a">
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>Tardo</strong>：他們剛到美國，還沒有 icodec 的經驗。可能是產生了<strong>抗胰島素抗體</strong>：抗體讓胰島素失效，換別種胰島素後再換回來，抗體要一段時間才會再出現。很有趣，但沒有個人經驗可分享。</li>
+            <li><span class="src src-rec">🎤</span> <strong>Mott</strong> 追問給藥頻率：提問者說是<strong>每週一次</strong>，失效時血糖完全降不下來，而且<strong>只發生在貓</strong>。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🪡</div>
+      <h2>12. 只扎針不打胰島素也能控糖？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">一隻控制良好的糖尿病貓，一天打兩次胰島素。飼主發現有時忘記或要出門時，只扎針不注射胰島素，血糖也一樣控制得很好；完全不扎針就會高血糖。飼主反覆試驗、監測了一年。有人看過嗎？</div>
+        <div class="a">
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>Tardo</strong>：他看過糖尿病貓血糖起起伏伏：緩解、復發、再緩解。建議<strong>檢查注射技術</strong>。</li>
+            <li><span class="src src-rec">🎤</span> <strong>Mott</strong>：想知道飼主為什麼這樣做；有沒有戴 CGM 看到實際變化？（飼主以前用 CGM，現在用手持血糖機。）「這樣可以省胰島素錢。」她沒有好的解釋。</li>
+            <li><span class="src src-rec">🎤</span> <strong>Langlois</strong>：沒有答案。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S13 ══ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ccfbf1">🦋</div>
+      <h2>13. 先天性甲低要終身用藥嗎</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">先天性甲低的貓要終身補充甲狀腺素嗎？還是只在生長期需要調整劑量？</div>
+        <div class="a">
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>Tardo</strong>：通常要<strong>終身補充 levothyroxine</strong>，因為牠們本身無法製造足夠的甲狀腺素（激素合成障礙），不會自己恢復。</li>
+            <li>需求會隨時間改變：<strong>不再生長後劑量可能下降</strong>，找到合適劑量後，依他的經驗會<strong>維持同樣劑量很長一段時間</strong>。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：見 <a href="feline-congenital-hypothyroidism.html">20 號貓先天性甲低</a>。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ S14 ══ -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">⏱️</div>
+      <h2>14. 醛固酮檢體和鉀的時間差</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">課堂上說鉀低時要驗醛固酮。如果血液外送，隔天才拿到鉀的結果，還來得及驗醛固酮嗎？還是一定要同時測鉀？</div>
+        <div class="a">
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>Langlois</strong>：如果原本送檢的血還有剩，可以請實驗室<strong>用同一管加驗醛固酮</strong>。不然，你不知道 24、48、72 小時後鉀是多少。</li>
+            <li>驗醛固酮時，要有<strong>時間上很接近的鉀</strong>。就算要請動物回來重新抽血，也要一起送電解質。<strong>醛固酮 900，在低鉀、正常鉀、高鉀下的意義完全不同</strong>；有些貓的鉀會波動，你要確定是在「當下確實低鉀」的情況下判讀醛固酮。</li>
+            <li>懷疑醛固酮增多時，就<strong>多抽一管血</strong>。</li>
+            <li>醛固酮<strong>很穩定</strong>，不像 ACTH 等分子，檢體<strong>冷藏一兩天</strong>再送完全沒問題。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>補充</strong>：見 <a href="feline-adrenal-disease.html">22 號貓腎上腺疾病</a>。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ S15 ══ -->
+  <div class="section" id="s15">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🔍</div>
+      <h2>15. 腎上腺切除後對側腎上腺變大</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">一隻貓切除腎上腺腫瘤後，電解質和皮質醇都恢復正常。一年後發現剩下的腎上腺變大到約 8–10 mm，之後六個月大小穩定，沒有臨床症狀，也沒有侵犯鄰近血管。這是代償嗎？需要擔心另一個功能性或非功能性腫瘤、做荷爾蒙檢驗嗎？</div>
+        <div class="a">
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>Langlois</strong>：只能給意見。要看<strong>多大</strong>：約 <strong>5 mm</strong> 厚，他可以接受是隨時間出現的<strong>代償性增生</strong>（就像切掉一顆腎臟，另一顆可能增生）；如果 <strong>15 mm</strong>，就比較擔心是另一個腫瘤。</li>
+            <li>輕微的話就<strong>觀察追蹤</strong>；很大就進一步檢查。這隻有一段時間<strong>沒有再長大</strong>，他大概會<strong>繼續追蹤</strong>，不會深入做荷爾蒙功能檢驗（其他講者可能看法不同）。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S16 ══ -->
+  <div class="section" id="s16">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🫀</div>
+      <h2>16. 次發性醛固酮增多與高血鉀</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <div class="q">您對次發性醛固酮增多（例如腎病引起）有什麼看法？</div>
+        <div class="a">
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>Langlois</strong>：醛固酮在其他疾病中的波動描述得很清楚（人醫比獸醫更多），大多數變化<strong>相對輕微</strong>，所以他的第一步通常是<strong>把腎病等原發疾病治療好</strong>。</li>
+            <li>他個人認為（「完全沒有證據」）<strong>spironolactone 在高血壓病例可能被低估了</strong>，可能有更多高血壓對它有反應，只是我們從沒試。如果醛固酮高、其他藥物又控制不了高血壓，用它並沒有錯。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qa">
+        <div class="q">追問：慢性腎病的高血鉀，是腎病本身造成，還是可能和醛固酮有關？</div>
+        <div class="a">
+          <ul class="notes">
+            <li><span class="src src-rec">🎤</span> <strong>Langlois</strong>：真正的<strong>低醛固酮在獸醫非常少見</strong>，雖然確實存在。如果病患正在用<strong>治療蛋白尿的藥物</strong>，他第一步是<strong>減量或停藥</strong>，而不是去查醛固酮。</li>
+            <li>就像 Jocelyn（Mott）前幾天說的：治療蛋白尿性腎病的狗，<strong>鉀 6 也許不是世界末日</strong>，因為藥物帶來很多其他好處。</li>
+            <li>除非鉀真的令人擔心，例如 <strong>&gt; 6.5 或 7</strong>，他才會考慮減藥、查醛固酮；低腎素性低醛固酮真的很少見。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S17 ══ -->
+  <div class="section" id="s17">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">📌</div>
+      <h2>更正表與參考資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>更正表（逐字稿轉文字錯誤）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>逐字稿</th><th>應為</th></tr>
+          <tr><td>icodex／icodac／eye connect</td><td>icodec（每週一次基礎胰島素）</td></tr>
+          <tr><td>daprodac／apple diet</td><td>degludec</td></tr>
+          <tr><td>switch to the glucagon</td><td>換另一種胰島素</td></tr>
+          <tr><td>hypoadosterone（懷疑時多抽血）</td><td>hyperaldosteronism</td></tr>
+          <tr><td>How do you define mild, moderate, and severe hypocalcemia</td><td>hypercalcemia</td></tr>
+          <tr><td>calcium lowering treatment, just like adrenaline</td><td>（多餘的字，無對應）</td></tr>
+          <tr><td>super calcium</td><td>hypercalcemia</td></tr>
+          <tr><td>a letter name／a leucrin／antiret</td><td>alendronate</td></tr>
+          <tr><td>hyperkclmia</td><td>hypercalcemia</td></tr>
+          <tr><td>thoral calcium</td><td>total calcium</td></tr>
+          <tr><td>idea of a production／idea of an adaptation</td><td>IGF-1</td></tr>
+          <tr><td>TKA</td><td>DKA</td></tr>
+          <tr><td>check the injection one discet</td><td>check the injection technique</td></tr>
+          <tr><td>heterozygous trisomy cats</td><td>hypersomatotropism cats</td></tr>
+          <tr><td>hypercortisomatism／hypersecretoryism</td><td>hypersomatotropism</td></tr>
+          <tr><td>San Marco／caprylic oil</td><td>cabergoline</td></tr>
+          <tr><td>induce a degree of hypotension</td><td>hyporexia（推測）</td></tr>
+          <tr><td>IDEX</td><td>IDEXX</td></tr>
+          <tr><td>L S M S</td><td>LC-MS/MS</td></tr>
+          <tr><td>Levetiracetam</td><td>levothyroxine</td></tr>
+          <tr><td>Ricky</td><td>rickets（佝僂病）</td></tr>
+          <tr><td>during early gestation</td><td>during growth（生長期）</td></tr>
+          <tr><td>adenocarcinoma of the endosac</td><td>anal sac adenocarcinoma（推測）</td></tr>
+          <tr><td>calcium tronin／calcium trial</td><td>calcitriol</td></tr>
+          <tr><td>adulogen／adenomectomy</td><td>adrenal gland／adrenalectomy</td></tr>
+          <tr><td>progeria</td><td>proteinuria（蛋白尿）</td></tr>
+          <tr><td>clavias</td><td>hyperkalemia</td></tr>
+          <tr><td>hypo-reninemia, hypoadrenism</td><td>hyporeninemic hypoaldosteronism</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Panel Discussion: Feline Endocrinology（Langlois、Mott、Tardo）. VET-KU × Texas A&amp;M IM Conference, 2026-10-09（「完整記錄」逐字稿 PDF）。</div>
+          <div class="ref-item">座談會錄音與逐字稿（Plaud）。<a href="https://web.plaud.ai/s/pub_fb95c1f3-3bf8-43c7-9615-48818c0616ac::thptG3S1KAPXF-Prj4izb2iu17W7032QDYi6flA4kO8CXBKJyoYf0y9nvCTroVFvyszszEoZwscPPB39hJJ19wI" target="_blank" rel="noopener">連結</a>（逐字稿有轉文字錯誤，請對照更正表）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="feline-hypersomatotropism.html">23 貓的生長激素過多</a>。相關：<a href="hypercalcemia.html">21 犬高血鈣</a>、<a href="feline-adrenal-disease.html">22 貓腎上腺疾病</a>、<a href="feline-congenital-hypothyroidism.html">20 貓先天性甲低</a>。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
