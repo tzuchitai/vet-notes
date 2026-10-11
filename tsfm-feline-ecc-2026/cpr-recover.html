@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心跳停止的貓：2024 RECOVER CPR 指引改了什麼？｜2026 TSFM 貓急重症研討會</title>
+<style>
+  :root {
+    --primary: #B4233C;
+    --primary-light: #FDE4E8;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2a1016;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #d9a7b0; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4a1f28;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #d9a7b0; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #d9a7b0;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4a1f28;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #a26a75;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #7a1328 0%, #d8485f 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2a1016; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4a1f28; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #7a1328; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+</style>
+
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 TSFM 貓急重症研討會</a>
+  <div class="logo">
+    <h2>07｜心跳停止的貓：<br>RECOVER 2024</h2>
+    <p>Elise Boller｜Day 1 Session 7</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">RECOVER 與病例 Pickles</a>
+    <div class="nav-section">基本生命支持 BLS</div>
+    <a href="#s1">1. BLS：胸外按壓</a>
+    <a href="#s2">2. BLS：呼吸道與通氣</a>
+    <div class="nav-section">高級生命支持 ALS</div>
+    <a href="#s3">3. ALS：監測與拮抗</a>
+    <a href="#s4">4. 節律診斷與不可電擊節律</a>
+    <a href="#s5">5. 可電擊節律與去顫</a>
+    <div class="nav-section">停止與 ROSC</div>
+    <a href="#s6">6. 什麼時候可以停？ROSC</a>
+    <div class="nav-section">總結</div>
+    <a href="#s7">7. 總整理：留下、改變、貓專屬</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>心跳停止的貓：2024 RECOVER CPR 指引改了什麼？</h1>
+    <p>主講：Elise Boller, DVM, DACVECC</p>
+    <p>TSFM Annual Conference 2026｜Day 1 — The Crashing Cat｜Session 7｜場次 07</p>
+    <div class="tags">
+      <span class="tag">RECOVER 2024</span>
+      <span class="tag">CPR</span>
+      <span class="tag">BLS</span>
+      <span class="tag">ALS</span>
+      <span class="tag">胸外按壓</span>
+      <span class="tag">ETCO₂ ≥ 18</span>
+      <span class="tag">PEA</span>
+      <span class="tag">Asystole</span>
+      <span class="tag">VF／pVT</span>
+      <span class="tag">去顫能量遞增</span>
+      <span class="tag">Epinephrine</span>
+      <span class="tag">Atropine 一次</span>
+      <span class="tag">Amiodarone</span>
+      <span class="tag">ROSC</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（數字＝講義 PDF 頁碼）
+    <span class="src src-add">💡 補充</span> 整理者補充（機轉、換算、交叉參照；不是講者說的）
+    <br><span class="muted">目前只有講義，沒有課堂錄音；講義上的影片（Vimeo）與現場投票無法收錄。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+<li>2012 → 2024 是<strong>演進，不是重新發明</strong>：高品質 BLS 的基本原則不變</li>
+<li>按壓：<strong>100–120 次/分</strong>、深度<strong>胸寬 ⅓–½</strong>、<strong>完全回彈</strong>、<strong>每 2 分鐘換人</strong>；插管後每 6 秒一次呼吸（10 次/分）</li>
+<li>貓：<strong>直接壓在心室上，不是心基部</strong>；有三種可接受的手法；<strong>不要雙手交疊</strong>按壓（會壓過頭）</li>
+<li>通氣：潮氣量 <strong>約 10 mL/kg</strong>、吸氣約 1 秒、<strong>PIP &lt; 40 cmH₂O</strong>；過度通氣和通氣不足一樣危險</li>
+<li><strong>ETCO₂ ≥ 18 mmHg</strong> 是 CPR 品質目標（越高越好）；檢查暫停 <strong>&lt; 10 秒</strong></li>
+<li>不可電擊節律（asystole／PEA）：epinephrine <strong>或</strong> vasopressin 每隔一個循環；<strong>高劑量 epinephrine 取消</strong>；<strong>atropine 0.04 mg/kg 只給一次、越早越好</strong></li>
+<li>可電擊節律（VF／pVT）：第一次 2 J/kg，之後<strong>每次增加 150%</strong>、上限 10 J/kg；電擊後<strong>立刻恢復按壓</strong>；難治時<strong>貓用 amiodarone</strong>（狗用 lidocaine）</li>
+<li>停止按壓確認 ROSC：<strong>ETCO₂ 上升 ≥ 10 到 ≥ 35 mmHg ＋ 摸得到脈搏</strong>；麻醉相關的停止存活出院機率高 15 倍，<strong>貓比狗高 5 倍——不要輕易放棄</strong></li>
+    </ul>
+  </div>
+
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📋</div>
+      <h2>RECOVER 計畫與病例 Pickles</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 2–3</span> RECOVER 計畫（Reassessment Campaign on Veterinary Resuscitation）</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>研究</h4><ul><li>評估並推進獸醫 CPR 的證據</li></ul></div>
+          <div class="card-mini"><h4>指引</h4><ul><li>把證據轉成實證臨床建議</li></ul></div>
+          <div class="card-mini"><h4>教育</h4><ul><li>讓 CPR 知識容易取得、能用在臨床</li></ul></div>
+          <div class="card-mini"><h4>訓練</h4><ul><li>標準化 CPR 訓練與認證——全球超過 <strong>80,000</strong> 人</li></ul></div>
+        </div>
+        <p class="muted">利益揭露：講者是 RECOVER 的顧問；配偶 Dr. Manu Boller 是 RECOVER 共同創辦人。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 4</span> 2012 → 2024：演進，不是重新發明</h3>
+        <div class="grid3">
+          <div class="card-mini"><h4>不變</h4><ul><li>高品質 BLS 的基本原則仍然有效</li></ul></div>
+          <div class="card-mini"><h4>改變</h4><ul><li>依新證據做的一組重點更新</li></ul></div>
+          <div class="card-mini"><h4>貓專屬</h4><ul><li>小型病患的按壓技巧與生理回饋</li></ul></div>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 5</span> 路線圖：RECOVER CPR 流程</h3>
+        <figure class="fig">
+          <img src="photos/07-05-recover-algorithm.jpg" alt="RECOVER 2024 犬貓 CPR 流程圖（© 2024 The RECOVER Initiative）" loading="lazy">
+          <figcaption>📄 5：RECOVER 2024 犬貓 CPR 流程圖（© 2024 The RECOVER Initiative）</figcaption>
+        </figure>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 7</span> Pickles：一個非常糟的早上</h3>
+        <ul class="notes">
+          <li>嚴重急性呼吸窘迫；入院後不久<strong>失去反應</strong>，出現<strong>瀕死呼吸</strong>（agonal breathing）</li>
+          <li>沒有過去病史，室內外都會去的貓</li>
+          <li>你會怎麼做？（複選，含幾個搞笑選項）：① 拚命找房間裡「更大人的大人」② <strong>大聲求救並立刻開始胸外按壓</strong> ③ 短暫懷疑自己所有的職涯決定 ④ 先夾血氧機、量血壓</li>
+        </ul>
+        <div class="alert alert-danger"><span class="alert-icon">🚨</span><div><span class="src src-add">💡</span> 正確答案是 <strong>②</strong>。失去反應＋瀕死呼吸就當作心肺停止處理；<strong>不要先找脈搏或量血壓</strong>而延誤按壓（下一節也提到：SpO₂ 和間接血壓在 CPR 時沒用）。對沒有停止的動物做幾下按壓的傷害，遠小於延誤 CPR。</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🫳</div>
+      <h2>1. BLS：胸外按壓</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 11</span> 基本原則（不變）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>內容</th></tr>
+          <tr><td>位置</td><td>壓在心臟上方*（依體型，見下）</td></tr>
+          <tr><td>速率</td><td><strong>100–120 次/分</strong></td></tr>
+          <tr><td>深度</td><td><strong>胸寬的 ⅓–½</strong></td></tr>
+          <tr><td>回彈</td><td><strong>完全回彈，不要靠在胸上</strong></td></tr>
+          <tr><td>換手</td><td><strong>每 2 分鐘</strong></td></tr>
+          <tr><td>通氣</td><td>每 <strong>6 秒</strong>一次呼吸</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 12</span> 2024 修正：貓的按壓</h3>
+        <figure class="fig">
+          <img src="photos/07-12-feline-compressions.jpg" alt="貓的三種按壓手法（A–C）；右：不要雙手交疊按壓" loading="lazy">
+          <figcaption>📄 12：貓的三種按壓手法（A–C）；右：不要雙手交疊按壓</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><strong>直接壓在心室上，不是心基部！</strong></li>
+          <li>❌ <strong>雙手交疊</strong>按壓容易把貓的小胸腔<strong>壓過頭</strong>（受傷風險）</li>
+          <li>貓和小型犬：現在支持<strong>三種手法</strong>（圖 A–C，側躺；以單手或雙手從胸側按壓）</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 13</span> 依體型選位置（不變）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>體型</th><th>位置</th><th>機轉</th></tr>
+          <tr><td>大型圓胸犬</td><td>胸部最寬處</td><td>胸泵</td></tr>
+          <tr><td>大型深胸（龍骨胸）犬</td><td>直接在心臟上方</td><td>心泵</td></tr>
+          <tr><td>扁胸／短吻犬</td><td>仰躺，壓胸骨</td><td></td></tr>
+          <tr><td><strong>貓與小型犬</strong></td><td><strong>三種手法</strong>（見上）</td><td><span class="src src-add">💡</span> 心泵為主</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 14</span> 按壓者的姿勢（不變）</h3>
+        <ul class="notes">
+          <li>站在動物<strong>背側（脊椎那一側）</strong></li>
+          <li>用<strong>體重</strong>，不是手臂的力量（手肘打直）</li>
+          <li><strong>每 2 分鐘換人</strong>（疲勞會讓品質下降，自己卻感覺不出來）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🌬️</div>
+      <h2>2. BLS：呼吸道與通氣</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="tbl-wrap"><table>
+        <tr><th></th><th>項目</th><th>內容</th></tr>
+        <tr><td rowspan="2">不變</td><td><strong>盡快插管</strong></td><td>側躺插管；插管前按壓：通氣 <strong>30 : 2</strong></td></tr>
+        <tr><td><strong>10 次/分</strong></td><td>插管後按壓與通氣<strong>同時</strong>進行，每 6 秒一次</td></tr>
+        <tr><td rowspan="3">2024 修正</td><td><strong>潮氣量與壓力</strong></td><td><strong>約 10 mL/kg</strong>、吸氣時間約 <strong>1 秒</strong>、<strong>PIP &lt; 40 cmH₂O</strong>；用能看到胸部起伏的<strong>最低壓力</strong></td></tr>
+        <tr><td><strong>停止時接著呼吸器</strong></td><td><strong>改成手動通氣</strong>。若一定要用呼吸器：PIP ≤ 60 cmH₂O，<strong>不要過度通氣</strong></td></tr>
+        <tr><td><strong>沒插管</strong></td><td><strong>密合面罩＋手動甦醒球</strong>優於口對鼻</td></tr>
+      </table></div>
+      <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>過度通氣會升高胸內壓、減少靜脈回流——和通氣不足一樣危險。<strong>通氣到有效就好。</strong></div></div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 16</span> Pickles：BLS 進行中——這些按壓哪裡錯了？</h3>
+        <p class="muted">講義為照片／影片題（無法收錄）。<span class="src src-add">💡</span> 對照上面原則檢查：位置是否在心室上、是否雙手交疊、速率與深度、有沒有完全回彈、按壓者是否靠在胸上。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">📟</div>
+      <h2>3. ALS：監測與拮抗劑</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 19</span> 不只是監測：用數據來優化</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>監測</th><th>說明</th></tr>
+          <tr><td rowspan="3">不變</td><td>SpO₂ 與間接血壓</td><td>CPR 時<strong>沒用</strong>——要有脈搏才會有讀值</td></tr>
+          <tr><td>ECG</td><td>診斷停止的節律、指引用藥</td></tr>
+          <tr><td>ETCO₂ 突然持續上升</td><td>ROSC 的早期指標——不要忽略，但要確認有灌流節律（摸脈搏！）</td></tr>
+          <tr><td rowspan="2">2024 修正</td><td><strong>ETCO₂ ≥ 18 mmHg</strong></td><td>CPR 品質目標</td></tr>
+          <tr><td><strong>暫停 &lt; 10 秒</strong></td><td>節律／脈搏檢查</td></tr>
+        </table></div>
+        <p class="muted">ETCO₂ 不是心輸出量的直接測量——要和其他資料一起解讀。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 20</span> 拮抗劑：不要忘了最明顯的</h3>
+        <p class="p">講義圖片：<strong>Flumazenil</strong>（benzodiazepine）、<strong>Naloxone</strong>（鴉片類）、<strong>Atipamezole</strong>（α₂ 促效劑，如 dexmedetomidine）。</p>
+        <p class="muted"><span class="src src-add">💡</span> 有用過這些藥（尤其麻醉中停止）就立刻給拮抗劑。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 21</span> Pickles：ETCO₂ 低於 18 mmHg……可以怎麼做？</h3>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 先改善<strong>按壓品質</strong>：確認位置在心室、深度夠、完全回彈、速率 100–120、換一個沒累的人；檢查是否<strong>過度通氣</strong>；確認氣管內管位置。講義後續（📄 43）說 Pickles「調整技巧後 ETCO₂ 變好」。</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">📈</div>
+      <h2>4. 節律診斷，以及不可電擊節律（Asystole／PEA）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 24</span> 心跳停止時的四種節律</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>節律</th><th>特徵</th><th>可否電擊</th></tr>
+          <tr><td><strong>Asystole／平線</strong></td><td>犬貓<strong>最常見</strong>的停止節律</td><td>不可</td></tr>
+          <tr><td><strong>PEA</strong>（無脈搏電氣活動）</td><td>ECG 有規則波形＋<strong>摸不到脈搏</strong>；用觸診確認</td><td>不可</td></tr>
+          <tr><td><strong>心室纖維顫動（VF）</strong></td><td>混亂、無組織</td><td><strong>可</strong>，立刻去顫</td></tr>
+          <tr><td><strong>無脈搏心室頻脈（pVT）</strong></td><td>快速、寬 QRS、規則</td><td><strong>可</strong>，處理同 VF</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 27</span> 升壓劑：改了什麼</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>2012</h4><ul>
+            <li>低劑量 epinephrine 和／或 vasopressin，每隔一個 BLS 循環</li>
+            <li>停止時間長（&gt; 10 分鐘）：考慮<strong>高劑量</strong> epinephrine</li></ul></div>
+          <div class="card-mini"><h4>2024</h4><ul>
+            <li>Epinephrine <strong>或</strong> vasopressin，每隔一個循環；兩者都可</li>
+            <li><strong>高劑量 epinephrine 取消</strong>：會提高 ROSC，但<strong>神經預後與停止後存活變差</strong></li></ul></div>
+        </div>
+        <p class="muted"><span class="src src-add">💡</span> 講義沒有列劑量；RECOVER 常用低劑量 epinephrine 0.01 mg/kg IV/IO、vasopressin 0.8 U/kg IV/IO。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 28</span> Atropine：一次、早給，不重複</h3>
+        <ul class="notes">
+          <li>2012：每隔一個 BLS 循環考慮 atropine，整個急救過程重複給</li>
+          <li><strong>2024</strong>：不可電擊節律＋懷疑<strong>迷走神經張力高</strong>時；<strong>0.04 mg/kg IV 或 IO</strong>；<strong>只給一次、越早越好、絕不重複</strong></li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 33</span> Pickles 第一次 ECG 檢查</h3>
+        <p class="p">監視器上是<strong>規則的 QRS 波形（約 142 次/分）</strong>，但<strong>摸不到脈搏</strong>、ETCO₂ 低——節律診斷？怎麼處理？</p>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 有規則電氣活動但沒有脈搏＝<strong>PEA</strong>（不可電擊）。處置：立刻恢復 2 分鐘 BLS、epinephrine 或 vasopressin 每隔一個循環、可考慮一次 atropine、找可逆原因（Pickles 是呼吸窘迫後停止 → 低血氧、氣胸等）。</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">⚡</div>
+      <h2>5. 可電擊節律（VF／pVT）與難治型</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 31</span> 電擊 → 恢復 → 再評估</h3>
+        <ol class="notes">
+          <li>在 ECG 上辨認 VF／pVT</li>
+          <li><strong>充電時繼續 BLS</strong></li>
+          <li>暫停 → 喊「離開」→ 電擊</li>
+          <li><strong>立刻恢復按壓</strong></li>
+          <li>完成 2 分鐘 CPR 循環</li>
+          <li>節律檢查——暫停 &lt; 10 秒</li>
+          <li>仍可電擊？→ 提高能量</li>
+        </ol>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>電擊後<strong>不要停下來看有沒有效</strong>，立刻恢復按壓。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 32</span> 去顫：2024 改變</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>2012</th><th>2024</th></tr>
+          <tr><td>第 1 次</td><td>標準起始能量</td><td><strong>2 J/kg</strong></td></tr>
+          <tr><td>第 2 次以後</td><td>同樣能量重複，只有 VF 持續很久才提高</td><td><strong>每次增加 150%</strong></td></tr>
+          <tr><td>上限</td><td></td><td><strong>10 J/kg</strong></td></tr>
+        </table></div>
+        <p class="p">理由：重複相同能量的電擊效果會遞減，所以<strong>從第二次就開始升高</strong>。</p>
+        <p class="muted">講義 📄 31 寫「持續 VF/pVT：4 J/kg」，流程圖寫「第一次之後劑量 ×2」；兩者都表示第二次要提高能量。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 36</span> 難治型 VF／pVT（≥ 2 次電擊）：輔助治療</h3>
+        <p class="muted">全部都只是「建議」——證據品質低。BLS 仍是不可妥協的基礎。</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>藥物</th><th>說明</th></tr>
+          <tr><td>Vasopressin 或 epinephrine</td><td>每隔一個循環，和不可電擊流程相同；仍然<strong>不用高劑量</strong> epinephrine</td></tr>
+          <tr><td><strong>抗心律不整藥：狗 ≠ 貓</strong></td><td>狗 → <strong>Lidocaine</strong>；貓 → <strong>Amiodarone</strong></td></tr>
+          <tr><td>Esmolol</td><td>難治 VF 可考慮——可能降低維持顫動的交感驅動</td></tr>
+          <tr><td>碳酸氫鈉</td><td>CPR 很久（<strong>&gt; 15 分鐘</strong>）時考慮，特別是 <strong>pH &lt; 7.0</strong></td></tr>
+        </table></div>
+        <p class="muted"><span class="src src-add">💡</span> 貓對 lidocaine 的神經與心血管毒性比較敏感，這是改用 amiodarone 的原因之一。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">⏱️</div>
+      <h2>6. 什麼時候停止按壓（或不要停）？ROSC</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 38–39</span> 不要中斷：2024 修正</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>情況</th><th>可以停止按壓嗎？</th></tr>
+          <tr><td>只有 ECG 出現規則節律</td><td>❌ 不行</td></tr>
+          <tr><td>循環中途檢查節律</td><td>❌ 不行</td></tr>
+          <tr><td>循環之間暫停 &gt; 10 秒</td><td>❌ 不行</td></tr>
+          <tr><td>只有 ETCO₂ &gt; 18 mmHg</td><td>❌ 不行</td></tr>
+        </table></div>
+        <p class="p">沒有 capnography 時：即使懷疑 ROSC，也<strong>不要中斷循環</strong>。循環中途出現規則 ECG 不足以停止。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 40</span> ETCO₂：繼續還是停？</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>ETCO₂</th><th>意義</th></tr>
+          <tr><td><strong>≥ 18 mmHg</strong></td><td>CPR <strong>品質目標</strong></td></tr>
+          <tr><td><strong>只有 ≥ 35 mmHg</strong></td><td><strong>不是</strong>停止 CPR 的理由（要摸脈搏！）</td></tr>
+          <tr><td><strong>上升 ≥ 10 到 ≥ 35 mmHg ＋ 有脈搏</strong></td><td><strong>很可能 ROSC</strong>，可以中斷按壓確認</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 42–43</span> ROSC 與停止後照護</h3>
+        <ul class="notes">
+          <li><strong>麻醉相關</strong>的心跳停止：存活出院機率<strong>高 15 倍</strong></li>
+          <li><strong>貓比狗高 5 倍</strong>——你的病患真的有機會！</li>
+          <li>Pickles：調整技巧後 ETCO₂ 變好，接著達到 <strong>39 mmHg</strong>，而且<strong>摸得到脈搏</strong>——ROSC！</li>
+        </ul>
+        <p class="muted">停止後照護（PCA algorithm）講義沒有展開。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🎯</div>
+      <h2>7. 到底改了什麼？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 45</span> 留下、改變、貓專屬</h3>
+        <div class="grid3">
+          <div class="card-mini"><h4>留下</h4><ul>
+            <li>高品質按壓</li><li>100–120 次/分</li><li>深度 ⅓–½</li><li>完全回彈</li>
+            <li>減少中斷</li><li>插管後 10 次/分</li></ul></div>
+          <div class="card-mini"><h4>改變</h4><ul>
+            <li>更嚴格：沒有 <strong>ETCO₂ ≥ 35＋摸得到脈搏</strong>不要停止按壓</li>
+            <li><strong>沒有高劑量 epinephrine</strong></li>
+            <li><strong>Atropine 一次、早給、不重複</strong></li>
+            <li>持續 VF/pVT 時<strong>提高去顫能量</strong></li>
+            <li>主動使用 ETCO₂，優化到 ≥ 18</li>
+            <li>呼吸器 → <strong>改手動</strong></li></ul></div>
+          <div class="card-mini"><h4>貓專屬</h4><ul>
+            <li>三種可接受手法</li><li>避免雙手交疊按壓</li>
+            <li><strong>壓心室，不是心基部</strong></li>
+            <li>18 mmHg 是低標，<strong>越高越好</strong></li>
+            <li>難治 VF/pVT 用 <strong>amiodarone</strong>（不是 lidocaine）</li>
+            <li>貓真的有機會 ROSC，<strong>不要輕易放棄</strong></li></ul></div>
+        </div>
+        <div class="quote">ALS 是用來支持 BLS 的，不能取代它。不要丟掉最重要的東西。</div>
+        <p class="p"><span class="src src-slide">📄 46</span> 流程仍然是<strong>以節律為中心</strong>。<span class="src src-slide">📄 47</span> RECOVER 有 BLS／ALS 線上課程與認證。</p>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Boller E. <em>The Arresting Cat: What Changed in the New RECOVER CPR Guidelines?</em> TSFM Annual Conference 2026, Day 1 Session 7（講義 49 頁）。致謝 Dr. Manu Boller。</div>
+          <div class="ref-item">RECOVER Initiative. 2024 RECOVER CPR Guidelines and CPR Algorithm for Dogs and Cats.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="bleeding-transfusion.html">06 會出血的貓</a>。下一場：<a href="sepsis.html">08 貓的敗血症</a>。相關：<a href="cant-breathe-next.html">04（插管後無法通氣的四個檢查點）</a>。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>糖尿病：貓 DKA 與單純型糖尿病的新面貌｜2026 TSFM 貓急重症研討會</title>
+<style>
+  :root {
+    --primary: #B4233C;
+    --primary-light: #FDE4E8;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2a1016;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #d9a7b0; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4a1f28;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #d9a7b0; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #d9a7b0;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4a1f28;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #a26a75;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #7a1328 0%, #d8485f 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2a1016; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4a1f28; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #7a1328; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+</style>
+
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 TSFM 貓急重症研討會</a>
+  <div class="logo">
+    <h2>09｜貓的 DKA 與<br>單純型糖尿病</h2>
+    <p>Elise Boller｜Day 2 Session 2</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">學習目標與思考陷阱</a>
+    <div class="nav-section">DKA 基礎</div>
+    <a href="#s1">1. 為什麼會 DKA</a>
+    <a href="#s2">2. 非典型：不酸、不高糖</a>
+    <div class="nav-section">五個處置桶</div>
+    <a href="#s3">3. 桶 1：復甦輸液</a>
+    <a href="#s4">4. 桶 2：胰島素與葡萄糖</a>
+    <a href="#s5">5. 桶 3：電解質與輸液</a>
+    <a href="#s6">6. 桶 4：營養、轉換、出院</a>
+    <a href="#s7">7. 桶 5：誘因與預後</a>
+    <div class="nav-section">單純型糖尿病</div>
+    <a href="#s8">8. 單純型貓糖尿病</a>
+    <div class="nav-section">總結</div>
+    <a href="#s9">參考資料</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>糖尿病：貓 DKA 與單純型糖尿病的新面貌</h1>
+    <p>主講：Elise Boller, DVM, DACVECC</p>
+    <p>TSFM Annual Conference 2026｜Day 2 — The Critical Cat｜Session 2｜場次 09</p>
+    <div class="tags">
+      <span class="tag">DKA</span>
+      <span class="tag">eDKA</span>
+      <span class="tag">SGLT2i</span>
+      <span class="tag">五個處置桶</span>
+      <span class="tag">胰島素 IM／CRI</span>
+      <span class="tag">固定速率 0.1 U/kg/h</span>
+      <span class="tag">葡萄糖補充</span>
+      <span class="tag">鉀磷鎂</span>
+      <span class="tag">轉換長效胰島素</span>
+      <span class="tag">誘發因子</span>
+      <span class="tag">Glargine</span>
+      <span class="tag">ProZinc</span>
+      <span class="tag">緩解</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（數字＝講義 PDF 頁碼）
+    <span class="src src-add">💡 補充</span> 整理者補充（機轉、換算、交叉參照；不是講者說的）
+    <br><span class="muted">目前只有講義，沒有課堂錄音；講義上的影片（Vimeo）與現場投票無法收錄。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+<li><strong>只有高血糖不會造成酮症</strong>：要<strong>胰島素缺乏＋拮抗荷爾蒙過多</strong>（壓力）</li>
+<li>DKA 不一定高血糖、也不一定酸中毒：<strong>SGLT2i 造成正常血糖 DKA（eDKA）</strong>；尿液試紙可能偽陰性 → 驗<strong>血酮</strong></li>
+<li>五個處置桶：<strong>復甦輸液 → 胰島素（＋葡萄糖）→ 電解質與後續輸液 → 營養與轉換 → 共病與預後</strong></li>
+<li><strong>復甦後立刻開始胰島素</strong>（&lt; 6 小時較快矯正、不增加併發症）；不用等 4–6 小時。例外：<strong>K⁺ &lt; 3.0 先積極補鉀</strong></li>
+<li>急性期<strong>只用短效（regular）胰島素</strong>；目標是<strong>酮症解除</strong>，不是血糖正常——<strong>加葡萄糖是計畫的一部分，不是失敗</strong>，加了就不要停到酮症解除</li>
+<li>固定速率 CRI <strong>0.1 U/kg/h</strong>：固定胰島素、用葡萄糖追血糖，特別適合 eDKA</li>
+<li><strong>不必等貓自己吃</strong>才轉長效胰島素——能耐受管餵就可以；早點放餵食管可縮短住院</li>
+<li>貓 DKA <strong>93%</strong> 有共病（肝脂肪沉積 38%、CKD 28%、胰臟炎 18%、感染 18%）；出院存活 <strong>61–93%</strong>、約 <strong>58%</strong> 可緩解——<strong>嚴重但很能治</strong></li>
+    </ul>
+  </div>
+
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📋</div>
+      <h2>學習目標與六個思考陷阱</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 2</span> 學習目標</h3>
+        <ol class="notes">
+          <li>說明 DKA 的病理生理——包括<strong>為什麼只有高血糖不會造成酮症</strong></li>
+          <li>辨識非典型 DKA，包括 SGLT2i 治療貓的<strong>正常血糖 DKA</strong></li>
+          <li>擬定穩定計畫：輸液、胰島素、電解質與營養</li>
+          <li>解讀連續血氣與電解質結果來調整治療</li>
+          <li>應用單純型貓糖尿病的實用處置技巧</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 4, 36</span> DKA 的思考陷阱（全部破解）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>❌ 陷阱</th><th>✅ 破解</th></tr>
+          <tr><td>「只是高血糖沒控制好的後果」</td><td>需要的不只是高血糖（第 1 節）</td></tr>
+          <tr><td>「一定高血糖、一定酸中毒」</td><td>不一定（第 2 節）</td></tr>
+          <tr><td>「要等 4–6 小時才能開始胰島素」</td><td><strong>早點開始，6 小時內</strong>（第 4 節）</td></tr>
+          <tr><td>「要自己吃才能開始長效胰島素」</td><td><strong>管餵是合理的橋樑</strong>（第 6 節）</td></tr>
+          <tr><td>「DKA 治療一定很貴」</td><td>費用不一定極端（第 7 節）</td></tr>
+          <tr><td>「DKA 預後很差，大部分會復發」</td><td><strong>預後好，可能緩解</strong>（第 7 節）</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">⚗️</div>
+      <h2>1. 為什麼會發生 DKA？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 5</span> 兩個條件</h3>
+        <ul class="notes">
+          <li><strong>胰島素缺乏</strong>（相對或絕對）</li>
+          <li><strong>生理壓力 → 拮抗荷爾蒙</strong>（升糖素、皮質醇、兒茶酚胺、生長激素）</li>
+          <li>→ 脂肪分解 → 游離脂肪酸 → <strong>酮體</strong></li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>臨床重點</strong>：只有高血糖不會造成酮症——要<strong>胰島素缺乏＋拮抗荷爾蒙過多</strong>。這就是為什麼沒有壓力的糖尿病貓，即使控制很差，也常常不會 DKA。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 6</span> 代謝連鎖</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>部位</th><th>發生什麼</th></tr>
+          <tr><td>肌肉</td><td>蛋白質分解 → 胺基酸 → 糖質新生的原料</td></tr>
+          <tr><td>脂肪</td><td>脂肪分解 → 甘油＋游離脂肪酸 → 肝臟生酮</td></tr>
+          <tr><td>肝臟</td><td>肝醣分解、糖質新生、生酮 → 高血糖＋酮血症</td></tr>
+          <tr><td>血液</td><td>過多葡萄糖＋酮體 → <strong>滲透性利尿、酸中毒、電解質流失</strong></td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 7</span> 典型 DKA 診斷</h3>
+        <p class="p">🩸 <strong>高血糖</strong>＋⚗️ <strong>代謝性酸中毒</strong>＋🧪 <strong>酮血症／酮尿</strong></p>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>不要只靠尿液試紙</strong>——早期或用 SGLT2i 的病患可能<strong>偽陰性</strong>。<span class="src src-add">💡</span> 尿液試紙只測乙醯乙酸，DKA 早期主要的酮體是 β-羥丁酸（βHB），所以要測<strong>血中 βHB</strong>。</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🎭</div>
+      <h2>2. 非典型表現：不酸中毒、不高血糖</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 9</span> 為什麼 DKA 病患可能沒有酸中毒</h3>
+        <ul class="notes">
+          <li><strong>同時有鹼中毒抵銷</strong>（<span class="src src-add">💡</span> 如嘔吐造成的低氯性代謝性鹼中毒）</li>
+          <li><strong>呼吸代償</strong></li>
+          <li><strong>早期或正在演變</strong>的 DKA</li>
+          <li><strong>高血糖高滲透壓狀態</strong>（HHS）</li>
+        </ul>
+        <p class="p">陷阱 #2 破解：DKA 在就診時不一定酸中毒。要綜合<strong>酸鹼、陰離子間隙、血糖、酮體</strong>判斷，不能只看 pH。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 10</span> 正常血糖 DKA：SGLT2 抑制劑時代</h3>
+        <ul class="notes">
+          <li><strong>Bexacat（bexagliflozin）</strong>與 <strong>Senvelgo（velagliflozin）</strong>：FDA 2022–2023 核准</li>
+          <li>機轉：阻斷腎臟葡萄糖再吸收、增加尿糖——<strong>不靠胰島素</strong></li>
+          <li>問題：血糖是靠「排掉」降下來的，不是恢復胰島素作用；β 細胞功能不足時，<strong>升糖素與生酮仍然失控</strong></li>
+          <li>結果：血糖正常或接近正常，卻有<strong>酮酸中毒</strong></li>
+        </ul>
+        <div class="alert alert-danger"><span class="alert-icon">⚠️</span><div><strong>血糖正常 ≠ 沒有 DKA。</strong>尿糖把高血糖藏起來了——吃 SGLT2i 的貓<strong>一定要驗酮體</strong>，並對照理學檢查、病史、酸鹼與陰離子間隙。</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">💧</div>
+      <h2>3. 桶 1：急性復甦輸液</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 12</span> 五個處置桶</h3>
+        <div class="grid3">
+          <div class="card-mini"><h4>🪣 1</h4><ul><li>急性復甦輸液</li></ul></div>
+          <div class="card-mini"><h4>🪣 2</h4><ul><li>胰島素（＋葡萄糖）</li></ul></div>
+          <div class="card-mini"><h4>🪣 3</h4><ul><li>電解質與後續輸液</li></ul></div>
+          <div class="card-mini"><h4>🪣 4</h4><ul><li>營養與轉換</li></ul></div>
+          <div class="card-mini"><h4>🪣 5</h4><ul><li>共病與預後</li></ul></div>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 13</span> 先做 ARFT</h3>
+        <ul class="notes">
+          <li>DKA 常有<strong>明顯的體液缺失與灌流不足</strong></li>
+          <li>以小量分次給、<strong>依效果調整</strong>；先用<strong>等張晶體液</strong>（見 <a href="fluid-resuscitation.html">02</a>）</li>
+          <li>為什麼先做：<strong>改善灌流、降低血糖、讓胰島素能發揮作用</strong></li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">🐱</span><div><strong>Toby 的復甦</strong>：Plasmalyte <strong>10 mL/kg、20 分鐘</strong>，重複兩次 → 之後 <strong>5 mL/kg/hr</strong>。ARFT 後加 <strong>KCl 20 mEq/L</strong>（之後增加到 40 mEq/L）。</div></div>
+        <p class="p">有意圖地復甦——<strong>預期電解質會變化</strong>，開始胰島素前<strong>重驗血糖與鉀</strong>。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">💉</div>
+      <h2>4. 桶 2：胰島素——唯一能停止生酮的方法</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 14</span> 什麼時候開始？</h3>
+        <ul class="notes">
+          <li>沒有胰島素，酮體就不會停止產生</li>
+          <li><strong>ARFT 之後立刻開始</strong>。較早（&lt; 6 小時）開始胰島素與<strong>較快矯正代謝異常</strong>相關，而且<strong>不增加併發症</strong></li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>K⁺（mmol/L）</th><th>做法</th></tr>
+          <tr><td><strong>&gt; 5.5</strong></td><td>開始胰島素；暫不補鉀；再驗</td></tr>
+          <tr><td>中間值</td><td>開始胰島素＋同時經驗性補鉀</td></tr>
+          <tr><td><strong>&lt; 3.0</strong></td><td><strong>先積極補鉀，再開始胰島素</strong>（唯一的例外）</td></tr>
+        </table></div>
+        <p class="muted">學員講義寫的切點是 K⁺ &lt; 3.5 時在胰島素前先補鉀。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 15</span> 三種胰島素方案</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>方案</th><th>優點</th><th>限制</th><th>劑量（學員講義）</th></tr>
+          <tr><td><strong>肌肉注射（IM）</strong></td><td>簡單、不需要幫浦</td><td>較不精確；血糖起伏風險</td><td>Regular 0.2 IU/kg q1h，直到 BG &lt; 14 mmol/L（約 250 mg/dL），之後 q4–6h</td></tr>
+          <tr><td><strong>變速 CRI</strong>（兩種）</td><td>容易調整、起伏較小</td><td>需要幫浦</td><td>見下兩表</td></tr>
+          <tr><td><strong>固定速率 CRI</strong></td><td>血糖下降平順、給藥穩定</td><td>血糖可能掉太快；需要幫浦</td><td>0.1 U/kg/h</td></tr>
+        </table></div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>急性 DKA 期間所有方案都<strong>只用 regular（短效）胰島素</strong>（如 Novolin R、Actrapid）。<strong>活動性 DKA 時絕不用長效胰島素。</strong>血糖通常 <strong>q4h</strong> 監測。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 16–17</span> 變速胰島素 CRI</h3>
+        <p class="p">配法：Regular 胰島素（100 IU/mL）<strong>貓 1.1–2.2 IU/kg</strong>（狗 2.2 IU/kg）加入 <strong>240 mL 0.9% NaCl</strong>，從 <strong>10 mL/h</strong> 開始，每 4 小時依血糖調整。</p>
+        <div class="grid2">
+          <div class="card-mini"><h4>相對方案（📄 16）</h4>
+            <div class="tbl-wrap"><table>
+              <tr><th>BG（mg/dL）</th><th>葡萄糖</th><th>胰島素速率</th></tr>
+              <tr><td>&gt; 181</td><td>無</td><td>+2 mL/h</td></tr>
+              <tr><td>121–180</td><td>無</td><td>+1 mL/h</td></tr>
+              <tr><td>100–120</td><td>2.5%</td><td>不變</td></tr>
+              <tr><td>80–99</td><td>2.5%</td><td>−1 mL/h</td></tr>
+              <tr><td>&lt; 80</td><td>5%</td><td>−2 mL/h</td></tr>
+            </table></div></div>
+          <div class="card-mini"><h4>絕對方案（📄 17）</h4>
+            <div class="tbl-wrap"><table>
+              <tr><th>BG（mg/dL）</th><th>葡萄糖</th><th>胰島素速率</th></tr>
+              <tr><td>&gt; 180</td><td>無</td><td>10 mL/h</td></tr>
+              <tr><td>121–180</td><td>無</td><td>7 mL/h</td></tr>
+              <tr><td>100–120</td><td>2.5%</td><td>5 mL/h</td></tr>
+              <tr><td>80–99</td><td>5%</td><td>5 mL/h</td></tr>
+              <tr><td>&lt; 79</td><td>5%</td><td>0（暫停）</td></tr>
+            </table></div></div>
+        </div>
+        <ol class="notes">
+          <li>小體型動物可能需要<strong>濃度較高</strong>的胰島素配方，以減少液體量</li>
+          <li>血糖已經可以接受時<strong>仍要繼續胰島素</strong>——胰島素是用來<strong>停止生酮</strong>，不只是降血糖</li>
+          <li><strong>一旦加了葡萄糖，酮症解除前不要拿掉</strong></li>
+        </ol>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 換算：4 kg 貓用 2.2 IU/kg ＝ 8.8 IU／240 mL ≈ 0.037 IU/mL；10 mL/h ≈ 0.37 IU/h ≈ 0.09 IU/kg/h。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 18</span> 固定速率胰島素 CRI：固定胰島素，用葡萄糖追血糖</h3>
+        <div class="grid3">
+          <div class="card-mini"><h4>胰島素固定</h4><ul>
+            <li><strong>0.1 U/kg/h IV</strong></li><li>50 IU regular 加入 500 mL 0.9% NaCl＝0.1 IU/mL，以 <strong>1 mL/kg/h</strong> 輸注</li>
+            <li>抑制脂肪分解＋停止生酮</li></ul></div>
+          <div class="card-mini"><h4>葡萄糖調整</h4><ul>
+            <li>血糖 ↓ → 葡萄糖 ↑</li><li><strong>不要調低胰島素</strong></li></ul></div>
+          <div class="card-mini"><h4>終點</h4><ul><li><strong>酮症解除</strong>，不只是血糖正常</li></ul></div>
+        </div>
+        <p class="p">為什麼重要：<strong>特別適合正常血糖／SGLT2i 相關 DKA</strong>（Gant 等，JVECC 2024;34:23–30）。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 19</span> 補葡萄糖不是失敗，是計畫的一部分</h3>
+        <ul class="notes">
+          <li>為什麼加：在<strong>持續給胰島素清酮體</strong>時避免低血糖</li>
+          <li>開始了就不要停：因為胰島素必須持續，停掉會低血糖</li>
+          <li>目標是<strong>解除酮症</strong>——血糖控制之後再說</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">🧂</div>
+      <h2>5. 桶 3：電解質與復甦後的輸液</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 20</span> 鈉與滲透壓</h3>
+        <ul class="notes">
+          <li><strong>轉位性低血鈉</strong>：血糖每升高 3.5 mmol/L（約 63 mg/dL），Na⁺ 下降約 1 mmol/L；全身鈉量常沒有改變</li>
+          <li><strong>滲透壓不要變化太快</strong>——避免腦水腫</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+          <tr><th>就診時 Na⁺</th><th>解讀</th></tr>
+          <tr><td>低</td><td>預期中的滲透性稀釋——正常</td></tr>
+          <tr><td>正常</td><td><strong>真正的高血鈉被遮住</strong>——有自由水缺失</td></tr>
+          <tr><td>高</td><td>嚴重高血鈉＋極度失水——高滲透壓狀態</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 21</span> 例子：滲透壓隨時間變化</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>時間點</th><th>Na⁺</th><th>血糖（mg/dL）</th><th>計算滲透壓</th><th>pH</th></tr>
+          <tr><td>#1 入院</td><td>124</td><td>792</td><td>292</td><td>7.098</td></tr>
+          <tr><td>#2 7 小時</td><td>145</td><td>594</td><td>323</td><td>7.186</td></tr>
+          <tr><td>#3 14 小時</td><td>153</td><td>486</td><td><strong>333</strong></td><td>7.170</td></tr>
+          <tr><td>#4 第 3 天（胰島素約 24 小時）</td><td>158</td><td>127.8</td><td>323</td><td>7.217</td></tr>
+        </table></div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>血糖下降時，表面的低血鈉會消失——但要注意<strong>真正的高血鈉</strong>浮現。14 小時滲透壓<strong>上升</strong>代表真的有<strong>自由水缺失</strong>，要調整輸液。<span class="src src-add">💡</span> 計算式：2 × Na ＋ 血糖（mg/dL）／18（如 #1：2 × 124 ＋ 792 ÷ 18 ≈ 292）。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 22–25</span> 鉀、磷、鎂</h3>
+        <p class="p">三者都會掉：<strong>K⁺</strong>——胰島素把鉀推進細胞；<strong>PO₄、Mg²⁺</strong>——稀釋＋胰島素。（📄 23 用一瓶運動飲料比喻電解質補充。）</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>K⁺</th><th>KCl 劑量</th></tr>
+          <tr><td>正常偏高／升高</td><td>不補或 0.1 mEq/kg/hr</td></tr>
+          <tr><td>正常中間</td><td>0.15–0.2 mEq/kg/hr</td></tr>
+          <tr><td>正常偏低</td><td>0.2–0.25 mEq/kg/hr</td></tr>
+          <tr><td>低</td><td>0.3–0.5 mEq/kg/hr</td></tr>
+        </table></div>
+        <div class="grid2">
+          <div class="card-mini"><h4>鎂</h4><ul><li>12–24 小時內檢查</li><li>MgSO₄ CRI <strong>0.25–0.5 mEq/kg/<u>天</u></strong></li></ul></div>
+          <div class="card-mini"><h4>磷</h4><ul><li>經驗性補，或 12–24 小時內檢查</li><li>KPhos CRI 0.03–0.12 mmol/kg/hr；把 <strong>⅓–½ 的鉀改用 KPhos</strong> 補</li>
+            <li>⚠️ <strong>KPhos 不能和含鈣輸液（如 LRS）混合</strong>——會沉澱！</li></ul></div>
+        </div>
+        <p class="p">實務：電解質輸液用<strong>固定速率</strong>（如 2 mL/hr）跑，再調整胰島素與主要輸液來達到總量目標。監測體重並視需要調整。</p>
+        <p class="muted">學員講義的磷劑量寫 0.01–0.03 mEq/kg/h（PO₄ &lt; 0.8 mmol/L 或有臨床症狀時），與投影片不同，使用前請查藥典。<span class="src src-add">💡</span> 低磷最怕的是<strong>溶血</strong>。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 26</span> ARFT 之後的輸液計畫</h3>
+        <ul class="notes">
+          <li><strong>補脫水</strong>：脫水 % × 體重（kg）× 1000 mL，在 12–24 小時內補完</li>
+          <li><strong>維持</strong>：2–4 mL/kg/hr</li>
+          <li><strong>持續流失</strong>：多尿！！！</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>碳酸氫鈉很少需要</strong>，而且有真實風險（分解成 CO₂、高滲透壓）。劑量 1 mEq/kg IV 用無菌水稀釋，<strong>只保留給 pH &lt; 7.0 且有致命心血管問題</strong>時。</div></div>
+        <p class="muted">DKA 早期輸液速率通常很高。小體型動物可能需要較濃的胰島素溶液以限制液體量。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🍽️</div>
+      <h2>6. 桶 4：營養、轉換長效胰島素與出院</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 27</span> 營養：生理上和實務上都有好處</h3>
+        <div class="grid3">
+          <div class="card-mini"><h4>腸黏膜完整</h4><ul><li>維持重症期的屏障功能</li></ul></div>
+          <div class="card-mini"><h4>血糖穩定</h4><ul><li>減少分解代謝與胰島素阻抗</li></ul></div>
+          <div class="card-mini"><h4>回家的門票</h4><ul><li>才能轉長效胰島素與出院</li></ul></div>
+        </div>
+        <ul class="notes">
+          <li><strong>不要等！</strong></li>
+          <li>早點處理飼主對<strong>管餵</strong>的負面印象，特別是挑食的貓</li>
+          <li><strong>早期管餵縮短住院</strong></li>
+        </ul>
+        <div class="alert alert-success"><span class="alert-icon">✅</span><div>陷阱 #4 破解：貓<strong>不需要自己吃</strong>才能開始長效胰島素。<strong>能耐受管餵就夠了。</strong></div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 28</span> 轉換到長效胰島素的條件</h3>
+        <ol class="notes">
+          <li><strong>代謝穩定</strong>：灌流正常、沒有血行動力學問題</li>
+          <li><strong>有在吃或能耐受管餵</strong>：熱量攝取足夠</li>
+          <li><strong>酮症解除</strong>：尿／血酮陰性或很少；陰離子間隙趨於正常</li>
+        </ol>
+        <p class="muted">學員講義版本：自己吃、不吐、BG 穩定在 5–15 mmol/L（約 90–270 mg/dL）、酮體下降、臨床狀況好。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 29</span> 出院條件</h3>
+        <ol class="notes">
+          <li>穩定且有在吃</li>
+          <li>酮症解除或大致解除</li>
+          <li>臨床症狀解除或正在改善</li>
+          <li>長期處置計畫已建立</li>
+          <li>檢查完成（或已告知飼主還有哪些盲點）</li>
+        </ol>
+        <div class="quote">住院時不追求完美血糖控制——重點是解除 DKA，血糖微調在門診做。</div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🔍</div>
+      <h2>7. 桶 5：找誘因與預後</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 31</span> 找「誘因」</h3>
+        <ul class="notes">
+          <li>DKA 的<strong>狗 70%、貓 93%</strong> 有共病</li>
+          <li>需要和飼主溝通——不一定都會去追</li>
+          <li>共病是<strong>相關</strong>，不一定是<strong>原因</strong></li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div>胰臟炎可能是 DKA 的<strong>結果</strong>，不是原因。只有 lipase 升高不能確認它就是誘因。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 32</span> 常見誘因</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>貓</h4><ul>
+            <li><strong>肝脂肪沉積（38%）</strong></li><li>CKD（28%）</li><li>胰臟炎（18%）</li><li>感染（18%）</li>
+            <li>其他：膽管肝炎、腫瘤、牙科疾病</li></ul></div>
+          <div class="card-mini"><h4>狗</h4><ul>
+            <li>感染，如 UTI（41%）</li><li>發炎，如胰臟炎（41%）</li><li>內分泌，如庫欣（15%）</li>
+            <li>其他：外傷、手術、牙科、Somogyi 效應</li></ul></div>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 33</span> 預後：比你想的好</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>貓</h4><ul><li>出院存活 <strong>61–93%</strong></li><li>糖尿病緩解 <strong>約 58%</strong></li></ul></div>
+          <div class="card-mini"><h4>狗與住院</h4><ul><li>狗出院存活約 70%</li><li>一般住院 <strong>3–6 天</strong></li></ul></div>
+        </div>
+        <p class="p">貓預後差的相關因子：<strong>氮血症、高膽紅素血症、嚴重電解質異常、較高的疾病嚴重度分數（APPLE）、就診時血糖較高</strong>。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 34–35</span> 常見陷阱與飼主溝通</h3>
+        <div class="grid3">
+          <div class="card-mini"><h4>飼主溝通</h4><ul><li>誠實、樂觀、確認飼主的投入</li></ul></div>
+          <div class="card-mini"><h4>胰島素時機</h4><ul><li>6 小時內開始；不要停</li></ul></div>
+          <div class="card-mini"><h4>早期復甦</h4><ul><li>前期積極輸液很重要</li></ul></div>
+        </div>
+        <p class="p">和飼主說：<strong>DKA 嚴重但很能治</strong>；預後通常好；即使完整檢查也無法預測一切；<strong>可能復發，但緩解是真的</strong>；需要承諾長期照護。陷阱 #5 破解：DKA <strong>不一定</strong>貴得離譜。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🐈</div>
+      <h2>8. 單純型貓糖尿病的處置</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 38</span> 四個重點</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>🎯 目標</h4><ul><li>改善臨床症狀（PU/PD 減少、體重穩定）——<strong>不是完美血糖</strong></li></ul></div>
+          <div class="card-mini"><h4>💉 首選胰島素</h4><ul><li>貓 <strong>Glargine（Lantus U-100）</strong>；狗 Caninsulin</li><li>從 <strong>1 U/貓 q12h</strong> 開始；反應不好再換</li></ul></div>
+          <div class="card-mini"><h4>🍽️ 飲食</h4><ul><li><strong>高蛋白、低碳水</strong>，有助緩解</li><li>一致性與適口性最重要</li></ul></div>
+          <div class="card-mini"><h4>📊 監測</h4><ul><li>從臨床症狀＋體重到 CGM（Freestyle Libre）</li><li>依飼主能力調整強度</li></ul></div>
+        </div>
+        <p class="muted">學員講義：Glargine 或 ProZinc；1–2 IU/貓 q12h 起始，依最低點血糖調整；<strong>目標最低點 5–8 mmol/L（約 90–145 mg/dL）</strong>。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 39</span> 貓可用的胰島素</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>胰島素</th><th>在貓的作用</th><th>頻率</th><th>說明</th></tr>
+          <tr><td><strong>Glargine U-100（Lantus）</strong></td><td>中效</td><td>q12h SC</td><td>皮下沉澱 → 血糖曲線平；效力比 ProZinc 弱；<strong>緩解率好</strong></td></tr>
+          <tr><td>Glargine U-300（Toujeo）</td><td>長效基礎型</td><td>q24h（需專用筆）</td><td>一天一次有潛力；貓的資料有限</td></tr>
+          <tr><td><strong>ProZinc（PZI）</strong></td><td>中效</td><td>q12h SC</td><td>獸醫專用、混濁懸浮液；效力比 glargine 強，血糖起伏可能較大</td></tr>
+          <tr><td>Degludec（Tresiba）</td><td>超長效基礎型</td><td>q24h</td><td>在貓有潛力，例行使用前需要更多資料</td></tr>
+        </table></div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div>2023 年研究：glargine 多劑量瓶在正確操作下<strong>可保持無菌達 6 個月</strong>。一瓶用約 <strong>3 個月</strong>是降低成本與浪費的合理折衷。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 40</span> SGLT2 抑制劑：特定貓的口服選擇</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>優點</h4><ul>
+            <li>阻斷腎臟 SGLT2 → 尿糖排出 → 降血糖，<strong>幾乎沒有低血糖風險</strong></li>
+            <li>合適病例臨床成功率 <strong>70–84%</strong></li>
+            <li>口服——不用打針（？）；可能提高配合度</li></ul></div>
+          <div class="card-mini"><h4>重要限制</h4><ul>
+            <li><strong>只適用於沒用過胰島素的單純型 DM</strong></li>
+            <li>需要<strong>殘存 β 細胞功能</strong>才不會酮症</li>
+            <li><strong>eDKA 風險</strong>（見第 2 節）</li>
+            <li>腸胃副作用常見（<strong>嘔吐 50%、下痢 38%</strong>）</li>
+            <li>每天口服（講義：bexagliflozin 一天兩次、velagliflozin 一天一次）——對某些貓／飼主仍是挑戰</li>
+            <li><strong>DKA 時禁用</strong></li></ul></div>
+        </div>
+        <p class="muted">講義原文寫「Twice-daily (bexagliflozin) or once-daily (velagliflozin)」；<span class="src src-add">💡</span> 實際上 Bexacat 仿單是每天一次，可能是講義筆誤。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 41–42</span> 監測：照護光譜</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>強度</th><th>內容</th><th>限制</th></tr>
+          <tr><td><strong>低</strong></td><td>只看臨床症狀：食慾、體重、PU/PD；少量檢驗。適合穩定、控制好、飼主投入的貓</td><td>可能漏掉早期惡化</td></tr>
+          <tr><td><strong>中</strong></td><td>偶爾血糖曲線或單點＋<strong>每 1–3 個月果糖胺</strong></td><td>果糖胺反映幾週平均，看趨勢不看每日波動；<strong>落在參考範圍內要評估是否緩解</strong></td></tr>
+          <tr><td><strong>高</strong></td><td><strong>CGM</strong>（如 Freestyle Libre）：資料詳細，最適合調劑量</td><td>成本與投入較高；<strong>間歇使用</strong>通常最實際</td></tr>
+        </table></div>
+        <p class="p"><strong>單點血糖</strong>變異太大，<strong>不足以決定調劑量</strong>；主要用途是調查疑似低血糖。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 43–44</span> 胰島素阻抗的常見原因</h3>
+        <div class="grid3">
+          <div class="card-mini"><h4>內分泌</h4><ul><li><strong>肢端肥大症</strong>（IGF-1；可能需要很高劑量，例如 <strong>40 U BID</strong>）——講義附「多食的肢端肥大症貓」影片</li><li>甲狀腺亢進</li><li>腎上腺皮質功能亢進</li></ul></div>
+          <div class="card-mini"><h4>發炎／感染</h4><ul><li>UTI</li><li>胰臟炎</li><li>牙科疾病</li><li>過敏性皮膚病</li></ul></div>
+          <div class="card-mini"><h4>共病</h4><ul><li>肥胖、CKD</li><li>狗：未絕育母犬（黃體素）；庫欣（肝腫大消退前阻抗可能持續）</li></ul></div>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 45</span> 糖尿病緩解：實際可達的目標</h3>
+        <ul class="notes">
+          <li>血糖控制良好的貓約 <strong>58%</strong> 可緩解</li>
+          <li>關鍵：<strong>早期積極控制</strong>、高蛋白低碳水飲食、移除可逆的胰島素阻抗原因</li>
+          <li>Glargine 可能比 lente 緩解率高</li>
+          <li>SGLT2i 也可能導致緩解（2025–2026 新的病例報告）</li>
+          <li>緩解監測：控制極佳後<strong>逐步減量</strong>；持續<strong>沒有尿糖</strong>或 BG 持續 <strong>&lt; 10 mmol/L（約 180 mg/dL）</strong>就值得做緩解試驗</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 46</span> 單純型貓糖尿病 Take-home</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>主題</th><th>重點</th></tr>
+          <tr><td>🎯 目標優先</td><td>改善症狀，不只是數字。快樂的貓＋可持續的照護＝成功</td></tr>
+          <tr><td>💉 胰島素</td><td>Glargine U-100 q12h 是好的第一選擇；ProZinc 較強；基礎型（Toujeo、Degludec）有潛力</td></tr>
+          <tr><td>🍽️ 飲食</td><td>高蛋白低碳水支持緩解；適口性與一致性最重要</td></tr>
+          <tr><td>💊 SGLT2i</td><td>適合新診斷、沒用過胰島素的貓；知道 eDKA 風險並監測；<strong>曾用胰島素的貓避免使用</strong></td></tr>
+          <tr><td>📊 監測配合飼主</td><td>照護光譜；CGM 強大但間歇使用通常最好；果糖胺＋臨床症狀是合理底線</td></tr>
+          <tr><td>🌟 緩解可能</td><td>約 58%；早期積極控制機會最大</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📚</div>
+      <h2>參考資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <div class="ref-list">
+          <div class="ref-item">Boller E. <em>Diabetes: The Changing Face of Diabetic Ketoacidosis &amp; Uncomplicated Diabetes Mellitus in Cats.</em> TSFM Annual Conference 2026, Day 2 Session 2（講義 50 頁，含學員講義）。</div>
+          <div class="ref-item">Ad &amp; Hess. APPLE scores in cats with first-time DKA. <em>J Vet Intern Med</em> 2024.</div>
+          <div class="ref-item">Cooper et al. Risk factors and outcome predictors in cats with DKA (93 cases). <em>J Vet Emerg Crit Care</em> 2015.</div>
+          <div class="ref-item">Hume, Drobatz &amp; Hess. Outcome of dogs with DKA: 127 dogs. <em>J Vet Intern Med</em> 2006.</div>
+          <div class="ref-item">Bruskiewicz &amp; Nelson. Diabetic ketosis and ketoacidosis in cats: 42 cases. <em>JAVMA</em> 1997.</div>
+          <div class="ref-item">Sieber-Ruckstuhl et al. Remission of DM in cats with DKA. <em>J Vet Intern Med</em> 2008.</div>
+          <div class="ref-item">Cook &amp; Behrend. SGLT2 inhibitors in feline DM management. <em>J Vet Pharmacol Ther</em> 2025.</div>
+          <div class="ref-item">Behrend et al. Velagliflozin — the SENSATION study. <em>JAVMA</em> 2024；Hadd et al. Bexagliflozin in cats. <em>J Vet Intern Med</em> 2023.</div>
+          <div class="ref-item">Taylor et al. 2025 iCatCare consensus guidelines on feline DM. <em>J Feline Med Surg</em> 2025.</div>
+          <div class="ref-item">Gant et al. (fixed-rate insulin CRI) <em>J Vet Emerg Crit Care</em> 2024;34:23–30；Edward &amp; Hess. <em>J Vet Intern Med</em> 2025.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="sepsis.html">08 貓的敗血症</a>。下一場：<a href="aki.html">10 急性腎損傷</a>。延伸閱讀：<a href="../texas-endocrine-2026/dka-hhs.html">Texas 08 DKA／eDKA／HHS（Tardo）</a>、<a href="../texas-endocrine-2026/feline-diabetes.html">Texas 03 貓糖尿病</a>、<a href="../texas-endocrine-2026/sglt2i-off-label.html">Texas 04 SGLT2i</a>。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

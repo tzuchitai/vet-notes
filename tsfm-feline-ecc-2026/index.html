@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 TSFM 貓急重症研討會｜獸醫讀書筆記</title>
+<style>
+  :root {
+    --accent:    #B4233C;
+    --accent-lt: #D8485F;
+    --accent-dk: #7A1328;
+    --accent-bg: #FDF0F2;
+    --dark:      #2A1016;
+    --text:      #45302F;
+    --border:    #F0D3D9;
+    --bg:        #FDF9FA;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, "Segoe UI", "Noto Sans TC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── HOME LINK ── */
+  .home-bar {
+    padding: 16px 24px 0;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .home-bar a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text);
+    opacity: .55;
+    text-decoration: none;
+    font-size: .85rem;
+    font-weight: 600;
+  }
+  .home-bar a:hover { opacity: .9; }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, #fdf0f2 0%, #f8d7de 100%);
+    border-bottom: 3px solid var(--accent);
+    color: var(--dark);
+    padding: 40px 24px 44px;
+    text-align: center;
+  }
+  .header-icon { font-size: 2.6rem; margin-bottom: 12px; }
+  header .kicker {
+    font-family: ui-monospace, "SF Mono", monospace;
+    font-size: .75rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent-dk);
+    opacity: .75;
+    margin-bottom: 10px;
+  }
+  header h1 { font-size: 2rem; font-weight: 800; letter-spacing: .02em; color: var(--accent-dk); }
+  header p.dek {
+    margin: 10px auto 0;
+    max-width: 500px;
+    opacity: .65;
+    font-size: .95rem;
+    line-height: 1.65;
+    color: var(--text);
+  }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 900px; margin: 0 auto; padding: 36px 20px 80px; }
+
+  .stats {
+    display: flex; gap: 20px; flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+  .stat {
+    background: #fff; border-radius: 12px;
+    padding: 14px 20px;
+    box-shadow: 0 2px 8px rgba(16,34,31,.06);
+    flex: 1; min-width: 120px; text-align: center;
+    border: 1px solid var(--border);
+  }
+  .stat-num  { font-size: 1.6rem; font-weight: 800; color: var(--accent); }
+  .stat-label{ font-size: .75rem; opacity: .55; margin-top: 2px; }
+
+  .section-label {
+    font-size: .78rem; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--text);
+    opacity: .55; margin: 0 0 14px;
+  }
+
+  /* ── CASE LIST ── */
+  .cases { display: flex; flex-direction: column; gap: 14px; }
+
+  .case-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(16,34,31,.06);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    gap: 18px;
+    padding: 20px 22px;
+    border: 1px solid var(--border);
+    transition: transform .16s, box-shadow .16s;
+  }
+  .case-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(16,34,31,.12);
+  }
+  .case-num {
+    font-family: ui-monospace, "SF Mono", monospace;
+    font-size: .8rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    width: 42px; height: 42px;
+    display: flex; align-items: center; justify-content: center;
+    flex: none;
+  }
+  .case-body { flex: 1; min-width: 0; }
+  .case-tag {
+    font-size: .72rem; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--accent-dk); opacity: .7;
+    margin-bottom: 4px;
+  }
+  .case-title { font-size: 1.05rem; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+  .case-desc  { font-size: .85rem; color: var(--text); opacity: .75; line-height: 1.55; }
+  .case-meta {
+    flex: none;
+    display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between;
+    gap: 10px;
+  }
+  .case-date { font-size: .76rem; color: var(--text); opacity: .5; white-space: nowrap; }
+  .case-arrow {
+    font-size: .85rem; color: #fff;
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--accent);
+  }
+
+  /* ── COMING SOON ── */
+  .case-soon {
+    background: #fefbfb;
+    border: 2px dashed var(--border);
+    box-shadow: none;
+    cursor: default;
+  }
+  .case-soon:hover { transform: none; box-shadow: none; }
+  .case-soon .case-num { color: var(--text); opacity: .4; background: transparent; }
+  .case-soon .case-title, .case-soon .case-tag { opacity: .4; }
+  .case-soon .case-desc { opacity: .35; }
+  .coming-badge {
+    font-size: .7rem; font-weight: 700;
+    background: var(--border); color: var(--text);
+    border-radius: 20px; padding: 3px 10px; opacity: .65;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.5rem; }
+    .header-icon { font-size: 2rem; }
+    .container { padding: 20px 14px 60px; }
+    .case-card { flex-direction: column; gap: 12px; }
+    .case-meta { flex-direction: row; align-items: center; width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="home-bar">
+  <a href="../index.html">← 🐾 獸醫讀書筆記</a>
+</div>
+
+<header>
+  <div class="header-icon">🚑</div>
+  <p class="kicker">Conference · TSFM Annual Conference 2026</p>
+  <h1>2026 TSFM 貓急重症研討會</h1>
+  <p class="dek">台灣貓科醫學會（TSFM）2026 年會，Elise Boller（DVM, DACVECC）主講兩天的貓急診與重症課程。Day 1「The Crashing Cat」、Day 2「The Critical Cat」，依講義整理成中文重點筆記。</p>
+</header>
+
+<div class="container">
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num" id="case-count">10</div>
+      <div class="stat-label">已整理場次</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">急重症</div>
+      <div class="stat-label">主要領域</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">🐱</div>
+      <div class="stat-label">貓</div>
+    </div>
+  </div>
+
+  <div class="section-label">📋 場次筆記</div>
+
+  <div class="cases">
+
+    <!-- 01 -->
+    <a class="case-card" href="shock-basics.html">
+      <div class="case-num">01</div>
+      <div class="case-body">
+        <div class="case-tag">Day 1 · Primary survey · 休克分類 · 貓 vs 狗 · Shock index · RISG</div>
+        <div class="case-title">休克基礎：貓的休克，舊觀念與新證據</div>
+        <div class="case-desc">Primary survey 五個系統、休克的定義與六種型態、脫水 vs 灌流不足、貓的分布性休克（心搏過慢、低體溫、蒼白，休克器官是肺）、shock index 在貓不可靠、直腸–趾間溫差與 ATT 分數、阻塞性與心因性休克、灌流評估與嚴重度表、代謝性與低氧性休克</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">講義版</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 02 -->
+    <a class="case-card" href="fluid-resuscitation.html">
+      <div class="case-num">02</div>
+      <div class="case-body">
+        <div class="case-tag">Day 1 · ARFT · 晶體液 · 高張食鹽水 · 輸血 · HES · 復甦終點</div>
+        <div class="case-title">急性復甦輸液：讓治療成功的做法</div>
+        <div class="case-desc">四步驟框架、輸液副作用的八類風險因子、輸液武器庫與特殊情況選擇、高張食鹽水與血液製品劑量、依嚴重度的貓 bolus 劑量表、bolus–評估–重複、復甦終點與安全終點（貓的輸液過量徵象）</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">講義版</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 03 -->
+    <a class="case-card" href="cant-breathe-localization.html">
+      <div class="case-num">03</div>
+      <div class="case-body">
+        <div class="case-tag">Day 1 · 呼吸定位 · Stridor · 肋膜腔 · 矛盾呼吸</div>
+        <div class="case-title">喘不過氣的貓（一）：用呼吸定位減少不確定</div>
+        <div class="case-desc">先看再摸、七個定位（上／下呼吸道、肺實質、肋膜腔、胸壁與橫膈、腹部膨大、非呼吸性）的關鍵特徵、矛盾呼吸的敏感度與特異度、一頁速查表與影片測驗</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">講義版</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 04 -->
+    <a class="case-card" href="cant-breathe-next.html">
+      <div class="case-num">04</div>
+      <div class="case-body">
+        <div class="case-tag">Day 1 · SpO₂ · 靜脈血氣 · POCUS vs X 光 · HFNO · 插管</div>
+        <div class="case-title">喘不過氣的貓（二）：凌晨兩點的四個決定</div>
+        <div class="case-desc">血氧機的限制與低血氧三級、用靜脈血氣判斷換氣不足、穩定本身就是診斷策略（butorphanol、furosemide）、RAPID CAT 與 POCUS／NT-proBNP／X 光的證據、CHF／氣喘／上呼吸道治療無效時怎麼辦、HFNO、插管後無法通氣的四個檢查點</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">講義版</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 05 -->
+    <a class="case-card" href="fate.html">
+      <div class="case-num">05</div>
+      <div class="case-body">
+        <div class="case-tag">Day 1 · FATE · 左心房 · FAT CAT · SUPERCAT · Rivaroxaban · tPA</div>
+        <div class="case-title">會栓塞的貓：FATE 的處置改變了嗎？</div>
+        <div class="case-desc">病例 Milo、5P 與患肢 vs 健肢乳酸／血糖、左心房風險分層、阿斯匹靈 → clopidogrel → rivaroxaban、依 ACVIM 分期預防血栓、BLASTT 與 MATTERS（再灌流 ≠ 存活）、星期一要改的七件事、FATE 藥物劑量總表</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">講義版</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 06 -->
+    <a class="case-card" href="bleeding-transfusion.html">
+      <div class="case-num">06</div>
+      <div class="case-body">
+        <div class="case-tag">ITP · 2024 ACVIM · Prednisolone · TRACS · ISFM 輸血指引</div>
+        <div class="case-title">會出血的貓：ITP、輸血，以及改變了什麼</div>
+        <div class="case-desc">病例 Snow White、血小板低下 ≠ ITP、貓血小板凝集要看抹片、出血嚴重度分級、流式細胞 DAT、prednisoLONE 與起效時間、類固醇以外的選項（hIVIg、romiplostim、vincristine 不建議）、Zhong 2026 預後與減藥、輸血看貓不看 PCV、TRACS 與 FNHTR、異種輸血</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">講義版</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 07 -->
+    <a class="case-card" href="cpr-recover.html">
+      <div class="case-num">07</div>
+      <div class="case-body">
+        <div class="case-tag">Day 1 · RECOVER 2024 · BLS／ALS · ETCO₂ · 去顫 · Amiodarone</div>
+        <div class="case-title">心跳停止的貓：2024 RECOVER CPR 改了什麼？</div>
+        <div class="case-desc">病例 Pickles、貓的三種按壓手法（壓心室、不要雙手交疊）、通氣參數、ETCO₂ ≥ 18 目標、高劑量 epinephrine 取消、atropine 只給一次、去顫能量遞增、難治 VF 貓用 amiodarone、何時可以停止按壓、貓 ROSC 機會比狗高</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">講義版</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 08 -->
+    <a class="case-card" href="sepsis.html">
+      <div class="case-num">08</div>
+      <div class="case-body">
+        <div class="case-tag">Day 2 · VetSEPSIS 2026 · 貓的表現型 · 升壓劑 · 抗生素 · ROSE</div>
+        <div class="case-title">2026 年的貓敗血症</div>
+        <div class="case-desc">新定義不再用 SIRS、敗血性休克、病例 Dumpling（敗血性腹膜炎）、貓的低體溫與相對心搏過慢、小量 bolus 與早期升壓劑、1 小時內抗生素與經驗性用藥表、感染源控制、各器官功能障礙指標、抗生素降階與去復甦（ROSE）</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">講義版</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 09 -->
+    <a class="case-card" href="dka-diabetes.html">
+      <div class="case-num">09</div>
+      <div class="case-body">
+        <div class="case-tag">Day 2 · DKA · eDKA · 胰島素 CRI · 電解質 · Glargine · 緩解</div>
+        <div class="case-title">貓的 DKA 與單純型糖尿病</div>
+        <div class="case-desc">DKA 六個思考陷阱、病理生理、正常血糖 DKA（SGLT2i）、五個處置桶、胰島素 IM／變速／固定速率方案與葡萄糖補充、鈉與滲透壓變化、鉀磷鎂劑量、轉換長效胰島素與出院條件、貓的誘因與預後、單純型糖尿病的胰島素選擇、SGLT2i、監測光譜與緩解</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">講義版</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 10 -->
+    <a class="case-card" href="aki.html">
+      <div class="case-num">10</div>
+      <div class="case-body">
+        <div class="case-tag">AKI · 尿量 · 寡尿／無尿 · 高血鉀 · ins = outs · 透析</div>
+        <div class="case-title">急性腎損傷：辨識、原因與治療</div>
+        <div class="case-desc">AKI 的階段與決策點、致病機轉、生理性 vs 病理性寡尿、AKI vs CKD 比較表、肌酸酐的限制與 SDMA、前 2–4 小時的處置、高血鉀與酸血症、furosemide／mannitol／diltiazem、無尿與 ins = outs 的輸液計算、住院監測醫囑表、預後（含講者備註）</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">講義版</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+
+</div>
+
+</body>
+</html>

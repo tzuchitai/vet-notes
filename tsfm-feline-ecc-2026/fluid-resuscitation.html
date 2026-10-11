@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>急性復甦輸液：讓治療成功的做法｜2026 TSFM 貓急重症研討會</title>
+<style>
+  :root {
+    --primary: #B4233C;
+    --primary-light: #FDE4E8;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2a1016;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #d9a7b0; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4a1f28;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #d9a7b0; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #d9a7b0;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4a1f28;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #a26a75;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #7a1328 0%, #d8485f 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2a1016; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4a1f28; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #7a1328; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+</style>
+
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 TSFM 貓急重症研討會</a>
+  <div class="logo">
+    <h2>02｜急性復甦輸液<br>（ARFT）</h2>
+    <p>Elise Boller｜Day 1 Session 2</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">場次資訊與框架</a>
+    <div class="nav-section">評估</div>
+    <a href="#s1">1. 輸液副作用的風險因子</a>
+    <div class="nav-section">選擇輸液</div>
+    <a href="#s2">2. 輸液武器庫</a>
+    <div class="nav-section">復甦過程</div>
+    <a href="#s3">3. Bolus 劑量表與流程</a>
+    <a href="#s4">4. 什麼時候停：終點</a>
+    <div class="nav-section">總結</div>
+    <a href="#s5">參考資料</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>急性復甦輸液：讓治療成功的做法</h1>
+    <p>主講：Elise Boller, DVM, DACVECC</p>
+    <p>TSFM Annual Conference 2026｜Day 1 — The Crashing Cat｜Session 2｜場次 02</p>
+    <div class="tags">
+      <span class="tag">ARFT</span>
+      <span class="tag">休克嚴重度</span>
+      <span class="tag">晶體液</span>
+      <span class="tag">高張食鹽水</span>
+      <span class="tag">輸血</span>
+      <span class="tag">HES</span>
+      <span class="tag">Bolus-assess-repeat</span>
+      <span class="tag">復甦終點</span>
+      <span class="tag">安全終點</span>
+      <span class="tag">貓的輸液過量</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（數字＝講義 PDF 頁碼）
+    <span class="src src-add">💡 補充</span> 整理者補充（機轉、換算、交叉參照；不是講者說的）
+    <br><span class="muted">目前只有講義，沒有課堂錄音；講義上的影片（Vimeo）與現場投票無法收錄。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+<li>四步驟框架：<strong>辨識休克與嚴重度 → 找出風險因子 → 選輸液種類與劑量 → 監測治療目標並避免併發症</strong></li>
+<li>伸手拿輸液之前先問三件事：<strong>有沒有灌流不足？多嚴重？有沒有風險因子？</strong></li>
+<li>第一線：<strong>平衡等張晶體液</strong>；貓的 bolus 是<strong>小量</strong>：輕度 5–10、中度 10、重度 10–15 mL/kg（15–30 分鐘）</li>
+<li>高張食鹽水 7.5%：3–5 mL/kg、5–10 分鐘，效果約 30 分鐘，<strong>一定要接著給等張液</strong>；脫水、高血鈉、腎病禁用</li>
+<li>出血性休克要<strong>早點給血</strong>——晶體液無法恢復攜氧能力；<strong>貓輸血前一定要驗血型</strong></li>
+<li>流程是 <strong>bolus → 重新評估 → 重複或加輔助治療</strong>；灌流不足持續越久，預後越差</li>
+<li>停止輸液的三個時機：<strong>達到復甦終點、碰到安全終點、不太可能再有輸液反應</strong></li>
+<li>貓輸液過量的警訊：<strong>肺爆裂音（立刻停）</strong>、呼吸速率／用力上升、體重增加、水腫、<strong>流鼻水</strong></li>
+    </ul>
+  </div>
+
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📋</div>
+      <h2>場次資訊與四步驟框架</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <ul class="notes">
+          <li><span class="src src-slide">📄 2</span> 開場投票：「你在貓怎麼量血壓？」（Doppler、示波法……）——貓的血壓測量方法會影響後面「什麼數字需要處理」的判斷。</li>
+        </ul>
+        <h3><span class="src src-slide">📄 3</span> 急性復甦輸液（ARFT）的框架</h3>
+        <ol class="notes">
+          <li><strong>辨識休克與休克嚴重度</strong></li>
+          <li><strong>找出風險因子並調整做法</strong></li>
+          <li><strong>選擇輸液種類與劑量</strong></li>
+          <li><strong>監測治療目標、避免併發症</strong></li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 4</span> 拿輸液之前先回答三個問題</h3>
+        <div class="grid3">
+          <div class="card-mini"><h4>1. 有灌流不足嗎？</h4><ul><li>HR、黏膜顏色、CRT</li><li>脈搏品質、意識、體溫</li></ul></div>
+          <div class="card-mini"><h4>2. 多嚴重？</h4><ul><li>輕度、中度、重度、失代償</li></ul></div>
+          <div class="card-mini"><h4>3. 有風險因子嗎？</h4><ul><li>心臟、肺臟、敗血症／SIRS</li><li>低膠體滲透壓、腎臟、凝血異常</li></ul></div>
+        </div>
+        <p class="p">這三個答案決定輸液的<strong>種類、劑量與速度</strong>。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">⚠️</div>
+      <h2>1. 輸液副作用的風險因子</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 6</span> 八類風險因子</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>類別</th><th><span class="src src-add">💡 補充</span> 貓常見的例子</th><th><span class="src src-add">💡 補充</span> 為什麼要小心</th></tr>
+          <tr><td><strong>心臟</strong></td><td>HCM 等心肌病（常沒有心雜音）</td><td>前負荷一多就肺水腫／肋膜積液</td></tr>
+          <tr><td><strong>肺臟</strong></td><td>肺炎、肺挫傷、氣喘</td><td>受損的肺更容易滲漏</td></tr>
+          <tr><td><strong>血管</strong></td><td>敗血症、SIRS（血管通透性增加）</td><td>輸液漏到間質，貓的休克器官是肺</td></tr>
+          <tr><td><strong>膠體滲透壓</strong></td><td>低白蛋白（PLE、肝病、滲出）</td><td>水留不住在血管內</td></tr>
+          <tr><td><strong>電解質</strong></td><td>高／低血鈉</td><td>鈉矯正太快 → 神經併發症</td></tr>
+          <tr><td><strong>腎臟</strong></td><td>寡尿／無尿 AKI、CKD</td><td>排不掉，容易輸液過量（見 <a href="aki.html">10 AKI</a>）</td></tr>
+          <tr><td><strong>活動性出血</strong></td><td>血腹、創傷</td><td>拉高血壓可能沖掉血塊、稀釋凝血因子</td></tr>
+          <tr><td><strong>血液</strong></td><td>貧血、凝血異常</td><td>晶體液會稀釋 PCV 與凝血因子</td></tr>
+        </table></div>
+        <p class="muted">講義只列出八個類別並附「輸液過量的貓」影片；例子與理由欄是整理者補充。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">💉</div>
+      <h2>2. 輸液武器庫：用哪一種？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 8</span> 總覽</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>種類</th><th>評價</th></tr>
+          <tr><td>平衡等張晶體液</td><td>✅ 第一線</td></tr>
+          <tr><td>高張食鹽水 7.5%</td><td>✅ 特殊情況</td></tr>
+          <tr><td>血液製品</td><td>✅ 適應症明確時</td></tr>
+          <tr><td>合成膠體液（HES）</td><td>⚠️ 小心使用</td></tr>
+          <tr><td>低張晶體液</td><td>❌ 不能用來復甦</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 9–10</span> 平衡等張晶體液：第一線</h3>
+        <ul class="notes">
+          <li><strong>平衡</strong>（balanced）：成分接近細胞外液；<strong>等張</strong>（isotonic）：張力接近細胞外液。例：Normosol-R、Plasma-Lyte、LRS。</li>
+        </ul>
+        <h4>特殊情況怎麼選</h4>
+        <div class="tbl-wrap"><table>
+          <tr><th>情況</th><th>選擇</th><th>原因</th></tr>
+          <tr><td>低氯性代謝性鹼中毒</td><td>偏好含氯高的 <strong>0.9% NaCl</strong></td><td>補回 Cl⁻，避免更鹼化</td></tr>
+          <tr><td>低血鈉</td><td>選擇不會讓 Na⁺ <strong>上升太快</strong>的輸液</td><td>矯正太快 → <strong>滲透性去髓鞘</strong></td></tr>
+          <tr><td>高血鈉</td><td>選擇不會讓 Na⁺ <strong>下降太快</strong>的輸液</td><td>矯正太快 → <strong>腦水腫</strong></td></tr>
+          <tr><td>嚴重高血鉀（如尿道阻塞）</td><td>平衡晶體液<strong>仍然適合</strong></td><td>其中少量 K⁺ 不會明顯惡化高血鉀；恢復灌流反而可能改善 K⁺</td></tr>
+          <tr><td>出血性休克</td><td>適應症成立時<strong>及早給血</strong></td><td>晶體液無法恢復攜氧能力</td></tr>
+        </table></div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 鈉矯正速度的常用上限是 <strong>每小時不超過 0.5 mEq/L（每天約 10–12 mEq/L）</strong>。慢性（&gt; 48 小時）的鈉異常更要慢。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 11</span> 高張食鹽水（HSS）：特殊用途</h3>
+        <p class="p">把細胞內的水拉進血管——<strong>快、強、短效</strong>。</p>
+        <div class="grid3">
+          <div class="card-mini"><h4>劑量與時間</h4><ul>
+            <li><strong>7.5% HSS 3–5 mL/kg</strong>，IV 5–10 分鐘</li><li>效果約 <strong>30 分鐘</strong></li>
+            <li><strong>一定要接著給等張液</strong></li>
+            <li>配法：23.4% HSS 用晶體液稀釋；或 23.4% HSS ＋ 膠體液 <strong>1 : 2.5</strong> → 7.5%</li></ul></div>
+          <div class="card-mini"><h4>最適合</h4><ul><li><strong>頭部外傷</strong>（降顱內壓）</li><li>需要快速擴張血量</li><li>（大型犬）</li></ul></div>
+          <div class="card-mini"><h4>禁忌</h4><ul><li><strong>脫水</strong>、高血鈉</li><li>血量正常</li><li>腎臟疾病</li></ul></div>
+        </div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><span class="src src-add">💡 補充</span> HSS 是靠「借用」細胞內和間質的水；脫水的貓已經沒有水可借，所以禁用。另外 23.4% 原液絕對不可直接 IV。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 12</span> 血液製品</h3>
+        <div class="grid3">
+          <div class="card-mini"><h4>全血</h4><ul><li><strong>最理想</strong>：一次補回 RBC、凝血因子和容積</li></ul></div>
+          <div class="card-mini"><h4>pRBC ＋ FFP</h4><ul><li>沒有全血時的替代</li></ul></div>
+          <div class="card-mini"><h4>FFP</h4><ul><li>對低血容很好，但取得與操作麻煩</li></ul></div>
+        </div>
+        <ul class="notes">
+          <li>目標 <strong>PCV &gt; 20–24%</strong></li>
+          <li>估算：<strong>pRBC 1 mL/kg 約升 PCV 1%</strong>；<strong>全血 2 mL/kg 約升 PCV 1%</strong></li>
+          <li><strong>貓：輸血前一定要驗血型</strong>（天然抗體，A 型貓輸到 B 型血可致命；詳見 <a href="bleeding-transfusion.html">06</a>）</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 13</span> 合成膠體液：小心</h3>
+        <ul class="notes">
+          <li>例：Voluven®（HES）。<strong>3–5 mL/kg</strong> 一次，5–10 分鐘給完；擴容效果可維持<strong>數小時</strong>。</li>
+          <li>可和 HSS 併用做<strong>小量復甦</strong>。</li>
+          <li>副作用：<strong>凝血功能受損</strong>、可能<strong>腎損傷</strong>、水腫惡化。<strong>敗血症病患要特別小心。</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🔁</div>
+      <h2>3. 依嚴重度給 bolus：bolus → 評估 → 重複</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 17</span> ARFT 劑量表（沒有風險因子時）</h3>
+        <figure class="fig">
+          <img src="photos/02-17-arft-framework.jpg" alt="ARFT 框架：依灌流不足嚴重度決定 bolus 量" loading="lazy">
+          <figcaption>📄 17：ARFT 框架：依灌流不足嚴重度決定 bolus 量</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>參數／輸液</th><th>輕度</th><th>中度</th><th>重度</th></tr>
+          <tr><td>意識</td><td>正常 → 稍安靜</td><td>沉鬱</td><td>意識模糊 → 木僵</td></tr>
+          <tr><td>心跳</td><td>正常 → 稍快</td><td>↑ 或正常</td><td>正常 → ↓（<strong>心搏過慢特別危險</strong>）</td></tr>
+          <tr><td>黏膜</td><td>粉紅 → 淡粉紅</td><td>蒼白</td><td>蒼白／白 → 灰</td></tr>
+          <tr><td>股／蹠動脈脈搏</td><td>正常／摸得到</td><td>弱／難摸</td><td>非常弱／摸不到</td></tr>
+          <tr><td>肢端溫度</td><td>正常 → 稍涼</td><td>涼</td><td>明顯冰冷</td></tr>
+          <tr><td>血壓／乳酸</td><td>常維持／正常或↑</td><td>可能↓／常↑</td><td>常↓／常↑、清除差</td></tr>
+          <tr><td><strong>平衡等張晶體液</strong></td><td><strong>5–10 mL/kg</strong></td><td><strong>10 mL/kg</strong></td><td><strong>10–15 mL/kg</strong>，15–30 分鐘</td></tr>
+          <tr><td><strong>HSS 或膠體液</strong></td><td><strong>3 mL/kg</strong></td><td><strong>3–5 mL/kg</strong></td><td><strong>5 mL/kg</strong></td></tr>
+          <tr><td><strong>pRBC 或新鮮全血</strong></td><td><strong>10 mL/kg</strong></td><td><strong>10–15 mL/kg</strong></td><td><strong>15–25 mL/kg</strong></td></tr>
+        </table></div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 對照：貓的血量約 <strong>50–60 mL/kg</strong>（狗約 80–90）。傳統「休克劑量」貓 40–60 mL/kg 是整個血量，現在不再一次給完，而是用上表的小量 bolus 反覆評估。有心臟、肺臟等風險因子時，bolus 再減量、給更慢。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 16</span> Bolus–評估–重複</h3>
+        <p class="p">給 bolus → <strong>重新評估灌流</strong> → 休克緩解了嗎？→ 沒有：重複 bolus 或加上<strong>輔助治療</strong>（升壓劑、輸血、處理原因）。</p>
+        <div class="quote">時間很重要：灌流不足沒有矯正的時間越長，預後越差。</div>
+        <p class="p"><span class="src src-slide">📄 15</span> 互動題：「你認為血壓多少才算『需要處理』？」——答案見下一節的目標值。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🛑</div>
+      <h2>4. 什麼時候停？復甦終點與安全終點</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 18</span> 停止的三個理由</h3>
+        <ol class="notes">
+          <li><strong>已達到復甦終點</strong></li>
+          <li><strong>碰到安全終點</strong>（開始出現輸液過量的徵象）</li>
+          <li><strong>不太可能再對輸液有反應</strong></li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 21</span> 復甦終點：客觀目標</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>#</th><th>指標</th><th>目標</th></tr>
+          <tr><td>1</td><td>心跳、ECG</td><td>正常速率與節律，<strong>160–180 次/分、竇性</strong></td></tr>
+          <tr><td>2</td><td>血壓</td><td><strong>MAP &gt; 65–70 mmHg</strong>；<strong>Doppler &gt; 80–100 mmHg</strong></td></tr>
+          <tr><td>3</td><td>前負荷估計／CVP／POCUS</td><td>前負荷足夠：後腔靜脈、左心室充盈、有無積液</td></tr>
+          <tr><td>4</td><td>尿量、USG</td><td><strong>&gt; 2 mL/kg/hr</strong>，USG 1.008–1.012</td></tr>
+          <tr><td>5</td><td>乳酸</td><td><strong>&lt; 1.5–2 mmol/L</strong></td></tr>
+          <tr><td>6</td><td>PCV／TS</td><td><strong>PCV &gt; 24%</strong>、脫水已矯正</td></tr>
+          <tr><td>7</td><td>血氧含量</td><td>PCV、Hb、SpO₂</td></tr>
+          <tr><td>8</td><td>體液平衡為零</td><td>找出理想（脫水矯正後）體重，追蹤到與預測體重持平</td></tr>
+        </table></div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 貓用 Doppler 量到的數值比較接近<strong>收縮壓</strong>（有人認為介於收縮壓與平均壓之間），所以 Doppler 目標（80–100）比 MAP 目標（65–70）高。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 19</span> 安全終點：出現這些就停</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>徵象</th><th>意義</th></tr>
+          <tr><td>🫁 <strong>肺爆裂音</strong></td><td>聽到就<strong>立刻停</strong></td></tr>
+          <tr><td>🔺 呼吸速率／用力上升</td><td>正在發生肺水腫</td></tr>
+          <tr><td>體重增加過多、周邊水腫</td><td>體液累積</td></tr>
+          <tr><td>水腫惡化或<strong>流鼻水（貓）</strong></td><td>貓特有的輸液過量徵象</td></tr>
+        </table></div>
+        <div class="alert alert-warn"><span class="alert-icon">🐱</span><div><span class="src src-add">💡 補充</span> 貓輸液過量常先出現<strong>肋膜積液</strong>而不是肺爆裂音，也可能出現<strong>結膜水腫（chemosis）</strong>、透明鼻分泌物。呼吸速率上升時用 POCUS 看肋膜腔。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 22</span> 待續</h3>
+        <p class="p">「重症貓的輸液管理（fluid stewardship）」——復甦之後的最佳化、穩定、排除（ROSE）階段，講義標示「待續」，會在後續場次延伸（見 <a href="sepsis.html">08 敗血症</a>、<a href="aki.html">10 AKI</a>）。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📚</div>
+      <h2>參考資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <div class="ref-list">
+          <div class="ref-item">Boller E. <em>Acute Resuscitative Fluid Therapy: Treating for Success.</em> TSFM Annual Conference 2026, Day 1 Session 2（講義 23 頁）。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="shock-basics.html">01 休克基礎</a>。下一場：<a href="cant-breathe-localization.html">03 喘不過氣的貓：呼吸定位</a>。相關：<a href="bleeding-transfusion.html">06 出血與輸血</a>、<a href="sepsis.html">08 敗血症</a>。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

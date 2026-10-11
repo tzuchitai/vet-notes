@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>會出血的貓：ITP、輸血，以及改變了什麼｜2026 TSFM 貓急重症研討會</title>
+<style>
+  :root {
+    --primary: #B4233C;
+    --primary-light: #FDE4E8;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2a1016;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #d9a7b0; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4a1f28;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #d9a7b0; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #d9a7b0;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4a1f28;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #a26a75;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #7a1328 0%, #d8485f 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2a1016; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4a1f28; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #7a1328; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+</style>
+
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 TSFM 貓急重症研討會</a>
+  <div class="logo">
+    <h2>06｜會出血的貓：<br>ITP 與輸血</h2>
+    <p>Elise Boller｜Session 6</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">學習目標與病例 Snow White</a>
+    <div class="nav-section">基礎</div>
+    <a href="#s1">1. 基礎：血小板低下 ≠ ITP</a>
+    <div class="nav-section">診斷</div>
+    <a href="#s2">2. 2024 ACVIM 診斷架構</a>
+    <div class="nav-section">ITP 治療</div>
+    <a href="#s3">3. 第一線：類固醇</a>
+    <div class="nav-section">嚴重出血與輸血</div>
+    <a href="#s4">4. 輸血：看貓不看 PCV</a>
+    <div class="nav-section">ITP 治療</div>
+    <a href="#s5">5. 類固醇以外的選項</a>
+    <a href="#s6">6. 貓 ITP 的預後與減藥</a>
+    <div class="nav-section">總結</div>
+    <a href="#s7">7. 星期一要改的八件事</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>會出血的貓：ITP、輸血，以及改變了什麼</h1>
+    <p>主講：Elise Boller, DVM, DACVECC</p>
+    <p>TSFM Annual Conference 2026｜Session 6｜場次 06</p>
+    <div class="tags">
+      <span class="tag">血小板低下</span>
+      <span class="tag">ITP</span>
+      <span class="tag">2024 ACVIM ITP 共識</span>
+      <span class="tag">血小板凝集</span>
+      <span class="tag">流式細胞 DAT</span>
+      <span class="tag">Prednisolone</span>
+      <span class="tag">hIVIg</span>
+      <span class="tag">Romiplostim</span>
+      <span class="tag">Vincristine</span>
+      <span class="tag">ISFM 輸血指引</span>
+      <span class="tag">TRACS</span>
+      <span class="tag">FNHTR</span>
+      <span class="tag">異種輸血</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（數字＝講義 PDF 頁碼）
+    <span class="src src-add">💡 補充</span> 整理者補充（機轉、換算、交叉參照；不是講者說的）
+    <br><span class="muted">目前只有講義，沒有課堂錄音；講義上的影片（Vimeo）與現場投票無法收錄。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+<li><strong>血小板低下 ≠ ITP</strong>：生成減少、消耗、扣留、免疫破壞都要想；ITP 是<strong>排除性診斷</strong></li>
+<li>貓的血小板<strong>很容易凝集</strong>：機器數值偏低時<strong>一定要看抹片</strong>確認，不要治療一個沒確認過的數字</li>
+<li><strong>血小板數 ≠ 出血嚴重度</strong>：依出血程度（無／輕微、臨床重要、致命）決定治療強度</li>
+<li>第一線：<strong>Prednisolone 2 mg/kg/day PO</strong>（貓用 prednisoLONE，暴露量約為 prednisone 的 4–5 倍）；約 <strong>5 天</strong>才起效，5–7 天沒反應再升級</li>
+<li>Vincristine 在貓<strong>不建議</strong>；hIVIg 只是<strong>暫時的橋樑</strong>；TPE、脾臟切除證據不足</li>
+<li>Zhong 2026（31 隻原發性 ITP 貓）：出院存活 <strong>87%</strong>、控制中位 4.5 天；但減藥時 <strong>40% 復發</strong>、復發者一半再復發、只有 <strong>32%</strong> 達到緩解</li>
+<li>減藥：確認緩解後<strong>每 2–4 週減 25%</strong>，每次減之前確認血小板數</li>
+<li><strong>輸血看貓不看 PCV</strong>；用 <strong>TRACS</strong> 判斷輸血反應：FNHTR＝體溫 &gt; 39 °C 且比基準升高 &gt; 1 °C；被停掉的輸血有 <strong>46.4%</strong> 其實不符合任何反應</li>
+    </ul>
+  </div>
+
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📋</div>
+      <h2>學習目標與病例 Snow White</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <p class="muted">講義檔名為 D1 Session 6，但封面標題寫「Day 2 — The Critical Cat」；這裡依檔名排序。</p>
+        <h3><span class="src src-slide">📄 2</span> 學習目標</h3>
+        <ol class="notes">
+          <li>確認是<strong>真的</strong>血小板低下，並以結構化方式排除非免疫性原因</li>
+          <li>應用 <strong>2024 ACVIM</strong> 貓原發性 ITP 的診斷與治療架構</li>
+          <li>依<strong>臨床出血嚴重度</strong>（而非只看血小板數）選擇第一線與第二線治療</li>
+          <li>解讀貓 ITP 預後的最新證據：存活、復發、緩解率</li>
+          <li>評估輸血適應症，並以標準化 <strong>TRACS</strong> 準則辨識急性輸血反應</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 3</span> Snow White：一個非常糟的早上</h3>
+        <p class="p">5 歲家貓短毛、已絕育母貓；<strong>3 天精神差，身上出現紫色斑點！</strong>（改編的虛構教學病例）</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🔬</div>
+      <h2>1. 貓血小板低下的基礎</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 5</span> 血小板低下的四種機制</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>機制</th><th>例子</th></tr>
+          <tr><td><strong>生成減少</strong></td><td>骨髓疾病、浸潤、發育不良</td></tr>
+          <tr><td><strong>消耗</strong></td><td>DIC、血管炎、大量出血</td></tr>
+          <tr><td><strong>扣留</strong></td><td>脾臟腫大</td></tr>
+          <tr><td><strong>免疫破壞</strong></td><td>原發性（非相關性）ITP 或次發性（相關性）ITP</td></tr>
+        </table></div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>嚴重血小板低下<strong>支持</strong> ITP，但<strong>不能確診</strong>。ITP 仍然是排除性診斷。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 6</span> 貓的血小板：反應性很高</h3>
+        <p class="p"><strong>機器 → 抹片 → 確認。</strong>貓血小板很容易在採血管裡<strong>凝集</strong>，機器會算成偏低，而且貓血小板體積大，機器可能把它當成紅血球。</p>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 看抹片時要掃<strong>羽毛緣（feathered edge）</strong>找血小板團塊。單層區每個 100× 油鏡視野 1 個血小板約等於 15,000–20,000/µL。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 7</span> 血小板數 ≠ 出血嚴重度</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>出血程度</th><th>表現</th></tr>
+          <tr><td><strong>無／輕微出血</strong></td><td>只有點狀出血、瘀斑；沒有黏膜或體腔出血</td></tr>
+          <tr><td><strong>臨床上重要的出血</strong></td><td>口腔、腸胃道、泌尿道、呼吸道或眼睛出血</td></tr>
+          <tr><td><strong>致命出血</strong></td><td>中樞神經、體腔內，或造成血行動力學受損的出血</td></tr>
+        </table></div>
+        <p class="muted">學員講義：很多血小板 &lt; 10 × 10⁹/L 的貓<strong>沒有臨床出血</strong>。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 8</span> Snow White 告訴你什麼？</h3>
+        <ul class="notes">
+          <li>蒼白、非常沉鬱；<strong>心搏過速、脈搏差</strong>；<strong>Doppler 90 mmHg</strong></li>
+          <li>她排尿時你看到……（講義附照片，<span class="src src-add">💡</span> 推測為<strong>血尿</strong>）</li>
+          <li>CBC（機器）：<strong>PLT 8 × 10⁹/L</strong>、<strong>Hct 19%</strong>、TS 5.2</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 立即擔心：① <strong>出血造成的灌流不足</strong>（心搏過速、脈弱、Doppler 偏低）② 中度貧血 ③ 泌尿道出血＝至少「臨床重要」，加上血行動力學受損就是「<strong>致命出血</strong>」等級 ④ 先抹片確認血小板數。</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🧭</div>
+      <h2>2. 2024 ACVIM 診斷架構與新的檢驗</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 9</span> 結構化的診斷流程（LeVine 等，JVIM 2024;38:1958–1981）</h3>
+        <ol class="notes">
+          <li><strong>確認血小板低下</strong>：用抹片確認是真的低</li>
+          <li><strong>評估機制</strong>：生成、消耗、扣留</li>
+          <li><strong>篩檢相關疾病</strong>：FIV、FeLV、腫瘤、藥物</li>
+          <li><strong>分級確定程度</strong>：從「可能」到「診斷性」</li>
+        </ol>
+        <div class="alert alert-warn"><span class="alert-icon">🗣️</span><div>找到共病<strong>不代表</strong>它就是造成血小板低下的原因。這是和飼主溝通的重點。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 11</span> 新出爐：流式細胞儀直接抗球蛋白試驗（DAT）</h3>
+        <ul class="notes">
+          <li>Nedumpun 等，JFMS 2026：<strong>461</strong> 隻血小板低下（&lt; 200,000/µL）的貓</li>
+          <li><strong>105 隻（22.8%）DAT 陽性</strong></li>
+          <li>血小板中位數：DAT 陽性 <strong>4,000/µL</strong> vs DAT 陰性 34,000/µL</li>
+          <li>DAT 陽性的貓血小板顯著較低；但仍可能是原發性<strong>或</strong>次發性</li>
+        </ul>
+        <p class="muted">講者評語：有希望的輔助工具，但還不到例行使用。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 12</span> Snow White 的進展</h3>
+        <ul class="notes">
+          <li>感染篩檢陰性；FIV／FeLV 陰性；沒有感染接觸史</li>
+          <li>影像：胸腹超音波無腫瘤、<strong>無脾臟腫大</strong></li>
+          <li>抹片確認<strong>嚴重血小板低下、沒有血小板凝集</strong></li>
+          <li>病史：沒有用藥、最近沒有打疫苗</li>
+        </ul>
+        <p class="p">下一步？（複選）a 輸 pRBC、b 輸新鮮全血、c prednisoLONE、d predniSONE、e 第二線免疫抑制劑、f doxycycline、g IV 輸液 bolus、h 送貧血感染症 PCR、i vincristine。</p>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 依講義後續內容：<strong>c prednisoLONE</strong>（不是 prednisone）；有灌流不足的貧血出血貓要<strong>輸血</strong>——病例標題（📄 21）顯示她最後輸了<strong>新鮮全血</strong>（唯一含血小板的常見製品）；不建議 i vincristine；e 第二線一般等 5 天。講義沒有公布官方答案。</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">💊</div>
+      <h2>3. ITP 治療架構與第一線類固醇</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 14</span> 2024 ACVIM 治療架構</h3>
+        <div class="grid3">
+          <div class="card-mini"><h4>第一線</h4><ul><li>免疫抑制劑量的 <strong>prednisolone</strong></li></ul></div>
+          <div class="card-mini"><h4>第二線</h4><ul><li>難治時</li></ul></div>
+          <div class="card-mini"><h4>緊急</h4><ul><li>嚴重、致命出血的輔助治療</li></ul></div>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 16</span> 糖皮質素：第一線，但不是立刻見效</h3>
+        <ul class="notes">
+          <li><strong>機轉</strong>：抑制抗血小板抗體產生；減少巨噬細胞經 Fc 受體清除血小板</li>
+          <li><strong>起效</strong>：約 <strong>5 天</strong></li>
+          <li><strong>升級</strong>：5–7 天沒反應，或預期會出現類固醇併發症時</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 17–18</span> PrednisoLONE 還是 PredniSONE？還是 Dexamethasone？</h3>
+        <div class="grid3">
+          <div class="card-mini"><h4>劑量</h4><ul><li><strong>2 mg/kg/day PO</strong></li><li>學員講義：超過這個劑量沒有證明更好</li></ul></div>
+          <div class="card-mini"><h4>為什麼用 prednisoLONE？</h4><ul><li>暴露量可能是 prednisone 的<strong>約 4–5 倍</strong></li><li><span class="src src-add">💡</span> 貓肝臟把 prednisone 轉成 prednisolone 的效率差</li></ul></div>
+          <div class="card-mini"><h4>注意</h4><ul><li><strong>糖尿病</strong></li><li>泌尿道感染</li><li>皮膚脆弱</li></ul></div>
+        </div>
+        <p class="muted">📄 18 用一瓶 dexamethasone 和一排 prednisolone 的圖片表示答案：<strong>prednisolone</strong>。<span class="src src-add">💡</span> 不能口服時可短期用 dexamethasone（等效換算約 prednisolone ÷ 7–10）。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🩸</div>
+      <h2>4. 嚴重出血與輸血（不只 ITP）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 20</span> 輸血是給貓，不是給 PCV</h3>
+        <p class="p"><strong>沒有「輸血門檻」</strong>（ISFM 2021）。要綜合考量：<strong>貧血嚴重度</strong>、<strong>臨床症狀</strong>、<strong>原因與走向</strong>、<strong>預期的好處</strong>。</p>
+        <p class="muted">學員講義：心搏過速、虛弱、蒼白、倒下＝輸血。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 22</span> 2021 ISFM 貓輸血指引：改變臨床的八件事</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>#</th><th>重點</th><th>說明</th></tr>
+          <tr><td>1</td><td><strong>驗受血貓，也驗捐血貓</strong></td><td>貓不是小狗（天然抗體）</td></tr>
+          <tr><td>2</td><td><strong>AB 相容不是全部</strong></td><td>貓有 AB 以外的紅血球抗原（<span class="src src-add">💡</span> 如 Mik；所以建議做<strong>交叉配合</strong>）</td></tr>
+          <tr><td>3</td><td><strong>不要輸給 PCV，輸給病患</strong></td><td>臨床症狀、灌流、心血管代償、持續出血與走向</td></tr>
+          <tr><td>4</td><td><strong>用能解決問題的成分</strong></td><td></td></tr>
+          <tr><td>5</td><td><strong>更小心容積</strong></td><td>一小袋血對貓就是很大的 mL/kg 容積負荷</td></tr>
+          <tr><td>6</td><td><strong>捐血貓的安全也重要</strong></td><td>輸血醫學有兩個病患</td></tr>
+          <tr><td>7</td><td><strong>給法細節很重要</strong></td><td>專用管路與適當的血液過濾器</td></tr>
+          <tr><td>8</td><td><strong>異種輸血只作為救援</strong></td><td>沒有貓血、貓快死了，狗血是選項——但<strong>只能一次</strong></td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 21</span> Snow White 輸血 30 分鐘後</h3>
+        <ul class="notes">
+          <li>體溫 38.2 → <strong>39.6 °C</strong>（升 1.4 °C）；變得躁動；輕度心搏過速</li>
+          <li>下一步？a 繼續但放慢、b <strong>停止輸血並調查</strong>以排除更嚴重的狀況再決定、c 繼續但給 diphenhydramine 或類固醇、d 立刻停止並丟掉血、e 什麼都不改</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 她符合 TRACS 的 FNHTR 體溫條件（&gt; 39 °C 且升 &gt; 1 °C），但 FNHTR 必須<strong>排除其他原因</strong>後才能診斷——最重要的是排除<strong>急性溶血反應</strong>（看血漿／尿液顏色、重驗血型與交叉配合）與細菌污染。所以合理答案是 <strong>b</strong>：先停、評估，再決定。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 23–24</span> TRACS：輸血反應的共同語言</h3>
+        <div class="quote">不是每件發生在輸血期間的事，都是輸血反應。</div>
+        <div class="grid3">
+          <div class="card-mini"><h4>發生了什麼？</h4><ul><li>不良<strong>事件</strong> vs 不良<strong>反應</strong></li></ul></div>
+          <div class="card-mini"><h4>是什麼？</h4><ul><li>14 種急性與延遲性輸血反應的標準化定義</li></ul></div>
+          <div class="card-mini"><h4>是輸血造成的嗎？</h4><ul><li>可歸因性（imputability）</li></ul></div>
+        </div>
+        <div class="tbl-wrap"><table>
+          <tr><th>反應</th><th>TRACS 定義／重點</th></tr>
+          <tr><td><strong>FNHTR</strong>（發熱性非溶血性反應）</td><td>體溫 <strong>&gt; 39 °C</strong>＋比基準<strong>升高 &gt; 1 °C</strong>；輸血中或輸血後 <strong>4 小時內</strong>；<strong>排除其他原因</strong>後</td></tr>
+          <tr><td><strong>呼吸窘迫</strong></td><td>區分 <strong>TACO</strong>（循環過載）與 <strong>TRALI</strong>（急性肺損傷）、過敏反應、輸血相關呼吸困難，以及原本心肺疾病的惡化</td></tr>
+        </table></div>
+        <p class="muted">Davidow 等，JVECC 2021;31:141–166（AVHTM TRACS Part 1）。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 25</span> 貓輸血實際上發生什麼？（Hall 等，JVIM 2025）</h3>
+        <ul class="notes">
+          <li>前瞻性、14 家醫院、<strong>444 隻貓、608 次輸血</strong></li>
+          <li>含紅血球製品的任何急性反應：<strong>7.8%</strong>；最常見是 <strong>FNHTR 5.7%</strong>；血漿製品：<strong>1.1%</strong></li>
+          <li>因疑似反應而被停止的 28 次輸血中，<strong>46.4% 不符合任何 TRACS 反應</strong>——超過一半的疑似反應沒被確認</li>
+        </ul>
+        <div class="quote">不要漏掉反應——但也不要把每個變化都當成反應。用標準化準則。</div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 26</span> 貓的異種輸血（狗血）：只能一次</h3>
+        <ul class="notes">
+          <li>只在<strong>沒有貓血</strong>時作為<strong>最後手段</strong>使用<strong>一次</strong>——在致命貧血時爭取時間（ISFM 2021）</li>
+          <li>學員講義：第一次可能可以耐受；<strong>第二次＝嚴重溶血風險</strong>；狗紅血球在貓體內只能存活<strong>約 4 天</strong>；只能當橋樑</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 27</span> 含血小板的製品：什麼時候、用什麼</h3>
+        <ol class="notes">
+          <li>貓的出血危險嗎？</li>
+          <li>血小板可能爭取到止血</li>
+          <li>新鮮全血是唯一來源嗎？</li>
+        </ol>
+        <p class="p">貓的特殊情況：<strong>新鮮全血</strong>可能是唯一普遍可取得的含血小板製品。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">🧪</div>
+      <h2>5. 類固醇以外：哪些有證據（或大家在做什麼）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="tbl-wrap"><table>
+        <tr><th>治療</th><th>機轉</th><th>貓的證據</th><th>定位</th></tr>
+        <tr><td><span class="src src-slide">📄 29</span> <strong>脾臟切除</strong></td><td>脾臟是清除血小板與產生抗體的地方</td><td>不足以例行建議（ACVIM 2024）</td><td>內科治療無效時的<strong>救援</strong>；血小板低下時手術有風險，先穩定血小板</td></tr>
+        <tr><td><span class="src src-slide">📄 30</span> <strong>hIVIg</strong>（人類靜脈免疫球蛋白）</td><td>阻斷 Fc 受體、減緩吞噬</td><td>病例層級</td><td>致命或難治 ITP 的<strong>橋樑</strong>：血小板上升快但不持久；暫時、昂貴、難取得、有輸注風險；<strong>不能取代免疫抑制</strong></td></tr>
+        <tr><td><span class="src src-slide">📄 31</span> <strong>Romiplostim</strong></td><td>TPO 受體促效劑，刺激血小板生成</td><td>2025 年一篇病例報告：<strong>5 µg/kg SC</strong>；PLT 5 → 203 × 10⁹/L（7 天）</td><td>不是標準治療，但生物學上合理</td></tr>
+        <tr><td><span class="src src-slide">📄 32</span> <strong>治療性血漿置換（TPE）</strong></td><td>立即移除循環中的抗血小板抗體與免疫複合物</td><td>狗只有小型病例系列；<strong>貓沒有</strong>；ACVIM 2024 不建議</td><td>需要大管徑通路、體外循環、抗凝血、專科設備；血小板低下的貓風險高</td></tr>
+        <tr><td><span class="src src-slide">📄 33</span> <strong>褪黑激素</strong></td><td>刺激巨核細胞生成、可能調節免疫</td><td>沒有貓的臨床證據</td><td>「不太會有害」≠「證明有幫助」；只能當輔助，<strong>不要延誤</strong>標準治療</td></tr>
+        <tr><td><span class="src src-slide">📄 34</span> <strong>Vincristine</strong></td><td>刺激巨核細胞碎裂 → 快速釋出血小板</td><td>狗：單次 0.02 mg/kg IV 加速恢復、縮短住院。<strong>貓：約 4 隻</strong>，沒反應或無法判讀</td><td>ACVIM 2024：<strong>在貓不建議</strong></td></tr>
+      </table></div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 42</span> 學員講義：證據總表</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>藥物／介入</th><th>重點</th><th>證據等級</th><th>來源</th></tr>
+          <tr><td>Prednisolone 約 2 mg/kg/day PO</td><td>第一線；更高劑量沒有好處</td><td>共識（弱）</td><td>ACVIM 2024</td></tr>
+          <tr><td>Vincristine</td><td>貓不建議，有限證據顯示可能無效</td><td>低／不建議</td><td>ACVIM 2024</td></tr>
+          <tr><td>hIVIg</td><td>嚴重／難治出血時考慮，只是暫時橋樑</td><td>低（病例）</td><td>ACVIM 2024</td></tr>
+          <tr><td>Romiplostim</td><td>7 天內 PLT 5 → 203；第一篇貓原發性 ITP 報告</td><td>n = 1</td><td>Kennils &amp; Wilson 2025</td></tr>
+          <tr><td>TPE</td><td>貓沒有證據，不建議</td><td>無</td><td>ACVIM 2024</td></tr>
+          <tr><td>脾臟切除</td><td>證據不足；只在難治時救援</td><td>病例</td><td>ACVIM 2024</td></tr>
+          <tr><td>流式細胞 DAT</td><td>461 隻中 22.8% 陽性，有希望的輔助</td><td>前瞻性世代</td><td>Nedumpun 2026</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">📈</div>
+      <h2>6. 貓 ITP 的預後：短期比你想的好，長期比你想的亂</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 36–37</span> Zhong 等（JVIM 2026）</h3>
+        <p class="p">多中心回溯世代、12 家機構、2000–2023 年、<strong>31 隻原發性 ITP 貓</strong>——目前最大的貓 ITP 預後資料。</p>
+        <div class="grid3">
+          <div class="card-mini"><h4>出院存活</h4><ul><li><strong>87%</strong>（27/31）</li></ul></div>
+          <div class="card-mini"><h4>達到內科控制</h4><ul><li><strong>81%</strong>（25/31）</li></ul></div>
+          <div class="card-mini"><h4>到控制的中位天數</h4><ul><li><strong>4.5 天</strong></li></ul></div>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 38</span> 長期控制：比你想的亂</h3>
+        <ul class="notes">
+          <li><strong>40%</strong> 在免疫抑制劑減量時<strong>復發</strong></li>
+          <li>復發的貓中 <strong>50%</strong> 會<strong>再次復發</strong></li>
+          <li>只有 <strong>32%</strong> 達到緩解（約 10.5 個月）</li>
+          <li>合併治療的提醒：類固醇＋<strong>cyclosporine</strong> 比單用類固醇<strong>住院更久</strong>（8.4 vs 4.4 天，P = .005），其他結果沒有改善</li>
+        </ul>
+        <div class="quote">撐過住院 ≠ 疾病長期受控。回溯性的相關 ≠ 因果。</div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 39</span> 減藥：慢慢來，每步都確認</h3>
+        <ol class="notes">
+          <li><strong>確認緩解</strong>：血小板數穩定且足夠</li>
+          <li><strong>每 2–4 週減 25%</strong>：每次減之前確認血小板數</li>
+          <li><strong>復發？</strong>放慢減藥速度，考慮加第二種免疫抑制劑</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🎯</div>
+      <h2>7. 星期一早上我實際要改什麼？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="tbl-wrap"><table>
+        <tr><th>#</th><th>改變</th><th>說明</th></tr>
+        <tr><td>01</td><td><strong>用抹片確認血小板數</strong></td><td>根據低血小板數行動之前一定要看抹片——不要治療一個沒確認的數字</td></tr>
+        <tr><td>02</td><td><strong>評估出血，不只看數字</strong></td><td>不要問「血小板多低？」，要問「這隻貓流了多少血？」</td></tr>
+        <tr><td>03</td><td><strong>用 ITP 排除清單</strong></td><td>貼上 ITP 標籤前先排除：FIV/FeLV、藥物、影像、骨髓</td></tr>
+        <tr><td>04</td><td><strong>合併免疫抑制留給真正需要的貓</strong></td><td>（cyclosporine＋類固醇）講者通常<strong>等 5 天</strong></td></tr>
+        <tr><td>05</td><td><strong>早點設定復發的期望</strong></td><td>先告訴飼主：減藥時 40% 復發，其中一半會再復發</td></tr>
+        <tr><td>06</td><td><strong>依臨床症狀輸血</strong></td><td>不要輸給 PCV 數字</td></tr>
+        <tr><td>07</td><td><strong>用 ISFM 指引與 TRACS 準則</strong></td><td>懷疑輸血反應時用 TRACS——不要只因體溫升一點就停止輸血</td></tr>
+        <tr><td>08</td><td><strong>關注新的診斷與治療</strong></td><td>Romiplostim 與流式細胞 DAT——還不能例行使用，但值得知道</td></tr>
+      </table></div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 43</span> 參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Boller E. <em>The Cat That Bleeds: ITP, Transfusion &amp; What Has Changed.</em> TSFM Annual Conference 2026, Session 6（講義 43 頁，含學員講義）。</div>
+          <div class="ref-item">LeVine DN, et al. ACVIM consensus statement on the diagnosis of immune thrombocytopenia in dogs and cats. <em>J Vet Intern Med</em> 2024;38:1958–1981.</div>
+          <div class="ref-item">LeVine DN, et al. ACVIM consensus statement on the treatment of immune thrombocytopenia in dogs and cats. <em>J Vet Intern Med</em> 2024;38:1982–2007.</div>
+          <div class="ref-item">Zhong et al. Treatment outcomes and prognostic indicators of primary immune thrombocytopenia in 31 cats: multicenter retrospective study (2000–2023). <em>J Vet Intern Med</em> 2026.</div>
+          <div class="ref-item">Nedumpun et al. Flow cytometry-based direct antiglobulin test for suspected feline immune-mediated thrombocytopenia. <em>J Feline Med Surg</em> 2026.</div>
+          <div class="ref-item">Taylor S／Korman R, et al. 2021 ISFM consensus guidelines on the collection and administration of blood and blood products in cats. <em>J Feline Med Surg</em> 2021;23:410–432.</div>
+          <div class="ref-item">Hall et al. A prospective multicenter observational study assessing incidence and risk factors for acute transfusion reactions in cats. <em>J Vet Intern Med</em> 2025;39:e70246.</div>
+          <div class="ref-item">Davidow EB, et al. AVHTM TRACS Part 1. <em>J Vet Emerg Crit Care</em> 2021;31:141–166.</div>
+          <div class="ref-item">Kennils &amp; Wilson. (romiplostim in feline primary ITP) <em>J Vet Intern Med</em> 2025;39:e70149；Kopecny et al. <em>J Vet Intern Med</em> 2020;34:1576–1581（TPE）。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="fate.html">05 會栓塞的貓</a>。下一場：<a href="cpr-recover.html">07 心跳停止的貓（CPR）</a>。相關：<a href="fluid-resuscitation.html">02 輸液（血液製品劑量）</a>。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>會栓塞的貓：FATE 的處置，我們做法改變了嗎？｜2026 TSFM 貓急重症研討會</title>
+<style>
+  :root {
+    --primary: #B4233C;
+    --primary-light: #FDE4E8;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2a1016;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #d9a7b0; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4a1f28;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #d9a7b0; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #d9a7b0;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4a1f28;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #a26a75;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #7a1328 0%, #d8485f 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2a1016; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4a1f28; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #7a1328; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+</style>
+
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 TSFM 貓急重症研討會</a>
+  <div class="logo">
+    <h2>05｜會栓塞的貓：<br>FATE 2026</h2>
+    <p>Elise Boller｜Day 1 Session 5</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">學習目標與病例 Milo</a>
+    <div class="nav-section">辨識與穩定</div>
+    <a href="#s1">1. 診斷：5P 與證明灌流受損</a>
+    <div class="nav-section">Journal club</div>
+    <a href="#s2">2. 風險分層：左心房</a>
+    <a href="#s3">3. 預防血栓：從阿斯匹靈到 rivaroxaban</a>
+    <div class="nav-section">把證據用在臨床</div>
+    <a href="#s4">4. 藥物機轉與分期用藥</a>
+    <a href="#s5">5. 溶栓：再灌流 ≠ 存活</a>
+    <div class="nav-section">病例 Milo</div>
+    <a href="#s6">6. Milo 的病程</a>
+    <div class="nav-section">總結</div>
+    <a href="#s7">7. 時間軸與星期一要改的事</a>
+    <a href="#s8">8. 藥物劑量總表</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>會栓塞的貓：FATE 的處置，我們做法改變了嗎？</h1>
+    <p>主講：Elise Boller, DVM, DACVECC</p>
+    <p>TSFM Annual Conference 2026｜Day 1 — The Crashing Cat｜Session 5｜場次 05</p>
+    <div class="tags">
+      <span class="tag">FATE</span>
+      <span class="tag">5P</span>
+      <span class="tag">患肢 vs 健肢 乳酸／血糖</span>
+      <span class="tag">左心房</span>
+      <span class="tag">SEC</span>
+      <span class="tag">FAT CAT</span>
+      <span class="tag">CURATIVE</span>
+      <span class="tag">ACVIM 2020</span>
+      <span class="tag">SUPERCAT</span>
+      <span class="tag">Clopidogrel</span>
+      <span class="tag">Rivaroxaban</span>
+      <span class="tag">肝素</span>
+      <span class="tag">tPA</span>
+      <span class="tag">BLASTT</span>
+      <span class="tag">MATTERS</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（數字＝講義 PDF 頁碼）
+    <span class="src src-add">💡 補充</span> 整理者補充（機轉、換算、交叉參照；不是講者說的）
+    <br><span class="muted">目前只有講義，沒有課堂錄音；講義上的影片（Vimeo）與現場投票無法收錄。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+<li>FATE 的 5P：<strong>疼痛、輕癱／癱瘓、無脈搏、蒼白、體溫隨環境變（冰冷）</strong></li>
+<li>臨床不確定時要<strong>證明灌流受損</strong>：患肢比健肢 <strong>血糖低 ≥ 41 mg/dL（2.3 mmol/L）</strong>、<strong>乳酸高 ≥ 2.2 mmol/L</strong>；Doppler 無訊號；血管超音波</li>
+<li><strong>左心房才是製造血栓的器官</strong>：中重度 LA 擴大、自發性超音波顯影（SEC）、心內血栓＝高風險</li>
+<li><strong>阿斯匹靈不夠</strong>：FAT CAT（2015）clopidogrel 中位 443 天 vs 阿斯匹靈 192 天才復發</li>
+<li><strong>Rivaroxaban</strong> 是可信的替代：SUPERCAT（2024）與 clopidogrel 復發率 39% vs 37%，無顯著差異</li>
+<li>預防往上游移：每次心臟回診都評估 LA；<strong>B1 → B2</strong> 才是關鍵時刻（B2 起建議 clopidogrel）</li>
+<li>極高風險（心內血栓、單藥下復發）可考慮<strong>雙路徑</strong>（clopidogrel＋rivaroxaban）</li>
+<li>溶栓（tPA）：<strong>再灌流 ≠ 存活</strong>；改善再灌流與肢體功能，但沒有存活優勢、可能增加猝死；入院體溫 <strong>≥ 35.9 °C</strong> 是預後指標</li>
+    </ul>
+  </div>
+
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📋</div>
+      <h2>學習目標與病例 Milo</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 2</span> 學習目標</h3>
+        <ol class="notes">
+          <li><strong>風險分層</strong></li>
+          <li><strong>評讀證據</strong></li>
+          <li><strong>個別化治療</strong></li>
+          <li><strong>找出還沒有答案的問題</strong></li>
+        </ol>
+        <p class="muted">講義封面引用 Kittleson 等 2021（JFMS 23(11):1028–1051）。病例 Milo 改編自 JFMS 2024;26:1–13 的教學病例（虛構）。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 3</span> Milo：一個非常糟的早上</h3>
+        <ul class="notes">
+          <li>7 歲公貓（已結紮），家貓短毛</li>
+          <li>已知有<strong>心肌病</strong>、<strong>左心房擴大</strong>，<strong>沒有</strong>在吃預防血栓的藥</li>
+          <li>突然<strong>後肢不能用</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🦵</div>
+      <h2>1. FATE 的診斷：5P，以及不確定時怎麼證明</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 4</span> 5P</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>英文</th><th>中文</th></tr>
+          <tr><td>Pain</td><td>疼痛</td></tr>
+          <tr><td>Paresis／Paralysis</td><td>輕癱／癱瘓</td></tr>
+          <tr><td>Pulselessness</td><td>無脈搏</td></tr>
+          <tr><td>Pallor</td><td>蒼白（肉墊、甲床）</td></tr>
+          <tr><td>Poikilothermia</td><td>體溫隨環境變（肢端冰冷）</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 5</span> 診斷不確定時（Yee 等 2024）</h3>
+        <div class="grid3">
+          <div class="card-mini"><h4>1. 比較兩肢</h4><ul>
+            <li>患肢 vs 健肢成對採樣</li>
+            <li>血糖 ↓ <strong>≥ 41 mg/dL（2.3 mmol/L）</strong></li>
+            <li>乳酸 ↑ <strong>≥ 2.2 mmol/L</strong></li></ul></div>
+          <div class="card-mini"><h4>2. 檢查血流</h4><ul>
+            <li>手持 Doppler：遠端動脈訊號<strong>消失或明顯減弱</strong>強烈支持 FATE</li></ul></div>
+          <div class="card-mini"><h4>3. 看到它</h4><ul>
+            <li>血管超音波：找血栓，或患肢動脈血流消失／減少</li></ul></div>
+        </div>
+        <div class="quote">臨床檢查模稜兩可時，要「證明」灌流受損。</div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 6–7</span> Milo 的檢查</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>後肢</h4><ul>
+            <li>無法行走</li><li>左：<strong>沒有</strong>自主運動；右：自主運動微弱</li>
+            <li>兩側遠端都冰冷，左側較嚴重</li><li>左肉墊蒼白</li><li>後肢都<strong>沒有 Doppler 訊號</strong></li></ul></div>
+          <div class="card-mini"><h4>全身</h4><ul>
+            <li>清醒但痛苦</li><li>HR 190、RR 52</li><li>肛溫 <strong>36.5 °C</strong></li>
+            <li>呼吸用力增加、<strong>瀰漫性爆裂音</strong></li></ul></div>
+        </div>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>患肢</th><th>全身（中心）</th></tr>
+          <tr><td>乳酸</td><td><strong>7.2 mmol/L</strong></td><td>2.3 mmol/L</td></tr>
+          <tr><td>血糖</td><td><strong>2.5 mmol/L</strong>（約 45 mg/dL）</td><td>9.7 mmol/L（約 175 mg/dL）</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li>Creatinine <strong>2.1 mg/dL</strong>（186 µmol/L）、血小板 <strong>92,000</strong>、<strong>NT-proBNP 1,200（高）</strong></li>
+          <li>胸腔 POCUS：<strong>B-lines</strong>、<strong>左心房大</strong></li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> Milo 的問題清單：① FATE（雙側、左重右輕）② <strong>CHF／心因性肺水腫</strong>（爆裂音、B-lines、NT-proBNP 高）③ <strong>疼痛</strong> ④ 氮血症（腎灌流／腎栓塞？）⑤ 低體溫 ⑥ 血小板偏低（消耗？或貓血小板凝集造成的假性）。患肢 vs 中心的差距（血糖差約 130 mg/dL、乳酸差 4.9）遠超過診斷切點。穩定優先順序：<strong>止痛＋給氧＋furosemide</strong> 先處理會致命的肺水腫。</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🫀</div>
+      <h2>2. 風險分層：左心房才是製造血栓的器官</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 9</span> REVEAL：把風險放在對的位置</h3>
+        <ul class="notes">
+          <li>共收 <strong>1,730</strong> 隻貓，其中 <strong>1,008</strong> 隻為臨床前期 HCM／HOCM</li>
+          <li>其中 <strong>30.5%</strong> 後來發生 CHF 或 ATE</li>
+        </ul>
+        <p class="muted">換句話說，大約七成的心肌病貓一輩子不會發生 CHF 或 FATE——所以要找出<strong>真正高風險</strong>的那群。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 10</span> 大小很重要：急診可以看的指標</h3>
+        <p class="p">急診<strong>心臟 POCUS</strong> 就能看的三個高風險指標：</p>
+        <div class="grid3">
+          <div class="card-mini"><h4>中重度 LA 擴大</h4><ul><li><span class="src src-add">💡</span> 常用 LA:Ao &gt; 1.5–1.8 或 LA 直徑 &gt; 16–18 mm</li></ul></div>
+          <div class="card-mini"><h4>自發性超音波顯影（SEC）</h4><ul><li>LA 內「煙霧狀」回音，代表血流淤滯</li></ul></div>
+          <div class="card-mini"><h4>心內血栓</h4><ul><li>最高風險</li></ul></div>
+        </div>
+        <div class="quote">心房才是製造血栓的器官！</div>
+        <p class="muted">Payne 等 2013（JVIM 27:1427–1436）、Fox REVEAL 2018、Ironside（JFMS 2020）。LA 的數值切點是整理者補充，講義沒有寫。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 11</span> Milo：下一步？（複選）</h3>
+        <p class="p">選項：a 阿斯匹靈、b clopidogrel、c rivaroxaban、d apixaban、e 未分化肝素（UFH）、f 低分子量肝素（LMWH）、g 溶栓（alteplase／tPA）、h 以上皆非——需要更多資訊。</p>
+        <p class="muted">講義沒有公布答案；從後面的病程看，Milo 的飼主選擇了<strong>溶栓＋抗凝血＋clopidogrel</strong>（📄 25）。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">💊</div>
+      <h2>3. 臨床做法的轉變：預防血栓</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 13</span> 舊世界：阿斯匹靈</h3>
+        <ul class="notes">
+          <li>用藥下的復發率 <strong>17–75%</strong>（回溯性資料，範圍又寬又讓人不滿意）</li>
+          <li>一年復發率 <strong>25–61%</strong></li>
+          <li>臨床上無法接受——但當時沒有直接比較的資料。然後到了 2015 年。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 14</span> FAT CAT（2015）：改變了做法</h3>
+        <ul class="notes">
+          <li>多中心、雙盲、隨機、陽性對照；<strong>75 隻</strong>心因性 ATE 存活的貓</li>
+          <li><strong>Clopidogrel 18.75 mg/貓 PO q24h</strong> vs <strong>阿斯匹靈 81 mg/貓 PO q72h</strong></li>
+          <li>到 ATE 復發的中位天數：<strong>clopidogrel 443 天</strong>（95% CI 185–990） vs <strong>阿斯匹靈 192 天</strong>（62–364），p = 0.024</li>
+          <li>ATE 復發或心因性死亡：clopidogrel 346 天 vs 阿斯匹靈 128 天（p = 0.033）</li>
+          <li>兩種藥耐受性都好</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> Clopidogrel 很苦，貓常流口水；放空膠囊裡餵可以改善。18.75 mg 就是一顆 75 mg 錠的 1/4。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 15</span> 2018／2019 CURATIVE：決策框架</h3>
+        <p class="p">獸醫重症抗血栓藥物合理使用共識：<strong>誰有風險？哪一種血栓？用什麼？怎麼監測？什麼時候停？</strong></p>
+        <div class="tbl-wrap"><table>
+          <tr><th>情境</th><th>建議</th></tr>
+          <tr><td>長期、極高風險</td><td>考慮<strong>雙重治療</strong></td></tr>
+          <tr><td>能口服時</td><td><strong>Clopidogrel</strong></td></tr>
+          <tr><td>不能口服</td><td>注射型 <strong>UFH 或 LMWH</strong></td></tr>
+          <tr><td>急性 FATE</td><td><strong>抗血小板＋抗凝血</strong></td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 16</span> 2020 ACVIM：把預防往上游移</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>舊模式：被動</h4><ul><li>血栓已經形成</li><li>FATE 發生了 → 才開始抗血栓</li></ul></div>
+          <div class="card-mini"><h4>新做法：主動</h4><ul><li><strong>心房是監測目標</strong></li><li>找出會製造血栓的心房 → 在<strong>第一次 FATE 之前</strong>介入</li></ul></div>
+        </div>
+        <p class="muted">初級預防的證據是從 FAT CAT（次級預防）與觀察性資料推論而來。2020 共識<strong>不建議</strong>例行溶栓。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 17</span> SUPERCAT（Brainard 等，JAVMA 2024）：rivaroxaban 加入討論</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>結果</th><th>Rivaroxaban</th><th>Clopidogrel</th><th></th></tr>
+          <tr><td>ATE 復發</td><td>39%</td><td>37%</td><td>無顯著差異</td></tr>
+          <tr><td>中位復發時間</td><td>513 天</td><td>663 天</td><td>無顯著差異</td></tr>
+          <tr><td>存活</td><td colspan="2">—</td><td>無差異</td></tr>
+        </table></div>
+        <p class="muted">講義附錄：SUPERCAT 為 RCT，n = 45，rivaroxaban 2.5 mg/貓 q24h；試驗<strong>沒有</strong>設計來證明兩者等效。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🧬</div>
+      <h2>4. 把證據用在臨床：兩條路徑與分期用藥</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 19</span> 口服藥的兩條路徑</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>Clopidogrel（細胞性、初級止血）</h4><ul>
+            <li>機轉：<strong>P2Y12 阻斷劑</strong>，抑制血小板活化</li>
+            <li>劑量：<strong>4–10 mg/kg 一次</strong>（負荷），之後 <strong>18.75 mg（總量）q24h</strong></li>
+            <li>作用持續<strong>整個血小板壽命</strong></li></ul></div>
+          <div class="card-mini"><h4>Rivaroxaban（血漿性、次級止血）</h4><ul>
+            <li>機轉：<strong>Xa 因子抑制劑</strong>，阻斷凝血瀑布、減少凝血酶爆發</li>
+            <li>劑量：<strong>0.5–1.0 mg/kg q24h</strong></li>
+            <li><strong>一停藥，保護很快就消失</strong></li></ul></div>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 20</span> 注射型抗凝血：UFH vs LMWH</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>UFH（未分化肝素）</th><th>LMWH（低分子量肝素）</th></tr>
+          <tr><td>機轉</td><td>經抗凝血酶 → 抑制 IIa＋Xa</td><td>經抗凝血酶 → 主要抑制 Xa</td></tr>
+          <tr><td>劑量</td><td>250 U/kg SC q6h</td><td>Enoxaparin 0.75–1 mg/kg SC q6h</td></tr>
+          <tr><td>考量</td><td>便宜、容易取得、短效</td><td>個體反應差異大</td></tr>
+        </table></div>
+        <p class="muted">目前沒有貓的預後資料證明 UFH 或 LMWH 哪一個對 FATE 比較好。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 21, 35</span> 預防血栓：我該怎麼做？（依 ACVIM 分期）</h3>
+        <figure class="fig">
+          <img src="photos/05-21-prophylaxis-staging.jpg" alt="依 ACVIM 心肌病分期決定是否預防血栓" loading="lazy">
+          <figcaption>📄 21：依 ACVIM 心肌病分期決定是否預防血栓</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>分期</th><th>風險</th><th>做法</th></tr>
+          <tr><td><strong>A</strong>（有風險）／<strong>B1</strong>（臨床前期、低風險）</td><td>低</td><td>一般<strong>不建議</strong>預防血栓；監測心房大小（LOE 低）；注意 A/B1 → B2 的轉變。只有約 30% 心臟病貓會走到 CHF 或 FATE</td></tr>
+          <tr><td><strong>B2</strong>（臨床前期、高風險：中重度 LA 擴大、LA FS% 低、LAA 流速低、SEC）</td><td>高</td><td><strong>建議 clopidogrel</strong>（或 rivaroxaban），可考慮再加抗凝血劑；持續監測 SEC</td></tr>
+          <tr><td><strong>C</strong>（目前或曾經心衰竭）／<strong>D</strong>（難治性心衰竭）</td><td>最高</td><td><strong>積極次級預防</strong>，雙路徑治療合理；溶栓也不再完全不考慮</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">💥</div>
+      <h2>5. 下一個問題：溶栓</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 23</span> BLASTT → MATTERS：溶栓回來了</h3>
+        <figure class="fig">
+          <img src="photos/05-23-blastt-matters.jpg" alt="BLASTT（前瞻性 RCT）與 MATTERS（多中心回溯）" loading="lazy">
+          <figcaption>📄 23：BLASTT（前瞻性 RCT）與 MATTERS（多中心回溯）</figcaption>
+        </figure>
+        <div class="grid2">
+          <div class="card-mini"><h4>BLASTT（Guillaumin 等，JFMS 2022）</h4><ul>
+            <li>前瞻性、隨機、安慰劑對照：tPA vs 安慰劑，<strong>40 隻</strong> FATE 貓</li>
+            <li>主要結果：48 小時肢體功能變化</li>
+            <li>只有 <strong>20 隻</strong>活到 48 小時；併發症與 48 小時存活無差異</li>
+            <li>安樂死比例高，統計檢定力不足</li>
+            <li><strong>患肢乳酸較低</strong>與 48 小時存活較好有關</li>
+            <li>貢獻：建立了<strong>安全性、可行性與方法</strong></li></ul></div>
+          <div class="card-mini"><h4>MATTERS（Cambournac 等，2026）</h4><ul>
+            <li>多中心回溯、183 隻 FATE 貓，115 隻納入分析（2007–2020）</li>
+            <li>tPA 組：院內<strong>再灌流</strong>（約 54% vs 20%）與<strong>功能恢復</strong>（約 36% vs 14%）較多</li>
+            <li><strong>出院存活率相近</strong>（約 34% vs 35%）</li>
+            <li><strong>猝死</strong>較多（約 46% vs 19%）——安全訊號是真的，需要解釋</li>
+            <li><strong>入院體溫 ≥ 35.9 °C</strong> 是一致的預後指標</li>
+            <li>AKI 與高血鉀發生率沒有顯著差異；無法推論因果</li></ul></div>
+        </div>
+        <p class="muted">MATTERS 的百分比是從講義長條圖目測，僅供參考。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 24</span> 溶栓：再灌流 ≠ 存活</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>✅ 好處</h4><ul><li><strong>改善再灌流</strong></li><li><strong>肢體功能較好</strong></li></ul></div>
+          <div class="card-mini"><h4>❌ 代價</h4><ul><li><strong>可能猝死</strong>：有嚴重不良事件風險</li><li><strong>沒有存活優勢</strong></li></ul></div>
+        </div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 猝死的主要機轉被認為是<strong>再灌流傷害</strong>：缺血肌肉釋出的鉀、乳酸、肌紅素突然回到循環，造成高血鉀與致命心律不整。溶栓或自發再灌流時都要密切監測 ECG 與血鉀。</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🐱</div>
+      <h2>6. Milo 的後續：肺好了、腎變差了</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 25</span> 飼主選擇溶栓</h3>
+        <ul class="notes">
+          <li><strong>飼主溝通</strong>：知情同意——出血、再灌流傷害、高血鉀、心律不整、<strong>猝死</strong>的風險</li>
+          <li><strong>治療</strong>：Alteplase、<strong>鴉片類 CRI</strong>、抗凝血、clopidogrel、持續 CHF 治療</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 26</span> 肺好了，腎變差了</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>時間</th><th>Creatinine</th></tr>
+          <tr><td>入院</td><td>2.1 mg/dL（186 µmol/L）</td></tr>
+          <tr><td>隔夜</td><td>2.8 mg/dL（248 µmol/L）</td></tr>
+          <tr><td>第 2 天</td><td><strong>3.6 mg/dL（318 µmol/L）</strong></td></tr>
+        </table></div>
+        <div class="grid2">
+          <div class="card-mini"><h4>改善中</h4><ul><li>呼吸用力</li><li>給氧需求</li><li>右後肢活動</li><li>舒適度</li></ul></div>
+          <div class="card-mini"><h4>令人擔心</h4><ul><li><strong>氮血症持續惡化</strong></li><li>左後肢仍冰冷、無力</li><li><strong>不吃</strong></li></ul></div>
+        </div>
+        <p class="p">下一步？（複選）a 維持 furosemide 原劑量、b 停 furosemide、c furosemide 減量、d 放<strong>鼻食道餵食管</strong>、e 開始 IV 輸液、f 停止止痛藥、g 建議透析、h 開始 cyproheptadine、i 開始 pentoxifylline。</p>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 講義沒有公布答案。依講者的原則（📄 29：治療心因性肺水腫、<strong>止痛同時照顧腸胃</strong>；📄 32：pentoxifylline／cyproheptadine 改善側枝循環<strong>未經證實</strong>），合理方向是：肺已改善 → <strong>furosemide 減量</strong>；<strong>放鼻食道管</strong>開始營養；<strong>不要停止痛</strong>；IV 輸液要非常小心（CHF 貓），透析視情況。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 30</span> Milo 回家了！</h3>
+        <p class="p">出院計畫：<strong>Clopidogrel ＋ Rivaroxaban</strong>（雙路徑）、Furosemide、止痛、<strong>復健</strong>、心臟科追蹤。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">📅</div>
+      <h2>7. FATE 時間軸與「星期一早上要改什麼」</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 28</span> FATE 處置的演變</h3>
+        <figure class="fig">
+          <img src="photos/05-28-fate-timeline.jpg" alt="FATE 處置時間軸：從治療血栓到整體策略" loading="lazy">
+          <figcaption>📄 28：FATE 處置時間軸：從治療血栓到整體策略</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>時期</th><th>主流做法</th><th>依據</th></tr>
+          <tr><td>2000 年代初</td><td>治療血栓：止痛支持、阿斯匹靈、肝素／warfarin、tPA</td><td>從人醫與病理生理推論</td></tr>
+          <tr><td>約 2010</td><td>阿斯匹靈時代</td><td>貓的證據有限，靠合理性與經驗</td></tr>
+          <tr><td>2015</td><td><strong>Clopidogrel 成為標準</strong>（FAT CAT；復發 HR 0.38、復發或心因性死亡 HR 0.41）</td><td>阿斯匹靈 → clopidogrel</td></tr>
+          <tr><td>2020–2025</td><td><strong>Xa 因子抑制劑</strong>（SUPERCAT）</td><td>Rivaroxaban 是替代選擇</td></tr>
+          <tr><td>2026 以後</td><td>更全面：治療血栓（再灌流？）＋預防下一個（clopidogrel＋Xa 抑制劑？）＋<strong>處理心房</strong>（風險辨識、長期照護）</td><td>單一藥物 → 證據導向的個別化策略</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 29</span> 星期一早上我實際要改什麼？</h3>
+        <ol class="notes">
+          <li><strong>更早想到風險</strong>：在 FATE 發生前就想到血栓。每次心臟回診都評估 <strong>LA 大小＋功能＋SEC／血栓</strong>。<strong>B1 → B2 的轉變</strong>才是關鍵時刻，而不是危機發生時。</li>
+          <li><strong>超越阿斯匹靈</strong>：Clopidogrel 仍是基礎抗血小板藥（FAT CAT 2015）；rivaroxaban 是可信、有證據支持的替代（SUPERCAT 2024）。</li>
+          <li><strong>個別化預防</strong>：極高風險（心內血栓、單藥下復發）可能受益於雙路徑抑制。證據仍在發展，要向飼主說明不確定性。<strong>血栓的種類很重要</strong>（如果你也治療狗）。</li>
+          <li><strong>對溶栓保持開放</strong>：tPA 改善再灌流與功能恢復（MATTERS 2026），但還沒證明存活優勢。<strong>病例選擇</strong>（包括入院體溫）可能是找出誰會受益的關鍵。</li>
+          <li><strong>治療心因性肺水腫</strong>：furosemide、抗焦慮等。</li>
+          <li><strong>治療疼痛，照顧腸胃！</strong>用鴉片類止痛，同時注意腸胃功能與食慾。</li>
+          <li><strong>早點進行對的對話</strong>：對發生過 ATE 的貓，仔細考量疼痛、解釋纖維蛋白溶解，並設定實際的期望。</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">💉</div>
+      <h2>8. FATE 藥物劑量總表</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 31</span> 核心內科治療</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>藥物</th><th>劑量</th><th>臨床考量</th></tr>
+          <tr><td colspan="3"><strong>止痛</strong></td></tr>
+          <tr><td>Methadone</td><td>0.1–0.4 mg/kg IV/IM</td><td>強效止痛；監測體溫與換氣</td></tr>
+          <tr><td>Fentanyl</td><td>1–5 µg/kg/h IV CRI</td><td>可調整；監測體溫與換氣</td></tr>
+          <tr><td colspan="3"><strong>抗血小板</strong></td></tr>
+          <tr><td>Clopidogrel</td><td><strong>18.75 mg/貓 PO q24h</strong>（負荷劑量 37.5 mg 一次）</td><td>首選抗血小板；監測出血</td></tr>
+          <tr><td colspan="3"><strong>抗凝血</strong></td></tr>
+          <tr><td>UFH</td><td>350–375 IU/kg IV，之後 150–250 IU/kg SC q6–8h</td><td>便宜；反應差異大；監測 aPTT</td></tr>
+          <tr><td>Dalteparin</td><td>150–180 IU/kg SC q4–6h</td><td>LMWH；藥動學較可預測；可行時監測 anti-Xa</td></tr>
+          <tr><td>Enoxaparin</td><td>0.75–1 mg/kg SC q6h</td><td>LMWH；可行時監測 anti-Xa</td></tr>
+          <tr><td>Rivaroxaban</td><td>0.5–1 mg/kg PO q24h；也有報告到 2.5 mg/貓 q24h</td><td>口服 Xa 抑制劑；出血風險</td></tr>
+        </table></div>
+        <p class="muted">講義 📄 19 的 clopidogrel 負荷劑量寫「4–10 mg/kg 一次」，📄 31 寫「37.5 mg 一次」；4 kg 貓兩者相近。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 32</span> 其他選項與限制</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>藥物</th><th>劑量</th><th>臨床考量</th></tr>
+          <tr><td>Buprenorphine</td><td>0.01–0.02 mg/kg IM/IV/SC q8h</td><td>作用較久；監測體溫</td></tr>
+          <tr><td>Gabapentin</td><td>50–100 mg/貓 PO q12–24h</td><td>輔助止痛／抗焦慮；會鎮靜</td></tr>
+          <tr><td>Apixaban</td><td>0.2 mg/kg PO；也有依體重 q12h 的報告</td><td>貓的資料比 rivaroxaban 少</td></tr>
+          <tr><td colspan="3"><strong>溶栓（事件後 &lt; 6 小時）</strong></td></tr>
+          <tr><td>Alteplase（tPA）</td><td>1 mg/kg IV 1 小時給完，其中 10% 先慢推（約 1 分鐘）；或 0.1–0.5 mg/kg/h IV CRI</td><td>可能再灌流；存活好處未證實；出血／猝死疑慮</td></tr>
+          <tr><td>Reteplase</td><td>1 IU/貓 IV q8h</td><td>研究有限；好處不確定</td></tr>
+          <tr><td colspan="3"><strong>其他／歷史用藥</strong></td></tr>
+          <tr><td>Aspirin</td><td>5–81 mg/貓 PO q72h</td><td><strong>不再優於 clopidogrel</strong></td></tr>
+          <tr><td>Pentoxifylline</td><td>100 mg/貓 PO q12h</td><td>改善側枝循環的效果<strong>未證實</strong></td></tr>
+          <tr><td>Cyproheptadine</td><td>2 mg/貓 PO q12h</td><td>促進食慾；改善側枝循環的效果未證實</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 35</span> 證據等級整理（學員講義）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>藥物</th><th>試驗</th><th>重點結果</th><th>證據等級</th></tr>
+          <tr><td>Aspirin</td><td>2015 前（無 RCT）</td><td>復發 17–75%；一年 25–61%</td><td>專家意見</td></tr>
+          <tr><td>Clopidogrel 18.75 mg q24h</td><td>FAT CAT（2015）RCT n = 75</td><td>中位 443 天 vs 阿斯匹靈 192 天（p = 0.024）</td><td>RCT（中等）</td></tr>
+          <tr><td>Rivaroxaban 2.5 mg q24h</td><td>SUPERCAT（2024）RCT n = 45</td><td>復發 39% vs 37%；513 vs 663 天（NS）</td><td>RCT（未設計證明等效）</td></tr>
+          <tr><td>雙路徑（clopi＋riva）</td><td>體外／觀察性</td><td>血小板抑制有加成；沒有 RCT 證明較好</td><td>低／發展中</td></tr>
+          <tr><td>溶栓</td><td>MATTERS（2026 回溯）、BLASTT（2022 RCT）</td><td>可能改善灌流與肢體功能，不影響存活，可能有安全疑慮</td><td>不一致</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 34</span> 參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Boller E. <em>The Cat That Clots: Are We Doing Things Differently?</em> TSFM Annual Conference 2026, Day 1 Session 5（講義 35 頁，含學員講義）。</div>
+          <div class="ref-item">Luis Fuentes V, et al. ACVIM consensus statement guidelines for the classification, diagnosis, and management of cardiomyopathies in cats. <em>J Vet Intern Med</em> 2020;34:1062–1077.</div>
+          <div class="ref-item">Hogan DF, et al. Secondary prevention of cardiogenic arterial thromboembolism in the cat: the double-blind, randomized, positive-controlled FAT CAT study. <em>J Vet Cardiol</em> 2015.</div>
+          <div class="ref-item">Goggs R, et al. Consensus on the Rational Use of Antithrombotics in Veterinary Critical Care (CURATIVE). <em>J Vet Emerg Crit Care</em> 2019.</div>
+          <div class="ref-item">Brainard BM, et al. SUPERCAT (rivaroxaban vs clopidogrel). <em>J Am Vet Med Assoc</em> 2024.</div>
+          <div class="ref-item">Guillaumin J, et al. BLASTT. <em>J Feline Med Surg</em> 2022;24(12):e535–e545.</div>
+          <div class="ref-item">Cambournac M, et al. Multicentre aortic thromboembolism thrombolysis evaluation in a retrospective study of 183 cats — the MATTERS study. <em>Front Vet Sci</em> 2026.</div>
+          <div class="ref-item">Borgeat K, et al. Arterial thromboembolism in 250 cats in general practice: 2004–2012. <em>J Vet Intern Med</em> 2014.</div>
+          <div class="ref-item">Indications and outcomes of rivaroxaban use in cats；Payne 2013（JVIM）；Fox REVEAL 2018；Ironside（JFMS 2020）；Yee 2024；Kittleson 2021（JFMS）。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="cant-breathe-next.html">04 喘不過氣的貓（二）</a>。下一場：<a href="bleeding-transfusion.html">06 會出血的貓</a>。相關：<a href="aki.html">10 AKI</a>（再灌流後的腎損傷）。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>喘不過氣的貓（一）：用呼吸定位減少診斷的不確定｜2026 TSFM 貓急重症研討會</title>
+<style>
+  :root {
+    --primary: #B4233C;
+    --primary-light: #FDE4E8;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2a1016;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #d9a7b0; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4a1f28;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #d9a7b0; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #d9a7b0;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4a1f28;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #a26a75;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #7a1328 0%, #d8485f 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2a1016; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4a1f28; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #7a1328; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+</style>
+
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 TSFM 貓急重症研討會</a>
+  <div class="logo">
+    <h2>03｜喘不過氣的貓（一）：<br>呼吸定位</h2>
+    <p>Elise Boller｜Day 1 Session 3</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">學習目標與定位地圖</a>
+    <div class="nav-section">辨識</div>
+    <a href="#s1">1. 辨識：先看再摸</a>
+    <div class="nav-section">定位</div>
+    <a href="#s2">2. 七個定位的特徵</a>
+    <a href="#s3">3. 一頁總表與影片測驗</a>
+    <div class="nav-section">總結</div>
+    <a href="#s4">Take-home</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>喘不過氣的貓（一）：用呼吸定位減少診斷的不確定</h1>
+    <p>主講：Elise Boller, DVM, DACVECC</p>
+    <p>TSFM Annual Conference 2026｜Day 1 — The Crashing Cat｜Session 3｜場次 03</p>
+    <div class="tags">
+      <span class="tag">呼吸窘迫</span>
+      <span class="tag">呼吸定位</span>
+      <span class="tag">上呼吸道</span>
+      <span class="tag">Stridor</span>
+      <span class="tag">下呼吸道</span>
+      <span class="tag">肺實質</span>
+      <span class="tag">肋膜腔</span>
+      <span class="tag">矛盾呼吸</span>
+      <span class="tag">胸壁與橫膈</span>
+      <span class="tag">非呼吸性</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（數字＝講義 PDF 頁碼）
+    <span class="src src-add">💡 補充</span> 整理者補充（機轉、換算、交叉參照；不是講者說的）
+    <br><span class="muted">目前只有講義，沒有課堂錄音；講義上的影片（Vimeo）與現場投票無法收錄。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+<li><strong>先定位、再診斷</strong>：把呼吸窘迫分到七個位置之一，再決定要做什麼</li>
+<li><strong>先看、再摸</strong>：在籠子裡先觀察意識、呼吸速率與用力、呼吸型態、聲音、姿勢</li>
+<li>上呼吸道：<strong>吸氣性</strong>呼吸困難＋<strong>Stridor</strong>（高音調、吸氣時）——幾乎可以確定定位</li>
+<li>下呼吸道：<strong>呼氣性</strong>呼吸困難、呼氣末喘鳴、咳嗽病史；爆裂音<strong>不一定</strong>代表心衰竭</li>
+<li>肋膜腔：<strong>快而淺</strong>、<strong>矛盾呼吸</strong>、<strong>腹側肺音模糊</strong></li>
+<li>矛盾呼吸 → 肋膜疾病只有 66%（敏感度 90%、特異度 58%）：<strong>想到肋膜腔，但不要停在那裡</strong></li>
+<li>只有呼吸急促、沒有其他呼吸徵象 → 想<strong>非呼吸性</strong>原因（疼痛、緊迫、貧血、休克、酸中毒、高體溫……）</li>
+<li>下呼吸道與肺實質<strong>最難分</strong>；不確定是正常的，<strong>不要因此不敢動</strong>——診斷跟著穩定走</li>
+    </ul>
+  </div>
+
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📋</div>
+      <h2>學習目標與呼吸定位地圖</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 2</span> 學習目標</h3>
+        <ol class="notes">
+          <li>辨識呼吸窘迫</li>
+          <li>在<strong>把緊迫降到最低</strong>的前提下定位問題</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 4</span> 七個定位</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>#</th><th>定位</th></tr>
+          <tr><td>1</td><td>上呼吸道 Upper airway</td></tr>
+          <tr><td>2</td><td>下呼吸道 Lower airway</td></tr>
+          <tr><td>3</td><td>肺實質 Pulmonary parenchyma</td></tr>
+          <tr><td>4</td><td>肋膜腔 Pleural space</td></tr>
+          <tr><td>5</td><td>胸壁與橫膈 Chest wall &amp; diaphragm</td></tr>
+          <tr><td>6</td><td>腹部膨大 Abdominal enlargement</td></tr>
+          <tr><td>7</td><td>非呼吸性的「看起來像」 Non-respiratory look-alikes</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">👀</div>
+      <h2>1. 辨識呼吸窘迫：先看、再摸</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 5</span> 怎樣算呼吸窘迫？</h3>
+        <ul class="notes">
+          <li><strong>呼吸急促</strong>（tachypnea）</li>
+          <li><strong>異常的呼吸型態</strong></li>
+          <li><strong>用力增加</strong>、端坐呼吸（orthopnea）</li>
+          <li><strong>異常的呼吸聲</strong></li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 貓出現<strong>張口呼吸</strong>就是嚴重警訊（貓平常幾乎只用鼻子呼吸）。安靜時呼吸速率 &gt; 40 次/分就值得注意。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 6</span> 先在籠子裡觀察，再去碰牠</h3>
+        <p class="p">講義附「先在籠子裡看」的影片。觀察五件事：</p>
+        <div class="grid3">
+          <div class="card-mini"><h4>意識</h4><ul><li>清醒、焦慮或沉鬱</li></ul></div>
+          <div class="card-mini"><h4>呼吸速率與用力</h4><ul><li>數一數、看腹部參與程度</li></ul></div>
+          <div class="card-mini"><h4>呼吸型態</h4><ul><li>吸氣或呼氣困難？快淺？矛盾？</li></ul></div>
+          <div class="card-mini"><h4>呼吸聲音</h4><ul><li>Stridor、stertor、喘鳴</li></ul></div>
+          <div class="card-mini"><h4>姿勢與端坐呼吸</h4><ul><li>趴著、手肘外展、頸部伸長</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🗺️</div>
+      <h2>2. 七個定位的關鍵特徵</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 7</span> 1｜上呼吸道</h3>
+        <ul class="notes">
+          <li><strong>吸氣性</strong>呼吸困難</li>
+          <li><strong>Stridor</strong>（<strong>具診斷意義</strong>）：高音調、吸氣時</li>
+          <li>對照 <strong>Stertor</strong>：低音調、像打鼾（鼻咽部）</li>
+          <li>講義附「貓喉部檢查」影片</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 8</span> 2｜下呼吸道</h3>
+        <ul class="notes">
+          <li><strong>呼氣性</strong>呼吸困難（常見呼氣時腹部用力推）</li>
+          <li><strong>呼氣末喘鳴</strong>（end-expiratory wheezes）</li>
+          <li>± 爆裂音；<strong>咳嗽病史</strong></li>
+          <li>是一個<strong>範圍很廣</strong>的類別</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>喘鳴可能很難聽出來，而且<strong>聽到爆裂音不一定是心衰竭（CHF）</strong>！</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 9</span> 3｜肺實質</h3>
+        <ul class="notes">
+          <li><strong>明顯</strong>的呼吸急促</li>
+          <li><strong>吸氣、呼氣都用力</strong>（混合型）</li>
+          <li>± 爆裂音</li>
+          <li><span class="src src-add">💡</span> 例：心因性肺水腫、肺炎、肺挫傷、出血、腫瘤</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 10</span> 4｜肋膜腔</h3>
+        <ul class="notes">
+          <li><strong>快而淺</strong>的呼吸</li>
+          <li><strong>矛盾呼吸型態</strong>（吸氣時胸廓擴張、腹部卻內凹）</li>
+          <li><strong>腹側肺音模糊</strong>（積液）；<span class="src src-add">💡</span> 氣胸則常是背側肺音下降</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 11</span> Journal club：矛盾呼吸 → 想肋膜腔，但不要停在那裡</h3>
+        <ul class="notes">
+          <li>Le Boedec 等，JAVMA 2012：389 隻呼吸困難的犬貓（其中 194 隻貓）</li>
+          <li>有矛盾呼吸的動物中，<strong>66%</strong> 是肋膜疾病</li>
+          <li><strong>敏感度 90%、特異度 58%</strong></li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 敏感度高、特異度低的意思是：<strong>沒有</strong>矛盾呼吸時，肋膜疾病的可能性下降；但<strong>有</strong>矛盾呼吸時，還有三成多是別的問題（嚴重肺實質病、上呼吸道阻塞、橫膈疲乏等）。所以先用 POCUS 確認有沒有積液／氣胸。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 12</span> 5｜胸壁與橫膈</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>胸壁：機械性</h4><ul>
+            <li>胸廓活動下降</li><li>明顯的連枷胸（flail segment）</li><li>創傷病史</li>
+            <li>疼痛、不願呼吸</li><li>其他明顯原因（如繃帶綁太緊）</li></ul></div>
+          <div class="card-mini"><h4>胸壁：功能性</h4><ul>
+            <li>胸廓起伏下降</li><li>沒有明顯創傷</li><li>有共病（<span class="src src-add">💡</span> 如神經肌肉疾病、低血鉀）</li></ul></div>
+          <div class="card-mini"><h4>橫膈：機械性</h4><ul>
+            <li>矛盾呼吸，或</li><li>胸廓活動下降（<span class="src src-add">💡</span> 如橫膈疝氣）</li></ul></div>
+          <div class="card-mini"><h4>橫膈：功能性</h4><ul>
+            <li>（如果還有辦法）加強使用肋間肌 → 矛盾呼吸</li></ul></div>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 13</span> 6｜腹部膨大</h3>
+        <ul class="notes">
+          <li>腹部明顯膨大 → <strong>吸氣受限</strong> → 快而淺的呼吸</li>
+          <li><span class="src src-add">💡</span> 例：大量腹水、巨大腫塊、胃擴張、懷孕末期</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 14</span> 7｜非呼吸性的「看起來像」</h3>
+        <p class="p">特徵：<strong>呼吸急促通常是唯一的呼吸徵象</strong>。</p>
+        <div class="grid3">
+          <div class="card-mini"><h4>原因</h4><ul><li>疼痛</li><li>害怕／緊迫</li><li>貧血</li><li>休克</li></ul></div>
+          <div class="card-mini"><h4>　</h4><ul><li>代謝性酸中毒</li><li>高體溫</li><li>神經性</li><li>中毒</li></ul></div>
+          <div class="card-mini"><h4>怎麼找</h4><ul><li><strong>床邊檢驗</strong>（PCV/TS、血氣、乳酸、血糖、電解質）</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">📝</div>
+      <h2>3. 一頁總表與影片測驗</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 15</span> 七個定位速查</h3>
+        <figure class="fig">
+          <img src="photos/03-15-localization-summary.jpg" alt="七個定位的一句話特徵；下呼吸道與肺實質（紅色）最難區分" loading="lazy">
+          <figcaption>📄 15：七個定位的一句話特徵；下呼吸道與肺實質（紅色）最難區分</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>#</th><th>定位</th><th>一句話</th></tr>
+          <tr><td>1</td><td>上呼吸道</td><td><strong>Stridor！</strong></td></tr>
+          <tr><td>2</td><td>下呼吸道</td><td>快淺呼吸，<em>有時</em>有爆裂音</td></tr>
+          <tr><td>3</td><td>肺實質</td><td>快淺呼吸，<em>有時</em>有爆裂音</td></tr>
+          <tr><td>4</td><td>肋膜腔</td><td>矛盾呼吸、<strong>肺音模糊</strong>、胸廓活動少、用力多</td></tr>
+          <tr><td>5</td><td>胸壁、橫膈</td><td>明顯的外傷</td></tr>
+          <tr><td>6</td><td>腹部膨大</td><td>大肚子</td></tr>
+          <tr><td>7</td><td>非呼吸性</td><td>床邊檢驗</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 16–18</span> 影片測驗：病灶在哪裡？</h3>
+        <p class="p">講義有三段影片讓學員定位（影片無法收錄）。講義內的影片檔名可以當作提示：</p>
+        <ul class="notes">
+          <li>Q1：「Upper airway obstruction cat」→ <strong>上呼吸道阻塞</strong></li>
+          <li>Q2：「paradoxical grey cat with OMB」→ <strong>矛盾呼吸＋張口呼吸</strong>，優先想肋膜腔</li>
+          <li>Q2（續）：「severe dyspnea OMB hypersalivation」→ 嚴重呼吸困難、張口呼吸、流口水</li>
+        </ul>
+        <p class="muted">答案是依影片檔名推測，不是講者公布的答案。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🎯</div>
+      <h2>Take-home</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 19</span> 四個重點</h3>
+        <ol class="notes">
+          <li><strong>先定位，再診斷。</strong></li>
+          <li><strong>下呼吸道和肺實質最難區分。</strong></li>
+          <li><strong>不確定沒關係——不要陷入決策癱瘓！</strong></li>
+          <li><strong>診斷跟著穩定走，而不是照檢查清單一項項做。</strong></li>
+        </ol>
+        <p class="p">下一場（<a href="cant-breathe-next.html">04</a>）接著講：定位之後，凌晨兩點要做的四個決定。</p>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Boller E. <em>The Cat that Can't Breathe: Minimizing Diagnostic Uncertainty With Respiratory Localization.</em> TSFM Annual Conference 2026, Day 1 Session 3（講義 21 頁）。</div>
+          <div class="ref-item">Le Boedec K, et al. Relationship between paradoxical breathing and pleural diseases in dyspneic dogs and cats: 389 cases. <em>J Am Vet Med Assoc</em> 2012.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="fluid-resuscitation.html">02 急性復甦輸液</a>。下一場：<a href="cant-breathe-next.html">04 喘不過氣的貓（二）：下一步怎麼做</a>。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

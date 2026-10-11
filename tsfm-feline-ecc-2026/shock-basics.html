@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>休克基礎：貓的休克，哪些是舊觀念、哪些是新證據｜2026 TSFM 貓急重症研討會</title>
+<style>
+  :root {
+    --primary: #B4233C;
+    --primary-light: #FDE4E8;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2a1016;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #d9a7b0; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4a1f28;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #d9a7b0; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #d9a7b0;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4a1f28;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #a26a75;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #7a1328 0%, #d8485f 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2a1016; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4a1f28; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #7a1328; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+</style>
+
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 TSFM 貓急重症研討會</a>
+  <div class="logo">
+    <h2>01｜休克基礎：<br>貓不是小狗</h2>
+    <p>Elise Boller｜Day 1 Session 1</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">場次資訊與學習目標</a>
+    <div class="nav-section">基礎</div>
+    <a href="#s1">1. Primary survey</a>
+    <a href="#s2">2. 休克的定義與分類</a>
+    <div class="nav-section">循環性休克</div>
+    <a href="#s3">3. 低血容性休克</a>
+    <a href="#s4">4. 分布性休克：貓 vs 狗</a>
+    <a href="#s5">5. 文獻：Shock index 與 RISG</a>
+    <a href="#s6">6. 阻塞性與心因性休克</a>
+    <div class="nav-section">參考框架</div>
+    <a href="#s7">7. 灌流評估與嚴重度</a>
+    <div class="nav-section">非循環性休克</div>
+    <a href="#s8">8. 代謝性與低氧性休克</a>
+    <div class="nav-section">總結</div>
+    <a href="#s9">Take-home</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>休克基礎：貓的休克，哪些是舊觀念、哪些是新證據</h1>
+    <p>主講：Elise Boller, DVM, DACVECC</p>
+    <p>TSFM Annual Conference 2026｜Day 1 — The Crashing Cat: Recognition, Resuscitation &amp; Rescue｜Session 1｜場次 01</p>
+    <div class="tags">
+      <span class="tag">Primary survey</span>
+      <span class="tag">休克分類</span>
+      <span class="tag">低血容</span>
+      <span class="tag">分布性休克</span>
+      <span class="tag">阻塞性休克</span>
+      <span class="tag">心因性休克</span>
+      <span class="tag">低氧性休克</span>
+      <span class="tag">代謝性休克</span>
+      <span class="tag">Shock index</span>
+      <span class="tag">RISG</span>
+      <span class="tag">ATT score</span>
+      <span class="tag">乳酸</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（數字＝講義 PDF 頁碼）
+    <span class="src src-add">💡 補充</span> 整理者補充（機轉、換算、交叉參照；不是講者說的）
+    <br><span class="muted">目前只有講義，沒有課堂錄音；講義上的影片（Vimeo）與現場投票無法收錄。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+<li><strong>休克＝氧氣輸送與消耗失衡</strong>，結果是細胞能量（ATP）產生不足；不是「血壓低」的同義詞</li>
+<li>先做 <strong>Primary survey</strong>：心血管、呼吸、神經、腹部、體溫，找出<strong>最先會讓貓死掉</strong>的問題</li>
+<li><strong>貓不是小狗</strong>：休克的貓常見<strong>心搏正常或過慢、低體溫、黏膜蒼白</strong>，幾乎不會出現狗那種磚紅色黏膜</li>
+<li>貓分布性休克的「休克器官」是<strong>肺</strong>（狗是腸胃道與肝臟）</li>
+<li><strong>脫水 ≠ 灌流不足</strong>：脫水重要但不致命；灌流不足（休克）要<strong>立刻</strong>處理</li>
+<li>Shock index（HR/SBP）在貓<strong>不可靠</strong>；創傷貓的 <strong>直腸–趾間溫差（RISG）</strong>與 <strong>ATT 分數</strong>更能預測預後，乳酸看趨勢</li>
+<li>多種休克可以<strong>同時存在</strong>；分類的目的是決定治療——輸液可能救命，也可能害死貓（如心因性休克）</li>
+<li>大循環參數（血壓、心跳）正常，<strong>不保證</strong>微循環灌流足夠</li>
+    </ul>
+  </div>
+
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📋</div>
+      <h2>場次資訊與學習目標</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <ul class="notes">
+          <li>講者 <strong>Elise Boller</strong>，DVM、DACVECC（美國獸醫急診與重症專科）。TSFM 2026 年會兩天課程的主講者，本系列 10 場都是她的課。</li>
+          <li><span class="src src-slide">📄 2</span> 開場互動：「飼主在急診抱來一隻非常虛弱、倒下的貓，你內心的狀態是？只能用 emoji 回答。」——承認面對休克貓會緊張是正常的，這堂課要給一套<strong>有系統的思考流程</strong>。</li>
+        </ul>
+        <h3><span class="src src-slide">📄 3</span> 學習目標</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>#</th><th>目標</th></tr>
+          <tr><td>1</td><td>說明 Primary survey，並用它找出<strong>立即致命</strong>的問題</td></tr>
+          <tr><td>2</td><td>定義休克，並以<strong>細胞能量衰竭</strong>的角度做功能性分類</td></tr>
+          <tr><td>3</td><td>區分貓與狗的休克臨床表現——貓的表現<strong>根本上不同</strong></td></tr>
+          <tr><td>4</td><td>依嚴重度與類型，用系統化流程辨識與處理休克</td></tr>
+          <tr><td>5</td><td>分辨哪些休克<strong>適合</strong>給輸液、哪些<strong>禁止</strong>給輸液</td></tr>
+          <tr><td>6</td><td>回顧近年貓休克診斷與預後的新證據</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🚨</div>
+      <h2>1. Primary survey：什麼會最先殺死這隻貓？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 5</span> 五個系統、五個問題</h3>
+        <figure class="fig">
+          <img src="photos/01-05-primary-survey.jpg" alt="Primary survey 的五個面向：心血管、呼吸、神經、腹部、體溫" loading="lazy">
+          <figcaption>📄 5：Primary survey 的五個面向：心血管、呼吸、神經、腹部、體溫</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>系統</th><th>要問的問題</th><th>立即致命的例子</th></tr>
+          <tr><td><strong>心血管</strong>（灌流）</td><td>組織灌流足夠嗎？</td><td>敗血症、大出血、致命性心律不整</td></tr>
+          <tr><td><strong>呼吸</strong>（氧合與通氣）</td><td>貓有在氧合、有在通氣嗎？</td><td>上呼吸道阻塞、肋膜腔疾病、嚴重肺實質／下呼吸道疾病</td></tr>
+          <tr><td><strong>神經</strong>（腦功能）</td><td>神經功能是否立即受威脅？</td><td>癲癇、顱內壓上升徵象、癱瘓或輕癱</td></tr>
+          <tr><td><strong>腹部</strong></td><td>有立即致命的腹腔問題嗎？</td><td>硬而擠不出來的膀胱（尿道阻塞）、血腹</td></tr>
+          <tr><td><strong>體溫</strong></td><td>體溫是重症的<strong>標記</strong>還是<strong>原因</strong>？</td><td>嚴重低體溫、高體溫／熱衰竭、<strong>伴隨休克的低體溫</strong></td></tr>
+        </table></div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 這就是急診常說的「ABC + 神經 + 腹部 + 體溫」快速評估；目的不是確診，而是排出<strong>處理的先後順序</strong>。完整病史與身體檢查（secondary survey）等穩定後再做。</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">⚡</div>
+      <h2>2. 休克是什麼？兩大類、六種型態</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 7–8</span> 定義與後果連鎖</h3>
+        <div class="quote">休克：氧氣輸送與氧氣消耗失衡，導致細胞能量產生下降。</div>
+        <p class="p">後果連鎖：O₂ 輸送或利用失敗 → <strong>細胞功能異常</strong> → <strong>器官衰竭（MODS／MOF）</strong> → 死亡。一旦連鎖開始，能介入的時間窗很窄。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 9, 30</span> 兩大類</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>循環性休克（Circulatory）</h4><ul>
+            <li><strong>低血容性</strong> Hypovolemic</li>
+            <li><strong>分布性</strong> Distributive</li>
+            <li><strong>阻塞性</strong> Obstructive</li>
+            <li><strong>心因性</strong> Cardiogenic</li></ul></div>
+          <div class="card-mini"><h4>非循環性休克（Non-circulatory）</h4><ul>
+            <li><strong>低氧性</strong> Hypoxic</li>
+            <li><strong>代謝性</strong> Metabolic</li></ul></div>
+        </div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>沒有完美的分類法——<strong>多種型態可以同時存在</strong>（例如敗血症同時有分布性＋低血容＋代謝性）。重點是<strong>及早區分</strong>，因為治療方向不同。</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">💧</div>
+      <h2>3. 低血容性休克，以及脫水 vs 灌流不足</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 12</span> 定義：循環血量下降</h3>
+        <div class="grid3">
+          <div class="card-mini"><h4>失血</h4><ul><li>內出血或外出血</li></ul></div>
+          <div class="card-mini"><h4>失液</h4><ul><li>嘔吐、下痢</li><li>第三空間積液</li><li>燒燙傷</li></ul></div>
+          <div class="card-mini"><h4>攝取不足</h4><ul><li>厭食、無法喝水</li></ul></div>
+        </div>
+        <h4>典型臨床表現</h4>
+        <ul class="notes">
+          <li><strong>黏膜</strong>：蒼白或白色、CRT 延長</li>
+          <li><strong>心血管</strong>：心搏過速、脈搏弱而細、低血壓</li>
+          <li><strong>意識</strong>：精神沉鬱、反應遲鈍</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 13–14</span> 脫水 vs 灌流不足：差在哪？為什麼重要？</h3>
+        <p class="p">講義放了一段脫水灰貓的影片，問「你會怎麼描述這隻貓的體液狀態？」</p>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>脫水 Dehydration</th><th>灌流不足 Hypoperfusion（休克）</th></tr>
+          <tr><td>嚴重性</td><td>重要，但<strong>不會立即致命</strong></td><td><strong>立即致命——現在就處理</strong></td></tr>
+          <tr><td>💡 缺的是哪裡的水</td><td>間質（＋細胞內）</td><td>血管內</td></tr>
+          <tr><td>💡 怎麼看</td><td>皮膚彈性、眼球凹陷、黏膜乾、體重變化</td><td>心跳、黏膜顏色、CRT、脈搏、意識、肢端溫度、乳酸</td></tr>
+          <tr><td>💡 怎麼補</td><td>數小時（常 12–24 小時）慢慢補</td><td>數分鐘內以 bolus 復甦（見 <a href="fluid-resuscitation.html">02</a>）</td></tr>
+        </table></div>
+        <p class="muted"><span class="src src-add">💡 補充</span> 表中「缺的是哪裡的水／怎麼看／怎麼補」三列是整理者補充的一般急診原則，講義只寫了第一列。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🌡️</div>
+      <h2>4. 分布性休克：貓和狗完全不一樣</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 15</span> 定義：血流分布異常</h3>
+        <ul class="notes">
+          <li>原因：<strong>敗血性休克／SIRS</strong>、<strong>過敏性休克</strong>、嚴重酸中毒或電解質異常、藥物不良反應／過量、藥物造成的血管收縮</li>
+          <li>特徵：在狗是<strong>雙相</strong>（先高動力、後低動力）；但<strong>貓不一樣！</strong></li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 16</span> 狗的雙相表現</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>高動力期（早期）</h4><ul>
+            <li>充血、<strong>磚紅色</strong>黏膜</li><li>CRT 快、心搏過速、呼吸急促</li>
+            <li>血壓正常或偏高</li><li>脈搏高、窄、跳得很強（bounding）</li></ul></div>
+          <div class="card-mini"><h4>低動力期（晚期）</h4><ul>
+            <li>臨床上像低血容性休克</li><li>黏膜蒼白、CRT 延長</li>
+            <li>脈搏弱、低血壓</li><li>精神極度沉鬱</li></ul></div>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 17</span> 分布性休克：狗 vs 貓</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>參數</th><th>狗</th><th>貓</th></tr>
+          <tr><td>心跳</td><td>↑ 心搏過速</td><td><strong>正常或 ↓ 心搏過慢</strong></td></tr>
+          <tr><td>黏膜</td><td>早期鮮紅 → 晚期蒼白</td><td><strong>蒼白</strong>，可能黃疸</td></tr>
+          <tr><td>體溫</td><td>正常或 ↑</td><td><strong>低體溫</strong></td></tr>
+          <tr><td>休克器官</td><td>腸胃道、肝臟</td><td><strong>肺臟</strong></td></tr>
+        </table></div>
+        <div class="alert alert-danger"><span class="alert-icon">🐱</span><div>貓「永遠不會出現充血（injected）黏膜」。一隻<strong>心跳 140、體溫 36.5°C、黏膜蒼白</strong>的貓，可能正處在嚴重休克，不要因為「心跳不快」就放心。<span class="src src-add">💡</span> 低體溫、心搏過慢、低血壓三者會互相惡化（低體溫降低血管對兒茶酚胺的反應），詳見 <a href="sepsis.html">08 敗血症</a>。</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">📊</div>
+      <h2>5. Journal club：貓的休克檢傷，證據怎麼說？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 18</span> Fadel 等（2025, JVECC）：健康貓與急診休克貓的 shock index</h3>
+        <ul class="notes">
+          <li>前瞻性世代研究、大學教學醫院；54 隻貓：27 隻健康對照、27 隻急診休克貓</li>
+          <li>休克定義：以下至少 2 項——<strong>乳酸 &gt; 2.5</strong>、血管收縮表現、<strong>SBP &lt; 100</strong></li>
+          <li>測量：SI（HR/SBP）、HR、SBP、直腸–趾間溫差（RITG）、乳酸</li>
+          <li>結果：<strong>SI ≥ 1.54</strong> 鑑別力最好，但只有 AUC 0.78、敏感度／特異度約 70%</li>
+          <li>單看 <strong>HR 和乳酸，兩組沒有顯著差異</strong></li>
+          <li>休克貓的心跳可以正常甚至偏低——這動搖了 SI 的核心假設（休克時 HR 上升、SBP 下降）</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 19</span> Yazıcı Özcan &amp; Parlak（2026, Animals）：創傷性休克貓的預後指標</h3>
+        <ul class="notes">
+          <li>前瞻性觀察研究、土耳其教學醫院；50 隻創傷性休克貓（68% 高樓墜落、32% 車禍）；存活 66%、死亡 34%</li>
+          <li><strong>SI 在每一個時間點都失敗</strong>（p &gt; 0.05）</li>
+          <li><strong>RISG（直腸–趾間溫差）是最佳預測因子</strong>：AUC 0.804，切點 <strong>&lt; 2.05 °C</strong></li>
+          <li>乳酸：訊號普通（AUC 0.678，切點 <strong>≥ 4.46 mmol/L</strong>）</li>
+          <li>RISG 與乳酸都是<strong>獨立</strong>的存活預測因子；死亡組的 <strong>ATT 分數</strong>顯著較高</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 講義寫的是 RISG 切點「&lt; 2.05 °C」與存活相關的方向；直覺上溫差<strong>越大</strong>代表周邊血管收縮越明顯、灌流越差。實際判讀方向請以原文為準（Yazıcı Özcan &amp; Parlak 2026）。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 20–21</span> 臨床要點與要小心的地方</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>✅ 要做</th><th>❌ 不要做</th></tr>
+          <tr><td>SI（≥ 1.54）可以當<strong>快速檢傷篩檢</strong></td><td>只靠 HR 或 SI 就<strong>排除</strong>貓的休克</td></tr>
+          <tr><td>量<strong>直腸溫</strong>，並考慮量<strong>趾間溫度</strong>（中心 vs 周邊）</td><td>把狗的休克標準直接套到貓</td></tr>
+          <tr><td>創傷病患使用 <strong>ATT 分數</strong></td><td></td></tr>
+          <tr><td>謹慎使用乳酸——是輔助不是定論，<strong>趨勢最重要</strong></td><td></td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🫀</div>
+      <h2>6. 阻塞性休克與心因性休克</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 22</span> 阻塞性休克：血流被物理性阻擋</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>線索</h4><ul>
+            <li>肺音模糊（肋膜腔）</li><li>心音模糊（心包膜）</li>
+            <li>腹部膨大</li><li>動脈血栓栓塞徵象</li></ul></div>
+          <div class="card-mini"><h4>原因</h4><ul>
+            <li><strong>FATE</strong>（貓動脈血栓栓塞）</li><li>氣胸</li><li>腫瘤</li>
+            <li>心包填塞／心包積液</li><li>肺動脈血栓栓塞、肺高壓</li><li>GDV（狗）</li></ul></div>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 23</span> 心因性休克：前向血流下降</h3>
+        <ul class="notes">
+          <li>原因：<strong>收縮衰竭</strong>、<strong>舒張衰竭</strong>（貓 HCM 最常見）、心律不整、（心包積液）</li>
+          <li>聽診：心雜音、<strong>奔馬律</strong>、脈搏短絀、脈搏品質差</li>
+          <li>靜脈鬱血：頸靜脈怒張、腹水（右心衰竭）</li>
+          <li>肺部：呼吸急促、呼吸困難、肺爆裂音、肺音下降（肋膜積液）</li>
+          <li>講義附一段 DCM 貓的影片</li>
+        </ul>
+        <div class="alert alert-danger"><span class="alert-icon">⛔</span><div><strong>心因性休克不是輸液的適應症。</strong>貓的心衰竭和低血容常常長得很像（低體溫、心搏過慢、蒼白、虛弱），給錯輸液會把貓推進肺水腫。這是這堂課「區分休克類型是生死攸關」的核心例子。<span class="src src-add">💡</span> 先用 POCUS 看左心房大小、肋膜／心包積液、B-lines 再決定（詳見 <a href="cant-breathe-localization.html">03</a>、<a href="cant-breathe-next.html">04</a>）。</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🧭</div>
+      <h2>7. 組織灌流怎麼評估？嚴重度怎麼分？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 6, 26</span> 上游、組織、下游</h3>
+        <figure class="fig">
+          <img src="photos/01-26-tissue-perfusion.jpg" alt="評估組織灌流：上游（把血送到組織）、組織（微循環）、下游（灌流是否足夠的後果）" loading="lazy">
+          <figcaption>📄 26：評估組織灌流：上游（把血送到組織）、組織（微循環）、下游（灌流是否足夠的後果）</figcaption>
+        </figure>
+        <div class="grid3">
+          <div class="card-mini"><h4>上游：把血送到組織</h4><ul>
+            <li>心輸出量、心搏量、心跳</li><li>全身血管阻力（SVR）</li><li>血量</li>
+            <li>血氧含量（Hb × SaO₂）</li><li>血壓（MAP/SAP/DAP）</li><li>中心靜脈壓（CVP）</li></ul></div>
+          <div class="card-mini"><h4>組織：微循環</h4><ul>
+            <li>CRT</li><li>黏膜顏色</li><li>肢端溫度／溫差（ΔT）</li></ul></div>
+          <div class="card-mini"><h4>下游：灌流的後果</h4><ul>
+            <li>PaO₂（氧合）</li><li>PvCO₂（靜脈 CO₂／灌流）</li>
+            <li>乳酸（組織代謝）</li><li>尿量（腎灌流）</li></ul></div>
+        </div>
+        <div class="quote">大循環參數正常，不保證微循環功能正常。</div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 25</span> 灌流不足的嚴重度</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>參數</th><th>輕度</th><th>中度</th><th>重度</th></tr>
+          <tr><td>意識</td><td>正常 → 稍安靜</td><td>沉鬱、遲鈍</td><td>意識模糊 → 木僵</td></tr>
+          <tr><td>心跳</td><td>正常 → 稍快</td><td>↑ 或正常</td><td>正常 → ↓（<strong>心搏過慢特別令人擔心</strong>）</td></tr>
+          <tr><td>黏膜顏色</td><td>粉紅 → 淡粉紅</td><td>蒼白</td><td>蒼白／白 → 灰</td></tr>
+          <tr><td>股動脈脈搏</td><td>正常 → 稍弱</td><td>弱</td><td>非常弱 → 摸不到</td></tr>
+          <tr><td>蹠動脈脈搏</td><td>摸得到</td><td>弱／難摸</td><td>摸不到</td></tr>
+          <tr><td>肢端溫度</td><td>正常 → 稍涼</td><td>涼</td><td>明顯冰冷</td></tr>
+          <tr><td>血壓</td><td>常維持</td><td>可能 ↓</td><td>常 ↓</td></tr>
+          <tr><td>乳酸</td><td>正常／↑</td><td>常 ↑</td><td>常 ↑／清除差</td></tr>
+        </table></div>
+        <p class="muted">這張表在 <a href="fluid-resuscitation.html">02 輸液</a> 會再加上各嚴重度的 bolus 劑量。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">🧪</div>
+      <h2>8. 非循環性休克：代謝性與低氧性</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 28</span> 代謝性休克</h3>
+        <p class="p"><strong>定義</strong>：細胞的代謝機器壞掉——即使氧氣送到了，細胞也做不出 ATP。<br><strong>共通臨床表現</strong>：所有病例都有<strong>精神沉鬱</strong>；其他表現取決於原發疾病。</p>
+        <div class="grid3">
+          <div class="card-mini"><h4>內分泌／電解質</h4><ul><li>腎上腺皮質功能低下</li><li>低血糖</li><li>高血鉀</li><li>低血鈣</li></ul></div>
+          <div class="card-mini"><h4>酸鹼</h4><ul><li>嚴重 pH 異常</li></ul></div>
+          <div class="card-mini"><h4>毒素與感染</h4><ul><li>敗血症</li><li>氰化物中毒</li><li>Bromethalin 中毒</li><li>粒線體功能異常</li></ul></div>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 29</span> 低氧性休克：動脈血氧含量不足</h3>
+        <p class="p"><span class="formula">CaO₂ = (1.34 × Hb × SaO₂) + (PaO₂ × 0.003)</span>　正常約 20 mL O₂/dL 血液</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>機制</th><th>原因</th><th>黏膜顏色</th><th>處置重點</th></tr>
+          <tr><td><strong>Hb ↓（貧血）</strong></td><td>出血、溶血、骨髓衰竭</td><td>蒼白</td><td>輸血</td></tr>
+          <tr><td><strong>SaO₂／PaO₂ ↓</strong></td><td>肺實質疾病、換氣不足</td><td><strong>發紺</strong>；呼吸困難、爆裂音、呼吸用力</td><td>給氧、處理肺部／換氣</td></tr>
+          <tr><td><strong>Hb 被佔住（異常血紅素）</strong></td><td>一氧化碳中毒、變性血紅素血症</td><td><strong>褐色</strong></td><td>⚠ 只給氧不夠，需要解毒劑（如變性血紅素用 <strong>methylene blue</strong>）</td></tr>
+        </table></div>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 從公式可以看出：PaO₂ 溶解在血漿的部分（× 0.003）很小，<strong>血氧含量主要由 Hb 決定</strong>。所以嚴重貧血的貓即使 SpO₂ 100%，組織仍然缺氧；給氧幫助有限，要補的是紅血球。貓的變性血紅素血症常見原因是 <strong>acetaminophen（普拿疼）</strong>中毒，常同時有 Heinz body 與臉部／腳掌水腫。</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🎯</div>
+      <h2>Take-home：五個重點</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 31</span> 講者的五個重點</h3>
+        <ol class="notes">
+          <li><strong>早期各型休克看起來都一樣</strong>——一定要合併多個臨床參數判斷。</li>
+          <li><strong>多種型態可以同時存在</strong>——永遠考慮組合。</li>
+          <li><strong>區分類型決定治療</strong>——這是生死攸關的事；輸液可能救命，也可能有害。</li>
+          <li><strong>貓不是小狗</strong>——注意心搏過慢、低體溫，而且貓<strong>從來不會</strong>出現充血的黏膜。</li>
+          <li><strong>早期介入是關鍵</strong>——連鎖一旦啟動，介入的時間窗很窄。</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Boller E. <em>Shock Basics: What's Old and What's New in Cats.</em> TSFM Annual Conference 2026, Day 1 Session 1（講義 33 頁）。</div>
+          <div class="ref-item">Fadel C, et al. Assessment of shock index in healthy cats and in cats presenting to an emergency room with shock. <em>J Vet Emerg Crit Care</em> 2025.</div>
+          <div class="ref-item">Yazıcı Özcan Z, Parlak K. Prognostic performance of shock index, whole-blood lactate concentration, rectal–interdigital temperature gradient, and ATT score in cats with trauma-induced shock. <em>Animals</em> 2026.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>下一場：<a href="fluid-resuscitation.html">02 急性復甦輸液</a>。相關：<a href="sepsis.html">08 貓的敗血症</a>、<a href="cpr-recover.html">07 CPR</a>。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

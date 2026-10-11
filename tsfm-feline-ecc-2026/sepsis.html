@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 年的貓敗血症｜2026 TSFM 貓急重症研討會</title>
+<style>
+  :root {
+    --primary: #B4233C;
+    --primary-light: #FDE4E8;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2a1016;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #d9a7b0; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4a1f28;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #d9a7b0; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #d9a7b0;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4a1f28;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #a26a75;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #7a1328 0%, #d8485f 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2a1016; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4a1f28; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #7a1328; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+</style>
+
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 TSFM 貓急重症研討會</a>
+  <div class="logo">
+    <h2>08｜2026 年的<br>貓敗血症</h2>
+    <p>Elise Boller｜Day 2 Session 1</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">敗血症的規模</a>
+    <div class="nav-section">基礎</div>
+    <a href="#s1">1. 定義：舊 vs 新</a>
+    <div class="nav-section">前幾小時的框架</div>
+    <a href="#s2">2. 辨識：貓的表現型</a>
+    <a href="#s3">3. 復甦：輸液與升壓劑</a>
+    <a href="#s4">4. 抗生素與感染源控制</a>
+    <a href="#s5">5. 器官功能障礙</a>
+    <a href="#s6">6. 降階與去復甦</a>
+    <div class="nav-section">總結</div>
+    <a href="#s7">7. 預後與星期一要改的事</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>2026 年的貓敗血症</h1>
+    <p>主講：Elise Boller, DVM, DACVECC</p>
+    <p>TSFM Annual Conference 2026｜Day 2 — The Critical Cat: Sepsis, Organ Dysfunction &amp; Metabolic Emergencies｜Session 1｜場次 08</p>
+    <div class="tags">
+      <span class="tag">Sepsis-3</span>
+      <span class="tag">VetSEPSIS 2026</span>
+      <span class="tag">不再用 SIRS</span>
+      <span class="tag">敗血性休克</span>
+      <span class="tag">貓的表現型</span>
+      <span class="tag">血管麻痺</span>
+      <span class="tag">Norepinephrine</span>
+      <span class="tag">1 小時內抗生素</span>
+      <span class="tag">ISCAID</span>
+      <span class="tag">感染源控制</span>
+      <span class="tag">器官功能障礙</span>
+      <span class="tag">降階</span>
+      <span class="tag">ROSE</span>
+      <span class="tag">輸液管理</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（數字＝講義 PDF 頁碼）
+    <span class="src src-add">💡 補充</span> 整理者補充（機轉、換算、交叉參照；不是講者說的）
+    <br><span class="muted">目前只有講義，沒有課堂錄音；講義上的影片（Vimeo）與現場投票無法收錄。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+<li>新定義（VetSEPSIS 2026，犬貓相同）：<strong>感染＋失調的宿主反應＋器官功能障礙＝敗血症</strong>；<strong>SIRS 不再是必要，也不夠</strong></li>
+<li>敗血性休克：充分輸液後仍需要<strong>升壓劑</strong>才能維持 MAP ≥ 65 mmHg，且<strong>乳酸 &gt; 2 mmol/L</strong></li>
+<li>貓的表現不一樣：<strong>低體溫</strong>（不是發燒）、<strong>相對心搏過慢</strong>、黏膜蒼白、脈弱／低血壓——<strong>低體溫又有感染的貓是敗血症候選，不是讓人放心</strong></li>
+<li>前幾小時五步驟：<strong>辨識 → 復甦 → 抗生素＋採樣＋感染源控制 → 支持衰竭器官 → 再評估、降階</strong></li>
+<li>貓的 bolus：<strong>5–10 mL/kg、15–30 分鐘</strong>，每次後重新評估；人的 30 mL/kg <strong>不適用於貓</strong></li>
+<li>不是所有低血壓都是低血容：<strong>血管麻痺需要升壓劑，不是更多輸液</strong>——早點用（人醫首選 norepinephrine）</li>
+<li>敗血性休克<strong>1 小時內給抗生素</strong>，是復甦的一部分；感染源控制要<strong>同時</strong>規劃，不是等「穩定了」</li>
+<li>休克解除後：<strong>去復甦</strong>（ROSE 的 E），目標體液平衡為零；問自己「如果現在沒在用，我會開始嗎？」——抗生素和輸液都一樣</li>
+    </ul>
+  </div>
+
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📋</div>
+      <h2>敗血症：重症的頭號問題</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 3</span> 人類的數字（Meyer, NEJM 2024）</h3>
+        <div class="grid3">
+          <div class="card-mini"><h4>敗血症</h4><ul><li><strong>4,900 萬</strong>例</li></ul></div>
+          <div class="card-mini"><h4>相關死亡</h4><ul><li><strong>1,100 萬</strong></li></ul></div>
+          <div class="card-mini"><h4>院內死亡</h4><ul><li>約 <strong>30%</strong></li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">📖</div>
+      <h2>1. 敗血症的定義：舊的與新的</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 4–6</span> 從 SIRS 到器官功能障礙</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>舊（2026 年前）</h4><ul>
+            <li><strong>感染＋SIRS＝敗血症</strong></li><li>SIRS 是非特異性的「入場門檻」</li>
+            <li>低體溫的貓可能「不符合」</li></ul></div>
+          <div class="card-mini"><h4>新</h4><ul>
+            <li><strong>感染＋失調的宿主反應＋器官功能障礙</strong></li>
+            <li>SIRS <strong>不需要</strong>，也<strong>不夠</strong></li><li>犬貓相同</li></ul></div>
+        </div>
+        <div class="quote">敗血症：由失調的宿主對感染的反應所造成、會危及生命的器官功能障礙。（Sepsis-3, JAMA 2016）</div>
+        <p class="p">新的臨床問題只有兩個：① <strong>是否懷疑或確認感染？</strong> ② <strong>有沒有器官功能障礙的證據？</strong>（而不是「這隻貓符合 SIRS 嗎？」）</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 7–8</span> 2026 獸醫共識定義與敗血性休克</h3>
+        <ul class="notes">
+          <li><strong>敗血症</strong>（Goggs 等，JVECC 2026；改良德爾菲法、12 位國際專家）：與失調的宿主對感染反應相關、導致器官功能障礙的危及生命症候群</li>
+          <li><strong>敗血性休克</strong>：敗血症在<strong>充分輸液復甦後</strong>，仍需<strong>升壓劑</strong>才能維持 <strong>MAP ≥ 65 mmHg</strong>，且血清<strong>乳酸 &gt; 2 mmol/L</strong>（Sepsis-3）；獸醫共識描述為心血管不穩定＋代謝異常的子集合</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🐱</div>
+      <h2>2. 辨識：貓的表現型不一樣</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 10</span> 前幾小時的框架</h3>
+        <ol class="notes">
+          <li><strong>辨識</strong></li><li><strong>復甦</strong></li><li><strong>抗生素、採樣與感染源控制</strong></li><li><strong>支持衰竭的器官</strong></li><li><strong>再評估、降階</strong></li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 11</span> 病例 Dumpling：一個非常糟的早上</h3>
+        <ul class="notes">
+          <li>7 歲家貓短毛；安靜，<strong>厭食 2 天</strong>、精神越來越差</li>
+          <li>T <strong>36.1 °C</strong>、HR <strong>148</strong>、RR 28、<strong>Doppler 80 mmHg</strong></li>
+          <li>股動脈脈搏弱、CRT 延長、沉鬱；<strong>腹痛</strong>；POCUS：<strong>腹腔游離液</strong></li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 12–13</span> 貓的表現型</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>參數</th><th>狗</th><th>貓</th></tr>
+          <tr><td>心跳</td><td>↑ 心搏過速</td><td>正常或 ↓ <strong>心搏過慢</strong></td></tr>
+          <tr><td>黏膜</td><td>早期鮮紅 → 晚期蒼白</td><td><strong>蒼白</strong>，可能黃疸</td></tr>
+          <tr><td>體溫</td><td>正常或 ↑</td><td><strong>低體溫</strong></td></tr>
+          <tr><td>休克器官</td><td>腸胃道、肝臟</td><td><strong>肺臟</strong></td></tr>
+        </table></div>
+        <div class="grid2">
+          <div class="card-mini"><h4>低體溫</h4><ul><li>而不是發燒</li></ul></div>
+          <div class="card-mini"><h4>相對心搏過慢</h4><ul><li>而不是預期的心搏過速（可能被低體溫壓住）</li></ul></div>
+          <div class="card-mini"><h4>黏膜蒼白</h4><ul><li>灌流不足的徵象</li></ul></div>
+          <div class="card-mini"><h4>脈弱／低血壓</h4><ul><li>心血管功能障礙</li></ul></div>
+        </div>
+        <p class="muted">學員講義：貓常見的敗血症來源——<strong>敗血性腹膜炎</strong>（腸胃穿孔、膽汁性腹膜炎）、<strong>膿胸</strong>、腎盂腎炎／UTI、肺炎、咬傷／深部組織感染、子宮蓄膿。2026 定義犬貓相同；貓的差別在<strong>辨識</strong>。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 14–15</span> Dumpling 的初步檢查</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>結果</th><th>意義</th></tr>
+          <tr><td>乳酸</td><td><strong>4.1</strong></td><td>高乳酸血症（器官功能障礙指標）</td></tr>
+          <tr><td>iCa</td><td><strong>0.9 mmol/L</strong></td><td>低血鈣（敗血症常見、非特異）</td></tr>
+          <tr><td>血糖</td><td><strong>3.2 mmol/L（58 mg/dL）</strong></td><td>低血糖</td></tr>
+          <tr><td>嗜中性球</td><td><strong>1.5 × 10³/µL</strong></td><td>白血球減少</td></tr>
+          <tr><td>（Creatinine）</td><td><strong>4.2 mg/dL（371 µmol/L）</strong></td><td>腎功能障礙</td></tr>
+          <tr><td>總膽紅素</td><td><strong>1.35 mg/dL（23 µmol/L）</strong></td><td>高膽紅素血症（&gt; 0.5 mg/dL 有預後意義）</td></tr>
+          <tr><td>POCUS</td><td>腹腔游離液</td><td>→ 腹腔穿刺</td></tr>
+        </table></div>
+        <p class="p">敗血症常見的檢驗變化：</p>
+        <div class="grid2">
+          <div class="card-mini"><h4>非特異性</h4><ul><li>低或高血糖</li><li>低血鈣</li><li>白血球增多或減少</li><li>低白蛋白</li></ul></div>
+          <div class="card-mini"><h4>器官功能障礙指標</h4><ul><li>高膽紅素血症</li><li>高乳酸血症</li><li>DIC 指標（凝血異常、血小板低下）</li></ul></div>
+        </div>
+        <p class="muted">講義只寫「Chem: 4.2 mg/dL (371 µmol/L)」，依單位換算判斷是 creatinine。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">💧</div>
+      <h2>3. 復甦：小量輸液、早點升壓</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 17</span> 不是所有低血壓都是低血容</h3>
+        <p class="p"><strong>血管麻痺（vasoplegia）的機轉</strong>：</p>
+        <ul class="notes">
+          <li><strong>iNOS</strong> 造成不當的血管擴張</li>
+          <li><strong>相對的血管加壓素缺乏</strong></li>
+          <li>酸中毒造成<strong>對兒茶酚胺不敏感</strong></li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 18–20</span> 輸液反應性與貓的耐受度</h3>
+        <ol class="notes">
+          <li><strong>評估輸液反應性</strong>：用動態指標，而不是靜態表現</li>
+          <li><strong>給小量、個別化的 bolus</strong>：目標導向的小量輸液挑戰</li>
+          <li><strong>重新評估灌流</strong>：沒反應就停，想到血管麻痺</li>
+        </ol>
+        <div class="alert alert-danger"><span class="alert-icon">🐱</span><div>人的 <strong>30 mL/kg bolus</strong> 在人醫只是弱建議——<strong>不適用於貓</strong>。貓的<strong>心搏過慢、低體溫、低血壓三聯徵</strong>讓牠們更容易輸液過量。<strong>起始 bolus 5–10 mL/kg、20–30 分鐘</strong>（AAHA 2024：15–30 分鐘），每次後都重新評估。</div></div>
+        <p class="muted">學員講義：每次 bolus 後問「灌流有改善嗎？」沒有的話，問<strong>為什麼</strong>——而不是「還要再給多少」。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 21</span> 早點用升壓劑</h3>
+        <ul class="notes">
+          <li>人醫指引：<strong>Norepinephrine</strong> 是敗血性休克的第一線升壓劑</li>
+          <li>適當矯正容積後，低血壓／灌流異常<strong>仍持續</strong>就開始</li>
+        </ul>
+        <div class="quote">血管麻痺需要升壓劑，不是更多輸液。</div>
+        <p class="muted"><span class="src src-add">💡</span> 講義沒有列升壓劑劑量；常用 norepinephrine 0.05–2 µg/kg/min CRI 從低劑量開始調整。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 22</span> 監測：溫度計和 Doppler</h3>
+        <p class="p">講義只放兩張圖：<strong>溫度計（36.8 °C）</strong>與 <strong>Doppler 血壓計</strong>——最基本的兩個工具，每隻生病的貓都要量。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">💊</div>
+      <h2>4. 抗生素、採樣與感染源控制</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 24–25</span> 每一小時都算數</h3>
+        <ul class="notes">
+          <li>敗血性休克：<strong>可以的話在第一小時內</strong>給抗生素——把它當成<strong>復甦組合（bundle）的一部分</strong>（Kumar 2006；Seymour 2017）</li>
+          <li>可行時先<strong>採培養</strong>再給抗生素（但不要因此延誤）</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 26</span> 名詞</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>名詞</th><th>意思</th></tr>
+          <tr><td>經驗性治療</td><td>在知道病原或藥敏之前就開始的治療</td></tr>
+          <tr><td>廣效</td><td>涵蓋很多可能病原</td></tr>
+          <tr><td>單一藥物</td><td>一種藥提供廣效涵蓋</td></tr>
+          <tr><td>合併治療</td><td>兩種以上藥物互補，更快降低病原量</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 27–28</span> 單一廣效藥物</h3>
+        <p class="muted">管理分級燈號（📄 27 引用澳洲維多利亞省「Not all bugs need drugs」海報）：🟢 低重要性、🟡 中、🔴 高重要性（保留使用）。</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>分級</th><th>藥物</th><th>劑量</th><th>說明</th></tr>
+          <tr><td>🔴</td><td>Piperacillin–tazobactam</td><td>50 mg/kg IV q6h</td><td>非常廣效（G−／G+／厭氧），抗綠膿桿菌；保留給嚴重／高風險感染；腎排除</td></tr>
+          <tr><td>🟡</td><td>Ampicillin–sulbactam</td><td>20–30 mg/kg IV q6–8h</td><td>社區感染 G+／厭氧＋許多 G−；有 β-lactamase 保護；腎排除</td></tr>
+          <tr><td>🔴</td><td>Cefotaxime</td><td>20–50 mg/kg IV q6–8h</td><td>第三代頭孢；G− 強；厭氧弱；腎排除</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 29</span> 合併廣效治療</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>分級</th><th>組合</th><th>劑量</th><th>說明</th></tr>
+          <tr><td>🟢＋🔴</td><td>Ampicillin ＋ enrofloxacin</td><td>22–30 mg/kg IV q8h ＋ <strong>≤ 5 mg/kg/day</strong> IV</td><td>ISCAID 列出；β-lactamase 保護較 amp-sulbactam 少；<strong>貓 enrofloxacin ≤ 5 mg/kg/day（視網膜毒性）</strong></td></tr>
+          <tr><td>🟡＋🔴</td><td>Clindamycin ＋ enrofloxacin</td><td>10 mg/kg IV q12h ＋ ≤ 5 mg/kg/day IV</td><td>ISCAID 列出；厭氧涵蓋好</td></tr>
+          <tr><td>🟡＋🔴</td><td>Clindamycin ＋ marbofloxacin</td><td>10 mg/kg IV q12h ＋ 2.75–5.5 mg/kg IV q24h</td><td>ISCAID 列出</td></tr>
+          <tr><td>🟢＋🔴</td><td>Ampicillin ＋ marbofloxacin</td><td>22–30 mg/kg IV q8h ＋ 2.75–5.5 mg/kg IV q24h</td><td>ISCAID 列出</td></tr>
+          <tr><td>🟡＋🔴</td><td>Ampicillin–sulbactam ＋ marbofloxacin</td><td>20–30 mg/kg IV q6–8h ＋ 2.75–5.5 mg/kg IV q24h</td><td>廣效經驗性</td></tr>
+          <tr><td>🟡＋🔴</td><td>Ampicillin–sulbactam ＋ enrofloxacin</td><td>20–30 mg/kg IV q6–8h ＋ ≤ 5 mg/kg/day IV</td><td>廣效經驗性</td></tr>
+          <tr><td>🔴＋🟢</td><td>Cefotaxime ＋ metronidazole</td><td>20–50 mg/kg IV q6–8h ＋ 10–15 mg/kg IV q12h</td><td>G−＋厭氧；<strong>適合腹腔來源</strong></td></tr>
+          <tr><td>🟡＋🔴</td><td>Cefazolin ＋ marbofloxacin</td><td>25 mg/kg IV q6h ＋ 2.75–5.5 mg/kg IV q24h</td><td>G+＋擴大 G−；<strong>腹腔敗血症的厭氧涵蓋不足</strong></td></tr>
+        </table></div>
+        <p class="muted">講義註：一定要查最新的獸醫藥典確認劑量與副作用；以上是初始經驗性治療的一般原則。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 30–31</span> 感染源控制與採樣也是復甦的一部分</h3>
+        <p class="p">問自己：<strong>這裡有沒有什麼我可以「物理性移除」的東西？</strong></p>
+        <div class="tbl-wrap"><table>
+          <tr><th>來源</th><th>控制方法</th></tr>
+          <tr><td>敗血性腹膜炎</td><td>手術／引流</td></tr>
+          <tr><td>膿胸</td><td>胸腔引流</td></tr>
+          <tr><td>傷口／膿瘍／壞死組織</td><td>引流／清創</td></tr>
+          <tr><td>子宮</td><td>卵巢子宮切除／剖腹探查</td></tr>
+        </table></div>
+        <figure class="fig">
+          <img src="photos/08-31-dumpling-septic-abdomen.jpg" alt="Dumpling 的腹水抹片：退化性嗜中性球，箭頭處有細胞內細菌——敗血性腹膜炎" loading="lazy">
+          <figcaption>📄 31：Dumpling 的腹水抹片：退化性嗜中性球，箭頭處有細胞內細菌——敗血性腹膜炎</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">🫁</div>
+      <h2>5. 支持衰竭的器官</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<p class="muted">學員講義：只計算<strong>無法</strong>用原發疾病、已知共病、未處理的休克或預期藥物作用解釋的變化。器官功能障礙要<strong>連續監測</strong>，<strong>趨勢比單一數值重要</strong>；目前沒有經驗證的貓版 SOFA。</p>
+      <div class="tbl-wrap"><table>
+        <tr><th>系統</th><th>指標</th><th>最重要的支持建議</th></tr>
+        <tr><td><span class="src src-slide">📄 33</span> <strong>呼吸</strong></td><td>低血氧 ± 給氧需求增加；敗血症相關肺損傷 → 非心因性肺水腫／ARDS（ARDSVet 準則）</td><td rowspan="2"><strong>腸道營養、維持正常血氧</strong></td></tr>
+        <tr><td><strong>腸胃</strong></td><td>厭食、餵食不耐、腸阻塞／蠕動異常、嘔吐下痢、吐血／黑便、腹內高壓</td></tr>
+        <tr><td><span class="src src-slide">📄 34</span> <strong>心血管</strong></td><td>低血壓、需要升壓劑；CRT 延長、周邊脈搏弱；<strong>周邊與中心溫差增加</strong>；乳酸 &gt; 2.0；心肌（收縮或舒張）功能障礙</td><td rowspan="2"><strong>好的輸液管理、避免高血糖</strong></td></tr>
+        <tr><td><strong>代謝／荷爾蒙</strong></td><td>低血糖；<strong>CIRCI</strong>（重症相關皮質類固醇不足）</td></tr>
+        <tr><td><span class="src src-slide">📄 36</span> <strong>腎臟</strong></td><td>寡／無尿 <strong>&lt; 1 mL/kg/h 持續 ≥ 6 小時</strong>；creatinine 急性上升 <strong>≥ 0.3 mg/dL</strong>；尿圓柱</td><td rowspan="2"><strong>好的輸液管理、監測、考慮 ursodiol、腸道營養</strong></td></tr>
+        <tr><td><strong>肝臟</strong></td><td><strong>膽紅素 &gt; 0.5 mg/dL（有預後意義）</strong>；高血氨；低膽固醇；餐前／餐後膽酸上升</td></tr>
+        <tr><td><span class="src src-slide">📄 37</span> <strong>凝血</strong></td><td>血小板 <strong>&lt; 100 × 10³/µL</strong> 或急性下降 &gt; 50%；凝血時間延長 &gt; 參考上限 25%（<strong>FXII 缺乏不算</strong>，常見陷阱）；D-dimer 上升；新的血栓事件</td><td rowspan="2"><strong>腸道營養、避免內皮傷害、考慮血漿</strong></td></tr>
+        <tr><td><strong>中樞神經</strong></td><td>意識模糊、木僵、昏迷；相對基準的新惡化</td></tr>
+      </table></div>
+      <div class="subsection">
+        <h3>學員講義：貓的注意事項</h3>
+        <ul class="notes">
+          <li><strong>乳酸</strong>在貓是休克指標，但<strong>不一定能預測死亡</strong></li>
+          <li>早點<strong>放導尿管</strong>密切監測尿量</li>
+          <li><strong>總膽紅素</strong>是貓最有用的生化預後指標</li>
+          <li>貓常有 <strong>FXII 缺乏</strong>（aPTT 延長），不要混淆凝血評估</li>
+          <li>生病的貓出現<strong>相對心搏過慢</strong>是警訊，不是讓人放心</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 35</span> 為什麼敗血症會造成這麼嚴重的循環障礙？</h3>
+        <p class="p">敗血症的死亡來自器官功能障礙，而驅動它的是：<strong>免疫失調、補體活化、發炎–凝血交互作用、內皮傷害、微循環血流異常</strong>。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🔽</div>
+      <h2>6. 再評估、降階、去復甦</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 40</span> 抗生素降階</h3>
+        <p class="p"><strong>降階</strong>：新資訊出來、病患穩定後，<strong>縮窄或停止</strong>經驗性治療。</p>
+        <div class="quote">如果病患現在還沒在用抗生素，我現在會開始嗎？如果不會，就降階。</div>
+        <p class="p">同時想：如果我錯了怎麼辦？風險有多高？</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 41–42</span> 輸液的四個階段（ROSE）</h3>
+        <figure class="fig">
+          <img src="photos/08-41-rose.jpg" alt="輸液治療四階段 ROSE 與四次打擊" loading="lazy">
+          <figcaption>📄 41：輸液治療四階段 ROSE 與四次打擊</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>階段</th><th>做什麼</th><th>對應的打擊</th></tr>
+          <tr><td><strong>R</strong> 復甦 Resuscitation</td><td>給輸液（Ebb 期）</td><td>第 1 擊：初始損傷</td></tr>
+          <tr><td><strong>O</strong> 最佳化 Optimisation</td><td>維持</td><td>第 2 擊：缺血再灌流</td></tr>
+          <tr><td><strong>S</strong> 穩定 Stabilisation</td><td>開始移除（Flow 期）</td><td>第 3 擊：全身通透性增加症候群</td></tr>
+          <tr><td><strong>E</strong> 排除 Evacuation</td><td>去復甦</td><td>第 4 擊：低灌流風險（移除太多）</td></tr>
+        </table></div>
+        <div class="quote">如果病患現在還沒在打輸液，我現在會開始嗎？如果不會，就去復甦。</div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 43</span> 避免體液累積症候群（FAS）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>做法</th><th>說明</th></tr>
+          <tr><td><strong>嚴格記錄進出量</strong></td><td>包括所有注射、沖管、藥物稀釋液、尿量</td></tr>
+          <tr><td><strong>每 8 小時量體重</strong></td><td>「輸液蠕變」是真的——小量很快就累積</td></tr>
+          <tr><td>評估器官傷害</td><td>腎、肺、腸</td></tr>
+          <tr><td><strong>早期腸道營養</strong></td><td>安全時就開始</td></tr>
+          <tr><td>限鈉與動員</td><td>促進淋巴流與液體清除</td></tr>
+        </table></div>
+        <div class="quote">目標：體液平衡為零——休克解除後，每一毫升都算數。</div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 44</span> 排除（Evacuation）</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>利尿劑——第一線</h4><ul>
+            <li><strong>Furosemide 0.2–1 mg/kg IV</strong>：從低劑量開始、觀察、調整</li>
+            <li>促進排鈉，AKI 時特別有用</li>
+            <li>不夠時加 <strong>spironolactone</strong></li>
+            <li>膠體滲透壓很低時考慮<strong>白蛋白</strong></li></ul></div>
+          <div class="card-mini"><h4>腎臟替代療法——利尿劑失敗時</h4><ul>
+            <li>利尿劑不足時</li><li>特別是有腹腔室症候群（ACS）或 AKI</li>
+            <li>血行動力學不穩時偏好<strong>連續性 RRT</strong></li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🎯</div>
+      <h2>7. 預後與星期一要改的事</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 45</span> 貓的預後：我們知道的</h3>
+        <ul class="notes">
+          <li>預後取決於：<strong>來源、器官功能障礙嚴重度、衰竭器官數、感染源控制、共病</strong></li>
+          <li>貓的敗血症資料有限、異質性高，而且常被<strong>安樂死</strong>干擾</li>
+          <li>狗的證據比貓強</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 46, 48</span> 星期一可以做得不一樣的事</h3>
+        <ol class="notes">
+          <li><strong>不要再用 SIRS 當診斷門檻</strong>——問：有感染＋器官功能障礙嗎？</li>
+          <li><strong>認真看體溫</strong>——低體溫又有感染的貓是敗血症候選</li>
+          <li><strong>每隻生病的貓都量血壓</strong>——不量很容易漏掉低血壓</li>
+          <li><strong>每次 bolus 後都重新評估</strong>——灌流沒改善？問為什麼，而不是還要給多少</li>
+          <li><strong>同時規劃感染源控制</strong>——不是等貓「穩定」之後</li>
+          <li><strong>早點考慮升壓劑</strong>——適當容積後仍低血壓時</li>
+          <li><strong>抗生素降階</strong>——有微生物結果就縮窄</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 50</span> 參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Boller E. <em>Sepsis in Cats in 2026.</em> TSFM Annual Conference 2026, Day 2 Session 1（講義 50 頁，含學員講義）。</div>
+          <div class="ref-item">Goggs R, et al. Sepsis in dogs and cats — consensus definition and clinical criteria. <em>J Vet Emerg Crit Care</em> 2026;36:421–444.</div>
+          <div class="ref-item">Goggs R, et al. Septic shock and prognosis in dogs and cats with sepsis — consensus definition and clinical criteria. <em>J Vet Emerg Crit Care</em> 2026;36:445–469.</div>
+          <div class="ref-item">Evans L, et al. Surviving Sepsis Campaign 2021. <em>Crit Care Med</em> 2021;49:e1063–e1143.</div>
+          <div class="ref-item">Singer M, et al. Sepsis-3. <em>JAMA</em> 2016;315:801–810.</div>
+          <div class="ref-item">Davis H, et al. AAHA Intravenous Fluid Therapy Guidelines for Dogs and Cats. <em>J Am Anim Hosp Assoc</em> 2024.</div>
+          <div class="ref-item">Brady CA, et al. Severe sepsis in cats: 29 cases (1986–1998). <em>JAVMA</em> 2000;217:531–535；DeClue AE, et al. <em>JAVMA</em> 2011;238:890–897.</div>
+          <div class="ref-item">Weese JS, et al. ISCAID UTI guidelines. <em>Vet J</em> 2019；Lappin MR, et al. <em>J Vet Intern Med</em> 2017；Sykes JE, et al. AAFP/AAHA Antimicrobial Stewardship Guidelines. <em>J Feline Med Surg</em> 2022.</div>
+          <div class="ref-item">Kumar A, et al. <em>Crit Care Med</em> 2006;34:1589–1596；Seymour CW, et al. <em>N Engl J Med</em> 2017;376:2235–2244；Meyer, <em>NEJM</em> 2024.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="cpr-recover.html">07 心跳停止的貓</a>。下一場：<a href="dka-diabetes.html">09 貓的 DKA 與糖尿病</a>。相關：<a href="shock-basics.html">01 休克</a>、<a href="fluid-resuscitation.html">02 輸液</a>、<a href="aki.html">10 AKI</a>。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

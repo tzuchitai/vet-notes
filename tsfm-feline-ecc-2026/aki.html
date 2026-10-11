@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>急性腎損傷：辨識、原因與治療｜2026 TSFM 貓急重症研討會</title>
+<style>
+  :root {
+    --primary: #B4233C;
+    --primary-light: #FDE4E8;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2a1016;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #d9a7b0; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4a1f28;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #d9a7b0; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #d9a7b0;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4a1f28;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #a26a75;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #7a1328 0%, #d8485f 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2a1016; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4a1f28; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #7a1328; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+</style>
+
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 TSFM 貓急重症研討會</a>
+  <div class="logo">
+    <h2>10｜急性腎損傷（AKI）</h2>
+    <p>Elise Boller｜投影片＋講者備註</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">決策點與 AKI 的階段</a>
+    <div class="nav-section">基礎</div>
+    <a href="#s1">1. 原因、致病機轉與名詞</a>
+    <a href="#s2">2. 尿量：寡尿、多尿、無尿</a>
+    <a href="#s3">3. 診斷：AKI vs CKD</a>
+    <div class="nav-section">治療</div>
+    <a href="#s4">4. 治療總覽與前 2–4 小時</a>
+    <a href="#s5">5. 輸液治療</a>
+    <a href="#s6">6. 代謝異常：高血鉀、酸血症</a>
+    <a href="#s7">7. 尿量決策點與持續治療</a>
+    <a href="#s8">8. 加護、監測與預後</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>急性腎損傷：辨識、原因與治療</h1>
+    <p>主講：Elise Boller, DVM, DACVECC</p>
+    <p>TSFM Annual Conference 2026｜Acute kidney injury — recognition, causes and treatment（PowerPoint 47 張，含講者備註）｜場次 10</p>
+    <div class="tags">
+      <span class="tag">AKI</span>
+      <span class="tag">腎前／腎性／腎後</span>
+      <span class="tag">尿量</span>
+      <span class="tag">寡尿 vs 無尿</span>
+      <span class="tag">決策點</span>
+      <span class="tag">復甦輸液</span>
+      <span class="tag">高血鉀</span>
+      <span class="tag">碳酸氫鈉</span>
+      <span class="tag">Furosemide</span>
+      <span class="tag">Mannitol</span>
+      <span class="tag">Diltiazem</span>
+      <span class="tag">ins = outs</span>
+      <span class="tag">透析</span>
+      <span class="tag">預後</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（數字＝PowerPoint 投影片編號 1–47） <span class="src src-rec">🗒️ 備註</span> 講者在投影片備註欄寫的內容
+    <span class="src src-add">💡 補充</span> 整理者補充（機轉、換算、交叉參照；不是講者說的）
+    <br><span class="muted">目前只有講義，沒有課堂錄音；講義上的影片（Vimeo）與現場投票無法收錄。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+<li>AKI 是<strong>動態過程</strong>：可以是腎前、腎性、腎後，ICU 病患常<strong>三者混合</strong></li>
+<li>AKI 的尿量可以<strong>正常、多尿、寡尿或無尿</strong>；尿量一定要對照<strong>水合、灌流與輸液</strong>來解讀</li>
+<li>寡尿定義：有打輸液時 <strong>&lt; 1–2 mL/kg/hr</strong>（預期 &gt; 2）；沒打輸液且水合正常時 <strong>&lt; 1 mL/kg/hr</strong>；<strong>無尿永遠不是生理性的</strong></li>
+<li>病理性寡尿：尿液幾乎沒有濃縮（<strong>貓 USG &lt; 1.035</strong>、狗 &lt; 1.030）；生理性寡尿 USG 高</li>
+<li>給輸液<strong>之前</strong>就先採血和尿；影像要積極<strong>排除腎後原因</strong>（貓的輸尿管阻塞）</li>
+<li>治療目標：<strong>停止進一步傷害、撐過腎功能喪失的併發症、等待修復期</strong>；設定清楚的<strong>決策點</strong>並和飼主溝通</li>
+<li>水合後：<strong>無尿只補無感流失（約 22 mL/kg/day）</strong>；寡尿／多尿要 <strong>ins = outs</strong>，每 4 小時量尿量</li>
+<li>預後：無尿沒透析很差；寡尿保留到差（4–12 週可能恢復）；<strong>多尿較好</strong>；腎前／腎後原因矯正後好</li>
+    </ul>
+  </div>
+
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📋</div>
+      <h2>AKI 的決策點與四個階段</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <p class="muted">這份是 PowerPoint 檔（檔名「Acute kidney injury - recognition, causes and treatment_Boller E」），和其他九份 PDF 不同，含講者備註。部分備註提到「here in aus」（澳洲），可能是講者沿用的舊教材。</p>
+        <h3><span class="src src-slide">📄 1</span> 決策點</h3>
+        <ol class="notes">
+          <li>初步檢查之後立刻（<span class="src src-rec">🗒️</span> 原因、嚴重度、需要的照護等級）</li>
+          <li>初步補水／復甦之後</li>
+          <li>確定尿量之後</li>
+          <li>發現寡尿／無尿時</li>
+          <li>恢復期之後</li>
+          <li>出現新問題時</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 2</span> AKI 的四個階段</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>階段</th><th><span class="src src-rec">🗒️</span> 說明</th></tr>
+          <tr><td><strong>起始期</strong> Initiation</td><td>腎臟受傷的當下；GFR 與 USG 的變化<strong>還看不出來</strong></td></tr>
+          <tr><td><strong>擴展期</strong> Extension</td><td>細胞傷害導致細胞死亡（壞死、凋亡或兩者）</td></tr>
+          <tr><td><strong>維持期</strong> Maintenance</td><td>GFR 已經下降、出現尿毒併發症、有不可逆的腎損傷；尿量不定</td></tr>
+          <tr><td><strong>恢復期</strong> Recovery</td><td>腎小管細胞修復再生，完全或部分恢復</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🧬</div>
+      <h2>1. 原因、致病機轉與名詞</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 3</span> 原因交互作用：腎前、腎性、腎後</h3>
+        <p class="p"><span class="src src-rec">🗒️</span> 有些病例三種成分都有；ICU 的病患最常是<strong>多因素</strong>造成的 AKI。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 4</span> 致病機轉：血管、腎絲球、腎小管</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🗒️</span> <strong>血管功能異常</strong>：腎上腺素活性增加 → <strong>入球小動脈收縮</strong>，加上 endothelin、thromboxane、PAF 等血管活性物質；同時可能有<strong>出球小動脈強烈擴張</strong> → 腎血流與 GFR 大幅下降</li>
+          <li><strong>腎絲球損傷</strong>與血管內凝血；系膜細胞收縮、足細胞腫脹、活性氧</li>
+          <li><strong>腎小管傷害</strong>：缺氧、ATP 耗竭 → 細胞腫脹與死亡；死掉的上皮細胞堵在管腔 → 尿量下降</li>
+          <li>管腔內壓升高 → 濾液<strong>回漏</strong>到間質、過濾失敗</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 5</span> 名詞</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>名詞</th><th><span class="src src-rec">🗒️</span> 定義</th></tr>
+          <tr><td><strong>氮血症</strong> Azotemia</td><td>血中含氮化合物過多（尿素、肌酸酐、磷、硫酸鹽等「尿毒素」）；可為腎前、腎性、腎後</td></tr>
+          <tr><td><strong>尿毒症</strong> Uremia</td><td>腎功能不足造成的<strong>臨床症候群</strong>：沉鬱、噁心嘔吐、腸胃潰瘍、肺炎、癲癇、凝血異常等</td></tr>
+          <tr><td><strong>AKI</strong></td><td>逐漸取代「急性腎衰竭」：腎損傷是動態過程，不一定走到衰竭。人醫定義為腎功能突然下降，常以肌酸酐上升或尿量下降辨識</td></tr>
+          <tr><td>CKD</td><td>慢性腎病（對照見第 3 節）</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🚽</div>
+      <h2>2. 尿量：正常、寡尿、多尿、無尿</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 6</span> 兩個重點</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🗒️</span> AKI 病患的尿量可以<strong>正常、寡尿、多尿，甚至無尿</strong></li>
+          <li>尿量一定要對照<strong>水合、灌流與 IV 輸液</strong>來看</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 7–8</span> 寡尿：生理性還是病理性？</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>生理性（適當的）</h4><ul>
+            <li>對有效循環血量下降或心輸出量下降的<strong>適當反應</strong>（保鈉保水）</li><li><strong>USG 高</strong></li></ul></div>
+          <div class="card-mini"><h4>病理性（不適當的）</h4><ul>
+            <li>嚴重腎病造成 GFR 大幅下降</li>
+            <li>尿液幾乎沒有濃縮：<strong>貓 USG &lt; 1.035</strong>、狗 &lt; 1.030</li></ul></div>
+        </div>
+        <div class="tbl-wrap"><table>
+          <tr><th>情況</th><th>尿量</th><th>判讀</th></tr>
+          <tr><td>有打 IV 輸液</td><td><strong>&gt; 2 mL/kg/hr</strong></td><td>預期</td></tr>
+          <tr><td>有打 IV 輸液</td><td><strong>1–2 mL/kg/hr</strong></td><td><strong>相對寡尿</strong></td></tr>
+          <tr><td>水合與灌流正常、沒打輸液</td><td><strong>&lt; 1 mL/kg/hr</strong>（備註：&lt; 0.5–1）</td><td><strong>絕對寡尿</strong></td></tr>
+        </table></div>
+        <p class="p"><span class="src src-rec">🗒️</span> 部分<strong>尿路阻塞甚至破裂</strong>也會讓尿量下降。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 9</span> 多尿</h3>
+        <ul class="notes">
+          <li>沒打輸液時 <strong>&gt; 2 mL/kg/hr</strong>；有打輸液可能到 4–6 mL/kg/hr</li>
+          <li><span class="src src-rec">🗒️</span> 有些 AKI 病患尿量可高達 <strong>40 mL/kg/hr</strong>（投影片：「恢復與再生期的誇張尿量」）</li>
+          <li>多尿總比寡尿／無尿好，<strong>預後較好</strong>；恢復／再生期也會看到多尿</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 10</span> 無尿</h3>
+        <ul class="notes">
+          <li><strong>完全沒有尿</strong>，<strong>永遠不是生理性的</strong></li>
+          <li><span class="src src-rec">🗒️</span> 代表最嚴重的腎病或完全尿路阻塞；伴隨高血鉀、嚴重酸中毒；很難逆轉</li>
+          <li>常見結局：<strong>安樂死或透析</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🔎</div>
+      <h2>3. 臨床問題與診斷</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 11</span> 要回答的臨床問題</h3>
+        <ol class="notes">
+          <li>腎前、腎性還是腎後？</li>
+          <li>CKD、AKI，還是兩者（AKI on CKD）？</li>
+          <li>尿量多少？</li>
+          <li>生理性還是病理性寡／無尿？</li>
+          <li>原因可逆嗎？</li>
+          <li>飼主長期願意承擔到什麼程度？</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 12</span> AKI vs CKD</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>AKI</th><th>CKD</th></tr>
+          <tr><td>病史</td><td>急性發作（非特異）、嘔吐、PU/PD 或寡／無尿、最近有腎傷害事件</td><td>體重減輕、PU/PD</td></tr>
+          <tr><td>理學檢查</td><td>脫水 ± 腹痛、<strong>低體溫</strong></td><td>脫水、<strong>腎臟小而不規則</strong> ± 尿毒口臭、口腔潰瘍</td></tr>
+          <tr><td>生化</td><td>氮血症 ± 高磷 ± <strong>高血鉀</strong></td><td>氮血症、高磷、<strong>低血鉀</strong></td></tr>
+          <tr><td>CBC</td><td>± 發炎性白血球像</td><td><strong>非再生性貧血</strong>、小球低色素</td></tr>
+          <tr><td>尿液</td><td>USG &lt; 1.035（貓）、&lt; 1.030（狗）；<strong>腎小管圓柱</strong>（顆粒、上皮）；± 蛋白尿、糖尿、膿尿</td><td>等張尿 ± 蛋白尿</td></tr>
+          <tr><td>血壓</td><td>正常、升高或降低</td><td>正常到升高</td></tr>
+          <tr><td>腹部影像</td><td>腎臟正常到變大 ± 腎盂擴張、腎／輸尿管結石 ± 皮髓質分界模糊 ± medullary rim sign</td><td>腎臟小而不規則 ± 結石</td></tr>
+        </table></div>
+        <p class="p"><span class="src src-rec">🗒️</span> 理學檢查補充：心血管可能休克、心搏過速、正常或<strong>心搏過慢</strong>、低或高血壓；呼吸急促（代償代謝性酸中毒）；<strong>低體溫常見，體溫「正常」反而要想是不是「異常的正常」</strong>；腎臟疼痛／變大；<strong>一定要觸診膀胱</strong>當基準，並看是否阻塞。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 13</span> 診斷檢查</h3>
+        <ul class="notes">
+          <li>腎<strong>損傷</strong> vs 腎<strong>功能異常</strong>：肌酸酐、尿素、<strong>SDMA</strong>、血液學、尿液（沉渣、試紙、USG、<strong>培養</strong>）、Cystatin B、<strong>影像（特別是排除腎後原因）</strong></li>
+          <li><span class="src src-rec">🗒️</span> <strong>在大量輸液前先採血和尿</strong>：才知道治療前的狀態與腎臟濃縮能力。但不要因為採不到尿就延誤治療（可能根本無尿）</li>
+          <li>送：血氣／電解質、PCV/TP、完整生化、CBC、尿液分析＋培養與藥敏</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">🗒️</span><div><strong>肌酸酐的限制</strong>（講者備註）：① 狗品種差異大、參考範圍寬，約 75% 腎元失去功能才超出範圍 ② 受肌肉量與水合影響 ③ 是<strong>功能</strong>指標，沒有功能下降的腎損傷不會上升 ④ 與 GFR 呈非線性，早期大幅 GFR 變化只造成參考範圍內的小變化 ⑤ 達到穩定狀態前不能代表嚴重度。<strong>SDMA</strong> 也是過濾指標，但不受肌肉量影響。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 14–16</span> 影像與進階檢查</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>X 光</h4><ul>
+            <li>診斷腎後原因：腎結石、阻塞性尿結石、尿道結石</li>
+            <li>阻塞物<strong>不一定</strong>顯影</li><li>腎臟可能正常或變大</li></ul></div>
+          <div class="card-mini"><h4>超音波</h4><ul>
+            <li>腎臟正常或變大；實質常正常</li>
+            <li>皮質回音增加或皮髓交界高回音帶（如<strong>乙二醇中毒</strong>）</li>
+            <li>腎周積液：中毒、發炎、<strong>貓淋巴瘤</strong></li>
+            <li>腎盂擴張：腎盂腎炎、阻塞；水腎：阻塞</li>
+            <li>腹膜後脂肪高回音</li></ul></div>
+        </div>
+        <p class="p">進階：顯影檢查、腹部 CT、腎臟抽吸／切片、感染症檢驗、毒物篩檢、結石分析、胸腔 X 光。</p>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> IRIS AKI 分級（以肌酸酐 mg/dL）：Grade I &lt; 1.6（但有 AKI 證據或 48 小時內上升 ≥ 0.3）、II 1.7–2.5、III 2.6–5.0、IV 5.1–10.0、V &gt; 10.0；再依<strong>有無寡／無尿</strong>與<strong>是否需要腎臟替代療法</strong>分子級。投影片 📄 23 提到「IRIS AKI 分級、穩定度、一般照護建議」但沒有附表。</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🩺</div>
+      <h2>4. 治療總覽與前 2–4 小時</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 18</span> 治療的整體思路</h3>
+        <ul class="notes">
+          <li><strong>傷害已經造成了</strong></li>
+          <li>好好溝通，清楚設定<strong>決策點</strong></li>
+          <li>陪病患撐過腎功能喪失帶來的併發症</li>
+          <li><strong>等待恢復期</strong></li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 19</span> AKI 治療的主軸（* 為決策點）</h3>
+        <ol class="notes">
+          <li>* 判斷<strong>原因、嚴重度與需要的照護</strong></li>
+          <li>矯正灌流異常與體液缺失</li>
+          <li>矯正酸鹼與代謝急症（<strong>高血鉀、酸血症</strong>）</li>
+          <li>判斷腎前 vs 腎性 vs 腎後（或混合）</li>
+          <li>* 確定尿量並<strong>建立尿液產生</strong></li>
+          <li>停用有腎毒性的藥物</li>
+          <li>治療可治療的病因</li>
+          <li>加護支持與營養支持</li>
+          <li>* <strong>腎臟替代療法</strong>（血液或腹膜透析）</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 21–22</span> 判斷原因、嚴重度與需要的照護</h3>
+        <ul class="notes">
+          <li><strong>家裡</strong>：<span class="src src-rec">🗒️</span> 腎毒物攝入史——貓的<strong>百合</strong>、乙二醇、naproxen、葡萄／葡萄乾</li>
+          <li><strong>住院紀錄</strong>：麻醉時間、低血壓事件、失血、腎毒性抗生素等暴露</li>
+          <li>理學檢查與初步檢查</li>
+          <li><strong>腎後原因</strong>：尿腹、輸尿管破裂或阻塞（<strong>貓</strong>）</li>
+          <li>腎毒性來源：院內感染、抗生素、其他藥物、毒素</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">🗒️</span><div><strong>處理特定病因</strong>（講者備註）：腎盂腎炎、鉤端螺旋體病給抗生素；輸尿管阻塞可用支架或 <strong>SUB</strong>；中毒的 AKI 通常來的時候毒物早已吸收（NSAID、百合、乙二醇），催吐洗胃沒用；有腸肝循環的毒物可重複給活性碳；乙二醇有解毒劑（乙醇）；有些毒物可用尿液酸化／鹼化加速排除；必要時<strong>血液透析</strong>移除毒物；（脂溶性毒物）intralipid。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 25</span> 決策點 2</h3>
+        <p class="p"><span class="src src-rec">🗒️</span> <strong>需要 24 小時照護，監測是關鍵。</strong>（不能提供時要考慮轉診）</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">💧</div>
+      <h2>5. 輸液治療：穩定並確定尿量</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 27</span> 目標：穩定病患並確定尿量</h3>
+        <ul class="notes">
+          <li><strong>急性復甦輸液</strong>：休克／灌流不足多嚴重？有沒有輸液併發症的風險因子？（見 <a href="fluid-resuscitation.html">02</a>）</li>
+          <li><strong>補脫水</strong>：脫水 % × 體重 kg，在 <strong>4–6 小時</strong>內補完</li>
+          <li>加上維持需求與持續流失</li>
+        </ul>
+        <p class="muted"><span class="src src-rec">🗒️</span> 備註寫的休克劑量（狗 80–90、貓 40–60 mL/kg）是舊式整個血量的說法；同系列 <a href="fluid-resuscitation.html">02</a> 已改為小量 bolus 反覆評估（貓 5–15 mL/kg）。心臟病等不耐受快速補液的病患，補脫水時間要拉長。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 28</span> 小心過度水合</h3>
+        <p class="p">認得安全上限：<strong>體重、呼吸速率與用力、水腫</strong>。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 29</span> 選什麼輸液</h3>
+        <ul class="notes">
+          <li><strong>平衡等張晶體液</strong></li>
+          <li>避免酸化的輸液、避免過多氯（<strong>0.9% NaCl</strong>）</li>
+          <li><strong>不用擔心輸液裡的 KCl</strong>（含量微不足道）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">⚡</div>
+      <h2>6. 矯正代謝異常</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 30–31</span> 高血鉀</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>處置</th><th>劑量</th><th><span class="src src-rec">🗒️</span> 機轉</th></tr>
+          <tr><td>葡萄糖酸鈣</td><td>50–100 mg/kg</td><td>提高閾電位，<strong>保護心臟</strong>（不降鉀）</td></tr>
+          <tr><td>葡萄糖</td><td>0.5 g/kg，稀釋 1 : 3</td><td>把鉀推進細胞</td></tr>
+          <tr><td>胰島素＋葡萄糖</td><td>胰島素 0.5–1 U/kg</td><td>把鉀推進細胞</td></tr>
+          <tr><td>碳酸氫鈉</td><td></td><td>把鉀推進細胞</td></tr>
+        </table></div>
+        <p class="p">輸液中的鉀不用擔心（微量）。<span class="src src-rec">🗒️</span> 這些都只是暫時「把鉀藏起來」，救命但短暫；真正要<strong>排出</strong>鉀，要靠透析、解除阻塞或處理尿腹。</p>
+        <figure class="fig">
+          <img src="photos/10-30-hyperkalemia-string.jpg" alt="高血鉀的「拉繩理論」：T 波被拉高 → P 波變平、QRS 變寬 → 正弦波或心搏停止" loading="lazy">
+          <figcaption>📄 30：高血鉀的「拉繩理論」：T 波被拉高 → P 波變平、QRS 變寬 → 正弦波或心搏停止</figcaption>
+        </figure>
+        <p class="p"><span class="src src-rec">🗒️</span> 典型 ECG：<strong>心搏過慢、T 波高尖、QRS 變寬、P 波變小變寬或消失</strong>；嚴重時正弦波、心室纖維顫動或心搏停止（📄 31 附 Kittleson 教科書的治療前、中、後 ECG）。</p>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 給胰島素降鉀後要追蹤血糖數小時，必要時持續補葡萄糖，避免延遲性低血糖。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 32–33</span> 酸血症</h3>
+        <p class="p">原因：<strong>尿毒酸</strong>、無法排 H⁺、無法再吸收 HCO₃⁻、<strong>乳酸中毒</strong>。<span class="src src-rec">🗒️</span> 矯正灌流就處理了三分之二（尿毒與乳酸），腎小管性的部分可能要時間。</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>pH</th><th>NaHCO₃</th></tr>
+          <tr><td>&gt; 7.1</td><td>不要給</td></tr>
+          <tr><td>7.0–7.1</td><td>考慮</td></tr>
+          <tr><td>&lt; 6.9</td><td>強烈考慮</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><strong>先給輸液！</strong></li>
+          <li>禁忌：<strong>換氣不足</strong>、<strong>高血鈉</strong></li>
+          <li>劑量 <span class="formula">0.3 × 體重 × 鹼缺乏</span>（鹼缺乏＝24 − 病患 HCO₃⁻）；稀釋 1 : 3；<strong>⅓ 在 15 分鐘給</strong>，下一個 ⅓ 在 2–6 小時給</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">🗒️</span><div>為什麼換氣不足禁用：HCO₃⁻ 與 H⁺ 結合成碳酸，最後分解成 CO₂；CO₂ 會擴散進腦，如果病患呼不出去，會造成<strong>矛盾性中樞神經酸中毒</strong>。而且這個藥含大量鈉。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 34</span> 其他電解質</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>電解質</th><th>重點</th></tr>
+          <tr><td><strong>磷</strong></td><td>GFR 下降 → 通常高；可造成低血鈣。處理：輸液、磷結合劑</td></tr>
+          <tr><td><strong>鈉</strong></td><td>可低、正常或高；變化不要超過 <strong>0.5–1.0 mmol/L/hr</strong></td></tr>
+          <tr><td><strong>鈣</strong></td><td>可低、正常或高；高血鉀時只用<strong>必要的最小量</strong></td></tr>
+          <tr><td><strong>鎂</strong></td><td>初期通常高；多尿期可能低；<strong>低鎂會造成難治的低血鉀</strong></td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 35</span> 高血壓</h3>
+        <ul class="notes">
+          <li>收縮壓 <strong>&gt; 180 mmHg</strong> 有標的器官傷害風險</li>
+          <li>不要降太快（建議<strong>降 25%</strong>）</li>
+          <li>Amlodipine、nifedipine、hydralazine；<strong>避免 ACE 抑制劑</strong>；密切監測</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🚰</div>
+      <h2>7. 確定尿量（決策點）與持續治療</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 37</span> 決策點：確定尿量</h3>
+        <p class="p"><strong>無法誘發尿量</strong>代表腎實質嚴重受損，沒有透析就很難治療 → <strong>轉診、持續照護或安樂死</strong>。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 39</span> 寡／無尿與多尿的處置</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>藥物</th><th><span class="src src-rec">🗒️</span> 劑量與重點</th></tr>
+          <tr><td><strong>Furosemide</strong>*</td><td>血量正常時 <strong>1–6 mg/kg IV</strong> bolus；30 分鐘內沒有明顯尿量可重複或加量。有利尿就改 <strong>CRI 0.1–1 mg/kg/hr</strong>（有時更高）或每 6–8 小時重複</td></tr>
+          <tr><td><strong>Mannitol</strong>*</td><td><strong>只在血量正常後使用</strong>。0.5 g/kg IV 20–30 分鐘，密切注意呼吸窘迫；有尿就 CRI 60–120 mg/kg/hr 或每 4–6 小時重複。<strong>沒有尿就不要再給</strong>（不會被過濾到腎小管，只會造成容積過載、肺水腫）</td></tr>
+          <tr><td><strong>Diltiazem</strong></td><td>擴張入球小動脈、利鈉、減少細胞內鈣毒性；0.1–0.5 mg/kg IV 慢推，之後 1–5 µg/kg/min CRI</td></tr>
+          <tr><td>多尿</td><td><strong>輸液</strong>跟上流失</td></tr>
+        </table></div>
+        <p class="muted"><span class="src src-rec">🗒️</span> 一旦開始利尿，要非常注意維持血量正常，避免脫水進一步減少腎血流。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 40–41</span> 「維持量」每隻都不一樣</h3>
+        <ul class="notes">
+          <li>無感流失＋有感流失——<strong>尿量是最大的變數</strong>；安全上限；導尿管、中心靜脈導管；基準資料與監測體液平衡（體重、進出量）<strong>不可少</strong></li>
+          <li><strong>無尿</strong>病患：<strong>只補無感流失＝22 mL/kg/day</strong>（自由水＝5% 葡萄糖水）</li>
+          <li><strong>寡尿與多尿</strong>：「<strong>ins = outs</strong>」——無感流失＋有感流失（平衡等張晶體液）；<strong>每 4 小時量尿量、估算其他流失</strong></li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">🗒️</span><div>只有在<strong>補完體液缺失之後</strong>才開始 ins = outs。大家熟悉的 2.5 mL/kg/hr「維持量」在尿量正常的病患可以，但 AKI 病患尿量差異很大，受損的腎臟排不掉多給的水——<strong>「腎臟決定 GFR，你只能配合它，不然就會把病患淹死」</strong>。過度水合的徵象：體重增加、呼吸速率／呼吸音改變、皮膚彈性增加、水腫、<strong>漿液性鼻分泌物</strong>。脫水 10% 的病患補完應增加約 10% 體重，超過就要擔心。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 42</span> 決策點：腎臟替代療法</h3>
+        <ul class="notes">
+          <li>選項：<strong>安樂死</strong>、腎臟替代療法（腹膜透析、間歇性血液透析、連續性腎臟替代療法）</li>
+          <li>再生需要 <strong>4–12 週</strong></li>
+          <li><span class="src src-rec">🗒️</span> 透析的目的是在等待腎臟修復再生期間持續清除尿毒素；要告訴飼主可能需要<strong>數週</strong>才知道腎臟會不會恢復，費用高、照護密集</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 43</span> 處理特定病因：腎後</h3>
+        <p class="p">尿道阻塞、雙側輸尿管阻塞、唯一有功能的腎臟阻塞、尿腹——要和其他治療<strong>同時</strong>處理。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🛏️</div>
+      <h2>8. 加護與營養支持、監測表、預後</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 44</span> 加護與營養支持</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th><span class="src src-rec">🗒️</span> 說明</th></tr>
+          <tr><td>止吐</td><td>嚴重 AKI <strong>一律給</strong>，即使沒看到吐；ondansetron、maropitant</td></tr>
+          <tr><td>胃腸保護</td><td>尿毒造成潰瘍出血的風險；多數人選 PPI</td></tr>
+          <tr><td>營養</td><td>非常重要，可能需要放餵食管</td></tr>
+          <tr><td>口腔照護</td><td></td></tr>
+          <tr><td>磷結合劑</td><td>如氫氧化鋁，和腸道營養一起給</td></tr>
+          <tr><td>降血壓藥</td><td>如鈣離子通道阻斷劑</td></tr>
+          <tr><td>止痛</td><td><strong>不要用 NSAID！</strong></td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 45</span> 住院監測醫囑</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>醫囑</th><th>頻率</th><th>出現以下情況要通知</th></tr>
+          <tr><td>心跳</td><td>q2–4h</td><td>貓 <strong>&lt; 150 或 &gt; 200</strong>（狗 &lt; 60、&gt; 150）</td></tr>
+          <tr><td>ECG 節律</td><td>q2–4h</td><td>心律不整</td></tr>
+          <tr><td>血壓</td><td>q2–4h</td><td>基準 &gt; 180 時下降不超過 25%；否則 MAP &lt; 65 或 &gt; 100 mmHg</td></tr>
+          <tr><td>呼吸速率、用力、聽診</td><td>q2–4h</td><td>&gt; 48、用力增加、爆裂音、<strong>結膜水腫、鼻分泌物</strong></td></tr>
+          <tr><td>中心靜脈壓</td><td>q2–4h</td><td>&gt; 6–8 cmH₂O</td></tr>
+          <tr><td>尿量</td><td>q2–4h</td><td><strong>&lt; 2 或 &gt; 6 mL/kg/hr</strong></td></tr>
+          <tr><td>計算進出量</td><td>q2–4h</td><td>差距 &gt; 10–20%</td></tr>
+          <tr><td>體重</td><td>q6–8h</td><td>補水／灌流矯正後增加 &gt; 5%；多尿期減少 &gt; 5%</td></tr>
+          <tr><td>電解質、酸鹼、血糖、PCV/TS</td><td>q6–8h</td><td><strong>早期</strong>注意高鉀、低鈉；<strong>晚期</strong>注意低鉀、高鈉</td></tr>
+          <tr><td>止痛</td><td>PRN</td><td>鴉片類最安全（注意腸胃）</td></tr>
+          <tr><td>營養</td><td>q6–8h</td><td>鼻食道管，<strong>早點放</strong></td></tr>
+          <tr><td>血檢</td><td>q24h</td><td>BUN、creatinine、白蛋白、血液學</td></tr>
+          <tr><td>其他</td><td></td><td>抗生素、降血壓、腸胃支持等</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 46</span> 預後</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>類型</th><th>預後</th></tr>
+          <tr><td>整體</td><td>取決於病因與嚴重度</td></tr>
+          <tr><td>腎性 AKI：<strong>無尿</strong></td><td>沒有血液透析<strong>極差</strong></td></tr>
+          <tr><td>腎性 AKI：<strong>寡尿</strong></td><td>保留到差；可能在 <strong>4–12 週</strong>恢復功能</td></tr>
+          <tr><td>腎性 AKI：<strong>多尿</strong></td><td>較好</td></tr>
+          <tr><td>腎前與腎後</td><td>找出並矯正原因就<strong>好</strong></td></tr>
+        </table></div>
+        <p class="p"><span class="src src-rec">🗒️</span> 整體死亡率約 60%；存活者約 60% 變成 CKD、只有約 40% 恢復正常——<strong>貓的數字更低一些</strong>。狗的鉤端螺旋體病存活率約 85%。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 47</span> 結論</h3>
+        <ol class="notes">
+          <li>AKI 是動態過程，可以是腎前、腎性、腎後</li>
+          <li>尿量必須對照水合、灌流與輸液來看</li>
+          <li>AKI 可以多尿、寡尿或無尿</li>
+          <li>治療目標是停止進一步傷害，並在腎臟修復再生期間支持病患</li>
+          <li><strong>明確的決策點與飼主溝通</strong>是 AKI 處置的關鍵</li>
+          <li>間歇性血液透析與連續性腎臟替代療法有效，但不是保證</li>
+          <li><strong>不到最後不會知道……擁抱不確定！</strong></li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Boller E. <em>Acute kidney injury — recognition, causes and treatment.</em> TSFM Annual Conference 2026（PowerPoint 47 張，含講者備註）。</div>
+          <div class="ref-item">講義引用：Kittleson MD. <em>Small Animal Cardiovascular Medicine</em>. Mosby（高血鉀 ECG）；Hall et al. 2014–2015、Nabity et al. 2015、Yerramilli et al. 2016（SDMA）。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="dka-diabetes.html">09 貓的 DKA 與糖尿病</a>。相關：<a href="fluid-resuscitation.html">02 輸液</a>、<a href="sepsis.html">08 敗血症（腎功能障礙、去復甦）</a>、<a href="fate.html">05 FATE（Milo 的氮血症）</a>。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

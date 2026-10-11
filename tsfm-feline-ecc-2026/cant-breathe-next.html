@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>喘不過氣的貓（二）：下一步怎麼做？｜2026 TSFM 貓急重症研討會</title>
+<style>
+  :root {
+    --primary: #B4233C;
+    --primary-light: #FDE4E8;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2a1016;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #d9a7b0; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4a1f28;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #d9a7b0; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #d9a7b0;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4a1f28;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #a26a75;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #7a1328 0%, #d8485f 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2a1016; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4a1f28; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #7a1328; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+</style>
+
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 研討會系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 TSFM 貓急重症研討會</a>
+  <div class="logo">
+    <h2>04｜喘不過氣的貓（二）：<br>凌晨兩點的四個決定</h2>
+    <p>Elise Boller｜Day 1 Session 4</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">路線圖：四個決定</a>
+    <div class="nav-section">這隻貓多嚴重？</div>
+    <a href="#s1">1. 血氧機與低血氧分級</a>
+    <a href="#s2">2. 動脈還是靜脈血氣？</a>
+    <div class="nav-section">為了診斷能逼多緊？</div>
+    <a href="#s3">3. 為了診斷能逼多緊？</a>
+    <a href="#s4">4. 文獻：PE、POCUS、X 光</a>
+    <div class="nav-section">沒效怎麼辦？</div>
+    <a href="#s5">5. 沒效：重新定位、升級</a>
+    <div class="nav-section">在贏嗎？</div>
+    <a href="#s6">6. 怎麼知道在贏？</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>喘不過氣的貓（二）：下一步怎麼做？</h1>
+    <p>主講：Elise Boller, DVM, DACVECC</p>
+    <p>TSFM Annual Conference 2026｜Day 1 — The Crashing Cat｜Session 4｜場次 04</p>
+    <div class="tags">
+      <span class="tag">SpO₂</span>
+      <span class="tag">低血氧分級</span>
+      <span class="tag">靜脈血氣</span>
+      <span class="tag">PvCO₂</span>
+      <span class="tag">Butorphanol</span>
+      <span class="tag">Furosemide</span>
+      <span class="tag">POCUS</span>
+      <span class="tag">NT-proBNP</span>
+      <span class="tag">RAPID CAT</span>
+      <span class="tag">HFNO</span>
+      <span class="tag">插管</span>
+      <span class="tag">治療無效</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（數字＝講義 PDF 頁碼）
+    <span class="src src-add">💡 補充</span> 整理者補充（機轉、換算、交叉參照；不是講者說的）
+    <br><span class="muted">目前只有講義，沒有課堂錄音；講義上的影片（Vimeo）與現場投票無法收錄。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+<li>口訣：<strong>定位 → 行動 → 再評估</strong>；治療沒效時：<strong>重新定位、升級、再評估</strong></li>
+<li>SpO₂ 只跟訊號一樣可靠；量不到時<strong>治療貓，不是治療數字</strong></li>
+<li>低血氧分級：<strong>SpO₂ ≥ 95%／PaO₂ ≥ 80</strong> 密切監測；<strong>91–94%／70–79</strong> 升級支持；<strong>&lt; 91%／&lt; 60</strong> 立刻行動</li>
+<li>靜脈血氣也有用：<strong>PvCO₂ 低或正常 → 不是換氣不足</strong>；PvCO₂ 高 → 可能換氣不足（或灌流不足）</li>
+<li><strong>穩定本身就是診斷策略</strong>；安全的共同處置：給氧、<strong>butorphanol 0.2–0.4 mg/kg IM</strong>、準備上呼吸道處置、考慮 <strong>furosemide 1–2 mg/kg IM</strong></li>
+<li>理學檢查、POCUS、NT-proBNP 都是<strong>改變機率</strong>的工具，不是診斷規則；<strong>POCUS 優先 ≠ 只做 POCUS</strong></li>
+<li>插管了還是無法通氣：檢查<strong>病患、管子、胸腔、機器</strong></li>
+<li>贏了的訊號：<strong>呼吸速率與用力下降</strong>最可靠；一隻數字正常但狀況變差的貓<strong>不是在贏</strong></li>
+    </ul>
+  </div>
+
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🗺️</div>
+      <h2>路線圖：凌晨兩點真正重要的四個決定</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 2</span> 四個臨床決策時刻</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>1. 低血氧到什麼程度算太低？</h4><ul><li>第 1 節</li></ul></div>
+          <div class="card-mini"><h4>2. 為了診斷，可以把這隻貓逼多緊？</h4><ul><li>第 2–3 節</li></ul></div>
+          <div class="card-mini"><h4>3. 沒效……現在怎麼辦？</h4><ul><li>第 4 節</li></ul></div>
+          <div class="card-mini"><h4>4. 怎麼知道我在贏？</h4><ul><li>第 5 節</li></ul></div>
+        </div>
+        <div class="quote">定位 → 行動 → 再評估（LOCALIZE → ACT → REASSESS）</div>
+        <p class="p"><span class="src src-slide">📄 3–4</span> 開場互動：「你怎麼測氧合？」「你會試幾個部位夾血氧機，才把它丟到房間另一頭？！」</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🫁</div>
+      <h2>1. 血氧機能信嗎？低血氧到多少算太低？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 5</span> 血氧機（Pulse ox）能信嗎？</h3>
+        <ul class="notes">
+          <li><strong>不同機器差很多</strong>（Dörfelt 等，JFMS 2022）</li>
+          <li><strong>動作與灌流不良</strong>會影響讀值</li>
+          <li><strong>飽和度越低，準確度越差</strong></li>
+        </ul>
+        <div class="quote">SpO₂ 只跟訊號一樣好——以及解讀訊號的演算法。</div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 6</span> 量不到 SpO₂ 怎麼辦？</h3>
+        <div class="alert alert-danger"><span class="alert-icon">🐱</span><div><strong>治療貓，不是治療數字。</strong>一隻矛盾呼吸、嚴重呼吸困難的貓，不需要讀值就知道要給氧、鎮靜、做 POCUS。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 7–8</span> 低血氧的三級</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>等級</th><th>SpO₂</th><th>PaO₂</th></tr>
+          <tr><td>✅ <strong>密切監測</strong></td><td>≥ 95%</td><td>≥ 80 mmHg</td></tr>
+          <tr><td>⚠️ <strong>升級支持</strong></td><td>91–94%</td><td>70–79 mmHg</td></tr>
+          <tr><td>🚨 <strong>立刻行動</strong></td><td>&lt; 91%</td><td>&lt; 60 mmHg</td></tr>
+        </table></div>
+        <p class="p">再看一次 <span class="formula">CaO₂ = (1.34 × Hb × SaO₂) + (PaO₂ × 0.003)</span>：組織拿到多少氧，除了 SaO₂ 還要看 <strong>Hb</strong>（見 <a href="shock-basics.html">01 低氧性休克</a>）。</p>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 氧解離曲線在 SaO₂ 約 90%（PaO₂ 約 60 mmHg）處開始陡降，所以 &lt; 91%／&lt; 60 是「掉下懸崖」的位置，一點點惡化就會讓血氧含量大幅下降。</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">🧪</div>
+      <h2>2. 貓真的抽得到動脈血嗎？靜脈血氣有用嗎？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 9, 17</span> 貓抽得到動脈血嗎？</h3>
+        <p class="p"><strong>可以。</strong>（但……你真的需要嗎？）——對一隻快喘不過氣的貓，抽動脈血本身就是很大的緊迫。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 10–15</span> 看起來低血氧的貓，靜脈血氣怎麼讀</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>例子</th><th>PvCO₂<br><span class="muted">n = 27–49</span></th><th>PvO₂<br><span class="muted">n = 34–56</span></th><th>乳酸<br><span class="muted">n &lt; 2.0</span></th><th>解讀</th></tr>
+          <tr><td>📄 11（影片：先在籠子裡看）</td><td><strong>28</strong></td><td>35</td><td>1.0</td><td>PvCO₂ 低／正常 → <strong>不是換氣不足</strong>；貓在過度換氣，問題可能在氧合（肺實質等）</td></tr>
+          <tr><td>📄 13（影片：上呼吸道阻塞）</td><td><strong>70</strong></td><td>30</td><td>1.0</td><td>PvCO₂ 高、乳酸正常 → <strong>換氣不足</strong>（呼吸道阻塞）</td></tr>
+          <tr><td>📄 14（影片：張口呼吸）</td><td><strong>65</strong></td><td>35</td><td><strong>4.0</strong></td><td>PvCO₂ 高＋乳酸高 → <strong>換氣不足和／或灌流不足</strong></td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><strong>PvCO₂ 低或正常 → 換氣不足不是問題</strong></li>
+          <li><strong>PvCO₂ 高 → 可能是換氣不足（和／或灌流不足）</strong></li>
+          <li><strong>PvO₂ 低</strong> → 反映的是組織取走氧之後<strong>剩下的量</strong>：O₂ 輸送 − O₂ 消耗 → 靜脈 O₂。<strong>不能拿來判斷肺的氧合。</strong></li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 灌流正常時 PvCO₂ 約比 PaCO₂ 高 3–6 mmHg；灌流不足時 CO₂ 在組織累積，PvCO₂ 會不成比例地升高，所以乳酸也高時要想到灌流問題。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 16</span> 動脈血氣 vs 靜脈血氣</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>動脈血氣（ABG）</h4><ul>
+            <li><strong>氧合</strong>的黃金標準</li><li><strong>換氣</strong>的黃金標準</li>
+            <li>只告訴你肺，<strong>不告訴你組織</strong></li></ul></div>
+          <div class="card-mini"><h4>靜脈血氣（VBG）</h4><ul>
+            <li>中心靜脈採樣可提供<strong>組織氧合</strong>資訊</li>
+            <li>比動脈血更能反映<strong>灌流</strong></li>
+            <li>判讀正確時可以當<strong>換氣</strong>指標</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">⚖️</div>
+      <h2>3. 穩定本身就是診斷策略</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 19–20</span> 情境題</h3>
+        <p class="p">RR 72、明顯用力、<strong>量不到 SpO₂</strong>、POCUS 看到<strong>中量肋膜積液</strong>……你會做什麼？（複選）</p>
+        <div class="quote">⚡ 穩定本身就是一種診斷策略。</div>
+        <p class="muted"><span class="src src-add">💡</span> 這個情境的直接動作是在給氧、鎮靜下做<strong>胸腔穿刺</strong>——既是治療也是診斷（積液可送檢）。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 21</span> 什麼時候該停止找診斷？資訊量 vs 生理代價</h3>
+        <figure class="fig">
+          <img src="photos/04-21-info-vs-cost.jpg" alt="每一個檢查都要比較能得到的資訊與貓要付出的生理代價" loading="lazy">
+          <figcaption>📄 21：每一個檢查都要比較能得到的資訊與貓要付出的生理代價</figcaption>
+        </figure>
+        <div class="tbl-wrap"><table>
+          <tr><th>層級</th><th>能得到的資訊</th><th>生理代價</th></tr>
+          <tr><td>低</td><td>臨床趨勢、觀察、POCUS、重點檢查</td><td>臨床趨勢、POCUS、重點檢查</td></tr>
+          <tr><td>中</td><td>臨床趨勢、抽血、X 光</td><td>抽血、X 光</td></tr>
+          <tr><td>高</td><td>臨床趨勢、CT、支氣管鏡／BAL</td><td>CT、支氣管鏡／BAL</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 22</span> 安全的共同處置（不管最後診斷是什麼）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>處置</th><th>內容</th></tr>
+          <tr><td><strong>給氧</strong>與環境處置</td><td>氧氣箱、安靜、減少操作</td></tr>
+          <tr><td><strong>抗焦慮</strong></td><td><strong>Butorphanol 0.2–0.4 mg/kg IM</strong> 是基本款</td></tr>
+          <tr><td><strong>準備上呼吸道處置</strong></td><td>插管器材隨時可用</td></tr>
+          <tr><td>Primary survey、定位病灶</td><td>能做就做 POCUS</td></tr>
+          <tr><td><strong>考慮利尿劑</strong></td><td><strong>Furosemide 1–2 mg/kg IM</strong></td></tr>
+          <tr><td><strong>延後</strong></td><td>完整影像、後腔靜脈評估、血壓、抽血等</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 23</span> 什麼時候可以安全地照影像？</h3>
+        <ol class="notes">
+          <li>病患夠穩定嗎？</li>
+          <li>影像會改變處置嗎？</li>
+          <li>POCUS 能不能回答這個問題？</li>
+          <li>可逆的問題先矯正了嗎？</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">📚</div>
+      <h2>4. Journal club：理學檢查、POCUS、NT-proBNP、X 光</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 24</span> 理學檢查怎麼幫助處理不確定</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>研究</th><th>重點發現</th><th>臨床意義</th></tr>
+          <tr><td>Dickson 等（RAPID CAT），JVECC 2018</td><td><strong>低體溫、HR &gt; 200、RR &gt; 80、奔馬律</strong>傾向心因性呼吸困難</td><td>理學檢查能有意義地改變機率</td></tr>
+          <tr><td>Janson 等，JVECC 2020</td><td>病史＋理學檢查約能正確分類 <strong>73%</strong> 的呼吸困難貓</td><td>只靠理學檢查仍有相當的不確定</td></tr>
+          <tr><td>ACVIM 共識，2020</td><td>低體溫、奔馬律、呼吸急促、爆裂音支持 CHF——但<strong>沒有一項是必要的</strong></td><td><strong>沒有這些表現不能排除 CHF</strong></td></tr>
+          <tr><td>法國 RAPID CAT，2025</td><td>在不同族群中，經典表現沒那麼可靠</td><td>理學檢查是<strong>機率調整工具</strong>，不是診斷規則</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 25</span> POCUS 與 NT-proBNP 都是機率調整工具</h3>
+        <p class="p">Janson 等（JVECC 2020，37 隻可評估的呼吸困難貓），區分心因性／非心因性的正確率：</p>
+        <div class="grid3">
+          <div class="card-mini"><h4>病史＋理學檢查</h4><ul><li><strong>73%</strong></li></ul></div>
+          <div class="card-mini"><h4>＋ POCUS</h4><ul><li><strong>91.9%</strong></li></ul></div>
+          <div class="card-mini"><h4>NT-proBNP</h4><ul><li><strong>94.1%</strong></li></ul></div>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 26–27</span> 但 POCUS 不能取代胸腔 X 光</h3>
+        <p class="p">Bittenecker 等（2026，前瞻性急診研究，144 隻動物，其中 61 隻貓）：</p>
+        <div class="grid3">
+          <div class="card-mini"><h4>肺部超音波（LUS）</h4><ul><li>與最終診斷一致 <strong>80.6%</strong></li></ul></div>
+          <div class="card-mini"><h4>胸腔 X 光</h4><ul><li><strong>89.1%</strong></li></ul></div>
+          <div class="card-mini"><h4>至少一種正確</h4><ul><li><strong>92.2%</strong></li></ul></div>
+        </div>
+        <div class="tbl-wrap"><table>
+          <tr><th>研究</th><th>重點發現</th><th>臨床意義</th></tr>
+          <tr><td>Benigni 等，VRU 2009</td><td>貓 CHF 的 X 光表現<strong>變化很大</strong></td><td>沒有單一 X 光型態可以確診或排除 CHF</td></tr>
+          <tr><td>Janson 等，JVECC 2020</td><td>加上 POCUS 後，心因性／非心因性分類從約 73% → 約 92%</td><td>POCUS 有意義地改變機率</td></tr>
+          <tr><td>Bittenecker 等，2026</td><td>POCUS 有用，但 X 光整體一致性較高</td><td><strong>POCUS 優先 ≠ 只做 POCUS</strong></td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 28</span> POCUS 最大的改變：診斷的順序</h3>
+        <div class="grid2">
+          <div class="card-mini"><h4>傳統順序</h4><ol class="notes"><li>理學檢查</li><li>X 光</li><li>心臟超音波／其他檢查</li><li>治療</li></ol></div>
+          <div class="card-mini"><h4>現在的順序</h4><ol class="notes"><li><strong>最少的保定操作</strong></li><li><strong>給氧與抗焦慮</strong></li><li><strong>POCUS</strong></li><li>立即介入（如胸腔穿刺）</li><li>安全時再做影像與其他檢查</li><li>持續治療</li></ol></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🔄</div>
+      <h2>5. 治療沒效：重新定位、升級、再評估</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="quote">⚡ 當病患不照計畫走，就質疑計畫。</div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 30</span> 「我以為我知道在治療什麼，但牠還是喘」</h3>
+        <p class="p">回到 <a href="cant-breathe-localization.html">03 的七個定位</a>，重新定位一次。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 31</span> 已經用 CHF 治療，還是喘</h3>
+        <ol class="notes">
+          <li>利尿劑<strong>劑量</strong>夠嗎？</li>
+          <li>有沒有<strong>肋膜積液</strong>（要抽掉）？</li>
+          <li><strong>真的是 CHF 嗎？</strong></li>
+          <li>利尿劑阻抗、少見的表現型？</li>
+          <li><strong>灌流／血壓</strong>如何？（<span class="src src-add">💡</span> 心因性休克可能需要強心劑）</li>
+          <li>需要<strong>升級給氧</strong>嗎？</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 32</span> 已經給類固醇＋支氣管擴張劑，還是喘</h3>
+        <ul class="notes">
+          <li>基本：<strong>給氧＋最少緊迫</strong> → <strong>Terbutaline／吸入型 β₂ 促效劑</strong> → <strong>糖皮質素</strong></li>
+          <li>仍然無效？→ 是<strong>低血氧驅動</strong>的呼吸？要<strong>重新考慮診斷</strong>嗎？</li>
+          <li>⚠ <strong>救援輔助療法（證據有限）</strong>：Ketamine、IV 鎂、HFNO、呼吸器支持</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 33</span> 已經最大治療，還是喘 → HFNO</h3>
+        <figure class="fig">
+          <img src="photos/04-33-hfno.jpg" alt="高流量鼻導管給氧（HFNO）的作用；Her, JFMS 2024" loading="lazy">
+          <figcaption>📄 33：高流量鼻導管給氧（HFNO）的作用；Her, JFMS 2024</figcaption>
+        </figure>
+        <div class="grid2">
+          <div class="card-mini"><h4>HFNO 的作用</h4><ul>
+            <li><strong>高 FiO₂＋高流量</strong> → 改善氧合</li>
+            <li><strong>沖掉死腔</strong>，減少重複吸入</li>
+            <li>少量正壓（輕度 PEEP）</li></ul></div>
+          <div class="card-mini"><h4>適應症</h4><ul>
+            <li>✅ <strong>氧合衰竭</strong></li>
+            <li>❌ <strong>不適用於換氣衰竭</strong>（PCO₂ 高 → 要插管／呼吸器）</li></ul></div>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 34</span> 上呼吸道，還是喘</h3>
+        <ol class="notes">
+          <li><strong>抗焦慮夠嗎？</strong></li>
+          <li><strong>糖皮質素？</strong>（減輕喉部水腫）</li>
+          <li><strong>喉部檢查</strong>：功能性與機械性</li>
+          <li><strong>插管</strong>：先準備好，並和飼主溝通</li>
+          <li>能做就做<strong>根本治療</strong></li>
+          <li><strong>氣管造口？</strong>能避免就避免。</li>
+        </ol>
+        <div class="alert alert-danger"><span class="alert-icon">🚨</span><div><strong>插不上管？→ 緊急呼吸道計畫。在需要之前就要知道怎麼做。</strong></div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 35</span> 插管了，還是無法通氣：四個檢查點</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>#</th><th>檢查</th><th>可能問題</th></tr>
+          <tr><td>1</td><td><strong>病患</strong></td><td>嚴重支氣管痙攣、黏液栓塞</td></tr>
+          <tr><td>2</td><td><strong>管子</strong></td><td>真的在氣管裡嗎？折到？塞住？</td></tr>
+          <tr><td>3</td><td><strong>胸腔</strong></td><td>張力性氣胸？</td></tr>
+          <tr><td>4</td><td><strong>機器</strong></td><td>迴路漏氣？呼吸器設定？</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🏆</div>
+      <h2>6. 怎麼知道我在贏？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 37</span> 改善的訊號</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>訊號</th><th>說明</th></tr>
+          <tr><td>↓ <strong>呼吸速率＋用力</strong></td><td><strong>最可靠的早期訊號</strong></td></tr>
+          <tr><td>↑ 精神狀態</td><td>警覺、不那麼恐慌、可以忍受保定</td></tr>
+          <tr><td>呼吸音改善</td><td>爆裂音、stridor 消失</td></tr>
+          <tr><td>↓ 給氧需求</td><td>用較少的支持維持相同 SpO₂</td></tr>
+          <tr><td>SpO₂／PaO₂ 改善</td><td>有數據時</td></tr>
+          <tr><td>POCUS 改善</td><td>B-lines 減少、積液被抽掉</td></tr>
+        </table></div>
+        <div class="alert alert-danger"><span class="alert-icon">⚡</span><div><strong>數字正常、貓卻在惡化 ≠ 在贏。</strong>治療病患，不是治療數字。</div></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 38</span> 總結</h3>
+        <div class="quote">定位。做最不傷害、又可能有幫助的事。需要時升級。再評估。擁抱不確定。</div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 39</span> 參考資料</h3>
+        <div class="ref-list">
+          <div class="ref-item">Boller E. <em>The Cat that Can't Breathe: What Do I Do Next?</em> TSFM Annual Conference 2026, Day 1 Session 4（講義 40 頁）。</div>
+          <div class="ref-item">Dörfelt R, Diels J, Hartmann K. (pulse oximetry in cats) <em>J Feline Med Surg</em> 2022.</div>
+          <div class="ref-item">Ward et al. Pulse oximetry in cats with respiratory distress. <em>J Vet Intern Med</em> 2018.</div>
+          <div class="ref-item">Valtolina &amp; Adamantos. Evaluation of arterial blood gas analysis in dyspnoeic cats. <em>J Feline Med Surg</em> 2009.</div>
+          <div class="ref-item">Lisciandro et al. Lung ultrasound in cats with respiratory distress. <em>J Vet Emerg Crit Care</em> 2014.</div>
+          <div class="ref-item">Vezzosi et al. Lung ultrasonography in cats with feline cardiomyopathy. <em>J Vet Intern Med</em> 2017.</div>
+          <div class="ref-item">Côté et al. Feline cardiomyopathies. <em>J Vet Cardiol</em> 2011.</div>
+          <div class="ref-item">Dye et al. Bronchodilator therapy in cats with bronchial disease. <em>J Vet Intern Med</em> 1996.</div>
+          <div class="ref-item">Trzil &amp; Reinero. Update on feline asthma. <em>Vet Clin North Am Small Anim Pract</em> 2014.</div>
+          <div class="ref-item">Rozanski &amp; Rush. Approach to the dyspneic cat. <em>Vet Clin North Am Small Anim Pract</em> 2007.</div>
+          <div class="ref-item">Sigrist et al. High-flow nasal oxygen in cats: a pilot study. <em>J Vet Emerg Crit Care</em> 2022.</div>
+          <div class="ref-item">Her J. High-flow nasal cannula oxygen therapy in seven cats with respiratory failure. <em>J Feline Med Surg</em> 2024.</div>
+          <div class="ref-item">講義中引用：Dickson 2018（RAPID CAT）、Janson 2020、ACVIM 共識 2020、French RAPID CAT 2025、Benigni 2009（VRU）、Bittenecker 2026。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="cant-breathe-localization.html">03 呼吸定位</a>。下一場：<a href="fate.html">05 會栓塞的貓</a>。相關：<a href="shock-basics.html">01 休克（低氧性休克）</a>。</p>
+    <a href="index.html">回到研討會列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
