@@ -2,18 +2,24 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🐾 獸醫讀書筆記</title>
+  <title>獸醫讀書筆記｜Heartfelt love Animal</title>
   <style>
     :root {
-      --gold:   #c8962a;
-      --gold-lt:#f0c84a;
-      --gold-dk:#8a6010;
-      --gold-bg:#fdf6e3;
-      --dark:   #2c1f00;
-      --text:   #4a3800;
-      --border: #e8d5a0;
-      --bg:     #fdfaf2;
+      /* Heartfelt love Animal 品牌色（取自 logo） */
+      --brand-blue: #1AACFE;
+      --brand-red:  #FE3230;
+      --gold:   #1593D6;
+      --gold-lt:#7FD0FF;
+      --gold-dk:#0B6AA3;
+      --gold-bg:#EEF8FF;
+      --blue:   #1593D6;
+      --dark:   #12324A;
+      --text:   #2F4A5E;
+      --border: #D4EAF7;
+      --bg:     #F7FBFE;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -26,15 +32,26 @@
 
     /* ── HEADER ── */
     header {
-      background: linear-gradient(135deg, #fff8e8 0%, #fdf0c8 100%);
-      border-bottom: 3px solid var(--gold);
+      background: linear-gradient(180deg, #ffffff 0%, var(--gold-bg) 100%);
       color: var(--dark);
-      padding: 52px 24px 44px;
+      padding: 40px 24px 40px;
       text-align: center;
+      position: relative;
     }
-    .header-paw { font-size: 2.8rem; margin-bottom: 12px; }
+    header::after {
+      content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px;
+      background: linear-gradient(90deg, var(--brand-blue) 0 50%, var(--brand-red) 50% 100%);
+    }
+    .header-logo { width: 148px; height: 148px; display: block; margin: 0 auto 10px; }
     header h1 { font-size: 2rem; font-weight: 800; letter-spacing: .02em; color: var(--gold-dk); }
     header p  { margin-top: 8px; opacity: .6; font-size: .97rem; color: var(--text); }
+    header .tagline { margin-top: 6px; opacity: 1; font-size: .92rem; font-weight: 600; letter-spacing: .14em; }
+    .tagline .t-blue { color: var(--brand-blue); }
+    .tagline .t-red  { color: #E0504D; }
+    .site-footer {
+      text-align: center; padding: 28px 20px 40px; font-size: .8rem; color: var(--text); opacity: .7;
+    }
+    .site-footer img { width: 44px; height: 44px; display: block; margin: 0 auto 6px; }
     .search-wrap {
       margin: 24px auto 0;
       max-width: 420px;
@@ -51,7 +68,7 @@
       outline: none;
     }
     .search-wrap input:focus { border-color: var(--gold); }
-    .search-wrap input::placeholder { color: #c8a850; opacity: .7; }
+    .search-wrap input::placeholder { color: #7FA9C4; opacity: .8; }
     .search-wrap .search-icon {
       position: absolute; left: 16px; top: 50%;
       transform: translateY(-50%);
@@ -106,7 +123,7 @@
 
     /* ── COMING SOON CARD ── */
     .card-soon {
-      background: #fffdf5;
+      background: #fbfdff;
       border: 2px dashed var(--border);
       box-shadow: none;
       cursor: default;
@@ -153,7 +170,7 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
       header h1 { font-size: 1.5rem; }
-      .header-paw { font-size: 2rem; }
+      .header-logo { width: 112px; height: 112px; }
       .container { padding: 20px 14px 60px; }
       .cards { grid-template-columns: 1fr 1fr; gap: 12px; }
       .card-title { font-size: .92rem; }
@@ -169,8 +186,9 @@
 <body>
 
 <header>
-  <div class="header-paw">🐾</div>
+  <img class="header-logo" src="assets/logo.png" alt="Heartfelt love Animal" width="148" height="148">
   <h1>獸醫讀書筆記</h1>
+  <p class="tagline"><span class="t-blue">Heartfelt love</span> <span class="t-red">Animal</span></p>
   <p>Veterinary Study Notes</p>
   <div class="search-wrap">
     <span class="search-icon">🔍</span>
@@ -389,6 +407,11 @@
   </div>
 
 </div>
+
+<footer class="site-footer">
+  <img src="assets/logo-mark-96.png" alt="">
+  Heartfelt love Animal ・ 獸醫讀書筆記
+</footer>
 
 <script>
   // ── 搜尋 ──
