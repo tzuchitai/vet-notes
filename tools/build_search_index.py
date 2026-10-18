@@ -39,6 +39,7 @@ SPECIALTIES = [
     ('resp',     '呼吸',         '🫁', '#7C3AED', '內科'),
     ('infect',   '感染與抗生素', '🧫', '#5B3EBD', '內科'),
     ('nutrition','營養與肥胖',   '🥣', '#65A30D', '內科'),
+    ('us',       '超音波',       '🔊', '#0F5E9C', '影像'),
     ('clinpath', '臨床病理',     '🔬', '#4F46E5', '基礎與技能'),
     ('skills',   '臨床技能與病歷','📝', '#475569', '基礎與技能'),
 ]
@@ -52,13 +53,15 @@ SERIES = {
     'antimicrobial-selection': '知菌知藥：抗菌藥物選擇',
     'lulich-urology-2026':     'Jody Lulich 泌尿講座',
     'rita-ho-oncology-2026':   'Rita Ho 腫瘤科講座',
+    'ultrasound':              '超音波專區',
     'notes':                   '單篇筆記',
 }
 
 FOLDER_SPECS = {
     'texas-endocrine-2026': ['endo'],
     'tsfm-feline-ecc-2026': ['ecc'],
-    'echocardiography':     ['cardio'],
+    'echocardiography':     ['cardio', 'us'],
+    'ultrasound':           ['us'],
     'antimicrobial-selection': ['infect'],
     'lulich-urology-2026':  ['uro'],
     'rita-ho-oncology-2026': ['onc'],
@@ -67,7 +70,8 @@ FOLDER_SPECS = {
 SPECS = {
     'texas-endocrine-2026/endocrine-neoplasia.html': ['endo', 'onc'],
     'texas-endocrine-2026/hypercalcemia.html':       ['endo', 'onc'],
-    'echocardiography/14-pericardial-effusion.html': ['cardio', 'onc'],
+    'echocardiography/14-pericardial-effusion.html': ['cardio', 'onc', 'us'],
+    'ultrasound/feline-biliary-tree.html':           ['us', 'gi'],
     'lulich-urology-2026/feline-urethral-obstruction.html': ['uro', 'ecc'],
     'lulich-urology-2026/feline-nephroureterolithiasis.html': ['uro', 'kidney'],
     'texas-endocrine-2026/pupd.html':                ['endo', 'kidney'],

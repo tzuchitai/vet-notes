@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>貓腹部超音波：膽道系統的正常與異常｜超音波專區</title>
+<style>
+  :root {
+    --primary: #0F5E9C;
+    --primary-light: #E3F0FA;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0A2540;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #A9D3F5; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #16466E;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #A9D3F5; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #A9D3F5;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #16466E;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #a26a75;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0B3F66 0%, #3B9AE1 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0A2540; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #16466E; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0B3F66; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+</style>
+
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 超音波專區</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 超音波專區</a>
+  <div class="logo">
+    <h2>01｜貓膽道超音波</h2>
+    <p>JFMS 2019 回顧論文</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div><a href="#s0">一頁速查：正常值與判讀</a><div class="nav-section">正常</div><a href="#s1">1. 膽囊與總膽管的正常外觀</a><div class="nav-section">異常</div><a href="#s2">2. 膽囊壁增厚與膽泥</a><a href="#s3">3. 膽管炎／膽管肝炎</a><a href="#s4">4. 肝外膽道阻塞（EHBO）</a><a href="#s5">5. 黏液囊腫與囊腫</a><div class="nav-section">操作</div><a href="#s6">6. 超音波導引膽囊穿刺</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>貓腹部超音波：膽道系統的正常與異常</h1>
+    <p>作者：Sally Griffin（論文整理）</p>
+    <p>Feline abdominal ultrasonography: what’s normal? what’s abnormal? The biliary tree｜J Feline Med Surg 2019;21(5):429–441</p>
+    <div class="tags">
+      <span class="tag">膽囊</span><span class="tag">總膽管</span><span class="tag">雙葉膽囊</span><span class="tag">膽囊壁增厚</span><span class="tag">膽泥</span><span class="tag">膽結石</span><span class="tag">膽管炎</span><span class="tag">CCHC</span><span class="tag">肝外膽道阻塞</span><span class="tag">EHBO</span><span class="tag">膽囊黏液囊腫</span><span class="tag">總膽管囊腫</span><span class="tag">肝囊腫</span><span class="tag">膽囊穿刺</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📑 原文</span> 論文內容（標示原文段落或圖號） <span class="src src-add">💡 補充</span> 整理者補充（交叉參照、臨床提醒；不是作者說的）
+    <br><span class="muted">依原文重點整理成中文，不是逐句翻譯。原文的超音波圖片版權屬作者與期刊，這裡沒有轉載，請到 <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10814422/">PMC 全文</a>對照圖 1–16 看。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+<li>約 <strong>1/8 的貓</strong>有副膽囊（雙葉或重複膽囊），是先天、<strong>沒有臨床意義</strong>的偶發發現</li><li>正常<strong>膽囊壁與總膽管壁 &lt; 1 mm</strong>；膽囊壁 &gt; 1 mm 是膽囊疾病的準確指標，但 &lt; 1 mm 不能排除輕度或慢性發炎</li><li>貓的總膽管長而彎曲、<strong>正常就看得到</strong>，位於肝門處門靜脈腹側；正常直徑 <strong>≤ 4 mm</strong>，彩色都卜勒沒有血流</li><li>總膽管 <strong>&gt; 5 mm</strong> 提示肝外膽道阻塞（手術確診 EHBO 的貓 97% 符合）；量在肝門處，避開較粗的膽囊管</li><li><strong>膽囊脹大不是可靠的阻塞指標</strong>：EHBO 貓只有 38–62% 膽囊擴張；正常膽囊體積差異大、厭食貓膽囊會變大</li><li><strong>沒看到膽道擴張不能排除阻塞</strong>；擴張也可能在阻塞解除後持續存在</li><li>很多膽管炎的貓<strong>超音波完全正常</strong>；有異常時是膽囊／總膽管壁增厚、膽泥、結石、總膽管擴張</li><li>貓的膽泥和膽管炎、肝指數上升有關（狗多為偶發）；黏液囊腫在貓極少見，<strong>不像狗的奇異果樣</strong>；膽囊穿刺是安全的採樣方法</li>
+    </ul>
+  </div>
+
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📋</div>
+      <h2>一頁速查：正常值與判讀</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3>數字與判讀</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>正常</th><th>異常／意義</th></tr><tr><td>膽囊壁</td><td>&lt; 1 mm（常看不到，或是一條細的高回音線）</td><td>&gt; 1 mm 準確預測膽囊疾病；&lt; 1 mm 不排除輕度／慢性發炎</td></tr><tr><td>膽囊體積</td><td>0.52 × 長 × 高 × 寬（mm → mL 需換算）；30 隻空腹健康貓平均 2.41 mL，範圍很寬</td><td>與體重無關；飯前 2.47 ± 1.16 mL、餐後 2 小時 0.88 ± 0.13 mL</td></tr><tr><td>總膽管直徑</td><td>≤ 4 mm</td><td><strong>&gt; 5 mm 提示 EHBO</strong></td></tr><tr><td>總膽管壁</td><td>&lt; 1 mm</td><td>增厚見於膽管炎</td></tr><tr><td>肝內／肝外膽管</td><td>正常看不到</td><td>看得到＝擴張（「管子太多」sign）</td></tr>
+        </table></div><p class="p"><span class="src src-add">💡 補充</span> 體積公式若用 mm 計算，結果是 mm³，要 ÷ 1000 才是 mL。原文寫的範圍「0.84–.5 ml」有數字缺漏，這裡只列平均值。</p>
+      </div><div class="subsection">
+        <h3>判讀的四個陷阱</h3>
+        <ul class="notes"><li>膽囊大 ≠ 阻塞（空腹、厭食的貓膽囊本來就會大）</li><li>膽道沒擴張 ≠ 沒阻塞（可能是早期，或貓的膽囊壁順應性低、周圍肝實質彈性差）</li><li>膽道擴張 ≠ 現在有阻塞（之前的阻塞或非阻塞性肝膽病也會擴張）</li><li>超音波正常 ≠ 沒有膽管炎</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🫧</div>
+      <h2>1. 膽囊與總膽管的正常外觀</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📑 圖 1</span> 膽囊位置與先天變異</h3>
+        <ul class="notes"><li>膽囊位於中線右側、右內側肝葉的兩部分之間</li><li>平均 <strong>每 8 隻貓就有 1 隻</strong>有某種副膽囊；屬胚胎發育的先天異常，視為偶發</li><li>雙葉膽囊兩型：① 腔內有縱向隔膜部分分開，近端共用一條膽囊管，外觀正常；② 底部完全分開、只在頸部融合，外觀呈「V」或愛心形</li><li><strong>重複膽囊</strong>（duplex）：兩個完全分開的腔、各有自己的膽囊管，貓很少報告</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📑 圖 2</span> 膽囊壁與體積</h3>
+        <ul class="notes"><li>膽囊壁可能看不到；看得到時是 &lt; 1 mm 的高回音線</li><li>空腹的貓膽囊相對肝臟看起來很大可以是正常的；膽囊後方有<strong>聲影增強</strong>（膽汁衰減少）</li><li>膽囊兩側的低回音區是折射造成的<strong>邊緣陰影</strong>，不是病變</li><li>體積用橢球公式 0.52 × 長 × 高 × 寬；可用肋下或右肋間窗比較進食前後體積評估收縮功能</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📑 圖 3–5</span> 總膽管（CBD）</h3>
+        <ul class="notes"><li>貓的總膽管比狗<strong>長而彎曲</strong>，常規就看得到：肝門處、<strong>門靜脈腹側</strong>的無回音管狀構造，管壁高回音</li><li>掃描窗：肋下或右側前方肋間</li><li>和血管區分：<strong>管壁較厚、彎曲、彩色都卜勒沒有血流</strong>（門靜脈是向肝血流）</li><li>可往尾側追到和主胰管會合，經<strong>十二指腸大乳頭</strong>進入十二指腸（圖 5 可見乳頭，旁邊是右腎前極）</li><li>正常直徑 ≤ 4 mm、管壁 &lt; 1 mm；肝內與肝外膽管正常看不到</li></ul><p class="p"><span class="src src-add">💡 補充</span> 貓的總膽管和胰管在進十二指腸前會合，所以膽管炎、胰臟炎、腸炎常一起出現（三體炎）。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🧱</div>
+      <h2>2. 膽囊壁增厚與膽泥</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📑 圖 6</span> 膽囊壁增厚</h3>
+        <ul class="notes"><li>貓的<strong>膽囊與膽管疾病比肝實質疾病常見</strong></li><li>瀰漫性增厚是<strong>非特異</strong>變化；原因：發炎（膽囊炎、膽管炎、膽管肝炎）、水腫（尤其膽道阻塞）、黏膜腺體增生</li><li>一項研究中 55% 肝膽疾病的貓有瀰漫性增厚：膽囊壁瀰漫性高回音，或<strong>雙層邊</strong>（兩層高回音夾一層低回音）</li><li>圖 6b–d 病例：14 歲母貓嗜中性球性膽管肝炎，膽囊大、壁增厚、有膽泥，膽汁淡黃，培養大量 <em>E. coli</em></li><li><strong>假性增厚</strong>：腹水與膽囊壁之間的聲學界面造成，不是真的增厚</li></ul>
+      </div><div class="subsection">
+        <h3>膽囊腫瘤（很少見）</h3>
+        <ul class="notes"><li>膽囊上皮腫瘤在貓非常少見；腺癌偶有報告但沒有超音波描述</li><li>原發膽囊淋巴瘤：嚴重瀰漫性壁增厚（可到 14 mm）幾乎填滿管腔；另一例是多個無蒂高回音結節突入腔內</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📑 方框・圖 7</span> 膽泥（gall bladder sludge）</h3>
+        <p class="p">膽泥是膽汁中沉澱的混合顆粒，<strong>狗多為偶發</strong>；<strong>貓比較少見</strong>，而且和<strong>膽管炎、肝指數上升</strong>有關聯。</p><p class="p"><span class="src src-add">💡 補充</span> 所以在貓看到膽泥不能直接當成偶發，要對照肝指數、膽紅素與臨床症狀。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🔥</div>
+      <h2>3. 膽管炎／膽管肝炎（CCHC）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📑 圖 8–9</span> 超音波表現</h3>
+        <ul class="notes"><li>貓常見的膽道發炎，分<strong>嗜中性球性</strong>與<strong>淋巴球性</strong>；常同時侵犯肝實質，所以也稱膽管炎／膽管肝炎複合症（CCHC）</li><li><strong>很多病例肝臟與膽道超音波完全正常</strong></li><li>有異常時：膽囊及／或總膽管壁增厚；膽囊內容物回音增加（膽囊功能異常或膽汁淤積）；膽囊結石或總膽管結石；總膽管擴張</li><li>嗜中性球性膽管炎的膽囊變化可能來自同時存在的<strong>細菌性膽囊炎</strong></li><li>總膽管擴張可能是發炎造成的膽汁淤積，或膽泥、結石阻塞管腔；結石可以是阻塞的原因也可以是結果</li><li>完全阻塞（不論原因）可能造成<strong>膽囊或總膽管破裂</strong></li><li>圖 8a：16 歲公貓（晚期腎衰竭）肝內多條彎曲高回音管道伴聲影＝廣泛總膽管結石</li></ul>
+      </div><div class="subsection">
+        <h3>結石怎麼認</h3>
+        <ul class="notes"><li>礦化的膽囊結石與總膽管結石：<strong>高回音界面＋遠端聲影</strong></li><li>把結石放在探頭<strong>焦點區</strong>、用<strong>高頻</strong>可讓聲影更明顯</li><li>膽囊結石常是偶發，但掉進總膽管就可能阻塞</li></ul>
+      </div><div class="subsection">
+        <h3>伴隨疾病</h3>
+        <p class="p">CCHC 的貓也有胰臟變大（多半是胰臟炎）的報告；因為總膽管與胰管在進十二指腸前會合，<strong>胰臟炎與炎症性腸病</strong>常和 CCHC 一起出現。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ffedd5">🚧</div>
+      <h2>4. 肝外膽道阻塞（EHBO）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📑 圖 10–12</span> 阻塞的位置與原因</h3>
+        <ul class="notes"><li>總膽管阻塞常在<strong>十二指腸乳頭附近或乳頭處</strong></li><li>機轉：管壁增厚、管外壓迫、管腔阻塞（結石、黏膜增生、膽泥）</li><li><strong>胰臟炎</strong>：右胰葉緊貼總膽管遠端，可造成管外壓迫；超音波見胰臟變大、回音降低、胰周脂肪回音增加</li><li><strong>腫瘤</strong>（總膽管、胰臟、近端十二指腸）較少見；發炎性與腫瘤性的阻塞腫塊<strong>超音波常無法區分</strong></li><li>少見原因：總膽管內草芒、十二指腸乳頭處的泡棉耳塞、經體腔植入的貓毛、橫膈疝氣（肝與膽囊疝入胸腔）、嚴重肝吸蟲感染</li><li>超音波在這些病例有助於確認是否需要手術</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📑 方框・圖 13–14</span> 怎麼辨認阻塞</h3>
+        <ul class="notes"><li><strong>總膽管 &gt; 5 mm</strong> 提示 EHBO；一項研究中 97% 手術確診 EHBO 的貓符合。測量在<strong>肝門處</strong>，避開正常較粗的膽囊管</li><li>擴張程度取決於阻塞時間與完全程度，<strong>無法判斷原因</strong></li><li>發炎與腫瘤造成的阻塞通常臨床症狀時間較長；結石較急性（不是絕對）</li><li>狗實驗性完全阻塞：24–48 小時總膽管、膽囊與肝外膽管擴張，<strong>5–7 天</strong>出現肝內膽管擴張；貓推測有類似時序</li><li>肝內膽管擴張：與門靜脈伴行的低回音管、高回音壁；和血管區分靠<strong>彎曲、管徑突變、分支突然、沒有血流</strong>（「管子太多」sign）</li><li>30 隻 EHBO 貓：90% 肝外和／或肝內膽管擴張，但<strong>只有 43% 膽囊擴張</strong>（另兩篇 38%、62%）</li></ul><div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>沒有膽囊或肝外膽道擴張，不足以排除膽道阻塞</strong>；膽囊大也不能當作阻塞的唯一指標。膽道擴張在阻塞解除後仍可能持續，所以擴張本身也不是 EHBO 的確診依據。</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">🫙</div>
+      <h2>5. 膽囊黏液囊腫與膽道囊腫</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3>膽囊黏液囊腫：貓和狗不一樣</h3>
+        <ul class="notes"><li>膽泥要和黏液囊腫區分；黏液囊腫來自囊性黏液性增生 → 黏液增加、膽囊脹大，最後可能壁壞死破裂；黏液栓可掉進總膽管造成 EHBO</li><li><strong>貓極少見</strong>（可能因為貓膽囊壁的黏液腺比狗少）；症狀可有嘔吐、厭食、嗜睡、肝指數上升，常合併脂肪肝或 EHBO</li><li>狗的典型樣貌是高回音<strong>星芒狀或奇異果樣</strong>；貓的報告：周邊不移動的高回音膽汁包住中央低回音膽汁、沒有條紋（可能是早期）；或不移動的組織化高回音內容物；第三例除了重複膽囊外超音波完全看不出來，靠組織病理才確診</li></ul><p class="p">結論：<strong>狗的黏液囊腫典型外觀不能直接套到貓</strong>。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📑 圖 15</span> 肝囊腫與膽道囊腫</h3>
+        <ul class="notes"><li>貓的肝囊腫<strong>全部源自膽道系統</strong>，可為先天或後天、偶發或有臨床意義</li><li>單一膽道囊腫：邊界清楚、薄壁、無回音內容物、<strong>強烈遠端聲影增強</strong></li><li>和膽道相通的叫<strong>總膽管囊腫</strong>（choledochal cyst）：肝外和／或肝內膽管的節段性囊狀擴張</li><li>不和膽道相通、含膽汁的叫<strong>膽汁瘤／膽道假性囊腫</strong>（biloma），曾見於肝臟切片的醫源性傷害</li><li>囊腫可以大到佔據大部分腹腔、壓迫推移胃與肝</li><li>多囊腎的貓常同時有肝與胰臟囊腫（圖 15b、c：14 歲波斯貓）；單純囊腫周圍肝實質通常正常</li></ul>
+      </div><div class="subsection">
+        <h3>總膽管囊腫病例</h3>
+        <ul class="notes"><li>兩隻貓：體重減輕、黃疸；遠端 1.5 cm 與近端 10 cm 的總膽管囊腫，合併膽道擴張</li><li>四隻中老年 DSH：慢性嘔吐、食慾差、嗜睡；總膽管節段擴張到 5 cm、肝內外膽管管狀到囊狀擴張、膽道內高回音碎屑、肝腫大</li><li>其中三隻<strong>沒有膽管阻塞</strong>（一隻不確定），只有一隻輕度高膽紅素血症；但總膽管都 &gt; 5 mm，<strong>很容易被誤判為 EHBO</strong></li><li>六隻都有伴隨疾病（膽管炎、膽管肝炎、胰臟炎或 IBD）；先天或後天不明；可能造成膽汁淤積與反覆感染；部分可內科處理，手術個案評估</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">💉</div>
+      <h2>6. 超音波導引經皮膽囊穿刺</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📑 方框・圖 16</span> 怎麼做</h3>
+        <ul class="notes"><li>微創、安全，直接採膽汁做<strong>細胞學與培養</strong></li><li>常用 <strong>21 或 22 G、1.5 吋針</strong>接 10 或 12 mL 注射筒</li><li>常建議<strong>經肝</strong>進針以減少膽汁滲漏；但也有直接刺膽囊底部、不經肝而沒有併發症的報告</li><li>經肝路徑曾有一例輕微自限性膽囊周圍出血（推測刺到肝血管）</li><li><strong>盡量把膽囊抽乾</strong>以降低膽汁性腹膜炎風險；膽汁很黏時請助手幫忙拉針筒</li><li>作者偏好貓左側躺、<strong>右腹側</strong>進針</li><li>圖 16 病例：11 歲 Siamese（膽管炎＋胰臟炎），膽汁淡而混濁，細胞學化膿性發炎伴細菌＝細菌性膽囊炎；同時做肝 FNA 見輕度脂肪肝與活動性發炎；正常膽汁是深綠色</li></ul>
+      </div><div class="subsection">
+        <h3>併發症的證據</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>研究</th><th>結果</th></tr><tr><td>51 隻貓</td><td>併發症 6%：1 隻 AKI（後安樂死）、2 隻心肺停止；無法確定和穿刺直接相關，但也無法排除</td></tr><tr><td>83 隻疑似肝膽疾病的貓</td><td>14 隻有併發症：腹水量增加、針尖堵塞、第一次沒刺進膽囊、氣腹；<strong>沒有膽囊破裂、膽汁性腹膜炎或需要升壓劑的低血壓</strong>；7 隻輸血，但除了 4 隻外都同時做了肝或脾 FNA／切片，併發症可能來自那些處置</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📚</div>
+      <h2>原文重點與參考資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📑 Key Points</span> 作者的重點</h3>
+        <ul class="notes"><li>雙葉與重複膽囊是先天、沒有臨床意義的變異，約 1/8 的貓有</li><li>正常膽囊壁與總膽管壁 &lt; 1 mm</li><li>正常總膽管容易看到；&gt; 5 mm 多數提示 EHBO</li><li>膽管炎／膽管肝炎可造成膽囊和／或總膽管壁增厚、膽泥、結石、總膽管擴張</li><li>膽囊擴張不是可靠的膽道阻塞指標</li><li>貓的肝囊腫源自膽道，可先天或後天、偶發或有臨床意義；薄壁、遠端聲影增強</li><li>經皮膽囊穿刺是取得膽汁做細胞學與培養的安全方法</li></ul>
+      </div><div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list"><div class="ref-item">Griffin S. Feline abdominal ultrasonography: what’s normal? what’s abnormal? The biliary tree. <em>J Feline Med Surg</em> 2019;21(5):429–441. doi:10.1177/1098612X19843212（<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10814422/">PMC 全文</a>，含原文圖 1–16 與影片）。</div><div class="ref-item">原文主要引用：Hittmair Vet Radiol Ultrasound 2001（膽囊壁）；Penninck 2010、Diana 2012（膽囊體積）；Leveille JVIM 1996（總膽管）；Gaillot Vet Radiol Ultrasound 2007（30 隻 EHBO）；Marolf JAAHA 2012（膽管炎）；Harran Can Vet J 2011（膽泥）；Otte JFMS 2017；Spain JFMS Open Rep 2017（總膽管囊腫）；Schiborra JSAP 2017、Savary-Bataille JVIM 2003、Byfield JFMS 2017（膽囊穿刺）。</div><div class="ref-item">同系列：Griffin S. The liver. <em>J Feline Med Surg</em> 2019 年 1 月號。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>相關：<a href="../case-discussions/feline-chronic-vomiting.html">梅醫師病例討論：貓慢性嘔吐</a>、<a href="../echocardiography/index.html">心臟超音波系列</a>。</p>
+    <a href="index.html">回到超音波專區 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

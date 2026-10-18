@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>超音波專區｜獸醫讀書筆記</title>
+<style>
+  :root {
+    --accent:    #0F5E9C;
+    --accent-lt: #3B9AE1;
+    --accent-dk: #0B3F66;
+    --accent-bg: #EEF5FC;
+    --dark:      #0A2540;
+    --text:      #2F4558;
+    --border:    #D2E4F3;
+    --bg:        #F7FAFD;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, "Segoe UI", "Noto Sans TC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── HOME LINK ── */
+  .home-bar {
+    padding: 16px 24px 0;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .home-bar a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text);
+    opacity: .55;
+    text-decoration: none;
+    font-size: .85rem;
+    font-weight: 600;
+  }
+  .home-bar a:hover { opacity: .9; }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, #eef5fc 0%, #d6e8f7 100%);
+    border-bottom: 3px solid var(--accent);
+    color: var(--dark);
+    padding: 40px 24px 44px;
+    text-align: center;
+  }
+  .header-icon { font-size: 2.6rem; margin-bottom: 12px; }
+  header .kicker {
+    font-family: ui-monospace, "SF Mono", monospace;
+    font-size: .75rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent-dk);
+    opacity: .75;
+    margin-bottom: 10px;
+  }
+  header h1 { font-size: 2rem; font-weight: 800; letter-spacing: .02em; color: var(--accent-dk); }
+  header p.dek {
+    margin: 10px auto 0;
+    max-width: 500px;
+    opacity: .65;
+    font-size: .95rem;
+    line-height: 1.65;
+    color: var(--text);
+  }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 900px; margin: 0 auto; padding: 36px 20px 80px; }
+
+  .stats {
+    display: flex; gap: 20px; flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+  .stat {
+    background: #fff; border-radius: 12px;
+    padding: 14px 20px;
+    box-shadow: 0 2px 8px rgba(16,34,31,.06);
+    flex: 1; min-width: 120px; text-align: center;
+    border: 1px solid var(--border);
+  }
+  .stat-num  { font-size: 1.6rem; font-weight: 800; color: var(--accent); }
+  .stat-label{ font-size: .75rem; opacity: .55; margin-top: 2px; }
+
+  .section-label {
+    font-size: .78rem; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--text);
+    opacity: .55; margin: 0 0 14px;
+  }
+
+  /* ── CASE LIST ── */
+  .cases { display: flex; flex-direction: column; gap: 14px; }
+
+  .case-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(16,34,31,.06);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    gap: 18px;
+    padding: 20px 22px;
+    border: 1px solid var(--border);
+    transition: transform .16s, box-shadow .16s;
+  }
+  .case-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(16,34,31,.12);
+  }
+  .case-num {
+    font-family: ui-monospace, "SF Mono", monospace;
+    font-size: .8rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    width: 42px; height: 42px;
+    display: flex; align-items: center; justify-content: center;
+    flex: none;
+  }
+  .case-body { flex: 1; min-width: 0; }
+  .case-tag {
+    font-size: .72rem; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--accent-dk); opacity: .7;
+    margin-bottom: 4px;
+  }
+  .case-title { font-size: 1.05rem; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+  .case-desc  { font-size: .85rem; color: var(--text); opacity: .75; line-height: 1.55; }
+  .case-meta {
+    flex: none;
+    display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between;
+    gap: 10px;
+  }
+  .case-date { font-size: .76rem; color: var(--text); opacity: .5; white-space: nowrap; }
+  .case-arrow {
+    font-size: .85rem; color: #fff;
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--accent);
+  }
+
+  /* ── COMING SOON ── */
+  .case-soon {
+    background: #fbfdff;
+    border: 2px dashed var(--border);
+    box-shadow: none;
+    cursor: default;
+  }
+  .case-soon:hover { transform: none; box-shadow: none; }
+  .case-soon .case-num { color: var(--text); opacity: .4; background: transparent; }
+  .case-soon .case-title, .case-soon .case-tag { opacity: .4; }
+  .case-soon .case-desc { opacity: .35; }
+  .coming-badge {
+    font-size: .7rem; font-weight: 700;
+    background: var(--border); color: var(--text);
+    border-radius: 20px; padding: 3px 10px; opacity: .65;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.5rem; }
+    .header-icon { font-size: 2rem; }
+    .container { padding: 20px 14px 60px; }
+    .case-card { flex-direction: column; gap: 12px; }
+    .case-meta { flex-direction: row; align-items: center; width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="home-bar">
+  <a href="../index.html">← <img src="../assets/logo-mark-96.png" alt="" style="width:1.3em;height:1.3em;vertical-align:-.32em;margin-right:.2em">獸醫讀書筆記</a>
+</div>
+
+<header>
+  <div class="header-icon">🔊</div>
+  <p class="kicker">Ultrasonography</p>
+  <h1>超音波專區</h1>
+  <p class="dek">腹部與心臟超音波的讀書筆記：正常值、判讀重點、常見陷阱，以論文與講義整理，陸續更新。</p>
+</header>
+
+<div class="container">
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num" id="case-count">1</div>
+      <div class="stat-label">腹部超音波</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">18</div>
+      <div class="stat-label">心臟超音波</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">🐕🐱</div>
+      <div class="stat-label">犬貓</div>
+    </div>
+  </div>
+
+  <div class="section-label">🩻 腹部超音波</div>
+
+  <div class="cases">
+
+    <!-- 01 -->
+    <a class="case-card" href="feline-biliary-tree.html">
+      <div class="case-num">01</div>
+      <div class="case-body">
+        <div class="case-tag">貓 · 膽囊 · 總膽管 · EHBO · 膽管炎 · 膽囊穿刺 · JFMS 2019</div>
+        <div class="case-title">貓腹部超音波：膽道系統的正常與異常</div>
+        <div class="case-desc">Griffin 回顧論文整理：雙葉膽囊、膽囊壁與總膽管正常值（&lt; 1 mm、≤ 4 mm）、膽泥在貓的意義、膽管炎表現、總膽管 &gt; 5 mm 與 EHBO 的判讀陷阱、黏液囊腫與總膽管囊腫、超音波導引膽囊穿刺</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">論文整理</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="section-label" style="margin-top:32px">🫀 心臟超音波</div>
+
+  <div class="cases">
+    <a class="case-card" href="../echocardiography/index.html">
+      <div class="case-num">🔒</div>
+      <div class="case-body">
+        <div class="case-tag">ESAVS · 標準切面 · M-Mode · 都卜勒 · 病理判讀</div>
+        <div class="case-title">心臟超音波系列（ESAVS）</div>
+        <div class="case-desc">機器與探頭操作、標準切面、LA/RV 測量、都卜勒與舒張功能、常見病理判讀，18 個小節（需登入）</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">18 篇</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+  </div>
+
+</div>
+
+</body>
+</html>
