@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>電化療在獸醫腫瘤科的應用｜Rita Ho 腫瘤科講座</title>
+<style>
+  :root {
+    --primary: #7E22CE;
+    --primary-light: #F3E8FF;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2E1065;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #D8B4FE; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4C2A85;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #D8B4FE; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #D8B4FE;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4C2A85;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #a26a75;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #4C1D95 0%, #A855F7 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2E1065; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4C2A85; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #4C1D95; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+</style>
+
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 講座系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← Rita Ho 腫瘤科講座</a>
+  <div class="logo">
+    <h2>03｜電化療（ECT）</h2>
+    <p>Rita Ho｜講義版</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div><a href="#s0">電化療在門診裡的位置</a><a href="#s1">1. 原理與藥物</a><a href="#s2">2. 標準操作</a><a href="#s3">3. 追蹤、重打與毒性</a><a href="#s4">4. 各腫瘤的實際數據</a><a href="#s5">5. 在台灣怎麼用與三個病例</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>電化療在獸醫腫瘤科的應用</h1>
+    <p>主講：Rita Ho, DVM（practice limited to oncology）</p>
+    <p>Electrochemotherapy in Veterinary Oncology｜台灣家庭獸醫進階課程，兩小時（投影片 65 張＋2 頁講義）｜場次 03</p>
+    <div class="tags">
+      <span class="tag">電化療</span><span class="tag">ECT</span><span class="tag">電穿孔</span><span class="tag">Bleomycin</span><span class="tag">Cisplatin</span><span class="tag">氯化鈣</span><span class="tag">針電極</span><span class="tag">脈衝參數</span><span class="tag">血管鎖住</span><span class="tag">免疫原性細胞死亡</span><span class="tag">肥大細胞瘤</span><span class="tag">軟組織肉瘤</span><span class="tag">口腔黑色素瘤</span><span class="tag">貓鼻鏡 SCC</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 投影片</span> 講者投影片（數字＝投影片編號） <span class="src src-add">💡 補充</span> 整理者補充（換算、交叉參照；不是講者說的）
+    <br><span class="muted">依講者的投影片與講義整理，沒有課堂錄音；投影片本身是中文，這裡以重點整理為主，數字與劑量照投影片。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+<li>電化療是<strong>局部治療</strong>：電脈衝暫時打開細胞膜讓藥進去，取代不了分期與系統性治療</li><li>最適合：<strong>≤ 3 cm³、位置淺、切下去要重建</strong>（眼瞼、鼻鏡、肢端）或不完全切除後的位置</li><li>標準：<strong>靜脈 bleomycin 15,000 IU/m²</strong>（30–45 秒 bolus，單次上限 30,000 IU），<strong>5–8 分鐘</strong>後打電；<strong>8 個 100 µs 脈衝</strong>、針電極 1000 V/cm</li><li>Bleomycin 細胞毒性最多放大 <strong>1000 倍</strong>；腫瘤是<strong>慢慢縮</strong>，最大效果在 <strong>6–8 週</strong>；不要在 2–4 週就宣告沒效</li><li>只有「腫瘤脫逃型」（先縮又長）要盡快重打；已治療病灶至少間隔 <strong>4 週</strong>；犬 bleomycin 累積上限 <strong>200,000 IU/m²</strong>（肺纖維化）</li><li>一定要<strong>全身麻醉</strong>；MCT 從周邊往中心打、術前壓去顆粒化；鼻、舌、眼瞼、喉部術後前 48 小時用類固醇，<strong>NSAID 與類固醇不可併用</strong></li><li>低惡性度 MCT 完全反應 <strong>100%</strong>、高惡性度 45%；貓鼻鏡 SCC 總反應 96.7% 但無疾病間隔 136 天（放療 916 天）</li><li>證據以回溯 case series 為主：<strong>可以說有效，不能說優於手術或放療</strong>；台灣的限制在藥、機器、法規</li>
+    </ul>
+  </div>
+
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📋</div>
+      <h2>電化療在門診裡的位置</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 4</span> 先講結論</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th></th></tr><tr><td><strong>是什麼</strong></td><td>一種局部治療：用電脈衝把細胞膜暫時打開讓藥物進去；只作用在電場涵蓋範圍；取代不了分期與系統性治療的判斷</td></tr><tr><td><strong>最適合誰</strong></td><td>小體積、位置淺、難開：≤ 3 cm³ 的皮膚或皮下病灶；眼瞼、鼻鏡、肢端這種切下去要重建的位置；不完全切除後的位置</td></tr><tr><td><strong>不要期待什麼</strong></td><td>不是更好的手術：沒有跟手術或放療對照的隨機試驗；深部、體積大、電極打不到效果差；高惡性度仍需多模式治療</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">⚡</div>
+      <h2>1. 原理與藥物</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 5–7</span> 電穿孔：把細胞膜暫時打開</h3>
+        <ul class="notes"><li>短而強的電脈衝讓細胞膜出現暫時性缺口，本來進不去的親水性藥物進入細胞質，細胞毒性最多放大到 <strong>1000 倍</strong></li><li>藥物進入是物理現象，不看受體或轉運蛋白，所以<strong>任何組織型態</strong>的腫瘤都可以治</li><li>流程：8 個 100 µs 方波脈衝 → 數秒內膜通透、數分鐘內恢復 → bleomycin 進入 → DNA 斷裂、下次分裂時死亡</li><li><strong>可逆性電穿孔</strong>（ECT、基因電轉導）：膜會修復、殺細胞的是藥；<strong>不可逆性電穿孔</strong>（IRE）：屬於消融，不分好壞細胞</li><li>選擇性來自 bleomycin（主要殺正在分裂的細胞），所以血管、神經、軟骨可保留，外觀結果通常不錯</li><li>本來就能自由進出細胞的藥（doxorubicin、vincristine）加電脈衝並不會更有效，所以<strong>只有三個藥可用</strong></li></ul><figure class="fig">
+          <img src="photos/03-05-electroporation.jpg" alt="📄 5：電穿孔的步驟" loading="lazy">
+          <figcaption>📄 5：電穿孔的步驟</figcaption>
+        </figure>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 8</span> 只有三個藥可以用</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>順位</th><th>藥物</th><th>重點</th></tr><tr><td><strong>首選</strong></td><td>Bleomycin</td><td>靜脈或腫瘤內皆可；靜脈能涵蓋腫瘤邊緣；本身是免疫活化劑；犬貓多數病例的標準</td></tr><tr><td>第二</td><td>Cisplatin</td><td>只能腫瘤內；馬 sarcoid 主要用這個；<strong>貓不建議</strong>（致命性肺水腫風險）；bleomycin 達上限時的替代</td></tr><tr><td>第三</td><td>氯化鈣</td><td>只能腫瘤內；細胞內鈣過載、ATP 耗竭；前兩者拿不到時才用，限小體積</td></tr>
+        </table></div><p class="p">Carboplatin 只有體外資料，臨床上不建議代替 cisplatin。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 9</span> 為什麼腫瘤是慢慢縮小</h3>
+        <ul class="notes"><li>Bleomycin 造成 DNA 雙股斷裂：細胞被「標記為將死」，在<strong>下一次分裂時才死亡</strong></li><li>治療後逐漸縮小、壞死很少；最大效果通常在 <strong>6–8 週</strong>後</li><li>含大量靜止期細胞的腫瘤可能先停住一段時間，不要誤判為失敗</li></ul><div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>在第 2–4 週就宣告「沒效」而重打，是新手最常見的錯誤之一：重打已被標記的細胞沒有好處，反而可能造成組織壞死。</div></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 10</span> 血管鎖住效應（vascular lock）</h3>
+        <p class="p">施打電脈衝當下治療區域血流立即中斷：<strong>藥物留在腫瘤內</strong>、<strong>腫瘤缺血</strong>、<strong>當場止血</strong>。會流血、有惡臭的淺層病灶即使沒有根治機會，一次治療就能明顯改善。反過來，<strong>舌頭</strong>這種終末血流部位要小心，大範圍施打可能造成前段壞死。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 11–12</span> 免疫在電化療裡的角色</h3>
+        <ul class="notes"><li>Bleomycin＋電脈衝造成<strong>免疫原性細胞死亡</strong>：calreticulin（「吃我」）、ATP（「過來」）、HMGB1（「出事了」，治療後 24 小時最明顯）</li><li>樹突細胞把抗原帶到淋巴結、活化 CD8⁺ T 細胞；免疫功能不全小鼠反應明顯較差；少數有 abscopal effect</li><li>臨床推論：<strong>同時做系統性化療可能不划算</strong>（免疫抑制可能削弱這部分效果），需個案評估</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 13–14</span> 發展與證據強度</h3>
+        <ul class="notes"><li>1991 人醫第一個臨床試驗；1997 第一個獸醫試驗（貓軟組織肉瘤）；2006 ESOPE 標準操作；2018 人醫更新；<strong>2022 第一份獸醫專用指引</strong>（Tellado）</li><li>拉丁美洲到 2019 年超過 120 個中心、20,000 個動物病患；亞洲臨床報告與訓練資源都還很少</li><li><strong>可以說</strong>：多個獨立團隊 case series 反應率一致偏高；毒性低、多為局部可自限；小體積淺層病灶反應特別穩定</li><li><strong>不能說</strong>：優於手術或放療。唯一「跟手術比較」的研究，ECT 組是飼主拒絕手術才納入；多數回溯、單臂、無對照</li><li>常被引用的「反應率 70–100%」來自指引作者群自己的文獻回顧，不是系統性回顧；各研究評估標準（WHO、VCOG RECIST）與追蹤長度不一</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ecfeff">🛠️</div>
+      <h2>2. 標準操作：從挑病例到打完電</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 16</span> 一次治療的完整流程</h3>
+        <ol class="notes"><li>麻醉誘導（全身麻醉，深度同一般手術）</li><li>剃毛消毒，腫瘤加安全邊緣，量尺寸拍照</li><li><strong>靜脈 bleomycin</strong>，30–45 秒 bolus</li><li>等 <strong>5–8 分鐘</strong>讓藥擴散到腫瘤</li><li>施打電脈衝，涵蓋整個腫瘤與邊緣</li><li>術後止痛、頭套、衛教</li></ol><figure class="fig">
+          <img src="photos/03-16-workflow.jpg" alt="📄 16：一次治療的完整流程" loading="lazy">
+          <figcaption>📄 16：一次治療的完整流程</figcaption>
+        </figure><p class="p">一次麻醉可處理多個病灶（和放療門檻最大的差別）；打電本身只要幾分鐘；多數病例一到兩次治療就會有結果。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 17</span> 哪些病例可以考慮</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th></th></tr><tr><td><strong>適應症</strong></td><td>第一線治療做不到的皮膚或皮下腫瘤；出血、潰瘍或疼痛影響生活品質的病灶；口腔或鼻腔腫瘤（單獨或搭配手術）；不完全切除後的疤痕與皮瓣；術中擴大安全範圍；系統性治療中反應不好的局部病灶；大腫瘤術前減積</td></tr><tr><td><strong>不適合／打折</strong></td><td>腫瘤比電極針導電長度還厚；電極到不了的位置（篩板、眼球後、鼻竇）；懷孕或哺乳；bleomycin 累積劑量已達上限</td></tr>
+        </table></div><p class="p">「飼主拒絕手術」可以是合理的適應症，但前提是其他選項都完整說明過。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 18</span> 治療前一定要完成的檢查</h3>
+        <ol class="notes"><li><strong>組織病理診斷</strong>（治療方向仍取決於組織型態與分級）</li><li>完整分期：胸腔 X 光三張、腹部超音波；必要時 CT 或 MRI</li><li>血液學、凝血、肝腎功能；bleomycin 約一半經腎排除，腎功能差可減量</li><li>麻醉風險評估（含心臟）</li><li>確認過去 bleomycin 累積劑量：犬上限 <strong>200,000 IU/m²</strong>；貓尚未建立</li></ol><p class="p">術前評估要在治療前<strong>四天內</strong>完成。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 19</span> 三個位置要特別小心</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>位置</th><th>注意</th></tr><tr><td>喉部或靠近喉部</td><td>確認會不會影響插管；術後腫脹可能阻塞呼吸道；大病灶先減積再打切除處；必要時氣管切開</td></tr><tr><td>舌頭</td><td>終末血流，血管鎖住可能讓舌尖壞死；尾側病灶會阻塞呼吸道；先手術減積再打；早期可能需要餵食管</td></tr><tr><td>電極插不到</td><td>篩板、眼球後、鼻竇：勉強做只會失敗；改化療＋放療，必要時手術</td></tr>
+        </table></div><p class="p">治療鼻部或口腔的病患，麻醉後一定要<strong>監控到完全清醒</strong>才能離開（指引明確寫入）。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 20</span> 腫瘤多大還能治</h3>
+        <p class="p">體積 <strong>V = π/6 × a × b × c</strong>（長、寬、厚；扁平病灶用 b 代替 c）。每次治療前量所有病灶並拍照（放尺、固定角度）。腫瘤厚度必須小於電極針的<strong>導電長度</strong>（約 1–4 cm，只算導電段）；太厚就先減積或規劃分兩次。</p><div class="tbl-wrap"><table>
+          <tr><th>目標</th><th></th></tr><tr><td>根治性</td><td><strong>≤ 3 cm³ 效果最好</strong>；厚度 &lt; 1 cm 的大面積淺層病灶即使超過 3 cm³ 也適合</td></tr><tr><td>緩和性</td><td>大病灶也能做；目標是止血、減少滲液與惡臭、緩解疼痛，<strong>不要用反應率當成功指標</strong></td></tr>
+        </table></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 21–22</span> 脈衝參數與電壓</h3>
+        <ul class="notes"><li><strong>8 個單極方波脈衝，每個 100 µs</strong>；重複頻率 1–5000 Hz（不影響反應；&gt; 100 Hz 只會一次肌肉收縮）</li><li>建議自動化機器；輸出電流 35 A 足夠；要能維持電壓不掉，並有電弧、短路、電壓下降警示</li></ul><div class="tbl-wrap"><table>
+          <tr><th>情況</th><th>電壓距離比</th><th>0.4 cm 間距時</th></tr><tr><td>針電極插入組織</td><td>1000 V/cm</td><td>400 V</td></tr><tr><td>平板電極隔著皮膚</td><td>1300 V/cm</td><td>520 V</td></tr><tr><td>平板電極直接放在腫瘤上（減積後）</td><td>1000 V/cm</td><td>400 V</td></tr>
+        </table></div><p class="p">先量電極實際間距（cm）× 係數＝設定電壓。<strong>不要為了打深自行調高電壓</strong>：犬 STS 1200 V/cm 的局部毒性顯著高於 1000 V/cm（P = 0.0473）。機器警示電場不足時，把針退出一半再打、安排下次處理深部，不是改參數。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 23–24</span> 電極與插針</h3>
+        <ul class="notes"><li><strong>針電極永遠優先</strong>：穿過高阻抗皮膚、電場較均勻；通常兩排各 3–4 根，間距 0.4–0.5 cm</li><li>平板電極只適合侵犯幾毫米的淺層病灶（眼瞼、耳翼可夾著治療）；接觸不好用超音波凝膠（寧多勿少，不要用凡士林）；平板間距 4 mm 時最大深度約 <strong>3 mm</strong></li><li>相鄰施打要<strong>稍微重疊</strong>；整個腫瘤表面都要覆蓋到（電場在電極外急速衰減）</li><li><strong>肥大細胞瘤從周邊往中心打</strong>，減少去顆粒化造成的紅腫、水腫與凝血問題</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 25–27</span> 用藥</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>內容</th></tr><tr><td>靜脈 bleomycin</td><td><strong>15,000 IU/m²</strong>，30–45 秒 bolus；單次上限 <strong>30,000 IU</strong>（相當 2 m²）；<strong>5–8 分鐘</strong>後開始打電</td></tr><tr><td>有效時間</td><td>貓與小型犬約給藥後 5–25 分鐘；其他體型約 8–40 分鐘；年紀大或腎功能差會延長。超時仍有部分效果：打完、做記號、追蹤時特別留意</td></tr><tr><td>腫瘤內 bleomycin</td><td>1,000 IU/mL，<strong>250 IU/cm³ 腫瘤</strong>，只用在 ≤ 2 cm³</td></tr><tr><td>腫瘤內 cisplatin</td><td>1 mg/mL，把腫瘤體積灌滿；馬首選，貓不建議</td></tr><tr><td>腫瘤內氯化鈣</td><td>9 mg/mL，腫瘤體積的一半；第三選擇</td></tr>
+        </table></div><ul class="notes"><li>單位換算：<strong>1 mg（效價）＝ 1 USP unit ＝ 1,000 IU</strong>；台灣人用藥標示 mg</li><li>BSA（m²）：講義寫「k × 體重(kg)^(2/3) ÷ 100，犬 k = 0.101、貓 k = 0.1」；照字面會小 100 倍，實際應為 <strong>0.101 × 體重^(2/3)</strong>（犬）或 0.1 × 體重^(2/3)（貓），也就是常見的 10.1 × W^(2/3) ÷ 100</li><li>腫瘤內注射：打完<strong>立刻</strong>打電；中心單點進針放射狀給藥、慢慢退針；多病灶一個一個打藥一個一個打電；不要注射周圍正常組織（會壞死）</li><li>累積上限犬 200,000 IU/m²（主要風險<strong>肺纖維化</strong>：皮膚與肺的 bleomycin hydrolase 特別低）；達上限改腫瘤內 cisplatin（貓除外）或氯化鈣</li></ul><div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 例：10 kg 犬 BSA ≈ 0.101 × 10^(2/3) ≈ 0.469 m² → bleomycin 15,000 × 0.469 ≈ 7,000 IU ＝ 約 7 mg（效價）。</div></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 28</span> 麻醉</h3>
+        <ul class="notes"><li><strong>一定要全身麻醉</strong>，即使只用平板電極；深度同該部位外科手術；可加局部阻斷（例如鼻部用眶下神經阻斷）</li><li>用自己的常規即可（台灣與美國多用 dexmedetomidine）</li><li>MCT：有研究在插管前 20 分鐘給 <strong>dexamethasone 0.5 mg/kg＋ranitidine 2 mg/kg IV</strong> 壓制去顆粒化</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 29</span> 術後止痛與傷口</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th></th></tr><tr><td>一般部位</td><td>以 <strong>NSAID</strong> 為主，大病灶可合併 opioid；多數只需幾天</td></tr><tr><td>鼻部、舌頭、眼瞼、喉部</td><td><strong>前 48 小時先用類固醇</strong>壓住腫脹，之後接回 NSAID</td></tr><tr><td>絕對不要</td><td><strong>NSAID 與類固醇同時用</strong>；換藥中間要停幾天</td></tr>
+        </table></div><p class="p">傷口不需包紮，接下來幾天會滲液，教飼主清潔並戴頭套；預防性抗生素可口服或肌注（感染風險本來就低）；事先告知可能脫毛、色素改變。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 30</span> 新手最常犯的六件事</h3>
+        <ol class="notes"><li><strong>切除範圍沒打到</strong>：針垂直腫瘤表面而不是腫瘤所在的平面</li><li><strong>重疊太多</strong>：同一塊組織被電兩次以上</li><li><strong>牙齒卡在電極之間</strong>：嚴重影響電場，建議先拔</li><li><strong>金屬器械太靠近</strong>：導電、短路、損壞機器</li><li><strong>治療區域出血</strong>：血液導電高造成電弧或電場偏移，止血要做好</li><li><strong>電極重複使用到氧化</strong>：肉眼看不出但療效變差</li></ol><p class="p">另外：施打前先對空氣放一次脈衝確認機器正常；監視器上的心電圖假影是電流干擾，不是心律不整。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">📈</div>
+      <h2>3. 治療後怎麼追蹤、什麼時候再打一次</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 32</span> 反應評估</h3>
+        <p class="p">回診：治療後 <strong>15 天</strong>，以及第 <strong>1、2、4、6 個月</strong>；每次量尺寸拍照。多用 VCOG RECIST v1.0（CR／PR／SD／PD）。最大效果通常在 6–8 週後。殘留硬塊分不出是腫瘤還是疤痕時，<strong>切片</strong>比繼續觀察或直接重打都好。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 33</span> 治療後會看到的四種變化</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>型態</th><th>表現</th><th>處理</th></tr><tr><td><strong>常見型</strong></td><td>先腫，隔天開始縮，一路縮到最後</td><td>繼續追蹤</td></tr><tr><td><strong>兩段型</strong></td><td>先縮一段，停住一陣子，又開始縮（靜止期細胞晚一點進入分裂）</td><td>繼續追蹤</td></tr><tr><td><strong>不變型</strong></td><td>初期腫脹消退後回到原本大小，幾乎不再縮</td><td>密切追蹤</td></tr><tr><td><strong>腫瘤脫逃型</strong></td><td>先有反應，之後又重新長大（治療不足）</td><td><strong>盡快重打</strong></td></tr>
+        </table></div><figure class="fig">
+          <img src="photos/03-33-four-responses.jpg" alt="📄 33：治療後的四種變化" loading="lazy">
+          <figcaption>📄 33：治療後的四種變化</figcaption>
+        </figure>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 34</span> 什麼時候該再打一次</h3>
+        <ul class="notes"><li>第一次就沒有治療完整（太厚、範圍太大、規劃分次）：未治療部位<strong>隔天就可以打</strong></li><li>病灶重新長大（腫瘤脫逃型）：越早越好，不要等下次回診</li><li>出現新病灶：不受等待期限制</li></ul><p class="p">已治療過的病灶<strong>至少間隔四週</strong>（靜脈 bleomycin 的建議）；真正原則是「等到反應完全出現」。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 35</span> 局部毒性分級</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>分級</th><th>表現</th></tr><tr><td>0</td><td>沒有毒性</td></tr><tr><td>1</td><td>輕度水腫</td></tr><tr><td>2</td><td>水腫或壞死，範圍 &lt; 1 cm</td></tr><tr><td>3</td><td>嚴重水腫</td></tr><tr><td>4</td><td>深部壞死</td></tr><tr><td>5</td><td>嚴重水腫合併組織缺損</td></tr>
+        </table></div><ul class="notes"><li>多數犬貓毒性 ≤ 2 級</li><li>貓鼻鏡 SCC：51% 毒性 ≤ 2；<strong>毒性 &gt; 2 的貓復發或惡化機率較高</strong></li><li>腫瘤越大，反應與毒性兩邊都較差</li></ul><p class="p">毒性偏高常代表電場設定或施打方式有問題，同時也影響療效。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 36</span> 少見但要事先講的風險</h3>
+        <ul class="notes"><li><strong>組織缺損</strong>：腫瘤侵犯整層組織時可能形成瘻管或明顯缺損，可能需要重建；一定要寫進同意書</li><li>外觀：脫毛與色素改變（部分會恢復，但不能保證）</li><li>系統性：腫瘤溶解症候群（非常少見）；bleomycin 累積過高的<strong>肺纖維化</strong>是唯一要長期記錄追蹤的系統性毒性</li></ul><p class="p">同意書四件事：藥物風險、術後疼痛、瘻管與組織缺損、可能需要多次治療。把「治療後會先腫」講在前面。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">📊</div>
+      <h2>4. 各腫瘤的實際數據</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 38</span> 先看大方向（不同研究、不同標準，只能當方向）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>腫瘤</th><th>物種</th><th>文獻中的反應</th><th>來源</th></tr><tr><td>Sarcoid</td><td>馬</td><td>四年不復發率 97.9%（動物）</td><td>Tamzali 2012</td></tr><tr><td>低惡性度肥大細胞瘤</td><td>犬</td><td>完全反應 100%（27/27）</td><td>Ojeda 2026</td></tr><tr><td>鼻鏡鱗狀上皮細胞癌</td><td>貓</td><td>總反應率 96.7%、完全反應 65.6%</td><td>Simčič 2021</td></tr><tr><td>口腔黑色素瘤 stage I</td><td>犬</td><td>客觀反應率 100%</td><td>Tellado 2020</td></tr><tr><td>膀胱移行上皮癌</td><td>犬</td><td>完全反應 62%（13/21）</td><td>Rangel 2023</td></tr><tr><td>高惡性度肥大細胞瘤</td><td>犬</td><td>完全反應 45%（5/12）</td><td>Ojeda 2026</td></tr><tr><td>口腔黑色素瘤 stage IV</td><td>犬</td><td>客觀反應率 36.4%</td><td>Tellado 2020</td></tr>
+        </table></div><p class="p">規律：<strong>小體積、位置淺、低惡性度</strong>反應最好；<strong>腫瘤體積</strong>是所有研究中最一致的預後因子。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 39–41</span> 犬肥大細胞瘤</h3>
+        <ul class="notes"><li>早期資料（Kodre 2009、Spugnini 2006/2011、Lowe 2017 51 犬四種用法）都用 Patnaik 三級，跟現在的 Kiupel 對不太起來；Kodre 的 ECT 組是飼主拒絕手術才納入，不能當療效比較</li></ul><div class="tbl-wrap"><table>
+          <tr><th>Ojeda 2026（29 犬 39 顆，單獨 ECT）</th><th>Kiupel 低惡性度</th><th>高惡性度</th></tr><tr><td>完全反應率</td><td><strong>100%（27/27）</strong></td><td>45%（5/12）</td></tr><tr><td>中位存活</td><td>1,198 天</td><td>210 天（P = .001）</td></tr><tr><td>無疾病間隔</td><td>1,080 天</td><td>45 天（摘要寫 455 天，內文與圖說寫 45 天）</td></tr><tr><td>平均腫瘤體積</td><td>3.2 cm³</td><td>8.2 cm³</td></tr><tr><td>平均治療次數</td><td>1.1</td><td>1.6</td></tr>
+        </table></div><p class="p">整體完全反應 79%；所有惡化都是高惡性度。限制：回溯、單一病理師、沒分皮膚型與皮下型；高惡性度組腫瘤本來就比較大。</p><div class="tbl-wrap"><table>
+          <tr><th></th><th></th></tr><tr><td>合理</td><td>低惡性度、小體積、位置難開（眼瞼、唇部、肢端、會陰）、飼主拒絕大手術：<strong>可以是手術的替代選項</strong></td></tr><tr><td>要很小心</td><td>高惡性度：單獨使用完全反應不到一半，只考慮小體積、手術做不到的位置，<strong>一定要放在多模式治療裡</strong></td></tr><tr><td>技術</td><td>從周邊往中心打；術前壓制去顆粒化；先減積再打完全反應更好</td></tr>
+        </table></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 42</span> 犬軟組織肉瘤</h3>
+        <ul class="notes"><li>Torrigiani 2019：52 犬 54 顆，單獨、術中、術後輔助三種用法；<strong>77.8% 在四肢</strong>；結論是安全有效的局部控制</li><li>毒性與電壓有關：1200 V/cm 顯著高於 1000 V/cm（四肢皮下組織少特別重要）</li><li>Spugnini 2019：30 例 bleomycin＋cisplatin 併用輔助</li></ul><p class="p">定位：四肢 STS 不完全切除、飼主不想再開刀或跑放療時，術後輔助 ECT 是有 case series 支持的選項，但<strong>沒有跟放療對照的資料</strong>。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 43</span> 犬口腔黑色素瘤：分期決定一切</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>Tellado 2020（67 犬，靜脈 bleomycin）</th><th>客觀反應率</th></tr><tr><td>Stage I</td><td>100%</td></tr><tr><td>Stage II</td><td>89.5%</td></tr><tr><td>Stage III</td><td>57.7%</td></tr><tr><td>Stage IV</td><td>36.4%</td></tr>
+        </table></div><ul class="notes"><li>整體中位存活 <strong>7.5 個月</strong>；未治療約 65 天</li><li><strong>骨侵犯</strong>是明確的負面預後因子（P &lt; 0.01）</li><li>30 隻不可手術 stage III–IV：ECT＋IL-2／IL-12 基因電轉導，無惡化存活顯著較好，總存活相近</li></ul><figure class="fig">
+          <img src="photos/03-43-oral-melanoma-stage.jpg" alt="📄 43：犬口腔黑色素瘤各分期的客觀反應率" loading="lazy">
+          <figcaption>📄 43：犬口腔黑色素瘤各分期的客觀反應率</figcaption>
+        </figure>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 44–45</span> 犬的其他腫瘤</h3>
+        <ul class="notes"><li>SCC：口腔非扁桃腺 SCC 為 case series；皮膚 SCC 縮小且增生指數下降</li><li><strong>肛門周圍腫瘤</strong>（肝樣腺瘤與上皮瘤）：反應率一直很高，是最早記錄有良好反應的部位之一</li><li>鼻腔：單針電極微創做法（鼻淚管與鼻道腫瘤），侵犯篩板或眼球後不適用</li><li><strong>膀胱 TCC</strong>（Rangel 2023，21 犬，開腹後在膀胱壁打電）：完全反應 62%、部分反應 24%；19/21 只有輕微不良反應、2 例輸尿管狹窄；排除漿膜侵犯與轉移，仍是安全性與可行性研究</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 46–47</span> 貓鼻鏡鱗狀上皮細胞癌</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>研究</th><th>族群</th><th>結果</th></tr><tr><td>Tozon 2014</td><td>11 貓 17 顆，Tis–T4</td><td>完全反應：貓 81.8%、病灶 87.5%</td></tr><tr><td>Simčič 2021</td><td>61 貓，六個中心</td><td>總反應率 96.7%、完全反應 65.6%；中位無疾病間隔 136 天、無惡化存活 65.5 天、復發 22.5%</td></tr><tr><td>Ferrer-Jorda 2024</td><td>21 貓，局部晚期</td><td>描述結果與不良反應</td></tr><tr><td>2026 前瞻</td><td>35 貓</td><td>完全反應 65.7%、部分反應 34.3%；腫瘤 &gt; 2.3 cm 時高毒性與只達部分反應的風險明顯上升</td></tr>
+        </table></div><div class="tbl-wrap"><table>
+          <tr><th></th><th></th></tr><tr><td>電化療</td><td>總反應可到 96.7%；中位無疾病間隔 <strong>136 天</strong>；一次麻醉、一到兩次；不需放療中心</td></tr><tr><td>根治性放療</td><td>44 貓，10 × 4.8 Gy 一週內完成；全部完全反應；中位無疾病間隔 <strong>916 天</strong></td></tr>
+        </table></div><p class="p">兩組數字不能直接相減，但可以誠實說：<strong>目前沒有資料顯示電化療的局部控制時間能跟根治性放療相比</strong>。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 48</span> 貓注射部位肉瘤</h3>
+        <p class="p">Spugnini 2011（術後輔助 cisplatin ECT）、2020（bleomycin＋cisplatin，不完全切除，復發率 18.5%、中位存活約 1,000 天）、2007（術中 vs 術後）。都是單一團隊回溯資料。定位：<strong>積極手術仍是主軸</strong>，電化療是切除邊緣不理想又拿不到放療時的補強。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 49</span> 馬與特殊寵物</h3>
+        <p class="p">馬 sarcoid（Tamzali 2012，194 顆）：四年不復發 97.9%（動物）、99.5%（腫瘤）；單獨 ECT 完全反應 92.3%；腫瘤內 cisplatin 每兩週一次。雪貂、刺蝟、龜、蛇、鳥、魚、豬甚至象都有報告，偏好腫瘤內給藥。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 50–52</span> 延伸應用與搭配</h3>
+        <ul class="notes"><li><strong>基因電轉導（IL-12）</strong>：補上局部治療沒有全身效果的缺口；腫瘤內給比周邊給好；合併時反應至少等兩個月再評估；台灣目前沒有質體可用</li><li><strong>鈣電穿孔</strong>：氯化鈣取代化療藥，不需防護裝備、成本低；獸醫資料很少（4 隻犬 180 天反應率 75%）；沒有出現臨床高血鈣</li><li>搭配手術：術前減積（&gt; 3–4 cm³）、術中清切除範圍、術後補強；搭配放療：深部用放療補、放療後抗性復發用 ECT；搭配化療：要權衡免疫抑制，節拍式也是選項</li></ul><p class="p">以上搭配主要來自指引作者的臨床經驗與生物學推論，<strong>沒有隨機試驗</strong>支持哪種順序較好。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🇹🇼</div>
+      <h2>5. 在台灣可以怎麼用與三個病例</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 54</span> 在台灣要面對的三件事</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th></th></tr><tr><td>藥</td><td>Bleomycin 與 cisplatin 都沒有動物用許可證，臨床用人用藥（例如 Bleocin）；人用藥在獸醫的使用權責仍待修法</td></tr><tr><td>機器</td><td>獸醫專用電穿孔儀在台灣沒有正式代理；電極是耗材，氧化後明顯影響療效</td></tr><tr><td>人</td><td>能做全身麻醉與甦醒監控；能安全調配化療藥（防護裝備與層流櫃）；能做完整分期與追蹤</td></tr>
+        </table></div><p class="p">技術本身不難，難的是這三件事。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 55</span> 費用與飼主溝通</h3>
+        <ul class="notes"><li>接受度通常不低：門檻比放療低、一次麻醉、多發病灶可一次處理；主要成本是耗材、藥品與麻醉</li><li>同意書前要講：<strong>治療後會先腫（不是失敗）</strong>、6–8 週才看得到最大反應、可能不只一次、可能脫毛與色素改變、全層侵犯可能形成缺損或瘻管</li><li>把「做完就會消掉」改成<strong>「兩個月後我們一起看結果」</strong></li><li>緩和治療的成功指標是有沒有止血、比較不痛、照顧比較輕鬆，不是腫瘤縮多少</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 56–58</span> 三個病例</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>病例</th><th>討論方向</th></tr><tr><td><strong>12 歲米克斯犬，跗關節外側 1.8 cm 皮膚腫塊</strong>（FNA 肥大細胞瘤，飼主不願做皮瓣）</td><td>先補齊 Kiupel 分級、淋巴結細胞學、胸腔 X 光三張與腹部超音波；約 ≤ 3 cm³ 且低惡性度時可以是手術替代；高惡性度只能是多模式的一環；術前壓去顆粒化、由外往內打、6–8 週才看得到</td></tr><tr><td><strong>14 歲白色短毛貓，鼻鏡 2.5 cm 潰瘍性 SCC</strong>（拒絕鼻鏡切除，擔心放療次數）</td><td>先確認原位癌還是侵襲性；總反應 96.7% 但無疾病間隔 136 天 vs 放療 916 天要誠實說；&gt; 2.3 cm 毒性與部分反應風險上升，這隻在邊緣；先把切除與放療講完整，仍拒絕時是有意義的次佳選項</td></tr><tr><td><strong>8 歲拉布拉多，前肢 4 cm 第二級 STS 深部邊緣不完全</strong>（不願再開、無法配合放療）</td><td>術後輔助 ECT 有 case series 支持（Torrigiani 四肢 77.8%）；四肢用 1000 V/cm 不要調高；只能說「有依據的選項」不能說「效果一樣」；疤痕與皮瓣都要納入，定期胸腔影像</td></tr>
+        </table></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 59–60</span> 重點</h3>
+        <ol class="notes"><li>電化療是局部治療，取代不了分期與系統性治療的判斷</li><li>靜脈 bleomycin＋針電極、8 個 100 µs 脈衝是絕大多數病例的標準做法</li><li>小體積、位置淺、難開的病灶效果最好；腫瘤體積是最一致的預後因子</li><li>治療後要等 6–8 週；只有腫瘤重新長大才需要盡快重打</li><li>證據以回溯 case series 為主：可以說有效，不能說優於手術或放療</li><li>台灣目前的限制在藥、機器與法規，不在技術本身</li></ol>
+      </div><div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list"><div class="ref-item">Ho R. 電化療在獸醫腫瘤科的應用（Electrochemotherapy in Veterinary Oncology）。台灣家庭獸醫進階課程，兩小時（投影片 65 張、講義 2 頁）。</div><div class="ref-item">主要引用：Tellado M, Mir LM, Maglietti F. Veterinary guidelines for electrochemotherapy of superficial tumors. Front Vet Sci 2022;9:868989；Mir Eur J Cancer Suppl 2006；Gehl Acta Oncol 2018；Tounekti Cancer Res 1993；Calvet Oncoimmunology 2014；Kodre In Vivo 2009；Lowe Vet Comp Oncol 2017；Ojeda JVIM 2026；Torrigiani Vet Comp Oncol 2019；Tellado Radiol Oncol 2020、Vaccines 2023；Rangel Sci Rep 2023；Tozon JFMS 2014；Simčič Vet Sci 2021；Gasymova BMC Vet Res 2017；Spugnini J Transl Med 2011、Open Vet J 2019/2020；Tamzali Equine Vet J 2012（完整清單見投影片 61–64）。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="neutering-cancer-risk.html">02 絕育與腫瘤風險</a>｜下一場：<a href="cutaneous-paraneoplastic.html">04 與皮膚相關的副腫瘤症狀</a>。</p>
+    <a href="index.html">回到講座列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>絕育與犬貓腫瘤風險：哪些說法有證據，哪些沒有｜Rita Ho 腫瘤科講座</title>
+<style>
+  :root {
+    --primary: #7E22CE;
+    --primary-light: #F3E8FF;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2E1065;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #D8B4FE; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4C2A85;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #D8B4FE; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #D8B4FE;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4C2A85;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #a26a75;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #4C1D95 0%, #A855F7 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2E1065; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4C2A85; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #4C1D95; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+</style>
+
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 講座系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← Rita Ho 腫瘤科講座</a>
+  <div class="logo">
+    <h2>02｜絕育與腫瘤風險</h2>
+    <p>Rita Ho｜講義版</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div><a href="#s0">台灣的前提與三個問題</a><a href="#s1">1. 文獻怎麼讀</a><a href="#s2">2. 風險下降的部分</a><a href="#s3">3. 風險上升的部分</a><a href="#s4">4. 品種、體型與壽命</a><a href="#s5">5. 回到診間</a><a href="#s6">6. 三個病例</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>絕育與犬貓腫瘤風險：哪些說法有證據，哪些沒有</h1>
+    <p>主講：Rita Ho, DVM（practice limited to oncology）</p>
+    <p>Neutering and cancer risk in dogs and cats｜90 分鐘繼續教育（投影片 39 張＋4 頁講義＋飼主版單張）｜場次 02</p>
+    <div class="tags">
+      <span class="tag">絕育時機</span><span class="tag">動保法</span><span class="tag">相對 vs 絕對風險</span><span class="tag">乳腺腫瘤</span><span class="tag">貓乳腺癌</span><span class="tag">骨肉瘤</span><span class="tag">血管肉瘤</span><span class="tag">淋巴瘤</span><span class="tag">肥大細胞瘤</span><span class="tag">攝護腺癌</span><span class="tag">圍肛腺瘤</span><span class="tag">Hart 品種表</span><span class="tag">米克斯</span><span class="tag">飼主溝通</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 投影片</span> 講者投影片（數字＝投影片編號） <span class="src src-add">💡 補充</span> 整理者補充（換算、交叉參照；不是講者說的）
+    <br><span class="muted">依講者的投影片與講義整理，沒有課堂錄音；投影片本身是中文，這裡以重點整理為主，數字與劑量照投影片。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+<li>在台灣「要不要」已由<strong>動保法第 22 條</strong>定調（不絕育須申報，違者罰 5–25 萬）；臨床判斷集中在<strong>「什麼時候」</strong></li><li>所有關聯都來自<strong>觀察性研究</strong>，沒有任何絕育時機與腫瘤的 RCT；先問「跟誰比？從多少開始算？」</li><li><strong>降</strong>：卵巢／子宮／睪丸腫瘤、<strong>貓乳腺癌</strong>（6 月齡前約降 91%）、犬乳腺腫瘤（幅度有爭議）、公犬圍肛腺瘤；子宮蓄膿雖非腫瘤卻是最重要理由之一</li><li><strong>升</strong>（都是犬）：骨肉瘤（大型與巨型犬）、血管肉瘤（OR 約 1.6）、淋巴瘤與肥大細胞瘤（品種特異）、攝護腺癌與尿路上皮癌</li><li>Schneider 1969 的 0.5%／8%／26% 是<strong>相對風險</strong>；保護效果大概是真的，精確百分比站不住腳</li><li><strong>米克斯</strong>（Hart 2020，3,139 隻）：任何體重、任何絕育年齡，四種腫瘤都沒有顯著上升；≥ 20 kg 等待的理由是<strong>骨科</strong>的</li><li>小型犬時機可自己決定；<strong>貓 5 月齡前完成</strong>；收容所已絕育<strong>什麼都不用改</strong></li><li>絕育犬平均死亡年齡 9.4 vs 7.9 歲：活得久本身就是癌症的風險因子；病歷寫「已說明利弊，飼主選擇 X」</li>
+    </ul>
+  </div>
+
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">⚖️</div>
+      <h2>台灣的前提與三個問題</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 2</span> 門診常聽到的三句話</h3>
+        <ul class="notes"><li>「繁殖者說不要那麼早結紮。」</li><li>「網路上說絕育會得骨癌。」</li><li>「領養的時候收容所已經先結紮了，這樣會不會傷到牠？」</li></ul><p class="p">上完這堂課要能：拆開飼主混著問的三個問題（要不要、什麼時候、用什麼方式）；說出哪些腫瘤風險降、哪些升、幅度多少；解釋為什麼<strong>品種和體型比手術日期更重要</strong>；給一個站得住腳、寫得進病歷的建議。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 3</span> 動保法：「要不要」已大致定調</h3>
+        <ul class="notes"><li>動保法第 22 條第 3 項（104 年修正）：特定寵物（家犬貓）飼主應為寵物絕育；不絕育須向直轄市、縣（市）主管機關<strong>申報免絕育</strong>並提出繁殖管理說明</li><li>違反者依第 27 條處新臺幣 <strong>5 萬以上、25 萬以下</strong>罰鍰</li><li>各縣市另有絕育補助方案</li></ul><p class="p">法規決定了該不該做，<strong>沒有決定什麼時候做</strong>，時機仍是臨床判斷。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 4</span> 其實是三個問題</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>問題</th><th>重點</th></tr><tr><td>要不要</td><td>族群控制、子宮蓄膿、睪丸與卵巢腫瘤；台灣已有法規定調，很少爭議</td></tr><tr><td><strong>什麼時候</strong></td><td>幾乎所有爭議都在這裡；跟品種與體型有關，證據品質不一</td></tr><tr><td>用什麼方式</td><td>卵巢摘除 vs 卵巢子宮摘除、保留卵巢的絕育、輸精管結紮；長期腫瘤資料幾乎空白</td></tr>
+        </table></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 5</span> 台灣門診和歐美不一樣</h3>
+        <ul class="notes"><li>品種資料幾乎全部來自歐美、以<strong>大型純種犬</strong>為主；Hart 品種表只有 40 個品種，台灣常見米克斯多查不到，<strong>台灣犬完全不在任何品種表內</strong></li><li>風險上升大多集中在大型犬；對多數台灣病患，時機的影響比想像中小</li><li>混種犬的體重分級研究比品種表更貼近台灣（講者註明：台灣目前沒有可直接引用的犬種結構統計，請用自己診所的族群檢驗）</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">📖</div>
+      <h2>1. 文獻怎麼讀</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 7</span> 絕育到底改變了什麼</h3>
+        <ul class="notes"><li><strong>性荷爾蒙降到接近零</strong>：乳腺與攝護腺的好處從這裡來</li><li><strong>LH 持續升高</strong>：失去負回饋；非性腺組織（包括犬脾臟 HSA 細胞）上也有 LH 受體</li><li><strong>生長板閉合延後</strong>：青春期前絕育骨頭長得較長，是骨肉瘤可能的機轉之一</li></ul><div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>這些是合理機轉，<strong>不是已證實的因果</strong>。犬貓沒有任何絕育時機與腫瘤的隨機臨床試驗（RCT）。</div></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 8</span> 為什麼這些研究結論兜不攏</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>偏差</th><th>說明</th></tr><tr><td>轉診偏差</td><td>很多品種資料來自單一教學醫院，腫瘤為主的病例結構會高估發生率</td></tr><tr><td>年齡干擾</td><td>絕育犬活得比較久，沒有校正年齡的研究一定會找到關聯</td></tr><tr><td>沒有手術年齡</td><td>最大型資料庫只記錄有沒有絕育，回答不了時機問題</td></tr><tr><td>回憶與自願者偏差</td><td>常被引用的品種研究其實是品種俱樂部的飼主網路問卷</td></tr><tr><td>把相對當成絕對</td><td>0.35% × 3 和 12% × 3 是完全不同的兩件事</td></tr>
+        </table></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 9</span> 一樣的倍數，兩種完全不同的對話</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>基準 → 早期絕育</th><th>說明</th></tr><tr><td>攝護腺癌（一般犬）</td><td>0.35% → 約 1%</td><td>約三倍（Bryan 2007；Teske 2002），每 100 隻多不到 1 例，<strong>仍然不常見</strong></td></tr><tr><td>骨肉瘤（羅威那）</td><td>約 8% → 約 25%</td><td>12 月齡前絕育終生風險約 1/4；RR 公 3.8、母 3.1（Cooley 2002）</td></tr>
+        </table></div><figure class="fig">
+          <img src="photos/02-09-relative-vs-absolute.jpg" alt="📄 9：每格代表 100 隻中的 1 隻；同樣三倍，基準不同意義完全不同" loading="lazy">
+          <figcaption>📄 9：每格代表 100 隻中的 1 隻；同樣三倍，基準不同意義完全不同</figcaption>
+        </figure><p class="p">飼主拿數字來問時，先問兩件事：<strong>跟誰比？從多少開始算？</strong></p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">⬇️</div>
+      <h2>2. 風險下降的部分</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 11</span> 一張表看完風險往哪邊跑</h3>
+        <figure class="fig">
+          <img src="photos/02-11-risk-overview.jpg" alt="📄 11：絕育讓風險下降 vs 上升的腫瘤；右欄全是犬的資料，貓沒有明確證據" loading="lazy">
+          <figcaption>📄 11：絕育讓風險下降 vs 上升的腫瘤；右欄全是犬的資料，貓沒有明確證據</figcaption>
+        </figure>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 12</span> 犬乳腺腫瘤：大家都在引用的那組數字</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>Schneider 1969</th><th>相對於未絕育母犬的風險</th></tr><tr><td>第一次發情前絕育</td><td>0.5%</td></tr><tr><td>一次發情之後</td><td>8%</td></tr><tr><td>兩次以上發情之後</td><td>26%</td></tr>
+        </table></div><ul class="notes"><li>這是<strong>相對風險</strong>，不是絕對機率，但幾乎每次都被當成絕對風險引用</li><li>1969 年單一病例對照研究，之後沒有人用現代方法重做</li><li>Beauvais 2012：保護效果與絕育年齡效果的<strong>證據品質都弱</strong>；Guirguis &amp; Beggs 2025：13 篇中 6 篇完全沒看到保護效果</li><li>但 Varney 2023（英國基層）：絕育母犬的 odds 只有未絕育的 1/5–1/2</li></ul><p class="p">結論：保護效果大概是真的，精確百分比站不住腳。跟飼主說<strong>「風險明顯下降，越早做效果越好」</strong>，不要背 0.5%。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 13</span> 器官拿掉就沒有的腫瘤，加上子宮蓄膿</h3>
+        <ul class="notes"><li>卵巢、子宮、睪丸腫瘤：器官拿掉風險就不見，沒有時機爭議</li><li><strong>子宮蓄膿</strong>不是腫瘤，但在未絕育母犬很常見而且會致命；支持絕育最重要的理由之一，談時機時容易被忘記</li><li>公犬圍肛腺瘤：雄性素依賴，去勢同時是預防也是治療</li></ul><p class="p">討論「要不要等」時，記得這一欄是「不做就一直存在」的風險。<strong>等，不是沒有代價。</strong></p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 14–15</span> 貓：今天最站得住腳的保護效果</h3>
+        <ul class="notes"><li>貓乳腺腫瘤 <strong>80–90% 惡性</strong>，淋巴結與肺轉移率高</li><li>Overley 2005：未絕育母貓乳腺癌機會約為已絕育的 <strong>2.7 倍</strong>；依絕育年齡風險下降：<strong>6 月齡前約 91%、7–12 月齡約 86%、24 月齡後沒有</strong></li><li>反方：2023 英國基層研究多變項分析沒看到關聯，也無法評估時機；幅度不確定，<strong>方向沒有爭議</strong></li><li>貓乳腺以外的腫瘤<strong>沒有可信證據</strong>；6–8 週齡就可安全執行；AVMA 建議非繁殖用貓 <strong>5 月齡前</strong>完成</li><li><strong>注射部位肉瘤（FISS）不是絕育的問題</strong>：與注射和佐劑有關，跟性腺無關</li></ul><p class="p">貓的臨床立場：5 月齡前完成；術後的<strong>體重管理</strong>才是真正要追蹤的事。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">⬆️</div>
+      <h2>3. 風險上升的部分：一個一個看幅度</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 17</span> 骨肉瘤：幅度很大，但只在高風險品種</h3>
+        <ul class="notes"><li>Ru 1998：絕育犬約為未絕育的兩倍</li><li>Cooley 2002（683 隻羅威那，飼主問卷）：12 月齡前絕育終生風險約 1/4，未絕育約 8%；每多保留一個月性腺，風險約降 1.4%</li></ul><div class="tbl-wrap"><table>
+          <tr><th>英國基層一年期盛行率</th><th></th></tr><tr><td>所有犬</td><td>0.037%</td></tr><tr><td>羅威那</td><td>0.84%</td></tr><tr><td>大丹</td><td>0.87%</td></tr><tr><td>蘇格蘭獵鹿犬</td><td>3.28%</td></tr>
+        </table></div><figure class="fig">
+          <img src="photos/02-17-osteosarcoma.jpg" alt="📄 17：骨肉瘤的基準盛行率差很多" loading="lazy">
+          <figcaption>📄 17：骨肉瘤的基準盛行率差很多</figcaption>
+        </figure><p class="p">這個論點只適用於獵鹿犬、羅威那和大丹，<strong>不適用於門診多數的小型犬</strong>。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 18</span> 血管肉瘤：研究做得越好，幅度越小</h3>
+        <ul class="notes"><li>舊數字：Prymak 1988 脾臟 HSA 在已絕育母犬 OR 2.2；Ware &amp; Hopper 1999 心臟 HSA 約為未絕育母犬四倍</li><li>Robinson 2020（2,106,324 隻中 5,736 例）把<strong>年齡與就診年份</strong>一起配對：脾臟與整體 HSA 關聯成立（OR 1.14–1.72），心臟 HSA 則沒有；作者認為早期絕育不是主要驅動因素</li></ul><figure class="fig">
+          <img src="photos/02-18-hsa-odds-ratio.jpg" alt="📄 18：Robinson 2020 各類 HSA 的勝算比" loading="lazy">
+          <figcaption>📄 18：Robinson 2020 各類 HSA 的勝算比</figcaption>
+        </figure><p class="p">OR 1.6 有意義但幅度不大，不足以跟飼主說「絕育會讓你的狗得血管肉瘤」。</p><p class="p"><span class="src src-add">💡 補充</span> 血管肉瘤本身的診斷與治療見 <a href="hemangiosarcoma.html">01 血管肉瘤</a>。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 19</span> 淋巴瘤與肥大細胞瘤：是參考依據，不是通則</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>品種</th><th>資料</th></tr><tr><td>黃金獵犬</td><td>Torres de la Riva 2013（759 隻）：12 月齡前絕育的公犬淋巴肉瘤約高三倍；MCT 出現在 12 月齡後絕育的母犬；Hart 2020：母黃金不論幾歲絕育，至少一種腫瘤風險約為未絕育的 2–4 倍</td></tr><tr><td>維茲拉犬</td><td>Zink 2014（2,505 隻）：不論哪個年齡絕育，MCT、淋巴瘤與所有腫瘤 odds 都較高；絕育越早診斷越早；但<strong>壽命沒有差別</strong>；資料來自匿名線上品種俱樂部問卷</td></tr>
+        </table></div><p class="p">用同樣方法做的拉布拉多幾乎沒有看到效果：<strong>不要把單一品種的資料套到你診間那隻狗身上</strong>。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 20</span> 公犬的攝護腺癌與尿路上皮癌</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>已去勢 vs 未去勢（Bryan 2007）</th><th>勝算比</th></tr><tr><td>攝護腺 TCC</td><td>8.00</td></tr><tr><td>膀胱 TCC</td><td>3.56</td></tr><tr><td>所有攝護腺腫瘤</td><td>2.84</td></tr><tr><td>攝護腺腺癌</td><td>2.12</td></tr>
+        </table></div><ul class="notes"><li>Teske 2002：已去勢犬攝護腺癌 OR 4.34</li><li>發生率約 0.35%，乘以三到四倍仍是不常見的疾病</li><li>兩組診斷年齡接近，比較像<strong>促進發展</strong>而不是誘發腫瘤</li></ul><p class="p">去勢拿掉的是常見的良性攝護腺疾病，剩下少見的惡性疾病就顯得比較突出，這跟「造成這個病」不一樣。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 21</span> 難題：已絕育母犬長圍肛腺瘤</h3>
+        <p class="p">圍肛腺（hepatoid gland）腫瘤是雄性素依賴的；公犬風險是母犬的 5.6 倍（Hayes &amp; Wilson 1977）。內源性雌激素似乎有保護作用，所以這類腫瘤在已絕育母犬反而相對常見。</p><div class="tbl-wrap"><table>
+          <tr><th>荷爾蒙來源</th><th>怎麼查</th></tr><tr><td>1. 卵巢殘留</td><td>同一管血清驗 <strong>AMH＋progesterone</strong>；48 例組織學確診中，沒有一例兩者皆陰性</td></tr><tr><td>2. 腎上腺</td><td>分泌性荷爾蒙的腎上腺皮質腫瘤；cortisol 可能正常，要做 <strong>ACTH 刺激的性荷爾蒙套組</strong>＋影像</td></tr><tr><td>3. 外源性</td><td>問飼主<strong>自己身上擦了什麼</strong></td></tr>
+        </table></div><div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>先確認是什麼腫瘤</strong>：圍肛腺癌與肛門囊頂漿腺癌不是雄性素驅動的；病理先於內分泌。</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ecfeff">🐕</div>
+      <h2>4. 品種、體型與整體壽命</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 25</span> 決定答案的是品種，而且有表可查</h3>
+        <ul class="notes"><li>UC Davis（Hart）系列從 3 個品種擴到 <strong>40 個</strong>：黃金與拉布拉多（2013–14）、德國狼犬（2016）、35 個品種（2020）、再加 5 個大型品種（2024）</li><li>表給的是依品種與性別的<strong>「建議最早絕育年齡」</strong>，原則是不讓關節疾病或腫瘤風險超過該品種自己的基準值</li><li><strong>小型品種</strong>：絕育後沒看到關節疾病上升；35 個品種中只有<strong>波士頓㹴與西施犬</strong>腫瘤顯著增加</li><li>大型與巨型品種：關節與腫瘤風險集中在這裡，延後手術的理由最清楚</li></ul><p class="p">把 Hart 的表存成書籤（Front Vet Sci 2020;7:388，開放取用），看診時直接打開；表上沒有的品種用體型與血緣相近的品種參考。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 26</span> 米克斯：台灣門診最需要的那份資料</h3>
+        <ul class="notes"><li>Hart 2020：<strong>3,139 隻混種犬</strong>，分五個體重級距（&lt; 10、10–19、20–29、30–39、&gt; 40 kg）</li><li><strong>腫瘤</strong>：任何體重級距、任何絕育年齡，淋巴瘤、肥大細胞瘤、血管肉瘤、骨肉瘤都<strong>沒有顯著上升</strong></li><li><strong>關節疾病</strong>：20 kg 以上三個級距，12 月齡前絕育與關節疾病增加有關</li></ul><figure class="fig">
+          <img src="photos/02-26-mixed-breed.jpg" alt="📄 26：米克斯的體重分級研究" loading="lazy">
+          <figcaption>📄 26：米克斯的體重分級研究</figcaption>
+        </figure><p class="p">對米克斯來說，建議等待的理由是<strong>骨科的，不是腫瘤科的</strong>，而且只適用於 20 kg 以上。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 27</span> 小型犬：台灣門診的主力</h3>
+        <p class="p">小型品種絕育後關節疾病沒有上升；混種犬 20 kg 以下兩個級距，關節與腫瘤都沒有顯著差異。可以誠實說：<strong>對多數台灣小型犬，時機可以自己決定</strong>。但「沒那麼嚴重」不等於「不用討論」：飼主問了就代表在意，談過並且記錄下來。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 28</span> 拉遠來看：絕育犬癌症比較多，但也活得比較久</h3>
+        <ul class="notes"><li>Hoffman 2013（70,574 隻）：平均死亡年齡未絕育 <strong>7.9</strong> vs 已絕育 <strong>9.4</strong> 歲；預期壽命公犬 +13.8%、母犬 +26.3%</li><li>已絕育犬較常死於腫瘤與免疫媒介疾病；未絕育犬較常死於感染、外傷與血管疾病</li><li>八種腫瘤中七種在已絕育犬較多或持平，只有乳腺腫瘤較少；資料庫<strong>沒有絕育年齡</strong>，回答不了時機</li></ul><p class="p">活得久本身就是癌症的風險因子。推動絕育的人引用壽命那一半、反對早期絕育的人引用腫瘤那一半，<strong>兩半出自同一篇，而且不衝突</strong>。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">💬</div>
+      <h2>5. 回到診間：五分鐘說得完的話</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 32</span> 每一種病患該怎麼建議</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>病患</th><th>建議</th></tr><tr><td><strong>貓</strong>（不分性別）</td><td>5 月齡前完成；母貓乳腺獲益明確，沒有找到腫瘤上的壞處</td></tr><tr><td><strong>小型犬</strong></td><td>關節與腫瘤都是低風險；時間可以配合飼主</td></tr><tr><td><strong>大型公犬、高骨肉瘤風險品種</strong></td><td>可以考慮等過骨骼成熟；骨科與骨肉瘤兩個理由都要明講</td></tr><tr><td><strong>Hart 表上有的品種母犬</strong></td><td>看診時直接打開表，兩邊的風險都讓飼主看到，由他自己權衡</td></tr><tr><td><strong>米克斯 ≥ 20 kg</strong></td><td>等待的理由是骨科的；腫瘤證據不支持等待</td></tr><tr><td><strong>收容所已絕育</strong></td><td>什麼都不用改；不要製造罪惡感，該追蹤的照樣追蹤</td></tr>
+        </table></div><p class="p">記錄下來：<strong>「已說明絕育時機的利弊，飼主選擇 X」</strong>，這既是好的醫療，也是好的自保。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 33</span> 四句可以直接拿去用的話</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>飼主說</th><th>可以這樣回答</th></tr><tr><td>「絕育會致癌」</td><td>「少數幾種腫瘤確實有關聯，而且幅度通常不大，大概 1.5 倍，不是天差地別。以你家狗的品種和體型來看，影響大概是這樣。」</td></tr><tr><td>「我想等牠兩歲」</td><td>「某些品種這樣是合理的。但這也代表要處理發情期，並承擔子宮蓄膿的風險。我們一起看你比較能接受哪一邊。」</td></tr><tr><td>「收容所已經先結紮了」</td><td>「米克斯沒有證據顯示這樣會提高牠的癌症風險。如果牠長得比較大隻，我們會多留意關節，那才是資料真正支持的部分。」</td></tr><tr><td>「你會怎麼做？」</td><td>「我會查品種表，跟你家的狀況一起權衡，然後做一個我說得出理由的決定。我的建議是這樣，理由是這樣。」</td></tr>
+        </table></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 34</span> 用什麼方式：保留卵巢的絕育與輸精管結紮</h3>
+        <ul class="notes"><li>做到：不能生育，但<strong>保留性腺荷爾蒙</strong>；輸精管結紮睪固酮驅動的行為也留著</li><li>沒做到：<strong>不會降低乳腺腫瘤</strong>、卵巢或睪丸腫瘤風險；殘留子宮組織仍可能發生殘端子宮蓄膿</li><li>還不知道：兩種術式都沒有長期腫瘤結果資料；保留荷爾蒙能不能抵銷今天講的風險，沒有研究做過</li></ul><p class="p">跟有意願、也理解的飼主討論是合理的，但目前證據不支持當成常規建議；<strong>保留荷爾蒙不等於避開癌症</strong>。</p>
+      </div><div class="subsection">
+        <h3>飼主版單張</h3>
+        <p class="p">講者另外做了一頁給飼主的單張「幫牠絕育，什麼時候最好？」，用白話整理預防什麼、可能稍微增加什麼、貓／小型犬／大型犬的時機建議、台灣的規定，並留了「我們為牠的建議」欄位可以填寫。</p><p class="p"><a href="files/neuter-owner-handout.pdf">📄 下載飼主版單張（PDF）</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🩺</div>
+      <h2>6. 三個病例</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 22–23</span> 病例 1：8 歲米克斯母犬，右前肢跛行</h3>
+        <p class="p">已絕育、18 kg，跛行三週，X 光遠端橈骨溶蝕性病灶。飼主：「是不是因為我太早幫牠結紮？」</p><ul class="notes"><li><strong>先確診，再談因果</strong>：還沒確診骨肉瘤，要先做細胞學或切片；先處理「接下來怎麼辦」</li><li>米克斯＋18 kg 指向同一答案：Hart 2020 混種犬任何體重、任何絕育年齡骨肉瘤都沒有顯著上升；10–19 kg 連關節那條也用不上</li><li>換成羅威那（基準 0.84%，是全犬 0.037% 的二十倍以上），Cooley 的數字才適用，但狗已發病，追究時機改變不了治療</li></ul><p class="p">順序：<strong>先確診，再給基準風險，最後才談歸因</strong>。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 29–30</span> 病例 2：4 個月大黃金獵犬公犬，飼主要求現在就做</h3>
+        <p class="p">剛從繁殖場帶回，家中兩名學齡兒童，怕行為問題、也怕記不住回診。</p><ul class="notes"><li>建議等：黃金是少數講得出理由的品種（Hart 2020 建議公金 1 歲後；Torres de la Riva 2013 早期絕育公金淋巴肉瘤約高三倍）</li><li>品種表是<strong>起點</strong>不是處方，飼主的條件還沒放進去</li><li>住公寓、處理不了標記、遊蕩、騎乘：那是真的限制；可折衷訂在 12 個月，中間排一次回診，把「記不記得」變成行程問題</li></ul><p class="p">寫進病歷：「已說明延後的理由與飼主的限制，雙方同意 X」。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 35–36</span> 病例 3：6 歲已絕育瑪爾濟斯母犬，肛門旁腫塊</h3>
+        <p class="p">三年前在別家醫院絕育，肛門左側 1.5 cm 腫塊，細胞學像圍肛腺腫瘤。</p><ul class="notes"><li><strong>病理先做</strong>：只有圍肛腺瘤（腺瘤）是雄性素依賴的；腺癌與肛門囊頂漿腺癌不是</li><li>確認腺瘤後依序找：① 卵巢殘留（AMH＋progesterone）② 腎上腺（ACTH 刺激性荷爾蒙套組＋影像）③ 外源性</li><li>病理是腺癌就不走內分泌；病歷拿不到時，「有沒有切乾淨」只能靠血清驗</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 37</span> 帶回診間的五件事</h3>
+        <ol class="notes"><li>絕育會把腫瘤風險往兩個方向推；只講一邊不構成知情同意</li><li>風險上升的關聯絕對值大多不大，集中在特定品種與體型</li><li>品種和成犬體型比手術日期更能決定答案；用已發表的品種表</li><li>米克斯要等待的理由是骨科的，不是腫瘤科的，而且只在 20 kg 以上</li><li>貓在 5 月齡前完成；犬的時機爭議不適用於貓</li></ol>
+      </div><div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list"><div class="ref-item">Ho R. 絕育與犬貓腫瘤風險：哪些說法有證據，哪些沒有。90 分鐘繼續教育（投影片 39 張、講義 4 頁、飼主版單張）。</div><div class="ref-item">主要引用：Schneider JNCI 1969；Beauvais JSAP 2012；Guirguis &amp; Beggs Animals 2025；Varney Vet Rec 2023；Overley JVIM 2005；Hayes Vet Rec 1981；Pickard Price JSAP 2023；Howe Vet Med 2015；Ru Vet J 1998；Cooley Cancer Epidemiol Biomarkers Prev 2002；O’Neill 2023；Prymak JAVMA 1988；Ware &amp; Hopper JVIM 1999；Robinson Can Vet J 2020；Torres de la Riva PLoS ONE 2013；Zink JAVMA 2014、2023；Hart Front Vet Sci 2020（35 品種、混種犬）、2024；Bryan Prostate 2007；Teske Mol Cell Endocrinol 2002；Hayes &amp; Wilson Cancer Res 1977；JAVMA 2019;254:1067（AMH＋P4）；Hoffman PLoS ONE 2013；Romagnoli JSAP 2025；動物保護法第 22、27 條。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="hemangiosarcoma.html">01 血管肉瘤</a>｜下一場：<a href="electrochemotherapy.html">03 電化療</a>。相關：<a href="../texas-endocrine-2026/obesity-weight-loss.html">Texas 09 肥胖（絕育後體重管理）</a>。</p>
+    <a href="index.html">回到講座列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

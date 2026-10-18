@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>惡性血管瘤回顧與更新：犬貓血管肉瘤的診斷與治療｜Rita Ho 腫瘤科講座</title>
+<style>
+  :root {
+    --primary: #7E22CE;
+    --primary-light: #F3E8FF;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2E1065;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #D8B4FE; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4C2A85;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #D8B4FE; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #D8B4FE;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4C2A85;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #a26a75;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #4C1D95 0%, #A855F7 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2E1065; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4C2A85; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #4C1D95; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+</style>
+
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 講座系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← Rita Ho 腫瘤科講座</a>
+  <div class="logo">
+    <h2>01｜血管肉瘤（HSA）</h2>
+    <p>Rita Ho｜講義版</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div><a href="#s0">為什麼值得單獨開一堂課</a><div class="nav-section">腫瘤本身</div><a href="#s1">1. 起源、好發與分子研究</a><a href="#s2">2. 臨床表現與分期</a><div class="nav-section">脾臟腫塊</div><a href="#s3">3. 惡性機率與評分工具</a><a href="#s4">4. 術前檢查與飼主溝通</a><div class="nav-section">其他部位與治療</div><a href="#s5">5. 心臟與其他部位</a><a href="#s6">6. 標準治療與新路線</a><a href="#s7">7. 皮膚與皮下的 HSA</a><a href="#s8">8. 貓的 HSA</a><div class="nav-section">門診</div><a href="#s9">9. 台灣門診實務與三個病例</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>惡性血管瘤回顧與更新：犬貓血管肉瘤的診斷與治療</h1>
+    <p>主講：Rita Ho, DVM（practice limited to oncology）</p>
+    <p>Hemangiosarcoma review and update｜台灣家庭獸醫繼續教育課程（投影片 62 張＋2 頁講義）｜場次 01</p>
+    <div class="tags">
+      <span class="tag">血管肉瘤</span><span class="tag">HSA</span><span class="tag">脾臟腫塊</span><span class="tag">double two-thirds rule</span><span class="tag">HeLP score</span><span class="tag">T-STAT</span><span class="tag">心包膜積液</span><span class="tag">Doxorubicin</span><span class="tag">eBAT</span><span class="tag">PRO-DOX</span><span class="tag">Propranolol</span><span class="tag">真皮型 HSA</span><span class="tag">貓 HSA</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 投影片</span> 講者投影片（數字＝投影片編號） <span class="src src-add">💡 補充</span> 整理者補充（換算、交叉參照；不是講者說的）
+    <br><span class="muted">依講者的投影片與講義整理，沒有課堂錄音；投影片本身是中文，這裡以重點整理為主，數字與劑量照投影片。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+<li>HSA 的源頭是<strong>具內皮分化潛能的造血前驅細胞</strong>；逾 9 成有驅動突變（TP53、PIK3CA、NRAS），但<strong>不需要先做基因檢測才能治療</strong></li><li>約半數 HSA 犬有<strong>凝血異常</strong>，DIC 是重要死因；術前一定要 PT／aPTT、備血</li><li>double two-thirds rule 不能照抄：<strong>破裂出血約 6–7 成惡性</strong>，<strong>未破裂偶發病灶約 7 成良性</strong>；小型犬良性比例更高</li><li>HeLP score 外部驗證 AUC 0.79：<strong>可輔助溝通，不能決定開不開刀</strong>；脾臟 FNA 與病理一致性差，<strong>整顆脾臟送病理、多處取樣</strong></li><li>脾臟 HSA 約 8.7% 同時有右心房腫塊；<strong>術前心臟超音波</strong>、術中術後監測心律不整</li><li>只開刀中位存活約 <strong>1.6 個月</strong>；加 doxorubicin 約 <strong>4–6 個月</strong>；一年存活約 10%，<strong>三十年沒進步</strong></li><li>eBAT 第二個試驗沒有重現效果；PRO-DOX 活超過兩年的 3 隻<strong>都是 5 歲年輕犬</strong>，看新療法先問對照組</li><li><strong>真皮型</strong>（日曬相關）預後好（中位存活 780–1,549 天）；<strong>皮下／肌肉型</strong>要當內臟型處理；貓不能套用犬的規則</li>
+    </ul>
+  </div>
+
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📋</div>
+      <h2>為什麼值得單獨開一堂課</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 3</span> 三個數字</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>數字</th><th>意義</th></tr><tr><td><strong>4 天</strong></td><td>英國一般動物醫院：脾臟 HSA 從診斷起算的中位存活（含當天安樂死）</td></tr><tr><td><strong>105 天</strong></td><td>同一研究中，有病理確診的病例中位存活明顯較長</td></tr><tr><td><strong>約 10%</strong></td><td>手術加 doxorubicin 的犬存活超過一年的比例</td></tr>
+        </table></div><p class="p">很多狗在一般動物醫院確診當天就被安樂死；飼主聽到的數字往往決定了後面的一切。這堂課的目標：讓給飼主的數字<strong>更準確、更貼近眼前這隻病患</strong>（Taylor 2025, VetCompass 788 隻）。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">🧬</div>
+      <h2>1. 起源、好發族群與分子研究</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 5</span> HSA 從哪裡來</h3>
+        <p class="p">傳統看法是血管內皮細胞惡性轉化，能解釋充滿血竇、容易破裂，但解釋不了腫瘤細胞常帶造血與骨髓系標記。目前的觀念：源頭是<strong>具內皮分化潛能的造血前驅細胞</strong>，腫瘤細胞表現 CD34、CD133、CD117；同一種前驅細胞往不同方向分化，造成<strong>腫瘤異質性</strong>。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 6–7</span> 好發部位、族群與三種臨床行為</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>型態</th><th>特徵</th></tr><tr><td><strong>真皮型</strong></td><td>局限於真皮，常與日曬相關；手術切除後多數可長期控制，預後明顯較好</td></tr><tr><td><strong>皮下／肌肉型</strong></td><td>侵犯皮下或肌肉層；局部復發與轉移風險高，<strong>行為接近內臟型</strong></td></tr><tr><td><strong>內臟型</strong></td><td>脾臟最常見（常破裂出血才發現），其次右心房／右心耳、肝臟；診斷時多已有微小轉移</td></tr>
+        </table></div><ul class="notes"><li>年齡多為 <strong>8–13 歲</strong></li><li>內臟型：德國牧羊犬、黃金獵犬、拉布拉多等大型犬</li><li>真皮型：淺色、短毛、腹部毛稀疏的犬</li><li>轉移：肝、網膜、肺；HSA 也是<strong>犬最常見的轉移性腦瘤</strong></li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 8–10</span> 分子研究：HSA 不是單一疾病</h3>
+        <ul class="notes"><li>三種轉錄型態：<strong>angiogenic</strong>（血管新生）、<strong>inflammatory</strong>（發炎與骨髓系）、<strong>adipogenic</strong>（脂質代謝）</li><li>50 例 NGS：逾 90% 有潛在驅動突變；<strong>TP53 66%、PIK3CA 46%、NRAS 24%</strong>、PTEN 6%、PLCG1 4%；路徑以 PI3K/AKT/mTOR 與 RAS/MAPK 為主</li><li>各研究數字差很多（TP53 29–93%、PIK3CA 14–60%、NRAS 4–24%）</li><li>可以解釋：為什麼 doxorubicin 反應差異大、小型試驗換一批病例結果就不同；真皮型有<strong>紫外線突變特徵</strong></li><li>目前做不到：三型分類只在研究層次；依突變選藥仍在試驗中（Ethos-PUSH）；<strong>一般病例不需要先送基因檢測</strong></li></ul><figure class="fig">
+          <img src="photos/01-09-driver-mutations.jpg" alt="📄 9：犬 HSA 常見驅動突變的頻率（Wang 2020，50 例）" loading="lazy">
+          <figcaption>📄 9：犬 HSA 常見驅動突變的頻率（Wang 2020，50 例）</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🩸</div>
+      <h2>2. 臨床表現與分期</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 12</span> 常見的就診原因</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>情境</th><th>表現</th></tr><tr><td><strong>急性出血</strong></td><td>突然虛弱、倒下；黏膜蒼白、心跳快；腹部膨大、液體波動</td></tr><tr><td><strong>反覆出血</strong></td><td>時好時壞的虛弱；小量出血後自行吸收；飼主常以為是老了或中暑</td></tr><tr><td><strong>意外發現</strong></td><td>健檢或術前超音波看到脾臟結節；皮膚紫紅色小腫塊；沒有症狀</td></tr>
+        </table></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 13</span> 血液學與凝血：要主動找的線索</h3>
+        <ul class="notes"><li>貧血（常為再生性）、血小板低下</li><li><strong>裂紅血球</strong>（schistocyte）、<strong>棘狀紅血球</strong>（acanthocyte）、有核紅血球增加</li><li>約<strong>半數</strong> HSA 犬有凝血異常；<strong>DIC 是重要死因之一</strong></li><li>術前強烈建議測 <strong>PT／aPTT</strong>，備血或備血漿</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 14</span> 犬內臟型 HSA 的臨床分期</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>分期</th><th>定義</th><th>臨床意義</th></tr><tr><td>Stage I</td><td>局限於原發器官，未破裂，無淋巴結或遠端轉移</td><td>預後相對最好，但仍多數會轉移</td></tr><tr><td>Stage II</td><td>腫瘤破裂，或有局部淋巴結轉移</td><td>急診腹腔出血的犬多屬此期</td></tr><tr><td>Stage III</td><td>遠端轉移（肝、肺、肉眼可見的腹腔擴散等）</td><td>存活最短；以緩和為主</td></tr>
+        </table></div><p class="p">Wendelburg 2015（208 隻）：<strong>臨床分期是唯一與存活顯著相關的預後因子</strong>。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🎯</div>
+      <h2>3. 脾臟腫塊：惡性的機率到底多高</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 16</span> double two-thirds rule 是怎麼來的</h3>
+        <p class="p">規則：脾臟腫塊約 2/3 惡性，惡性中約 2/3 是 HSA，換算約 45% 是 HSA。問題：來自 <strong>1980 年代教學醫院</strong>病理資料，<strong>沒有區分有沒有破裂、有沒有症狀</strong>，套用在不同病患群數字就會偏（Spangler 1992）。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 17–19</span> 有沒有破裂，機率差很多</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>病患族群</th><th>良性</th><th>HSA</th><th>出處</th></tr><tr><td>規則推算</td><td>33%</td><td>44%</td><td>Spangler 1992</td></tr><tr><td>破裂出血（系統性回顧，14 篇 1,150 隻）</td><td>27%</td><td><strong>64%</strong>（惡性中 87.3% 是 HSA）</td><td>Schick 2023</td></tr><tr><td>破裂出血（前瞻，345 隻、30 家醫院）</td><td>35.7%</td><td>56.2%</td><td>Ethos-PUSH 2025</td></tr><tr><td><strong>未破裂偶發病灶</strong>（105 隻）</td><td><strong>70.5%</strong></td><td>約 17%</td><td>Cleveland 2016</td></tr>
+        </table></div><figure class="fig">
+          <img src="photos/01-17-splenic-mass-probability.jpg" alt="📄 17：破裂與否，良性／其他惡性／HSA 的比例" loading="lazy">
+          <figcaption>📄 17：破裂與否，良性／其他惡性／HSA 的比例</figcaption>
+        </figure><ul class="notes"><li>Ethos-PUSH：<strong>19.6% 的 HSA 脾臟同時有良性病變</strong>；限制是已排除肺轉移、只收願意手術的飼主</li><li>Ziogaite 2024：因偶發病灶切脾的犬 93.9% 良性；GDV 手術時發現單一脾臟腫塊，10.9% 最後為惡性</li><li>偶發病灶的惡性病例中仍約 6 成是 HSA；<strong>良性腫塊通常比惡性大，單看大小不能排除惡性</strong></li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 20</span> 品種與體型：Davies 2020 的修正</h3>
+        <p class="p">288 隻脾臟腫塊犬依基因組成分群：整體惡性與良性約 <strong>50 : 50</strong>；腹腔出血時惡性機率明顯上升。<strong>小型犬良性比例較高</strong>，小型犬的惡性腫塊是 HSA 的機會只有大型犬的約 <strong>1/3</strong>。台灣門診瑪爾濟斯、貴賓、西施很多，<strong>不能用大型犬的數字嚇飼主</strong>。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 21–24</span> HeLP score 與 T-STAT</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>HeLP score</th><th>T-STAT（Tufts）</th></tr><tr><td>適用病患</td><td>非外傷性腹腔出血（任何器官）</td><td>脾臟腫塊（有無出血皆可）</td></tr><tr><td>預測目標</td><td>是不是 HSA</td><td>是不是惡性</td></tr><tr><td>用到的資料</td><td>體重、血漿總蛋白、血小板、胸腔 X 光是否疑似轉移</td><td>總蛋白、有核紅血球、6 項超音波所見</td></tr><tr><td>原始研究 AUC</td><td>建立 0.85／驗證 0.77</td><td>建立 0.80／驗證 0.78</td></tr><tr><td>2024 外部驗證 AUC</td><td><strong>0.79</strong>（連續分數；分級 0.73）</td><td>0.68</td></tr><tr><td>怎麼用</td><td>輔助跟飼主溝通機率</td><td>準確度較差，參考價值有限</td></tr>
+        </table></div><ul class="notes"><li>HeLP（Schick 2019）：406 隻非外傷性腹腔出血犬；總分 0–100，低 0–40／中 41–55／高 &gt; 55；原始研究各組 HSA 比例 36%／76%／96%</li><li>Hillier 2024 外部驗證：HSA 犬在低、中、高三組<strong>各約占 1/3</strong>；良性犬 76% 被歸為低風險</li><li><strong>AUC 白話</strong>：隨機抽一隻 HSA、一隻非 HSA，評分把 HSA 排前面的機率；0.5＝丟銅板、0.7–0.8 可接受、0.8–0.9 不錯</li><li>惡性比例是「那一群病例」的特性，會隨盛行率改變（就像陽性預測值）</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 25</span> 影像與細胞學能幫多少</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>工具</th><th>重點</th></tr><tr><td>超音波／CT</td><td>評估大小、出血、肝臟結節、腹腔擴散；<strong>光看外觀分不出良惡性</strong></td></tr><tr><td>脾臟 FNA</td><td>細胞學與病理常不一致；血液稀釋、出血風險；<strong>不建議作為開不開刀的依據</strong></td></tr><tr><td>病理</td><td><strong>整顆脾臟送檢</strong>，請病理科多處取樣；HSA 可能藏在血腫旁邊</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🗣️</div>
+      <h2>4. 術前檢查與飼主溝通</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 26</span> 術前強烈建議的項目</h3>
+        <ul class="notes"><li>CBC、血液抹片、生化；PT／aPTT（可加 fibrinogen、D-dimer）；血型與交叉配血</li><li>胸腔 X 光三張（左側位、右側位，再加腹背位或背腹位）</li><li><strong>心臟超音波</strong>：脾臟 HSA 約 <strong>8.7%</strong> 同時有右心房腫塊；右心房 HSA 約 <strong>29%</strong> 同時有脾臟病灶</li><li>心電圖：腹腔出血犬術中、術後心室性心律不整較多（講義：術中與術後 24–48 小時監測）</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 27</span> 這些數字要怎麼跟飼主說</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>情境</th><th>建議說法</th></tr><tr><td>破裂出血</td><td>「大約三分之二是惡性，但也有約三分之一是良性，開完刀就可以好。」</td></tr><tr><td>偶發結節</td><td>「多數是良性。要不要先切，看大小、變化，還有您能接受多少風險。」</td></tr><tr><td>確診 HSA</td><td>「只開刀，中位存活約 1–2 個月；加上化療，大約 4–6 個月。」</td></tr><tr><td>評分工具</td><td>「這是機率，不是答案；答案要等整顆脾臟的病理報告。」</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🫀</div>
+      <h2>5. 心臟與其他部位</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 29</span> 心臟 HSA</h3>
+        <ul class="notes"><li>好發<strong>右心房／右心耳</strong>：心包膜積液、心臟填塞、右心衰竭</li><li>心包膜穿刺可救急，但多會再積液；心臟超音波看不到腫塊不代表沒有</li><li>Mullin 2016（64 隻推定心臟 HSA）單用 doxorubicin：客觀反應率 <strong>41%</strong>、臨床效益 68%；中位存活治療組 <strong>116 天</strong> vs 未治療 12 天</li><li>可切除時，右心耳切除加化療可再延長</li></ul><p class="p"><span class="src src-add">💡 補充</span> 心包膜積液的超音波評估見 <a href="../echocardiography/14-pericardial-effusion.html">心臟超音波 14</a>。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 30</span> 其他部位</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>部位</th><th>重點</th></tr><tr><td>肝臟與腹膜後</td><td>可能原發也可能轉移；腹膜後 HSA 常因出血才發現</td></tr><tr><td>肌肉與骨骼</td><td>肌肉腫塊伴隨瘀青；骨骼 HSA 是骨腫瘤的鑑別診斷之一</td></tr><tr><td>中樞神經</td><td>犬最常見的轉移性腦瘤；老犬突發神經症狀＋不明出血要想到</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">💊</div>
+      <h2>6. 治療：標準做法與三條新路線</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 32–33</span> 標準做法：脾臟切除加 doxorubicin</h3>
+        <ul class="notes"><li>只做脾臟切除：中位存活 <strong>1.6 個月</strong>（208 隻）；加 doxorubicin 為主的化療：<strong>4–6 個月</strong>；存活超過一年約 <strong>10%</strong></li><li>Wendelburg 2015：化療延長<strong>早期</strong>存活，但整段追蹤期與只開刀組沒有顯著差異</li><li>Doxorubicin 加 cyclophosphamide 節拍式化療看起來較好，但延長幅度有限</li><li>三十年來中位存活：1996 手術＋DOX 172 天、2015 DOX → toceranib 169 天、2025 歷史對照 152 天、2025 PRO-DOX 134 天</li></ul><figure class="fig">
+          <img src="photos/01-33-survival-30-years.jpg" alt="📄 33：三十年來脾臟 HSA 中位存活幾乎沒變" loading="lazy">
+          <figcaption>📄 33：三十年來脾臟 HSA 中位存活幾乎沒變</figcaption>
+        </figure>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 34</span> Doxorubicin 實務重點</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>內容</th></tr><tr><td>劑量</td><td>犬 &gt; 15 kg：<strong>30 mg/m² IV</strong>，每 2–3 週；犬 &lt; 15 kg：<strong>1 mg/kg IV</strong>；常用 5 次（累積 150 mg/m²）</td></tr><tr><td>給藥前</td><td>確認靜脈通暢；抗組織胺可減少過敏反應，但<strong>不能預防急性心律不整</strong></td></tr><tr><td>心臟毒性</td><td>累積劑量相關；治療前強烈建議心臟超音波</td></tr><tr><td>骨髓抑制</td><td>嗜中性球最低點約第 <strong>7–10 天</strong></td></tr><tr><td>血管外滲漏</td><td>組織壞死嚴重，需立即處理</td></tr><tr><td>貓</td><td>注意<strong>腎毒性</strong></td></tr>
+        </table></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 35</span> 其他常被問到的選項：證據有限</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>選項</th><th>目前證據</th><th>建議怎麼說</th></tr><tr><td>Toceranib 維持治療</td><td>Gardner 2015：未改善存活</td><td>不建議常規使用</td></tr><tr><td>節拍式化療</td><td>小型、回溯研究，結果不一</td><td>無法打 DOX 時的選擇</td></tr><tr><td>雲南白藥</td><td>缺乏臨床試驗證據</td><td><strong>不能取代手術止血</strong></td></tr><tr><td>I’m-Yunity（雲芝多醣肽）</td><td>Gedney 2022：加入 DOX 無額外效益</td><td>飼主想用可討論，但別期待效果</td></tr>
+        </table></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 36–37</span> 新路線一：eBAT（雙特異性血管毒素）</h3>
+        <ul class="notes"><li>EGF 與 uPA 片段接上去免疫化的假單胞菌外毒素，同時打腫瘤細胞與腫瘤血管</li><li><strong>SRCBST-1（2017）</strong>：23 隻 stage I–II，脾切後先給 eBAT 再接 DOX；6 個月存活對照 &lt; 40% → 有效劑量組約 70%；6 隻活超過 450 天</li><li><strong>SRCBST-2（2020）</strong>：eBAT 增加到三個療程、縮短與 DOX 間隔、放寬收可切除 stage III；25 隻 vs 對照 35 隻：中位存活 4.9 vs 4.8 個月、6 個月存活 41.7% vs 30.6%，<strong>都不顯著</strong>；6 隻急性低血壓</li><li>仍在美國研究中，台灣拿不到</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 38–39</span> 新路線二：PRO-DOX（propranolol＋doxorubicin）</h3>
+        <ul class="notes"><li>理由：人的 angiosarcoma 有合併成功案例；HSA 細胞表現 β 腎上腺素受體；體外可增加 DOX 作用</li><li>第一期試驗（2025 預印本，<strong>尚未同儕審查</strong>）：20 隻 stage I–II，propranolol 0.8–1.3 mg/kg PO TID</li><li>中位存活 <strong>134 天 vs 歷史對照 152 天（P = 0.59）</strong>；15% 活超過兩年（3 隻，<strong>全是 5 歲</strong>）</li><li>缺乏年齡配對對照：年輕犬不論有沒有吃 propranolol 存活都較長，<strong>不能把兩年存活歸功於 propranolol</strong></li><li>門診：年輕犬 HSA 積極治療可能更值得；propranolol 便宜安全，但<strong>目前沒有證據支持例行加入</strong></li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 40–41</span> 新路線三：基因導向、疫苗與早期偵測</h3>
+        <ul class="notes"><li>依突變選藥：Ethos-PUSH；FidoCure 109 隻 TP53、NRAS、PIK3CA 最常見</li><li>eVim 疫苗（細胞外 vimentin）加 DOX 共 23 隻：一年存活 44% vs 歷史對照 14%；中位存活 235 vs 136 天，差異<strong>不顯著</strong></li><li>血液中 HSA 相關細胞的早期偵測研究中：目標是在破裂前找到高風險犬</li></ul><div class="alert alert-info"><span class="alert-icon">💡</span><div><strong>為什麼「歷史對照組」要打問號</strong>：年代不同（分期、手術、支持療法都進步）、病患不同（體重 ≥ 20 kg、分期、年齡）、時間不同（PRO-DOX 開刀到化療平均 28.7 天 vs 對照 21.8 天）。要回答有沒有效，需要隨機分組、條件相同的對照組。</div></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 42</span> 不手術或已轉移：緩和治療</h3>
+        <ul class="notes"><li>輸血、輸液、止痛；心包膜穿刺改善填塞；限制劇烈活動，教飼主認識出血警訊</li><li>說明可能突然再出血；<strong>事先討論急救或安樂死</strong>；生活品質優先，定期一起評估</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">☀️</div>
+      <h2>7. 皮膚與皮下的 HSA</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 44–46</span> 同樣叫 HSA，預後差很多</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>真皮型</th><th>皮下／肌肉型</th></tr><tr><td>位置</td><td>局限於真皮</td><td>侵犯皮下或肌肉層</td></tr><tr><td>病因線索</td><td>日曬、淺色短毛、腹部／腹股溝毛少處；常多發，旁邊有日曬性皮膚炎</td><td>不明</td></tr><tr><td>轉移風險</td><td>低</td><td>高，接近內臟型</td></tr><tr><td>主要治療</td><td>手術切除、減少日曬</td><td>完整分期（胸腔 X 光、腹部與心臟超音波），盡量完全切除，不完全切除考慮放療，<strong>強烈建議輔助化療</strong></td></tr><tr><td>代表數據</td><td>Ward 1994（25 隻）中位存活 780 天；Szivek 2012（94 隻）日曬相關 1,549 天 vs 非日曬 545 天</td><td>Shiu 2011（71 隻）：惡化時間 116 天、整體存活 172 天、一年存活 25%；29% 侵犯肌肉層</td></tr>
+        </table></div><p class="p"><span class="src src-add">💡 補充</span> 講義提醒：切片要<strong>夠深</strong>才能判斷是真皮還是皮下；報告看不出深度時直接問病理科。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ecfeff">🐱</div>
+      <h2>8. 貓的 HSA</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 48–49</span> 少見，而且要分開看</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>部位</th><th>預後（Johannes 2007，53 隻）</th></tr><tr><td>皮膚型</td><td>沒有貓死於腫瘤，算不出中位存活</td></tr><tr><td>皮下型</td><td>中位存活 <strong>384 天</strong></td></tr><tr><td>內臟型</td><td>多數在診斷當下就死亡或安樂死（中位存活 0 天）</td></tr>
+        </table></div><ul class="notes"><li>完全切除、分裂指數 ≤ 3 的貓活得比較久；皮膚與皮下型比過去以為的更容易轉移</li><li>內臟型：脾臟、肝臟、腸道、腸繫膜；常見腹腔出血、貧血、虛弱，診斷時常已擴散</li><li><strong>貓的脾臟腫大更常見肥大細胞瘤與淋巴癌</strong>，double two-thirds rule 不適用</li><li>Doxorubicin 用於貓要注意腎毒性，資料很少</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🏥</div>
+      <h2>9. 台灣門診實務與三個病例</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 51</span> 在台灣，哪些做得到</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>項目</th><th>台灣現況</th><th>備註</th></tr><tr><td>Doxorubicin（小紅莓）</td><td>人用藥品</td><td>需化療防護與給藥設備</td></tr><tr><td>Cyclophosphamide</td><td>人用口服錠</td><td>節拍式化療；注意出血性膀胱炎</td></tr><tr><td>Propranolol</td><td>人用藥品，價格低</td><td>PRO-DOX 未證實有加成效果</td></tr><tr><td>eBAT、eVim 疫苗</td><td>拿不到</td><td>僅限美國臨床試驗</td></tr><tr><td>腫瘤基因檢測</td><td>多需送國外商業實驗室</td><td>目前不影響標準治療選擇</td></tr>
+        </table></div><p class="p">人用藥品用於動物仍受現行法規限制，使用前請確認取得管道與病歷記錄。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 52</span> 家醫最能發揮作用的四個時機</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>時機</th><th>做什麼</th></tr><tr><td>發現偶發脾臟結節</td><td>解釋多數為良性，討論切除或追蹤，約定回診</td></tr><tr><td>急診腹腔出血</td><td>穩定生命徵象、驗血與凝血，用正確的數字跟飼主談</td></tr><tr><td>術前分期</td><td>胸腔 X 光三張、腹部超音波，並安排心臟超音波</td></tr><tr><td>皮膚紫紅色腫塊</td><td>早切、切夠深，教飼主減少日曬</td></tr>
+        </table></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 54–56</span> 三個病例</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>病例</th><th>討論方向</th></tr><tr><td><strong>突然倒下的 11 歲米克斯</strong>（公、已結紮、28 kg）：PCV 22%、血小板 8.5 萬、腹腔大量液體、脾臟 6 cm 混合回音腫塊、胸腔 X 光未見轉移</td><td>惡性約 6–7 成但約 1/3 良性；HeLP 可輔助溝通、不能決定開不開；凝血、備血、心臟超音波、術中心電圖；整顆脾臟送病理多處取樣</td></tr><tr><td><strong>洗牙前發現脾臟結節的瑪爾濟斯</strong>（12 歲母、3.5 kg）：1.5 cm 低回音結節，CBC 正常、無腹水、無症狀</td><td>未破裂偶發多為良性，小型犬更高；FNA 與病理一致性差不能依此決定；說明切除與追蹤的取捨，約定回診與警訊</td></tr><tr><td><strong>愛曬太陽的白色短毛犬</strong>（9 歲）：腹部多顆 2–5 mm 紫紅色丘疹＋1 顆 3 cm 皮下腫塊</td><td>真皮型多與日曬相關、切除後預後好；皮下型需完整分期；切片夠深；減少日曬，皮下病灶考慮輔助化療</td></tr>
+        </table></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 57</span> 今天的重點</h3>
+        <ol class="notes"><li>HSA 不是單一疾病：源頭是造血前驅細胞，每隻的突變不太一樣；三種分型目前只用在研究</li><li>先看有沒有破裂：破裂出血六到七成惡性；意外發現約七成良性；小型犬更常是良性</li><li>評分只是提供機率：HeLP 幫忙溝通，確診要整顆脾臟送病理</li><li>標準治療效果有限：脾切加 doxorubicin 中位存活約 4–6 個月，三十年來沒什麼進步</li><li>新療法先看對照組：eBAT 第二個試驗沒有重現；PRO-DOX 活得久的都是年輕犬</li></ol>
+      </div><div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list"><div class="ref-item">Ho R. 惡性血管瘤回顧與更新：犬貓血管肉瘤的診斷與治療。台灣家庭獸醫繼續教育課程（投影片 62 張、講義 2 頁）。</div><div class="ref-item">主要引用：Taylor PLoS One 2025；Lamerato-Kozicki Exp Hematol 2006；Gorden Am J Pathol 2014；Wang PLoS One 2020；Estabrooks Vet Comp Oncol 2023；Hammer JVIM 1991；Wendelburg JAVMA 2015；Spangler JAVMA 1992；Schick &amp; Grimes JAVMA 2023；Ethos-PUSH JAVMA 2025；Cleveland JAVMA 2016；Ziogaite PLoS One 2024；Davies Vet Comp Oncol 2020；Schick JVECC 2019（HeLP）；Burgess JAVMA 2021（T-STAT）；Hillier JAVMA 2024；Boston JAAHA 2011；Mullin Vet Comp Oncol 2016；Ogilvie JVIM 1996；Gardner BMC Vet Res 2015；Gedney Vet Comp Oncol 2022；Borgatti Mol Cancer Ther 2017、Vet Comp Oncol 2020、Res Sq 2025；Engbersen Int J Mol Sci 2025；Ward JVIM 1994；Szivek Vet Comp Oncol 2012；Shiu JAVMA 2011；Johannes JAVMA 2007；Culp JVIM 2008（完整 40 篇見投影片 58–61）。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>下一場：<a href="neutering-cancer-risk.html">02 絕育與犬貓腫瘤風險</a>（血管肉瘤與絕育的關聯）。相關：<a href="../tsfm-feline-ecc-2026/bleeding-transfusion.html">TSFM 06 出血與輸血</a>、<a href="../notes/blood-transfusion.html">輸血醫學與休克復甦</a>。</p>
+    <a href="index.html">回到講座列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>與皮膚相關的副腫瘤症狀｜Rita Ho 腫瘤科講座</title>
+<style>
+  :root {
+    --primary: #7E22CE;
+    --primary-light: #F3E8FF;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2E1065;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #D8B4FE; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4C2A85;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #D8B4FE; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #D8B4FE;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4C2A85;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #a26a75;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #4C1D95 0%, #A855F7 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2E1065; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4C2A85; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #4C1D95; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+</style>
+
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 講座系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← Rita Ho 腫瘤科講座</a>
+  <div class="logo">
+    <h2>04｜皮膚副腫瘤症狀</h2>
+    <p>Rita Ho｜講義版</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div><a href="#s0">基本概念與診斷原則</a><div class="nav-section">貓</div><a href="#s1">1. 剝落性皮膚炎 vs 副腫瘤性脫毛</a><a href="#s2">2. 貓的少見病型</a><div class="nav-section">犬</div><a href="#s3">3. SND（肝皮症候群）</a><a href="#s4">4. 結節性皮膚纖維化與其他</a><div class="nav-section">偽裝成皮膚病的腫瘤</div><a href="#s5">5. 皮膚型淋巴癌</a><a href="#s6">6. 肥大細胞瘤</a><a href="#s7">7. 轉移到皮膚與趾頭</a><a href="#s8">8. 門診流程與五個病例</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>與皮膚相關的副腫瘤症狀</h1>
+    <p>主講：Rita Ho, DVM（practice limited to oncology）</p>
+    <p>Cutaneous paraneoplastic syndromes in dogs and cats｜獸醫腫瘤學繼續教育 90 分鐘（投影片 64 張＋2 頁講義）｜場次 04</p>
+    <div class="tags">
+      <span class="tag">副腫瘤症候群</span><span class="tag">剝落性皮膚炎</span><span class="tag">胸腺瘤</span><span class="tag">貓副腫瘤性脫毛</span><span class="tag">胰臟癌</span><span class="tag">SND</span><span class="tag">肝皮症候群</span><span class="tag">紅白藍</span><span class="tag">結節性皮膚纖維化</span><span class="tag">FLCN</span><span class="tag">皮膚型淋巴癌</span><span class="tag">Lomustine</span><span class="tag">肥大細胞瘤</span><span class="tag">肺趾症候群</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 投影片</span> 講者投影片（數字＝投影片編號） <span class="src src-add">💡 補充</span> 整理者補充（換算、交叉參照；不是講者說的）
+    <br><span class="muted">依講者的投影片與講義整理，沒有課堂錄音；投影片本身是中文，這裡以重點整理為主，數字與劑量照投影片。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+<li>皮膚副腫瘤症候群＝<strong>腫瘤對全身造成的間接後果</strong>（免疫失調、腫瘤分泌物、代謝紊亂），可能是隱匿性腫瘤最早的線索</li><li>想到腫瘤：<strong>中老年、外觀不典型、標準治療沒效（類固醇沒效是警訊）、合併全身症狀</strong></li><li>診斷三件事：高度懷疑、<strong>保留痂皮與皮屑</strong>的多處切片、影像學；貓 FPA 的血檢常常正常</li><li>貓<strong>剝落性皮膚炎</strong> → 找<strong>胸腺瘤</strong>；切除後 6/8 皮膚完全緩解，MST 約 2.5 年</li><li>貓<strong>副腫瘤性脫毛</strong>（光滑發亮、不癢、背部不受影響）→ 找<strong>胰臟、肝膽</strong>；胰臟癌病例多在 2 個月內死亡</li><li>犬 <strong>SND</strong>：腳墊龜裂＋口鼻眼周痂皮；病理「紅白藍」；犬多數是<strong>非腫瘤性肝病</strong>；IV 胺基酸＋自煮高蛋白飲食</li><li>德國狼犬多發皮膚結節 → 查<strong>雙側腎臟囊腺癌</strong>與 FLCN 突變</li><li>老狗治不好的「過敏」→ 切片排除<strong>皮膚型淋巴癌</strong>；時大時小、一摸就紅腫 → 先 FNA 找<strong>肥大細胞瘤</strong>，不要先打類固醇</li>
+    </ul>
+  </div>
+
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🔍</div>
+      <h2>基本概念與診斷原則</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 4</span> 皮膚副腫瘤症候群（CPS）是什麼</h3>
+        <p class="p">腫瘤<strong>沒有直接侵犯皮膚</strong>；病灶來自腫瘤對全身的影響，移除腫瘤後常可完全或部分緩解。</p><div class="tbl-wrap"><table>
+          <tr><th>機制</th><th>說明</th><th>例子</th></tr><tr><td>免疫失調</td><td>對表皮自身抗原的抗體或細胞性攻擊</td><td>胸腺瘤 → 剝落性皮膚炎、副腫瘤性天疱瘡</td></tr><tr><td>腫瘤分泌物</td><td>生長因子、類荷爾蒙胜肽、細胞激素，干擾角質細胞與毛囊週期</td><td>胰臟／膽管癌 → 貓副腫瘤性脫毛</td></tr><tr><td>代謝紊亂</td><td>胺基酸、微量元素、必需脂肪酸缺乏</td><td>升糖素瘤 → SND</td></tr>
+        </table></div><figure class="fig">
+          <img src="photos/04-04-cps-mechanisms.jpg" alt="📄 4：皮膚副腫瘤症候群的三種機制" loading="lazy">
+          <figcaption>📄 4：皮膚副腫瘤症候群的三種機制</figcaption>
+        </figure>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 5–6</span> 為什麼家醫要認得</h3>
+        <ul class="notes"><li>可能是<strong>隱匿性腫瘤最早的線索</strong>；飼主先看到的是皮膚，第一個看到的通常是家醫</li><li>有些治好腫瘤皮膚就跟著好（貓胸腺瘤相關剝落性皮膚炎）</li><li>有些一出現就是晚期，會改變跟飼主的談話（貓副腫瘤性脫毛）</li><li>判斷是副腫瘤（借用人醫 Curth 準則）：差不多同時出現、病程平行、特定腫瘤對應特定病型、統計關聯（犬貓多只有病例報告，第 4 點通常無法滿足）</li><li>最有說服力的例子（Tasker 1999）：貓胰臟癌切除 → 脫毛完全緩解；18 週後轉移 → 脫毛復發</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 7–9</span> 哪些皮膚病要想到腫瘤、怎麼查</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>步驟</th><th>內容</th></tr><tr><td>提高警覺</td><td>中老年；外觀或分布不典型、變化快；抗寄生蟲、抗菌、抗黴菌、類固醇都試過還不好；合併體重減輕、食慾差、嗜睡、嘔吐下痢</td></tr><tr><td>先排除常見病因</td><td>皮膚搔刮、膠帶細胞學、皮癬菌培養或 PCR、貓 FeLV／FIV、CBC、生化、尿液</td></tr><tr><td>皮膚切片</td><td>區分副腫瘤與原發皮膚病的<strong>唯一方法</strong>；保留痂皮與皮屑、多處不同階段病灶</td></tr><tr><td>影像學找腫瘤</td><td>胸腔 X 光三張、強烈建議腹部超音波、需要時 CT</td></tr>
+        </table></div><div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>文獻中只用類固醇治療的貓，剝落性皮膚炎與副腫瘤性脫毛都沒有改善：<strong>類固醇沒效本身就是警訊</strong>。貓副腫瘤性脫毛的血檢常常正常，不能用生化正常排除腫瘤。</div></div><ul class="notes"><li>切片：<strong>不刷洗、不消毒、不剃除病灶表面</strong>，毛用剪的；6–8 mm 打孔多處</li><li>懷疑 SND：取腳墊或厚痂皮邊緣，多取幾塊（貓的變化比犬不明顯）</li><li>送件單寫清楚病史與「懷疑副腫瘤」，最好送有皮膚病理經驗的病理師</li><li>切片只能說「是哪一種皮膚病」；有沒有腫瘤、在哪裡，仍要靠影像</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">🐱</div>
+      <h2>1. 貓：剝落性皮膚炎 vs 副腫瘤性脫毛</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 11</span> 文獻中的貓皮膚副腫瘤症候群（Guillén 2026）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>症候群</th><th>相關腫瘤（例數）</th><th>總例數</th></tr><tr><td>剝落性皮膚炎（ED）</td><td>胸腺上皮腫瘤 22、異位胸腺上皮腫瘤 1</td><td>23</td></tr><tr><td>副腫瘤性脫毛（FPA）</td><td>胰臟腺癌 12、膽管癌 3、肝細胞癌 2、其他 4</td><td>21</td></tr><tr><td>SND</td><td>升糖素瘤、肝神經內分泌癌、肝癌、胰臟癌各 1</td><td>4</td></tr><tr><td>皮膚脆弱症候群</td><td>膽管癌 1、濾泡型淋巴瘤 1</td><td>2</td></tr><tr><td>副腫瘤性天疱瘡</td><td>胸腺上皮腫瘤 1</td><td>1</td></tr><tr><td>多灶性非發炎性脫毛</td><td>胸腺上皮腫瘤 1</td><td>1</td></tr><tr><td>後腳皮膚壞死</td><td>濾泡型淋巴瘤 1</td><td>1</td></tr><tr><td>腹側脫毛合併毛囊壁炎</td><td>胰臟癌 1</td><td>1</td></tr>
+        </table></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 12</span> 兩個主軸：同樣是副腫瘤，預後完全相反</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>胸腺瘤相關剝落性皮膚炎</th><th>副腫瘤性脫毛</th></tr><tr><td>相關腫瘤</td><td>胸腺上皮腫瘤（23 例）</td><td>胰臟腺癌、膽管癌為主（21 例）</td></tr><tr><td>外觀</td><td>全身皮屑、紅斑 → 角化過度、糜爛、痂皮</td><td><strong>光滑發亮</strong>的對稱脫毛，皮膚不脆</td></tr><tr><td>分布</td><td>頭、頸、軀幹</td><td>腹側、四肢內側、會陰；<strong>背部通常不受影響</strong></td></tr><tr><td>組織病理</td><td>淋巴球性介面皮膚炎、皮脂腺萎縮或消失</td><td>毛囊萎縮縮小、角質層消失、<strong>無發炎</strong></td></tr><tr><td>腫瘤切除</td><td>手術貓 <strong>6/8</strong> 皮膚完全緩解</td><td>多已轉移，僅 1 例切除</td></tr><tr><td>預後</td><td><strong>好</strong>：手術後 MST 約 2.5 年</td><td><strong>差</strong>：胰臟癌病例多在 2 個月內死亡</td></tr>
+        </table></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 13–17</span> 剝落性皮膚炎（ED）</h3>
+        <ul class="notes"><li>全身皮屑、紅斑、脫毛，逐漸角化過度、糜爛、痂皮；頭頸軀幹為主；<strong>毛很容易拔除</strong>；常繼發細菌或 Malassezia；後期嗜睡、體重減輕；中老年貓（最年輕 4 歲）</li><li>機制：胸腺微環境被腫瘤改變 → 自體反應性 T 細胞 → 攻擊表皮與毛囊</li><li>病理：淋巴球性介面皮膚炎、基底細胞水腫性變性、表皮全層散在單一細胞壞死、角化過度、毛囊壁淋巴球浸潤、皮脂腺萎縮或消失</li><li><strong>非胸腺瘤 ED 的組織學幾乎一樣</strong>（Linek 2015，18 隻；有對 ciclosporin 反應良好的病例）：病理「符合剝落性皮膚炎」只代表病型，<strong>一定要做胸腔影像</strong></li><li>鑑別：皮癬菌、毛囊蟲與姬螯蟎、過敏、落葉型天疱瘡（曾與胸腺瘤 ED 同時出現）、淋巴球性毛囊壁炎、皮脂腺炎、藥物反應、上皮趨向性淋巴瘤、FeLV／FIV 相關皮膚炎</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 16–17</span> 找胸腺瘤與切除後的結果</h3>
+        <ul class="notes"><li>胸腔 X 光三張：前縱膈腔腫塊常是「意外」發現</li><li>腫塊細胞學或切片；流式細胞的 CD4⁺CD8⁺ 雙陽性在犬可支持胸腺瘤，但貓縱膈腔淋巴瘤也常雙陽性，用處有限</li><li><strong>X 光沒看到不代表沒有</strong>：曾有異位胸腺上皮腫瘤長在胸腔入口前方的頸部，X 光陰性、剖檢才發現 → 考慮 CT</li><li>手術貓 6/8 皮膚完全緩解；術後 2–4 週開始改善，完全緩解約 7 週到 5 個半月</li><li>胸腺上皮腫瘤手術後 MST 約 2.5 年；1／2／5 年存活 86%／70%／66%；只用類固醇的 2 隻沒改善；無法手術時胸腺瘤對放療敏感</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 18–22</span> 副腫瘤性脫毛（FPA）</h3>
+        <ul class="notes"><li>擴散快、左右對稱、<strong>不癢</strong>；皮膚<strong>光滑發亮</strong>但不脆弱；從腹側、頸部、四肢內側、會陰開始，可延伸到臉，<strong>背部通常不受影響</strong>；部分腳墊脫屑龜裂</li><li>體重減輕、食慾差、嘔吐、下痢、嗜睡常隨後很快出現</li><li>容易被誤導：繼發 Malassezia 看起來反而「會癢」，掩蓋原本不癢的脫毛</li><li>鑑別：自我舔毛（最常混淆）、皮癬菌、毛囊蟲、腎上腺皮質功能亢進、甲狀腺功能亢進、休止期脫毛、圓禿</li><li><strong>毛髮鏡檢</strong>：舔掉的毛毛尖斷裂、毛根還在；FPA 的毛很容易整根拔出、毛根多為休止期</li><li>病理：毛囊明顯萎縮縮小、休止期化；<strong>角質層消失</strong>（皮膚發亮＝角質層不見了）；皮脂腺可正常；基本上沒有發炎</li><li>腫瘤：21 例中 14 隻是胰臟腺癌或膽管癌；看到 FPA 先用腹部超音波看<strong>胰臟與肝膽</strong>，再加胸腔 X 光或 CT 評估轉移</li><li><strong>預後</strong>：12 隻確診胰臟癌、結果已知的 FPA 貓都在症狀後約 <strong>2 個月內</strong>死亡或安樂死；唯一切除成功的病例脫毛完全緩解，18 週後轉移復發、術後 126 天安樂死</li><li>繼發 Malassezia：<strong>itraconazole 5–10 mg/kg q24h</strong> 可短期改善生活品質；toceranib 可用於無法手術的胰臟癌，對 FPA 是否有幫助未知</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ecfeff">🧩</div>
+      <h2>2. 貓的少見病型</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 23</span> 其他少見的貓皮膚副腫瘤症候群</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>症候群</th><th>相關腫瘤</th><th>重點</th></tr><tr><td>SND（4 例）</td><td>升糖素瘤、肝神經內分泌癌、肝癌、胰臟癌</td><td>腳墊、口鼻、眼周、會陰；紅白藍較不明顯，多取幾塊</td></tr><tr><td>副腫瘤性天疱瘡（1 例）</td><td>淋巴球性胸腺瘤</td><td>合併重症肌無力；手術＋prednisolone＋chlorambucil，4 年後仍緩解</td></tr><tr><td>皮膚脆弱症候群（2 例）</td><td>膽管癌、濾泡型淋巴瘤</td><td>一碰就撕裂；外觀與腎上腺皮質功能亢進無法區分</td></tr><tr><td>多灶性非發炎脫毛（1 例）</td><td>胸腺上皮腫瘤</td><td>背側多灶分布；切除後重新長毛</td></tr><tr><td>後腳對稱性皮膚壞死（1 例）</td><td>濾泡型淋巴瘤</td><td>皮膚無腫瘤浸潤、無血栓或血管炎</td></tr>
+        </table></div><p class="p">胸腺瘤在貓不只會造成剝落性皮膚炎；<strong>非典型的脫毛或水疱糜爛，也要照胸腔</strong>。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🐾</div>
+      <h2>3. 犬：表淺壞死溶解性皮膚炎（SND）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 25–26</span> 同一種皮膚病，好幾個名字</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>名稱</th><th>意義</th></tr><tr><td>SND</td><td>描述皮膚病灶本身</td></tr><tr><td>肝皮症候群（HCS）</td><td>SND＋特殊肝病變</td></tr><tr><td>NME</td><td>人醫用語，多與升糖素瘤相關</td></tr><tr><td>ACHES（Loftus 2022）</td><td>把有肝病變、低胺基酸血症、胺基酸尿但還沒長皮膚病的犬也納進來</td></tr>
+        </table></div><p class="p"><strong>犬的 SND 多數不是腫瘤造成的</strong>：最常見是非腫瘤性特殊肝病變（HCS），少數是升糖素瘤或其他胰臟、肝臟腫瘤，部分與長期 phenobarbital 有關。所以 SND 在犬是「可能」的副腫瘤症狀，一定要找原因。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 27</span> 臨床表現</h3>
+        <ul class="notes"><li><strong>腳墊</strong>明顯角化過度、龜裂、痂皮 → 疼痛、跛行</li><li>皮膚黏膜交界處（口鼻、眼周、肛周、外陰或包皮）；受壓或摩擦部位（肘、跗關節、耳廓）</li><li>兩側對稱紅斑、痂皮、糜爛，常繼發細菌、Malassezia 或念珠菌；可能合併糖尿病</li><li>Loftus 2022（41 隻）：73% 病程中曾出現 SND；54% 診斷時皮膚已很嚴重（血比容與 MCV 較低）</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 28</span> 紅、白、藍：表皮的三層顏色</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>顏色</th><th>病變</th><th>說明</th></tr><tr><td>紅</td><td>角化不全（parakeratosis）</td><td>最上層角質還留著細胞核，染成粉紅偏紅</td></tr><tr><td>白</td><td>棘細胞層水腫</td><td>上半部細胞內外嚴重水腫，顏色很淡</td></tr><tr><td>藍</td><td>基底細胞增生</td><td>下層細胞增生擠在一起，嗜鹼性、顏色深</td></tr>
+        </table></div><figure class="fig">
+          <img src="photos/04-28-red-white-blue.jpg" alt="📄 28：紅白藍示意圖（非實際組織切片）；貓的三層變化較不明顯" loading="lazy">
+          <figcaption>📄 28：紅白藍示意圖（非實際組織切片）；貓的三層變化較不明顯</figcaption>
+        </figure>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 29</span> 確診 SND 後怎麼找原因</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>檢查</th><th>重點</th></tr><tr><td>皮膚切片</td><td>腳墊或厚痂皮邊緣，多取幾塊，看紅白藍</td></tr><tr><td>血液學與生化</td><td>ALP 等肝指數上升、高血糖或糖尿病、低白蛋白；血比容與 MCV 偏低</td></tr><tr><td><strong>腹部超音波</strong></td><td>肝臟<strong>「瑞士起司」樣</strong>（低回音區被高回音網狀包圍）→ 偏向 HCS；胰臟或肝臟腫塊 → 偏向腫瘤</td></tr><tr><td>血漿胺基酸與升糖素</td><td>低胺基酸血症支持診斷；升糖素上升支持升糖素瘤（HCS 犬反而偏低）；多需外送</td></tr>
+        </table></div><p class="p">超音波仍是家醫最實用的分流工具。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 30–31</span> 治療與預後</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th></th></tr><tr><td><strong>靜脈補充胺基酸</strong></td><td>10% 結晶胺基酸溶液 <strong>500 mL／隻</strong>，分 8–12 小時給完；皮膚未改善 7–10 天後重複，最多 4 次，沒反應就不必再給；注意高血氨、肝性腦病變，建議中心靜脈</td></tr><tr><td>居家照顧</td><td>高蛋白飲食（<strong>自煮飲食</strong>是 Loftus 研究中影響存活最大的單一因子）；蛋黃、鋅、omega-3；處理繼發感染、止痛、腳墊照護</td></tr><tr><td>找到腫瘤時</td><td>可切除的升糖素瘤：手術；已轉移：octreotide 曾成功控制單一病例；類固醇可能讓高血糖惡化，不宜長期使用</td></tr>
+        </table></div><figure class="fig">
+          <img src="photos/04-30-snd-treatment.jpg" alt="📄 30：SND 的治療" loading="lazy">
+          <figcaption>📄 30：SND 的治療</figcaption>
+        </figure><p class="p">預後：過去文獻 6–12 個月（也有 3–6 個月）；Loftus 2022（41 隻）疾病相關 MST <strong>557 天</strong>、全死因 359 天；<strong>最佳化治療</strong>（至少 2 次 IV 胺基酸＋至少 3 種營養補充＋自煮飲食，n = 9）MST <strong>&gt; 1783 天</strong> vs 其他犬 214 天，4 隻肝病變緩解。注意 Loftus 族群以非腫瘤性 HCS 為主。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🧬</div>
+      <h2>4. 犬：結節性皮膚纖維化與其他</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 32–33</span> 德國狼犬的皮膚結節，是腎臟腫瘤的線索</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th></th></tr><tr><td>皮膚</td><td>多發、堅實的真皮結節（緻密膠原纖維），四肢最常見；常比腎臟症狀早出現</td></tr><tr><td>腎臟</td><td><strong>雙側、多灶性腎臟囊腺癌</strong></td></tr><tr><td>子宮</td><td>母犬：子宮平滑肌瘤</td></tr><tr><td>遺傳</td><td><strong>FLCN（BHD）</strong>突變 exon 7 c.764A&gt;G、p.H255R；體染色體顯性（同型合子可能胚胎致死）；人類對應 Birt-Hogg-Dubé 症候群</td></tr>
+        </table></div><ul class="notes"><li>德國狼犬（或白色牧羊犬、Shiloh 牧羊犬）多發堅實結節 → <strong>切片</strong></li><li>強烈建議<strong>腹部超音波看兩側腎臟</strong>＋尿液分析、腎指數；基因檢測確認 FLCN，建議不要繁殖</li><li>皮膚結節良性通常不需處理；預後取決於腎臟腫瘤；混種犬也曾有報告</li></ul><p class="p">嚴格說這不是腫瘤「引起」的皮膚病，而是同一個生殖細胞突變同時造成皮膚和腎臟病變；臨床價值一樣：<strong>皮膚先告訴你腎臟有事</strong>。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 25, 34</span> 水疱、糜爛、黏膜受侵犯：照胸腔</h3>
+        <ul class="notes"><li><strong>副腫瘤性天疱瘡</strong>：自體抗體攻擊橋粒、半橋粒 → 皮膚與黏膜大範圍水疱、糜爛、潰瘍；犬 3 例（胸腺瘤、縱膈腔淋巴瘤、脾臟肉瘤）；人醫死亡率約 90%</li><li><strong>多形性紅斑</strong>：胸腺瘤犬 1 例，類似貓剝落性皮膚炎，以胸腺切除治療</li><li>題外話：兔子也有胸腺瘤相關剝落性皮膚炎的報告</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 35</span> 哪些通常不算副腫瘤</h3>
+        <p class="p">腫瘤分泌原組織本來就會分泌的荷爾蒙（分泌皮質醇的腫瘤、Sertoli 細胞瘤的雌激素）一般視為直接荷爾蒙效應；腫瘤直接長到皮膚或轉移到皮膚也不算。分類上不算，但臨床上一樣重要：<strong>皮膚都是找到腫瘤的入口</strong>。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">🔬</div>
+      <h2>5. 偽裝成皮膚病：皮膚型淋巴癌</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 37</span> 分類與四種臨床表現</h3>
+        <ul class="notes"><li><strong>上皮趨向性（CEL）</strong>：犬最常見；T 細胞侵入表皮與毛囊上皮；犬約 80% 為 <strong>CD8⁺</strong>（人類多為 CD4⁺）；亞型：蕈狀肉芽腫（犬最常見）、Pagetoid reticulosis、Sézary 症候群</li><li>非上皮趨向性：真皮與皮下結節，可能原發或其他部位侵犯</li><li>CEL 四種表現：① 剝落性紅皮症 ② <strong>皮膚黏膜型</strong>（嘴唇、鼻鏡、眼瞼、肛門脫色、紅斑、潰瘍）③ 斑塊、結節 ④ 口腔黏膜型</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 38</span> 為什麼常被當成過敏或膿皮症</h3>
+        <p class="p">早期像異位性皮膚炎、膿皮症、紅斑性狼瘡、天疱瘡、多形性紅斑、組織球瘤。Dettwiler 2023（176 隻）：紅斑 74%、痂皮 61%、脫屑 58%；嘴唇 42%、鼻鏡 28%、腳墊 27%。</p><ul class="notes"><li><strong>老了才第一次出現「過敏」</strong></li><li>嘴唇、鼻鏡、眼周<strong>脫色</strong>加紅斑、潰瘍</li><li>腳墊也受侵犯</li><li>抗生素、止癢藥只好一半；<strong>類固醇一停就復發</strong></li><li>慢慢長出斑塊或結節</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 39</span> 診斷：一定要靠切片</h3>
+        <ul class="notes"><li>細胞學只能懷疑（看得到大量淋巴球，看不出上皮趨向性）</li><li>皮膚切片多處取樣：取斑塊、結節或紅斑最明顯處，不要只切繼發感染的潰瘍</li><li>免疫組織化學 CD3⁺；不確定時 PARR 看是否單株</li><li>分期：淋巴結觸診與 FNA、胸腔 X 光三張、強烈建議腹部超音波；血液抹片找 Sézary 細胞</li></ul><div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>懷疑淋巴癌時，<strong>切片之前盡量不要給類固醇</strong>：病灶會暫時好轉，診斷也可能因此做不出來。</div></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 40–41</span> 治療：目標是控制與生活品質</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th></th></tr><tr><td><strong>Lomustine（CCNU）</strong></td><td>60–90 mg/m² PO q3wk，常合併 prednisolone；整體反應率 78–83%、完全緩解約三分之一；反應多只維持 3–4 個月；監測 CBC 與肝指數</td></tr><tr><td>局部與其他</td><td>單一結節或口腔病灶：手術或放療；PEG L-asparaginase、retinoids 可能有效但不易取得；masitinib、亞麻油酸只有零星報告</td></tr><tr><td>支持療法</td><td>依培養治療繼發膿皮症、止癢、皮膚與口腔照護</td></tr>
+        </table></div><div class="tbl-wrap"><table>
+          <tr><th>LOPP（每 28 天一療程）</th><th>劑量與天數</th></tr><tr><td>Lomustine</td><td>60 mg/m² PO，第 1 天</td></tr><tr><td>Oncovin（vincristine）</td><td>0.5 mg/m² IV，第 0、14 天</td></tr><tr><td>Procarbazine</td><td>50 mg/m² PO，第 2–13 天（台灣拿不到 → 講者用 <strong>chlorambucil 4 mg/m² PO q24h × 14 天</strong>替代）</td></tr><tr><td>Prednisone</td><td>1 mg/kg PO，第 0–13 天</td></tr>
+        </table></div><p class="p">LOPP 資料來自多中心型 T 細胞淋巴癌（Brown 2018，31 隻：完全緩解 90%、無病期中位數 176 天、1 年存活 39%；肝毒性 26%、骨髓抑制 23%）。<strong>沒有以 LOPP 治療 CEL 的 RCT</strong>；CEL 的化療證據主要來自 lomustine 單藥的回溯研究。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 42–43</span> 預後與貓</h3>
+        <ul class="notes"><li>Dettwiler 2023（176 隻）：整體 MST <strong>95 天</strong>；化療的 MST 是支持療法的 4.3 倍、prednisone 2.8 倍</li><li>較差：有毛皮膚受侵犯、糜爛或潰瘍、結節、痂皮、核分裂數 ≥ 7/HPF、大範圍侵入皮下脂膜；較好：治療後完全緩解或穩定、單一局限病灶</li><li>貓（Siewert 2022，41 隻）：中位 12.3 歲、公貓 30 隻；有反應的貓存活較長；免疫型態、細胞大小、是否上皮趨向性都和反應無關</li><li>貓的<strong>皮膚淋巴球增多症</strong>：老貓單一處脫毛紅斑脫屑、病程慢常被當過敏；反應性還是惰性腫瘤仍有爭議 → 一樣要切片</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🔴</div>
+      <h2>6. 偽裝成皮膚病：肥大細胞瘤</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 44–45</span> 皮膚反應與常被當成什麼</h3>
+        <ul class="notes"><li>局部：<strong>Darier’s sign</strong>（摸、刮之後紅腫膨疹癢）、腫塊時大時小、周圍水腫紅斑瘀血、傷口癒合慢、局部凝血異常</li><li>全身：胃酸過多 → 胃腸潰瘍（剖檢 35–83%）、嘔吐黑便、缺鐵性貧血；罕見大量釋放 → 過敏性休克</li><li>貓：單一堅實無毛真皮結節（約 25% 潰瘍），或扁平會癢的斑塊；約 20% 多發</li><li>常被當成：蚊蟲叮咬、蕁麻疹（打了抗組織胺或類固醇後「消了」）、脂肪瘤（皮下型摸起來軟）、組織球瘤、毛囊炎；貓：嗜酸性球皮膚病</li></ul><div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>每一個皮膚或皮下腫塊都要做 FNA</strong>；不要「先觀察看看」，也不要先打類固醇（會讓 MCT 暫時縮小看起來像好了，延誤診斷）。</div></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 46–47</span> 皮膚反應的處理與預防用藥</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>情境</th><th>用藥</th></tr><tr><td>有可測量的 MCT</td><td>H1：diphenhydramine 2–4 mg/kg PO q12h；H2：famotidine 0.5–1 mg/kg PO q12–24h 或 omeprazole 0.5–1 mg/kg PO q24h；有腸胃症狀加 sucralfate</td></tr><tr><td>腫瘤大、周圍水腫</td><td>術前 prednisone 1–2 mg/kg/day 1–2 週；檢查時少擠壓</td></tr><tr><td>急性大量釋放</td><td>依過敏性休克處理：epinephrine、靜脈輸液、注射型抗組織胺與類固醇</td></tr><tr><td>手術</td><td>誘導時 diphenhydramine 2.2 mg/kg IM；腫瘤大或可能不完全切除時術後繼續 H1＋H2</td></tr><tr><td>放射治療</td><td>治療前、中、後數週給 prednisolone 加 H1、H2</td></tr><tr><td>Tigilanol tiglate</td><td>Prednis(ol)one 0.5 mg/kg PO q12h × 7 天 → q24h × 3 天（治療前 2 天開始）；diphenhydramine 2 mg/kg PO q12h、famotidine 0.5 mg/kg PO q12h 共 8 天；仿單警告去顆粒可致嚴重全身反應甚至死亡</td></tr>
+        </table></div><p class="p">這些都是支持療法；真正的治療是處理腫瘤本身：手術、放療、化療、toceranib 或 tigilanol tiglate。</p><p class="p"><span class="src src-add">💡 補充</span> 肥大細胞瘤的電化療見 <a href="electrochemotherapy.html#s4">03 電化療</a>。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ecfeff">🦶</div>
+      <h2>7. 轉移到皮膚與趾頭的腫瘤</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 48–51</span> 其他會表現在皮膚的腫瘤</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>腫瘤</th><th>重點</th></tr><tr><td>貓肺趾症候群</td><td>肺癌轉移到趾頭（第三趾骨、承重趾頭），像甲溝炎或感染；36 隻貓都沒有呼吸症狀，19 隻有紀錄者平均存活 58 天 → <strong>老貓趾頭感染治不好就照胸腔</strong></td></tr><tr><td>犬 Sertoli 細胞瘤</td><td>雌激素過多 → 對稱脫毛、乳房發育、包皮下垂、包皮腹側線狀皮膚炎；可能骨髓抑制；隱睪犬要檢查腹腔或鼠蹊部</td></tr><tr><td>膀胱／尿道 TCC 皮膚轉移</td><td>會陰、鼠蹊、腹側斑塊丘疹結節，常被當成皮膚炎；104 隻剖檢 9.6% 有皮膚轉移；確診後中位 38 天出現，之後中位存活 90 天</td></tr><tr><td>犬發炎性乳腺癌</td><td>腹部、大腿內側、腋下大片紅腫熱硬會痛，可能摸不到明顯乳房腫塊；常被當成乳腺炎或蜂窩性組織炎</td></tr><tr><td>少見轉移</td><td>骨肉瘤、犬肺癌（胸壁結節）、前列腺癌（未去勢公犬）、內臟 HSA、胃腸腺癌</td></tr>
+        </table></div><p class="p">有腫瘤病史的動物出現新的皮膚病灶 → <strong>先做 FNA</strong>；多發的皮膚血管肉瘤要先做腹部與心臟超音波排除內臟原發轉移。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 51</span> 貓腳墊腫脹、潰瘍：不一定是腫瘤</h3>
+        <ul class="notes"><li>肺趾症候群：多個趾頭腫脹、甲床發炎、第三趾骨溶解 → 照胸腔</li><li><strong>貓砂造成的矽石肉芽腫</strong>（Agrawal 2026，13 例）：腳墊反覆腫脹、潰瘍、出血、廔管，前腳較多；組織球內有偏光下發亮的矽石；手術切除後常復發</li><li>漿細胞性腳墊炎：13 例中 10 例同時有，原本的病變可能讓貓砂顆粒更容易卡進組織</li></ul><p class="p">切片時問飼主用什麼貓砂（例如水晶砂），送件請病理師加做<strong>偏光顯微鏡</strong>；確診後換掉矽基貓砂。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🩺</div>
+      <h2>8. 門診流程與五個病例</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 53</span> 從皮膚走到腫瘤</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>步驟</th><th>內容</th></tr><tr><td>1. 提高警覺</td><td>中老年、外觀不典型、標準治療沒效、合併全身症狀</td></tr><tr><td>2. 排除常見病因</td><td>搔刮、細胞學、皮癬菌、毛髮鏡檢；貓驗 FeLV／FIV</td></tr><tr><td>3. 皮膚切片</td><td>保留痂皮與皮屑、多處取樣；腫塊一律先做 FNA</td></tr><tr><td>4. 依病型找腫瘤</td><td>ED → 胸腔；FPA → 胰臟、肝膽；SND → 肝臟、胰臟；CEL → 淋巴結與內臟分期；德國狼犬皮膚結節 → 腎臟</td></tr><tr><td>5. 治療與溝通</td><td>治療腫瘤＋處理繼發感染與營養；依病型說明預後</td></tr>
+        </table></div><figure class="fig">
+          <img src="photos/04-53-clinic-flow.jpg" alt="📄 53：門診流程" loading="lazy">
+          <figcaption>📄 53：門診流程</figcaption>
+        </figure>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 54–58</span> 五個病例</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>病例</th><th>討論方向</th></tr><tr><td><strong>貓：滿身皮屑、類固醇沒效</strong>（12 歲公貓，頭頸背厚痂皮、毛一拔就掉，體重下降）</td><td>切片保留皮屑痂皮多處 → 介面皮膚炎、皮脂腺消失＝ED；胸腔 X 光三張找前縱膈腔腫塊，陰性仍可 CT；切除胸腺瘤後皮膚數週到數月改善</td></tr><tr><td><strong>貓：肚子突然禿一大片</strong>（14 歲母貓，4 週內腹側光滑發亮脫毛，背部正常，食慾差、嘔吐，CBC 生化大致正常）</td><td>毛髮鏡檢毛尖完整易拔 → 不是舔的，切片確認；腹部超音波看胰臟肝膽、胸腔影像；多已晚期，及早談生活品質；itraconazole 減輕 Malassezia</td></tr><tr><td><strong>犬：腳墊龜裂、走路會痛</strong>（10 歲公犬，口鼻眼周痂皮，ALP 上升、高血糖、低白蛋白）</td><td>SND：切腳墊或痂皮邊緣找紅白藍；肝臟瑞士起司樣 → HCS，胰臟或肝臟腫塊 → 升糖素瘤；開始 IV 胺基酸與高蛋白飲食，可切除就手術</td></tr><tr><td><strong>犬：治了八個月的「過敏」</strong>（10 歲母犬，嘴唇鼻鏡眼周發紅脫色，類固醇停藥更糟，背部兩個斑塊）</td><td>老年才發病、皮膚黏膜脫色、類固醇只好一半、斑塊 → 懷疑 CEL；切斑塊與紅斑處，CD3 IHC 必要時 PARR，分期；lomustine ± prednisolone，目標是生活品質</td></tr><tr><td><strong>犬：時大時小的「蚊蟲叮咬」</strong>（8 歲拉布拉多，大腿 2 cm 軟腫塊，觸診後幾分鐘紅腫、隔天瘀青）</td><td>Darier’s sign＋時大時小 → 高度懷疑 MCT；FNA 與區域淋巴結 FNA；給 H1＋H2，計畫手術；之前打類固醇讓腫塊縮小、延誤三個月</td></tr>
+        </table></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 59</span> 今天的六個重點</h3>
+        <ol class="notes"><li>皮膚副腫瘤是腫瘤的間接後果，可能是隱匿性腫瘤最早的線索</li><li>診斷三件事：高度懷疑、保留痂皮與皮屑的切片、影像學</li><li>貓剝落性皮膚炎 → 找胸腺瘤；切除後皮膚多會好，預後佳</li><li>貓副腫瘤性脫毛 → 找胰臟、肝膽；多已晚期，及早談預後</li><li>犬 SND → 紅白藍、IV 胺基酸；德國狼犬皮膚結節 → 查腎臟與 FLCN</li><li>老狗治不好的「過敏」→ 切片排除皮膚型淋巴癌；時大時小、一摸就紅腫的腫塊 → 先 FNA 找肥大細胞瘤</li></ol>
+      </div><div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list"><div class="ref-item">Ho R. 與皮膚相關的副腫瘤症狀（Cutaneous paraneoplastic syndromes in dogs and cats）。獸醫腫瘤學繼續教育 90 分鐘（投影片 64 張、講義 2 頁）。</div><div class="ref-item">主要引用：Guillén A et al. Cutaneous paraneoplastic syndromes in cats: a comparative clinical review. J Feline Med Surg 2026;28(1)；Turek Vet Dermatol 2003；Rottenberg Vet Pathol 2004；Linek Vet Dermatol 2015；Marks JSAP 2024；Tasker JSAP 1999；Loftus JVIM 2022（兩篇）；Jaffey Front Vet Sci 2020；Oberkirchner Vet Dermatol 2010；Lingaas Hum Mol Genet 2003；Fontaine Vet Comp Oncol 2009；Risbon JVIM 2006；Dettwiler Vet Pathol 2023；Brown Vet Comp Oncol 2018；Siewert JFMS 2022；Blackwood Vet Comp Oncol 2012；Gottfried JAAHA 2000；Reed Vet Pathol 2013；Agrawal Vet Pathol 2026（完整 40 篇見投影片 60–63）。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="electrochemotherapy.html">03 電化療</a>。相關：<a href="../notes/clinical-pathology.html">小動物臨床病理（細胞學）</a>、<a href="../texas-endocrine-2026/endocrine-neoplasia.html">Texas 15 內分泌腫瘤（升糖素瘤）</a>。</p>
+    <a href="index.html">回到講座列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

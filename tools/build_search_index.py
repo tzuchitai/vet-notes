@@ -51,6 +51,7 @@ SERIES = {
     'case-discussions':        '梅醫師病例討論',
     'antimicrobial-selection': '知菌知藥：抗菌藥物選擇',
     'lulich-urology-2026':     'Jody Lulich 泌尿講座',
+    'rita-ho-oncology-2026':   'Rita Ho 腫瘤科講座',
     'notes':                   '單篇筆記',
 }
 
@@ -60,6 +61,7 @@ FOLDER_SPECS = {
     'echocardiography':     ['cardio'],
     'antimicrobial-selection': ['infect'],
     'lulich-urology-2026':  ['uro'],
+    'rita-ho-oncology-2026': ['onc'],
 }
 
 SPECS = {
