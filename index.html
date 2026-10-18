@@ -167,6 +167,89 @@
     .stat-num  { font-size: 1.6rem; font-weight: 800; color: var(--gold); }
     .stat-label{ font-size: .75rem; opacity: .55; margin-top: 2px; }
 
+    /* ── 依科別瀏覽 ── */
+    /* 側邊欄 */
+    .layout { max-width: 1180px; margin: 0 auto; display: flex; align-items: flex-start; gap: 8px; padding-left: 20px; }
+    .layout .container { flex: 1; min-width: 0; margin: 0; }
+    .sidebar {
+      width: 230px; flex-shrink: 0; position: sticky; top: 16px;
+      max-height: calc(100vh - 32px); overflow-y: auto;
+      margin-top: 36px; padding: 14px 12px; background: #fff;
+      border: 1px solid var(--border); border-radius: 16px;
+    }
+    .sidebar-head { display: flex; justify-content: space-between; align-items: center;
+      font-size: .9rem; font-weight: 800; color: var(--dark); padding: 2px 4px 10px; }
+    .sidebar-close, .sidebar-toggle, .sidebar-backdrop { display: none; }
+    .spec-chips { display: flex; flex-direction: column; gap: 12px; }
+    .spec-row { display: flex; flex-direction: column; gap: 3px; }
+    .spec-row-name { font-size: .72rem; font-weight: 700; letter-spacing: .08em; color: var(--text); opacity: .55; padding: 0 6px 2px; }
+    .sidebar .spec-chip { width: 100%; justify-content: space-between; border-radius: 10px; border-color: transparent; padding: 7px 10px; text-align: left; }
+    .sidebar .spec-chip:hover:not(.empty) { background: var(--gold-bg); border-color: transparent; }
+    .sidebar .spec-chip.active { background: var(--chip, var(--gold)); color: #fff; }
+    .sidebar .spec-chip.empty { border: 1px dashed var(--border); }
+    @media (max-width: 860px) {
+      .layout { display: block; padding-left: 0; }
+      .sidebar {
+        position: fixed; top: 0; left: 0; bottom: 0; margin: 0; z-index: 50;
+        width: 260px; max-width: 82vw; max-height: none; border-radius: 0 16px 16px 0;
+        transform: translateX(-105%); transition: transform .22s ease;
+        box-shadow: 4px 0 24px rgba(0,0,0,.15);
+      }
+      body.sidebar-open .sidebar { transform: none; }
+      .sidebar-close { display: block; border: none; background: none; font-size: 1rem; cursor: pointer; color: var(--text); padding: 4px 6px; }
+      body.sidebar-open .sidebar-backdrop { display: block; position: fixed; inset: 0; background: rgba(18,50,74,.35); z-index: 40; }
+      .sidebar-toggle {
+        display: block; position: fixed; left: 14px; bottom: 18px; z-index: 30;
+        border: none; border-radius: 999px; padding: 10px 16px; font-size: .9rem; font-weight: 700;
+        background: var(--gold-dk); color: #fff; box-shadow: 0 4px 14px rgba(0,0,0,.2); cursor: pointer;
+      }
+    }
+    .spec-chip.empty { opacity: .45; cursor: default; border-style: dashed; }
+    .spec-chip.empty:hover { border-color: var(--border); }
+    .spec-chip {
+      border: 1.5px solid var(--border); background: #fff; color: var(--dark);
+      border-radius: 999px; padding: 6px 14px; font-size: .86rem; font-weight: 600;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+      transition: background .15s, border-color .15s, color .15s;
+    }
+    .spec-chip .n { font-size: .72rem; font-weight: 700; opacity: .55; }
+    .spec-chip:hover { border-color: var(--gold); }
+    .spec-chip.active { background: var(--chip, var(--gold)); border-color: var(--chip, var(--gold)); color: #fff; }
+    .spec-chip.active .n { opacity: .85; }
+    .spec-panel {
+      background: #fff; border: 1px solid var(--border); border-radius: 14px;
+      padding: 16px 20px; margin: 10px 0 4px;
+    }
+    .spec-panel h3 { font-size: .95rem; color: var(--dark); margin-bottom: 8px; }
+    .spec-group { margin-top: 10px; }
+    .spec-group-name { font-size: .74rem; font-weight: 700; letter-spacing: .06em; color: var(--text); opacity: .6; margin-bottom: 4px; }
+    .spec-group ul { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 2px 18px; }
+    .spec-group li a { color: var(--gold-dk); text-decoration: none; font-size: .88rem; line-height: 1.9; }
+    .spec-group li a:hover { text-decoration: underline; }
+    .spec-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+    .spec-tag { font-size: .68rem; font-weight: 700; color: #fff; border-radius: 4px; padding: 1px 6px; }
+
+    /* ── 內文搜尋結果 ── */
+    .search-results {
+      background: #fff; border: 1px solid var(--border); border-radius: 14px;
+      padding: 16px 20px; margin-bottom: 18px; box-shadow: 0 2px 12px rgba(21,147,214,.08);
+    }
+    .sr-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+    .sr-head strong { color: var(--dark); font-size: .95rem; }
+    .sr-head span { font-size: .78rem; opacity: .6; }
+    .sr-page { padding: 12px 0; border-top: 1px solid var(--border); }
+    .sr-page:first-of-type { border-top: none; }
+    .sr-title { font-weight: 700; color: var(--gold-dk); text-decoration: none; font-size: .95rem; }
+    .sr-title:hover { text-decoration: underline; }
+    .sr-meta { font-size: .74rem; opacity: .6; margin: 2px 0 6px; }
+    .sr-hit { display: block; text-decoration: none; color: var(--text); font-size: .84rem; line-height: 1.6; padding: 4px 8px; border-radius: 8px; }
+    .sr-hit:hover { background: var(--gold-bg); }
+    .sr-hit b { color: var(--dark); }
+    .sr-hit mark, .sr-title mark { background: #FFE3E2; color: inherit; border-radius: 3px; padding: 0 1px; }
+    .sr-more { font-size: .78rem; opacity: .6; padding: 2px 8px; }
+    .sr-empty { font-size: .88rem; opacity: .7; padding: 6px 0; }
+    .sr-tip { font-size: .76rem; opacity: .55; margin-top: 8px; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
       header h1 { font-size: 1.5rem; }
@@ -192,11 +275,26 @@
   <p>Veterinary Study Notes</p>
   <div class="search-wrap">
     <span class="search-icon">🔍</span>
-    <input type="text" id="search-input" placeholder="搜尋科目..." />
+    <input type="text" id="search-input" placeholder="搜尋疾病、藥物、檢驗、關鍵字…" />
   </div>
 </header>
 
+<div class="layout">
+
+<aside class="sidebar" id="sidebar" aria-label="依科別瀏覽">
+  <div class="sidebar-head">
+    <span>🏥 依科別瀏覽</span>
+    <button class="sidebar-close" id="sidebar-close" aria-label="關閉">✕</button>
+  </div>
+  <div id="spec-chips" class="spec-chips"></div>
+</aside>
+<div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+<button class="sidebar-toggle" id="sidebar-toggle">🏥 科別</button>
+
 <div class="container">
+
+  <!-- 內文搜尋結果 -->
+  <div id="search-results" class="search-results" hidden></div>
 
   <!-- Stats -->
   <div class="stats">
@@ -213,6 +311,8 @@
       <div class="stat-label">犬貓小動物</div>
     </div>
   </div>
+
+  <div id="spec-panel" class="spec-panel" hidden></div>
 
   <div class="section-label">📚 我的筆記</div>
 
@@ -408,21 +508,204 @@
 
 </div>
 
+</div><!-- /.layout -->
+
 <footer class="site-footer">
   <img src="assets/logo-mark-96.png" alt="">
   Heartfelt love Animal ・ 獸醫讀書筆記
 </footer>
 
+<script src="search-meta.js"></script>
 <script>
-  // ── 搜尋 ──
+  // ── 科別與搜尋（資料：search-meta.js／search-index.js，由 tools/build_search_index.py 產生） ──
+  const META = window.VN_META || { specialties: [], pages: [] };
+  const SPEC = Object.fromEntries(META.specialties.map(s => [s.key, s]));
   const input = document.getElementById('search-input');
-  input.addEventListener('input', () => {
-    const q = input.value.toLowerCase();
-    document.querySelectorAll('.card').forEach(card => {
-      const text = (card.dataset.title || '') + ' ' + (card.textContent || '');
-      card.style.display = text.toLowerCase().includes(q) ? '' : 'none';
+  const resultsEl = document.getElementById('search-results');
+  const chipsEl = document.getElementById('spec-chips');
+  const panelEl = document.getElementById('spec-panel');
+  let activeSpec = '';
+
+  const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const terms = q => q.toLowerCase().split(/\s+/).filter(Boolean);
+  function highlight(text, ts) {
+    let out = esc(text);
+    ts.forEach(t => {
+      const re = new RegExp('(' + esc(t).replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+      out = out.replace(re, '<mark>$1</mark>');
     });
+    return out;
+  }
+
+  // 每張卡片標上科別：單篇看自己，系列取旗下所有筆記的科別
+  const folderSpecs = {};
+  META.pages.forEach(p => { if (!p.index) p.specs.forEach(k => (folderSpecs[p.folder] = folderSpecs[p.folder] || new Set()).add(k)); });
+  document.querySelectorAll('a.card').forEach(card => {
+    const href = card.getAttribute('href') || '';
+    const folder = href.includes('/') ? href.split('/')[0] : '';
+    const specs = new Set();
+    const page = META.pages.find(p => p.u === href);
+    if (page && !page.index) page.specs.forEach(k => specs.add(k));
+    if (href.endsWith('/index.html') && folderSpecs[folder]) folderSpecs[folder].forEach(k => specs.add(k));
+    if (folder === 'echocardiography-ii') specs.add('cardio');
+    card.dataset.spec = [...specs].join(' ');
+    if (specs.size) {
+      const tags = document.createElement('div');
+      tags.className = 'spec-tags';
+      tags.innerHTML = [...specs].filter(k => SPEC[k]).map(k =>
+        `<span class="spec-tag" style="background:${SPEC[k].color}">${SPEC[k].name}</span>`).join('');
+      card.querySelector('.card-body').appendChild(tags);
+    }
   });
+
+  // 卡片與搜尋結果的對應：系列看資料夾，單篇（notes/、根目錄）看網址
+  function keyOf(u) { const f = u.includes('/') ? u.split('/')[0] : ''; return f && f !== 'notes' ? f : u; }
+
+  function pagesOf(key) { return META.pages.filter(p => !p.index && p.specs.includes(key)); }
+
+  function renderChips() {
+    const chip = (key, label, n, color) =>
+      `<button class="spec-chip${activeSpec === key ? ' active' : ''}" data-key="${key}" style="--chip:${color || 'var(--gold)'}">${label}${n != null ? `<span class="n">${n}</span>` : ''}</button>`;
+    const groups = [];
+    META.specialties.forEach(s => {
+      let g = groups.find(x => x.name === (s.group || ''));
+      if (!g) groups.push(g = { name: s.group || '', items: [] });
+      g.items.push(s);
+    });
+    chipsEl.innerHTML = `<div class="spec-row">${chip('', '全部', null)}</div>` + groups.map(g =>
+      `<div class="spec-row">${g.name ? `<span class="spec-row-name">${esc(g.name)}</span>` : ''}` +
+      g.items.map(s => {
+        const n = pagesOf(s.key).length;
+        return n ? chip(s.key, `${s.icon} ${s.name}`, n, s.color)
+                 : `<button class="spec-chip empty" disabled title="這個科別還沒有筆記">${s.icon} ${s.name}<span class="n">尚無</span></button>`;
+      }).join('') + '</div>').join('');
+  }
+
+  function renderPanel() {
+    if (!activeSpec) { panelEl.hidden = true; return; }
+    const s = SPEC[activeSpec];
+    const groups = {};
+    pagesOf(activeSpec).forEach(p => (groups[p.series] = groups[p.series] || []).push(p));
+    panelEl.innerHTML = `<h3>${s.icon} ${s.name}：${pagesOf(activeSpec).length} 篇筆記</h3>` +
+      Object.entries(groups).map(([series, ps]) =>
+        `<div class="spec-group"><div class="spec-group-name">${esc(series)}</div><ul>` +
+        ps.map(p => `<li><a href="${p.u}">${p.gated ? '🔒 ' : ''}${esc(p.title)}</a></li>`).join('') +
+        '</ul></div>').join('');
+    panelEl.hidden = false;
+  }
+
+  function filterCards(ts) {
+    document.querySelectorAll('.card').forEach(card => {
+      const text = ((card.dataset.title || '') + ' ' + (card.textContent || '')).toLowerCase();
+      const okSpec = !activeSpec || (card.dataset.spec || '').split(' ').includes(activeSpec);
+      const okText = ts.every(t => text.includes(t));
+      const hits = resultsEl.dataset.hitKeys || '';
+      card.style.display = okSpec && (okText || hits.includes('|' + keyOf(card.getAttribute('href') || '') + '|')) ? '' : 'none';
+    });
+    document.querySelectorAll('.cards').forEach(grid => {
+      const label = grid.previousElementSibling;
+      const any = [...grid.children].some(c => c.style.display !== 'none');
+      grid.style.display = any ? '' : 'none';
+      if (label && label.classList.contains('section-label')) label.style.display = any ? '' : 'none';
+    });
+  }
+
+  let indexLoading = null;
+  function loadIndex() {
+    if (window.VN_INDEX) return Promise.resolve();
+    if (!indexLoading) indexLoading = new Promise((ok, fail) => {
+      const s = document.createElement('script');
+      s.src = 'search-index.js'; s.onload = ok; s.onerror = fail;
+      document.head.appendChild(s);
+    });
+    return indexLoading;
+  }
+
+  function searchIndex(ts) {
+    const byPage = new Map();
+    const allowed = p => !activeSpec || p.specs.includes(activeSpec) || (p.index && (folderSpecs[p.folder] || new Set()).has(activeSpec));
+    (window.VN_INDEX || []).forEach(([pi, id, h, t]) => {
+      const p = META.pages[pi];
+      if (!allowed(p)) return;
+      const title = p.title.toLowerCase(), hl = h.toLowerCase(), tl = t.toLowerCase();
+      if (!ts.every(x => title.includes(x) || hl.includes(x) || tl.includes(x))) return;
+      let score = 0;
+      ts.forEach(x => { if (title.includes(x)) score += 5; if (hl.includes(x)) score += 3; if (tl.includes(x)) score += 1; });
+      const e = byPage.get(pi) || { p, score: 0, hits: [] };
+      e.score += score; e.hits.push({ id, h, t, score });
+      byPage.set(pi, e);
+    });
+    META.pages.forEach((p, pi) => {   // 有密碼的系列只比對標題
+      if (p.gated && allowed(p) && ts.every(x => p.title.toLowerCase().includes(x)) && !byPage.has(pi))
+        byPage.set(pi, { p, score: 5, hits: [] });
+    });
+    return [...byPage.values()].filter(e => !e.p.index || e.hits.length).sort((a, b) => b.score - a.score);
+  }
+
+  function snippet(t, ts) {
+    const tl = t.toLowerCase();
+    let at = Math.min(...ts.map(x => { const i = tl.indexOf(x); return i < 0 ? Infinity : i; }));
+    if (!isFinite(at)) at = 0;
+    const start = Math.max(0, at - 36), end = Math.min(t.length, at + 90);
+    return (start ? '…' : '') + highlight(t.slice(start, end), ts) + (end < t.length ? '…' : '');
+  }
+
+  async function runSearch() {
+    const q = input.value.trim();
+    const ts = terms(q);
+    resultsEl.dataset.hitKeys = '';
+    if (!ts.length) { resultsEl.hidden = true; filterCards([]); return; }
+    resultsEl.hidden = false;
+    resultsEl.innerHTML = '<div class="sr-empty">搜尋中…</div>';
+    try { await loadIndex(); } catch (e) { resultsEl.innerHTML = '<div class="sr-empty">搜尋資料載入失敗，請重新整理頁面。</div>'; return; }
+    if (input.value.trim() !== q) return;
+    const found = searchIndex(ts);
+    resultsEl.dataset.hitKeys = '|' + [...new Set(found.map(e => keyOf(e.p.u)))].join('|') + '|';
+    filterCards(ts);
+    const hitCount = found.reduce((n, e) => n + e.hits.length, 0);
+    const scope = activeSpec ? `（限 ${SPEC[activeSpec].name}）` : '';
+    if (!found.length) {
+      resultsEl.innerHTML = `<div class="sr-head"><strong>內文搜尋「${esc(q)}」${scope}</strong></div><div class="sr-empty">找不到符合的內容。可以試試英文縮寫、中文名稱，或用空格分開多個關鍵字。</div>`;
+      return;
+    }
+    const shown = found.slice(0, 30);
+    resultsEl.innerHTML =
+      `<div class="sr-head"><strong>內文搜尋「${esc(q)}」${scope}</strong><span>${found.length} 篇筆記、${hitCount} 處符合</span></div>` +
+      shown.map(e => {
+        const hits = e.hits.sort((a, b) => b.score - a.score);
+        const tags = e.p.specs.filter(k => SPEC[k]).map(k => SPEC[k].name).join('・');
+        return `<div class="sr-page"><a class="sr-title" href="${e.p.u}">${e.p.gated ? '🔒 ' : ''}${highlight(e.p.title, ts)}</a>` +
+          `<div class="sr-meta">${esc(e.p.series)}${tags ? ' ・ ' + tags : ''}</div>` +
+          hits.slice(0, 3).map(x => `<a class="sr-hit" href="${e.p.u}${x.id ? '#' + x.id : ''}">${x.h ? `<b>${highlight(x.h, ts)}</b>　` : ''}${snippet(x.t, ts)}</a>`).join('') +
+          (hits.length > 3 ? `<div class="sr-more">還有 ${hits.length - 3} 處符合</div>` : '') + '</div>';
+      }).join('') +
+      (found.length > 30 ? `<div class="sr-more">只顯示前 30 篇，可加入更多關鍵字縮小範圍。</div>` : '') +
+      '<div class="sr-tip">提示：用空格分開多個關鍵字，會找同時包含所有關鍵字的段落；🔒 系列只比對標題。</div>';
+  }
+
+  let timer;
+  input.addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(runSearch, 180); });
+  input.addEventListener('focus', () => { loadIndex().catch(() => {}); }, { once: true });
+
+  chipsEl.addEventListener('click', e => {
+    const b = e.target.closest('.spec-chip');
+    if (!b) return;
+    activeSpec = activeSpec === b.dataset.key ? '' : b.dataset.key;
+    renderChips(); renderPanel();
+    runSearch();
+    if (matchMedia('(max-width: 860px)').matches) {
+      document.body.classList.remove('sidebar-open');
+      (activeSpec ? panelEl : document.querySelector('.container')).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+  const toggleSidebar = open => document.body.classList.toggle('sidebar-open', open);
+  document.getElementById('sidebar-toggle').addEventListener('click', () => toggleSidebar(true));
+  document.getElementById('sidebar-close').addEventListener('click', () => toggleSidebar(false));
+  document.getElementById('sidebar-backdrop').addEventListener('click', () => toggleSidebar(false));
+
+  renderChips();
+  const q0 = new URLSearchParams(location.search).get('q');
+  if (q0) { input.value = q0; runSearch(); }
 
   // ── 新增說明 ──
   function showAddInfo() {
