@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>亞洲犬貓尿結石：MUC 2015–2025 資料與處置｜Jody Lulich 泌尿講座</title>
+<style>
+  :root {
+    --primary: #0E7490;
+    --primary-light: #E0F2F7;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0B2A33;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9FD3E0; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #164552;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9FD3E0; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9FD3E0;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #164552;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #a26a75;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0B4F63 0%, #22A3C2 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0B2A33; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #164552; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0B4F63; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+</style>
+
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 講座系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← Jody Lulich 泌尿講座</a>
+  <div class="logo">
+    <h2>03｜亞洲犬貓尿結石</h2>
+    <p>Jody Lulich｜講義版</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div><a href="#s0">亞洲狗的結石成分</a><div class="nav-section">狗</div><a href="#s1">1. 草酸鈣：品種與預防</a><a href="#s2">2. 排尿式尿水推進</a><a href="#s3">3. 鳥糞石溶解</a><a href="#s4">4. 胱胺酸與去勢</a><div class="nav-section">貓</div><a href="#s5">5. 亞洲貓的結石</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>亞洲犬貓尿結石：MUC 2015–2025 資料與處置</h1>
+    <p>主講：Jody Lulich, DVM, PhD, DACVIM（University of Minnesota／Minnesota Urolith Center）</p>
+    <p>2026-10-18 講座｜Advanced Insights in Asia’s Dogs and Cats with Uroliths（講義 55 頁，每頁 2 張投影片）｜場次 03</p>
+    <div class="tags">
+      <span class="tag">Minnesota Urolith Center</span><span class="tag">台灣</span><span class="tag">草酸鈣</span><span class="tag">鳥糞石</span><span class="tag">胱胺酸</span><span class="tag">尿酸鹽</span><span class="tag">矽酸鹽</span><span class="tag">排尿式尿水推進</span><span class="tag">溶解治療</span><span class="tag">抗生素療程</span><span class="tag">去勢</span><span class="tag">Tiopronin</span><span class="tag">品種</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（數字＝講義 PDF 頁碼，每頁上下兩張） <span class="src src-add">💡 補充</span> 整理者補充（機轉、換算、交叉參照；不是講者說的）
+    <br><span class="muted">目前只有講義，沒有課堂錄音；講義上的影片與現場討論無法收錄。若之後有錄音，會再合併講者的口頭說明。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+<li>MUC 2015–2025 亞洲狗結石 n = 64,801：<strong>草酸鈣 54%</strong>、鳥糞石 31%、尿酸鹽 4%、<strong>胱胺酸 4%</strong></li><li><strong>台灣狗</strong>（n = 15,289）：草酸鈣 46%、<strong>鳥糞石 37%</strong>、胱胺酸 5%；<strong>台灣貓</strong>（n = 7799）：<strong>鳥糞石 66%</strong>、草酸鈣 23%</li><li>最大威脅＝<strong>草酸鈣</strong>；新興威脅＝<strong>胱胺酸（2% → 6%）</strong>；最大機會＝<strong>鳥糞石</strong>（可溶解）</li><li>草酸鈣預防五步：矯正高血鈣 → 處方食品 → <strong>USG &lt; 1.020</strong> → <strong>每 6–12 個月影像</strong>（小顆時不用開刀就能移除） → 高復發用 hydrochlorothiazide</li><li>感染性鳥糞石：<strong>抗生素要給到大部分甚至整個溶解期</strong>；4–6 週用 <strong>X 光（不是超音波）</strong>追蹤；不要溶解尿道結石</li><li>胱胺酸結石 <strong>99% 是公狗</strong>、多數未去勢；<strong>去勢</strong>即使在 Type I／II 品種也可能有幫助；去勢 3 個月後尿胱胺酸／肌酸酐 &lt; 150–200 µmol/g 符合雄性素依賴型</li><li>亞洲貓 n = 21,237：鳥糞石 51%、草酸鈣 40%；<strong>上泌尿道結石 85% 是草酸鈣</strong></li><li>貓鳥糞石溶解快：Louie 用 c/d multicare <strong>14 天</strong>內溶解</li>
+    </ul>
+  </div>
+
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🌏</div>
+      <h2>亞洲狗的結石成分（Minnesota Urolith Center）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 1</span> 2015–2025（n = 64,801）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>成分</th><th>比例</th></tr><tr><td>草酸鈣（CaOx）</td><td><strong>54%</strong></td></tr><tr><td>鳥糞石（MAP）</td><td>31%</td></tr><tr><td>尿酸鹽</td><td>4%</td></tr><tr><td>胱胺酸</td><td>4%</td></tr><tr><td>其他</td><td>7%（磷酸鈣 0.8%、矽酸鹽 0.8%、黃嘌呤 0.3%）</td></tr>
+        </table></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 2</span> 下泌尿道 vs 上泌尿道（2015–2024）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>CaOx</th><th>鳥糞石</th><th>尿酸鹽</th><th>胱胺酸</th><th>其他</th></tr><tr><td>下泌尿道（n = 59,495）</td><td>53%</td><td>31%</td><td>4%</td><td>2%</td><td>13%</td></tr><tr><td>上泌尿道（n = 2176）</td><td><strong>62%</strong></td><td>19%</td><td></td><td></td><td></td></tr>
+        </table></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 2</span> 各國狗的結石成分（%）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>CaOx</th><th>MAP</th><th>尿酸鹽</th><th>胱胺酸</th><th>其他</th></tr><tr><td>日本（n = 15,021）</td><td>59</td><td>28</td><td>3</td><td>2</td><td>8</td></tr><tr><td><strong>台灣（n = 15,289）</strong></td><td><strong>46</strong></td><td><strong>37</strong></td><td>3</td><td><strong>5</strong></td><td>9</td></tr><tr><td>南韓（n = 10,056）</td><td>76</td><td>16</td><td>3</td><td>1</td><td>4</td></tr><tr><td>泰國（n = 9736）</td><td>42</td><td>32</td><td>5</td><td>3</td><td>18</td></tr><tr><td>香港（n = 4501）</td><td>61</td><td>25</td><td>4</td><td>3</td><td>6</td></tr><tr><td>新加坡（n = 3289）</td><td>52</td><td>31</td><td>4</td><td>5</td><td>8</td></tr>
+        </table></div><figure class="fig">
+          <img src="photos/03-02b-dog-by-country.jpg" alt="📄 2：各國狗的結石成分" loading="lazy">
+          <figcaption>📄 2：各國狗的結石成分</figcaption>
+        </figure><p class="p"><span class="src src-add">💡 補充</span> 台灣狗的鳥糞石比例在六個地區中最高（37%），胱胺酸也和新加坡並列最高（5%）。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 3–5</span> 2015–2025 的趨勢</h3>
+        <ul class="notes"><li><strong>最大威脅：草酸鈣</strong>（比例最高且持續）</li><li><strong>新興威脅：胱胺酸</strong>，從 2% 升到 6%</li><li><strong>最大的成功機會：鳥糞石</strong>（可以溶解）</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🪨</div>
+      <h2>1. 狗的草酸鈣結石</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 6–8</span> 誰會長？</h3>
+        <p class="p">草酸鈣 n = 34,670，共 168 個品種。<strong>公狗 80%</strong>、母狗 19%。</p><div class="tbl-wrap"><table>
+          <tr><th>排名</th><th>品種</th><th>比例</th></tr><tr><td>1</td><td><strong>馬爾濟斯</strong></td><td>17%</td></tr><tr><td>2</td><td>博美</td><td>11%</td></tr><tr><td>3</td><td>西施</td><td>10%</td></tr><tr><td>4</td><td>吉娃娃</td><td>9%</td></tr><tr><td>5</td><td>米克斯</td><td>9%</td></tr><tr><td>6</td><td>迷你雪納瑞</td><td>9%</td></tr><tr><td>7</td><td>約克夏</td><td>6%</td></tr><tr><td>8</td><td>玩具貴賓</td><td>4%</td></tr><tr><td>9</td><td>迷你貴賓</td><td>4%</td></tr><tr><td>10</td><td>蝴蝶犬</td><td>3%</td></tr>
+        </table></div><figure class="fig">
+          <img src="photos/03-07b-caox-dog-breeds.jpg" alt="📄 7：亞洲常見草酸鈣結石的狗品種" loading="lazy">
+          <figcaption>📄 7：亞洲常見草酸鈣結石的狗品種</figcaption>
+        </figure>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 9</span> 草酸鈣的逐步預防</h3>
+        <ol class="notes"><li>有高血鈣就先矯正</li><li>餵<strong>預防用處方食品</strong>，重點在<strong>配合度</strong></li><li>讓<strong>USG 降到 1.020 以下</strong>：需要時持續在食物裡加水</li><li><strong>每 6–12 個月影像檢查</strong>，在結石還小、不用開刀就能移除時發現復發（排尿式尿水推進、網籃取石等）</li><li>高度復發的病例：降低尿鈣排出（<strong>hydrochlorothiazide</strong>）</li></ol><figure class="fig">
+          <img src="photos/03-09t-caox-prevention.jpg" alt="📄 9：草酸鈣逐步預防" loading="lazy">
+          <figcaption>📄 9：草酸鈣逐步預防</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">💧</div>
+      <h2>2. 排尿式尿水推進（Voiding urohydropropulsion）五步驟</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 9–15</span> 五步驟</h3>
+        <ol class="notes"><li><strong>測量</strong>結石與尿道</li><li><strong>麻醉</strong>病患（O’Hearn, JVECC 2011;21(1):50-52）</li><li>用液體<strong>充滿膀胱</strong></li><li><strong>把病患抬起來</strong>（直立，講義強調姿勢很重要）</li><li><strong>擠壓膀胱</strong></li></ol>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 11</span> 量尿道：導管 Fr 對應直徑</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>導管</th><th>直徑（mm）</th></tr><tr><td>8 Fr</td><td>2.67</td></tr><tr><td>9 Fr</td><td>3</td></tr><tr><td>10 Fr</td><td>3.33</td></tr><tr><td>11 Fr</td><td>3.67</td></tr><tr><td>12 Fr</td><td>4</td></tr>
+        </table></div><figure class="fig">
+          <img src="photos/03-11b-urethra-catheter-size.jpg" alt="📄 11：用導管估計尿道直徑" loading="lazy">
+          <figcaption>📄 11：用導管估計尿道直徑</figcaption>
+        </figure><p class="p"><span class="src src-slide">📄 10–11</span> 病例 Teddy：結石約 2 mm；<span class="src src-slide">📄 14</span> 排出的結石 100% 是單水草酸鈣。</p><p class="p"><span class="src src-add">💡 補充</span> Fr 數 ÷ 3 ＝ 直徑（mm）。結石要比尿道最窄處小，才適合用這個方法。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🧫</div>
+      <h2>3. 狗的鳥糞石：溶解與抗生素</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 16–18</span> 誰會長？</h3>
+        <p class="p">鳥糞石 n = 19,879，51 個品種：米克斯 15.1%、<strong>西施 12.9%</strong>、迷你雪納瑞 7.8%、迷你貴賓 5.9%、臘腸 4.9%、博美 4.7%、柯基 4.6%、馬爾濟斯 4.5%、玩具貴賓 4.3%、吉娃娃 4.1%。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 18–23</span> 2019 共識的一句話與病例 Heidi</h3>
+        <p class="p">講義引用 2019 ISCAID 細菌性泌尿道感染共識：「溶解期間<strong>不需要</strong>全程給抗菌藥」。講者認為：狗鳥糞石溶解或預防有困難，<strong>比較可能不是食物的問題，而是這個共識的誤導</strong>。</p><ul class="notes"><li>Heidi，3 歲已結紮母西施：fluoroquinolone 10 天＋溶解食品 3 個月</li><li>治療 1 個月時血尿復發 → amoxicillin 10 天，繼續溶解食品</li><li>3 個月、兩次 10 天抗生素後，結石仍在（電子顯微鏡可見結石內部有細菌）</li><li>改成 amoxicillin＋c/d 持續給：第 30 天、第 70 天逐漸溶解</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 24</span> 改善狗鳥糞石溶解的七點</h3>
+        <ol class="notes"><li>提高結石成分預測的準確度（X 光、CALCuRad、CALCulate、尿液分析、尿液培養）</li><li><strong>培養</strong>尿液以選擇適當抗生素</li><li><strong>不要溶解尿道結石</strong></li><li><strong>大部分甚至全部溶解期間都給抗生素</strong>（溶解更快，也更能控制排尿困難、降低阻塞機會）</li><li>一開始考慮給止痛，減少排尿困難與尿道阻塞機會</li><li><strong>4–6 週用 X 光（不是超音波）</strong>複查療效；不確定抗生素有沒有效時也複查尿液培養</li><li>常和飼主聯絡，提高配合度</li></ol><figure class="fig">
+          <img src="photos/03-24t-struvite-dissolution.jpg" alt="📄 24：改善狗鳥糞石溶解（第二個病例：Clavamox＋c/d multicare，第 14、45 天追蹤）" loading="lazy">
+          <figcaption>📄 24：改善狗鳥糞石溶解（第二個病例：Clavamox＋c/d multicare，第 14、45 天追蹤）</figcaption>
+        </figure>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 25–28</span> 隨堂問答</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>問題</th><th>選項</th></tr><tr><td>抗生素要給多久？</td><td>A. 10–14 天　B. <strong>直到結石溶解</strong>（講義標示 B）</td></tr><tr><td>什麼時候複查？</td><td>A. 新抗生素治療 3–5 天　B. 最後一劑抗生素後　C. <strong>4 週後</strong>　D. 病患惡化時（講義標示 C；病例在第 45 天複查）</td></tr>
+        </table></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 29</span> 感染性鳥糞石要注意的四件事</h3>
+        <ol class="notes"><li>抗生素要給大部分甚至整個溶解期；結石沒溶解時，一定要<strong>培養尿液</strong>找原因</li><li>結石表面加了<strong>碳酸磷酸鈣（&gt; 10–20%）</strong>或其他不能溶解的礦物，會阻礙溶解</li><li>大顆結石 4 週的 X 光可能只看到<strong>密度下降</strong>；超音波無法比較，只能輔助</li><li>產尿素酶細菌（如葡萄球菌、Proteus）的<strong>無症狀感染復發也要治療</strong></li></ol><p class="p"><span class="src src-add">💡 補充</span> 抗生素選擇與療程的一般原則見 <a href="../antimicrobial-selection/part1.html">知菌知藥 Part 1</a>。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">🧬</div>
+      <h2>4. 狗的胱胺酸結石與去勢</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 30</span> 胱胺酸結石怎麼形成？</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>型別</th><th>基因</th><th>遺傳</th></tr><tr><td>Type I</td><td>SLC3A1</td><td>體染色體隱性</td></tr><tr><td>Type II</td><td>SLC3A1、SLC7A9</td><td>體染色體顯性</td></tr><tr><td>Type III</td><td>—</td><td><strong>雄性素依賴</strong></td></tr>
+        </table></div><p class="p">近端腎小管的轉運蛋白（rBAT／SLC3A1、b<sup>0,+</sup>AT／SLC7A9）無法再吸收胱胺酸，尿中胱胺酸過多而形成結石。表面有粗糙與光滑兩種型態。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 32</span> 怎麼診斷胱胺酸尿？</h3>
+        <ul class="notes"><li>胱胺酸結晶尿</li><li>硝普鈉試驗（nitroprusside）</li><li>尿胱胺酸／肌酸酐比 <strong>&gt; 175–200 µmol/g 肌酸酐</strong></li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 33–35</span> 誰會長？</h3>
+        <p class="p">n = 2335；<strong>母狗只有 18 隻</strong>（9 隻已結紮）、<strong>公狗 2103 隻</strong>（只有 437 隻已去勢）。共 96 個品種。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 36–37</span> 去勢能矯正亞洲狗的胱胺酸尿嗎？</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>品種</th><th>比例</th><th>未去勢公狗</th><th>已知有 Type I／II 變異</th></tr><tr><td><strong>法國鬥牛犬</strong></td><td>22.2%</td><td>75.2%</td><td>是</td></tr><tr><td>吉娃娃</td><td>12.0%</td><td>80.4%</td><td>是</td></tr><tr><td>米克斯</td><td>11.8%</td><td>77.3%</td><td></td></tr><tr><td>臘腸</td><td>5.2%</td><td>77.7%</td><td>是</td></tr><tr><td>柯基</td><td>3.9%</td><td>64.3%</td><td></td></tr><tr><td>英國鬥牛犬</td><td>3.3%</td><td>81.7%</td><td>是</td></tr><tr><td>約克夏</td><td>2.8%</td><td>67.2%</td><td></td></tr><tr><td>迷你品</td><td>2.3%</td><td>79.6%</td><td></td></tr><tr><td>迷你貴賓</td><td>2.3%</td><td>71.4%</td><td>是</td></tr><tr><td>博美</td><td>2.0%</td><td>79.5%</td><td></td></tr><tr><td>巴哥</td><td>1.9%</td><td>85.4%</td><td></td></tr><tr><td>比特</td><td>1.6%</td><td>77.1%</td><td></td></tr><tr><td>迷你雪納瑞</td><td>1.6%</td><td>82.9%</td><td>是</td></tr><tr><td>西施</td><td>1.4%</td><td>74.2%</td><td>是</td></tr><tr><td>傑克羅素</td><td>1.3%</td><td>86.2%</td><td></td></tr>
+        </table></div><figure class="fig">
+          <img src="photos/03-37b-cystine-castration-breeds.jpg" alt="📄 37：哪些品種可能需要藥物治療（和去勢）？有 Type I／II 胱胺酸尿的品種" loading="lazy">
+          <figcaption>📄 37：哪些品種可能需要藥物治療（和去勢）？有 Type I／II 胱胺酸尿的品種</figcaption>
+        </figure><p class="p"><span class="src src-add">💡 補充</span> 講義表格的「M-Neutered／M-Intact」兩欄加起來接近 100%，這裡只列未去勢公狗的比例。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 38</span> 結論</h3>
+        <ol class="notes"><li>雄性素和其他睪丸產物在許多品種的胱胺酸結石形成中扮演重要角色</li><li><strong>去勢</strong>可能降低胱胺酸結石復發風險，<strong>即使是有 Type I、II 基因變異的品種</strong></li><li><strong>品種不能可靠預測</strong>胱胺酸尿的型別或對去勢的反應</li><li>建議做<strong>基因檢測與尿胱胺酸定量</strong>，評估個別狗去勢後復發的風險</li></ol><p class="p">（小鼠中 AGT1／SLC7A13 只在雄性表現；在狗的角色還不清楚，PNAS。）</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 39</span> 去勢前後的尿胱胺酸（Westropp et al. 2024 ACVIM 摘要，5 隻狗）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>時間</th><th>尿胱胺酸（µmol/g 肌酸酐）</th></tr><tr><td>去勢前</td><td>1082 ± 537</td></tr><tr><td>去勢後 1 個月</td><td>375 ± 375</td></tr><tr><td>去勢後 3 個月</td><td><strong>156 ± 120</strong></td></tr>
+        </table></div><div class="alert alert-success"><span class="alert-icon">✅</span><div>建議：去勢<strong>前</strong>與去勢後 <strong>3 個月</strong>測尿胱胺酸／肌酸酐比。沒有去勢前的數值時，去勢 ≥ 3 個月後 <strong>&lt; 150–200 µmol/g</strong> 符合雄性素依賴型胱胺酸尿。</div></div><figure class="fig">
+          <img src="photos/03-39t-cystine-after-castration.jpg" alt="📄 39：去勢前後的尿胱胺酸／肌酸酐比" loading="lazy">
+          <figcaption>📄 39：去勢前後的尿胱胺酸／肌酸酐比</figcaption>
+        </figure>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 39–41</span> 胱胺酸尿的治療</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>對象</th><th>治療</th></tr><tr><td>Type I（隱性，SLC3A1）、Type II（顯性，SLC3A1／SLC7A9）、母狗</td><td><strong>螯合</strong>、飲食（蛋白質、鈉、硒）、鹼化尿液、多尿、α-lipoic acid</td></tr><tr><td>Type III（雄性素依賴）</td><td><strong>去勢</strong></td></tr>
+        </table></div><p class="p"><strong>螯合</strong>：tiopronin 15–20 mg/kg q12h 或 D-penicillamine 15 mg/kg q12h（把胱胺酸拆成可溶的雙硫化物）。</p><p class="p"><strong>飲食目標</strong>：降低動物性蛋白質、減鈉、降低 USG、鹼化尿液（Hill’s u/d、Royal Canin UC）；u/d 讓 24 小時尿胱胺酸減少 20–25%，加 tiopronin 有 50% 完全溶解（Osborne, Vet Clin North Am 1999;29:193）。胱胺酸溶解度在尿 pH 升高時大幅增加。</p><figure class="fig">
+          <img src="photos/03-39b-treating-cystinuria.jpg" alt="📄 39：胱胺酸尿的治療：去勢不能矯正 vs 可以矯正" loading="lazy">
+          <figcaption>📄 39：胱胺酸尿的治療：去勢不能矯正 vs 可以矯正</figcaption>
+        </figure>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 42–43</span> 什麼時候去勢？</h3>
+        <p class="p">講義比較未去勢與已去勢公狗的胱胺酸結石年齡分布，並以一隻狗的 X 光說明「小事情」（小結石）的重要。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ecfeff">🐈</div>
+      <h2>5. 亞洲貓的結石</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 44</span> 矽酸鹽結石在哪裡最多？</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>地區</th><th>數量</th><th>佔所有結石</th></tr><tr><td>亞洲</td><td></td><td>0.8%</td></tr><tr><td>香港</td><td>27</td><td>0.6%</td></tr><tr><td><strong>日本</strong></td><td>309</td><td><strong>2.1%</strong></td></tr><tr><td>新加坡</td><td>21</td><td>0.6%</td></tr><tr><td>南韓</td><td>6</td><td>0.05%</td></tr><tr><td>台灣</td><td>40</td><td>0.3%</td></tr><tr><td>泰國</td><td>69</td><td>0.7%</td></tr>
+        </table></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 45</span> 亞洲貓的結石成分（2015–2025，n = 21,237）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>成分</th><th>比例</th></tr><tr><td>鳥糞石（MAP）</td><td><strong>51%</strong>（n = 10,784）</td></tr><tr><td>草酸鈣</td><td>40%（n = 8590）</td></tr><tr><td>尿酸鹽</td><td>5%</td></tr><tr><td>胱胺酸</td><td>&lt; 1%</td></tr><tr><td>其他</td><td>3%（磷酸鈣 0.7%、黃嘌呤 0.2%）</td></tr>
+        </table></div><div class="tbl-wrap"><table>
+          <tr><th></th><th>鳥糞石</th><th>草酸鈣</th></tr><tr><td>下泌尿道（n = 18,379）</td><td>53%</td><td>39%</td></tr><tr><td>上泌尿道（n = 862）</td><td>7%</td><td><strong>85%</strong></td></tr>
+        </table></div><figure class="fig">
+          <img src="photos/03-45b-cat-upper-lower.jpg" alt="📄 45：亞洲貓上、下泌尿道結石成分" loading="lazy">
+          <figcaption>📄 45：亞洲貓上、下泌尿道結石成分</figcaption>
+        </figure>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 46</span> 各國貓的結石成分（%）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>MAP</th><th>CaOx</th><th>尿酸鹽</th><th>胱胺酸</th><th>其他</th></tr><tr><td>日本（n = 3363）</td><td>30</td><td>61</td><td>4</td><td>0.1</td><td>5</td></tr><tr><td><strong>台灣（n = 7799）</strong></td><td><strong>66</strong></td><td><strong>23</strong></td><td>6</td><td>0.2</td><td>4</td></tr><tr><td>南韓（n = 1259）</td><td>63</td><td>32</td><td>2</td><td>0.2</td><td></td></tr><tr><td>泰國（n = 2288）</td><td>36</td><td>56</td><td>3</td><td>1</td><td>3</td></tr><tr><td>香港（n = 3190）</td><td>45</td><td>49</td><td>3</td><td>0.4</td><td>3</td></tr><tr><td>新加坡（n = 950）</td><td>49</td><td>39</td><td>8</td><td>0</td><td>4</td></tr>
+        </table></div><figure class="fig">
+          <img src="photos/03-46t-cat-by-country.jpg" alt="📄 46：各國貓的結石成分 2015–2025" loading="lazy">
+          <figcaption>📄 46：各國貓的結石成分 2015–2025</figcaption>
+        </figure><p class="p"><span class="src src-add">💡 補充</span> 台灣貓的鳥糞石比例（66%）是六個地區最高，代表多數台灣貓的結石有機會用食物溶解，先溶解再考慮手術。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 47–51</span> 貓的鳥糞石：品種與病例 Louie</h3>
+        <p class="p">鳥糞石 n = 10,784，公 53%、母 47%；米克斯 43%、DSH 20.1%、英短 5.2%、摺耳 4.0%、波斯 4.0%、美短 3.0%、金吉拉 1.8%、俄羅斯藍貓 1.4%、挪威森林貓 1.2%。</p><ul class="notes"><li>Louie，5 歲已去勢公貓 DSH：<strong>亂尿尿</strong></li><li>尿液：自然排尿、USG <strong>1.059</strong>、pH 6.28、RBC 5–20/hpf、WBC 0、<strong>無結晶、無細菌、培養陰性</strong></li><li>「你會溶解 Louie 的鳥糞石嗎？」c/d multicare：第 7 天變小、<strong>第 14 天溶解</strong></li></ul><p class="p"><span class="src src-add">💡 補充</span> 沒有結晶也沒有感染，仍然是鳥糞石，而且兩週就溶解；貓的鳥糞石多半是無菌性的，和狗的感染性鳥糞石不同。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 52–55</span> 「我們打贏了戰役，但還沒贏得戰爭」</h3>
+        <p class="p">草酸鈣：41%（n = 8590），公 53%、母 47%；品種：米克斯 21.1%、DSH 17.0%、<strong>英短 11.1%、摺耳 10.2%、波斯 8.4%</strong>、美短 6.7%、曼赤肯 3.1%、異國短毛 2.8%、金吉拉 2.0%。</p><p class="p">尿酸鹽：4%（n = 980），公 53%、母 47%；米克斯 46.4%、DSH 25.8%、英短 4.3%、波斯 2.3%、美短 1.8%、布偶 1.6%。</p>
+      </div><div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list"><div class="ref-item">Lulich J. <em>Advanced Insights in Asia’s Dogs and Cats with Uroliths.</em> 2026 講座講義（PDF 55 頁），資料來源 Minnesota Urolith Center 2015–2025。</div><div class="ref-item">講義引用：O’Hearn JVECC 2011;21(1):50-52；2019 ISCAID 細菌性泌尿道感染指引；Osborne Vet Clin North Am 1999;29:193；Westropp et al. 2024 ACVIM 摘要；PNAS doi:10.1073/pnas.1519959113。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="feline-nephroureterolithiasis.html">02 貓的腎與輸尿管結石</a>。相關：<a href="feline-urethral-obstruction.html">01 貓尿道阻塞（尿道栓子 90% 以上是鳥糞石）</a>、<a href="../antimicrobial-selection/part1.html">知菌知藥 Part 1（泌尿道感染）</a>。</p>
+    <a href="index.html">回到講座列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

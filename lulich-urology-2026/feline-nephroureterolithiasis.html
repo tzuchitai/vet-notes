@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>貓的腎與輸尿管結石：內科醫師的觀點｜Jody Lulich 泌尿講座</title>
+<style>
+  :root {
+    --primary: #0E7490;
+    --primary-light: #E0F2F7;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0B2A33;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9FD3E0; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #164552;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9FD3E0; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9FD3E0;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #164552;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #a26a75;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0B4F63 0%, #22A3C2 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0B2A33; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #164552; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0B4F63; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+</style>
+
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 講座系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← Jody Lulich 泌尿講座</a>
+  <div class="logo">
+    <h2>02｜貓腎輸尿管結石</h2>
+    <p>Jody Lulich｜講義版</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div><a href="#s0">盛行率與成分</a><a href="#s1">1. 為什麼要在意：疾病的指標</a><a href="#s2">2. 誰有風險</a><div class="nav-section">成因</div><a href="#s3">3. 結石怎麼形成</a><a href="#s4">4. 研究：腎鈣化與腎結石</a><div class="nav-section">處置</div><a href="#s5">5. 處置流程與排石治療</a><a href="#s6">6. 病例 June</a><a href="#s7">7. 結論</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>貓的腎與輸尿管結石：內科醫師的觀點</h1>
+    <p>主講：Jody Lulich, DVM, PhD, DACVIM（University of Minnesota／Minnesota Urolith Center）</p>
+    <p>2026-10-18 講座｜An Internist Perspective on Feline Nephroureterolithiasis — To Cut or Not to Cut（講義 51 頁，每頁 2 張投影片）｜場次 02</p>
+    <div class="tags">
+      <span class="tag">腎結石</span><span class="tag">輸尿管結石</span><span class="tag">CKD</span><span class="tag">AKI</span><span class="tag">高血鈣</span><span class="tag">草酸鈣</span><span class="tag">腎鈣化</span><span class="tag">腎乳頭</span><span class="tag">Osteopontin</span><span class="tag">排石治療</span><span class="tag">Tamsulosin</span><span class="tag">Prazosin</span><span class="tag">Amlodipine</span><span class="tag">SUB</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 投影片（數字＝講義 PDF 頁碼，每頁上下兩張） <span class="src src-add">💡 補充</span> 整理者補充（機轉、換算、交叉參照；不是講者說的）
+    <br><span class="muted">目前只有講義，沒有課堂錄音；講義上的影片與現場討論無法收錄。若之後有錄音，會再合併講者的口頭說明。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+<li>美國教學醫院的貓上泌尿道結石 20 年間從 <strong>每萬隻 3 例增加到 35 例</strong>；貓的上泌尿道結石比例遠高於狗（<strong>1.7% vs 0.3%</strong>）</li><li>貓腎輸尿管結石 <strong>76% 是草酸鈣</strong>，鳥糞石只有 12%：多數<strong>不能用食物溶解</strong></li><li>腎輸尿管結石是一個<strong>指標</strong>：CKD（44–73% 的 CKD 貓有結石）、AKI／輸尿管阻塞、高血鈣、慢性血尿、疼痛</li><li>高風險：<strong>4–12 歲</strong>、母貓（？）、<strong>CKD、高血鈣</strong></li><li>老貓的<strong>腎鈣化 84%</strong>、腎結石 54%；有腎鈣化的貓腎結石的勝算 <strong>3.5 倍</strong>；條紋狀髓質鈣化勝算最高</li><li>腎結石和<strong>礦化的腎乳頭結構相連</strong>：乳頭礦化可能是預防的標靶；osteopontin、osteocalcin 與鈣化共位</li><li>沒有阻塞、腎衰竭、疼痛或難控制 UTI → <strong>監測、減少長大</strong>（鈣結石）或<strong>溶解</strong>（MAP、urate）；有 → 先試<strong>排石治療</strong>，無效再考慮移除</li><li>排石治療成功率 <strong>23–31%</strong>、約 2 週；<strong>小顆、輸尿管中遠段、氮血症較輕、年輕貓</strong>較容易成功</li>
+    </ul>
+  </div>
+
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📊</div>
+      <h2>盛行率與成分</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 1</span> 講題與大綱</h3>
+        <p class="p">副標「To Cut or Not to Cut」（要不要開刀）。大綱：盛行率、為什麼在意（疾病指標）、誰有風險、病因是什麼、怎麼處理腎輸尿管結石最好。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 2</span> 美國獸醫教學醫院上泌尿道結石盛行率（1980–1999）</h3>
+        <p class="p">n = 163,999；從 <strong>每萬隻貓 3 例</strong>增加到 <strong>35 例</strong>（Lekcharoensuk, JAAHA 2005;41:39-46）。</p><figure class="fig">
+          <img src="photos/02-02t-prevalence-trend.jpg" alt="📄 2：1980–1999 美國獸醫學校貓上泌尿道結石盛行率" loading="lazy">
+          <figcaption>📄 2：1980–1999 美國獸醫學校貓上泌尿道結石盛行率</figcaption>
+        </figure>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 3</span> 結石位置：狗 vs 貓（2022–2023）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th></th><th>結石總數</th><th>上泌尿道結石</th><th>上泌尿道比例</th><th>比例</th></tr><tr><td>狗</td><td>126,795</td><td>380</td><td><strong>0.3%</strong></td><td>334 : 1</td></tr><tr><td>貓</td><td>45,101</td><td>767</td><td><strong>1.7%</strong></td><td>59 : 1</td></tr>
+        </table></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 3</span> 貓上泌尿道結石的盛行率</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>研究</th><th>族群</th><th>盛行率</th></tr><tr><td>Lekcharoensuk JAAHA 2005</td><td>美國教學醫院住院（n = 390,318）</td><td>0.35%</td></tr><tr><td>Wightman, Vet Med Sci 2016</td><td>紐西蘭與美國診所影像（n = 1190）</td><td>5.3%（&lt; 6 歲 1.5%；&gt; 6 歲 7.2%）</td></tr><tr><td>Geddes, JVIM 2022</td><td>英國轉診醫院住院（n = 11,431）</td><td>4.6%</td></tr><tr><td>Hsu, JFMS 2022</td><td>超音波診斷 CKD 的貓（n = 140）</td><td><strong>73%</strong></td></tr>
+        </table></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 4</span> 貓腎結石與輸尿管結石的礦物成分（MUC 2022–2023，n = 759）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>成分</th><th>比例</th></tr><tr><td><strong>草酸鈣（CaOx）</strong></td><td><strong>76%</strong></td></tr><tr><td>鳥糞石（MAP）</td><td>12%</td></tr><tr><td>其他</td><td>4%</td></tr><tr><td>固化血塊</td><td>3%</td></tr><tr><td>磷酸鈣（CAP）</td><td>2%</td></tr><tr><td>混合</td><td>2%</td></tr><tr><td>嘌呤</td><td>1%</td></tr>
+        </table></div><figure class="fig">
+          <img src="photos/02-04t-mineral-composition.jpg" alt="📄 4：貓腎與輸尿管結石的礦物成分" loading="lazy">
+          <figcaption>📄 4：貓腎與輸尿管結石的礦物成分</figcaption>
+        </figure><p class="p"><span class="src src-add">💡 補充</span> 草酸鈣無法用食物溶解，這也是上泌尿道結石處置困難的原因。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">⚠️</div>
+      <h2>1. 為什麼要在意：腎輸尿管結石是疾病的指標</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 5–10</span> 可能代表</h3>
+        <ul class="notes"><li><strong>慢性腎病</strong>：44–73% 的 CKD 貓有腎輸尿管結石</li><li><strong>急性腎損傷</strong>（輸尿管阻塞？）；無症狀的單側 AKI；潛在的輸尿管阻塞</li><li><strong>高血鈣</strong>：26%（47/176）有腎結石、31%（54/176）有輸尿管結石的貓有高血鈣</li><li><strong>慢性血尿</strong></li><li><strong>疼痛？</strong></li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 5–6</span> CKD 的貓</h3>
+        <ul class="notes"><li>腎衰竭臨床試驗（血清肌酸酐 2.1–4.5 mg/dL，n = 189）：<strong>44%</strong>（83 隻）偵測到結石</li><li>超音波診斷 CKD 的貓：<strong>73%</strong>（n = 140）；另一族群 34%（n = 128）</li><li>講義附一張腎結石組 vs 無腎結石組（各 n = 7）的肌酸酐追蹤圖</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 7</span> 造成阻塞的比例</h3>
+        <p class="p">腎輸尿管結石造成阻塞：<strong>56.1%（290/517）</strong>；住院時已阻塞 53%、住院後才阻塞 3%、沒有阻塞 44%。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 9</span> 有腎輸尿管結石的貓：高血鈣的盛行率與原因</h3>
+        <p class="p"><strong>17.3%（62/369）</strong>有高血鈣。原因：不明 42%、短暫性 26%、特發性 16%、CKD 11%。與結石相關的高血鈣疾病：年輕、腫瘤、肉芽腫疾病（Broughton, Ionized hypercalcemia in 238 cats, JVIM 2022）。</p><p class="p"><span class="src src-add">💡 補充</span> 高血鈣的鑑別見 <a href="../texas-endocrine-2026/hypercalcemia.html">Texas 21 高血鈣</a>；貓下泌尿道與原發性高血鈣病例見 <a href="../case-discussions/feline-hypercalcemia-luts.html">梅醫師病例討論</a>。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">👥</div>
+      <h2>2. 誰有風險？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 11</span> 風險因子</h3>
+        <ul class="notes"><li>母貓多於公貓？</li><li><strong>年紀較大</strong>（4–12 歲）</li><li><strong>CKD</strong></li><li><strong>高血鈣</strong></li></ul><p class="p">Geddes et al. JVIM 2024（講義附多變項分析表）。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ecfeff">🧪</div>
+      <h2>3. 腎結石怎麼形成？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 13–14</span> 均質成核 vs 異質成核</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>機轉</th><th>說明</th><th>病因</th></tr><tr><td><strong>均質成核</strong></td><td>尿液過飽和，晶體自己析出</td><td>高尿鈣、高草酸尿、遺傳</td></tr><tr><td><strong>異質成核</strong></td><td>在既有表面上析出；<strong>更常見、熱力學上更有利</strong>：表面與界面很多，需要的過飽和閾值較低</td><td>核心（nidus）、<strong>組織礦化（礦化的腎乳頭）</strong>、新的促進因子、細菌尿、微生物組、混合</td></tr>
+        </table></div>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 15</span> 結石形成的步驟</h3>
+        <p class="p">過飽和 → 晶體成核 → 滯留 → 聚集、生長、累加 → 肉眼可見的結石。<strong>促進因子增加</strong>、<strong>抑制因子減少</strong>都會推動這個過程。</p><figure class="fig">
+          <img src="photos/02-15t-stone-formation.jpg" alt="📄 15：從過飽和到可見結石" loading="lazy">
+          <figcaption>📄 15：從過飽和到可見結石</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">🔬</div>
+      <h2>4. 研究：腎鈣化、腎乳頭與腎結石</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 17</span> 腎鈣化（nephrocalcinosis）</h3>
+        <p class="p">腎實質內的鈣鹽沉積；<strong>78%</strong> 的 CKD 貓有（Tang 2022）。風險因子：血中游離鈣、血漿磷、血漿肌酸酐上升。<strong>腎鈣化和腎結石的關係還不清楚</strong>，這是知識缺口。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 18–21</span> 目標 1：腎鈣化的型態與腎結石</h3>
+        <ul class="notes"><li>方法：Feline Kidney Bank（安樂死後 0–24 小時、4°C 保存）；福馬林固定、微放射攝影、組織病理</li><li>微放射攝影：腎結石＝邊界清楚、高密度；腎鈣化＝瀰漫或區域性、點狀或條紋狀</li><li>175 隻貓、350 顆腎：<strong>腎鈣化 84%</strong>（147/175），96% 雙側，較老（中位數 15 vs 6 歲），母貓較多</li><li><strong>腎結石 54%</strong>（95/175），57% 雙側，較老（15 vs 13 歲），沒有性別差異</li><li>有腎鈣化 → 腎結石勝算 <strong>3.5 倍</strong>（單變項 P = .002；多變項 3.1，P = .052）</li><li>腎鈣化的腎中：<strong>條紋狀 73%</strong>、條紋＋點狀 20%、點狀 6%；腎結石勝算：條紋狀 OR 13.9、條紋＋點狀 OR 18.6、點狀 OR 6.7（不顯著）</li></ul><figure class="fig">
+          <img src="photos/02-20b-nephrocalcinosis-odds.jpg" alt="📄 20：腎鈣化與腎結石的勝算" loading="lazy">
+          <figcaption>📄 20：腎鈣化與腎結石的勝算</figcaption>
+        </figure>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 22</span> 腎鈣化可能怎麼促進結石</h3>
+        <ul class="notes"><li>提供結石附著的<strong>結構表面</strong></li><li>改變腎絲球濾液的過飽和</li><li>和腎結石有共同的致病途徑</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 23–29</span> 目標 2：腎結石和礦化的腎乳頭有結構連接嗎？</h3>
+        <p class="p">假說：貓的腎結石長在<strong>穿破尿路上皮的乳頭礦化</strong>上，礦化成為結石初期生長的核心。</p><ul class="notes"><li>結石端：MUC 送驗的腎結石，用立體顯微鏡、microCT、SEM＋EDS、光學結晶學與紅外光譜</li><li>腎臟端：Feline Kidney Bank，用微放射攝影、microCT、樹脂包埋的組織病理、SEM＋EDS</li><li>結果：草酸鈣腎結石表面有<strong>磷酸鈣管狀結構</strong>（中空或填滿礦物），符合曾附著在乳頭上</li><li>MicroCT 與組織病理確認<strong>乳頭礦化與附著的腎結石在三維上連續</strong></li></ul><figure class="fig">
+          <img src="photos/02-28t-papilla-continuity.jpg" alt="📄 28：腎結石與礦化的腎乳頭在結構上連續" loading="lazy">
+          <figcaption>📄 28：腎結石與礦化的腎乳頭在結構上連續</figcaption>
+        </figure><p class="p"><span class="src src-slide">📄 30</span> 結論：<strong>腎乳頭礦化可能是預防貓腎結石的標靶</strong>。</p>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 30–33</span> 目標 3：什麼驅動組織礦化？</h3>
+        <p class="p">其他物種提出的機轉：礦物失衡（高尿鈣、高磷尿、高草酸尿）、類成骨分化（RUNX2、BMP-2、osteopontin、Wnt）、細胞傷害與氧化壓力、<strong>礦化抑制因子流失</strong>（焦磷酸、Tamm-Horsfall 蛋白、osteopontin、fetuin-A）、晶體清除失敗。在貓還不知道。</p><div class="tbl-wrap"><table>
+          <tr><th>標記</th><th>與礦化共位</th><th>礦化區較強</th></tr><tr><td>Osteopontin（OPN）</td><td><strong>18/18（100%）</strong></td><td>是（P &lt; .001）</td></tr><tr><td>Osteocalcin（OCN）</td><td><strong>12/18（67%）</strong></td><td>是（P = .003）</td></tr><tr><td>BMP-2</td><td>2/18（11%）</td><td>—（兩隻都有腎結石）</td></tr><tr><td>TNAP</td><td>1/18（6%）</td><td>—</td></tr><tr><td>RUNX2</td><td>0/18</td><td>—</td></tr>
+        </table></div><p class="p">18 顆條紋狀礦化的腎（10 顆有腎結石、8 顆沒有），有無結石沒有差別。結論：OPN、OCN 與髓質乳頭礦化共位；RUNX2、BMP-2、TNAP 幾乎沒有，表示<strong>典型的成骨轉分化可能不是主要驅動因素</strong>。</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🧭</div>
+      <h2>5. 處置流程與排石治療</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 40</span> 腎輸尿管結石的處置流程</h3>
+        <p class="p">先問四個問題：<strong>泌尿道阻塞？腎衰竭？泌尿道疼痛？難以控制的 UTI？</strong></p><div class="tbl-wrap"><table>
+          <tr><th></th><th>處置</th></tr><tr><td><strong>都沒有</strong></td><td>MAP、尿酸鹽、胱胺酸（？）→ <strong>藥物溶解</strong>；鈣結石 → <strong>監測、減少長大</strong></td></tr><tr><td><strong>有</strong></td><td><strong>排石治療</strong> → 有效（結石排出、腎功能改善、疼痛減輕）→ 回到監測；無效 → <strong>考慮移除結石</strong>（手術、支架、SUB、碎石）</td></tr>
+        </table></div><figure class="fig">
+          <img src="photos/02-40b-management-algorithm.jpg" alt="📄 40：腎輸尿管結石處置流程" loading="lazy">
+          <figcaption>📄 40：腎輸尿管結石處置流程</figcaption>
+        </figure>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 42</span> 排石治療（Expulsive therapy）</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>步驟</th><th>內容（講義）</th></tr><tr><td>1. 輸液</td><td>確保水合</td></tr><tr><td>2. 排石藥物（交感 α 阻斷劑／鈣離子阻斷劑）</td><td><strong>Tamsulosin</strong> 0.004–0.006 mg/kg PO q12–24h<br><strong>Prazosin</strong> 0.25–0.5 mg/貓 PO q12–24h<br><strong>Amlodipine</strong> 0.625–1.25 mg/貓 PO q24h</td></tr><tr><td>3. 止痛</td><td></td></tr>
+        </table></div><p class="p">證據：<strong>成功率 23–31%</strong>；成功所需時間約 <strong>2 週</strong>；成功的預測因子：<strong>結石較小（0.55–1.65 mm）、在輸尿管中遠段、氮血症較輕、年輕貓（&lt; 4–8 歲）</strong>。</p><figure class="fig">
+          <img src="photos/02-42b-expulsive-evidence.jpg" alt="📄 42：排石治療的證據" loading="lazy">
+          <figcaption>📄 42：排石治療的證據</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🐱</div>
+      <h2>6. 病例 June：8 歲已結紮母貓 DSH</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 37–38</span> 病史與檢查</h3>
+        <ul class="notes"><li>病史：<strong>嗜睡、厭食、嘔吐 2 天</strong>；成貓維持乾糧</li><li>PE：T 101°F、P 140、R 20；體重 14.6 磅；輕度脫水；<strong>右腎 &lt; 左腎</strong>；膀胱正常</li><li>第 1 天：肌酸酐 <strong>8.5</strong>、BUN 103、磷 6.8、K 5.11、Ca 10.6、HCT 41；USG <strong>1.008</strong>、pH 6.5、RBC &gt; 50/hpf、WBC 0、無結晶、<strong>培養陰性</strong></li><li>X 光與超音波：輸尿管結石（講義影像）</li></ul>
+      </div><div class="subsection">
+        <h3><span class="src src-slide">📄 43–50</span> 病程</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>天</th><th>Creat</th><th>BUN</th><th>P</th><th>K</th><th>Ca</th><th>治療</th></tr><tr><td>0</td><td>8.5</td><td>117</td><td>6.8</td><td>5.11</td><td>10.6</td><td>輸液（3 倍）、cefazolin</td></tr><tr><td>1</td><td>7.8</td><td>103</td><td>4.9</td><td>4.2</td><td>8.9</td><td>＋ buprenorphine、<strong>amlodipine</strong></td></tr><tr><td>6</td><td>4.0</td><td>50</td><td>4.9</td><td>6.2</td><td>9.7</td><td>出院，改罐頭</td></tr><tr><td>13</td><td><strong>13.7</strong></td><td>145</td><td>10.3</td><td>6.4</td><td>10.7</td><td>再入院：輸液（3 倍）、mannitol、buprenorphine</td></tr><tr><td>18</td><td>3.0</td><td>44</td><td>—</td><td>4.1</td><td>—</td><td>鼻食道管餵食 → 出院，每天皮下輸液 200 mL</td></tr><tr><td>22</td><td>6.6</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>48</td><td>2.2</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>314</td><td>3.9</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>939</td><td><strong>1.4</strong></td><td></td><td></td><td></td><td></td><td></td></tr>
+        </table></div><figure class="fig">
+          <img src="photos/02-46t-june-labs.jpg" alt="📄 46：June 第 0–18 天的檢驗與治療" loading="lazy">
+          <figcaption>📄 46：June 第 0–18 天的檢驗與治療</figcaption>
+        </figure><figure class="fig">
+          <img src="photos/02-50t-june-creatinine.jpg" alt="📄 50：June 的肌酸酐追蹤到第 939 天" loading="lazy">
+          <figcaption>📄 50：June 的肌酸酐追蹤到第 939 天</figcaption>
+        </figure><p class="p"><span class="src src-slide">📄 49</span> 講義在這裡問：「膀胱結石從哪裡來？」（X 光可見結石往下移動）。</p><div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> June 沒有開刀或放 SUB，用輸液、amlodipine、止痛與時間，腎功能在 2 年半後回到 1.4 mg/dL；中間第 13 天肌酸酐再升到 13.7，表示排石過程可能反覆阻塞，需要密切追蹤與飼主溝通。</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📝</div>
+      <h2>7. 結論</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3><span class="src src-slide">📄 51</span> 內科醫師的觀點</h3>
+        <ol class="notes"><li>腎輸尿管結石是一個指標，可能代表：<strong>AKI、CKD、CKD 惡化、輸尿管阻塞、高血鈣、血尿與疼痛</strong></li><li>原因包括：<strong>均質成核</strong>（高尿鈣）、<strong>異質成核</strong>（腎礦化）</li><li>雖然移除結石、繞道與碎石是阻塞的標準治療，但<strong>水合、輸尿管放鬆、止痛與時間</strong>可能促進結石排出，特別是<strong>小顆輸尿管遠段結石的年輕貓</strong></li><li>最成功的治療來自<strong>最有經驗的臨床醫師</strong></li><li>需要更多研究提供更好的指引</li></ol>
+      </div><div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list"><div class="ref-item">Lulich J. <em>An Internist Perspective on Feline Nephroureterolithiasis: To Cut or Not to Cut.</em> 2026 講座講義（PDF 51 頁）。</div><div class="ref-item">講義引用：Lekcharoensuk JAAHA 2005;41:39-46；Wightman Vet Med Sci 2016；Geddes JVIM 2022、2024；Hsu JFMS 2022；Broughton JVIM 2022；Tang 2022。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="feline-urethral-obstruction.html">01 貓尿道阻塞</a>｜下一場：<a href="asia-uroliths.html">03 亞洲犬貓尿結石</a>。相關：<a href="../tsfm-feline-ecc-2026/aki.html">TSFM 10 急性腎損傷</a>、<a href="../texas-endocrine-2026/hypercalcemia.html">Texas 21 高血鈣</a>。</p>
+    <a href="index.html">回到講座列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

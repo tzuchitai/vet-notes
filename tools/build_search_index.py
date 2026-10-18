@@ -22,7 +22,8 @@ from html.parser import HTMLParser
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 
-# 科別：key → (名稱, 圖示, 顏色, 分組)，順序即首頁顯示順序；沒有筆記的科別會以灰色「尚無」顯示
+# 科別：key → (名稱, 圖示, 顏色, 分組[, 上層科別])，順序即首頁顯示順序；沒有筆記的科別會以灰色「尚無」顯示
+# 有上層科別的（如 腎臟、泌尿 → 腎臟泌尿）只標子科別即可，上層會自動加上
 SPECIALTIES = [
     ('cardio',   '心臟',         '🫀', '#DC2626', '專科'),
     ('heme',     '血液與輸血',   '🩸', '#B91C1C', '專科'),
@@ -32,6 +33,8 @@ SPECIALTIES = [
     ('ophtho',   '眼科',         '👁️', '#2563EB', '專科'),
     ('endo',     '內分泌',       '🧪', '#0F766E', '內科'),
     ('renal',    '腎臟泌尿',     '💧', '#0284C7', '內科'),
+    ('kidney',   '腎臟',         '🫘', '#0369A1', '內科', 'renal'),
+    ('uro',      '泌尿',         '🚻', '#0891B2', '內科', 'renal'),
     ('gi',       '腸胃消化',     '🍽️', '#A16207', '內科'),
     ('resp',     '呼吸',         '🫁', '#7C3AED', '內科'),
     ('infect',   '感染與抗生素', '🧫', '#5B3EBD', '內科'),
@@ -47,6 +50,7 @@ SERIES = {
     'echocardiography':        '心臟超音波系列（ESAVS）',
     'case-discussions':        '梅醫師病例討論',
     'antimicrobial-selection': '知菌知藥：抗菌藥物選擇',
+    'lulich-urology-2026':     'Jody Lulich 泌尿講座',
     'notes':                   '單篇筆記',
 }
 
@@ -55,17 +59,20 @@ FOLDER_SPECS = {
     'tsfm-feline-ecc-2026': ['ecc'],
     'echocardiography':     ['cardio'],
     'antimicrobial-selection': ['infect'],
+    'lulich-urology-2026':  ['uro'],
 }
 
 SPECS = {
     'texas-endocrine-2026/endocrine-neoplasia.html': ['endo', 'onc'],
     'texas-endocrine-2026/hypercalcemia.html':       ['endo', 'onc'],
     'echocardiography/14-pericardial-effusion.html': ['cardio', 'onc'],
-    'texas-endocrine-2026/pupd.html':                ['endo', 'renal'],
+    'lulich-urology-2026/feline-urethral-obstruction.html': ['uro', 'ecc'],
+    'lulich-urology-2026/feline-nephroureterolithiasis.html': ['uro', 'kidney'],
+    'texas-endocrine-2026/pupd.html':                ['endo', 'kidney'],
     'texas-endocrine-2026/dka-hhs.html':             ['endo', 'ecc'],
     'texas-endocrine-2026/diabetic-nutrition.html':  ['endo', 'nutrition'],
     'texas-endocrine-2026/obesity-weight-loss.html': ['endo', 'nutrition'],
-    'tsfm-feline-ecc-2026/aki.html':                 ['ecc', 'renal'],
+    'tsfm-feline-ecc-2026/aki.html':                 ['ecc', 'kidney'],
     'tsfm-feline-ecc-2026/bleeding-transfusion.html':['ecc', 'heme'],
     'tsfm-feline-ecc-2026/cant-breathe-localization.html': ['ecc', 'resp'],
     'tsfm-feline-ecc-2026/cant-breathe-next.html':   ['ecc', 'resp'],
@@ -73,16 +80,16 @@ SPECS = {
     'tsfm-feline-ecc-2026/fate.html':                ['ecc', 'cardio'],
     'tsfm-feline-ecc-2026/sepsis.html':              ['ecc', 'infect'],
     'case-discussions/canine-juvenile-thyroid-growth-retardation.html': ['endo'],
-    'case-discussions/feline-chf-fluid-intolerance.html': ['cardio', 'renal'],
+    'case-discussions/feline-chf-fluid-intolerance.html': ['cardio', 'kidney'],
     'case-discussions/feline-chronic-diarrhea.html': ['gi'],
     'case-discussions/feline-chronic-vomiting.html': ['gi'],
-    'case-discussions/feline-ckd-obesity-enteropathy.html': ['renal', 'gi', 'nutrition'],
-    'case-discussions/feline-hypercalcemia-luts.html': ['renal', 'endo'],
+    'case-discussions/feline-ckd-obesity-enteropathy.html': ['kidney', 'gi', 'nutrition'],
+    'case-discussions/feline-hypercalcemia-luts.html': ['uro', 'kidney', 'endo'],
     'case-discussions/feline-severe-uri-outdoor-cat.html': ['resp', 'infect'],
-    'antimicrobial-selection/part1.html':            ['infect', 'renal'],
+    'antimicrobial-selection/part1.html':            ['infect', 'uro'],
     'antimicrobial-selection/part2.html':            ['infect', 'resp'],
     'notes/blood-transfusion.html':                  ['heme', 'ecc'],
-    'notes/clinical-pathology.html':                 ['clinpath'],
+    'notes/clinical-pathology.html':                 ['clinpath', 'kidney'],
     'notes/feline-diabetes.html':                    ['endo'],
     'notes/hospitalized-care.html':                  ['skills', 'ecc'],
     'notes/soap-note-template.html':                 ['skills'],
@@ -162,6 +169,9 @@ def series_of(path):
     return top, SERIES.get(top, '單篇筆記')
 
 
+PARENT = {row[0]: row[5] for row in SPECIALTIES if len(row) > 5}
+
+
 def main():
     files = subprocess.run(['git', 'ls-files', '*.html'], capture_output=True, text=True, check=True).stdout.split()
     pages, sections = [], []
@@ -173,7 +183,10 @@ def main():
         title = clean_title(m.group(1)) if m else path
         folder, series = series_of(path)
         is_index = path.endswith('/index.html')
-        specs = SPECS.get(path) or FOLDER_SPECS.get(folder) or []
+        specs = list(SPECS.get(path) or FOLDER_SPECS.get(folder) or [])
+        for k in list(specs):
+            if PARENT.get(k) and PARENT[k] not in specs:
+                specs.append(PARENT[k])
         pages.append({'u': path, 'title': title, 'series': series, 'folder': folder,
                       'specs': [] if is_index else specs, 'index': is_index,
                       'gated': path.startswith(GATED)})
@@ -187,7 +200,8 @@ def main():
                 continue
             sections.append([len(pages) - 1, s['id'], s['h'], s['t']])
 
-    meta = {'specialties': [{'key': k, 'name': n, 'icon': i, 'color': c, 'group': g} for k, n, i, c, g in SPECIALTIES],
+    meta = {'specialties': [{'key': r[0], 'name': r[1], 'icon': r[2], 'color': r[3], 'group': r[4],
+                                    **({'parent': r[5]} if len(r) > 5 else {})} for r in SPECIALTIES],
             'series': SERIES, 'pages': pages}
     with open('search-meta.js', 'w', encoding='utf-8') as f:
         f.write('// 由 tools/build_search_index.py 產生，請勿手動修改\n')

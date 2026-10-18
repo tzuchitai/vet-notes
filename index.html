@@ -187,6 +187,7 @@
     .sidebar .spec-chip:hover:not(.empty) { background: var(--gold-bg); border-color: transparent; }
     .sidebar .spec-chip.active { background: var(--chip, var(--gold)); color: #fff; }
     .sidebar .spec-chip.empty { border: 1px dashed var(--border); }
+    .sidebar .spec-chip.sub { width: calc(100% - 16px); margin-left: 16px; font-size: .82rem; padding: 5px 10px; border-left: 2px solid var(--border); border-radius: 0 10px 10px 0; }
     @media (max-width: 860px) {
       .layout { display: block; padding-left: 0; }
       .sidebar {
@@ -299,7 +300,7 @@
   <!-- Stats -->
   <div class="stats">
     <div class="stat">
-      <div class="stat-num" id="note-count">9</div>
+      <div class="stat-num" id="note-count">10</div>
       <div class="stat-label">筆記數量</div>
     </div>
     <div class="stat">
@@ -430,6 +431,20 @@
       </div>
     </a>
 
+    <!-- ── Jody Lulich 泌尿講座 ── -->
+    <a class="card" href="lulich-urology-2026/index.html" data-title="Jody Lulich 泌尿 結石 尿結石 urolith 尿道阻塞 urethral obstruction 腎結石 輸尿管結石 鳥糞石 struvite 草酸鈣 calcium oxalate 胱胺酸 cystine Minnesota">
+      <div class="card-top" style="background:linear-gradient(90deg,#0E7490,#22A3C2)"></div>
+      <div class="card-body">
+        <div class="card-icon">🚻</div>
+        <div class="card-title">Jody Lulich 泌尿講座</div>
+        <div class="card-desc">Minnesota Urolith Center 三場講座：貓尿道阻塞、貓腎與輸尿管結石、亞洲犬貓尿結石資料（含台灣），依講義整理</div>
+      </div>
+      <div class="card-footer">
+        <span class="card-date">3 篇</span>
+        <span class="card-arrow" style="background:#0E7490">→</span>
+      </div>
+    </a>
+
     <!-- ── 牙科麻醉 ── -->
     <div class="card card-soon" data-title="牙科 麻醉 dental">
       <div class="card-top" style="background:linear-gradient(90deg,#c8962a,#e8b84b)"></div>
@@ -552,7 +567,7 @@
     if (specs.size) {
       const tags = document.createElement('div');
       tags.className = 'spec-tags';
-      tags.innerHTML = [...specs].filter(k => SPEC[k]).map(k =>
+      tags.innerHTML = [...specs].filter(k => SPEC[k] && ![...specs].some(c => SPEC[c] && SPEC[c].parent === k)).map(k =>
         `<span class="spec-tag" style="background:${SPEC[k].color}">${SPEC[k].name}</span>`).join('');
       card.querySelector('.card-body').appendChild(tags);
     }
@@ -576,8 +591,9 @@
       `<div class="spec-row">${g.name ? `<span class="spec-row-name">${esc(g.name)}</span>` : ''}` +
       g.items.map(s => {
         const n = pagesOf(s.key).length;
-        return n ? chip(s.key, `${s.icon} ${s.name}`, n, s.color)
-                 : `<button class="spec-chip empty" disabled title="這個科別還沒有筆記">${s.icon} ${s.name}<span class="n">尚無</span></button>`;
+        const sub = s.parent ? ' sub' : '';
+        return n ? chip(s.key, `${s.icon} ${s.name}`, n, s.color).replace('class="spec-chip', 'class="spec-chip' + sub)
+                 : `<button class="spec-chip empty${sub}" disabled title="這個科別還沒有筆記">${s.icon} ${s.name}<span class="n">尚無</span></button>`;
       }).join('') + '</div>').join('');
   }
 
@@ -673,7 +689,7 @@
       `<div class="sr-head"><strong>內文搜尋「${esc(q)}」${scope}</strong><span>${found.length} 篇筆記、${hitCount} 處符合</span></div>` +
       shown.map(e => {
         const hits = e.hits.sort((a, b) => b.score - a.score);
-        const tags = e.p.specs.filter(k => SPEC[k]).map(k => SPEC[k].name).join('・');
+        const tags = e.p.specs.filter(k => SPEC[k] && !e.p.specs.some(c => SPEC[c] && SPEC[c].parent === k)).map(k => SPEC[k].name).join('・');
         return `<div class="sr-page"><a class="sr-title" href="${e.p.u}">${e.p.gated ? '🔒 ' : ''}${highlight(e.p.title, ts)}</a>` +
           `<div class="sr-meta">${esc(e.p.series)}${tags ? ' ・ ' + tags : ''}</div>` +
           hits.slice(0, 3).map(x => `<a class="sr-hit" href="${e.p.u}${x.id ? '#' + x.id : ''}">${x.h ? `<b>${highlight(x.h, ts)}</b>　` : ''}${snippet(x.t, ts)}</a>`).join('') +
