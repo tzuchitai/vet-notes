@@ -323,6 +323,10 @@
   .fig img { background: #fff; }
   .src-slide { background: #e0f2fe; color: #075985; }
   .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+  .figlink { font-size: 12px; font-weight: 600; color: var(--primary); text-decoration: none; background: var(--primary-light); border-radius: 999px; padding: 2px 9px; margin-left: 4px; white-space: nowrap; }
+  .figlink:hover { text-decoration: underline; }
+  .fig.diagram svg { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; background: #fff; }
+  @media (max-width: 600px) { .fig.diagram { overflow-x: auto; } .fig.diagram svg { min-width: 560px; } .fig.diagram figcaption::before { content: "← 左右滑動看完整圖 →"; display: block; font-size: 11px; opacity: .6; margin-bottom: 2px; } }
 </style>
 
 </head>
@@ -355,8 +359,8 @@
 
   <div class="legend">
     <strong>資料來源標記：</strong>
-    <span class="src src-slide">📑 原文</span> 論文內容（標示原文段落或圖號） <span class="src src-add">💡 補充</span> 整理者補充（交叉參照、臨床提醒；不是作者說的）
-    <br><span class="muted">依原文重點整理成中文，不是逐句翻譯。原文的超音波圖片版權屬作者與期刊，這裡沒有轉載，請到 <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10814422/">PMC 全文</a>對照圖 1–16 看。</span>
+    <span class="src src-slide">📑 原文</span> 論文內容（標示原文段落或圖號） <span class="src src-add">💡 補充</span> 整理者補充（交叉參照、臨床提醒；不是作者說的） <span class="figlink">🔗 看原圖</span> 開新分頁到 PMC 看論文原圖
+    <br><span class="muted">依原文重點整理成中文，不是逐句翻譯。原文的超音波圖片版權屬作者與期刊，這裡沒有轉載；每段標題旁的「看原圖」可直接跳到 PMC 上的那張圖。頁面中的圖 A–E 是本站自繪的示意圖。</span>
   </div>
 
   <div class="keypoints">
@@ -392,14 +396,114 @@
     </div>
     <div class="section-body">
 <div class="subsection">
-        <h3><span class="src src-slide">📑 圖 1</span> 膽囊位置與先天變異</h3>
-        <ul class="notes"><li>膽囊位於中線右側、右內側肝葉的兩部分之間</li><li>平均 <strong>每 8 隻貓就有 1 隻</strong>有某種副膽囊；屬胚胎發育的先天異常，視為偶發</li><li>雙葉膽囊兩型：① 腔內有縱向隔膜部分分開，近端共用一條膽囊管，外觀正常；② 底部完全分開、只在頸部融合，外觀呈「V」或愛心形</li><li><strong>重複膽囊</strong>（duplex）：兩個完全分開的腔、各有自己的膽囊管，貓很少報告</li></ul>
+        <h3><span class="src src-slide">📑 圖 1</span> <a class="figlink" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10814422/#fig1-1098612X19843212" target="_blank" rel="noopener">🔗 看原圖 1</a> 膽囊位置與先天變異</h3>
+        <ul class="notes"><li>膽囊位於中線右側、右內側肝葉的兩部分之間</li><li>平均 <strong>每 8 隻貓就有 1 隻</strong>有某種副膽囊；屬胚胎發育的先天異常，視為偶發</li><li>雙葉膽囊兩型：① 腔內有縱向隔膜部分分開，近端共用一條膽囊管，外觀正常；② 底部完全分開、只在頸部融合，外觀呈「V」或愛心形</li><li><strong>重複膽囊</strong>（duplex）：兩個完全分開的腔、各有自己的膽囊管，貓很少報告</li></ul><figure class="fig diagram">
+          <svg viewBox="0 0 660 270" role="img" aria-label="雙葉膽囊兩型與重複膽囊示意" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, 'Noto Sans TC', sans-serif">
+  <rect width="660" height="270" fill="#FFFFFF"/>
+  <g transform="translate(10,0)">
+    <rect x="0" y="30" width="200" height="200" rx="10" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <path d="M100 200 L100 180 C 60 175, 45 120, 60 85 C 75 55, 125 55, 140 85 C 155 120, 140 175, 100 180" fill="#A8CF86" stroke="#5E8C3E" stroke-width="2.5"/><line x1="100" y1="70" x2="100" y2="150" stroke="#5E8C3E" stroke-width="2.5"/><path d="M100 180 L100 215" stroke="#5E8C3E" stroke-width="6" stroke-linecap="round"/>
+    <text x="100" y="20" font-size="14" fill="#1E293B" font-weight="600" text-anchor="middle">雙葉：縱向隔膜型</text>
+    <text x="100" y="252" font-size="12" fill="#64748B" font-weight="400" text-anchor="middle">外觀正常，共用一條膽囊管</text>
+  </g>
+  <g transform="translate(230,0)">
+    <rect x="0" y="30" width="200" height="200" rx="10" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <path d="M100 175 C 70 150, 40 120, 45 85 C 50 55, 85 55, 100 85 C 115 55, 150 55, 155 85 C 160 120, 130 150, 100 175 Z" fill="#A8CF86" stroke="#5E8C3E" stroke-width="2.5"/><path d="M100 175 L100 215" stroke="#5E8C3E" stroke-width="6" stroke-linecap="round"/>
+    <text x="100" y="20" font-size="14" fill="#1E293B" font-weight="600" text-anchor="middle">雙葉：V 字／愛心型</text>
+    <text x="100" y="252" font-size="12" fill="#64748B" font-weight="400" text-anchor="middle">底部分開，只在頸部融合</text>
+  </g>
+  <g transform="translate(450,0)">
+    <rect x="0" y="30" width="200" height="200" rx="10" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <ellipse cx="65" cy="110" rx="30" ry="42" fill="#A8CF86" stroke="#5E8C3E" stroke-width="2.5"/><ellipse cx="135" cy="110" rx="30" ry="42" fill="#A8CF86" stroke="#5E8C3E" stroke-width="2.5"/><path d="M65 152 C 65 180, 95 185, 100 215" fill="none" stroke="#5E8C3E" stroke-width="5" stroke-linecap="round"/><path d="M135 152 C 135 180, 105 185, 100 215" fill="none" stroke="#5E8C3E" stroke-width="5" stroke-linecap="round"/>
+    <text x="100" y="20" font-size="14" fill="#1E293B" font-weight="600" text-anchor="middle">重複膽囊（duplex）</text>
+    <text x="100" y="252" font-size="12" fill="#64748B" font-weight="400" text-anchor="middle">兩個腔、各有膽囊管（少見）</text>
+  </g>
+</svg>
+          <figcaption>圖 D：雙葉膽囊兩型與重複膽囊，都屬先天、偶發<br><span class="muted">示意圖（本站自繪，非實際超音波影像，比例不精確）</span></figcaption>
+        </figure>
       </div><div class="subsection">
-        <h3><span class="src src-slide">📑 圖 2</span> 膽囊壁與體積</h3>
+        <h3><span class="src src-slide">📑 圖 2</span> <a class="figlink" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10814422/#fig2-1098612X19843212" target="_blank" rel="noopener">🔗 看原圖 2</a> 膽囊壁與體積</h3>
         <ul class="notes"><li>膽囊壁可能看不到；看得到時是 &lt; 1 mm 的高回音線</li><li>空腹的貓膽囊相對肝臟看起來很大可以是正常的；膽囊後方有<strong>聲影增強</strong>（膽汁衰減少）</li><li>膽囊兩側的低回音區是折射造成的<strong>邊緣陰影</strong>，不是病變</li><li>體積用橢球公式 0.52 × 長 × 高 × 寬；可用肋下或右肋間窗比較進食前後體積評估收縮功能</li></ul>
       </div><div class="subsection">
-        <h3><span class="src src-slide">📑 圖 3–5</span> 總膽管（CBD）</h3>
-        <ul class="notes"><li>貓的總膽管比狗<strong>長而彎曲</strong>，常規就看得到：肝門處、<strong>門靜脈腹側</strong>的無回音管狀構造，管壁高回音</li><li>掃描窗：肋下或右側前方肋間</li><li>和血管區分：<strong>管壁較厚、彎曲、彩色都卜勒沒有血流</strong>（門靜脈是向肝血流）</li><li>可往尾側追到和主胰管會合，經<strong>十二指腸大乳頭</strong>進入十二指腸（圖 5 可見乳頭，旁邊是右腎前極）</li><li>正常直徑 ≤ 4 mm、管壁 &lt; 1 mm；肝內與肝外膽管正常看不到</li></ul><p class="p"><span class="src src-add">💡 補充</span> 貓的總膽管和胰管在進十二指腸前會合，所以膽管炎、胰臟炎、腸炎常一起出現（三體炎）。</p>
+        <h3><span class="src src-slide">📑 圖 3–5</span> <a class="figlink" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10814422/#fig3-1098612X19843212" target="_blank" rel="noopener">🔗 看原圖 3</a> <a class="figlink" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10814422/#fig4-1098612X19843212" target="_blank" rel="noopener">🔗 看原圖 4</a> <a class="figlink" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10814422/#fig5-1098612X19843212" target="_blank" rel="noopener">🔗 看原圖 5</a> 總膽管（CBD）</h3>
+        <ul class="notes"><li>貓的總膽管比狗<strong>長而彎曲</strong>，常規就看得到：肝門處、<strong>門靜脈腹側</strong>的無回音管狀構造，管壁高回音</li><li>掃描窗：肋下或右側前方肋間</li><li>和血管區分：<strong>管壁較厚、彎曲、彩色都卜勒沒有血流</strong>（門靜脈是向肝血流）</li><li>可往尾側追到和主胰管會合，經<strong>十二指腸大乳頭</strong>進入十二指腸（圖 5 可見乳頭，旁邊是右腎前極）</li><li>正常直徑 ≤ 4 mm、管壁 &lt; 1 mm；肝內與肝外膽管正常看不到</li></ul><figure class="fig diagram">
+          <svg viewBox="0 0 660 380" role="img" aria-label="貓膽道解剖示意：膽囊、膽囊管、總膽管、門靜脈、胰管與十二指腸大乳頭" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, 'Noto Sans TC', sans-serif">
+  <rect width="660" height="380" fill="#FFFFFF"/>
+  <!-- liver -->
+  <path d="M30 60 C 60 20, 240 15, 330 40 C 370 52, 380 90, 360 130 C 345 165, 300 200, 250 215 C 180 235, 80 225, 45 180 C 20 145, 15 95, 30 60 Z" fill="#EBD3C4" stroke="#B98A6E" stroke-width="2"/>
+  <text x="70" y="75" font-size="15" fill="#7A4E36" font-weight="600" text-anchor="start">肝臟</text>
+  <!-- portal vein (dorsal) -->
+  <path d="M300 175 C 330 220, 350 260, 360 360" fill="none" stroke="#4B5AA8" stroke-width="20" stroke-linecap="round" opacity=".9"/>
+  <path d="M300 175 C 330 220, 350 260, 360 360" fill="none" stroke="#7F8FD8" stroke-width="15" stroke-linecap="round"/>
+  <path d="M352 330 L 344 300 M 344 300 L 336 312 M 344 300 L 353 309" stroke="#FFFFFF" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <!-- duodenum -->
+  <rect x="500" y="120" width="58" height="250" rx="26" fill="#F2C9C4" stroke="#C4827B" stroke-width="2"/>
+  <text x="529" y="112" font-size="13" fill="#1E293B" font-weight="600" text-anchor="middle">十二指腸</text>
+  <!-- pancreas right limb -->
+  <path d="M420 250 C 450 238, 490 250, 498 280 C 504 310, 496 350, 470 362 C 440 372, 410 350, 405 320 C 400 290, 400 262, 420 250 Z" fill="#F3E3A6" stroke="#C2A24B" stroke-width="2"/>
+  <text x="402" y="378" font-size="12" fill="#8A6D1E" font-weight="600" text-anchor="start">胰臟右葉</text>
+  <!-- pancreatic duct -->
+  <path d="M430 340 C 450 320, 470 305, 497 300" fill="none" stroke="#C2A24B" stroke-width="3" stroke-dasharray="5 4"/>
+  <!-- gall bladder -->
+  <ellipse cx="225" cy="168" rx="48" ry="30" transform="rotate(-18 225 168)" fill="#A8CF86" stroke="#5E8C3E" stroke-width="2.5"/>
+  <!-- cystic duct + tortuous CBD (ventral to PV) -->
+  <path d="M268 152 C 288 150, 292 172, 310 170 C 330 168, 325 196, 345 200 C 368 204, 360 232, 382 238 C 404 244, 398 268, 420 274 C 446 281, 456 296, 497 300" fill="none" stroke="#5E8C3E" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="499" cy="300" r="6" fill="#FFFFFF" stroke="#1E293B" stroke-width="2"/>
+  <!-- labels -->
+  <line x1="205" y1="170" x2="120" y2="270" stroke="#64748B" stroke-width="1"/><circle cx="205" cy="170" r="2.2" fill="#64748B"/><text x="118" y="290" font-size="13" fill="#1E293B" font-weight="600" text-anchor="middle">膽囊</text>
+  <line x1="300" y1="166" x2="250" y2="300" stroke="#64748B" stroke-width="1"/><circle cx="300" cy="166" r="2.2" fill="#64748B"/><text x="250" y="318" font-size="13" fill="#1E293B" font-weight="600" text-anchor="middle">膽囊管</text>
+  <line x1="390" y1="240" x2="452" y2="190" stroke="#64748B" stroke-width="1"/><circle cx="390" cy="240" r="2.2" fill="#64748B"/><text x="456" y="186" font-size="13" fill="#1E293B" font-weight="600" text-anchor="start">總膽管（長、彎曲）</text>
+  <text x="456" y="203" font-size="12" fill="#64748B" font-weight="400" text-anchor="start">正常 ≤ 4 mm，壁 &lt; 1 mm</text>
+  <line x1="356" y1="320" x2="300" y2="352" stroke="#64748B" stroke-width="1"/><circle cx="356" cy="320" r="2.2" fill="#64748B"/><text x="232" y="360" font-size="12" fill="#1E293B" font-weight="600" text-anchor="start">門靜脈（在總膽管背側）</text>
+  <line x1="447" y1="323" x2="610" y2="250" stroke="#64748B" stroke-width="1"/><circle cx="447" cy="323" r="2.2" fill="#64748B"/><text x="612" y="246" font-size="12" fill="#1E293B" font-weight="600" text-anchor="end">胰管</text>
+  <line x1="505" y1="300" x2="610" y2="300" stroke="#64748B" stroke-width="1"/><circle cx="505" cy="300" r="2.2" fill="#64748B"/><text x="612" y="320" font-size="12" fill="#1E293B" font-weight="600" text-anchor="end">十二指腸大乳頭</text>
+  <text x="612" y="336" font-size="11" fill="#64748B" font-weight="400" text-anchor="end">阻塞最常發生在這附近</text>
+</svg>
+          <figcaption>圖 A：貓膽道解剖。總膽管長而彎曲，在門靜脈腹側；和胰管會合後經十二指腸大乳頭進入十二指腸，所以膽管炎、胰臟炎、腸炎常一起出現<br><span class="muted">示意圖（本站自繪，非實際超音波影像，比例不精確）</span></figcaption>
+        </figure><figure class="fig diagram">
+          <svg viewBox="0 0 660 300" role="img" aria-label="肝門處超音波示意：總膽管在門靜脈腹側，正常 4 mm 以內，EHBO 超過 5 mm" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, 'Noto Sans TC', sans-serif">
+  <rect width="660" height="300" fill="#FFFFFF"/>
+  <g transform="translate(15,0)">
+    <rect x="0" y="30" width="300" height="230" rx="10" fill="#16181D"/>
+    <text x="150" y="20" font-size="14" fill="#1E293B" font-weight="600" text-anchor="middle">正常</text>
+    <text x="10" y="48" font-size="11" fill="#9CA3AF">腹側（近探頭）</text>
+    <text x="10" y="252" font-size="11" fill="#9CA3AF">背側</text>
+    <!-- CBD: echogenic thick wall, anechoic lumen, NO colour -->
+    <path d="M40 110 C 80 92, 120 128, 160 110 C 200 92, 230 124, 270 108" fill="none" stroke="#E8E8E8" stroke-width="14" stroke-linecap="round"/>
+    <path d="M40 110 C 80 92, 120 128, 160 110 C 200 92, 230 124, 270 108" fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+    <!-- calipers -->
+    <line x1="160" y1="105.0" x2="160" y2="115.0" stroke="#FACC15" stroke-width="1.6"/>
+    <text x="160" y="98.0" font-size="11" fill="#FACC15" text-anchor="middle">+ ≤ 4 mm +</text>
+    <!-- portal vein: anechoic with colour Doppler fill -->
+    <path d="M20 190 C 100 180, 200 196, 285 186" fill="none" stroke="#3a3a3a" stroke-width="32" stroke-linecap="round"/>
+    <path d="M20 190 C 100 180, 200 196, 285 186" fill="none" stroke="#2563EB" stroke-width="24" stroke-linecap="round" opacity=".85"/>
+    <path d="M60 188 C 120 182, 190 194, 250 188" fill="none" stroke="#DC2626" stroke-width="10" stroke-linecap="round" opacity=".85"/>
+    <text x="150" y="232" font-size="12" fill="#E5E7EB" text-anchor="middle">門靜脈：彩色都卜勒有血流</text>
+    <text x="150" y="146" font-size="12" fill="#E5E7EB" text-anchor="middle">總膽管：壁較厚、彎曲、沒有血流</text>
+    <text x="150" y="282" font-size="12" fill="#64748B" font-weight="400" text-anchor="middle">在肝門處量，避開較粗的膽囊管</text>
+  </g>
+  <g transform="translate(345,0)">
+    <rect x="0" y="30" width="300" height="230" rx="10" fill="#16181D"/>
+    <text x="150" y="20" font-size="14" fill="#1E293B" font-weight="600" text-anchor="middle">肝外膽道阻塞（EHBO）</text>
+    <text x="10" y="48" font-size="11" fill="#9CA3AF">腹側（近探頭）</text>
+    <text x="10" y="252" font-size="11" fill="#9CA3AF">背側</text>
+    <!-- CBD: echogenic thick wall, anechoic lumen, NO colour -->
+    <path d="M40 110 C 80 92, 120 128, 160 110 C 200 92, 230 124, 270 108" fill="none" stroke="#E8E8E8" stroke-width="28" stroke-linecap="round"/>
+    <path d="M40 110 C 80 92, 120 128, 160 110 C 200 92, 230 124, 270 108" fill="none" stroke="#000000" stroke-width="22" stroke-linecap="round"/>
+    <!-- calipers -->
+    <line x1="160" y1="98.0" x2="160" y2="122.0" stroke="#FACC15" stroke-width="1.6"/>
+    <text x="160" y="91.0" font-size="11" fill="#FACC15" text-anchor="middle">+ &gt; 5 mm +</text>
+    <!-- portal vein: anechoic with colour Doppler fill -->
+    <path d="M20 190 C 100 180, 200 196, 285 186" fill="none" stroke="#3a3a3a" stroke-width="32" stroke-linecap="round"/>
+    <path d="M20 190 C 100 180, 200 196, 285 186" fill="none" stroke="#2563EB" stroke-width="24" stroke-linecap="round" opacity=".85"/>
+    <path d="M60 188 C 120 182, 190 194, 250 188" fill="none" stroke="#DC2626" stroke-width="10" stroke-linecap="round" opacity=".85"/>
+    <text x="150" y="232" font-size="12" fill="#E5E7EB" text-anchor="middle">門靜脈：彩色都卜勒有血流</text>
+    <text x="150" y="146" font-size="12" fill="#E5E7EB" text-anchor="middle">總膽管：壁較厚、彎曲、沒有血流</text>
+    <text x="150" y="282" font-size="12" fill="#64748B" font-weight="400" text-anchor="middle">擴張程度看不出原因；擴張也可能是舊的</text>
+  </g>
+</svg>
+          <figcaption>圖 B：肝門處的總膽管與門靜脈。用彩色都卜勒區分：門靜脈有血流、總膽管沒有<br><span class="muted">示意圖（本站自繪，非實際超音波影像，比例不精確）</span></figcaption>
+        </figure><p class="p"><span class="src src-add">💡 補充</span> 貓的總膽管和胰管在進十二指腸前會合，所以膽管炎、胰臟炎、腸炎常一起出現（三體炎）。</p>
       </div>
     </div>
   </div>
@@ -411,13 +515,37 @@
     </div>
     <div class="section-body">
 <div class="subsection">
-        <h3><span class="src src-slide">📑 圖 6</span> 膽囊壁增厚</h3>
-        <ul class="notes"><li>貓的<strong>膽囊與膽管疾病比肝實質疾病常見</strong></li><li>瀰漫性增厚是<strong>非特異</strong>變化；原因：發炎（膽囊炎、膽管炎、膽管肝炎）、水腫（尤其膽道阻塞）、黏膜腺體增生</li><li>一項研究中 55% 肝膽疾病的貓有瀰漫性增厚：膽囊壁瀰漫性高回音，或<strong>雙層邊</strong>（兩層高回音夾一層低回音）</li><li>圖 6b–d 病例：14 歲母貓嗜中性球性膽管肝炎，膽囊大、壁增厚、有膽泥，膽汁淡黃，培養大量 <em>E. coli</em></li><li><strong>假性增厚</strong>：腹水與膽囊壁之間的聲學界面造成，不是真的增厚</li></ul>
+        <h3><span class="src src-slide">📑 圖 6</span> <a class="figlink" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10814422/#fig6-1098612X19843212" target="_blank" rel="noopener">🔗 看原圖 6</a> 膽囊壁增厚</h3>
+        <ul class="notes"><li>貓的<strong>膽囊與膽管疾病比肝實質疾病常見</strong></li><li>瀰漫性增厚是<strong>非特異</strong>變化；原因：發炎（膽囊炎、膽管炎、膽管肝炎）、水腫（尤其膽道阻塞）、黏膜腺體增生</li><li>一項研究中 55% 肝膽疾病的貓有瀰漫性增厚：膽囊壁瀰漫性高回音，或<strong>雙層邊</strong>（兩層高回音夾一層低回音）</li><li>圖 6b–d 病例：14 歲母貓嗜中性球性膽管肝炎，膽囊大、壁增厚、有膽泥，膽汁淡黃，培養大量 <em>E. coli</em></li><li><strong>假性增厚</strong>：腹水與膽囊壁之間的聲學界面造成，不是真的增厚</li></ul><figure class="fig diagram">
+          <svg viewBox="0 0 660 285" role="img" aria-label="膽囊壁示意：正常細線、雙層邊、腹水造成的假性增厚" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, 'Noto Sans TC', sans-serif">
+  <rect width="660" height="285" fill="#FFFFFF"/>
+  <g transform="translate(10,0)">
+    <rect x="0" y="30" width="200" height="210" rx="10" fill="#2A2C33"/>
+    <rect x="50" y="188" width="100" height="40" fill="#5B5B63" opacity=".55"/><ellipse cx="100" cy="140" rx="70" ry="44" fill="#000000" stroke="#E8E8E8" stroke-width="2"/>
+    <text x="100" y="20" font-size="14" fill="#1E293B" font-weight="600" text-anchor="middle">正常：&lt; 1 mm 細線</text>
+    <text x="100" y="262" font-size="12" fill="#64748B" font-weight="400" text-anchor="middle">也可能完全看不到壁</text>
+  </g>
+  <g transform="translate(230,0)">
+    <rect x="0" y="30" width="200" height="210" rx="10" fill="#2A2C33"/>
+    <rect x="50" y="188" width="100" height="40" fill="#5B5B63" opacity=".55"/><ellipse cx="100" cy="140" rx="78" ry="52" fill="#E8E8E8"/><ellipse cx="100" cy="140" rx="75" ry="49" fill="#3F3F46"/><ellipse cx="100" cy="140" rx="70" ry="44" fill="#000000" stroke="#E8E8E8" stroke-width="2.5"/>
+    <text x="100" y="20" font-size="14" fill="#1E293B" font-weight="600" text-anchor="middle">雙層邊（double rim）</text>
+    <text x="100" y="262" font-size="12" fill="#64748B" font-weight="400" text-anchor="middle">高－低－高回音；見於發炎、水腫</text>
+  </g>
+  <g transform="translate(450,0)">
+    <rect x="0" y="30" width="200" height="210" rx="10" fill="#2A2C33"/>
+    <rect x="50" y="188" width="100" height="40" fill="#5B5B63" opacity=".55"/><ellipse cx="100" cy="140" rx="88" ry="60" fill="#050505"/><ellipse cx="100" cy="140" rx="72" ry="46" fill="#E8E8E8" opacity=".9"/><ellipse cx="100" cy="140" rx="70" ry="44" fill="#000000"/>
+    <text x="100" y="20" font-size="14" fill="#1E293B" font-weight="600" text-anchor="middle">假性增厚</text>
+    <text x="100" y="262" font-size="12" fill="#64748B" font-weight="400" text-anchor="middle">腹水與壁的聲學界面造成</text>
+  </g>
+  <text x="330" y="282" font-size="11" fill="#64748B" text-anchor="middle">膽囊下方較亮的區域＝膽汁衰減少造成的聲影增強（正常現象）</text>
+</svg>
+          <figcaption>圖 C：膽囊壁的三種外觀<br><span class="muted">示意圖（本站自繪，非實際超音波影像，比例不精確）</span></figcaption>
+        </figure>
       </div><div class="subsection">
         <h3>膽囊腫瘤（很少見）</h3>
         <ul class="notes"><li>膽囊上皮腫瘤在貓非常少見；腺癌偶有報告但沒有超音波描述</li><li>原發膽囊淋巴瘤：嚴重瀰漫性壁增厚（可到 14 mm）幾乎填滿管腔；另一例是多個無蒂高回音結節突入腔內</li></ul>
       </div><div class="subsection">
-        <h3><span class="src src-slide">📑 方框・圖 7</span> 膽泥（gall bladder sludge）</h3>
+        <h3><span class="src src-slide">📑 方框・圖 7</span> <a class="figlink" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10814422/#fig7-1098612X19843212" target="_blank" rel="noopener">🔗 看原圖 7</a> 膽泥（gall bladder sludge）</h3>
         <p class="p">膽泥是膽汁中沉澱的混合顆粒，<strong>狗多為偶發</strong>；<strong>貓比較少見</strong>，而且和<strong>膽管炎、肝指數上升</strong>有關聯。</p><p class="p"><span class="src src-add">💡 補充</span> 所以在貓看到膽泥不能直接當成偶發，要對照肝指數、膽紅素與臨床症狀。</p>
       </div>
     </div>
@@ -430,7 +558,7 @@
     </div>
     <div class="section-body">
 <div class="subsection">
-        <h3><span class="src src-slide">📑 圖 8–9</span> 超音波表現</h3>
+        <h3><span class="src src-slide">📑 圖 8–9</span> <a class="figlink" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10814422/#fig8-1098612X19843212" target="_blank" rel="noopener">🔗 看原圖 8</a> <a class="figlink" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10814422/#fig9-1098612X19843212" target="_blank" rel="noopener">🔗 看原圖 9</a> 超音波表現</h3>
         <ul class="notes"><li>貓常見的膽道發炎，分<strong>嗜中性球性</strong>與<strong>淋巴球性</strong>；常同時侵犯肝實質，所以也稱膽管炎／膽管肝炎複合症（CCHC）</li><li><strong>很多病例肝臟與膽道超音波完全正常</strong></li><li>有異常時：膽囊及／或總膽管壁增厚；膽囊內容物回音增加（膽囊功能異常或膽汁淤積）；膽囊結石或總膽管結石；總膽管擴張</li><li>嗜中性球性膽管炎的膽囊變化可能來自同時存在的<strong>細菌性膽囊炎</strong></li><li>總膽管擴張可能是發炎造成的膽汁淤積，或膽泥、結石阻塞管腔；結石可以是阻塞的原因也可以是結果</li><li>完全阻塞（不論原因）可能造成<strong>膽囊或總膽管破裂</strong></li><li>圖 8a：16 歲公貓（晚期腎衰竭）肝內多條彎曲高回音管道伴聲影＝廣泛總膽管結石</li></ul>
       </div><div class="subsection">
         <h3>結石怎麼認</h3>
@@ -449,11 +577,40 @@
     </div>
     <div class="section-body">
 <div class="subsection">
-        <h3><span class="src src-slide">📑 圖 10–12</span> 阻塞的位置與原因</h3>
+        <h3><span class="src src-slide">📑 圖 10–12</span> <a class="figlink" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10814422/#fig10-1098612X19843212" target="_blank" rel="noopener">🔗 看原圖 10</a> <a class="figlink" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10814422/#fig11-1098612X19843212" target="_blank" rel="noopener">🔗 看原圖 11</a> <a class="figlink" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10814422/#fig12-1098612X19843212" target="_blank" rel="noopener">🔗 看原圖 12</a> 阻塞的位置與原因</h3>
         <ul class="notes"><li>總膽管阻塞常在<strong>十二指腸乳頭附近或乳頭處</strong></li><li>機轉：管壁增厚、管外壓迫、管腔阻塞（結石、黏膜增生、膽泥）</li><li><strong>胰臟炎</strong>：右胰葉緊貼總膽管遠端，可造成管外壓迫；超音波見胰臟變大、回音降低、胰周脂肪回音增加</li><li><strong>腫瘤</strong>（總膽管、胰臟、近端十二指腸）較少見；發炎性與腫瘤性的阻塞腫塊<strong>超音波常無法區分</strong></li><li>少見原因：總膽管內草芒、十二指腸乳頭處的泡棉耳塞、經體腔植入的貓毛、橫膈疝氣（肝與膽囊疝入胸腔）、嚴重肝吸蟲感染</li><li>超音波在這些病例有助於確認是否需要手術</li></ul>
       </div><div class="subsection">
-        <h3><span class="src src-slide">📑 方框・圖 13–14</span> 怎麼辨認阻塞</h3>
-        <ul class="notes"><li><strong>總膽管 &gt; 5 mm</strong> 提示 EHBO；一項研究中 97% 手術確診 EHBO 的貓符合。測量在<strong>肝門處</strong>，避開正常較粗的膽囊管</li><li>擴張程度取決於阻塞時間與完全程度，<strong>無法判斷原因</strong></li><li>發炎與腫瘤造成的阻塞通常臨床症狀時間較長；結石較急性（不是絕對）</li><li>狗實驗性完全阻塞：24–48 小時總膽管、膽囊與肝外膽管擴張，<strong>5–7 天</strong>出現肝內膽管擴張；貓推測有類似時序</li><li>肝內膽管擴張：與門靜脈伴行的低回音管、高回音壁；和血管區分靠<strong>彎曲、管徑突變、分支突然、沒有血流</strong>（「管子太多」sign）</li><li>30 隻 EHBO 貓：90% 肝外和／或肝內膽管擴張，但<strong>只有 43% 膽囊擴張</strong>（另兩篇 38%、62%）</li></ul><div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>沒有膽囊或肝外膽道擴張，不足以排除膽道阻塞</strong>；膽囊大也不能當作阻塞的唯一指標。膽道擴張在阻塞解除後仍可能持續，所以擴張本身也不是 EHBO 的確診依據。</div></div>
+        <h3><span class="src src-slide">📑 方框・圖 13–14</span> <a class="figlink" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10814422/#fig13-1098612X19843212" target="_blank" rel="noopener">🔗 看原圖 13</a> <a class="figlink" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10814422/#fig14-1098612X19843212" target="_blank" rel="noopener">🔗 看原圖 14</a> 怎麼辨認阻塞</h3>
+        <ul class="notes"><li><strong>總膽管 &gt; 5 mm</strong> 提示 EHBO；一項研究中 97% 手術確診 EHBO 的貓符合。測量在<strong>肝門處</strong>，避開正常較粗的膽囊管</li><li>擴張程度取決於阻塞時間與完全程度，<strong>無法判斷原因</strong></li><li>發炎與腫瘤造成的阻塞通常臨床症狀時間較長；結石較急性（不是絕對）</li><li>狗實驗性完全阻塞：24–48 小時總膽管、膽囊與肝外膽管擴張，<strong>5–7 天</strong>出現肝內膽管擴張；貓推測有類似時序</li><li>肝內膽管擴張：與門靜脈伴行的低回音管、高回音壁；和血管區分靠<strong>彎曲、管徑突變、分支突然、沒有血流</strong>（「管子太多」sign）</li><li>30 隻 EHBO 貓：90% 肝外和／或肝內膽管擴張，但<strong>只有 43% 膽囊擴張</strong>（另兩篇 38%、62%）</li></ul><figure class="fig diagram">
+          <svg viewBox="0 0 660 300" role="img" aria-label="肝內膽管擴張與血管的區分示意：血管直、平順分支、有血流；擴張膽管彎曲、管徑突變、分支突然、沒有血流" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, 'Noto Sans TC', sans-serif">
+  <rect width="660" height="300" fill="#FFFFFF"/>
+  <g transform="translate(15,0)">
+    <text x="150" y="20" font-size="14" fill="#1E293B" font-weight="600" text-anchor="middle">肝內血管（門靜脈分支）</text>
+    <rect x="0" y="30" width="300" height="220" rx="10" fill="#16181D"/>
+    <path d="M30 220 L 150 140 L 270 70" stroke="#2563EB" stroke-width="16" stroke-linecap="round" opacity=".85"/>
+    <path d="M150 140 L 250 175" stroke="#2563EB" stroke-width="11" stroke-linecap="round" opacity=".85"/>
+    <path d="M90 180 L 70 110" stroke="#2563EB" stroke-width="9" stroke-linecap="round" opacity=".85"/>
+    <path d="M60 200 L 140 147" stroke="#DC2626" stroke-width="5" stroke-linecap="round" opacity=".8"/>
+    <text x="150" y="272" font-size="12" fill="#64748B" font-weight="400" text-anchor="middle">相對筆直、平順漸細的分支、彩色都卜勒有血流</text>
+  </g>
+  <g transform="translate(345,0)">
+    <text x="150" y="20" font-size="14" fill="#1E293B" font-weight="600" text-anchor="middle">擴張的肝內膽管</text>
+    <rect x="0" y="30" width="300" height="220" rx="10" fill="#16181D"/>
+    <path d="M30 215 C 60 200, 70 170, 100 168 C 130 166, 120 130, 150 128" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linecap="round"/>
+    <path d="M30 215 C 60 200, 70 170, 100 168 C 130 166, 120 130, 150 128" fill="none" stroke="#000000" stroke-width="7" stroke-linecap="round"/>
+    <path d="M150 128 C 175 126, 185 95, 215 92 C 240 90, 245 70, 270 62" fill="none" stroke="#E8E8E8" stroke-width="22" stroke-linecap="round"/>
+    <path d="M150 128 C 175 126, 185 95, 215 92 C 240 90, 245 70, 270 62" fill="none" stroke="#000000" stroke-width="16" stroke-linecap="round"/>
+    <path d="M150 128 C 160 150, 200 150, 240 178" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linecap="round"/>
+    <path d="M150 128 C 160 150, 200 150, 240 178" fill="none" stroke="#000000" stroke-width="6" stroke-linecap="round"/>
+    <path d="M100 168 C 92 150, 84 130, 80 100" fill="none" stroke="#E8E8E8" stroke-width="12" stroke-linecap="round"/>
+    <path d="M100 168 C 92 150, 84 130, 80 100" fill="none" stroke="#000000" stroke-width="7" stroke-linecap="round"/>
+    <text x="232" y="132" font-size="11" fill="#E5E7EB">管徑突變</text>
+    <text x="14" y="132" font-size="11" fill="#E5E7EB">分支突然 →</text>
+    <text x="150" y="272" font-size="12" fill="#64748B" font-weight="400" text-anchor="middle">彎曲、壁高回音、沒有血流（「管子太多」sign）</text>
+  </g>
+</svg>
+          <figcaption>圖 E：肝內膽管擴張和血管怎麼分<br><span class="muted">示意圖（本站自繪，非實際超音波影像，比例不精確）</span></figcaption>
+        </figure><div class="alert alert-warn"><span class="alert-icon">⚠️</span><div><strong>沒有膽囊或肝外膽道擴張，不足以排除膽道阻塞</strong>；膽囊大也不能當作阻塞的唯一指標。膽道擴張在阻塞解除後仍可能持續，所以擴張本身也不是 EHBO 的確診依據。</div></div>
       </div>
     </div>
   </div>
@@ -468,7 +625,7 @@
         <h3>膽囊黏液囊腫：貓和狗不一樣</h3>
         <ul class="notes"><li>膽泥要和黏液囊腫區分；黏液囊腫來自囊性黏液性增生 → 黏液增加、膽囊脹大，最後可能壁壞死破裂；黏液栓可掉進總膽管造成 EHBO</li><li><strong>貓極少見</strong>（可能因為貓膽囊壁的黏液腺比狗少）；症狀可有嘔吐、厭食、嗜睡、肝指數上升，常合併脂肪肝或 EHBO</li><li>狗的典型樣貌是高回音<strong>星芒狀或奇異果樣</strong>；貓的報告：周邊不移動的高回音膽汁包住中央低回音膽汁、沒有條紋（可能是早期）；或不移動的組織化高回音內容物；第三例除了重複膽囊外超音波完全看不出來，靠組織病理才確診</li></ul><p class="p">結論：<strong>狗的黏液囊腫典型外觀不能直接套到貓</strong>。</p>
       </div><div class="subsection">
-        <h3><span class="src src-slide">📑 圖 15</span> 肝囊腫與膽道囊腫</h3>
+        <h3><span class="src src-slide">📑 圖 15</span> <a class="figlink" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10814422/#fig15-1098612X19843212" target="_blank" rel="noopener">🔗 看原圖 15</a> 肝囊腫與膽道囊腫</h3>
         <ul class="notes"><li>貓的肝囊腫<strong>全部源自膽道系統</strong>，可為先天或後天、偶發或有臨床意義</li><li>單一膽道囊腫：邊界清楚、薄壁、無回音內容物、<strong>強烈遠端聲影增強</strong></li><li>和膽道相通的叫<strong>總膽管囊腫</strong>（choledochal cyst）：肝外和／或肝內膽管的節段性囊狀擴張</li><li>不和膽道相通、含膽汁的叫<strong>膽汁瘤／膽道假性囊腫</strong>（biloma），曾見於肝臟切片的醫源性傷害</li><li>囊腫可以大到佔據大部分腹腔、壓迫推移胃與肝</li><li>多囊腎的貓常同時有肝與胰臟囊腫（圖 15b、c：14 歲波斯貓）；單純囊腫周圍肝實質通常正常</li></ul>
       </div><div class="subsection">
         <h3>總膽管囊腫病例</h3>
@@ -484,7 +641,7 @@
     </div>
     <div class="section-body">
 <div class="subsection">
-        <h3><span class="src src-slide">📑 方框・圖 16</span> 怎麼做</h3>
+        <h3><span class="src src-slide">📑 方框・圖 16</span> <a class="figlink" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10814422/#fig16-1098612X19843212" target="_blank" rel="noopener">🔗 看原圖 16</a> 怎麼做</h3>
         <ul class="notes"><li>微創、安全，直接採膽汁做<strong>細胞學與培養</strong></li><li>常用 <strong>21 或 22 G、1.5 吋針</strong>接 10 或 12 mL 注射筒</li><li>常建議<strong>經肝</strong>進針以減少膽汁滲漏；但也有直接刺膽囊底部、不經肝而沒有併發症的報告</li><li>經肝路徑曾有一例輕微自限性膽囊周圍出血（推測刺到肝血管）</li><li><strong>盡量把膽囊抽乾</strong>以降低膽汁性腹膜炎風險；膽汁很黏時請助手幫忙拉針筒</li><li>作者偏好貓左側躺、<strong>右腹側</strong>進針</li><li>圖 16 病例：11 歲 Siamese（膽管炎＋胰臟炎），膽汁淡而混濁，細胞學化膿性發炎伴細菌＝細菌性膽囊炎；同時做肝 FNA 見輕度脂肪肝與活動性發炎；正常膽汁是深綠色</li></ul>
       </div><div class="subsection">
         <h3>併發症的證據</h3>
