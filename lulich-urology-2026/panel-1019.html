@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10/19 座談：病例討論｜Jody Lulich 泌尿講座</title>
+<style>
+  :root {
+    --primary: #0E7490;
+    --primary-light: #E0F2F7;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0B2A33;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #9FD3E0; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #164552;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #9FD3E0; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #9FD3E0;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #164552;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #a26a75;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0B4F63 0%, #22A3C2 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0B2A33; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #164552; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0B4F63; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+</style>
+
+</head>
+<body>
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 講座系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← Jody Lulich 泌尿講座</a>
+  <div class="logo">
+    <h2>04｜10/19 座談：病例討論</h2>
+    <p>Jody Lulich｜座談錄音</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div><a href="#s0">座談概要</a><div class="nav-section">病例討論</div><a href="#s1">A. 輸尿管阻塞：小腎盂也要 SUB？</a><a href="#s2">B. 草酸鈣＋SUB＋淋巴瘤</a><a href="#s3">C. 貓尿酸銨結石</a><a href="#s4">D. 狗的尿失禁與反覆 UTI</a><div class="nav-section">整理</div><a href="#s5">E. 提問對照</a><a href="#s6">F. 錯字對照與參考</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>10/19 座談：台灣病例 × Lulich 評論</h1>
+    <p>評論：Jody Lulich, DVM, PhD, DACVIM（University of Minnesota／Minnesota Urolith Center）</p>
+    <p>2026-10-19 座談｜貓輸尿管阻塞與 SUB、草酸鈣＋淋巴瘤、貓尿酸銨結石、狗的尿失禁與反覆 UTI｜場次 04</p>
+    <div class="tags">
+      <span class="tag">輸尿管阻塞</span><span class="tag">SUB</span><span class="tag">排石治療</span><span class="tag">Mannitol</span><span class="tag">腎盂直徑</span><span class="tag">草酸鈣</span><span class="tag">淋巴瘤</span><span class="tag">Thiazide</span><span class="tag">尿酸銨</span><span class="tag">Allopurinol</span><span class="tag">Tumil-K</span><span class="tag">尿失禁</span><span class="tag">陰道殘留</span><span class="tag">PPA</span>
+    </div>
+    <a class="rec-link" href="https://web.plaud.ai/s/pub_deeed765-a0f4-49b3-9580-b18c3aef6da5::puGmBrDW-6uVqPhylxHLmrGHcWy5ZFZz5Z-LZa-mgZ5RjAppJXV0nlfzZMts0IWwxFD1t3-s6b6d6QAOB07gUwI" target="_blank" rel="noopener">🎤 錄音（一）病例 A、B</a> <a class="rec-link" href="https://web.plaud.ai/s/pub_46ced55e-2df0-4556-91dc-0a1fa4e825b8::f_2sMQs_T_eyp01wilet424lsJHh4G3SmebJQCwhkjh7U6pInFP5JIjdwjztRRTNlcVfAKuzHJBbwAAJBXvd7gI" target="_blank" rel="noopener">🎤 錄音（二）病例 C、D</a>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-rec">🎤 Lulich</span> 講者回答 <span class="src src-rec">🎤 報告者</span> 病例報告者 <span class="src src-rec">🎤 與會者</span> 現場其他獸醫師 <span class="src src-add">💡 補充</span> 整理者補充（交叉參照、錯字更正；不是講者說的）
+    <br><span class="muted">依兩段 Plaud 錄音逐字稿整理；語音轉錄有不少錯字（見 <a href="#s6">F 節</a>），病例細節以報告者的投影片為準。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+<li>腎盂 <strong>≤ 4 mm 不能排除阻塞</strong>；腎功能不穩定時看整體，不看單一數字</li><li>輸尿管結石：<strong>即使貓很病也先排石至少 3 天</strong>，<strong>敗血症例外</strong>，要立刻移除</li><li><strong>Mannitol 只給一次</strong>，沒效不要再給；furosemide 可重複；<strong>先水合</strong>再給利尿劑</li><li>腎盂被礦化陰影擋住：做 <strong>CT</strong>；確認阻塞用顯影劑（打完立刻拍、15–20 分鐘再拍）</li><li>草酸鈣＋淋巴瘤＋SUB 通暢：<strong>腫瘤優先</strong>；thiazide、稀釋尿液、<strong>不酸化</strong>、避免高鈉</li><li>SUB 造成的血尿：排除腫瘤與感染、<strong>沒貧血就觀察</strong>，不要因此拿掉有功能的 SUB</li><li>貓尿酸銨：鹼化可用 <strong>Tumil-K 或 calcium gluconate</strong>（粉或塗掌凝膠）</li><li><strong>Allopurinol 8 mg/kg/天</strong>：第 10、20 天驗肌酸酐；注意 xanthine 結石與可逆的 AKI；有分流可能無效</li><li>狗尿失禁：打填充劑前先試 <strong>PPA＋雌激素</strong>、評估多尿／低尿比重；UTI 清除後可每晚 nitrofurantoin 6 個月，仍有約 40% 復發</li>
+    </ul>
+  </div>
+
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📋</div>
+      <h2>座談概要</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <p class="p">10/18 講座隔天的座談，分兩段錄音：前半 Lulich 重講<a href="feline-urethral-obstruction.html">01 貓尿道阻塞</a>的重點（已併入 01 頁的 🎤 標記），之後是台灣獸醫師提出病例、由 Lulich 評論。本頁整理四個病例討論。</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>病例</th><th>報告者</th><th>主題</th></tr>
+          <tr><td><a href="#s1">A</a></td><td>葉醫師（腎臟與透析）</td><td>貓輸尿管阻塞、腎盂只有 2.5 mm：什麼時候放 SUB？</td></tr>
+          <tr><td><a href="#s2">B</a></td><td>張醫師（台大研究生）</td><td>反覆草酸鈣＋雙側 SUB＋小細胞 T 細胞淋巴瘤：類固醇、尿鈣、挑食、血尿</td></tr>
+          <tr><td><a href="#s3">C</a></td><td>陳醫師</td><td>貓尿酸銨結石：鹼化失敗後怎麼辦？allopurinol 能用嗎？</td></tr>
+          <tr><td><a href="#s4">D</a></td><td>胡醫師</td><td>兩隻母狗的尿失禁／反覆 UTI：陰道隔膜殘留、陰門內陷、尿道填充劑</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🫘</div>
+      <h2>A. 輸尿管阻塞：腎盂 2.5 mm 也要放 SUB 嗎？（葉醫師）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3>病例：Makers，6.5 歲公貓（已結紮），英國短毛貓</h3>
+        <ul class="notes"><li>疑似<strong>特發性高血鈣</strong>（2025 起總鈣約 12 mg/dL），一年瘦了將近 1 kg；雙腎礦化、新出現貧血</li><li>肌酸酐：2025 年 6 月正常 → 2026 年 4 月 2.2 → 6 月 <strong>6.5</strong>；原醫院內科治療一週無效，轉診時 5.9</li><li>相隔一年的 X 光：<strong>新出現一顆輸尿管結石</strong>，位置和輸尿管走向吻合；腎盂礦化變多</li><li>右腎小（3.4 cm vs 左 4.5 cm）、皮髓質界線不清，腎臟儲備少；<strong>左腎盂只有 2.5 mm</strong>，低於一般的判斷標準</li><li>報告者引用：Lemieux 2021 經腎盂造影確認的阻塞腎中，<strong>26% 腎盂 ≤ 4 mm、8% ≤ 2 mm</strong>；2018 年的研究顯示腎盂直徑預測阻塞不比猜測好</li><li>開刀理由：新結石、氮血症快速惡化且起伏、貧血與體重下降、內科治療無效、飼主想知道真正答案。ACVIM 共識（Lulich 主筆）說腎盂 3–5 mm 以下可以監測，<strong>前提是腎功能穩定</strong></li><li>術中往腎盂打生理食鹽水：打到約 2 mL 腎盂就不再擴張、也沒有往輸尿管流，只有抽回來才變小 → 判斷阻塞，<strong>超音波導引放 SUB</strong>，並放腹膜透析管備用（沒用到）</li><li>術後第 1 天肌酸酐降 32%（報告者引用：術後 24 小時下降 ≥ 25% 的貓存活較長，989 vs 241 天）；出院後穩定在 3.2–3.6，SDMA 24 → 19。高血鈣仍難控制：用餵食管給奇亞籽時 iCa 約 1.3，改膠囊後約 1.5；飲食為 k/d 類腎臟處方＋腸胃處方</li></ul>
+      </div><div class="subsection">
+        <h3>問題與講者回答</h3>
+<div class="qa"><div class="q">Q1：腎盂 ≤ 4 mm、但腎功能在惡化，怎麼決定要不要介入？怎麼跟飼主談？</div><div class="a"><span class="src src-rec">🎤 Lulich</span><ul class="notes"><li>先<strong>確立診斷</strong>，才能跟飼主談存活率和費用。他們會做腎盂造影，但不用透視：<strong>打完顯影劑馬上拍一張 X 光，15–20 分鐘後再拍一張</strong>，看顯影劑走到哪裡、阻塞在哪</li><li>明尼蘇達可以做 <strong>burst wave lithotripsy（爆波碎石）</strong>：用超音波把結石一小塊一小塊打掉，不用等</li><li>一般會告訴飼主：<strong>即使貓病得很重，也至少做 3 天以上的排石治療</strong>；<strong>唯一不等的情況是敗血症</strong>，那要立刻移除結石</li><li>以這隻貓來說，肌酸酐有幾天是穩定的，他會考慮碎石，或用 <strong>tamsulosin 加鈣離子通道阻斷劑，或 prazosin</strong> 做排石治療，看結果再決定：開刀？經皮碎石？沒看到結石就放支架？</li><li>「沒有對錯，因為<strong>沒有經過驗證的指引</strong>，只有專家認為該怎麼做」</li><li>美國放 SUB 初期費用約 <strong>1.3–1.5 萬美元</strong>，之後 1 個月沖一次、再每 3 個月沖一次；很多排石治療的論文，其實是因為飼主負擔不起手術</li><li>人醫幾乎都先排石，除非敗血症或肌酸酐一直升</li></ul></div></div><div class="qa"><div class="q">Q2：腎盂礦化有聲影、擋住腎盂，要怎麼量才有意義？</div><div class="a"><span class="src src-rec">🎤 Lulich</span> 在他們醫院，飼主預算許可的話多半直接做 <strong>CT</strong>，不受聲波阻擋，可以量。</div></div><div class="qa"><div class="q">Q3：術中打生理食鹽水的測試，要不要標準化（控制速度、量，或接壓力計）？</div><div class="a"><span class="src src-rec">🎤 Lulich</span> 很新穎、有創意，但他自己沒做過，無法評論；他還是會用<strong>顯影劑</strong>，才看得出液體是往輸尿管走，還是從穿刺孔漏出來。<br><span class="src src-rec">🎤 報告者</span> 人醫腎結石手術會在腎造口管接水柱壓力計，以 <strong>20 cmH₂O</strong> 作為輸尿管是否通暢的切點。</div></div><div class="qa"><div class="q">Q4：另一隻貓右腎盂 17 mm、左 7 mm，腎指數正常（SDMA 7、肌酸酐 1.2），X 光沒看到結石。先內科還是介入？</div><div class="a"><span class="src src-rec">🎤 Lulich</span> 會<strong>先做排石治療</strong>，但密切監測，在氮血症惡化前決定介入。兩側直徑差這麼多，他會懷疑一側部分或沒阻塞、另一側完全阻塞；如果完全阻塞、<strong>排石治療 3 天沒效</strong>，就考慮支架、爆波碎石或 SUB；腎盂很擴張且外科醫師會顯微手術，也可以直接開刀取石（明尼蘇達沒有做）。<br><span class="src src-rec">🎤 報告者</span> 實際上做了腎盂造影，右側阻塞，只放了右側 SUB。</div></div>
+      </div><div class="subsection">
+        <h3>另一位與會者的輸尿管結石經驗＋利尿劑</h3>
+<div class="qa"><div class="q">與會者：兩隻貓差點轉去放 SUB，結果自己通了；其中一隻是 2–3 mm、卡在近端輸尿管的大結石，術前外科醫師拍片已經找不到。內科做法：IV 或皮下輸液、prazosin 類藥物、止痛、可能加低劑量 prednisolone。保守治療的成功率是不是比以前高？</div><div class="a"><span class="src src-rec">🎤 Lulich</span><ul class="notes"><li>計畫很好，<strong>沒有一開始就開刀</strong>；有人會說 3 天就該介入，但每隻動物都不一樣</li><li>英國人醫大型研究：結石在<strong>輸尿管中段到遠端</strong>、病人<strong>沒有敗血症</strong>時，給安慰劑、tamsulosin 或鈣離子阻斷劑，結石排出的結果都一樣；人醫多半讓結石自己排</li><li>結石有在動、氮血症沒有快速惡化、<strong>沒有感染</strong>：就有時間等它自己排出；很肯定外科醫師開刀前先拍 X 光確認結石有沒有移動</li><li>大小：研究說小的比較容易排，但他看過大結石也排掉，結石會長大正是因為尿液能從旁邊流過</li><li>Prednisolone：他們通常不給，沒有證據；理論上可以減少輸尿管水腫</li><li>輸液確保水合、增加尿流；止痛；在有更多資料之前，放鬆輸尿管是合理的</li></ul></div></div><div class="qa"><div class="q">與會者：利尿劑呢？</div><div class="a"><span class="src src-rec">🎤 Lulich</span><ul class="notes"><li>人醫和獸醫文獻大多說利尿劑<strong>沒有真正幫助</strong>，但增加尿流在概念上合理；病例少、差異大</li><li><strong>Mannitol 給一次沒效就不要再給</strong>；<strong>furosemide 可以給不只一次</strong>，特別是看到結石在移動時（他的病例 June 也只給了一次 mannitol）</li><li><strong>動物充分水合之前不要給利尿劑</strong>，否則可能造成更多腎損傷</li></ul></div></div><div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 排石藥物的劑量見 <a href="feline-nephroureterolithiasis.html#s5">02 頁第 5 節</a>（講義 📄 42：tamsulosin 0.004–0.006 mg/kg、prazosin 0.25–0.5 mg/貓、amlodipine 0.625–1.25 mg/貓）。講者在尿道阻塞說 prazosin 無效，是因為尿道後段是骨骼肌；輸尿管是平滑肌，α 阻斷劑在理論上說得通，但人醫大型研究的結果也提醒效果有限。</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🪨</div>
+      <h2>B. 草酸鈣＋雙側 SUB＋淋巴瘤（張醫師）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3>病例：7 歲公貓（已結紮），德文捲毛貓</h3>
+        <ul class="notes"><li><strong>反覆草酸鈣結石</strong>、反覆上泌尿道感染、雙側輸尿管阻塞 → <strong>雙側 SUB</strong>（右側 2026 年 3 月在他院放）</li><li>2024 年起慢性腸胃症狀，腸道切片確診<strong>小細胞 T 細胞淋巴瘤</strong>，需要長期 prednisolone</li><li>尿鈣／肌酸酐比逐漸上升，prednisolone 加到約 2 mg 時最高；加 hydrochlorothiazide（每天 1 次、1 顆）與 potassium citrate 調整偏酸的尿液，尿 pH 逐漸上升</li><li>SUB 要每個月沖洗：拉長到 3 個月就會阻塞</li><li>非常挑食：試過多種處方（腎臟、腸胃）都不穩定；最近一次肌酸酐約 1.9</li><li><strong>持續血尿</strong>：SUB 抽出的尿是血色、膀胱尿是粉紅色；尿液培養陰性；第一次放 SUB 時沒有這種情形</li></ul>
+      </div><div class="subsection">
+        <h3>講者回答</h3>
+<div class="qa"><div class="q">Q1：淋巴瘤要控制，但類固醇會增加尿鈣、又有免疫抑制與 SUB 感染的風險，怎麼平衡？</div><div class="a"><span class="src src-rec">🎤 Lulich</span><ul class="notes"><li>SUB 在、而且是通的：<strong>淋巴瘤是主要問題，草酸鈣是次要的</strong></li><li>用利尿稀釋尿液、用 thiazide 減少尿鈣，只要沒有副作用都是好做法</li><li>提高 hydrochlorothiazide 劑量或改 chlorthalidone：可以，只要有監測；但目前測到的尿鈣已經很低，<strong>不一定需要改</strong></li><li>他以為類固醇已改成 <strong>budesonide</strong>（全身吸收較少）</li></ul></div></div><div class="qa"><div class="q">Q2：挑食的貓沒辦法吃理想的草酸鈣預防食品，要怎麼選？</div><div class="a"><span class="src src-rec">🎤 Lulich</span><ul class="notes"><li>挑食的貓<strong>先維持營養</strong>，草酸鈣用其他方式管理</li><li><strong>不要給酸化的食品</strong>；可以考慮腎臟處方</li><li>食慾：試 <strong>Elura（capromorelin）</strong>等新的食慾刺激劑，或找出貓喜歡的味道（鮪魚、雞汁）加進食物；都不行就只能放餵食管</li><li>高草酸食物：去查人醫的草酸症（oxalosis）學會網站或 Minnesota Urolith Center；貓本來就不吃菠菜、巧克力、花生；零食不要含膠原蛋白</li><li>要再查 <strong>FGF-23 與維生素 D</strong>：早期腎病的貓吃限磷食物後，維生素 D 可能上升，<strong>反而增加尿鈣（與磷）排出</strong></li></ul></div></div><div class="qa"><div class="q">Q3：持續血尿要進一步檢查或介入，還是保守觀察？</div><div class="a"><span class="src src-rec">🎤 Lulich</span><ul class="notes"><li>排除腎臟腫瘤和感染後，最可能是 <strong>SUB 或結石造成的刺激或創傷</strong>，也可能是特發性</li><li>貓狀況好、<strong>沒有貧血</strong>：先觀察</li><li>要注意<strong>感染</strong>：在用免疫抑制藥、體內又有異物</li><li>SUB 有功能、是讓貓活著的東西：<strong>不會因為血尿就拿掉</strong></li><li>他問台灣醫師：看到血尿就給的那個藥（<strong>tranexamic acid</strong>，台灣常用）他幾乎沒用過，不清楚效果；台灣醫師回答有阻塞時通常不用，因為可能讓阻塞更糟</li></ul></div></div>        <h4>其他與會者補充</h4>
+        <ul class="notes"><li><span class="src src-rec">🎤 與會者</span> <strong>鈉會刺激腎小管排出更多鈣</strong>，草酸鈣的貓可能要避開高鈉的泌尿處方（與會者舉 Royal Canin 泌尿系列為例，說是靠提高鈉來增加喝水）。<span class="src src-rec">🎤 Lulich</span> 去查食物的鈉含量；心臟衰竭建議不要超過約 <strong>100 mg/100 kcal</strong>，有些食品高達 380 mg/100 kcal</li><li><span class="src src-rec">🎤 與會者</span> 鈣<strong>限制太嚴</strong>反而會增加草酸吸收：草酸鈣要同時考慮鈣和草酸</li><li><span class="src src-rec">🎤 與會者</span> 這麼複雜的病例不可能每項都打勾；要多讓飼主看到「做對的地方」，飼主緊張也會讓醫師緊張</li></ul><div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 這個病例就是「類固醇降血鈣、但增加尿鈣」的兩難。講者的取捨是：腫瘤優先、SUB 通暢時草酸鈣次要，用 thiazide、稀釋尿液與不酸化的食物處理尿鈣，並用尿鈣／肌酸酐比追蹤。</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🧪</div>
+      <h2>C. 貓尿酸銨結石（陳醫師）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3>病例：8 歲公貓（2022 年），多貓家庭</h3>
+        <ul class="notes"><li>右腎結石 → 右輸尿管結石＋膀胱結石；內科治療 1–2 個月後，2021 年 7 月放 SUB；取出的膀胱結石分析為 <strong>100% 尿酸銨</strong></li><li>結石中心建議：屬於可溶解的結石，<strong>尿 pH 維持 6.6–7.0</strong>、<strong>USG &lt; 1.030</strong></li><li>沒有門脈分流的臨床症狀或影像異常（沒做進一步檢查），尿液培養陰性 → <strong>原因不明</strong></li><li>7.0 kg、BCS 7/9、每天約 210 kcal，會偷吃其他貓的食物；原本吃 Royal Canin 一般食品（蛋白質偏高）；CKD 第 1 期、血壓正常、無蛋白尿</li><li>2021/8 尿 pH 6.1 → 改 RC 早期腎臟處方，2 個月後 pH 6.8，但又出現小膀胱結石、而且<strong>軟便腹瀉</strong>；改 Hill’s k/d Early Support 貓不吃；potassium citrate <strong>膠囊太大餵不進去</strong></li><li>沒有鹼化時尿 pH 掉到 5.8–6.1；飼主以生活品質優先、不想每天餵藥或換貓不喜歡的食物 → 協議<strong>每 6–8 週做尿檢和超音波</strong></li><li>2023/2：SUB 通暢、腎功能穩定、膀胱沒有明顯復發，但<strong>另一側腎出現小結石</strong></li></ul>
+      </div><div class="subsection">
+        <h3>講者回答</h3>
+<div class="qa"><div class="q">Q1：飲食和鹼化劑都失敗、貓又沒症狀，膀胱的尿酸鹽結石怎麼處理？</div><div class="a"><span class="src src-rec">🎤 Lulich</span><ul class="notes"><li>鹼化尿液可以改用 <strong>Tumil-K（potassium gluconate）</strong>或 <strong>calcium gluconate</strong>：<strong>gluconate 也會被代謝</strong>（產生鹼）</li><li>有<strong>粉劑</strong>，也有<strong>凝膠</strong>：塗在貓掌上讓牠自己舔掉；貓可能比較能接受</li><li>Tumil-K 原本是給酸中毒的腎衰竭貓用的</li></ul></div></div><div class="qa"><div class="q">Q2：為什麼貓會長尿酸鹽結石？</div><div class="a"><span class="src src-rec">🎤 Lulich</span><ul class="notes"><li>有些是門脈分流</li><li>其他的可能和狗一樣，有<strong>轉運蛋白的基因異常</strong>（類似大麥町）</li><li>已知好發品種：<strong>埃及貓（Egyptian Mau）</strong>，可能還有另一個品種（他不確定是不是暹羅貓）；正在開發基因檢測</li></ul></div></div><div class="qa"><div class="q">Q3：確診尿酸鹽、又沒辦法用飲食處理時，貓可以用 allopurinol 嗎？</div><div class="a"><span class="src src-rec">🎤 Lulich</span><ul class="notes"><li>基因改不了，但這表示<strong>可以考慮 allopurinol</strong>；美國不常用，義大利治療<strong>利什曼原蟲</strong>時會用 allopurinol 加抗寄生蟲藥</li><li>貓的劑量：<strong>8 mg/kg/天</strong></li><li>吃<strong>高蛋白</strong>食物可能產生 <strong>xanthine 結石</strong>，但通常<strong>停藥後會溶解</strong></li><li>義大利的報告中有些貓發生<strong>腎衰竭</strong>：開始用藥後約<strong>第 10 天、第 20 天驗肌酸酐</strong>，有變化就停藥</li><li>需要飼主配合定期回診監測</li></ul></div></div><div class="qa"><div class="q">Q4：你們有成功溶解貓的尿酸鹽結石嗎？</div><div class="a"><span class="src src-rec">🎤 Lulich</span><ul class="notes"><li>狗做過；<strong>Sheri Ross</strong> 有一隻貓成功，明尼蘇達結石中心的建議裡也列了兩隻貓</li><li>其中一隻約 <strong>15 mg/天</strong>，<strong>幾週內結石消失</strong>；但貓出現<strong>氮血症</strong>，停藥後恢復；義大利的報告也是急性腎損傷、停藥後恢復</li><li>Allopurinol 要靠<strong>肝臟</strong>代謝成更有活性的代謝物；<strong>有門脈分流、肝功能不好時可能沒效</strong></li></ul></div></div><div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>逐字稿這幾句的語音轉錄是反的：「you can’t give allopurinol to cats」上下文應為「可以給，但要監測」；「if the cat doesn’t have a shunt, it won’t work」應為「有分流就不會有效」。本頁依上下文更正。</div></div><div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 講者提到的 calcium gluconate 是用來<strong>鹼化尿液</strong>（gluconate 代謝後產生鹼），不是處理高血鉀時的那個用途。但它同時補了鈣：如果貓也有草酸鈣結石或高血鈣，potassium gluconate 會比較適合。Allopurinol 的 15 mg/天，對一般體重的貓大約是 3–4 mg/kg，低於義大利的 8 mg/kg/天，劑量仍以監測為準。</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🐕</div>
+      <h2>D. 狗的尿失禁與反覆 UTI（胡醫師）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3>病例 1：Bobo，15 歲母柯基（已結紮）</h3>
+        <ul class="notes"><li>因吐出、疑似胃食道逆流就診；8–9 歲開始尿失禁，前一家醫院認為是結紮相關，長期給 <strong>PPA</strong></li><li>15 歲出現<strong>高血壓</strong>，懷疑和長期 PPA 有關，不能再用</li><li>懷疑多重原因：USMI、反覆 UTI、<strong>陰門內陷（recessed vulva）</strong></li><li>做食道氣球擴張時順便做尿道鏡：發現<strong>持續性陰道隔膜殘留</strong> → 雷射切除，並在內視鏡導引下注射<strong>脂肪來源細胞支架</strong>（再生醫學的尿道填充）；仍在追蹤</li></ul>
+        <h3>病例 2：小乖，11 歲母柴犬（已結紮）</h3>
+        <ul class="notes"><li>膀胱結石、急性尿道阻塞，急診轉來手術；之後尿道鏡也發現陰道隔膜殘留</li><li>切除殘留組織，依培養與藥敏給口服抗生素治療 UTI，症狀明顯改善</li></ul>
+        <h3>報告者的重點</h3>
+        <ul class="notes"><li>慢性泌尿問題不要只想到感染、尿道炎、腫瘤，<strong>可能同時有好幾個原因</strong>，包括功能性、神經性和<strong>解剖異常</strong></li><li>陰道隔膜殘留（vestibular septal remnant）在早期結紮、沒有明顯症狀的狗容易被忽略；診斷工具：完整泌尿檢查、內視鏡、CT</li><li>2014 年的研究：<strong>36 例中 30 例（83%）同時有異位輸尿管</strong></li><li>陰門內陷：陰門周圍皮褶潮濕、尿液污染，容易反覆 UTI；<strong>陰門整形術（vulvoplasty）</strong>可以改善</li></ul>
+      </div><div class="subsection">
+        <h3>講者回答</h3>
+<div class="qa"><div class="q">尿道填充劑（bulking agent）怎麼選？</div><div class="a"><span class="src src-rec">🎤 Lulich</span><ul class="notes"><li><strong>Vet foam 很難打</strong>：一混合就開始凝固，要在 10–15 秒內注射完，根本來不及瞄準，他不喜歡</li><li>有一個較新的<strong>水凝膠</strong>產品（逐字稿拼作 Mictamid），原本是打進馬的關節做緩衝，他覺得可能更有效，但還需要時間評估</li></ul></div></div><div class="qa"><div class="q">打填充劑之前還能做什麼？</div><div class="a"><span class="src src-rec">🎤 Lulich</span><ul class="notes"><li>先試 <strong>PPA＋雌激素</strong>：理論是 PPA 活化受體、雌激素增加受體數量（他說這只是理論，但確實有些病例只靠這樣就有反應）</li><li>老狗尿失禁要先問：<strong>是不是多尿？尿比重低不低？</strong></li><li>小型犬可以考慮<strong>穿尿布</strong></li></ul></div></div><div class="qa"><div class="q">反覆感染怎麼處理？</div><div class="a"><span class="src src-rec">🎤 Lulich</span><ul class="notes"><li>每隻動物不同：可以給更久，或用更高的濃度</li><li>感染清除後，可以考慮<strong>每晚給 nitrofurantoin、持續 6 個月</strong></li><li>即使做了所有處置，仍有<strong>約 40%</strong> 會再感染</li></ul></div></div><div class="qa"><div class="q">陰道殘留在你們那裡常見嗎？</div><div class="a"><span class="src src-rec">🎤 Lulich</span> 很常見，<strong>沒有感染的狗也常看到</strong>；他們在公母狗做碎石等內視鏡處置時常看到。簡單的只是一條線，內視鏡就能處理；複雜的（例如雙陰道）要做<strong>顯影檢查</strong>再決定是否手術切除，有時有效、有時沒效。</div></div><div class="alert alert-info"><span class="alert-icon">💡</span><div><span class="src src-add">💡 補充</span> 逐字稿的「Imuran」應不是免疫抑制劑 azathioprine，依上下文應為雌激素藥物（例如 estriol，商品名 Incurin）；「Mictamid」可能是聚丙烯醯胺水凝膠類產品（人用的 Bulkamid、馬關節用的 Arthramid 屬於這類），實際名稱請再確認。</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">❓</div>
+      <h2>E. 提問對照</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3>整理者準備的問題，在座談中有沒有答案</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>問題</th><th>座談中的答案</th></tr>
+          <tr><td>Lorazepam 劑量（講義 📄 36 和 📄 47 不一致）</td><td>✅ 講者口頭確認 <strong>0.25 mg/貓 q12h</strong>，至少 2 週（見 <a href="feline-urethral-obstruction.html#s5">01 頁第 5 節</a>）</td></tr>
+          <tr><td>α 阻斷劑：下泌尿道無效，輸尿管呢？</td><td>✅ 尿道後段是骨骼肌、prazosin 不比安慰劑好；輸尿管結石他會用 tamsulosin＋鈣離子阻斷劑或 prazosin 排石，但也引用人醫研究說和安慰劑差不多（<a href="#s1">病例 A</a>）</td></tr>
+          <tr><td>Mannitol</td><td>✅ 給一次沒效就不再給；furosemide 可重複；先水合再給（<a href="#s1">病例 A</a>）</td></tr>
+          <tr><td>類固醇與尿鈣、淋巴瘤</td><td>✅ 腫瘤優先；thiazide、不酸化食物、追蹤尿鈣／肌酸酐比（<a href="#s2">病例 B</a>）</td></tr>
+          <tr><td>草酸鈣＋CKD 的食物</td><td>✅ 避免酸化與高鈉、可考慮腎臟處方、注意限磷後維生素 D 上升（<a href="#s2">病例 B</a>）</td></tr>
+          <tr><td>尿酸銨結石：尿液酸還是鹼？用什麼鹼化？</td><td>✅ 鹼化（陳醫師病例目標 pH 6.6–7.0）；Tumil-K 或 calcium gluconate（<a href="#s3">病例 C</a>）</td></tr>
+          <tr><td>貓可以用 allopurinol 嗎？</td><td>✅ 8 mg/kg/天，第 10、20 天驗肌酸酐，注意 xanthine 與 AKI；有分流可能無效（<a href="#s3">病例 C</a>）</td></tr>
+          <tr><td>特發性高血鈣的貓要不要吃泌尿處方</td><td>⚠️ 只有間接討論（病例 A 有 IHC，但沒談飲食選擇）</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📝</div>
+      <h2>F. 語音轉錄錯字對照與參考資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+<div class="subsection">
+        <h3>語音轉錄錯字對照</h3>
+        <div class="tbl-wrap"><table>
+          <tr><th>逐字稿</th><th>應為</th></tr>
+          <tr><td>rizapam、Lurasapan、losartan</td><td>lorazepam</td></tr>
+          <tr><td>stewartite、streubite、stibite</td><td>struvite（鳥糞石）</td></tr>
+          <tr><td>finoxibenzamine</td><td>phenoxybenzamine</td></tr>
+          <tr><td>Danterlin</td><td>dantrolene</td></tr>
+          <tr><td>tamoxifen（人醫排石研究）</td><td>tamsulosin</td></tr>
+          <tr><td>cortadon</td><td>chlorthalidone</td></tr>
+          <tr><td>Allura</td><td>Elura（capromorelin）</td></tr>
+          <tr><td>Transplant using</td><td>tranexamic acid（Transamin）</td></tr>
+          <tr><td>Tumol K</td><td>Tumil-K（potassium gluconate）</td></tr>
+          <tr><td>Dr. Shear、Josie、Dr. Litch、Lulish、Loizzi</td><td>Dr. Jody Lulich（第一段錄音 Speaker 2、第二段 Speaker 6）</td></tr>
+          <tr><td>sac、stop、sub（輸尿管）</td><td>SUB（皮下輸尿管繞道）</td></tr>
+        </table></div>
+      </div><div class="subsection">
+        <h3>參考資料</h3>
+        <div class="ref-list"><div class="ref-item">10/19 座談錄音（一）：Lulich 重講尿道阻塞＋病例 A、B（Plaud，<a href="https://web.plaud.ai/s/pub_deeed765-a0f4-49b3-9580-b18c3aef6da5::puGmBrDW-6uVqPhylxHLmrGHcWy5ZFZz5Z-LZa-mgZ5RjAppJXV0nlfzZMts0IWwxFD1t3-s6b6d6QAOB07gUwI" target="_blank" rel="noopener">連結</a>）。</div><div class="ref-item">10/19 座談錄音（二）：病例 C、D（Plaud，<a href="https://web.plaud.ai/s/pub_46ced55e-2df0-4556-91dc-0a1fa4e825b8::f_2sMQs_T_eyp01wilet424lsJHh4G3SmebJQCwhkjh7U6pInFP5JIjdwjztRRTNlcVfAKuzHJBbwAAJBXvd7gI" target="_blank" rel="noopener">連結</a>）。</div><div class="ref-item">報告者引用：Lemieux 2021（阻塞腎的腎盂直徑）；ACVIM 上泌尿道結石共識（Lulich 等，2016）；2014 年陰道殘留與異位輸尿管研究。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>相關：<a href="feline-urethral-obstruction.html">01 貓尿道阻塞</a>（含 10/19 座談重講）、<a href="feline-nephroureterolithiasis.html">02 貓的腎與輸尿管結石</a>、<a href="asia-uroliths.html">03 亞洲犬貓尿結石</a>、<a href="../texas-endocrine-2026/hypercalcemia.html">Texas 21 高血鈣</a>。</p>
+    <a href="index.html">回到講座列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

@@ -74,6 +74,7 @@ SPECS = {
     'ultrasound/feline-biliary-tree.html':           ['us', 'gi'],
     'lulich-urology-2026/feline-urethral-obstruction.html': ['uro', 'ecc'],
     'lulich-urology-2026/feline-nephroureterolithiasis.html': ['uro', 'kidney'],
+    'lulich-urology-2026/panel-1019.html': ['uro', 'kidney'],
     'texas-endocrine-2026/pupd.html':                ['endo', 'kidney'],
     'texas-endocrine-2026/dka-hhs.html':             ['endo', 'ecc'],
     'texas-endocrine-2026/diabetic-nutrition.html':  ['endo', 'nutrition'],
