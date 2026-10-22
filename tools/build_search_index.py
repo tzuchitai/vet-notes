@@ -95,6 +95,7 @@ SPECS = {
     'case-discussions/feline-severe-uri-outdoor-cat.html': ['resp', 'infect'],
     'antimicrobial-selection/part1.html':            ['infect', 'uro'],
     'antimicrobial-selection/part2.html':            ['infect', 'resp'],
+    'antimicrobial-selection/part3.html':            ['infect', 'gi'],
     'notes/blood-transfusion.html':                  ['heme', 'ecc'],
     'notes/clinical-pathology.html':                 ['clinpath', 'kidney'],
     'notes/feline-diabetes.html':                    ['endo'],

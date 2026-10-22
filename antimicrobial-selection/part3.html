@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>知菌知藥 Part 3｜貓膽管炎（Feline Cholangitis）</title>
+<style>
+  :root {
+    --primary: #5B3EBD;
+    --primary-light: #EDE9FE;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #1e1533;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #a89cc8; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #392a5c;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #a89cc8; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #a89cc8;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #392a5c;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #6b5c8f;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #4c2f9e 0%, #7c3aed 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #1e1533; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #392a5c; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── SOURCE BADGES / PENDING ── */
+  .src { display:inline-block; font-size:11px; font-weight:600; padding:1px 7px; border-radius:10px; margin-left:6px; vertical-align:2px; }
+  .src-slide { background:#e0f2fe; color:#0369a1; }
+  .src-note { background:#fce7f3; color:#be185d; }
+  .src-supp { background:#f1f5f9; color:#475569; }
+  .src-tr { background:#fef3c7; color:#92400e; }
+  .qa { border-left:4px solid var(--secondary); background:#f0f9ff; border-radius:0 8px 8px 0; padding:14px 18px; margin:14px 0; }
+  .qa .q { font-weight:700; color:#0c4a6e; margin-bottom:6px; font-size:14.5px; }
+  .qa ul.notes li { font-size:13.5px; }
+  .pending { border:2px dashed var(--border); border-radius:8px; padding:14px 16px; color:var(--text-muted); font-size:13.5px; background:#f8fafc; }
+  .hl { color:#15803d; font-weight:600; }
+  .bug-neg { background:#fdf2f8; border-color:#fbcfe8; }
+  .bug-neg h4 { color:#be185d; }
+  .bug-myco { background:#f0fdf4; border-color:#bbf7d0; }
+  .bug-myco h4 { color:#15803d; }
+  .bug-pos { background:#f5f3ff; border-color:#ddd6fe; }
+  .bug-pos h4 { color:#6d28d9; }
+  .card-mini .lbl { font-size:11.5px; font-weight:700; color:var(--text-muted); margin-top:8px; }
+  table.wide { min-width:640px; }
+  .src-paper { background:#ede9fe; color:#5B3EBD; }
+  .src-hl { background:#fef08a; color:#713f12; }
+  .hlmark { background:linear-gradient(transparent 55%, #fef08a 55%); }
+  .flow { display:grid; gap:10px; margin:10px 0; }
+  .flow .step { border:1px solid var(--border); border-left:4px solid var(--primary); border-radius:0 8px 8px 0; padding:10px 14px; background:#fafaff; font-size:13.5px; }
+  .flow .step b.k { color:var(--primary); }
+  .overlap { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin:10px 0; }
+  .overlap .box { border-radius:10px; padding:12px 14px; font-size:13px; text-align:center; font-weight:700; }
+  .overlap .arrow { grid-column:1 / -1; font-size:12.5px; color:var(--text-muted); }
+  @media (max-width: 900px) { .overlap { grid-template-columns:1fr; } }
+</style>
+</head>
+
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="../index.html">← 回首頁</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 知菌知藥系列</a>
+  <div class="logo">
+    <h2>知菌知藥 Part 3<br>貓膽管炎（Feline Cholangitis）</h2>
+    <p>梅醫師｜2026 年 10 月 22 日｜課前預習版</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#why">為什麼貓特別多</a>
+    <a href="#class">WSAVA 分類與爭議</a>
+    <a href="#cause-nc">嗜中性球型：細菌從哪來</a>
+    <a href="#cause-lc">淋巴球型：免疫媒介？</a>
+    <a href="#signs">signalment 與臨床症狀</a>
+    <a href="#lab">血液學與生化</a>
+    <a href="#img">超音波</a>
+    <a href="#bile">膽汁細胞學與培養</a>
+    <a href="#histo">肝臟切片</a>
+    <a href="#tx-anc">治療：急性嗜中性球型</a>
+    <a href="#tx-chronic">治療：慢性型與 LC</a>
+    <a href="#future">未來方向：借鏡人醫</a>
+    <a href="#care">臨床重點</a>
+    <a href="#prep">課前思考題</a>
+    <a href="#class-notes">課堂內容（待補）</a>
+    <a href="#ref">參考資料</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>知菌知藥 Part 3｜貓膽管炎（Feline Cholangitis）</h1>
+    <p>主講：梅醫師｜知菌知藥系列第三堂（肝膽道感染）</p>
+    <p>2026 年 10 月 22 日｜知菌知藥系列 3 / 3｜課前預習版：先整理指定文獻，課後合併錄音逐字稿</p>
+    <div class="tags">
+      <span class="tag">嗜中性球型膽管炎</span>
+      <span class="tag">淋巴球型膽管炎</span>
+      <span class="tag">Triaditis</span>
+      <span class="tag">膽囊穿刺</span>
+      <span class="tag">膽汁培養</span>
+      <span class="tag">Amoxicillin-clavulanate</span>
+      <span class="tag">類固醇</span>
+      <span class="tag">EHBO</span>
+    </div>
+  </div>
+
+  <div class="alert alert-info">
+    <span class="alert-icon">📝</span>
+    <div>
+      <b>標記說明</b>：
+      <span class="src src-paper">📄 文獻</span> Watson 2025 回顧文章內容
+      <span class="src src-hl">🖍️ 劃線</span> PDF 上已劃線／手寫註記的段落
+      <span class="src src-tr">🎙 逐字稿</span> 課堂錄音整理（課後補上）
+      <span class="src src-supp">📘 補充</span> 整理時補充的背景說明（非文獻或課堂內容）
+    </div>
+  </div>
+
+  <div class="alert alert-warn">
+    <span class="alert-icon">📄</span>
+    <div>
+      <b>文獻來源</b>：Watson P. Feline Cholangitis. <i>Vet Clin North Am Small Anim Pract.</i> 2025;55:627–646.
+      <a href="https://doi.org/10.1016/j.cvsm.2025.03.001" target="_blank" rel="noopener">doi:10.1016/j.cvsm.2025.03.001</a>。
+      文章版權屬 Elsevier，本頁只做中文重點整理，<b>沒有轉載原文圖表</b>；表格是依內容重新整理的。課後拿到錄音逐字稿，會再把梅醫師的講解與 Q&amp;A 合併進來。
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記原則</h3>
+    <ul>
+      <li>膽管炎是貓最常見的肝臟疾病；貓常是「膽管」發炎，狗多是「肝實質」疾病</li>
+      <li>貓的總膽管和唯一一條胰管在十二指腸乳頭前會合 → 常合併胰臟炎、腸炎（triaditis）</li>
+      <li>WSAVA 分三類：嗜中性球型（急性 ANC／慢性 CNC）、淋巴球型（LC）、肝吸蟲相關；CNC 和 LC 常重疊</li>
+      <li>急性嗜中性球型 ≈ 膽道細菌感染，多為腸道菌：<i>E. coli</i>、<i>Enterococcus</i>；厭氧菌以 <i>Bacteroides</i>、<i>Clostridium</i> 為主</li>
+      <li>膽汁流動受阻是細菌感染的溫床：一定要找膽結石、EHBO、膽囊病變、胰臟炎</li>
+      <li>臨床症狀、血檢、超音波都分不出 NC 和 LC；肝指數、膽紅素、超音波正常都不能排除膽管炎</li>
+      <li>盡量採膽汁做細胞學＋培養：看到嗜中性球＋細胞內細菌才確定不是污染；膽囊超音波正常 → 培養陰性的 NPV 96%</li>
+      <li>切片前查凝血、先給 vitamin K1 2–3 天；貓避免用半自動 Tru-Cut 槍（迷走神經性休克致死）</li>
+      <li>ANC：依培養結果選藥，首選 amoxicillin／amox-clav（膽汁中濃度高），傳統療程 4–6 週，但最佳療程未知</li>
+      <li>厭食貓要積極餵食，避免脂肪肝；用腸道處方或高蛋白重症飼料，<b>不要用限制蛋白的肝臟處方</b></li>
+      <li>LC：先切片排除 FIP、貓肝病毒（hepadnavirus）再用免疫抑制劑量類固醇 ＋ UDCA ＋ SAMe</li>
+      <li>貓沒有類固醇誘發的 ALP 同功酶 → 用類固醇後肝指數上升要當成病情變差，停止免疫抑制</li>
+    </ul>
+  </div>
+
+  <!-- ══ 為什麼貓 ══ -->
+  <div class="section" id="why">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">🐱</div>
+      <h2>為什麼貓特別容易得膽管炎？ <span class="src src-paper">📄 文獻</span></h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>流行病學</h3>
+        <ul class="notes">
+          <li>英國、紐西蘭、日本的病理研究，膽管炎都是<b>貓最常見的肝病</b>（各類別比例不同）。</li>
+          <li>美國早期最常見的貓肝病反而是<b>脂肪肝（hepatic lipidosis）</b>；地區差異的原因不明。</li>
+          <li>貓多是發炎性<b>膽道</b>疾病；狗多是<b>肝實質</b>疾病。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>解剖：膽管和胰管共用一個出口 <span class="src src-hl">🖍️ 劃線</span></h3>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>🐱 貓</h4>
+            <ul>
+              <li>通常只有<b>一條胰管</b></li>
+              <li>胰管在 <b>sphincter of Oddi</b> 和總膽管會合，再一起開口到十二指腸</li>
+              <li>→ 肝、胰、腸同時發炎很常見（<b>triaditis</b>）</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>🐶 狗</h4>
+            <ul>
+              <li>通常有<b>兩條胰管</b></li>
+              <li>和膽管分開開口到十二指腸</li>
+              <li>→ 狗沒有公認的 triaditis</li>
+            </ul>
+          </div>
+        </div>
+        <p style="font-size:13px; color:var(--text-muted);">作者提醒：解剖構造應該不是唯一原因；貓肝病的研究本來就少，對病因和治療的理解都受限。</p>
+      </div>
+      <div class="subsection">
+        <h3>肝吸蟲：流行地區的鑑別診斷 <span class="src src-hl">🖍️ 劃線</span></h3>
+        <p style="font-size:14px;">住在流行地區、切片上有明顯<b>膽管周圍與門脈區纖維化</b>的貓，要想到肝吸蟲相關的慢性膽管炎。這篇回顧不深入討論。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 分類 ══ -->
+  <div class="section" id="class">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🔬</div>
+      <h2>WSAVA 組織學分類與爭議 <span class="src src-paper">📄 文獻</span></h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>四種類別（重新整理）</h3>
+        <div class="tbl-wrap">
+          <table class="wide">
+            <tr><th>類別</th><th>組織學特徵</th><th>舊稱／其他名稱</th><th>問題</th></tr>
+            <tr>
+              <td><b>急性嗜中性球型（ANC）</b></td>
+              <td>嗜中性球包圍、侵入膽管；可見嗜中性球在膽管腔內 <span class="src src-hl">🖍️</span></td>
+              <td>化膿性／滲出性膽管炎、膽管肝炎</td>
+              <td>真正急性的沒有爭議；多數有細菌感染</td>
+            </tr>
+            <tr>
+              <td><b>慢性嗜中性球型（CNC）</b></td>
+              <td>門脈區混合型浸潤：嗜中性球＋淋巴球＋漿細胞，± 纖維化、膽管增生</td>
+              <td>非化膿性膽管炎／膽管肝炎（和 LC 重疊）</td>
+              <td>和 LC 在病理上可能重疊</td>
+            </tr>
+            <tr>
+              <td><b>淋巴球型（LC）</b></td>
+              <td>淋巴球浸潤門脈區、以膽管為中心，可能侵入膽管上皮；常伴門脈纖維化、膽管增生</td>
+              <td>淋巴球性膽管肝炎、淋巴球性門脈肝炎（LPH）、慢性膽管肝炎、硬化性膽管炎</td>
+              <td>和 CNC 重疊；1996 年描述、沒有膽道侵犯的 LPH 可能不是同一個病</td>
+            </tr>
+            <tr>
+              <td><b>肝吸蟲相關慢性膽管炎</b></td>
+              <td>大膽管擴張、明顯膽管周圍與門脈纖維化、輕中度混合發炎，嗜酸性球數量不定</td>
+              <td>—</td>
+              <td>流行地區常見</td>
+            </tr>
+          </table>
+        </div>
+        <ul class="notes">
+          <li>發炎<b>穿過 limiting plate</b>（門脈區邊界）進入肝實質，就改稱 <b>cholangiohepatitis（膽管肝炎）</b>。</li>
+          <li><b>破壞性膽管炎（destructive cholangitis）</b>：小門脈區膽管被破壞消失，推測和藥物反應或病毒有關，目前可能只見於狗；但部分貓的慢性膽管炎也看得到膽管消失（ductopenia）。</li>
+          <li>病理切片偶爾報 <b>small cell lymphoma</b>：大量淋巴球圍繞膽管的 LC，主要鑑別診斷就是小細胞淋巴瘤。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>為什麼分類「不令人滿意」？ <span class="src src-hl">🖍️ 劃線</span></h3>
+        <div class="overlap">
+          <div class="box" style="background:#fee2e2; color:#b91c1c;">ANC<br><span style="font-weight:400;">急性嗜中性球型</span></div>
+          <div class="box" style="background:#fef3c7; color:#92400e;">CNC<br><span style="font-weight:400;">慢性嗜中性球型</span></div>
+          <div class="box" style="background:#e0f2fe; color:#0369a1;">LC<br><span style="font-weight:400;">淋巴球型</span></div>
+        </div>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>ANC → CNC</h4>
+            <ul>
+              <li>膽汁流動長期受阻（慢性 EHBO、膽結石）讓急性細菌感染轉成慢性</li>
+              <li>少量淋巴球、輕微纖維化或膽管增生時，病理醫師判讀不一</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>CNC ↔ LC</h4>
+            <ul>
+              <li>LC 之上疊加壞死或續發細菌感染 → 看起來像 CNC</li>
+              <li>原發的慢性細菌感染 → 續發免疫媒介疾病</li>
+              <li>大量淋巴球＋纖維化、各門脈區表現不同：要多少嗜中性球或幾個門脈區才算 CNC？</li>
+            </ul>
+          </div>
+        </div>
+        <ul class="notes">
+          <li>有些研究把 ANC 和 CNC 分開，有些只分「嗜中性球型 vs 淋巴球型」，CNC 被歸到哪一邊不清楚。</li>
+          <li>WSAVA 標準之前的研究用的名稱，對不上現在的分類。</li>
+          <li>多數貓只有<b>一個時間點的一次切片</b>，看不到病程變化；膽道病變在肝內<b>分布不均</b>。</li>
+          <li>所以作者在文中把 NC 再拆成 ANC 和 CNC 來討論。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 病因 NC ══ -->
+  <div class="section" id="cause-nc">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🦠</div>
+      <h2>嗜中性球型膽管炎：細菌從哪裡來？ <span class="src src-paper">📄 文獻</span></h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>盛行率</h3>
+        <ul class="notes">
+          <li>英國、日本病理研究中最常見的貓肝病（分別 20.5%、28%），紐西蘭第二常見（9.7%）——但這些研究把 ANC 和 CNC 合併計算。</li>
+          <li>美國一個 44 隻貓的屍解研究分開算：ANC 7 隻、CNC 33 隻。</li>
+          <li>最大宗病例：<b>Sharon Center 2022</b>，同一作者近 40 年、168 隻化膿性膽管炎貓（ANC＋CNC，納入條件是門脈區、以膽管為中心的嗜中性球為主）。<span class="src src-hl">🖍️ 手寫「Sharon Center's 2022 study」</span></li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>感染途徑：上行 vs 血行</h3>
+        <ul class="notes">
+          <li>ANC 被認為是膽道細菌感染：從小腸<b>上行</b>，或經門脈血／全身<b>血行</b>而來。常合併膽囊炎。</li>
+          <li><b>FISH 研究（Twedt 2014）</b> <span class="src src-hl">🖍️ 劃線</span>：39 隻發炎性肝病貓 vs 19 隻正常貓，發炎組細菌陽性、肝內細菌明顯較多。但細菌<b>大多在門脈血管、竇狀隙和肝實質，而不在膽管</b> → 支持「經門脈的細菌轉位（translocation）」，而不是上行性膽道感染。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>常見菌種</h3>
+        <div class="grid3">
+          <div class="card-mini bug-neg">
+            <h4>腸道來源（最常見）</h4>
+            <ul>
+              <li><i>Escherichia coli</i></li>
+              <li><i>Enterococcus</i> spp.</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>厭氧菌</h4>
+            <ul>
+              <li><i>Bacteroides</i></li>
+              <li><i>Clostridium</i></li>
+            </ul>
+          </div>
+          <div class="card-mini bug-pos">
+            <h4>少見／意義不明</h4>
+            <ul>
+              <li><i>Streptococcus</i>、<i>Salmonella</i> Typhimurium</li>
+              <li><i>Providencia</i> <span class="src src-hl">🖍️</span>（少見菌 → 盡量做培養）</li>
+              <li>耐膽汁 <i>Helicobacter</i> <span class="src src-hl">🖍️</span>：正常貓膽汁也分離得到，意義不明</li>
+            </ul>
+          </div>
+        </div>
+        <p style="font-size:13px; color:var(--text-muted);">Brain 2006（澳洲，6 隻膽汁細胞學＋培養確診）：<i>E. coli</i> 4 例（其中 1 例合併 <i>Streptococcus</i>、1 例合併 <i>Clostridium</i>），<i>Streptococcus</i> 1 例，<i>Salmonella</i> Typhimurium 1 例。</p>
+      </div>
+      <div class="subsection">
+        <h3>關鍵：膽汁流動受阻 <span class="src src-hl">🖍️ 劃線</span></h3>
+        <p style="font-size:14px;">細菌不管從膽道或血行進到肝臟，都會被 Kupffer 細胞清除、排到膽汁裡；<b>膽汁流動一受阻，細菌就容易定殖</b>。檢查時一定要找這些因素。</p>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>Center 2022（168 隻 NC）</th><th>比例</th></tr>
+            <tr><td>肝外膽道阻塞（EHBO）</td><td><b>53%</b></td></tr>
+            <tr><td>膽結石</td><td><b>42%</b>——其中只有 <b>58%</b> 在影像上看得到</td></tr>
+            <tr><td>膽管板畸形（ductal plate malformation）</td><td>44%（這些貓較年輕）</td></tr>
+            <tr><td>切片確診慢性發炎性腸病（IBD）</td><td>60 / 68</td></tr>
+            <tr><td>胰臟炎</td><td>41 / 44（其中 28 隻有 EHBO，20 / 28 有膽結石）</td></tr>
+          </table>
+        </div>
+        <ul class="notes">
+          <li>最早的病例報告：4 / 4 隻 CNC 有確定或可能的膽道阻塞（2 隻膽結石、2 隻慢性胰臟炎），1 隻 ANC 有膽囊囊腫。</li>
+          <li>WSAVA 認為 CNC 也是細菌造成；作者認為部分是，但也可能是慢性膽道阻塞，或 LC 續發肝壞死／感染。</li>
+          <li>少數貓有其他易感因素，診斷時要問：<b>牙科處置、吃生食、FIV 陽性、正在用免疫抑制藥物</b>。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 病因 LC ══ -->
+  <div class="section" id="cause-lc">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🧬</div>
+      <h2>淋巴球型膽管炎：免疫媒介？ <span class="src src-paper">📄 文獻</span></h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>歷史</h3>
+        <ul class="notes">
+          <li>1982 年美國首次報告 3 隻貓，1984 年英國 21 隻；早期英國較多，現在美國也很常見。</li>
+          <li>有些研究 LC 是最常見的膽管炎，有些則比 NC 少。</li>
+          <li>病因推測是免疫媒介，但貓的慢性膽道疾病可能是「<b>組織學長得像、病因不同</b>」的一群症候群；早期文獻就認為有急性／慢性期，還有組織上不同的淋巴球性門脈肝炎。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>支持免疫媒介的證據</h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>研究</th><th>發現</th></tr>
+            <tr><td>早期免疫組化 <span class="src src-hl">🖍️</span></td><td>門脈周圍淋巴球以 <b>CD3+ T 細胞</b>為主，部分浸潤膽管上皮；急性病例有 piecemeal necrosis</td></tr>
+            <tr><td>Warren 2011（51 LC vs 27 肝淋巴瘤）<span class="src src-hl">🖍️</span></td><td>LC 中 68.6% T 細胞為主、29.4% B／T 各半、只有 1 例 B 細胞為主；發炎細胞<b>攻擊膽管</b>、<b>膽管消失（ductopenia）</b> → 像免疫媒介的膽管破壞</td></tr>
+            <tr><td>Bestwick 碩士論文（劍橋）</td><td>34 隻慢性膽管炎貓（LC＋CNC）vs 12 隻非發炎肝病對照：<b>7 / 34</b> 有抗肝抗體（4 隻核染色似 ANA、3 隻細胞質染色），對照組 0；部分切片有 ductopenia 和同心圓狀膽管周圍纖維化（像人的 PSC）<span class="src src-hl">🖍️</span>。但 40% 是 B 細胞為主，和之前研究不同（可能因為納入了 CNC）</td></tr>
+          </table>
+        </div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>這些研究都<b>沒有追蹤預後和治療反應</b>，臨床意義還不清楚。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ Signalment ══ -->
+  <div class="section" id="signs">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🩺</div>
+      <h2>Signalment 與臨床症狀 <span class="src src-paper">📄 文獻</span></h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="grid2">
+        <div class="card-mini">
+          <h4>年齡、性別、品種</h4>
+          <ul>
+            <li>任何年齡都可能，多為<b>中老年</b>（NC 可能反映背後的慢性病或膽道阻塞）</li>
+            <li>早期認為 LC 好發年輕貓，新研究顯示各年齡都有</li>
+            <li>只有膽管炎的貓，比合併腸胰疾病的貓<b>年輕</b>（Fragkou 2016）</li>
+            <li>多數研究無性別傾向（Otte 2013 公貓明顯較多）</li>
+            <li>NC 可能好發純種 <span class="src src-hl">🖍️</span>：波斯、英短、緬甸、暹羅；Center 2022 中最多的是 DSH，但英國盛行率研究 DSH 反而較少</li>
+            <li>LC：早期認為波斯貓多，新研究無品種傾向或緬甸、暹羅較多</li>
+          </ul>
+        </div>
+        <div class="card-mini">
+          <h4>臨床症狀</h4>
+          <ul>
+            <li>典型：<b>嗜睡、食慾下降、嘔吐</b></li>
+            <li>黃疸較少；NC 發燒的不到一半</li>
+            <li>腹痛不常見，但貓很會藏痛，可能低估</li>
+            <li><b>近一半膽管炎貓沒有症狀</b>（Fragkou 2016）<span class="src src-hl">🖍️</span>；合併 IBD＋胰臟炎的較常有症狀</li>
+            <li>早期英國報告：不少 LC 貓以<b>腹水</b>表現 <span class="src src-hl">🖍️</span></li>
+            <li>病程長短差異很大；NC 不一定急性發作</li>
+          </ul>
+        </div>
+      </div>
+      <div class="subsection" style="margin-top:14px;">
+        <h3>Center 2022（168 隻 NC）的臨床表現</h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>表現</th><th>比例</th></tr>
+            <tr><td>食慾下降、嗜睡、嘔吐</td><td>各約 80%</td></tr>
+            <tr><td>黃疸</td><td>67%</td></tr>
+            <tr><td>發燒</td><td>43%</td></tr>
+            <tr><td>肝腫大</td><td>34%</td></tr>
+            <tr><td>腹痛</td><td>23%</td></tr>
+            <tr><td>下痢</td><td>19%</td></tr>
+            <tr><td>症狀持續時間</td><td>中位數 30 天（1–1460 天）</td></tr>
+          </table>
+        </div>
+        <p style="font-size:13px; color:var(--text-muted);">因為胰臟炎、膽結石等合併症很常見，很難分辨哪些症狀是膽管炎本身造成的。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ Lab ══ -->
+  <div class="section" id="lab">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🧪</div>
+      <h2>血液學與生化 <span class="src src-paper">📄 文獻</span></h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <ul class="notes">
+        <li><b>嗜中性球增多不到一半</b>（Center 2022：37%；其中 22% 有帶狀核）。白血球增多和帶狀核在 NC 較常見，但不是每隻都有。</li>
+        <li><b>ALT 上升比 ALP 常見</b>；上升幅度個體差異很大。</li>
+        <li>高膽紅素血症常見——但<b>膽紅素和肝指數都可能在正常範圍內</b>。</li>
+        <li>LC 可能有 <b>γ-球蛋白上升</b> → <b>FIP</b> 是重要鑑別診斷 <span class="src src-hl">🖍️</span>。</li>
+        <li>凝血時間很少測，但測了常延長（Center 2022：PT 延長 24%、APTT 延長 41%）。</li>
+        <li>其他（Center 2022）：貧血 11%、輕度高血糖常見、膽固醇上升 26%。</li>
+      </ul>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><div>不是所有肝指數上升的貓都有原發肝病；也不是所有膽管炎貓都有肝指數或膽紅素上升。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ Imaging ══ -->
+  <div class="section" id="img">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🔊</div>
+      <h2>腹部超音波 <span class="src src-paper">📄 文獻</span></h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <ul class="notes">
+        <li>肝膽、胰臟、腸道的超音波異常都很常見——但 Marolf 2012 發現<b>多數膽管炎貓的肝膽超音波正常</b>。</li>
+        <li><b>肝臟正常不能排除 LC 或 NC</b>；也<b>沒有任何影像特徵能區分 NC 和 LC</b>。</li>
+        <li>要仔細看其他器官：<b>胰臟、腸胃道、腎臟</b>；看膽囊，找影響膽汁流動的病因：<b>膽結石、EHBO、囊性肝病</b>。</li>
+        <li><b>sphincter of Oddi 的小結石</b>可能漏看；小腸氣體也會蓋住膽結石 <span class="src src-hl">🖍️</span>（呼應 Center 2022：膽結石只有 58% 在影像上看到）。</li>
+      </ul>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>研究</th><th>常見發現</th></tr>
+          <tr><td>Brain 2006（NC）</td><td>總膽管擴張 4/4、膽囊壁增厚 5/5、沉積物 2 例</td></tr>
+          <tr><td>Clark 2011（各類合計）</td><td>膽管擴張 10/22、膽囊擴張 8/22、沉積物 8/22、肝腫大 10/21、肝高回音 9/21；胰臟異常 11/21、腸胃道異常 13/20</td></tr>
+          <tr><td>Marolf 2012（14 LC、12 NC）</td><td>膽管擴張、膽囊沉積物、肝腫大、肝回音改變在兩組比例相近；NC 2 例有膽結石／膽道礦化；腹水 LC 3、NC 1；胰臟異常在 NC 較常見</td></tr>
+        </table>
+      </div>
+      <p style="font-size:13.5px;">📘 超音波判讀細節可參考站內 <a href="../ultrasound/feline-biliary-tree.html" style="color:var(--primary);">貓膽道系統超音波（Griffin 2019）</a>。</p>
+    </div>
+  </div>
+
+  <!-- ══ Bile ══ -->
+  <div class="section" id="bile">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🧫</div>
+      <h2>膽汁細胞學與培養：抗生素決策的基礎 <span class="src src-paper">📄 文獻</span></h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>為什麼一定要採膽汁？</h3>
+        <ul class="notes">
+          <li>只看肝臟切片<b>不足以診斷急性細菌感染</b>：病變可能只在膽道，肝臟變化輕微、不具特異性。</li>
+          <li>只做超音波＋膽汁細胞學／培養，就能診斷細菌性膽管炎／膽囊炎、推定為 ANC，並有效治療感染——但無法知道它是原發，還是續發於其他肝病。<b>治療後症狀持續 → 強烈建議肝臟切片</b>。</li>
+          <li>膽囊穿刺（cholecystocentesis）可在超音波導引、腹腔鏡或手術中進行，正常貓和病貓都相對安全。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>超音波能不能預測培養結果？ <span class="src src-hl">🖍️ 劃線</span></h3>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>膽囊超音波異常</h4>
+            <ul>
+              <li>培養陽性的機率明顯較高</li>
+              <li>但<b>特異性只有 49%</b>（Smith 2017，70 隻貓）</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>膽囊超音波正常</h4>
+            <ul>
+              <li>培養陰性的 <b>NPV 96%</b></li>
+            </ul>
+          </div>
+        </div>
+        <ul class="notes">
+          <li>正常貓膽汁應該培養不出細菌，除非是污染；新研究也顯示<b>貓沒有核心膽汁菌叢</b>（Slead 2023）<span class="src src-hl">🖍️</span>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>培養的敏感度</h3>
+        <ul class="notes">
+          <li>Center 2022：168 隻中只有 80% 有做培養；<b>93 / 135（69%）培養陽性</b>，即使很多已經用過抗生素。</li>
+          <li>同研究用免疫組化標記細菌：<b>142 / 151（94%）</b>有細菌感染證據 <span class="src src-hl">🖍️</span>。</li>
+          <li><b>膽汁培養比肝組織或肝穿刺培養更敏感</b>。</li>
+          <li>合併多個部位的檢體能提高敏感度：肝臟、膽囊膽汁、總膽管囊腫、壓碎的膽結石、膽囊壁刮取或切片。</li>
+        </ul>
+        <div class="quote">送培養也要送細胞學：膽汁中有嗜中性球、加上細胞內細菌，才有信心是原發感染而不是污染。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ Histology ══ -->
+  <div class="section" id="histo">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🔪</div>
+      <h2>肝臟切片 <span class="src src-paper">📄 文獻</span></h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <ul class="notes">
+        <li>肝臟組織學是 NC 和 LC 診斷的<b>黃金標準</b>。</li>
+        <li><b>切片前一定要查凝血時間</b>，並先給 <b>vitamin K1 2–3 天</b>：貓的 vitamin K 反應性凝血異常很常見，尤其合併胰臟和腸道疾病時。</li>
+        <li>手術或腹腔鏡的<b>楔形切片（wedge biopsy）</b>最有代表性，還能順便看、甚至採胰臟和腸道。</li>
+        <li>也可以做超音波導引 Tru-Cut 粗針切片。</li>
+      </ul>
+      <div class="alert alert-danger"><span class="alert-icon">⛔</span><div><b>貓避免使用半自動 Tru-Cut 切片槍</b> <span class="src src-hl">🖍️</span>：有致死報告，推測是迷走神經誘發的休克（Proot 2006）。</div></div>
+    </div>
+  </div>
+
+  <!-- ══ Tx ANC ══ -->
+  <div class="section" id="tx-anc">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">💊</div>
+      <h2>治療：急性嗜中性球型膽管炎（ANC） <span class="src src-paper">📄 文獻</span></h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>沒有前瞻性治療研究，對病因的理解也不足，所以貓膽管炎（尤其慢性型）的治療<b>仍是經驗性、未經證實的</b>。十多年前就有人指出：確定組織學亞型並不能幫助循證治療或預後判斷，到現在還是一樣 <span class="src src-hl">🖍️</span>。</div></div>
+      <div class="subsection">
+        <h3>抗生素</h3>
+        <ul class="notes">
+          <li>確定膽道感染的貓，<b>理想上依培養與藥敏結果</b>選擇合適的抗生素。</li>
+          <li><b>Amoxicillin 或 amoxicillin-clavulanate</b> 是好的起始選擇：在<b>膽汁中濃縮</b>，而且多數分離菌株對它敏感。</li>
+          <li><b>療程</b>：最佳長度未知，傳統建議 <b>4–6 週</b>。</li>
+          <li>開始時做培養與藥敏找出抗藥性；治療幾週後反應不如預期，要<b>再做一次</b>。</li>
+          <li>重症或敗血症的貓：住院 IV 輸液、IV 抗生素。</li>
+        </ul>
+        <p style="font-size:13px; color:var(--text-muted);">📘 Part 2 課堂也提過：肝膽感染療程通常較久，至少 4–6 週，但證據不多；ISCAID 目前沒有肝膽感染指引（見 <a href="part2.html#q8" style="color:var(--primary);">Part 2 Q8</a>）。</p>
+      </div>
+      <div class="subsection">
+        <h3>有爭議的長期抗生素 <span class="src src-hl">🖍️ 手寫「Center lol.」</span></h3>
+        <ul class="notes">
+          <li>Center 2022 建議 <b>1–6 個月</b>抗生素，<b>膽管板畸形的貓終身用抗生素</b>——作者認為這有爭議。</li>
+          <li>作者經驗：這些貓用<b>間歇性療程</b>也有效，而且可能很少需要。</li>
+          <li>Center 2022 部分貓在手術中用了 <b>IV imipenem</b>——這在多數歐洲和北歐的負責任抗生素使用政策下是不被允許的。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>輔助治療</h3>
+        <ul class="notes">
+          <li><b>Ursodeoxycholic acid（UDCA）</b>：利膽、抗發炎。</li>
+          <li><b>S-adenosylmethionine（SAMe）</b>也說得通。</li>
+          <li>兩者都合理，但<b>沒有研究證明有效</b>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>營養：別讓牠變成脂肪肝</h3>
+        <ul class="notes">
+          <li>厭食的貓要注意餵食，避免同時發生<b>肝脂肪沉積症（hepatic lipidosis）</b>；需要時放餵食管。</li>
+          <li>選<b>貓慢性腸病處方</b>或<b>高蛋白重症照護飼料</b>，比<b>限制蛋白的肝臟處方</b>合適得多。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>手術與預後</h3>
+        <ul class="notes">
+          <li>找到潛在病因（膽結石、慢性膽囊疾病）要考慮手術。</li>
+          <li>預後通常良好：<b>早期、適當治療</b>的貓多能完全恢復。</li>
+          <li>Center 2022：中位存活時間 240–694 天；有膽結石的貓，<b>膽結石手術和膽囊切除</b>與存活時間延長有關。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ Tx chronic ══ -->
+  <div class="section" id="tx-chronic">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">💉</div>
+      <h2>治療：慢性嗜中性球型（CNC）與淋巴球型（LC） <span class="src src-paper">📄 文獻</span></h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p style="font-size:14px;">治療大多是經驗性的：類固醇、抗生素、UDCA、抗氧化劑、營養支持的各種組合；文獻多為描述性，缺乏長期追蹤。</p>
+      <div class="subsection">
+        <h3>證據整理</h3>
+        <div class="tbl-wrap">
+          <table class="wide">
+            <tr><th>研究</th><th>做法與結果</th><th>限制</th></tr>
+            <tr>
+              <td><b>Otte 2013</b>（荷蘭，唯一的回溯性治療研究）</td>
+              <td>10 隻單用 prednisolone 的貓，存活<b>明顯長於</b> 13 隻單用 UDCA 的貓 → 支持用類固醇</td>
+              <td>無對照組；公貓比例異常高；兩組在不同時期收案，可能有其他干擾因子</td>
+            </tr>
+            <tr>
+              <td><b>Otte 2014</b> 重複切片 <span class="src src-hl">🖍️ 手寫「2014 paper」</span></td>
+              <td>prednisolone 組 5 隻中 <b>4 隻</b>淋巴球發炎輕度改善，<b>1 隻變嚴重</b>（UDCA 組 4 隻也有重複切片）</td>
+              <td>治療反應變異大、難以預測</td>
+            </tr>
+            <tr>
+              <td><b>Lucke &amp; Davies 1984</b>（英國 21 隻 LC）</td>
+              <td>11 隻腹水貓做腹腔穿刺＋利尿劑；所有腹水／黃疸貓給<b>高劑量 prednisolone（最高 4 mg/kg/d）3 週，再 6–8 週慢慢減量</b>。部分長期緩解、部分復發需長期類固醇；研究結束 6 隻存活，最長追蹤 5 年。一隻車禍死亡的貓，6 個月後切片淋巴球和膽管增生明顯減少</td>
+              <td>描述性報告</td>
+            </tr>
+            <tr>
+              <td><b>Gagne 1999</b>（41 隻）</td>
+              <td>LPH 和 CNC 的治療五花八門（高劑量類固醇＋抗生素，或兩者都不用）；也描述了厭食貓的輔助餵食；各治療組<b>存活時間相近</b></td>
+              <td>許多貓有嚴重合併症（FIP、慢性腎病、類澱粉沉積、腫瘤）</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3>作者的建議做法</h3>
+        <div class="flow">
+          <div class="step"><b class="k">① 先有組織學</b>：重要鑑別診斷是 <b>FIP</b> 和新興的<b>貓肝病毒（feline hepadnavirus）</b>——<b>沒有切片不要用免疫抑制藥物</b>。治療決策結合組織學、臨床和臨床病理結果。</div>
+          <div class="step"><b class="k">② 淋巴球為主、沒有細菌感染證據</b>：<b>免疫抑制劑量類固醇</b> ＋ UDCA ＋ SAMe ＋ 高品質飲食；並處理嘔吐、腹痛等症狀。</div>
+          <div class="step"><b class="k">③ 監測</b>：密切追蹤臨床與臨床病理反應；<b>肝指數上升就停止免疫抑制</b>——貓<b>沒有類固醇誘發的 ALP 同功酶</b>，不能用「類固醇肝」解釋。</div>
+          <div class="step"><b class="k">④ 有明顯的嗜中性球族群</b>：才加抗生素；可在等膽汁或組織培養結果時先經驗性開始。</div>
+          <div class="step"><b class="k">⑤ 培養陰性但仍懷疑細菌感染</b>：可用組織蠟塊加做 <b>eubacterial FISH</b>。</div>
+        </div>
+        <p style="font-size:14px;">LC 和 CNC 的預後差異很大，部分貓可以存活很久。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ Future ══ -->
+  <div class="section" id="future">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">🔭</div>
+      <h2>未來方向：借鏡人醫的膽道疾病 <span class="src src-paper">📄 文獻</span></h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p style="font-size:14px;">慢性膽道疾病（CNC、LC）研究停滯，可能是因為我們只靠組織學分類。人醫有好幾種組織上很像、但靠其他方法確診的膽道病：</p>
+      <div class="tbl-wrap">
+        <table class="wide">
+          <tr><th>人類疾病</th><th>族群與關聯</th><th>診斷</th><th>類固醇反應</th></tr>
+          <tr><td>原發性硬化性膽管炎（PSC）</td><td>年輕男性；常合併大腸 IBD；膽管癌風險很高</td><td>MRCP 看到膽道狹窄，排除其他原因</td><td>無效，逐漸惡化至肝移植</td></tr>
+          <tr><td>原發性膽汁性膽管炎（PBC）</td><td>年長女性；合併其他自體免疫病</td><td>血清抗粒線體抗體上升</td><td>無效，逐漸惡化至肝移植</td></tr>
+          <tr><td>IgG4 相關膽管炎 <span class="src src-hl">🖍️</span></td><td>多器官免疫媒介病；英國可卡犬慢性胰臟炎也有類似疾病</td><td>臨床特徵＋血清或組織 IgG4 上升</td><td>對類固醇與 rituximab（抗 B 細胞）反應好</td></tr>
+        </table>
+      </div>
+      <ul class="notes">
+        <li>狗和人一樣有 4 種 IgG 亞型、會產生 IgG4；<b>貓只有 IgG1 和 IgG2</b>，所以不會有真正的 IgG4 相關疾病——但不排除有涉及其他免疫球蛋白的貓特有疾病。</li>
+        <li>需要超越肝臟切片的研究：進階影像、更多抗體研究。</li>
+        <li>沒有長期前瞻性研究，我們還答不出：貓會痊癒還是一輩子起起伏伏？多少死於本病？多少發展成肝臟惡性腫瘤？哪種治療最有效？作者呼籲建立病患登錄資料庫。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ Care points ══ -->
+  <div class="section" id="care">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">📌</div>
+      <h2>臨床重點（Clinics Care Points） <span class="src src-paper">📄 文獻</span></h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <ol class="notes">
+        <li>膽管炎是貓肝病最常見的原因；但肝指數高不一定是原發肝病，膽管炎也不一定有肝指數或膽紅素上升。</li>
+        <li>超音波、肝臟切片和膽汁穿刺是診斷關鍵；小心操作，風險應該不高。</li>
+        <li>急性和慢性膽管炎的貓都常合併 IBD 和胰臟炎；就算不做進一步檢查，也至少要考慮它們的存在。</li>
+        <li>慢性膽管炎的病因和理想治療仍未證實，但找出「<b>明確可治療</b>」的因素——<b>細菌感染、肝外膽道阻塞</b>——很重要。</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ══ Prep questions ══ -->
+  <div class="section" id="prep">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🤔</div>
+      <h2>課前思考題 <span class="src src-supp">📘 補充</span></h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:8px;">整理時想到、可以帶去課堂對照的問題；答案等課後依逐字稿補上。</p>
+      <ol class="notes">
+        <li>Amoxicillin／amox-clav 涵蓋 <i>E. coli</i>、<i>Enterococcus</i> 和多數厭氧菌——什麼情況需要升級或合併其他藥物（例如敗血症、藥敏顯示抗藥）？</li>
+        <li>Part 1、2 的趨勢是縮短療程；膽道感染傳統 4–6 週，有沒有縮短的空間？停藥要看什麼（臨床、肝指數、超音波、再次培養）？</li>
+        <li>Center 2022 的 1–6 個月、甚至終身抗生素 vs. 作者的間歇性療程，梅醫師怎麼看？</li>
+        <li>膽汁培養陰性但臨床仍像細菌感染（例如已用過抗生素），要怎麼決定繼續或停藥？</li>
+        <li>沒辦法做膽囊穿刺或切片時，經驗性用藥與類固醇的順序怎麼排？</li>
+        <li>CNC 這種「嗜中性球＋淋巴球」混合的病例，抗生素和類固醇要同時開始還是先後？</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ══ Class notes pending ══ -->
+  <div class="section" id="class-notes">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🎙</div>
+      <h2>課堂內容與 Q&amp;A <span class="src src-tr">🎙 逐字稿</span></h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="pending">⏳ 課後收到錄音逐字稿後補上：梅醫師的病例、投影片重點、藥物選擇與劑量、課後 Q&amp;A，並回頭在上面各段標上 🎙。</div>
+    </div>
+  </div>
+
+  <!-- ══ 參考資料 ══ -->
+  <div class="section" id="ref">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📚</div>
+      <h2>參考資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="ref-list">
+        <div class="ref-item">Watson P. Feline cholangitis. <em>Vet Clin North Am Small Anim Pract.</em> 2025;55:627–646. <a href="https://doi.org/10.1016/j.cvsm.2025.03.001" target="_blank" rel="noopener">doi:10.1016/j.cvsm.2025.03.001</a></div>
+        <div class="ref-item">Center SA, Randolph JF, Warner KL, et al. Clinical features, concurrent disorders, and survival time in cats with suppurative cholangitis-cholangiohepatitis syndrome. <em>J Am Vet Med Assoc.</em> 2022;260(2):212–227.</div>
+        <div class="ref-item">Center SA, Randolph JF, Warner KL, et al. Bacterial culture and immunohistochemical detection of bacteria and endotoxin in cats with suppurative cholangitis-cholangiohepatitis syndrome. <em>J Am Vet Med Assoc.</em> 2022;260(2):194–211.</div>
+        <div class="ref-item">Twedt DC, Cullen J, McCord K, et al. Evaluation of fluorescence in situ hybridization for the detection of bacteria in feline inflammatory liver disease. <em>J Feline Med Surg.</em> 2014;16(2):109–117.</div>
+        <div class="ref-item">Smith RP, Gookin JL, Smolski W, et al. Association between gallbladder ultrasound findings and bacterial culture of bile in 70 cats and 202 dogs. <em>J Vet Intern Med.</em> 2017;31(5):1451–1458.</div>
+        <div class="ref-item">Slead TS, Callahan BJ, Schreeg ME, et al. Microbiome analysis of bile from apparently healthy cats and cats with suspected hepatobiliary disease. <em>J Vet Intern Med.</em> 2023;37(6):2178–2187.</div>
+        <div class="ref-item">Otte CMA, Penning LC, Rothuizen J, et al. Retrospective comparison of prednisolone and ursodeoxycholic acid for the treatment of feline lymphocytic cholangitis. <em>Vet J.</em> 2013;195(2):205–209.</div>
+        <div class="ref-item">Otte CM, Rothuizen J, Favier RP, et al. A morphological and immunohistochemical study of the effects of prednisolone or ursodeoxycholic acid on liver histology in feline lymphocytic cholangitis. <em>J Feline Med Surg.</em> 2014;16(10):796–804.</div>
+        <div class="ref-item">Proot S, Rothuizen J. High complication rate of an automatic Tru-cut biopsy gun device for liver biopsy in cats. <em>J Vet Intern Med.</em> 2006;20(6):1327–1333.</div>
+        <div class="ref-item">Fragkou FC, Adamama-Moraitou KK, Poutahidis T, et al. Prevalence and clinicopathological features of triaditis in a prospective case series of symptomatic and asymptomatic cats. <em>J Vet Intern Med.</em> 2016;30(4):1031–1045.</div>
+        <div class="ref-item">梅醫師．知菌知藥系列 Part 3．2026 年 10 月 22 日。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一篇：<a href="part2.html" style="background:none;color:var(--primary);padding:0;">Part 2 呼吸道感染與肺炎的抗生素選擇</a>｜本篇為課前預習版，課後會合併錄音逐字稿。</p>
+    <a href="index.html">回到系列列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
