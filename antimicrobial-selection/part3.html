@@ -316,6 +316,9 @@
   .bug-pos { background:#f5f3ff; border-color:#ddd6fe; }
   .bug-pos h4 { color:#6d28d9; }
   .card-mini .lbl { font-size:11.5px; font-weight:700; color:var(--text-muted); margin-top:8px; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
   table.wide { min-width:640px; }
   .src-paper { background:#ede9fe; color:#5B3EBD; }
   .src-hl { background:#fef08a; color:#713f12; }
@@ -342,6 +345,10 @@
   </div>
   <nav>
     <div class="nav-section">章節導覽</div>
+    <a href="#case">病例 Penelope：膽結石阻塞</a>
+    <a href="#hq1">每個肝膽病例的問題</a>
+    <a href="#penelope">回到 Penelope：治療與追蹤</a>
+    <a href="#moonie">病例 Moonie</a>
     <a href="#why">為什麼貓特別多</a>
     <a href="#class">WSAVA 分類與爭議</a>
     <a href="#cause-nc">嗜中性球型：細菌從哪來</a>
@@ -386,6 +393,8 @@
       <b>標記說明</b>：
       <span class="src src-paper">📄 文獻</span> Watson 2025 回顧文章內容
       <span class="src src-hl">🖍️ 劃線</span> PDF 上已劃線／手寫註記的段落
+      <span class="src src-slide">📽 講義</span> 課堂投影片
+      <span class="src src-note">✍️ 筆記</span> 課堂筆記
       <span class="src src-tr">🎙 逐字稿</span> 課堂錄音整理（課後補上）
       <span class="src src-supp">📘 補充</span> 整理時補充的背景說明（非文獻或課堂內容）
     </div>
@@ -416,6 +425,611 @@
       <li>LC：先切片排除 FIP、貓肝病毒（hepadnavirus）再用免疫抑制劑量類固醇 ＋ UDCA ＋ SAMe</li>
       <li>貓沒有類固醇誘發的 ALP 同功酶 → 用類固醇後肝指數上升要當成病情變差，停止免疫抑制</li>
     </ul>
+  </div>
+
+  <!-- ══ 開場病例 ══ -->
+  <div class="section" id="case">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🐱</div>
+      <h2>病例 Penelope：膽道結石阻塞的貓 <span class="src src-slide">📽 講義</span></h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p style="font-size:12.5px; color:var(--text-muted); margin-bottom:10px;">課堂投影片（截圖）；病史與梅醫師的講解等逐字稿補上。</p>
+
+      <div class="subsection">
+        <h3>CBC <span class="src src-slide">📽 講義</span></h3>
+        <figure class="fig"><img src="photos/03-live-cbc.jpg" alt="CBC：WBC 22,000、嗜中性球 19,843、帶狀核 216、輕度中毒性變化、淋巴球 431、單核球 1,078、嗜酸性球 0、血小板 141,000" loading="lazy"><figcaption>課堂投影片：CBC</figcaption></figure>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>項目</th><th>結果</th><th>參考值</th><th>解讀</th></tr>
+            <tr><td>Hct</td><td>42.0%</td><td>30–50</td><td>正常；網狀紅血球 51,600/µL（正常範圍內）</td></tr>
+            <tr><td>WBC</td><td><b>22,000</b> /µL ↑</td><td>4,500–14,000</td><td rowspan="2">嗜中性球增多＋<b>左移（帶狀核）</b>＋<b>輕度中毒性變化</b> → 發炎／感染</td></tr>
+            <tr><td>Band / Neutrophil</td><td><b>216</b> ↑／<b>19,843</b> ↑</td><td>0／2,000–9,000</td></tr>
+            <tr><td>Lymphocyte</td><td><b>431</b> ↓</td><td>1,000–7,000</td><td rowspan="3">淋巴球減少、單核球增多、嗜酸性球 0 → 合併<b>壓力白血球像</b></td></tr>
+            <tr><td>Monocyte</td><td><b>1,078</b> ↑</td><td>50–600</td></tr>
+            <tr><td>Eosinophil</td><td><b>0</b> ↓</td><td>150–1,100</td></tr>
+            <tr><td>Platelet</td><td><b>141,000</b> ↓</td><td>180,000–500,000</td><td>輕度下降，<b>沒有血小板凝集</b>（不是假性）</td></tr>
+          </table>
+        </div>
+        <p style="font-size:12.5px; color:var(--text-muted);">📘 解讀欄為整理時補充。</p>
+      </div>
+
+      <div class="subsection">
+        <h3>鑑別診斷 <span class="src src-slide">📽 講義</span></h3>
+        <div class="grid2">
+          <figure class="fig"><img src="photos/03-live-ddx.jpg" alt="鑑別診斷清單" loading="lazy"><figcaption>先列出所有鑑別診斷</figcaption></figure>
+          <figure class="fig"><img src="photos/03-live-ddx-prioritized.jpg" alt="排序後的鑑別診斷" loading="lazy"><figcaption>超音波後重新排序（綠字＝優先）</figcaption></figure>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>#</th><th>鑑別診斷</th><th>排序後</th></tr>
+            <tr><td>1</td><td><b>感染</b></td><td><span class="badge badge-green">優先</span></td></tr>
+            <tr><td>2</td><td><b>發炎／免疫媒介</b></td><td><span class="badge badge-green">優先</span></td></tr>
+            <tr><td>3</td><td>腫瘤</td><td>較不可能</td></tr>
+            <tr><td>4</td><td>毒物／藥物</td><td>飼主表示不太可能</td></tr>
+            <tr><td>5</td><td><b>肝外因素：胰臟炎、膽結石／膽泥</b>、腸道疾病</td><td><span class="badge badge-green">優先</span></td></tr>
+            <tr><td>6</td><td><b>脂肪肝</b>（多半續發於上述疾病）</td><td><span class="badge badge-green">優先</span></td></tr>
+            <tr><td>7</td><td>類澱粉沉積（罕見）</td><td>依品種與罕見程度，較不可能</td></tr>
+            <tr><td>8</td><td>甲狀腺功能亢進</td><td>會讓肝指數上升，但<b>不會造成高膽紅素血症</b></td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>腹部超音波 <span class="src src-slide">📽 講義</span></h3>
+        <figure class="fig"><img src="photos/03-live-us-major-findings.jpg" alt="超音波主要發現：膽囊管彎曲輕度擴張，管腔內 0.58 cm 礦物質結石" loading="lazy"><figcaption>主要發現：遠端膽囊管／近端總膽管的結石，量測 0.58 cm</figcaption></figure>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>主要發現</h4>
+            <ul>
+              <li><b>膽囊管</b>彎曲、輕度擴張</li>
+              <li><b>礦物質結石</b>佔據大部分管腔（遠端膽囊管／近端總膽管），0.58 cm</li>
+              <li>總膽管旁脂肪輕度高回音</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>其他相關發現</h4>
+            <ul>
+              <li><b>肝臟高回音</b> → 脂肪肝 vs 代謝性 vs 感染／發炎；<b>淋巴瘤傾向低回音</b></li>
+              <li><b>肝內膽管輕度擴張</b> → 表示膽道阻塞<b>至少已經好幾天</b> <span class="src src-note">✍️ 筆記</span></li>
+              <li>胰臟：實質斑駁、胰臟周圍脂肪輕度高回音 → ± 慢性 vs 急性胰臟炎</li>
+              <li>腸胃道：正常</li>
+            </ul>
+          </div>
+        </div>
+        <figure class="fig"><img src="photos/03-live-us-other-findings.jpg" alt="其他相關發現" loading="lazy"><figcaption>其他相關發現（綠底為講者補充）</figcaption></figure>
+      </div>
+
+      <div class="subsection">
+        <h3>下一步怎麼做？ <span class="src src-slide">📽 講義</span></h3>
+        <figure class="fig"><img src="photos/03-live-what-would-you-do.jpg" alt="What would you do 選項" loading="lazy"><figcaption>課堂投票題</figcaption></figure>
+        <ul class="notes">
+          <li><b>A.</b> 膽囊穿刺採膽汁做培養</li>
+          <li><b>B.</b> 看起來很糟，直接上 meropenem</li>
+          <li><b>C.</b> 經驗性 amoxicillin-clavulanate ± enrofloxacin</li>
+          <li><b>D.</b> 有結石，送手術！</li>
+          <li><b>E.</b> 我不確定，要再想一下</li>
+        </ul>
+        <div class="pending">⏳ 梅醫師的答案與理由等逐字稿補上；飼主最後的選擇見下方<a href="#penelope" style="color:var(--primary);">回到 Penelope</a>。</div>
+        <p style="font-size:13px; color:var(--text-muted); margin-top:8px;">📘 文獻對照：Watson 建議盡量做膽汁細胞學＋培養、首選 amoxicillin／amox-clav、處理膽結石等影響膽汁流動的因素（見下方<a href="#bile" style="color:var(--primary);">膽汁培養</a>與<a href="#tx-anc" style="color:var(--primary);">ANC 治療</a>）；Part 2 也提過 meropenem 要不惜代價避免。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 肝膽 Q1 ══ -->
+  <div class="section" id="hq1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">❓</div>
+      <h2>每個肝膽病例都要問的問題 <span class="src src-slide">📽 講義</span></h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <h3 style="font-size:16px; color:var(--primary); margin-bottom:8px;">Q1｜有沒有感染？</h3>
+      <div class="quote">Is there an infection? It's possible!</div>
+
+      <div class="subsection">
+        <h3>膽結石：膽汁鬱積＋感染的溫床 <span class="src src-slide">📽 講義</span></h3>
+        <ul class="notes">
+          <li>膽結石造成<b>膽汁鬱積（bile stasis）</b>，本身也是<b>感染的核心（nidus）</b>。</li>
+          <li>貓特殊的解剖構造讓感染更有機會發生。</li>
+        </ul>
+        <figure class="fig"><img src="photos/03-live-q1-cholelithiasis-brunet.jpg" alt="Brunet 2023 貓膽結石多中心研究：盛行率 1%、60% 有症狀、培養陽性 61%" loading="lazy"><figcaption>課堂投影片：Brunet et al. 2023, JVIM</figcaption></figure>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>Brunet 2023（多中心回溯，98 隻膽結石貓）</th><th>結果</th></tr>
+            <tr><td>盛行率</td><td><b>1%</b></td></tr>
+            <tr><td>有症狀 vs 偶然發現</td><td><b>60%</b> 有症狀、40% 偶然發現</td></tr>
+            <tr><td>細菌培養陽性</td><td><b>17 / 28（61%）</b></td></tr>
+          </table>
+        </div>
+        <p style="font-size:13px; color:var(--text-muted);">📘 和 Watson 回顧呼應：Center 2022 的 NC 貓有 42% 有膽結石（見下方<a href="#cause-nc" style="color:var(--primary);">嗜中性球型病因</a>）。</p>
+      </div>
+
+      <div class="subsection">
+        <h3>貓狗膽道解剖差異 <span class="src src-slide">📽 講義</span></h3>
+        <figure class="fig"><img src="photos/03-live-q1-anatomy.jpg" alt="貓狗膽道解剖差異示意圖" loading="lazy"><figcaption>課堂投影片（圖：Yousif &amp; Dawood 2025, Open Vet J）</figcaption></figure>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>🐱 貓</h4>
+            <ul>
+              <li>總膽管（CBD）和胰管（PD）<b>先會合</b>，再一起開口於<b>十二指腸大乳頭（major duodenal papilla）</b></li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>🐶 狗</h4>
+            <ul>
+              <li>CBD 和 PD 在大乳頭<b>分別開口</b></li>
+              <li>另有<b>副胰管</b>開口於小乳頭（minor papilla）</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>怎麼知道是「細菌」？ <span class="src src-slide">📽 講義</span></h3>
+        <ul class="notes">
+          <li>一定要考慮<b>伺機性／非典型感染</b>，特別是正在用<b>免疫抑制藥物</b>的病患。</li>
+          <li>問接觸史：<b>抓老鼠（鼠類）</b>、<b>吃生食</b>。</li>
+        </ul>
+        <figure class="fig"><img src="photos/03-live-q1-chem-ck.jpg" alt="生化：ALT 552、AST 264、CK 22731、ALP 271、GGT 10、膽固醇 320、總膽紅素 6.0" loading="lazy"><figcaption>課堂投影片：生化，CK 被框起來（右側為投影片重點）</figcaption></figure>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>項目</th><th>結果</th></tr>
+            <tr><td>ALT</td><td><b>552</b> IU/L ↑</td></tr>
+            <tr><td>AST</td><td><b>264</b> IU/L ↑</td></tr>
+            <tr><td><b>CK</b></td><td><b>22,731</b> IU/L ↑↑（投影片特別框出）</td></tr>
+            <tr><td>ALP</td><td><b>271</b> IU/L ↑</td></tr>
+            <tr><td>GGT</td><td>10 IU/L</td></tr>
+            <tr><td>膽固醇</td><td><b>320</b> mg/dL ↑</td></tr>
+            <tr><td>總膽紅素</td><td><b>6.0</b> mg/dL ↑</td></tr>
+          </table>
+        </div>
+        <div class="alert alert-info"><span class="alert-icon">🐭</span><div><b>CK 很高 → 提高對弓蟲症（toxoplasmosis）的懷疑</b> <span class="src src-slide">📽 講義</span>；不過全身性重症的病患 CK 也可能上升。</div></div>
+      </div>
+
+      <div class="subsection">
+        <h3>膽汁培養陰性≠沒有感染 <span class="src src-note">✍️ 筆記</span></h3>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>膽汁培養就算<b>陰性也不能排除感染</b>，因為細菌可能<b>黏附在膽囊壁上</b>，抽出來的膽汁裡不一定有。</div></div>
+        <p style="font-size:13px; color:var(--text-muted);">📘 呼應 Watson：合併多個部位的檢體（膽囊壁刮取或切片、壓碎的膽結石、肝組織）可以提高培養敏感度；培養陰性但仍懷疑時，可對組織做 eubacterial FISH（見<a href="#bile" style="color:var(--primary);">膽汁細胞學與培養</a>）。</p>
+      </div>
+
+      <div class="subsection" style="margin-top:28px;">
+        <h3 style="font-size:16px;">Q2｜還有哪些鑑別診斷也很可能？ <span class="src src-slide">📽 講義</span></h3>
+        <figure class="fig"><img src="photos/03-live-q2-ddx.jpg" alt="Q2 鑑別診斷清單" loading="lazy"><figcaption>課堂投影片：Q2</figcaption></figure>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>類別</th><th>內容</th></tr>
+            <tr><td>感染</td><td><b>上行性細菌感染</b>、黴菌、原蟲、病毒（FIP）、寄生蟲／肝吸蟲</td></tr>
+            <tr><td>發炎／自體免疫</td><td><b>感染造成的嗜中性球型膽管炎</b> vs 淋巴球型膽管炎</td></tr>
+            <tr><td>腫瘤</td><td>例如淋巴瘤</td></tr>
+            <tr><td>毒物／藥物</td><td>例如 methimazole、acetaminophen、tetracycline、diazepam</td></tr>
+            <tr><td>肝外因素</td><td>胰臟炎、膽結石／膽泥、腸道疾病</td></tr>
+            <tr><td>脂肪肝</td><td>多半續發於上述疾病</td></tr>
+            <tr><td>類澱粉沉積</td><td>罕見</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="subsection" style="margin-top:28px;">
+        <h3 style="font-size:16px;">為什麼要考慮合併／原發疾病？ <span class="src src-slide">📽 講義</span></h3>
+        <p style="font-size:14px;">急性（化膿性）嗜中性球型膽管炎／膽管肝炎的貓，可能同時有（引用 Watson 2025）：</p>
+        <ul class="notes">
+          <li><b>膽結石</b>——<b>不是每個都看得到超音波上</b>（Center 2022：只有 58% 在影像上看到）</li>
+          <li><b>胰臟炎</b></li>
+          <li><b>慢性發炎性腸病（IBD）</b></li>
+          <li><b>膽管板畸形（ductal plate malformation）</b></li>
+        </ul>
+        <figure class="fig"><img src="photos/03-live-concurrent-disease.jpg" alt="急性嗜中性球型膽管炎的合併疾病" loading="lazy"><figcaption>課堂投影片：合併疾病</figcaption></figure>
+        <div class="alert alert-success"><span class="alert-icon">💡</span><div>
+          <b>Dr. Mui's Tip</b> <span class="src src-slide">📽 講義</span>
+          <ul class="notes" style="margin-top:4px;">
+            <li>穩定的病患，<b>值得先經驗性給抗生素（± 膽汁培養結果）至少 24–48 小時</b>。</li>
+            <li>細菌性膽管炎的血檢和／或超音波異常，治療後可以<b>明顯改善</b>。</li>
+            <li><span class="src src-note" style="margin-left:0;">✍️ 筆記</span> 可以一開始就嘗試性治療看看，<b>反應通常很快</b>。</li>
+          </ul>
+        </div></div>
+        <figure class="fig"><img src="photos/03-live-dr-mui-tip.jpg" alt="Dr. Mui's Tip 投影片" loading="lazy"><figcaption>課堂投影片：Dr. Mui's Tip</figcaption></figure>
+      </div>
+
+      <div class="subsection" style="margin-top:28px;">
+        <h3 style="font-size:16px;">Q4｜什麼時候適合做膽囊穿刺？ <span class="src src-slide">📽 講義</span></h3>
+        <p style="font-size:14px;">一般來說，<b>貓的膽汁比狗更容易培養出細菌</b>。（投影片跳過 Q3，待逐字稿確認。）</p>
+        <figure class="fig"><img src="photos/03-live-q4-cholecystocentesis.jpg" alt="Smith 2017 膽囊超音波與膽汁培養" loading="lazy"><figcaption>課堂投影片：Smith et al. 2017, JVIM（70 貓、202 狗）</figcaption></figure>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>🐱 貓</h4>
+            <ul>
+              <li><b>膽囊正常</b>：不太可能培養陽性（<b>NPV 96%</b>）</li>
+              <li><b>膽囊異常</b>（尤其<b>壁增厚、膽泥</b>）：
+                <br>培養陽性的貓 <b>96%</b> 膽囊異常
+                <br>培養陰性的貓也有<b>約 50%</b> 膽囊異常</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>🐶 狗</h4>
+            <ul>
+              <li>膽囊超音波表現和培養結果<b>沒有相關</b></li>
+            </ul>
+          </div>
+        </div>
+        <div class="alert alert-info"><span class="alert-icon">✍️</span><div><span class="src src-note" style="margin-left:0;">✍️ 筆記</span> 貓的膽囊超音波<b>有異常（例如壁看起來比較厚）就建議做培養</b>；膽囊正常的貓，培養陽性機率很低。狗則不能靠超音波決定。</div></div>
+        <h4>膽泥（sludge）不等於感染 <span class="src src-slide">📽 講義</span></h4>
+        <ul class="notes">
+          <li>新研究顯示，貓的<b>膽囊膽泥可能只是偶然／非特異性的發現</b>；對<b>沒有症狀</b>的貓，要謹慎使用抗生素或其他治療。</li>
+        </ul>
+        <figure class="fig"><img src="photos/03-live-q4-gb-sludge.jpg" alt="貓膽囊膽泥相關研究：Villm 2022、Lee 2025" loading="lazy"><figcaption>課堂投影片：Villm et al. 2022（Vet Radiol Ultrasound）、Lee et al. 2025（JFMS，166 例）</figcaption></figure>
+        <div class="alert alert-info"><span class="alert-icon">✍️</span><div><span class="src src-note" style="margin-left:0;">✍️ 筆記</span> <b>沒有症狀</b>的貓看到膽泥，不一定是感染；但<b>有症狀</b>的貓看到膽泥，也要小心判讀。</div></div>
+      </div>
+
+      <div class="subsection" style="margin-top:28px;">
+        <h3 style="font-size:16px;">⭐ Q5｜肝膽感染的常見病原？ Q6｜依病原怎麼選經驗性用藥？ <span class="src src-slide">📽 講義</span></h3>
+        <div class="quote">KNOW THESE TWO：革蘭氏陰性 <i>E. coli</i>、革蘭氏陽性 <i>Enterococcus</i></div>
+        <figure class="fig"><img src="photos/03-live-q5-q6-pathogens.jpg" alt="E. coli 與 Enterococcus 的第一線用藥與抗藥性" loading="lazy"><figcaption>課堂投影片：Q5、Q6（標星號＝重點）</figcaption></figure>
+        <div class="grid2">
+          <div class="card-mini bug-neg">
+            <h4>Gram（−）<i>E. coli</i></h4>
+            <div class="lbl">第一線</div>
+            <ul>
+              <li><b>β-lactam（± β-lactamase 抑制劑）</b></li>
+              <li>感染在<b>泌尿道以外</b>時，常需要加 <b>fluoroquinolone</b></li>
+            </ul>
+            <div class="lbl">注意</div>
+            <ul>
+              <li><b>ESBL</b>（廣效 β-lactamase）菌株越來越常見！</li>
+            </ul>
+            <div class="lbl">抗藥性</div>
+            <ul>
+              <li>常對 <b>β-lactam</b> 抗藥</li>
+            </ul>
+          </div>
+          <div class="card-mini bug-pos">
+            <h4>Gram（+）<i>Enterococcus</i> spp.</h4>
+            <div class="lbl">第一線</div>
+            <ul>
+              <li><b>β-lactam（ampicillin／amoxicillin）</b></li>
+            </ul>
+            <div class="lbl">特性</div>
+            <ul>
+              <li><b>很少產生 β-lactamase</b></li>
+            </ul>
+            <div class="lbl">抗藥性</div>
+            <ul>
+              <li><b>Cephalosporin、clindamycin、TMS、macrolide、fluoroquinolone</b></li>
+            </ul>
+          </div>
+        </div>
+        <div class="alert alert-info"><span class="alert-icon">✍️</span><div><span class="src src-note" style="margin-left:0;">✍️ 筆記</span> 目前 <i>E. coli</i> 對 <b>Augmentin（amox-clav）</b>的效果好像比較差了，有時也需要用到 <b>fluoroquinolone</b>——所以梅醫師可能會兩個抗生素一起用：<b>Augmentin ＋ Baytril（enrofloxacin）</b>。</div></div>
+        <p style="font-size:13px; color:var(--text-muted);">📘 對照開場病例的選項 C「amox-clav ± enrofloxacin」：amox-clav 涵蓋兩者，enrofloxacin 補 <i>E. coli</i>，但對 <i>Enterococcus</i> 無效。Part 2 也提過 <i>Enterococcus</i> 對 cephalosporin、clindamycin 天生抗藥，最簡單的 amoxicillin 反而有效（見 <a href="part2.html#q6" style="color:var(--primary);">Part 2 Q6</a>）。</p>
+      </div>
+
+      <div class="subsection" style="margin-top:28px;">
+        <h3 style="font-size:16px;">Q5、Q6｜別忘了絕對厭氧菌！ <span class="src src-slide">📽 講義</span></h3>
+        <figure class="fig"><img src="photos/03-live-q5-q6-anaerobes.jpg" alt="厭氧菌 Bacteroides 與 Clostridium 的用藥" loading="lazy"><figcaption>課堂投影片：Don't forget about the obligate anaerobes!</figcaption></figure>
+        <div class="grid2">
+          <div class="card-mini bug-neg">
+            <h4>Gram（−）<i>Bacteroides</i> spp.</h4>
+            <ul>
+              <li><i>B. fragilis</i> 和非 <i>B. fragilis</i></li>
+              <li>可用：<b>β-lactam（± β-lactamase 抑制劑）、metronidazole、clindamycin、pradofloxacin</b></li>
+              <li><i>B. fragilis</i>：<b>比較可能有抗藥性</b></li>
+            </ul>
+          </div>
+          <div class="card-mini bug-pos">
+            <h4>Gram（+）<i>Clostridium</i> spp.</h4>
+            <ul>
+              <li>可用：<b>β-lactam（± β-lactamase 抑制劑）、metronidazole</b></li>
+              <li>可考慮但效果不一：clindamycin</li>
+              <li>抗藥性：<b>加 β-lactamase 抑制劑應該有效</b></li>
+            </ul>
+          </div>
+        </div>
+        <div class="alert alert-info"><span class="alert-icon">✍️</span><div><span class="src src-note" style="margin-left:0;">✍️ 筆記</span> 如果懷疑有厭氧菌（例如 <i>Clostridium</i>），<b>Augmentin 其實可能就夠用</b>（呼應投影片：加 β-lactamase 抑制劑應該有效）。</div></div>
+        <p style="font-size:13px; color:var(--text-muted);">📘 和 Watson 回顧一致：最常見的厭氧菌是 <i>Bacteroides</i> 和 <i>Clostridium</i>（見<a href="#cause-nc" style="color:var(--primary);">嗜中性球型病因</a>）。Pradofloxacin 是唯一列出的 fluoroquinolone——enrofloxacin 對厭氧菌涵蓋不足。</p>
+      </div>
+
+      <div class="subsection" style="margin-top:28px;">
+        <h3 style="font-size:16px;">Q5｜別忘了弓蟲（<i>Toxoplasma</i>）！ <span class="src src-slide">📽 講義</span></h3>
+        <figure class="fig"><img src="photos/03-live-q5-toxoplasma.jpg" alt="弓蟲症治療：clindamycin 11 mg/kg q12h、4 週；葡萄膜炎照片" loading="lazy"><figcaption>課堂投影片：弓蟲症（右圖為葡萄膜炎；圖片來源 Cornell Feline Health Center）</figcaption></figure>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>項目</th><th>內容</th></tr>
+            <tr><td>第一線</td><td><b>Clindamycin 11 mg/kg q12h</b></td></tr>
+            <tr><td>療程</td><td><b>4 週</b>；有<b>神經或眼睛（葡萄膜炎）</b>侵犯時可能需要更久</td></tr>
+            <tr><td>線索</td><td>抓老鼠、吃生食、CK 明顯上升、葡萄膜炎（見上方 <a href="#hq1" style="color:var(--primary);">Q1</a>）</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="subsection" style="margin-top:28px;">
+        <h3 style="font-size:16px;">Q7｜怎麼監測治療反應？ Q8｜什麼時候停藥？ <span class="src src-slide">📽 講義</span></h3>
+        <div class="alert alert-warn"><span class="alert-icon">😩</span><div>目前<b>沒有共識指引，也沒有前瞻性研究</b>；大多來自專家意見和研討會講義。以下是梅醫師的<b>個人做法</b>。</div></div>
+        <div class="grid2">
+          <div class="card-mini">
+            <h4>🏥 住院 protocol</h4>
+            <ul>
+              <li>貓<b>每天</b>監測生化（肝指數、膽紅素、電解質）——因為貓的<b>肝指數半衰期短</b></li>
+              <li>狗可以 q2d，但電解質仍建議每天監測</li>
+              <li>注意<b>醫源性貧血</b>，尤其是貓</li>
+              <li>反應好的病患：<b>頭幾天內</b>生化就應該改善</li>
+              <li>擔心膽道阻塞時，<b>連續追蹤超音波</b></li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>🏠 門診 protocol（經驗）</h4>
+            <ul>
+              <li>依臨床反應，每 <b>1–2 週</b>監測生化，直到異常消失</li>
+              <li>急性細菌性膽管炎：多數 <b>2 週內</b>血檢恢復正常</li>
+              <li>沒恢復 → 要<b>重新評估</b>（抗生素選錯？根本不是感染？）</li>
+              <li><b>停藥後 1–2 週</b>再驗一次肝指數</li>
+            </ul>
+          </div>
+        </div>
+        <h4>療程長度</h4>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>情況</th><th>療程</th></tr>
+            <tr><td>文獻報告範圍</td><td>2–8 週，最長到 12 週</td></tr>
+            <tr><td><b>反應快（48–72 小時內）</b></td><td>可考慮只治療 <b>2–3 週</b></td></tr>
+            <tr><td>常見做法</td><td>先開 <b>4 週</b>；有潛在疾病的會延長到 <b>8 週</b></td></tr>
+          </table>
+        </div>
+        <figure class="fig"><img src="photos/03-live-q7-q8-inpatient.jpg" alt="住院監測 protocol" loading="lazy"><figcaption>課堂投影片：住院 protocol</figcaption></figure>
+        <figure class="fig"><img src="photos/03-live-q7-q8-outpatient.jpg" alt="門診監測與療程 protocol" loading="lazy"><figcaption>課堂投影片：門診 protocol 與療程</figcaption></figure>
+        <p style="font-size:13px; color:var(--text-muted);">📘 對照：Watson 回顧寫「傳統 4–6 週，最佳療程未知」；梅醫師的做法是依反應速度調整，反應快的可縮短到 2–3 週。這也回答了<a href="#prep" style="color:var(--primary);">課前思考題</a>第 2 題的一部分。</p>
+      </div>
+
+      <div class="pending">⏳ 後續問題陸續補上。</div>
+    </div>
+  </div>
+
+  <!-- ══ 回到 Penelope ══ -->
+  <div class="section" id="penelope">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🐱</div>
+      <h2>回到 Penelope：抗生素選擇、一週與四週追蹤 <span class="src src-slide">📽 講義</span></h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>後續處置 <span class="src src-slide">📽 講義</span></h3>
+        <figure class="fig"><img src="photos/03-live-penelope-augmentin.jpg" alt="Penelope 耳廓明顯黃疸" loading="lazy"><figcaption>課堂投影片：Penelope（耳廓黃疸）</figcaption></figure>
+        <ul class="notes">
+          <li>支持性治療後<b>臨床穩定</b>，開始吃一些食物。</li>
+          <li>飼主選擇<b>經驗性治療</b>：口服 <b>Augmentin 15 mg/kg PO q12h</b>。</li>
+        </ul>
+        <p style="font-size:13px; color:var(--text-muted);">📘 呼應 Dr. Mui's Tip：穩定的病患，值得先經驗性給抗生素至少 24–48 小時（見 <a href="#hq1" style="color:var(--primary);">每個肝膽病例的問題</a>）。</p>
+      </div>
+      <div class="subsection">
+        <h3>Augmentin 涵蓋哪些菌？ <span class="src src-slide">📽 講義</span></h3>
+        <figure class="fig"><img src="photos/03-live-is-augmentin-appropriate.jpg" alt="Is Augmentin appropriate 投影片" loading="lazy"><figcaption>課堂投影片：Is Augmentin appropriate?（★＝最常見病原）</figcaption></figure>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>細菌</th><th>Augmentin 效果</th></tr>
+            <tr><td>★ <i>Enterococcus faecalis</i></td><td><span class="badge badge-green">有效</span>（但 <i>E. faecium</i> 常抗藥）</td></tr>
+            <tr><td><i>Staphylococcus</i>、<i>Streptococcus</i> spp.</td><td><span class="badge badge-green">有效</span></td></tr>
+            <tr><td>Enterobacterales：<i>Klebsiella</i>、<i>Proteus</i></td><td><span class="badge badge-green">通常有效</span></td></tr>
+            <tr><td>Enterobacterales：★ <b><i>E. coli</i></b>、<i>Salmonella</i></td><td><span class="badge badge-yellow">難以預測</span></td></tr>
+            <tr><td>Enterobacterales：<b>ESBL</b>、<i>Enterobacter</i></td><td><span class="badge badge-red">無效</span></td></tr>
+          </table>
+        </div>
+        <ul class="notes">
+          <li>組織穿透力：一般<b>比 fluoroquinolone 差</b>。</li>
+          <li>Penelope 沒有明顯禁忌症。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">✍️</span><div><span class="src src-note" style="margin-left:0;">✍️ 筆記</span> Augmentin 對 <i>E. coli</i> 的效果<b>比較難預測</b>——這也是為什麼有時要加上 fluoroquinolone（見上方 <a href="#hq1" style="color:var(--primary);">Q5／Q6</a>）。</div></div>
+      </div>
+      <div class="subsection">
+        <h3>Fluoroquinolone：注射劑型 <span class="src src-slide">📽 講義</span></h3>
+        <ul class="notes">
+          <li><b>濃度依賴型</b>，組織穿透力極佳。</li>
+          <li>IV 劑型<b>只有 enrofloxacin</b>（Baytril）。</li>
+          <li><b>貓：5 mg/kg q24h</b>——為了避免<b>視網膜毒性</b>而降低劑量。</li>
+          <li>狗：10 mg/kg q24h（依藥敏報告的 SDD〔劑量依賴型敏感〕菌株，有時可到 20 mg/kg）。</li>
+          <li class="hl">就算菌株敏感，貓的<b>降低劑量</b>也可能讓部分貓<b>治療無效</b>。</li>
+        </ul>
+        <figure class="fig"><img src="photos/03-live-fq-parenteral.jpg" alt="Fluoroquinolone 注射劑型投影片" loading="lazy"><figcaption>課堂投影片：Fluoroquinolone – parenteral</figcaption></figure>
+      </div>
+      <div class="subsection">
+        <h3>Fluoroquinolone：口服劑型 <span class="src src-slide">📽 講義</span></h3>
+        <div class="alert alert-danger"><span class="alert-icon">⛔</span><div>貓一般<b>不建議口服 enrofloxacin</b>：因為必須降低劑量。口服選 <b>marbofloxacin</b> 或 <b>pradofloxacin</b>。</div></div>
+        <div class="tbl-wrap">
+          <table class="wide">
+            <tr><th>藥物</th><th>貓劑量</th><th>劑型</th><th>涵蓋範圍與定位</th></tr>
+            <tr><td><b>Marbofloxacin</b></td><td>2.75–5.5 mg/kg PO q24h</td><td>只有錠劑</td><td>最適合<b>革蘭氏陰性需氧菌</b>（如 Enterobacterales）；住院 IV enrofloxacin 反應好的貓，出院改這個</td></tr>
+            <tr><td><b>Pradofloxacin</b></td><td>7.5 mg/kg PO q24h</td><td>只有液劑</td><td><b>四象限涵蓋</b>：革蘭氏陽性、陰性、需氧、厭氧，還有 <i>Bartonella</i>、<i>Mycoplasma</i>；應<b>依培養與藥敏結果</b>使用</td></tr>
+          </table>
+        </div>
+        <div class="alert alert-info"><span class="alert-icon">✍️</span><div><span class="src src-note" style="margin-left:0;">✍️ 筆記</span> Pradofloxacin 對<b>革蘭氏陽性菌、厭氧菌</b>的效果比其他 fluoroquinolone 好，算是比較<b>後線</b>的抗生素。</div></div>
+        <figure class="fig"><img src="photos/03-live-fq-oral.jpg" alt="Fluoroquinolone 口服劑型投影片" loading="lazy"><figcaption>課堂投影片：Fluoroquinolone – oral</figcaption></figure>
+      </div>
+      <div class="subsection">
+        <h3>一週後：臨床改善，但…… <span class="src src-slide">📽 講義</span></h3>
+        <figure class="fig"><img src="photos/03-live-penelope-day7-chem.jpg" alt="Day 1 與 Day 7 生化比較" loading="lazy"><figcaption>課堂投影片：Day 1 → Day 7 生化</figcaption></figure>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>項目</th><th>Day 1</th><th>Day 7</th><th>參考值</th></tr>
+            <tr><td>ALT</td><td>552</td><td><b>527</b> ↑</td><td>27–101 IU/L</td></tr>
+            <tr><td>AST</td><td>264</td><td><b>250</b> ↑</td><td>17–58 IU/L</td></tr>
+            <tr><td>CK</td><td>22,731</td><td><span class="hl">191</span>（正常）</td><td>73–260 IU/L</td></tr>
+            <tr><td>ALP</td><td>271</td><td><b>109</b> ↑</td><td>14–71 IU/L</td></tr>
+            <tr><td>GGT</td><td>10</td><td><b>8</b> ↑</td><td>0–4 IU/L</td></tr>
+            <tr><td>膽固醇</td><td>320</td><td><span class="hl">220</span>（正常）</td><td>89–258 mg/dL</td></tr>
+            <tr><td>總膽紅素</td><td>6.0</td><td><b>5.7</b> ↑</td><td>0.0–0.2 mg/dL</td></tr>
+          </table>
+        </div>
+        <p style="font-size:13px; color:var(--text-muted);">📘 CK、膽固醇恢復正常，ALP 下降；但 ALT、AST、膽紅素幾乎沒變。對照 Q7／Q8：反應好的病患「頭幾天內」生化就應該改善。</p>
+        <figure class="fig"><img src="photos/03-live-penelope-day7-us.jpg" alt="Day 7 超音波：結石移到十二指腸大乳頭，膽道擴張加劇" loading="lazy"><figcaption>課堂投影片：Day 7 超音波（左：CBD；右：MDP 十二指腸大乳頭）</figcaption></figure>
+        <ul class="notes">
+          <li>膽囊內主要是無回音膽汁，但<b>膽囊管和總膽管越來越彎曲、擴張</b>。</li>
+          <li>之前那顆大的圓形礦物質結石，<b>現在在十二指腸大乳頭（major duodenal papilla）的位置</b>，約 0.7 cm（之前約 0.58 cm）。</li>
+          <li>擴張的膽道內另有兩團較小、圓形的高回音碎屑，沒有明顯聲影。</li>
+        </ul>
+        <div class="grid2">
+          <div class="card-mini bug-neg"><h4>✍️ 壞消息 <span class="src src-note">筆記</span></h4><ul><li>膽道擴張（biliary distension）加劇</li></ul></div>
+          <div class="card-mini bug-myco"><h4>✍️ 好消息 <span class="src src-note">筆記</span></h4><ul><li>結石<b>移位</b>了（往下移到十二指腸大乳頭）</li></ul></div>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3>一週後怎麼辦？ <span class="src src-slide">📽 講義</span></h3>
+        <figure class="fig"><img src="photos/03-live-penelope-wwyd2.jpg" alt="What would you do 第二題選項" loading="lazy"><figcaption>課堂投票題（第二次）</figcaption></figure>
+        <ul class="notes">
+          <li><b>A.</b> 解除阻塞的手術</li>
+          <li><b>B.</b> 把 Augmentin 換成其他抗生素</li>
+          <li><b>C.</b> 繼續 Augmentin，加 fluoroquinolone 加強革蘭氏陰性涵蓋</li>
+          <li><b>D.</b> 停抗生素，試用 prednisolone</li>
+          <li><b>E.</b> 膽囊穿刺</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>實際做法：「不是標準做法！」 <span class="src src-slide">📽 講義</span></h3>
+        <div class="quote">D（修改版）：繼續 Augmentin，並試用 prednisolone 1 mg/kg/d——一次只改變一個變數</div>
+        <h4>為什麼？</h4>
+        <ul class="notes">
+          <li>飼主<b>拒絕手術</b>。</li>
+          <li>病患對 <b>IV 輸液和加上止痛（buprenorphine）</b>反應很好。</li>
+          <li>結石從近端總膽管移到十二指腸大乳頭 → <b>有機會自己排出</b>。</li>
+          <li>如果<b>降低發炎</b>，可能讓結石通過。</li>
+          <li class="hl">⚠️ 注意：有感染的病患用 pred <b>有風險</b>。</li>
+        </ul>
+        <figure class="fig"><img src="photos/03-live-penelope-what-we-did.jpg" alt="What did we do 投影片" loading="lazy"><figcaption>課堂投影片：What did WE do? Not the standard!</figcaption></figure>
+      </div>
+      <div class="subsection">
+        <h3>四週後：Penelope 完全恢復！ <span class="src src-slide">📽 講義</span></h3>
+        <div class="tbl-wrap">
+          <table class="wide">
+            <tr><th>項目</th><th>Day 1</th><th>Day 7</th><th>4 週</th><th>參考值</th></tr>
+            <tr><td>ALT</td><td>552</td><td>527</td><td><span class="hl">29</span></td><td>27–101</td></tr>
+            <tr><td>AST</td><td>264</td><td>250</td><td><span class="hl">15</span>（L）</td><td>17–58</td></tr>
+            <tr><td>CK</td><td>22,731</td><td>191</td><td>53（L）</td><td>73–260</td></tr>
+            <tr><td>ALP</td><td>271</td><td>109</td><td>74（H）</td><td>14–71</td></tr>
+            <tr><td>GGT</td><td>10</td><td>8</td><td><span class="hl">&lt;3</span></td><td>0–4</td></tr>
+            <tr><td>膽固醇</td><td>320</td><td>220</td><td>290（H）</td><td>89–258</td></tr>
+            <tr><td>總膽紅素</td><td>6.0</td><td>5.7</td><td><b>0.6</b>（H）</td><td>0.0–0.2</td></tr>
+          </table>
+        </div>
+        <figure class="fig"><img src="photos/03-live-penelope-4wk-chem.jpg" alt="四週後生化" loading="lazy"><figcaption>課堂投影片：四週後生化</figcaption></figure>
+        <h4>四週超音波</h4>
+        <ul class="notes">
+          <li>膽囊壁正常；膽囊內有少量會產生聲影的礦物質沉積（1 cm），近端膽囊管也有（0.8 cm）。</li>
+          <li>膽囊管擴張、彎曲比之前改善；總膽管仍中度擴張（0.60 cm，之前 0.53 cm），管壁輕度增厚但比之前改善。</li>
+          <li><b>之前在十二指腸大乳頭的大結石和總膽管內的小結石都不見了</b>——結石排出了。</li>
+        </ul>
+        <figure class="fig"><img src="photos/03-live-penelope-4wk-us.jpg" alt="四週後超音波報告" loading="lazy"><figcaption>課堂投影片：四週後超音波報告</figcaption></figure>
+      </div>
+      <div class="subsection">
+        <h3>講者的推測 <span class="src src-slide">📽 講義</span></h3>
+        <ul class="notes">
+          <li><b>總膽管結石</b>造成有症狀的膽道阻塞。</li>
+          <li>對 Augmentin 有臨床反應（雖然生化沒改善）→ 很可能有<b>續發的上行性細菌感染</b>。</li>
+          <li>Prednisolone 可能<b>降低發炎 → 增加總膽管管徑</b>，幫助結石排出。</li>
+          <li>Prednisolone 也可能處理了<b>原發的腸道疾病</b>。
+            <ul class="notes"><li><b>Q9｜處理風險因子</b>：送 Texas A&amp;M GI panel、試<b>水解蛋白飲食</b>。</li></ul></li>
+          <li>細菌性膽管炎<b>可能是 prednisolone 的禁忌症</b>：每個病例都要評估，並和飼主討論風險。</li>
+        </ul>
+        <figure class="fig"><img src="photos/03-live-penelope-speculations.jpg" alt="Our speculations 投影片" loading="lazy"><figcaption>課堂投影片：Our speculations…</figcaption></figure>
+        <div class="alert alert-info"><span class="alert-icon">✍️</span><div><span class="src src-note" style="margin-left:0;">✍️ 筆記</span> 有感染時用 steroid，<b>有可能會有適應症</b>（例如 Penelope：降低發炎幫助結石排出），但要逐案評估風險。</div></div>
+        <p style="font-size:13px; color:var(--text-muted);">📘 對照 Watson：作者主張沒有切片不要用免疫抑制劑量，Penelope 用的是 1 mg/kg/d（抗發炎劑量），且持續給抗生素。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ Moonie ══ -->
+  <div class="section" id="moonie">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🐱</div>
+      <h2>病例 Moonie：10 歲已結紮公 DSH <span class="src src-slide">📽 講義</span></h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <figure class="fig"><img src="photos/03-live-moonie.jpg" alt="Moonie 病例摘要" loading="lazy"><figcaption>課堂投影片：Moonie</figcaption></figure>
+      <ul class="notes">
+        <li>混合型肝病變（mixed hepatopathy）、輕度高膽紅素血症。</li>
+        <li><b>兩個月抗生素無效</b>（Augmentin、clindamycin、marbofloxacin）。</li>
+        <li><b>多次膽囊穿刺＋膽汁培養 → 都陰性</b>。</li>
+        <li><b>膽道持續擴張</b>，但找不到結石或狹窄。</li>
+        <li>飼主選擇<b>肝臟切片＋評估膽管通暢度</b> → <b>輕度慢性嗜中性球型膽管炎（CNC）</b>，沒有腫瘤。</li>
+      </ul>
+      <p style="font-size:13px; color:var(--text-muted);">📘 對照 Watson：抗生素反應不佳時要重新培養、考慮切片；CNC 可能是慢性感染，也可能和膽道阻塞或免疫媒介有關（見<a href="#class" style="color:var(--primary);">分類與爭議</a>、<a href="#tx-chronic" style="color:var(--primary);">慢性型治療</a>）。</p>
+      <div class="subsection" style="margin-top:20px;">
+        <h3>切片時再做一次肝臟與膽汁的需氧＋厭氧培養 <span class="src src-slide">📽 講義</span></h3>
+        <figure class="fig"><img src="photos/03-live-moonie-culture.jpg" alt="Moonie 培養結果：Enterococcus faecium" loading="lazy"><figcaption>課堂投影片：培養結果</figcaption></figure>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th colspan="3">最終結果：<i>Enterococcus faecium</i></th></tr>
+            <tr><th>藥物</th><th>MIC</th><th>判讀</th></tr>
+            <tr><td>Ampicillin</td><td>—</td><td><span class="badge badge-red">R</span></td></tr>
+            <tr><td>Chloramphenicol</td><td>8</td><td><span class="badge badge-green">S</span></td></tr>
+            <tr><td>Doxycycline</td><td>1</td><td><span class="badge badge-green">S</span></td></tr>
+            <tr><td>Penicillin</td><td>≥64</td><td><span class="badge badge-red">R</span></td></tr>
+          </table>
+        </div>
+        <div class="quote">為什麼測的抗生素這麼少？</div>
+        <div class="alert alert-info"><span class="alert-icon">✍️</span><div><span class="src src-note" style="margin-left:0;">✍️ 筆記</span> 這份報告的藥很少：有些實驗室遇到 <i>Enterococcus</i>，<b>天生抗藥的藥物就不會列在報告上</b>。</div></div>
+        <div class="card-mini bug-pos" style="margin-top:10px;">
+          <h4>Gram（+）<i>Enterococcus</i> spp.（回顧）</h4>
+          <ul>
+            <li>第一線：β-lactam（ampicillin／amoxicillin）
+              <br>— <b><i>E. faecium</i>（Moonie）常對 ampicillin 抗藥</b>，和 <i>E. faecalis</i> 不同</li>
+            <li>很少產生 β-lactamase</li>
+            <li><b>對很多藥抗藥 ☹️</b>：cephalosporin、clindamycin、TMS、macrolide、fluoroquinolone</li>
+          </ul>
+        </div>
+        <figure class="fig"><img src="photos/03-live-moonie-efaecium.jpg" alt="E. faecium 抗藥性投影片" loading="lazy"><figcaption>課堂投影片：<i>E. faecium</i> 與 <i>E. faecalis</i> 的差異</figcaption></figure>
+        <p style="font-size:13px; color:var(--text-muted);">📘 這解釋了 Moonie 前兩個月的抗生素為什麼都沒效：Augmentin（<i>E. faecium</i> 常對 ampicillin 抗藥）、clindamycin 和 marbofloxacin（<i>Enterococcus</i> 天生或常見抗藥）都打不到。也呼應「回到 Penelope」的表：Augmentin 對 <i>E. faecalis</i> 有效、但 <i>E. faecium</i> 常抗藥。</p>
+      </div>
+      <div class="subsection" style="margin-top:20px;">
+        <h3>要選哪個抗生素？Chloramphenicol <span class="src src-slide">📽 講義</span></h3>
+        <p style="font-size:14px;">藥敏只剩 <b>chloramphenicol（S，MIC 8）</b>和 <b>doxycycline（S，MIC 1）</b>可選。</p>
+        <div class="card-mini">
+          <h4>Chloramphenicol</h4>
+          <ul>
+            <li><b>貓的藥物毒性風險較高</b>（肝臟<b>葡萄糖醛酸化能力較低</b>）→ <b>能避免就避免</b></li>
+            <li>劑量：<b>12.5–20 mg/kg PO q12h</b>——<b>不要用更高的劑量</b></li>
+            <li>組織穿透力極佳</li>
+            <li><b>可逆性骨髓抑制</b>很常見</li>
+            <li>人接觸要<b>戴手套</b></li>
+          </ul>
+        </div>
+        <div class="alert alert-info"><span class="alert-icon">✍️</span><div><span class="src src-note" style="margin-left:0;">✍️ 筆記</span> 梅醫師<b>沒有在貓用過 chloramphenicol</b>。</div></div>
+      </div>
+      <div class="subsection" style="margin-top:20px;">
+        <h3>要選哪個抗生素？Doxycycline <span class="src src-slide">📽 講義</span></h3>
+        <div class="card-mini">
+          <h4>Doxycycline</h4>
+          <ul>
+            <li>有<b>食道炎／食道狹窄</b>風險：給藥後<b>一定要接著給水</b>，或用懸浮液、裝進明膠膠囊</li>
+            <li>劑量：<b>5 mg/kg PO q12h</b></li>
+            <li>組織穿透力極佳</li>
+            <li><b>後天的 tetracycline 抗藥性很常見</b></li>
+          </ul>
+        </div>
+        <figure class="fig"><img src="photos/03-live-moonie-doxycycline.jpg" alt="Doxycycline 投影片" loading="lazy"><figcaption>課堂投影片：Which antibiotic would you choose? – Doxycycline</figcaption></figure>
+        <div class="alert alert-info"><span class="alert-icon">✍️</span><div><span class="src src-note" style="margin-left:0;">✍️ 筆記</span> Doxycycline 組織穿透力很好，但這次抗生素要用<b>一個月</b>，用這個藥會有點不放心——要考慮會不會<b>很快就產生抗藥性</b>。</div></div>
+        <p style="font-size:13px; color:var(--text-muted);">📘 兩個選項的取捨：chloramphenicol 在貓毒性風險高、要避免；doxycycline 安全性較好，但後天抗藥常見，長療程擔心抗藥性。Moonie 最後選哪個，等後續投影片或逐字稿。</p>
+      </div>
+      <div class="subsection" style="margin-top:20px;">
+        <h3>結果：改用 doxycycline <span class="src src-slide">📽 講義</span></h3>
+        <ul class="notes">
+          <li>用 doxycycline <b>2 週內所有生化異常都恢復正常</b>。</li>
+          <li>總療程 <b>8 週</b>。</li>
+          <li><b>7 年後</b>仍然狀況良好。</li>
+        </ul>
+        <figure class="fig"><img src="photos/03-live-moonie-outcome.jpg" alt="Moonie 結果" loading="lazy"><figcaption>課堂投影片：Moonie 的結果</figcaption></figure>
+        <p style="font-size:13px; color:var(--text-muted);">📘 對照 Q7／Q8：反應好時 2 週內血檢會正常；Moonie 有慢性病程（CNC），療程延長到 8 週，符合「有潛在疾病延長到 8 週」的做法。也提醒：培養陰性、抗生素無效時，切片＋組織培養可能找到被漏掉的抗藥菌。</p>
+      </div>
+      <div class="subsection" style="margin-top:20px;">
+        <h3>ISCAID 指引資源 <span class="src src-slide">📽 講義</span></h3>
+        <figure class="fig"><img src="photos/03-live-iscaid.jpg" alt="ISCAID 網站指引清單" loading="lazy"><figcaption>課堂投影片：ISCAID 網站</figcaption></figure>
+        <ul class="notes">
+          <li>器官系統指引：泌尿（2019 更新）、呼吸（2017）、皮膚（<b>2025 膿皮症指引</b>）、Ontario Animal Health Network 抗生素圖卡。</li>
+          <li>病原：Leptospira（ACVIM 2011、歐洲 2015）、Borrelia（ACVIM 2018 更新）、Ehrlichia／Anaplasma（歐洲 2015、ABCD 貓細菌感染指引）。</li>
+          <li><b>目前沒有肝膽感染的 ISCAID 指引</b>——這也是本堂的處置多來自專家意見的原因。</li>
+        </ul>
+        <p style="font-size:13px; color:var(--text-muted);">📘 完整整理見 <a href="part2.html#iscaid" style="color:var(--primary);">Part 2 ISCAID 指引資源</a>。</p>
+      </div>
+
+    </div>
   </div>
 
   <!-- ══ 為什麼貓 ══ -->
@@ -1003,6 +1617,10 @@
         <div class="ref-item">Center SA, Randolph JF, Warner KL, et al. Clinical features, concurrent disorders, and survival time in cats with suppurative cholangitis-cholangiohepatitis syndrome. <em>J Am Vet Med Assoc.</em> 2022;260(2):212–227.</div>
         <div class="ref-item">Center SA, Randolph JF, Warner KL, et al. Bacterial culture and immunohistochemical detection of bacteria and endotoxin in cats with suppurative cholangitis-cholangiohepatitis syndrome. <em>J Am Vet Med Assoc.</em> 2022;260(2):194–211.</div>
         <div class="ref-item">Twedt DC, Cullen J, McCord K, et al. Evaluation of fluorescence in situ hybridization for the detection of bacteria in feline inflammatory liver disease. <em>J Feline Med Surg.</em> 2014;16(2):109–117.</div>
+        <div class="ref-item">Brunet A, Duperrier-Simond C, Amoyal S, et al. Prevalence and clinical relevance of cholelithiasis in cats: a multicenter retrospective study of 98 cases. <em>J Vet Intern Med.</em> 2023;37(6):2157–2170. <a href="https://doi.org/10.1111/jvim.16888" target="_blank" rel="noopener">doi:10.1111/jvim.16888</a></div>
+        <div class="ref-item">Villm J, DeMonaco S, Larson M. Prevalence of gallbladder sludge and associated abnormalities in cats undergoing abdominal ultrasound. <em>Vet Radiol Ultrasound.</em> 2022;63(5):601–608. <a href="https://doi.org/10.1111/vru.13091" target="_blank" rel="noopener">doi:10.1111/vru.13091</a></div>
+        <div class="ref-item">Lee KLH, Guess SC, Villarino NF, Haines JM, Ambrosini YM. Gallbladder sludge in cats: associations with bile culture, liver enzymes and cholangiohepatitis in 166 cases. <em>J Feline Med Surg.</em> 2025;27(10). <a href="https://doi.org/10.1177/1098612X251379736" target="_blank" rel="noopener">doi:10.1177/1098612X251379736</a></div>
+        <div class="ref-item">Yousif NH, Dawood MS. Anatomical differences in the biliary duct system between canines and felines: a review article. <em>Open Vet J.</em> 2025;15(4):1542–1548.</div>
         <div class="ref-item">Smith RP, Gookin JL, Smolski W, et al. Association between gallbladder ultrasound findings and bacterial culture of bile in 70 cats and 202 dogs. <em>J Vet Intern Med.</em> 2017;31(5):1451–1458.</div>
         <div class="ref-item">Slead TS, Callahan BJ, Schreeg ME, et al. Microbiome analysis of bile from apparently healthy cats and cats with suspected hepatobiliary disease. <em>J Vet Intern Med.</em> 2023;37(6):2178–2187.</div>
         <div class="ref-item">Otte CMA, Penning LC, Rothuizen J, et al. Retrospective comparison of prednisolone and ursodeoxycholic acid for the treatment of feline lymphocytic cholangitis. <em>Vet J.</em> 2013;195(2):205–209.</div>
