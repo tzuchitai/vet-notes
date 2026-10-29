@@ -92,6 +92,7 @@ SPECS = {
     'case-discussions/feline-chronic-vomiting.html': ['gi'],
     'case-discussions/feline-ckd-obesity-enteropathy.html': ['kidney', 'gi', 'nutrition'],
     'case-discussions/feline-hypercalcemia-luts.html': ['uro', 'kidney', 'endo'],
+    'case-discussions/feline-jaundice-triaditis.html': ['gi', 'infect', 'heme', 'nutrition'],
     'case-discussions/feline-severe-uri-outdoor-cat.html': ['resp', 'infect'],
     'antimicrobial-selection/part1.html':            ['infect', 'uro'],
     'antimicrobial-selection/part2.html':            ['infect', 'resp'],

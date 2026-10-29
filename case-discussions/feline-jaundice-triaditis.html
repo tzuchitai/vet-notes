@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>貓重症黃疸、貧血與疑似 triaditis：時間軸判讀與「Less is more」用藥｜梅醫師病例討論</title>
+<style>
+  :root{
+    --bg:#F5F7F4;
+    --surface:#FFFFFF;
+    --surface-2:#EEF2EC;
+    --ink:#1A2420;
+    --ink-soft:#465049;
+    --ink-faint:#7C8880;
+    --accent:#2B6E63;
+    --accent-strong:#1F5048;
+    --accent-soft-bg:#E3EFEA;
+    --accent-soft-border:#BFDAD0;
+    --supplement:#96632A;
+    --supplement-soft-bg:#F6EAD7;
+    --supplement-soft-border:#E3C99A;
+    --rule:#DCE3DC;
+    --table-head-bg:#EEF2EC;
+    --font-display:Georgia,"Noto Serif TC","Songti TC",serif;
+    --font-body:-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei","Segoe UI",sans-serif;
+    --font-mono:ui-monospace,"SF Mono","Cascadia Code","Roboto Mono",monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#121815;
+      --surface:#161E19;
+      --surface-2:#1D2620;
+      --ink:#E7EDE8;
+      --ink-soft:#B7C2BA;
+      --ink-faint:#7E8D84;
+      --accent:#6FBFA9;
+      --accent-strong:#8ED4BF;
+      --accent-soft-bg:#1C2B26;
+      --accent-soft-border:#2C443B;
+      --supplement:#D8A25C;
+      --supplement-soft-bg:#2C2213;
+      --supplement-soft-border:#4E3A20;
+      --rule:#28322B;
+      --table-head-bg:#1D2620;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121815; --surface:#161E19; --surface-2:#1D2620; --ink:#E7EDE8;
+    --ink-soft:#B7C2BA; --ink-faint:#7E8D84; --accent:#6FBFA9; --accent-strong:#8ED4BF;
+    --accent-soft-bg:#1C2B26; --accent-soft-border:#2C443B; --supplement:#D8A25C;
+    --supplement-soft-bg:#2C2213; --supplement-soft-border:#4E3A20; --rule:#28322B; --table-head-bg:#1D2620;
+  }
+  :root[data-theme="light"]{
+    --bg:#F5F7F4; --surface:#FFFFFF; --surface-2:#EEF2EC; --ink:#1A2420;
+    --ink-soft:#465049; --ink-faint:#7C8880; --accent:#2B6E63; --accent-strong:#1F5048;
+    --accent-soft-bg:#E3EFEA; --accent-soft-border:#BFDAD0; --supplement:#96632A;
+    --supplement-soft-bg:#F6EAD7; --supplement-soft-border:#E3C99A; --rule:#DCE3DC; --table-head-bg:#EEF2EC;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent-strong);}
+  a:focus-visible, button:focus-visible, summary:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:2px;
+  }
+
+  .page{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 24px 96px;
+  }
+
+  /* ---------- Back link ---------- */
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    margin-top:20px;
+    padding:7px 14px 7px 10px;
+    border:1px solid var(--rule);
+    border-radius:20px;
+    background:var(--surface);
+    color:var(--ink-soft);
+    text-decoration:none;
+    font-size:13px;
+    font-weight:600;
+  }
+  .back-link:hover{
+    color:var(--accent-strong);
+    border-color:var(--accent-soft-border);
+    background:var(--accent-soft-bg);
+  }
+  .back-link .arrow{font-size:15px;line-height:1;}
+
+  /* ---------- Breadcrumb ---------- */
+  .crumbs{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:6px;
+    padding:10px 0 0;
+    font-size:13px;
+    color:var(--ink-faint);
+    font-family:var(--font-mono);
+  }
+  .crumbs a{color:var(--ink-faint);text-decoration:none;}
+  .crumbs a:hover{color:var(--accent-strong);}
+  .crumbs .sep{opacity:.5;}
+  .crumbs .current{color:var(--ink-soft);}
+
+  /* ---------- Masthead ---------- */
+  .masthead{
+    padding:28px 0 32px;
+    border-bottom:1px solid var(--rule);
+    margin-bottom:8px;
+  }
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--accent-strong);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;
+    height:1px;
+    background:var(--accent);
+    display:inline-block;
+  }
+  h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(28px,4vw,42px);
+    line-height:1.3;
+    margin:0 0 14px;
+    text-wrap:balance;
+    letter-spacing:.01em;
+  }
+  .dek{
+    font-size:16px;
+    color:var(--ink-soft);
+    max-width:62ch;
+    margin:0 0 24px;
+  }
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 20px;
+    font-size:13px;
+    color:var(--ink-faint);
+  }
+  .legend-item{display:flex;align-items:center;gap:8px;}
+  .swatch{width:12px;height:12px;border-radius:3px;flex:none;}
+  .swatch.core{background:var(--surface);border:1.5px solid var(--rule);}
+  .swatch.lit{background:var(--supplement-soft-bg);border:1.5px solid var(--supplement);}
+
+  /* ---------- Layout: rail + content ---------- */
+  .layout{
+    display:grid;
+    grid-template-columns:200px minmax(0,1fr);
+    gap:48px;
+    margin-top:40px;
+    align-items:start;
+  }
+  @media (max-width:860px){
+    .layout{grid-template-columns:1fr;}
+  }
+
+  .rail{
+    position:sticky;
+    top:24px;
+    font-size:14px;
+  }
+  .rail-title{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin:0 0 12px;
+  }
+  .rail nav ol{
+    list-style:none;
+    margin:0;
+    padding:0;
+    border-left:1px solid var(--rule);
+  }
+  .rail nav li{margin:0;}
+  .rail nav a{
+    display:block;
+    padding:7px 0 7px 16px;
+    margin-left:-1px;
+    border-left:1px solid transparent;
+    color:var(--ink-soft);
+    text-decoration:none;
+    font-size:13.5px;
+  }
+  .rail nav a:hover{color:var(--accent-strong);border-left-color:var(--accent);}
+
+  main{min-width:0;}
+
+  /* ---------- Sections ---------- */
+  section.chapter{
+    padding-top:8px;
+    margin-bottom:56px;
+    scroll-margin-top:24px;
+  }
+  .chapter-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    padding-bottom:14px;
+    margin-bottom:28px;
+    border-bottom:2px solid var(--ink);
+  }
+  .chapter-num{
+    font-family:var(--font-display);
+    font-size:15px;
+    color:var(--accent-strong);
+    font-weight:700;
+  }
+  .chapter-head h2{
+    font-family:var(--font-display);
+    font-size:24px;
+    margin:0;
+    font-weight:700;
+  }
+
+  h3{
+    font-family:var(--font-display);
+    font-size:18px;
+    font-weight:700;
+    margin:32px 0 12px;
+    color:var(--ink);
+  }
+  h3 .sub-num{color:var(--accent-strong);margin-right:8px;font-family:var(--font-mono);font-size:15px;}
+  h4{
+    font-size:14.5px;
+    font-weight:700;
+    margin:22px 0 8px;
+    color:var(--ink-soft);
+  }
+
+  p{margin:0 0 14px;max-width:74ch;}
+  ul,ol{margin:0 0 16px;padding-left:22px;max-width:70ch;}
+  li{margin-bottom:6px;}
+  li::marker{color:var(--ink-faint);}
+  strong{color:var(--ink);font-weight:700;}
+
+  /* ---------- Literature supplement callouts ---------- */
+  .lit{
+    background:var(--supplement-soft-bg);
+    border:1px solid var(--supplement-soft-border);
+    border-left:3px solid var(--supplement);
+    border-radius:3px;
+    padding:14px 18px;
+    margin:16px 0 20px;
+    max-width:74ch;
+  }
+  .lit p{margin:0;font-size:14.5px;color:var(--ink-soft);}
+  .lit p + p{margin-top:8px;}
+  .lit-tag{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--supplement);
+    font-weight:700;
+    display:block;
+    margin-bottom:6px;
+  }
+
+  /* ---------- Tables ---------- */
+  .table-wrap{
+    overflow-x:auto;
+    margin:10px 0 22px;
+    border:1px solid var(--rule);
+    border-radius:4px;
+  }
+  table{
+    border-collapse:collapse;
+    width:100%;
+    min-width:340px;
+    font-size:14.5px;
+    background:var(--surface);
+  }
+  caption{
+    text-align:left;
+    font-size:12px;
+    color:var(--ink-faint);
+    padding:8px 14px 0;
+    font-family:var(--font-mono);
+  }
+  thead th{
+    background:var(--table-head-bg);
+    text-align:left;
+    font-weight:700;
+    padding:10px 14px;
+    border-bottom:1px solid var(--rule);
+    color:var(--ink-soft);
+    font-size:13px;
+    white-space:nowrap;
+  }
+  tbody td{
+    padding:9px 14px;
+    border-bottom:1px solid var(--rule);
+    font-variant-numeric:tabular-nums;
+    vertical-align:top;
+  }
+  tbody tr:last-child td{border-bottom:none;}
+  tbody td:first-child{color:var(--ink);}
+
+  /* ---------- Drug / dose block ---------- */
+  .dose{
+    font-family:var(--font-mono);
+    font-size:13.5px;
+    background:var(--surface-2);
+    border:1px solid var(--rule);
+    border-radius:4px;
+    padding:12px 16px;
+    margin:10px 0 18px;
+    max-width:60ch;
+  }
+  .dose div{display:flex;justify-content:space-between;gap:16px;padding:2px 0;}
+  .dose div + div{border-top:1px dashed var(--rule);}
+  .dose span:first-child{color:var(--ink-soft);}
+  .dose span:last-child{font-variant-numeric:tabular-nums;text-align:right;}
+
+  /* ---------- Stat strip (case snapshot) ---------- */
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+    gap:12px;
+    margin:16px 0 22px;
+  }
+  .stat-box{
+    background:var(--surface);
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:14px 16px;
+    text-align:center;
+  }
+  .stat-box .num{
+    font-family:var(--font-display);
+    font-size:22px;
+    font-weight:700;
+    color:var(--accent-strong);
+    display:block;
+  }
+  .stat-box .lbl{font-size:12px;color:var(--ink-faint);margin-top:4px;}
+
+  /* ---------- Timeline ---------- */
+  .tl{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+    margin:10px 0 22px;
+    border-left:2px solid var(--accent-soft-border);
+    padding-left:20px;
+  }
+  .tl-item{position:relative;padding:0 0 22px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:"";
+    position:absolute;
+    left:-25.5px;
+    top:4px;
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:var(--accent);
+    border:2px solid var(--surface);
+  }
+  .tl-date{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    color:var(--accent-strong);
+    font-weight:700;
+    margin-bottom:3px;
+  }
+  .tl-body{font-size:14.5px;color:var(--ink-soft);}
+  .tl-body strong{color:var(--ink);}
+
+  /* ---------- References ---------- */
+  .refs{
+    list-style:none;
+    padding:0;
+    margin:0;
+    counter-reset:refnum;
+  }
+  .refs li{
+    counter-increment:refnum;
+    display:flex;
+    gap:14px;
+    padding:14px 0;
+    border-bottom:1px solid var(--rule);
+    max-width:none;
+  }
+  .refs li::before{
+    content:counter(refnum);
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--accent-strong);
+    flex:none;
+    width:20px;
+  }
+  .refs li:last-child{border-bottom:none;}
+  .refs .ref-body{font-size:14.5px;}
+  .refs .ref-body p{margin:0 0 4px;color:var(--ink-soft);}
+  .refs a{word-break:break-all;font-size:13.5px;}
+
+  footer.note{
+    margin-top:64px;
+    padding-top:20px;
+    border-top:1px solid var(--rule);
+    font-size:12.5px;
+    color:var(--ink-faint);
+  }
+  footer.note a{color:var(--ink-faint);}
+  .legend .swatch.lit{padding:0;margin:0;max-width:none;}
+  @media (max-width:860px){.rail{position:static;}}
+  .fig{margin:14px 0 24px;max-width:74ch;}
+  .fig img{width:100%;height:auto;display:block;border:1px solid var(--rule);border-radius:4px;background:#000;}
+  .fig figcaption{font-size:12.5px;color:var(--ink-faint);margin-top:6px;}
+  .quote{border-left:3px solid var(--accent);background:var(--accent-soft-bg);padding:12px 16px;margin:14px 0 18px;max-width:74ch;border-radius:3px;}
+  .quote p{margin:0;font-size:14.5px;color:var(--ink-soft);}
+  .quote p + p{margin-top:6px;}
+  .quote .who{display:block;font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;color:var(--accent-strong);font-weight:700;margin-bottom:4px;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <a class="back-link" href="index.html"><span class="arrow">←</span>回上一頁：梅醫師病例討論</a>
+
+  <p class="crumbs">
+    <a href="../index.html"><img src="../assets/logo-mark-96.png" alt="" style="width:1.3em;height:1.3em;vertical-align:-.32em;margin-right:.2em">獸醫讀書筆記</a>
+    <span class="sep">／</span>
+    <a href="index.html">梅醫師病例討論</a>
+    <span class="sep">／</span>
+    <span class="current">Case 08</span>
+  </p>
+
+  <header class="masthead">
+    <p class="eyebrow">梅醫師病例討論 · Case 08 · 小動物內科／肝膽・消化系統</p>
+    <h1>貓重症黃疸、貧血與疑似 triaditis：時間軸判讀與「Less is more」用藥</h1>
+    <p class="dek">肥胖貓「屁啵」厭食、嘔吐兩週後以黃疸（TBIL 7.0）、肝膽酵素上升、fPL 升高、非再生性貧血、低磷與低膽固醇就診；三週內用過五種抗生素、類固醇與十多種支持藥物，TBIL 一路升到 10.9 才在 10/20 後下降，期間還發現 RCM 表現型與胸水。梅醫師把重點拉回三件事：低膽固醇不支持阻塞、從 10 kg 掉到 6 kg 的體重指向原發性腸胃道疾病（IBD／小細胞淋巴瘤、triaditis），以及在一隻不吃飯的貓身上，每一個口服藥都要有夠好的理由。</p>
+    <div class="legend">
+      <span class="legend-item"><span class="swatch core"></span>病例簡報與梅醫師課堂討論</span>
+      <span class="legend-item"><span class="swatch lit"></span>指引／文獻補充與個人整理</span>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="rail">
+      <p class="rail-title">目錄</p>
+      <nav>
+        <ol>
+          <li><a href="#s1">一、病例摘要與病程</a></li>
+          <li><a href="#s2">二、血檢 × 用藥時間表</a></li>
+          <li><a href="#s3">三、黃疸：先排優先順序</a></li>
+          <li><a href="#s4">四、TBIL 下降：是抗生素嗎？</a></li>
+          <li><a href="#s5">五、抗生素逐一檢視</a></li>
+          <li><a href="#s6">六、低磷與尿糖：近端腎小管病變</a></li>
+          <li><a href="#s7">七、貧血：不要追數字</a></li>
+          <li><a href="#s8">八、體重掉 4 kg：原發性腸胃道疾病</a></li>
+          <li><a href="#s9">九、營養與補充品</a></li>
+          <li><a href="#s10">十、用藥精簡：Less is more</a></li>
+          <li><a href="#s11">十一、輸液、心臟與其他監測</a></li>
+          <li><a href="#s12">十二、Take-home messages</a></li>
+          <li><a href="#s13">十三、參考資料</a></li>
+        </ol>
+      </nav>
+    </aside>
+
+    <main>
+
+      <!-- 一 -->
+      <section class="chapter" id="s1">
+        <div class="chapter-head"><span class="chapter-num">01</span><h2>病例摘要與病程</h2></div>
+
+        <h3><span class="sub-num">1</span>病例摘要</h3>
+        <p>屁啵，貓，2026-10-05 初診（報告者：黃筠文醫師）。驅蟲與疫苗都不規則，沒有用跳蚤／壁蝨預防。</p>
+        <ul>
+          <li><strong>主訴</strong>：口腔黑黑的；兩週來食慾、精神不佳，進食後多會嘔吐（黃水加少量食物）。</li>
+          <li><strong>體重史</strong>：就診時 6.6 kg、BCS 7/9，看起來是胖貓；但<strong>飼主說牠本來有 10 kg</strong>。梅醫師特別點出這是很重要的病史：看起來不瘦的貓，其實已經掉了 4 kg。</li>
+          <li><strong>理學檢查</strong>：BAR；脫水 8–10%；輕度肌肉流失；皮膚與口腔黏膜黃疸；嚴重牙結石、流涎；腹部觸診無明顯異常。</li>
+        </ul>
+        <div class="stat-strip">
+          <div class="stat-box"><span class="num">10 → 6.6</span><span class="lbl">體重（kg）</span></div>
+          <div class="stat-box"><span class="num">7/9</span><span class="lbl">BCS</span></div>
+          <div class="stat-box"><span class="num">105</span><span class="lbl">收縮壓（之後 105–120）</span></div>
+          <div class="stat-box"><span class="num">7.0</span><span class="lbl">TBIL（mg/dL）</span></div>
+          <div class="stat-box"><span class="num">40</span><span class="lbl">CHOL（mg/dL）</span></div>
+        </div>
+
+        <h3><span class="sub-num">2</span>10/05 初診血檢重點</h3>
+        <div class="table-wrap">
+          <table>
+            <caption>10/05 ProCyte One／Catalyst One（取自病例簡報）</caption>
+            <thead><tr><th>項目</th><th>結果</th><th>參考範圍</th><th>項目</th><th>結果</th><th>參考範圍</th></tr></thead>
+            <tbody>
+              <tr><td>HCT</td><td>24.7%</td><td>28.4–54.2</td><td>TBIL</td><td>7.0</td><td>0–0.9</td></tr>
+              <tr><td>Retic</td><td>7.0 K/μL</td><td>3–50</td><td>ALT</td><td>423</td><td>12–130</td></tr>
+              <tr><td>MCV</td><td>37.8 fL</td><td>34.2–56.2</td><td>ALKP</td><td>440</td><td>14–111</td></tr>
+              <tr><td>WBC</td><td>27.88</td><td>3.37–19.90</td><td>GGT</td><td>8</td><td>0–4</td></tr>
+              <tr><td>NEU</td><td>23.11</td><td>1.61–15.10</td><td>CHOL</td><td>40</td><td>65–225</td></tr>
+              <tr><td>EOS</td><td>1.98</td><td>0.17–1.57</td><td>TP／ALB／GLOB</td><td>6.9／3.1／3.8</td><td>A/G 0.8</td></tr>
+              <tr><td>PLT</td><td>469</td><td>151–585</td><td>PHOS</td><td>2.2</td><td>3.1–7.5</td></tr>
+              <tr><td>fPL（Catalyst）</td><td>9.4</td><td>≤4.4</td><td>CREA／BUN</td><td>1.0／24</td><td>正常</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>初診問題清單：黃疸、肝膽酵素上升、胰臟炎、體重下降與脫水、neutrophilia、非再生性貧血、低磷（refeeding 風險）、低膽固醇、嚴重牙結石與流涎。梅醫師建議把<strong>嚴重體重下降</strong>放在問題清單前面，並提醒：IDEXX 的 HCT 參考下限 28 偏低，正常貓起碼 33–34，加上脫水，這隻貓一開始的貧血其實是 moderate、接近 severe，矯正脫水後大概只有 20 左右。</p>
+
+        <h3><span class="sub-num">3</span>影像</h3>
+        <ul>
+          <li><strong>腹部超音波（10/17）</strong>：膽囊內容物幾乎全是高回聲（曾考慮膽囊穿刺，但覺得可能抽不到）；十二指腸乳頭約 0.3 cm（有擴張，但沒到 0.4 cm）；cystic duct 很扭曲、整條可見；總膽管約 0.3 cm。判讀為「可能有阻塞，但沒有完全堵住」。膽囊旁、肝葉間有少量積液。胰臟有點腫，但周圍脂肪沒有很明顯高回聲；腸壁分層不厚。之後多次追蹤：膽囊稍微不那麼扁、內容物少一點。</li>
+          <li><strong>胸腔 X 光</strong>：心臟輪廓變大，右前葉附近有胸水，量少，沒有抽。之後胸水慢慢退。</li>
+          <li><strong>心臟超音波（10/26）</strong>：雙心房擴大，LA/Ao 1.78，LA-FS 17–18%；IVSd／LVPWd 0.53／0.54 cm（灰色地帶），乳頭肌增厚，間歇性 SAM，無明顯 LVOTO；FS 45.5%；輕度 MR、TR；胸水深約 2.68 cm。結論：<strong>RCM 表現型、ACVIM Stage C</strong>，不能排除 HCM，穩定後再複查。</li>
+        </ul>
+
+        <h3><span class="sub-num">4</span>其他檢查</h3>
+        <ul>
+          <li>Coombs’ test 陰性（輸血前）。血液寄生蟲送檢，暫時排除。</li>
+          <li>糞便潛血：非常弱的陽性，但一直有吃鐵劑，不確定會不會干擾。</li>
+          <li>UPC 正常偏高（&lt; 0.5）。腎指數一直正常。</li>
+          <li>初期 eosinophilia，血液抹片可見很多 eosinophil；在用類固醇前就已經下降。</li>
+          <li>10/17 輸血前曾打維生素 K。</li>
+        </ul>
+      </section>
+
+      <!-- 二 -->
+      <section class="chapter" id="s2">
+        <div class="chapter-head"><span class="chapter-num">02</span><h2>血檢 × 用藥時間表</h2></div>
+
+        <h3><span class="sub-num">1</span>梅醫師的建議：一張表看完</h3>
+        <p>報告者把血檢趨勢圖、抗生素時間軸、支持藥物時間軸分成好幾張投影片，做得很完整。梅醫師的建議是<strong>以每次血檢為一列，把當天的數值、當時在用的藥、做了什麼改變、臨床表現全部放在同一張表</strong>。主治自己很清楚時間線，但其他醫師（或接手的人）要翻三張表才能對上「改了什麼藥之後，數值怎麼變」，也容易出錯。</p>
+        <div class="quote">
+          <span class="who">梅醫師 · 聊天室範例</span>
+          <p>Oct 5 — ALT 400, ALP 400, GGT 8, bili 7, alb 3.1, glob 3.8, chol 40, initiated Clavamox</p>
+          <p>Oct 7 2nd recheck — ALT 400, ALP 300, bili 8, no improvement on Clavamox, added metronidazole</p>
+          <p>Oct 9 3rd recheck — ALT 100, bili 5, continued metronidazole due to presumptive abx-responsive cholangiohepatitis</p>
+        </div>
+        <p>（範例裡的數字是梅醫師示範格式用的，不是屁啵的實際值；原文「chol 400」應為 40。）臨床表現也要寫進去：有時候數值還沒動，但貓那天突然變精神、開始吃，<strong>lab 會 lag</strong>，這時就不急著改藥。</p>
+
+        <h3><span class="sub-num">2</span>屁啵的時間表</h3>
+        <div class="table-wrap">
+          <table>
+            <caption>血檢 × 用藥變化（10/05 為報告原值；其餘由簡報趨勢圖換算，約 ±0.1／±5，請以原始報告為準）</caption>
+            <thead><tr><th>日期</th><th>TBIL</th><th>ALT</th><th>ALKP</th><th>fPL</th><th>ALB</th><th>HCT</th><th>WBC／NEU</th><th>PHOS</th><th>用藥變化</th></tr></thead>
+            <tbody>
+              <tr><td>10/05</td><td>7.0</td><td>423</td><td>440</td><td>9.4</td><td>3.1</td><td>24.7</td><td>27.9／23.1</td><td>2.2</td><td>開始 Amo-Clav、Silymarin、URSO、Cerenia、B12、補血多（口服鐵）</td></tr>
+              <tr><td>10/08</td><td>6.4</td><td>430</td><td>361</td><td>–</td><td>–</td><td>20.1</td><td>31.7／23.4</td><td>2.6</td><td>＋Metronidazole（與 Amo-Clav 重疊至 10/9）、＋鉀寶；DPO＋Hematicen #1</td></tr>
+              <tr><td>10/11</td><td>7.9</td><td>409</td><td>450</td><td>14.2</td><td>2.8</td><td>17.8</td><td>45.3／35.5</td><td>2.4</td><td>停 Amo-Clav（10/9）、URSO（10/10）；＋Doxycycline PO、＋Baytril SC</td></tr>
+              <tr><td>10/15</td><td>–</td><td>–</td><td>–</td><td>–</td><td>–</td><td>17.6→14.6</td><td>24.5／19.0</td><td>–</td><td>開始白天到院輸液；＋胰寶、＋止瀉藥；DPO＋Hematicen #2</td></tr>
+              <tr><td>10/16</td><td>9.7</td><td>285</td><td>374</td><td>9.3</td><td>2.4</td><td>16.7</td><td>30.0／23.8</td><td>2.5</td><td>＋Prednisolone 0.4 mg/kg/day；Metronidazole 最後一天</td></tr>
+              <tr><td>10/17</td><td>9.9</td><td>202</td><td>–</td><td>–</td><td>2.4</td><td>14.2→20.0</td><td>38.0／33.2</td><td>2.9</td><td><strong>輸血</strong>（50 mL）；Pred 0.7；腹部超音波</td></tr>
+              <tr><td>10/18</td><td>10.1</td><td>–</td><td>–</td><td>–</td><td>2.4</td><td>21.1</td><td>26.7／22.0</td><td>2.5</td><td>＋Cefazolin IV</td></tr>
+              <tr><td>10/20</td><td><strong>10.9</strong></td><td>–</td><td>267</td><td>–</td><td>2.1</td><td>18.7</td><td>20.9／17.2</td><td>2.9</td><td>Pred 0.7 固定、URSO 恢復、＋牛磺酸＋精氨酸；DPO＋Hematicen #3</td></tr>
+              <tr><td>10/22</td><td>10.2</td><td>–</td><td>–</td><td>–</td><td>–</td><td>19.3</td><td>24.3／19.0</td><td>3.2</td><td>最後一天輸液；10/23–24 颱風停打</td></tr>
+              <tr><td>10/25</td><td>6.8</td><td>171</td><td>223</td><td>5.6</td><td>2.5</td><td>19.4</td><td>22.1／17.2</td><td>4.1</td><td>—（TBIL 三天內由 10 掉到 6.8）</td></tr>
+              <tr><td>10/26</td><td>5.8</td><td>–</td><td>–</td><td>–</td><td>–</td><td>19.0</td><td>20.9／16.4</td><td>3.9</td><td>心臟超音波：RCM、胸水</td></tr>
+              <tr><td>10/27</td><td>4.5</td><td>–</td><td>–</td><td>–</td><td>2.8</td><td>17.8</td><td>18.9／14.2</td><td>4.5</td><td>DPO＋Hematicen #4</td></tr>
+              <tr><td>10/28</td><td>2.3</td><td>125</td><td>156</td><td>–</td><td>–</td><td>16.2</td><td>18.2／13.7</td><td>4.9</td><td>討論會前一天</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>全程持續：Silymarin、Cerenia、B12（每天打）、補血多；Doxycycline 與 Baytril 用到 10/27，Cefazolin 10/18–10/27。另有 10/13、10/19、10/21 的血檢，表中省略。「→」為同日兩次檢驗。</p>
+      </section>
+
+      <!-- 三 -->
+      <section class="chapter" id="s3">
+        <div class="chapter-head"><span class="chapter-num">03</span><h2>黃疸：先排優先順序</h2></div>
+
+        <h3><span class="sub-num">1</span>哪個數值和「阻塞」走反方向？</h3>
+        <p>TBIL 這麼高，第一個念頭是肝後性阻塞（貓很常見）。但梅醫師問：這份 chemistry 裡哪一個數值<strong>不支持</strong>阻塞？ALKP、GGT 有高但不誇張，真正走反方向的是<strong>膽固醇</strong>：阻塞時膽固醇應該升高，屁啵卻只有 40。所以從血檢看，她的第一印象是「這應該不是阻塞」，要優先考慮<strong>肝前性或肝因性</strong>，把鑑別清單重新排序。超音波後來也只看到不完全阻塞。</p>
+
+        <h3><span class="sub-num">2</span>膽固醇是一個 balance</h3>
+        <p>膽固醇和 ALB、globulin、TP 一樣要放在一起看。身體會把 total protein 維持在差不多的範圍：globulin 很高時，ALB 會被壓低，膽固醇也會被壓低一點（例如 multiple myeloma 的狗，globulin 7–8、ALB 只有 2）。屁啵的低膽固醇可能是多因子：肝功能、營養、腸胃道流失，以及 globulin（3.8，雖在範圍內但比 ALB 高）。</p>
+        <p>低膽固醇另一個很大的鑑別是<strong>原發性腸胃道疾病</strong>，簡報裡沒有列到（見第八節）。</p>
+
+        <h3><span class="sub-num">3</span>FIP 一定要列</h3>
+        <p>高膽紅素、兩週不吃、體重掉很多、膽固醇很低，梅醫師說「我必須把 FIP 列入 differential」。現在有藥可治，大家越來越積極診斷，也發現<strong>很多 FIP 貓的 globulin 不一定高</strong>，不一定照教科書的 pattern。給了這麼多天抗生素，TBIL 還一直上升，那段期間對 FIP 的懷疑會更高；要配合腹部、神經學檢查。後來 TBIL 大幅下降，懷疑度就降低了。</p>
+
+        <h3><span class="sub-num">4</span>要補進黃疸鑑別清單的</h3>
+        <ul>
+          <li><strong>FIP、Toxoplasma</strong>：加在 cholangiohepatitis 底下作為感染性病因（toxo 見第五節）。</li>
+          <li><strong>Lymphocytic／lymphoplasmacytic cholangitis（LPC）</strong>：體重已經掉了一段時間，chronic cholangiohepatitis 也可能讓貓病得很重。</li>
+          <li><strong>膽管狹窄（stricture）</strong>：貓的管道都很小，任何東西都可能造成狹窄。例如曾經有結石、已經排掉了，超音波照不到，但通過時留下狹窄，你看到的只是 pre-stricture dilation 這個「後遺症」。貓的膽道也很難全部看清楚。</li>
+          <li>肝臟淋巴瘤等浸潤性疾病：沒有做肝臟採樣，不能排除（見第八節）。</li>
+        </ul>
+      </section>
+
+      <!-- 四 -->
+      <section class="chapter" id="s4">
+        <div class="chapter-head"><span class="chapter-num">04</span><h2>TBIL 下降：是抗生素嗎？</h2></div>
+        <p>這是簡報的第 1 個問題：10/20 同時加了 Pred 0.7、恢復 URSO、加牛磺酸＋精氨酸，之後 TBIL 下降，該歸功於什麼？</p>
+        <ul>
+          <li>TBIL 從 7、7.9 一路升到 10.9（10/20）、10.2（10/22），給了這麼多藥還是惡化；<strong>到 10/25 三天內突然從 10 掉到 6.8</strong>，之後 4.5、更低。</li>
+          <li>回頭看 10/22–10/25 之間沒有加什麼新東西（23、24 號颱風沒來院）。</li>
+          <li>如果真的是單純的細菌性膽管炎，<strong>頭五天左右就應該看到 TBIL 明顯下降</strong>；屁啵吃了兩個半到三個禮拜抗生素才突然掉，所以梅醫師認為 <strong>primary bacterial cholangitis 的機率不高</strong>，比較像「something else happened」，而不是抗生素突然有效。</li>
+          <li>同時 ALT 一直慢慢下降，ALT 改善但膽紅素不改善時，也要再想是不是還有阻塞沒發現。</li>
+          <li>結論：可能是 ascending infection，也可能只是 ascending inflammation；時間本身、Pred、抗生素都可能有幫助，這個 case 很難斷定。錄音摘要也把原因整理為多因子：體液管理、營養支持、發炎緩解、不完全阻塞改善。</li>
+        </ul>
+        <p>Pred 的部分：ALT 在加 Pred 之前就已經在下降，梅醫師也認為貧血不像免疫性，所以 TBIL 下降不必然是 Pred 的功勞。</p>
+      </section>
+
+      <!-- 五 -->
+      <section class="chapter" id="s5">
+        <div class="chapter-head"><span class="chapter-num">05</span><h2>抗生素逐一檢視</h2></div>
+
+        <h3><span class="sub-num">1</span>Clavamox：第一線完全沒問題</h3>
+        <p>一開始能做的不多，就算飼主願意做很多檢查也要等結果，所以先用 Clavamox 梅醫師非常同意。Clavamox 是 amoxicillin，對 <strong>Enterococcus</strong>（沒有抗藥性的話）、Staph、Strep 有效，對 E. coli 等 Enterobacteriaceae 也大致 OK，作為 first line 沒有問題。</p>
+
+        <h3><span class="sub-num">2</span>換藥的主要依據是 bilirubin</h3>
+        <p>給了三天 Clavamox，TBIL、ALT、ALKP 幾乎沒變，所以梅醫師同意換藥。報告者換藥的理由是 neutrophilia 惡化（23→35），這也是 indication 之一，但對梅醫師來說，<strong>bilirubin 沒有下降才是不能只繼續給 Clavamox 的主要理由</strong>，前提是貓的外觀也沒有明顯好轉。</p>
+
+        <h3><span class="sub-num">3</span>Metronidazole：和 Clavamox 重疊</h3>
+        <p>加 metronidazole 是想 cover 厭氧菌，但 Clavamox 本身對一般厭氧菌就有 coverage，兩者重疊。換藥或加藥時，要挑<strong>光譜互補</strong>的藥：Clavamox 偏 Gram positive，該補的是 Gram negative。</p>
+
+        <h3><span class="sub-num">4</span>Doxycycline：腸胃不好時盡量避免</h3>
+        <ul>
+          <li>腸胃這麼不好、又沒有很明確的 indication，梅醫師會避免 doxycycline。原則是：<strong>不太吃飯的貓，能不給口服抗生素就不給</strong>，光這點就是很大的理由。</li>
+          <li>Doxy 是廣效藥，貧血的鑑別也有 hemotropic Mycoplasma；但屁啵已經吃了兩週 doxy，貧血還是 17–18，如果真的是 hemoplasma 應該會改善很多，所以<strong>大致可以排除</strong>。</li>
+        </ul>
+
+        <h3><span class="sub-num">5</span>Baytril：劑量比途徑重要</h3>
+        <ul>
+          <li>院內的 Baytril 是 50 mg/mL（5%），不是小動物用的 22.7 mg/mL，所以一直打 SC 而不太敢打 IV。可以用 saline 稀釋，但<strong>稀釋會不會影響 PK/PD，梅醫師說要再查證後回覆</strong>。她自己看過狗 SC 打 Baytril 後局部皮膚出問題，所以習慣只打 IV。</li>
+          <li>視網膜毒性是 <strong>dose-related</strong>（超過約 5 mg/kg），和打 IV 或 SC 無關。</li>
+          <li>GI 很爛、不能吃口服藥的貓，注射型 FQ 只剩 enrofloxacin；但它又必須 dose reduce，風險是<strong>藥選對了，劑量卻不夠到達組織</strong>。梅醫師舉過一隻貓：在家庭醫師打了一週多 Baytril，轉診後做培養，E. coli 對 Baytril 是 sensitive，打了十幾天還是治不好，就是劑量不夠。</li>
+          <li>台灣目前看不到 marbofloxacin（pradofloxacin 也不確定），梅醫師建議一定要找到一個<strong>不是 enrofloxacin 的口服 FQ</strong>，這樣藥沒效時你知道是 clinical 上沒效，而不是劑量不夠。</li>
+        </ul>
+
+        <h3><span class="sub-num">6</span>Cefazolin：和 Augmentin 差不多</h3>
+        <p>10/18 加 Cefazolin 是因為黃疸一直沒降，想加一個針劑的 Gram positive 藥；吃過 Augmentin，院內選擇有限，就選了 Cefazolin。梅醫師說這合理，但 Cefazolin 和 Augmentin 的光譜其實差不多；而且它<strong>不能對付 Enterococcus</strong>。</p>
+        <div class="quote">
+          <span class="who">梅醫師 · 重要事情講三遍</span>
+          <p>Enterococcus、Enterococcus、Enterococcus：對很多藥有 intrinsic 和 acquired resistance。細菌感染裡最大宗的就是 Enterococcus 和 E. coli，大約占了八成，選抗生素就是要挑能同時處理這兩隻的組合：amoxicillin 或 Clavamox，加一個 fluoroquinolone。</p>
+        </div>
+
+        <h3><span class="sub-num">7</span>Perfect world 的做法</h3>
+        <p>這種貓本來就是因為不吃飯才來，膽紅素這麼高肚子不可能舒服，又在吐，這時給口服抗生素很困難，可能讓胃口更差。在理想情況下（飼主願意），梅醫師會<strong>住院，IV Augmentin 或 ampicillin，加 IV Baytril</strong>，看狀況，這樣對 GI 比較好。</p>
+
+        <h3><span class="sub-num">8</span>Toxoplasma 與 CK</h3>
+        <ul>
+          <li>給了這麼多天抗生素沒有好轉，又有胰臟的變化，要想到一個不是細菌的感染：<strong>Toxoplasma</strong>。它和 FIP 有點像，會造成肺部病灶、神經症狀、高膽紅素、胰臟炎。</li>
+          <li>Protozoal disease（toxo、Neospora）喜歡跑到肌肉，造成 myositis，<strong>CK 會升高</strong>。梅醫師遇到肝膽病貓會驗 CK：曾經有一隻同樣黃疸的貓 CK 四萬，她就會優先懷疑 toxo，直接用 <strong>clindamycin＋Baytril</strong>，而不是 Clavamox。</li>
+          <li>限制：有些 toxo 貓 CK 不高；也有些貓只是病得很重或緊迫（舊研究提到 stress 可讓 CK 飆到兩三萬），好轉後就下降。剛來時沒有時間等，只能用 CK 幫忙做 judgment call。也有可能只是細菌性膽管炎剛好對 clindamycin 有反應（它除了 Enterococcus 之外，其他 Gram positive 都有 cover）。</li>
+          <li>屁啵沒有驗 CK（院內一般沒有做）。</li>
+        </ul>
+
+        <h3><span class="sub-num">9</span>降階與療程（簡報問題 4）</h3>
+        <ul>
+          <li>目前 Doxy（PO）、Cefazolin（針劑）、Baytril（針劑）有重疊，梅醫師建議<strong>先停 Cefazolin</strong>，少打一個，看看狀況；不確定這隻貓真的需要這麼多抗生素。</li>
+          <li>精簡後 <strong>3–4 天 recheck TBIL</strong>：如果停藥後 TBIL 往上，就代表還是需要，而且不會等太久才發現。</li>
+          <li>如果真的是 antibiotic-responsive，<strong>總療程起碼 4–6 週</strong>。但再吃好幾週抗生素、貓還是不吃飯也不行，所以一定要同時解決營養問題（第九節）。</li>
+        </ul>
+        <div class="lit">
+          <span class="lit-tag">個人整理 · Enterococcus 與這次的抗生素組合</span>
+          <p>Enterococcus 天生（intrinsic）不怕的藥：所有 cephalosporins、clindamycin、TMS（體內效果差）、單獨使用的 aminoglycosides；fluoroquinolones 對它也偏弱。<em>E. faecalis</em> 首選 ampicillin／amoxicillin，<em>E. faecium</em> 常連 ampicillin 都有抗性。屁啵在 10/9 停 Amo-Clav 之後，Doxy＋Baytril＋Cefazolin 這個組合對 Enterococcus 幾乎沒有可靠涵蓋；10/16 停 metronidazole 到 10/18 加 Cefazolin 之間，厭氧涵蓋也較弱。若再麻醉，可考慮同時做超音波導引膽汁採樣送培養與藥敏，直接回答該留哪個藥。</p>
+        </div>
+      </section>
+
+      <!-- 六 -->
+      <section class="chapter" id="s6">
+        <div class="chapter-head"><span class="chapter-num">06</span><h2>低磷與尿糖：近端腎小管病變</h2></div>
+        <ul>
+          <li>10/17 的 UA 有 <strong>3+ glucose</strong>；當天血糖 164（另一位醫師補充，那天血糖機量到 227，之前曾到三百多），所以也可能是暫時的 overspill。</li>
+          <li>但磷從 10/05 到 10/20 <strong>整整兩週都低於 3</strong>，很 persistent。最常見的原因（例如 respiratory alkalosis）不會這麼 repeatable，讓梅醫師覺得腎臟有 intrinsic pathology：glucose 和 phosphorus 都在<strong>近端腎小管</strong>重吸收。</li>
+          <li>它也有 GI 症狀，所以要分辨是 GI loss 還是 renal loss。在 academia 她會驗 <strong>urine electrolytes</strong>：和 serum 比，尿磷是不是很高？是的話就支持 renal tubular injury。私人診所做這個意義可能沒那麼大。</li>
+          <li>貓可以在腎小管受傷時還維持正常的 BUN／creatinine，所以腎指數正常不能排除；至少 recheck 時要好好 monitor。</li>
+        </ul>
+
+        <h3><span class="sub-num">1</span>用字要精準：Fanconi vs proximal tubulopathy</h3>
+        <p>Fanconi syndrome 很好用，但它很 specific：代表<strong>很多東西一起流失</strong>，glucose、bicarbonate、amino acids、phosphorus。如果只證明流失一兩樣，只能說有 <strong>proximal tubular abnormality／proximal tubulopathy</strong>。梅醫師說要學 radiologist：describe the pathology，但在能 prove 之前不急著給名字。這隻貓很可能是 Fanconi，但現在還不能證明。</p>
+
+        <h3><span class="sub-num">2</span>要驗的話</h3>
+        <p>梅醫師的團隊會送 UPenn 的 PennGen：<a href="https://netapps.vet.upenn.edu/PennGen/SampleTesting/GeneticsTest.aspx?testid=13" target="_blank" rel="noopener">Fanconi Syndrome 尿液篩檢</a>（只要尿液，US$70，驗尿中 amino acids、glucose 等 carbohydrate、lactic acid、cystine）。但它<strong>不驗 urine electrolytes</strong>，要真正診斷，需要這個檢測加上 urine electrolytes 一起比對。台灣哪裡能驗還不清楚。</p>
+        <div class="lit">
+          <span class="lit-tag">個人整理 · 院內可以先做的</span>
+          <p>同一份尿的 phos 與 creatinine 搭配血清值算 <strong>FE-phos</strong>（低磷時本應很低，偏高代表腎臟在流失磷）；靜脈血氣看有沒有 HCO₃⁻ 偏低的高氯性代謝性酸中毒（type 2 RTA）；血糖正常時重複驗尿糖；回頭查藥物或毒物暴露。</p>
+        </div>
+      </section>
+
+      <!-- 七 -->
+      <section class="chapter" id="s7">
+        <div class="chapter-head"><span class="chapter-num">07</span><h2>貧血：不要追數字</h2></div>
+        <p>簡報問題 2：持續貧血、輸血後再生反應有限，還能做什麼？</p>
+
+        <h3><span class="sub-num">1</span>梅醫師的判讀</h3>
+        <ul>
+          <li>貧血一開始矯正脫水後大約 20，最低 14（10/17 輸血），之後 19–20，現在 17–18。三週內一直抽血，這個範圍在她的預期內。<strong>肝病貓的 HCT 常在 low twenties</strong>，加上一直抽血，維持在 17–20 很常見。</li>
+          <li><strong>Retic 從 7,000 升到 98,000</strong>（10/11、10/13 約 55,000–69,000，intermittently 已有再生，可能也和 Darbepoetin 有關），代表骨髓開始在 work；TBIL 下降後 reticulocytosis 變好，primary disease 在改善。另一位醫師補充 10/28 retic 又降到約 11.9 K。</li>
+          <li>HR 一直 180 左右，沒有 tachycardia、weakness，所以<strong>只要 monitor，不特別 push、不再給藥或輸血</strong>，除非出現 clinical signs。預期兩週內回到 22–23，但會比較慢。</li>
+          <li>監測用 <strong>PCV／TS</strong>，一點點血就好，不用每次整個 CBC。</li>
+          <li>不像 IMHA（Coombs 陰性不排除，但目前證據不足）；吃了兩週 doxy，也不像 hemoplasma；腎指數穩定，也不是腎性貧血。</li>
+        </ul>
+
+        <h3><span class="sub-num">2</span>MCV 下降：醫源性失血</h3>
+        <p>MCV 從約 34.6 降到 31.8，另一位醫師擔心是缺鐵。梅醫師認為主要是<strong>醫源性失血</strong>：每天抽 0.5–0.6 mL、抽了十幾天，加起來可能就有 20 多 mL，而這隻貓一開始 PCV 只有 20（輸 50 mL 的血才讓 PCV 從 14 到 20）。其次是 in-house 機器每次的值不一定 100% 準、下降幅度很小；也可能是發炎造成的 <strong>functional iron deficiency</strong>，或肝臟恢復時 MCV 還沒 catch up。</p>
+        <p>每天抽血的影響，梅醫師提到有一個大約「14 天內不超過血量 1%」的公式，但記不清楚是不是 pediatric 用的，要再確認。</p>
+
+        <h3><span class="sub-num">3</span>鐵劑與 Darbepoetin：可以停</h3>
+        <ul>
+          <li><strong>不建議口服鐵劑</strong>：會造成腸胃不舒服。她只給過一隻有先天性血液疾病、從小補鐵的狗。</li>
+          <li><strong>注射鐵劑（iron dextran 類）最多一個月一次</strong>，就算真的缺鐵、有明顯 GI bleed 也很少更頻繁。屁啵每 5–7 天打一次，又同時吃口服鐵，<strong>頻率過高</strong>。</li>
+          <li><strong>輸過血的動物，體內的鐵起碼夠用一個月</strong>，不用再補。</li>
+          <li>Iron panel 在貓（其實狗也是）很難 interpret，這時只是在 chase 數字。</li>
+          <li>鐵不是 benign 的 supplement：長期輸血或補太多鐵可能造成 <strong>hemosiderosis</strong>（鐵存在肝臟等組織）。通常見於先天 PK deficiency 這類長期溶血的狗（很罕見）。</li>
+          <li><strong>Darbepoetin 沒有用</strong>：腎指數穩定，貧血不是腎臟造成的，打了沒改善她並不意外。結論：<strong>Darbepoetin 和鐵劑都不用再給</strong>。</li>
+        </ul>
+
+        <h3><span class="sub-num">4</span>簡單可逆的原因先除掉</h3>
+        <p>梅醫師問了一個「有點傻」的問題：有沒有跳蚤？台灣和香港都濕熱，貧血這麼 persistent，可以考慮給一劑 flea／tick preventative、做腸道驅蟲，把簡單的問題先排除。初期 eosinophilia 也讓寄生蟲留在鑑別裡。</p>
+        <p>另一位醫師提出：之前一直打維生素 K、又剛好輸血，停打後 HCT 又往下，會不會有凝血問題在某處流失？梅醫師認為很難講；總蛋白沒有下降。</p>
+      </section>
+
+      <!-- 八 -->
+      <section class="chapter" id="s8">
+        <div class="chapter-head"><span class="chapter-num">08</span><h2>體重掉 4 kg：原發性腸胃道疾病</h2></div>
+
+        <h3><span class="sub-num">1</span>最能解釋全貌的說法</h3>
+        <p>從 10 kg 掉到 6 kg，<strong>不可能是兩週不吃飯造成的</strong>；甲狀腺亢進已排除；說牠已經黃疸三個月也不太可能。梅醫師認為最能解釋的是：<strong>severe primary GI disease（IBD 或 lymphoma）造成 secondary hepatobiliary disease，也就是 triaditis</strong>。這也解釋了為什麼 TBIL 下降了這麼多，貓還是吃不下（自主進食還不到 20% RER），這點很 concerning。所以要處理這隻貓，必須 address 牠的 primary GI。</p>
+        <p>Acute on chronic：牠現在有急性問題，但其實事情可能已經慢慢在發生。</p>
+
+        <h3><span class="sub-num">2</span>別漏了 EPI</h3>
+        <p>體重掉很多時，腸胃道外還有一個大鑑別：<strong>EPI</strong>。狗的 EPI 通常很小就出現（德國狼犬是教科書例子）；貓的 EPI 通常是<strong>慢性胰臟炎</strong>造成，屁啵的超音波和 fPL 都有胰臟炎跡象。EPI 除了 TLI 沒有其他方法確診，而且是 lifelong diagnosis，所以建議驗 <strong>GI panel（TLI、B12、folate）</strong>。</p>
+        <p>腹瀉是中途才出現的（不是一開始就有），比較像 <strong>antibiotic-induced diarrhea</strong>，如果吃得下，可以考慮 probiotics；一開始就有的話才會更懷疑 EPI。</p>
+        <div class="lit">
+          <span class="lit-tag">個人整理 · 貓 EPI 的判讀</span>
+          <p>fTLI ≤ 8 µg/L 支持 EPI，8–12 為灰色地帶需複驗（禁食約 12 小時）。貓的 intrinsic factor 主要由胰臟分泌，EPI 貓常合併低 cobalamin。胰臟炎發作時 TLI 可能暫時升高而掩蓋 EPI，fPL 仍高時驗出正常要保守判讀。</p>
+        </div>
+
+        <h3><span class="sub-num">3</span>E-tube＋上消化道內視鏡切片</h3>
+        <ul>
+          <li>建議<strong>放 E-tube 的同一次麻醉，做 upper GI scope，拿十二指腸切片</strong>，看是不是真的有 lymphoma（梅醫師有懷疑）。</li>
+          <li>麻醉狀況不好就<strong>只拿 duodenum</strong>：胃的 lymphoma 她這麼多年幾乎只看過一隻。Upper scope 不到十分鐘，加 E-tube 十分鐘，二十分鐘就可以醒來，對貓和飼主的風險都低很多。</li>
+          <li>不提 lower GI：要 prep、灌腸、麻醉時間長，對這種狀況不好的貓不是最好的選擇。有人擔心不採 ileum 會 miss 掉診斷，確實有可能，但梅醫師引用去年一篇 paper，只採 upper 漏掉 cancer 的機率大約五十隻才一隻（確切數字她要再確認）。</li>
+        </ul>
+
+        <h3><span class="sub-num">4</span>「內視鏡切片沒有診斷性」是錯的</h3>
+        <p>另一位醫師提到有 paper 說不是 full thickness 就沒有診斷性。梅醫師直接說<strong>那是錯誤的</strong>：<strong>endoscopic biopsy 是 diffuse GI disease 的 standard of care、first choice</strong>，她幾乎每週都在做。除非是一個去不到的 focal lesion 才開刀；就算飼主完全沒有經濟考量，她也會先建議 endoscopy，因為很可能就有答案、貓不用開刀。做了這麼多年，她幾乎沒有因為只做 endoscopic biopsy 而 miss 掉診斷的 case。</p>
+        <ul>
+          <li>我們會診斷的 lymphoma 是 <strong>epitheliotropic</strong>，住在 mucosa 和 submucosa，內視鏡採得到。</li>
+          <li>只在 muscularis、表面採不到的，通常是比較 aggressive 的 large cell lymphoma，臨床表現更糟，超音波通常更明顯，甚至有 mass-like lesion；small cell lymphoma 只在 muscularis 採得到的情況不常見。</li>
+        </ul>
+
+        <h3><span class="sub-num">5</span>IBD vs small cell lymphoma：PARR</h3>
+        <p>不管手術或內視鏡，嚴重 IBD 和 T-cell lymphoma 都很難分，所以梅醫師會<strong>例行把切片送 PARR</strong>，或 PARR 加 tissue block 做 <strong>IHC</strong>，看有沒有 monoclonal population。實驗室她只相信 <strong>Colorado State University（CSU）</strong>，或 UC Davis。</p>
+        <p>有診斷，治療不一定變很多：還是飲食、還是 steroid，steroid 真的不夠就加 chlorambucil。但它可以很好地解釋為什麼體重掉這麼多，lymphoma 通常就是會短期內掉很多體重。</p>
+
+        <h3><span class="sub-num">6</span>肝臟要不要採？</h3>
+        <p>有 GI lymphoma 的話，會不會也有 hepatic lymphoma？可以在麻醉時順便做超音波導引肝臟抽吸。但<strong>肝臟淋巴瘤在超音波通常是 hypoechoic</strong>，屁啵的肝是 bright 的；加上 ALT 在用 Pred 之前就在下降，梅醫師認為大概不是肝臟的 lymphoma，不做也 OK。她擔心的是 GI 的 lymphoma。</p>
+      </section>
+
+      <!-- 九 -->
+      <section class="chapter" id="s9">
+        <div class="chapter-head"><span class="chapter-num">09</span><h2>營養與補充品</h2></div>
+
+        <h3><span class="sub-num">1</span>Nutrition 和給藥一樣重要</h3>
+        <ul>
+          <li>目前經鼻胃管給 Royal Canin Recovery，<strong>0.9 RER</strong>；自主進食開始有一點，但不到 20% RER。精神有變好。</li>
+          <li>梅醫師的醫院基本上<strong>不會讓鼻胃管跟著回家</strong>：容易 aspiration；狗還會自己噴出、咬斷、卡進氣管。屁啵很乖、不會去撥，飼主也餵得好，不硬推 E-tube 也可以；但很多 GI 病貓就算肝膽完全沒事，也要好幾個月才會好好吃飯，長期來說鼻胃管不是好 solution。</li>
+          <li>這種貓她很快就會放 <strong>E-tube</strong>：所有藥都可以從管子給，不用一直塞藥。她會跟飼主解釋，一直餵藥會傷害主人和動物的關係。</li>
+          <li>Steroid 不能再往上調、又要治 GI 時，可以經 E-tube 給 <strong>hydrolyzed diet</strong>。</li>
+          <li>這種白天到院、晚上回家的模式，她可能會先住院一兩天看狀況，第二、三天就放 E-tube。</li>
+        </ul>
+
+        <h3><span class="sub-num">2</span>牛磺酸＋精氨酸（簡報問題 3）</h3>
+        <ul>
+          <li>兩者都是貓的 essential amino acid，但只要餵的是 <strong>label for cats 的商業飲食</strong>（不管是 feeding tube 還是一般食物），量都是夠的，<strong>不用特別再補</strong>。這些飲食必須達到 NRC（National Research Council）訂的最低標準。</li>
+          <li>需要補的特殊情況：以前梅醫師住院醫師時期，醫院的流質飲食是狗的，營養師會額外加 taurine＋arginine 的 cocktail。</li>
+          <li>常見陷阱：年輕醫師把貓的胰臟炎當成狗的胰臟炎，以為要低脂，拿<strong>狗的低脂流質飲食</strong>餵貓。貓的胰臟炎不需要特別降低脂肪；只要一兩餐缺 arginine，貓就可能出現 <strong>encephalopathy（類似肝腦病）</strong>。</li>
+        </ul>
+        <div class="lit">
+          <span class="lit-tag">個人整理 · NRC 成貓建議量（依記憶整理，請以原文表格為準）</span>
+          <p>Arginine 約 1.93 g／1,000 kcal ME；taurine 約 0.10（純化飲食）、0.25（乾糧）、0.425（罐頭）g／1,000 kcal。以屁啵 6.6 kg、RER 約 290 kcal 計，約需 arginine 0.56 g/day、taurine 30–120 mg/day；吃到 RER 的完整貓用配方通常已超過。另：貓的膽酸只與 taurine 結合，膽汁淤積時 taurine 消耗增加。</p>
+        </div>
+
+        <h3><span class="sub-num">3</span>如果真的想補：L-carnitine、vitamin E</h3>
+        <ul>
+          <li><strong>L-carnitine</strong>：用於脂肪肝貓，理論上有好處（幫助脂肪酸代謝）。Cornell 的 Sharon Center（做了很多貓肝臟、銅等研究）很推，所以 Cornell 出來的人都習慣加；但梅醫師在別的學校沒看到誰特意加。It’s not harmful。</li>
+          <li><strong>Vitamin E</strong>：antioxidant，有人說肝膽發炎時可以用；證據不強。</li>
+        </ul>
+      </section>
+
+      <!-- 十 -->
+      <section class="chapter" id="s10">
+        <div class="chapter-head"><span class="chapter-num">10</span><h2>用藥精簡：Less is more</h2></div>
+        <div class="quote">
+          <span class="who">梅醫師</span>
+          <p>我們很容易看到血檢沒有好轉就很煩，我很明白那感受。但不能因為數字沒有好轉就說「那我試試這個藥」。你要有好的理由去支撐為什麼開一個藥、換一個藥，不然就很容易給太多藥。這隻貓吃的藥已經很多了，負擔很重。</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <caption>梅醫師對各藥物的建議</caption>
+            <thead><tr><th>藥物</th><th>建議</th><th>理由</th></tr></thead>
+            <tbody>
+              <tr><td>Cefazolin</td><td>先停</td><td>與其他抗生素重疊；不 cover Enterococcus；停後 3–4 天複查 TBIL</td></tr>
+              <tr><td>Doxycycline</td><td>避免</td><td>腸胃不好、無明確適應症；兩週無改善，hemoplasma 大致排除</td></tr>
+              <tr><td>口服鐵（補血多）</td><td>停</td><td>腸胃不適；輸過血後鐵夠用一個月；過量可致 hemosiderosis</td></tr>
+              <tr><td>注射鐵（Hematicen）</td><td>停</td><td>最多一個月一次，每 5–7 天太頻繁</td></tr>
+              <tr><td>Darbepoetin（DPO）</td><td>停</td><td>不是腎性貧血</td></tr>
+              <tr><td>胰臟酵素（胰寶）</td><td>沒有 EPI 診斷不用</td><td>需 TLI 確診；要和食物預泡 10–15 分鐘才有效；可能刺激口腔黏膜、胃出血（狗的資料）、腹部不適或腹瀉</td></tr>
+              <tr><td>B12</td><td>改成每週</td><td>每天打沒必要（水溶性，多給也不會怎樣，但不必要）；貓 250 µg SC q7d × 4 週，之後每月一次</td></tr>
+              <tr><td>SAMe／Silymarin</td><td>不吃飯時先不給口服</td><td>Antioxidant，除了 acetaminophen、毒菇、藍綠藻等中毒，她很少用；住院全部打 IV 的話給 IV 劑型沒問題</td></tr>
+              <tr><td>URSO</td><td>先不給</td><td>不是很快見效的藥；真的有急性阻塞時可能突然變糟；risk-benefit ratio 不好</td></tr>
+              <tr><td>牛磺酸＋精氨酸</td><td>不需要</td><td>貓用商業飲食已足夠</td></tr>
+              <tr><td>止瀉藥</td><td>考慮 probiotics</td><td>比較像抗生素相關腹瀉；前提是吃得下</td></tr>
+              <tr><td>Prednisolone</td><td>重新評估</td><td>ALT 在加 Pred 前已在下降；貧血不像免疫性</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>聽眾提問：沒有 EPI 卻給胰臟酵素，會有什麼壞處？梅醫師：很明顯的壞處可能還好，但它不是完全 benign 的藥；她的原則就是能少給就少給。</p>
+      </section>
+
+      <!-- 十一 -->
+      <section class="chapter" id="s11">
+        <div class="chapter-head"><span class="chapter-num">11</span><h2>輸液、心臟與其他監測</h2></div>
+        <ul>
+          <li><strong>輸液</strong>：10/15–10/22 白天到院，IV 一天約 60 mL，速率不超過 1.5 mL/kg/h，還是出現胸水。10/23–24 颱風停打，<strong>停打後 ALB 反而上升</strong>，所以之後就沒有再打 SC 或 IV。報告者因此反思：ALB 下降不能只歸因於肝臟合成不足，輸液稀釋和體液分佈也是重要因素。</li>
+          <li><strong>有輸液的貓，每天都稍微看一下 LA</strong>：貓可以隨時 manifest 牠們的心臟病。屁啵是覺得有問題才去掃，梅醫師建議一開始就做、然後 monitor；能 catch 到已經很好。若要麻醉放 E-tube，心臟狀況也是飼主會擔心的點。</li>
+          <li><strong>低鉀</strong>：很常見，水合改善後有上來，對病這麼重、肝功能也不是 100% 的貓在預期範圍內。</li>
+          <li><strong>UPC</strong>：borderline high，但都在 0.5 以下，不足以造成低白蛋白，不擔心 PLN；她擔心的是 GI。</li>
+          <li><strong>血壓</strong>：初診 105 偏低，之後每天量都在 105–120。</li>
+          <li><strong>再看一次超音波</strong>：看膽囊有沒有變乾淨、胰臟有沒有變壞。</li>
+        </ul>
+      </section>
+
+      <!-- 十二 -->
+      <section class="chapter" id="s12">
+        <div class="chapter-head"><span class="chapter-num">12</span><h2>Take-home messages</h2></div>
+        <ol>
+          <li><strong>看起來胖的貓也可能掉了很多體重</strong>：問「本來幾公斤」，把嚴重體重下降放進問題清單前面。</li>
+          <li><strong>找走反方向的數值</strong>：高膽紅素合併低膽固醇，不支持阻塞，優先想肝前性／肝因性。</li>
+          <li><strong>FIP 和 Toxoplasma 要列進黃疸鑑別</strong>；globulin 正常不能排除 FIP；肝膽病貓驗 CK，CK 很高優先 clindamycin＋FQ。</li>
+          <li><strong>把血檢、用藥、臨床表現放進同一張表</strong>，才看得出哪個藥有用。</li>
+          <li><strong>細菌性膽管炎應在約五天內看到 TBIL 下降</strong>；吃了三週才突然掉，要想別的原因。</li>
+          <li><strong>選抗生素要對付 Enterococcus 和 E. coli</strong>：amoxicillin／Clavamox＋FQ；加藥要挑光譜互補的；enrofloxacin 要注意劑量不足。</li>
+          <li><strong>不吃飯的貓，能不給口服藥就不給</strong>；理想上住院打 IV。</li>
+          <li><strong>持續低磷合併尿糖</strong>：想近端腎小管病變，沒證明多項流失前不要叫它 Fanconi。</li>
+          <li><strong>貧血不要追數字</strong>：retic 上來、沒有臨床症狀就 monitor PCV/TS、少抽血；輸過血就不用補鐵，Darbepoetin 只給腎性貧血。</li>
+          <li><strong>原因不明的大量體重下降，想 primary GI disease</strong>：E-tube＋十二指腸內視鏡切片＋PARR/IHC；內視鏡切片是 standard of care。</li>
+          <li><strong>Less is more</strong>：每一個藥都要有好的理由；精簡後 3–4 天複查。</li>
+        </ol>
+      </section>
+
+      <!-- 十三 -->
+      <section class="chapter" id="s13">
+        <div class="chapter-head"><span class="chapter-num">13</span><h2>參考資料</h2></div>
+        <ol class="refs">
+          <li>
+            <div class="ref-body">
+              <p>屁啵（病例簡報，報告者：黃筠文醫師）。含初診血檢、用藥時間軸、TBIL／ALT／ALKP／fPL／電解質／HCT／WBC／ALB 趨勢圖、心臟超音波報告與鑑別診斷。2026-10-29。</p>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>10-29 病例討論會錄音完整記錄（梅醫師主講）：貓咪重症黃疸、貧血與腸胃道疾病鑑別診斷與治療策略。</p>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>梅醫師課堂聊天室補充（時間表範例、LPC 與 stricture、E-tube＋十二指腸切片、epitheliotropic lymphoma、PARR at CSU、hepatic lymphoma 為低回聲）。</p>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>PennGen（University of Pennsylvania）Fanconi Syndrome 尿液篩檢。</p>
+              <a href="https://netapps.vet.upenn.edu/PennGen/SampleTesting/GeneticsTest.aspx?testid=13" target="_blank" rel="noopener">netapps.vet.upenn.edu/PennGen · testid=13</a>
+            </div>
+          </li>
+          <li>
+            <div class="ref-body">
+              <p>National Research Council. <em>Nutrient Requirements of Dogs and Cats.</em> Washington, DC: National Academies Press; 2006.（成貓 arginine／taurine 建議量依記憶整理，引用前請核對原文表格。）</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="note">
+    整理自屁啵病例簡報（報告者黃筠文醫師）、2026-10-29 梅醫師病例討論錄音與課堂聊天室補充，並加入個人整理的抗生素、腎小管、EPI 與營養補充說明，供個人臨床參考使用，非正式發表文獻；時間表除 10/05 外為趨勢圖換算值，診斷邏輯與用藥劑量請以原始病歷、最新文獻及主治獸醫師判斷為準。回到<a href="index.html">梅醫師病例討論</a>列表。
+  </footer>
+
+</div>
+</body>
+</html>
