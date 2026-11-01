@@ -31,6 +31,7 @@ SPECIALTIES = [
     ('ecc',      '急診重症',     '🚑', '#EA580C', '專科'),
     ('surg',     '外科',         '🔪', '#0E7490', '專科'),
     ('ophtho',   '眼科',         '👁️', '#2563EB', '專科'),
+    ('neuro',    '神經',         '🧠', '#BE185D', '專科'),
     ('endo',     '內分泌',       '🧪', '#0F766E', '內科'),
     ('renal',    '腎臟泌尿',     '💧', '#0284C7', '內科'),
     ('kidney',   '腎臟',         '🫘', '#0369A1', '內科', 'renal'),
@@ -53,6 +54,7 @@ SERIES = {
     'antimicrobial-selection': '知菌知藥：抗菌藥物選擇',
     'lulich-urology-2026':     'Jody Lulich 泌尿講座',
     'rita-ho-oncology-2026':   'Rita Ho 腫瘤科講座',
+    'fasava-2026':              '2026 FASAVA 神經科筆記',
     'ultrasound':              '超音波專區',
     'notes':                   '單篇筆記',
 }
@@ -65,6 +67,7 @@ FOLDER_SPECS = {
     'antimicrobial-selection': ['infect'],
     'lulich-urology-2026':  ['uro'],
     'rita-ho-oncology-2026': ['onc'],
+    'fasava-2026':           ['neuro'],
 }
 
 SPECS = {

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 FASAVA 神經科筆記｜獸醫讀書筆記</title>
+<style>
+  :root {
+    --accent:    #BE185D;
+    --accent-lt: #E04F8D;
+    --accent-dk: #831843;
+    --accent-bg: #FDF0F6;
+    --dark:      #3A0E22;
+    --text:      #553A47;
+    --border:    #F5D3E3;
+    --bg:        #FFF9FB;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, "Segoe UI", "Noto Sans TC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── HOME LINK ── */
+  .home-bar {
+    padding: 16px 24px 0;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .home-bar a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text);
+    opacity: .55;
+    text-decoration: none;
+    font-size: .85rem;
+    font-weight: 600;
+  }
+  .home-bar a:hover { opacity: .9; }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, #fdf0f6 0%, #f8d5e5 100%);
+    border-bottom: 3px solid var(--accent);
+    color: var(--dark);
+    padding: 40px 24px 44px;
+    text-align: center;
+  }
+  .header-icon { font-size: 2.6rem; margin-bottom: 12px; }
+  header .kicker {
+    font-family: ui-monospace, "SF Mono", monospace;
+    font-size: .75rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent-dk);
+    opacity: .75;
+    margin-bottom: 10px;
+  }
+  header h1 { font-size: 2rem; font-weight: 800; letter-spacing: .02em; color: var(--accent-dk); }
+  header p.dek {
+    margin: 10px auto 0;
+    max-width: 500px;
+    opacity: .65;
+    font-size: .95rem;
+    line-height: 1.65;
+    color: var(--text);
+  }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 900px; margin: 0 auto; padding: 36px 20px 80px; }
+
+  .stats {
+    display: flex; gap: 20px; flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+  .stat {
+    background: #fff; border-radius: 12px;
+    padding: 14px 20px;
+    box-shadow: 0 2px 8px rgba(16,34,31,.06);
+    flex: 1; min-width: 120px; text-align: center;
+    border: 1px solid var(--border);
+  }
+  .stat-num  { font-size: 1.6rem; font-weight: 800; color: var(--accent); }
+  .stat-label{ font-size: .75rem; opacity: .55; margin-top: 2px; }
+
+  .section-label {
+    font-size: .78rem; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--text);
+    opacity: .55; margin: 0 0 14px;
+  }
+
+  /* ── CASE LIST ── */
+  .cases { display: flex; flex-direction: column; gap: 14px; }
+
+  .case-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(16,34,31,.06);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    gap: 18px;
+    padding: 20px 22px;
+    border: 1px solid var(--border);
+    transition: transform .16s, box-shadow .16s;
+  }
+  .case-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(16,34,31,.12);
+  }
+  .case-num {
+    font-family: ui-monospace, "SF Mono", monospace;
+    font-size: .8rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    width: 42px; height: 42px;
+    display: flex; align-items: center; justify-content: center;
+    flex: none;
+  }
+  .case-body { flex: 1; min-width: 0; }
+  .case-tag {
+    font-size: .72rem; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--accent-dk); opacity: .7;
+    margin-bottom: 4px;
+  }
+  .case-title { font-size: 1.05rem; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+  .case-desc  { font-size: .85rem; color: var(--text); opacity: .75; line-height: 1.55; }
+  .case-meta {
+    flex: none;
+    display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between;
+    gap: 10px;
+  }
+  .case-date { font-size: .76rem; color: var(--text); opacity: .5; white-space: nowrap; }
+  .case-arrow {
+    font-size: .85rem; color: #fff;
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--accent);
+  }
+
+  /* ── COMING SOON ── */
+  .case-soon {
+    background: #fffbfd;
+    border: 2px dashed var(--border);
+    box-shadow: none;
+    cursor: default;
+  }
+  .case-soon:hover { transform: none; box-shadow: none; }
+  .case-soon .case-num { color: var(--text); opacity: .4; background: transparent; }
+  .case-soon .case-title, .case-soon .case-tag { opacity: .4; }
+  .case-soon .case-desc { opacity: .35; }
+  .coming-badge {
+    font-size: .7rem; font-weight: 700;
+    background: var(--border); color: var(--text);
+    border-radius: 20px; padding: 3px 10px; opacity: .65;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.5rem; }
+    .header-icon { font-size: 2rem; }
+    .container { padding: 20px 14px 60px; }
+    .case-card { flex-direction: column; gap: 12px; }
+    .case-meta { flex-direction: row; align-items: center; width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="home-bar">
+  <a href="../index.html">← <img src="../assets/logo-mark-96.png" alt="" style="width:1.3em;height:1.3em;vertical-align:-.32em;margin-right:.2em">獸醫讀書筆記</a>
+</div>
+
+<header>
+  <div class="header-icon">🧠</div>
+  <p class="kicker">Conference · FASAVA 2026 · Taipei</p>
+  <h1>2026 FASAVA 神經科筆記</h1>
+  <p class="dek">FASAVA 2026（台北南港）神經科場次，講者洪亘屏，依講義、現場投影片與錄音整理成中文重點筆記。</p>
+</header>
+
+<div class="container">
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num" id="case-count">2</div>
+      <div class="stat-label">已整理場次</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">神經</div>
+      <div class="stat-label">主要領域</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">🐕🐱</div>
+      <div class="stat-label">犬貓</div>
+    </div>
+  </div>
+
+  <div class="section-label">📋 場次筆記</div>
+
+  <div class="cases">
+
+    <!-- 01 -->
+    <a class="case-card" href="vestibular-localization.html">
+      <div class="case-num">01</div>
+      <div class="case-body">
+        <div class="case-tag">前庭 · 中樞 vs 周邊 · 矛盾性前庭 · Horner · 洪亘屏</div>
+        <div class="case-title">前庭系統定位：中樞 vs 周邊、矛盾性前庭症候群、Horner 路徑</div>
+        <div class="case-desc">中樞前庭的步態與姿勢症狀、Troxel 2005（眼球震顫 &gt;66 次／分）與 Bongartz 2020（周邊定位 1/4 其實是中樞）、Villalonga 2026 小腦分區、小葉小結葉／後小腦腳病灶造成頭傾斜遠離病灶但本體感覺缺損在同側、前庭脊髓徑、眼睛交感神經三段路徑與 Horner 症候群、定位速查表</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">2026-11-01</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 02 -->
+    <a class="case-card" href="lmn-generalized-weakness.html">
+      <div class="case-num">02</div>
+      <div class="case-body">
+        <div class="case-tag">全身無力 · LMN · 神經病變 · 接合處病變 · 肌病 · 洪亘屏</div>
+        <div class="case-title">全身無力與下運動神經元疾病的臨床思路</div>
+        <div class="case-desc">Down and Out：全身無力的三個來源（全身性、中樞、LMN）、神經病變／接合處病變／肌病的區分、從篩檢到 EMG／NCV 與切片的分階段診斷流程；目前是場次概要＋課前預習架構</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">2026-11-01 預習版</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 03 -->
+    <div class="case-card case-soon">
+      <div class="case-num">03</div>
+      <div class="case-body">
+        <div class="case-tag">神經科</div>
+        <div class="case-title">下一場整理中</div>
+        <div class="case-desc">講義或錄音到了之後補上</div>
+      </div>
+      <div class="case-meta">
+        <span class="coming-badge">整理中</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

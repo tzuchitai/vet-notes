@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全身無力與下運動神經元疾病｜2026 FASAVA 神經科筆記</title>
+<style>
+  :root {
+    --primary: #BE185D;
+    --primary-light: #FCE7F3;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2A0B1A;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E9B6CD; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A1730;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E9B6CD; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E9B6CD;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A1730;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #A86A88;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #831843 0%, #DB2777 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2A0B1A; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A1730; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .src-doc { background: #e0f2fe; color: #075985; }
+  .pending { border: 2px dashed #F5D3E3; border-radius: 10px; padding: 16px 18px; color: var(--text-muted); font-size: 13.5px; background: #fffbfd; }
+</style>
+</head>
+<style>
+  .fig.live img { border-color: #F5D3E3; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  @media (max-width: 900px) { .vs { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← FASAVA 神經科</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 FASAVA 神經科筆記</a>
+  <div class="logo">
+    <h2>02｜全身無力與<br>下運動神經元疾病</h2>
+    <p>洪亘屏（S. Hong）｜2026-11-01</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">場次資訊與學習目標</a>
+    <div class="nav-section">課前預習（💡 整理者）</div>
+    <a href="#s1">1. 全身無力的三個來源</a>
+    <a href="#s2">2. 神經病變、接合處病變、肌病</a>
+    <a href="#s3">3. 分階段的診斷流程</a>
+    <a href="#s4">4. 課前思考題</a>
+    <div class="nav-section">課堂</div>
+    <a href="#s5">5. 課堂內容（待補）</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>全身無力與下運動神經元（LMN）疾病的臨床思路</h1>
+    <p>原標題：Down and Out: Finding Footing in the Weak and Wobbly — A Clinical Approach to Generalized Weakness and LMN Disease</p>
+    <p>官方中文題目：無力與步態不穩：重新找回平衡——全身性無力與下運動神經元疾病的臨床診斷思路</p>
+    <p>主講：洪亘屏（S. Hong）｜2026 年 11 月 1 日 11:00–12:30｜FASAVA 2026 F 廳（全英文）｜場次 02</p>
+    <div class="tags">
+      <span class="tag">Generalized weakness</span>
+      <span class="tag">LMN</span>
+      <span class="tag">Neuropathy</span>
+      <span class="tag">Junctionopathy</span>
+      <span class="tag">Myopathy</span>
+      <span class="tag">重症肌無力</span>
+      <span class="tag">EMG／NCV</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-doc">📋 摘要</span> 講者提供的場次概要與學習目標（1 頁）
+    <span class="src src-add">💡 補充</span> 整理者補充（教科書架構，供課前預習）
+    <br><span class="muted">目前是<strong>課前預習版</strong>：講者資料只有場次概要，第 1–4 節都是整理者依教科書寫的預習架構。上課後會補上投影片與講者的說法，並修正不一致的地方。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 本場三個學習目標</h3>
+    <ul>
+      <li>全身無力的三個來源：<strong>全身性疾病</strong>、<strong>中樞神經病灶</strong>、<strong>下運動神經元單位</strong>疾病</li>
+      <li>區分 LMN 的三類：<strong>神經病變</strong>、<strong>神經肌肉接合處病變</strong>、<strong>肌病</strong></li>
+      <li>依初步篩檢結果，<strong>分階段</strong>選擇並判讀進階檢查</li>
+      <li>最後目標：列出<strong>有優先順序</strong>的鑑別診斷，引導下一步臨床決策</li>
+    </ul>
+  </div>
+
+  <!-- ══ S0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🎯</div>
+      <h2>場次資訊與學習目標</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3>時間與講者</h3>
+        <ul class="notes">
+          <li>講者：<strong>洪亘屏</strong>（S. Hong）；2026-11-01 11:00–12:30，F 廳，全英文授課。</li>
+          <li>同一位講者上午先講 <a href="vestibular-localization.html">01 前庭系統定位</a>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-doc">📋 摘要</span> 場次概要</h3>
+        <p class="p">這一場提供一套<strong>系統性</strong>的方法來處理全身無力的病患，先打好<strong>定位</strong>的基礎。重點放在區分下運動神經元疾病的臨床特徵與神經學檢查發現，包括<strong>神經病變</strong>（neuropathy）、<strong>接合處病變</strong>（junctionopathy）和<strong>肌病</strong>（myopathy），再據此列出有優先順序的鑑別診斷。接著建立<strong>分階段的診斷流程</strong>：以初步篩檢資料為基礎，合理地選擇並判讀進階輔助檢查，以取得確定診斷。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-doc">📋 摘要</span> 學習目標</h3>
+        <ol class="notes">
+          <li>記得全身無力定位的三個主要來源：全身性疾病、中樞神經病灶、下運動神經元單位的疾病。</li>
+          <li>區分下運動神經病變、接合處病變和肌病的臨床表現，列出有優先順序的鑑別診斷。</li>
+          <li>以初步篩檢結果為基礎，建立逐步的診斷流程，適當選擇並判讀進階檢查，引導後續臨床決策。</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🧭</div>
+      <h2>1. 全身無力的三個來源</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p class="p"><span class="src src-add">💡</span> 「無力」是飼主最常見的主訴之一，但不一定是神經問題。第一步是分清楚是哪一類：</p>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>來源</th><th>線索</th><th>常見例子</th></tr>
+          <tr><td><strong>全身性疾病</strong>（不是神經）</td><td>神經學檢查大致正常；虛弱、運動不耐、精神差；常有心肺或代謝異常</td><td>貧血、低血糖、電解質異常（低血鉀、低血鈣、高血鉀）、心臟病或心律不整、Addison、甲狀腺功能低下、發燒、疼痛</td></tr>
+          <tr><td><strong>中樞神經病灶</strong>（UMN）</td><td>反射<strong>正常或增強</strong>、肌張力正常或增加；本體感覺缺損明顯；可能有意識改變或腦神經症狀</td><td>頸髓病灶（四肢輕癱）、腦幹病灶</td></tr>
+          <tr><td><strong>LMN 單位疾病</strong></td><td>反射<strong>減弱或消失</strong>、肌張力降低、肌肉萎縮快；本體感覺相對保留</td><td>多發性神經病、重症肌無力、肉毒桿菌、蜱麻痺、肌炎</td></tr>
+        </table>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><span><strong>LMN 單位</strong>＝運動神經元細胞本體（腹角或腦神經核）＋神經根與周邊神經＋神經肌肉接合處＋肌肉。任何一段出問題都會造成 LMN 症狀。</span></div>
+    </div>
+  </div>
+
+  <!-- ══ S2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fde2ec">⚡</div>
+      <h2>2. 神經病變、接合處病變、肌病</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p class="p"><span class="src src-add">💡</span> 三類 LMN 疾病的典型差異（教科書整理，有很多重疊）：</p>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th></th><th>神經病變</th><th>接合處病變</th><th>肌病</th></tr>
+          <tr><td>脊髓反射</td><td><strong>減弱或消失</strong></td><td>多半正常，嚴重時減弱</td><td>多半正常</td></tr>
+          <tr><td>肌張力</td><td>降低</td><td>正常或降低</td><td>正常、降低，或僵硬</td></tr>
+          <tr><td>本體感覺</td><td>可能異常（感覺纖維受影響時）</td><td>正常</td><td>正常</td></tr>
+          <tr><td>肌肉萎縮</td><td>快、明顯（神經性萎縮）</td><td>通常不明顯</td><td>可萎縮或肥大</td></tr>
+          <tr><td>運動誘發</td><td>不明顯</td><td><strong>運動後惡化、休息後恢復</strong></td><td>可能運動不耐、步幅短、僵硬步態</td></tr>
+          <tr><td>疼痛</td><td>神經根病變可能痛</td><td>不痛</td><td>肌炎可能痛</td></tr>
+          <tr><td>CK</td><td>正常或輕度上升</td><td>正常</td><td>常<strong>上升</strong></td></tr>
+          <tr><td>巨食道、吞嚥、發聲改變</td><td>可能</td><td><strong>常見</strong></td><td>可能（食道肌炎）</td></tr>
+          <tr><td>代表疾病</td><td>多發性神經根神經炎（浣熊獵犬癱瘓）、糖尿病神經病變（貓蹠行）、甲狀腺功能低下、副腫瘤性、遺傳性</td><td><strong>後天型重症肌無力</strong>、肉毒桿菌、蜱麻痺、有機磷中毒</td><td>多發性肌炎、咀嚼肌炎、低血鉀性肌病（貓頸部腹屈）、內分泌性肌病、肌肉失養症</td></tr>
+        </table>
+      </div>
+      <div class="alert alert-warn"><span class="alert-icon">⚠️</span><span><span class="src src-add">💡</span> 局部型重症肌無力可能只有巨食道或吞嚥困難，沒有四肢無力。不明原因的巨食道都要驗<strong>乙醯膽鹼受體抗體</strong>。</span></div>
+    </div>
+  </div>
+
+  <!-- ══ S3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🔬</div>
+      <h2>3. 分階段的診斷流程</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p class="p"><span class="src src-add">💡</span> 講者強調「以初步篩檢為基礎，再選進階檢查」。一般的分層：</p>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>階段</th><th>檢查</th><th>主要目的</th></tr>
+          <tr><td>第一階段：篩檢</td><td>CBC、生化（含<strong>電解質、血糖、CK</strong>）、尿液檢查、血壓、心電圖</td><td>排除全身性原因；CK 上升指向肌病</td></tr>
+          <tr><td></td><td>胸腔 X 光</td><td><strong>巨食道</strong>、吸入性肺炎、<strong>前縱膈腫塊（胸腺瘤）</strong>、轉移</td></tr>
+          <tr><td></td><td>內分泌：TT4／TSH、ACTH 刺激試驗（依病史）</td><td>甲狀腺功能低下、Addison、Cushing 肌病</td></tr>
+          <tr><td>第二階段：針對性</td><td><strong>乙醯膽鹼受體抗體</strong>（重症肌無力的確診檢查）</td><td>接合處病變</td></tr>
+          <tr><td></td><td>腹部超音波、感染性疾病檢驗（如 <em>Toxoplasma</em>、<em>Neospora</em>）</td><td>副腫瘤性、感染性肌炎或神經炎</td></tr>
+          <tr><td>第三階段：電生理（麻醉下）</td><td><strong>肌電圖（EMG）</strong>、<strong>神經傳導速度（NCV）</strong>、<strong>反覆神經刺激</strong>、F 波</td><td>區分神經病變、接合處病變、肌病，並找出受影響的肌肉作為切片位置</td></tr>
+          <tr><td>第四階段：組織</td><td><strong>肌肉切片</strong>、<strong>神經切片</strong>（送專門的神經肌肉實驗室）</td><td>確定診斷</td></tr>
+        </table>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><span>麻醉做電生理檢查前要先拍胸腔 X 光：有巨食道或吸入性肺炎的病患麻醉風險高。EMG 異常的肌肉也是切片的最佳位置，所以兩者常安排在同一次麻醉。</span></div>
+    </div>
+  </div>
+
+  <!-- ══ S4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef9c3">📘</div>
+      <h2>4. 課前思考題</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <ol class="notes">
+        <li>一隻四肢無力的狗，四肢脊髓反射都減弱：要怎麼區分是 LMN 疾病，還是嚴重的頸髓病灶？</li>
+        <li>運動後惡化、休息後恢復的無力，最先想到哪一類？確診要驗什麼？</li>
+        <li>貓頸部腹屈（cervical ventroflexion）時，第一階段篩檢最先看哪一個數值？</li>
+        <li>什麼時候需要 EMG／NCV，什麼時候篩檢就足以下診斷？</li>
+      </ol>
+      <p class="muted">上課後依講者的說法補上答案。</p>
+    </div>
+  </div>
+
+  <!-- ══ S5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🎤</div>
+      <h2>5. 課堂內容（待補）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="pending">還沒有課堂投影片或錄音。上課時拍的投影片、講義或錄音逐字稿傳來後，會整理在這裡，並修正第 1–4 節與講者說法不一致的地方。</div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="vestibular-localization.html">01 前庭系統定位：中樞 vs 周邊、矛盾性前庭症候群、Horner 路徑</a>。</p>
+    <a href="index.html">回到系列列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
