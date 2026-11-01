@@ -54,12 +54,13 @@ SERIES = {
     'antimicrobial-selection': '知菌知藥：抗菌藥物選擇',
     'lulich-urology-2026':     'Jody Lulich 泌尿講座',
     'rita-ho-oncology-2026':   'Rita Ho 腫瘤科講座',
-    'fasava-2026':              '2026 FASAVA 神經科筆記',
+    'fasava-2026':              '2026 FASAVA 研討會筆記',
     'ultrasound':              '超音波專區',
     'notes':                   '單篇筆記',
 }
 
 FOLDER_SPECS = {
+    'fasava-2026/feline-eye-ocular-surface.html': ['ophtho', 'infect'],
     'texas-endocrine-2026': ['endo'],
     'tsfm-feline-ecc-2026': ['ecc'],
     'echocardiography':     ['cardio', 'us'],
@@ -71,6 +72,7 @@ FOLDER_SPECS = {
 }
 
 SPECS = {
+    'fasava-2026/feline-eye-ocular-surface.html': ['ophtho', 'infect'],
     'texas-endocrine-2026/endocrine-neoplasia.html': ['endo', 'onc'],
     'texas-endocrine-2026/hypercalcemia.html':       ['endo', 'onc'],
     'echocardiography/14-pericardial-effusion.html': ['cardio', 'onc', 'us'],
