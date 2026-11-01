@@ -15,7 +15,7 @@
     '<div style="font-size:40px;margin-bottom:14px;">🔒</div>' +
     '<div style="font-size:16px;font-weight:700;color:#8a6010;margin-bottom:4px;">內部參考資料</div>' +
     '<div style="font-size:13px;color:#4a3800;opacity:.65;margin-bottom:18px;max-width:280px;">本頁含課堂投影片照片，僅供內部學習使用，請輸入密碼繼續</div>' +
-    '<input id="gate-pw" type="password" placeholder="密碼" ' +
+    '<input id="gate-pw" type="password" inputmode="numeric" autocomplete="off" placeholder="密碼" ' +
       'style="border:2px solid #e8d5a0;border-radius:10px;padding:10px 14px;font-size:14px;width:220px;text-align:center;outline:none;">' +
     '<button id="gate-btn" style="margin-top:12px;background:linear-gradient(135deg,#8a6010,#c8962a);color:#fff;border:none;' +
       'border-radius:20px;padding:9px 28px;font-size:14px;font-weight:700;cursor:pointer;">進入</button>' +
@@ -28,7 +28,10 @@
   var err = document.getElementById('gate-err');
 
   function check() {
-    if (pwInput.value === PASSWORD) {
+    var v = pwInput.value.replace(/[\uFF01-\uFF5E]/g, function (c) {
+      return String.fromCharCode(c.charCodeAt(0) - 0xFEE0);
+    }).trim();
+    if (v === PASSWORD) {
       sessionStorage.setItem(KEY, '1');
       document.documentElement.style.visibility = 'visible';
       overlay.remove();
