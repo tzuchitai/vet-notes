@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>皮膚科急症｜2026 FASAVA 研討會筆記</title>
+<meta name="robots" content="noindex, nofollow">
+<style>html{visibility:hidden}</style>
+<script>
+(function(){ if (sessionStorage.getItem('fasavaGateOK') === '1') { document.documentElement.style.visibility = 'visible'; } })();
+</script>
+<style>
+  :root {
+    --primary: #BE185D;
+    --primary-light: #FCE7F3;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2A0B1A;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E9B6CD; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A1730;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E9B6CD; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E9B6CD;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A1730;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #A86A88;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #831843 0%, #DB2777 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2A0B1A; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A1730; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .src-doc { background: #e0f2fe; color: #075985; }
+  .pending { border: 2px dashed #F5D3E3; border-radius: 10px; padding: 16px 18px; color: var(--text-muted); font-size: 13.5px; background: #fffbfd; }
+</style>
+</head>
+<style>
+  .fig.live img { border-color: #F5D3E3; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  @media (max-width: 900px) { .vs { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← FASAVA 筆記</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 FASAVA 研討會筆記</a>
+  <div class="logo">
+    <h2>04｜皮膚科急症</h2>
+    <p>Dermatology Emergency｜2026-11-01｜現場整理中</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">場次資訊</a>
+    <a href="#s1">1. 處理皮膚急症的 5 個步驟</a>
+    <div class="nav-section">💡 整理者補充架構</div>
+    <a href="#s2">2. 紅旗徵象</a>
+    <a href="#s3">3. 常見皮膚急症一覽</a>
+    <a href="#s4">4. 初步診斷</a>
+    <a href="#s5">5. 課堂內容</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>皮膚科急症：從紅旗徵象到進一步診斷</h1>
+    <p>原標題：Dermatology Emergency（正式講題待補）</p>
+    <p>2026 年 11 月 1 日｜FASAVA 2026｜場次 04（皮膚科）</p>
+    <div class="tags">
+      <span class="tag">皮膚急症</span>
+      <span class="tag">紅旗徵象</span>
+      <span class="tag">穩定病患</span>
+      <span class="tag">TEN／SJS</span>
+      <span class="tag">壞死性筋膜炎</span>
+      <span class="tag">過敏性休克</span>
+      <span class="tag">幼犬蜂窩性組織炎</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-photo">📸 現場</span> 課堂現場投影片照片
+    <span class="src src-add">💡 補充</span> 整理者補充（教科書與文獻，非講者內容）
+    <br><span class="muted">目前只有 1 張現場照片（5 個步驟）。第 2–4 節是整理者先放的教科書架構，講者的投影片到了之後再修正或替換。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 本場重點</h3>
+    <ul>
+      <li>講者的處理順序：<strong>紅旗 → 穩定 → 針對性病史 → 型態推理 → 進一步檢查</strong></li>
+      <li>先判斷<strong>是不是急症</strong>、先穩定全身狀況，再處理皮膚</li>
+      <li>病史與<strong>病灶型態</strong>就能把鑑別診斷縮小，檢查是最後一步</li>
+      <li><span class="src src-add">💡</span> 紅旗：<strong>全身症狀、黏膜侵犯、Nikolsky 陽性、疼痛與外觀不成比例、快速擴散</strong></li>
+    </ul>
+  </div>
+
+  <!-- ══ S0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🎯</div>
+      <h2>場次資訊</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <ul class="notes">
+        <li>主題：<strong>皮膚科急症</strong>（dermatology emergency）。</li>
+        <li>講者姓名、正式講題、場次時間與廳別：照片上沒有，待補。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ S1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🪜</div>
+      <h2>1. 處理皮膚急症的 5 個步驟</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <figure class="fig live">
+        <img src="photos/04-five-steps-live.jpg" alt="5 Steps 投影片：Identify Red Flags、Initial Assessment and Stabilization、Targeted History Taking、Pattern-Based Clinical Reasoning、Then, if possible, further diagnostics" loading="lazy">
+        <figcaption>📸 5 Steps</figcaption>
+      </figure>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>步驟</th><th><span class="src src-photo">📸</span> 投影片</th><th><span class="src src-add">💡</span> 實際上要做的事</th></tr>
+          <tr><td><strong>1</strong></td><td>Identify Red Flags<br>辨認紅旗徵象</td><td>先判斷是不是急症：有沒有全身症狀、黏膜侵犯、Nikolsky 陽性、劇痛、快速擴散、紫斑或壞死（見第 2 節）。</td></tr>
+          <tr><td><strong>2</strong></td><td>Initial Assessment and Stabilization<br>初步評估與穩定</td><td>先處理會致命的問題：呼吸道、循環、休克、疼痛、體溫、脫水。皮膚大面積缺損等同燒燙傷，要考慮體液與蛋白質流失。</td></tr>
+          <tr><td><strong>3</strong></td><td>Targeted History Taking<br>針對性病史</td><td>重點問：<strong>近 8 週用藥</strong>（包括驅蟲藥、疫苗）、發生速度、接觸物（化學品、熱源、昆蟲、蛇）、年齡與品種、同住動物或人是否有症狀。</td></tr>
+          <tr><td><strong>4</strong></td><td>Pattern-Based Clinical Reasoning<br>依型態做臨床推理</td><td>看病灶型態與分布：糜爛潰瘍、水泡、紫斑、壞死、腫脹；是否在<strong>黏膜皮膚交界</strong>、耳尖與足墊、臉部。型態加分布就能縮小鑑別診斷（見第 3 節）。</td></tr>
+          <tr><td><strong>5</strong></td><td>Then, if possible, further diagnostics<br>可行的話，再做進一步檢查</td><td>細胞學、切片、培養、血液與凝血檢查。<strong>不必等檢查結果才開始穩定與治療</strong>（見第 4 節）。</td></tr>
+        </table>
+      </div>
+      <div class="alert alert-info"><span class="alert-icon">💡</span><span>第 5 步寫著 <strong>if possible</strong>：在急診現場，病患的狀態和飼主的經費不一定允許完整檢查，前四步本身就要能帶出合理的處置。</span></div>
+    </div>
+  </div>
+
+  <!-- ══ S2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🚩</div>
+      <h2>2. 紅旗徵象</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p class="p"><span class="src src-add">💡</span> 整理者補充，講者的紅旗清單到了之後再對照：</p>
+      <ul class="notes">
+        <li><strong>全身症狀</strong>：發燒、精神沉鬱、心搏過速、低血壓、敗血症徵象。</li>
+        <li><strong>黏膜侵犯</strong>：口腔、眼、生殖器，或黏膜皮膚交界。</li>
+        <li><strong>Nikolsky 徵象陽性</strong>：輕壓或推擠，表皮就滑脫。</li>
+        <li><strong>疼痛與外觀不成比例</strong>：皮膚看起來還好，但病患非常痛（要想到壞死性筋膜炎）。</li>
+        <li><strong>快速擴散</strong>：以小時計。</li>
+        <li><strong>大面積皮膚缺損</strong>：超過體表面積約 20–30%。</li>
+        <li><strong>紫斑或壞死</strong>：瘀斑樣病灶、皮膚變暗或變黑、脫落。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ S3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">📋</div>
+      <h2>3. 常見皮膚急症一覽</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p class="p"><span class="src src-add">💡</span> 整理者補充的教科書架構。劑量請以院內處方集為準。</p>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>疾病</th><th>線索</th><th>初步處置</th></tr>
+          <tr><td><strong>TEN／SJS／多形性紅斑</strong>（藥物反應）</td><td>近期用藥（TMS、β-lactam、phenobarbital 等）；疼痛性糜爛、黏膜侵犯、Nikolsky 陽性</td><td>停掉所有非必要藥物；切片；比照燒燙傷照護：輸液、止痛、傷口照護、餵食管。TEN 預後保留。</td></tr>
+          <tr><td><strong>壞死性筋膜炎</strong>（<i>Streptococcus canis</i>、混合感染）</td><td>疼痛與腫脹不成比例、快速擴散、皮膚變暗、敗血症</td><td><strong>緊急外科清創</strong>＋廣效靜脈抗生素。避免單用 fluoroquinolone（與鏈球菌毒性休克有關）。</td></tr>
+          <tr><td><strong>過敏性休克／血管性水腫</strong></td><td>臉部腫脹、蕁麻疹、嘔吐、虛脫</td><td>Epinephrine 0.01 mg/kg IM、靜脈輸液、抗組織胺 ± 類固醇；維持呼吸道暢通。</td></tr>
+          <tr><td><strong>幼犬蜂窩性組織炎</strong>（puppy strangles）</td><td>4 月齡以下幼犬；口鼻與眼瞼腫脹、下頜淋巴結腫大</td><td>免疫抑制劑量 prednisolone；有續發感染再加抗生素。及早治療可減少疤痕。</td></tr>
+          <tr><td><strong>燒燙傷</strong>（熱、化學、電）</td><td>損傷常在 24–72 小時後才完全顯現</td><td>超過約 20% 體表面積要輸液；止痛、分階段清創、注意敗血症。</td></tr>
+          <tr><td><strong>血管炎</strong></td><td>耳尖、足墊、尾巴、黏膜的打孔狀潰瘍</td><td>切片；找誘因：藥物、疫苗、蜱媒疾病（<i>Rickettsia</i>、<i>Ehrlichia</i>）、腫瘤。</td></tr>
+          <tr><td><strong>尋常型天疱瘡／大疱性類天疱瘡</strong></td><td>黏膜交界處的水泡與糜爛</td><td>切片；免疫抑制；支持療法。</td></tr>
+          <tr><td><strong>深層膿皮症合併敗血症</strong>（如德國狼犬癤病）</td><td>瘻管、發燒</td><td>先培養再給全身抗生素；傷口照護。</td></tr>
+          <tr><td><strong>咬傷中毒</strong>（蛇、棕色遁蛛）</td><td>快速腫脹、組織壞死</td><td>有抗毒血清就用；止痛；檢查凝血。</td></tr>
+          <tr><td><strong>蠅蛆症</strong></td><td>傷口或糾結毛髮下有蛆</td><td>剃毛、移除幼蟲、清創；處理休克。</td></tr>
+          <tr><td><strong>無菌性嗜中性球皮膚病</strong></td><td>與 carprofen 有關</td><td>停藥、切片。</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🔬</div>
+      <h2>4. 初步診斷</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p class="p"><span class="src src-add">💡</span> 對應 5 步驟的最後一步：</p>
+      <ul class="notes">
+        <li>壓印細胞學（impression smear）。</li>
+        <li><strong>及早切片</strong>，可以的話在給類固醇之前。</li>
+        <li>細菌培養與藥敏。</li>
+        <li>CBC、血清生化、凝血檢查。</li>
+        <li>完整用藥史，回溯約 8 週。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ S5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f3e8ff">🎤</div>
+      <h2>5. 課堂內容</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="pending">課堂進行中，後面的投影片會陸續補上，並依講者內容修正第 2–4 節。</div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>同系列：<a href="vestibular-localization.html">01 前庭系統定位</a>、<a href="lmn-generalized-weakness.html">02 全身無力與 LMN 疾病</a>、<a href="feline-eye-ocular-surface.html">03 貓眼的獨特之處</a>。</p>
+    <a href="index.html">回到系列列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+<script src="gate.js?v=2"></script>
+</body>
+</html>

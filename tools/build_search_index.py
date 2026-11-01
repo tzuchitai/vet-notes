@@ -32,6 +32,7 @@ SPECIALTIES = [
     ('surg',     '外科',         '🔪', '#0E7490', '專科'),
     ('ophtho',   '眼科',         '👁️', '#2563EB', '專科'),
     ('neuro',    '神經',         '🧠', '#BE185D', '專科'),
+    ('derm',     '皮膚',         '🩹', '#C2410C', '專科'),
     ('endo',     '內分泌',       '🧪', '#0F766E', '內科'),
     ('renal',    '腎臟泌尿',     '💧', '#0284C7', '內科'),
     ('kidney',   '腎臟',         '🫘', '#0369A1', '內科', 'renal'),
@@ -72,6 +73,7 @@ FOLDER_SPECS = {
 }
 
 SPECS = {
+    'fasava-2026/dermatology-emergency.html':     ['derm', 'ecc'],
     'fasava-2026/feline-eye-ocular-surface.html': ['ophtho', 'infect'],
     'texas-endocrine-2026/endocrine-neoplasia.html': ['endo', 'onc'],
     'texas-endocrine-2026/hypercalcemia.html':       ['endo', 'onc'],
