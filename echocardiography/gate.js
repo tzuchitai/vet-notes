@@ -1,6 +1,6 @@
 (function () {
   var KEY = 'echoGateOK';
-  var PASSWORD = 'esavs2026';
+  var PASSWORD = '1234';
 
   if (sessionStorage.getItem(KEY) === '1') {
     document.documentElement.style.visibility = 'visible';

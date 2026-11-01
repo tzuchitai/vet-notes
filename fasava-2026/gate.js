@@ -1,6 +1,6 @@
 (function () {
   var KEY = 'fasavaGateOK';
-  var PASSWORD = 'fasava2026';
+  var PASSWORD = '1234';
 
   if (sessionStorage.getItem(KEY) === '1') {
     document.documentElement.style.visibility = 'visible';
