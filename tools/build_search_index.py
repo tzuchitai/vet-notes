@@ -109,7 +109,7 @@ SPECS = {
 }
 
 # 有密碼保護的系列：只收標題，不收內文
-GATED = ('echocardiography/',)
+GATED = ('echocardiography/', 'fasava-2026/')
 
 SKIP_TAGS = {'head', 'title', 'script', 'style', 'noscript', 'svg', 'template'}
 HEADINGS = {'h1', 'h2', 'h3'}
