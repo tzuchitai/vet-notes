@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>貓心臟病（三）：治療｜2026 FASAVA 研討會筆記</title>
+<meta name="robots" content="noindex, nofollow">
+<style>html{visibility:hidden}</style>
+<script>
+(function(){ if (sessionStorage.getItem('fasavaGateOK') === '1') { document.documentElement.style.visibility = 'visible'; } })();
+</script>
+<style>
+  :root {
+    --primary: #BE185D;
+    --primary-light: #FCE7F3;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2A0B1A;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E9B6CD; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A1730;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E9B6CD; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E9B6CD;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A1730;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #A86A88;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #831843 0%, #DB2777 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2A0B1A; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A1730; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .src-doc { background: #e0f2fe; color: #075985; }
+  .pending { border: 2px dashed #F5D3E3; border-radius: 10px; padding: 16px 18px; color: var(--text-muted); font-size: 13.5px; background: #fffbfd; }
+<style>
+  .fig img { border-color: #F5D3E3; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  @media (max-width: 900px) { .vs { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← FASAVA 筆記</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 FASAVA 研討會筆記</a>
+  <div class="logo">
+    <h2>07｜貓心臟病（三）<br>治療</h2>
+    <p>Etienne Côté｜2026-11-02｜講義版</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">場次資訊</a>
+    <div class="nav-section">無症狀 HCM（B 期）</div>
+    <a href="#s1">1. Atenolol</a>
+    <a href="#s2">2. ACE 抑制劑</a>
+    <a href="#s3">3. Rapamycin</a>
+    <div class="nav-section">預防血栓</div>
+    <a href="#s4">4. 病例：Sphynx 貓 5 年追蹤</a>
+    <a href="#s5">5. 抗血栓藥選項</a>
+    <a href="#s6">6. Rivaroxaban＋clopidogrel</a>
+    <div class="nav-section">鬱血性心衰竭（C 期）</div>
+    <a href="#s7">7. CHF 標準治療</a>
+    <a href="#s8">8. CHF 的 ACE 抑制劑</a>
+    <a href="#s9">9. 鈣離子阻斷劑（diltiazem）</a>
+    <a href="#s10">10. Pimobendan</a>
+    <a href="#s11">11. 速查表</a>
+    <div class="nav-section">課堂</div>
+    <a href="#s12">12. 課前思考題</a>
+    <a href="#s13">13. 課堂補充（待錄音）</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>貓心臟病（三）：治療</h1>
+    <p>原標題：Feline Cardiomyopathies: Treatment</p>
+    <p>主講：Etienne Côté DVM, DACVIM (Cardiology), FASE（Atlantic Veterinary College, UPEI，加拿大）｜Session 3，13:30–15:00｜FASAVA 2026｜場次 07</p>
+    <div class="tags">
+      <span class="tag">Atenolol</span>
+      <span class="tag">Benazepril</span>
+      <span class="tag">Rapamycin</span>
+      <span class="tag">Clopidogrel</span>
+      <span class="tag">Rivaroxaban</span>
+      <span class="tag">Furosemide</span>
+      <span class="tag">Diltiazem</span>
+      <span class="tag">Pimobendan</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 講者提供的投影片講義（76 張全部依序放入，括號內為投影片編號）
+    <span class="src src-add">💡 補充</span> 整理者補充（教科書／原始文獻，供課前預習）
+    <br><span class="muted">目前只有講義，<strong>還沒有錄音</strong>。講者口述與 Q&amp;A 之後補到第 13 節，並以 🎤 標示。前兩場：<a href="feline-heart-intro-classification.html">05 介紹與分類</a>、<a href="feline-heart-diagnosis.html">06 診斷</a>。藥物劑量照講義抄錄，使用前請再核對。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 本場重點</h3>
+    <ul>
+      <li><strong>無症狀 HCM 沒有藥被證實能延長存活</strong>：atenolol（5 年追蹤）與 ACE 抑制劑（ramipril、benazepril）都沒有說服力的好處</li>
+      <li><strong>Rapamycin</strong>（RAPACAT，每週一次）是目前唯一已知能逆轉特發性左心室肥厚的藥，已獲 FDA 有條件核准；但長期存活效益與副作用未知——「誰需要它？」</li>
+      <li>預防血栓：<strong>clopidogrel 18.75 mg/貓 q24h</strong> 是唯一有確定證據的（FATCAT）；aspirin 幾乎無效；可加上 <strong>rivaroxaban 2.5 mg/貓 q24h</strong></li>
+      <li>CHF：急性 <strong>furosemide IV＋氧氣＋胸腔穿刺＋安靜</strong>；慢性 furosemide PO，其他藥都打問號</li>
+      <li><strong>Pimobendan</strong>：回溯研究存活 626 vs 103 天，但前瞻試驗沒有差異；可考慮用在<strong>確定 CHF 的嚴重病例</strong>，貓的藥物動力學要小心（半衰期 2.5 倍、血中濃度 9 倍）</li>
+    </ul>
+  </div>
+
+  <!-- ══ S0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🎯</div>
+      <h2>場次資訊</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 開場與大綱（1–4）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/07-01-slide.jpg" alt="投影片 1：Feline Cardiomyopathies: Treatment" loading="lazy">
+          <figcaption>📄 (1) Feline Cardiomyopathies: Treatment</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-02-slide.jpg" alt="投影片 2：Thank you" loading="lazy">
+          <figcaption>📄 (2) Thank you</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-03-slide.jpg" alt="投影片 3：Disclosures" loading="lazy">
+          <figcaption>📄 (3) Disclosures</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-04-slide.jpg" alt="投影片 4：Treatment of feline HCM（本場大綱）" loading="lazy">
+          <figcaption>📄 (4) Treatment of feline HCM（本場大綱）</figcaption>
+        </figure>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>階段</th><th>講義列出的藥</th></tr>
+            <tr><td>臨床前（無症狀）</td><td>Atenolol、ACE 抑制劑</td></tr>
+            <tr><td>臨床（鬱血性心衰竭）</td><td>Diltiazem、Pimobendan</td></tr>
+          </table>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> 投影片後面還有 rapamycin 與抗血栓藥兩大段，大綱沒列出。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">💊</div>
+      <h2>1. Atenolol：無症狀 HCM</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 理論上的好處（5–6）</h3>
+        <ul class="notes">
+          <li>β 阻斷劑<strong>降低心肌耗能</strong> → 比較不會心律不整、比較少纖維化</li>
+          <li><strong>減輕左心室流出道阻塞</strong></li>
+        </ul>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/07-05-slide.jpg" alt="投影片 5：Atenolol 的理論基礎：降低心肌耗能、減輕流出道阻塞" loading="lazy">
+          <figcaption>📄 (5) Atenolol 的理論基礎：降低心肌耗能、減輕流出道阻塞</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-06-slide.jpg" alt="投影片 6：Atkins et al., JAVMA 1992：心跳 ≥ 200 的 HCM 貓存活較差" loading="lazy">
+          <figcaption>📄 (6) Atkins et al., JAVMA 1992：心跳 ≥ 200 的 HCM 貓存活較差</figcaption>
+        </figure>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> Atkins 1992 的存活曲線：診斷時心跳 ≥ 200 次／分的貓存活明顯較差，這是「把心跳降下來」的理論依據。但這是觀察性資料，不代表用藥降心跳就能改善存活。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 5 年追蹤研究（7–9）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/07-07-slide.jpg" alt="投影片 7：Schober et al.：atenolol 對無症狀 HCM 貓 5 年存活的影響（Elsevier 2014）" loading="lazy">
+          <figcaption>📄 (7) Schober et al.：atenolol 對無症狀 HCM 貓 5 年存活的影響（Elsevier 2014）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-08-slide.jpg" alt="投影片 8：42 隻 HCM 貓＋21 隻正常對照，追蹤 5 年" loading="lazy">
+          <figcaption>📄 (8) 42 隻 HCM 貓＋21 隻正常對照，追蹤 5 年</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>42 隻 HCM 貓、21 隻正常對照，<strong>追蹤 5 年</strong>：全死因死亡率、心因性死亡率。</li>
+        </ul>
+        <figure class="fig">
+          <img src="photos/07-09-slide.jpg" alt="投影片 9：結論：沒有說服力的好處" loading="lazy">
+          <figcaption>📄 (9) 結論：沒有說服力的好處</figcaption>
+        </figure>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><span><strong>結論</strong>：atenolol 對無症狀 HCM 貓<strong>沒有說服力的好處</strong>。當治療可能有害時（<strong>抗拒吃藥的貓、配合度差的飼主</strong>）這點特別重要。可能對某些次族群有益（例如<strong>心跳快、好餵藥的貓</strong>）？</span></div>
+        <p class="p"><span class="src src-add">💡</span> 臨床上仍有人用 atenolol 處理<strong>嚴重流出道阻塞</strong>（流速很快）或心跳過快的貓，劑量常見 6.25–12.5 mg/貓 PO q12–24h；但已經 CHF 的貓要小心，β 阻斷劑可能讓心衰竭惡化。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🧬</div>
+      <h2>2. ACE 抑制劑：無症狀 HCM</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> Benazepril（10–11）</h3>
+        <p class="p">理論上，減少 <strong>RAAS 造成的心肌重塑</strong>應該有好處。</p>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/07-10-slide.jpg" alt="投影片 10：Taillefer &amp; Di Fruscia, CVJ 2006：benazepril 與無症狀 HCM" loading="lazy">
+          <figcaption>📄 (10) Taillefer &amp; Di Fruscia, CVJ 2006：benazepril 與無症狀 HCM</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-11-slide.jpg" alt="投影片 11：16 隻貓、開放標籤：E/A 比上升、收縮期游離壁變薄" loading="lazy">
+          <figcaption>📄 (11) 16 隻貓、開放標籤：E/A 比上升、收縮期游離壁變薄</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>16 隻貓、前瞻性開放標籤，基線、3 個月、6 個月評估。</li>
+          <li>Benazepril：6 個月時二尖瓣 <strong>E/A 比上升</strong>（P = 0.009）；3 個月時<strong>收縮期</strong>左心室游離壁變薄（P = 0.04）。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> Ramipril：緬因貓 MRI 研究（12–13）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/07-12-slide.jpg" alt="投影片 12：MacDonald, Kittleson et al.：ramipril 對緬因貓 HCM 的影響" loading="lazy">
+          <figcaption>📄 (12) MacDonald, Kittleson et al.：ramipril 對緬因貓 HCM 的影響</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-13-slide.jpg" alt="投影片 13：結果：ACE 活性抑制 97%，左心室質量沒有變化" loading="lazy">
+          <figcaption>📄 (13) 結果：ACE 活性抑制 97%，左心室質量沒有變化</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>緬因貓 HCM，ramipril 或安慰劑 1 年，用<strong>心臟 MRI</strong> 評估左心室質量。</li>
+          <li>結果：血漿 ACE 活性被抑制 <strong>97%</strong>，但<strong>左心室質量沒有改變</strong>。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 第 12 張投影片上的期刊標示是 <em>J Vet Intern Med</em> 2006;20:1093，第 13 張的文字寫 2007。對照兩篇：小型開放研究（沒有對照組）看到超音波指標改善，有安慰劑對照、用 MRI 精確測量的研究就沒有效果。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🧪</div>
+      <h2>3. Rapamycin（sirolimus）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 是什麼藥（14–17）</h3>
+        <ul class="notes">
+          <li><strong>抗增生</strong>，延緩纖維化；又叫 sirolimus，人醫用在<strong>冠狀動脈支架</strong>防止再狹窄。</li>
+          <li>機轉複雜：抑制 <strong>mTOR</strong>（mechanistic target of rapamycin）。</li>
+          <li>實驗研究中，rapamycin 能在誘發肥大的疾病中<strong>降低心臟重量</strong>（<em>Circulation</em> 2004：主動脈縮窄壓力負荷模型）。</li>
+        </ul>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/07-14-slide.jpg" alt="投影片 14：Rapamycin：抗增生、人醫冠狀動脈支架" loading="lazy">
+          <figcaption>📄 (14) Rapamycin：抗增生、人醫冠狀動脈支架</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-15-slide.jpg" alt="投影片 15：機轉：抑制 mTOR（Sciarretta et al., Circ Res 2018）" loading="lazy">
+          <figcaption>📄 (15) 機轉：抑制 mTOR（Sciarretta et al., Circ Res 2018）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-16-slide.jpg" alt="投影片 16：實驗研究：rapamycin 讓已建立的心肌肥大退縮（Circulation 2004）" loading="lazy">
+          <figcaption>📄 (16) 實驗研究：rapamycin 讓已建立的心肌肥大退縮（Circulation 2004）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-17-slide.jpg" alt="投影片 17：各種動物模型中 mTOR 抑制對心肌肥大的效果（Sciarretta 2018）" loading="lazy">
+          <figcaption>📄 (17) 各種動物模型中 mTOR 抑制對心肌肥大的效果（Sciarretta 2018）</figcaption>
+        </figure>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 獸醫的其他用途（18–19）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/07-18-slide.jpg" alt="投影片 18：狗的老化研究（中年犬短期 rapamycin 隨機對照試驗、TRIAD）" loading="lazy">
+          <figcaption>📄 (18) 狗的老化研究（中年犬短期 rapamycin 隨機對照試驗、TRIAD）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-19-slide.jpg" alt="投影片 19：狗的主動脈下狹窄研究" loading="lazy">
+          <figcaption>📄 (19) 狗的主動脈下狹窄研究</figcaption>
+        </figure>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> RAPACAT 試驗（20–25）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/07-20-slide.jpg" alt="投影片 20：Kaplan et al., JAVMA 2023：延遲釋放 rapamycin 停止無症狀 HCM 貓的左心室肥厚進展（RAPACAT）" loading="lazy">
+          <figcaption>📄 (20) Kaplan et al., JAVMA 2023：延遲釋放 rapamycin 停止無症狀 HCM 貓的左心室肥厚進展（RAPACAT）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-21-slide.jpg" alt="投影片 21：最大室壁厚度（MWT）：安慰劑組 180 天時上升，低劑量組維持" loading="lazy">
+          <figcaption>📄 (21) 最大室壁厚度（MWT）：安慰劑組 180 天時上升，低劑量組維持</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>劑量：<strong>0.3 mg/kg PO 每週一次（q 1 week）× 6 個月</strong>（講義特別在「q 1 week」畫底線）。</li>
+          <li>安慰劑組最大室壁厚度在 180 天時上升，rapamycin 組維持不變。</li>
+          <li><strong>左心房大小沒有變化</strong>。</li>
+          <li>副作用：24 隻用藥貓中 4 隻——2 隻 CHF、1 隻猝死、1 隻糖尿病酮酸中毒；<strong>和治療的關係不明</strong>。</li>
+        </ul>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/07-22-slide.jpg" alt="投影片 22：左心房大小沒變；副作用 4/24" loading="lazy">
+          <figcaption>📄 (22) 左心房大小沒變；副作用 4/24</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-23-slide.jpg" alt="投影片 23：講者標出安慰劑組 MWT 在 180 天的跳升（7.99 → 7.93 → 8.77 mm）並引用 Wagner JVC 2010" loading="lazy">
+          <figcaption>📄 (23) 講者標出安慰劑組 MWT 在 180 天的跳升（7.99 → 7.93 → 8.77 mm）並引用 Wagner JVC 2010</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-24-slide.jpg" alt="投影片 24：同一組數據，y 軸從 0 開始重畫" loading="lazy">
+          <figcaption>📄 (24) 同一組數據，y 軸從 0 開始重畫</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-25-slide.jpg" alt="投影片 25：NT-proBNP 不論有沒有用 rapamycin 都穩定" loading="lazy">
+          <figcaption>📄 (25) NT-proBNP 不論有沒有用 rapamycin 都穩定</figcaption>
+        </figure>
+        </div>
+        <p class="p"><span class="src src-slide">📄</span> 講者在第 23 張把安慰劑組的平均最大室壁厚度標黃：篩檢 7.99、第 60 天 7.93、第 180 天 <strong>8.77 mm</strong>，旁邊寫「室壁厚度的突然改變」並引用 Wagner（<em>JVC</em> 2010）；第 24 張把同一組數據的 y 軸從 0 開始畫，三條線幾乎重疊。第 25 張：NT-proBNP 不論有沒有用藥都<strong>穩定</strong>。</p>
+        <p class="p"><span class="src src-add">💡</span> 看起來講者在質疑：「療效」主要來自<strong>安慰劑組在最後一次突然變厚</strong>，而 HCM 通常進展很慢；再加上超音波測量本身就有約 0.5–1 mm 的變異，原本的圖把 y 軸從 6 mm 開始畫，差異被放大。等錄音確認講者的說法。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> FDA 有條件核准與自然病程（26–28）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/07-26-slide.jpg" alt="投影片 26：FDA 有條件核准治療貓心室肥厚的藥（Felycin-CA1，TriviumVet）" loading="lazy">
+          <figcaption>📄 (26) FDA 有條件核准治療貓心室肥厚的藥（Felycin-CA1，TriviumVet）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-27-slide.jpg" alt="投影片 27：Fox et al., JVIM 2018：REVEAL 研究，HCM 的自然病程" loading="lazy">
+          <figcaption>📄 (27) Fox et al., JVIM 2018：REVEAL 研究，HCM 的自然病程</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-28-slide.jpg" alt="投影片 28：REVEAL：HCM/HOCM 診斷後 10 年，71.7% 沒有心血管死亡（講者標為 % alive）" loading="lazy">
+          <figcaption>📄 (28) REVEAL：HCM/HOCM 診斷後 10 年，71.7% 沒有心血管死亡（講者標為 % alive）</figcaption>
+        </figure>
+        </div>
+        <p class="p"><span class="src src-slide">📄</span> 講者接著放 REVEAL 研究的表：HCM／HOCM 貓<strong>診斷 10 年後，約 72%</strong> 沒有發生心血管死亡。</p>
+        <p class="p"><span class="src src-add">💡</span> 意思是：大部分無症狀 HCM 貓本來就活得很久，要證明一個藥「延長存活」需要很大、很長的研究；也代表很多貓<strong>根本不需要治療</strong>。這就是第 30 張「誰需要這個藥？」的背景。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 研發與行銷的陰陽（29–30）</h3>
+        <figure class="fig">
+          <img src="photos/07-29-slide.jpg" alt="投影片 29：Yin/yang：研發 vs 行銷（右下是藥廠展位廣告）" loading="lazy">
+          <figcaption>📄 (29) Yin/yang：研發 vs 行銷（右下是藥廠展位廣告）</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>每個新治療都需要製造、推廣、通路：發現 = 研發；推廣、通路 = 行銷與銷售。</li>
+          <li><strong>無法避免的張力</strong>：把產品當商品賣 vs 對病患實際的好處。</li>
+        </ul>
+        <figure class="fig">
+          <img src="photos/07-30-slide.jpg" alt="投影片 30：講者的結論：有希望，但長期存活與副作用未知" loading="lazy">
+          <figcaption>📄 (30) 講者的結論：有希望，但長期存活與副作用未知</figcaption>
+        </figure>
+        <div class="alert alert-info"><span class="alert-icon">📌</span><span><strong>講者對 rapamycin 的結論（30）</strong>：有希望的治療；<strong>目前唯一已知能逆轉特發性左心室肥厚的治療</strong>（其他用途？）。下一個重要里程碑：<strong>長期好處（存活）？「誰需要這個？」長期副作用？</strong></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🐱</div>
+      <h2>4. 病例：2 歲公貓 Sphynx 的 HCM，5 年追蹤</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 預防鞍狀血栓：有哪些選擇？（31–37）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/07-31-slide.jpg" alt="投影片 31：Preventing saddle thrombi: what are the options?" loading="lazy">
+          <figcaption>📄 (31) Preventing saddle thrombi: what are the options?</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-32-slide.jpg" alt="投影片 32：2 歲已去勢公貓 Sphynx：HCM" loading="lazy">
+          <figcaption>📄 (32) 2 歲已去勢公貓 Sphynx：HCM</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-33-slide.jpg" alt="投影片 33：初診：左心房（LA）、主動脈（Ao）、右心房（RA）" loading="lazy">
+          <figcaption>📄 (33) 初診：左心房（LA）、主動脈（Ao）、右心房（RA）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-34-slide.jpg" alt="投影片 34：2 年後（4 歲）" loading="lazy">
+          <figcaption>📄 (34) 2 年後（4 歲）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-35-slide.jpg" alt="投影片 35：4 年後（6 歲）" loading="lazy">
+          <figcaption>📄 (35) 4 年後（6 歲）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-36-slide.jpg" alt="投影片 36：5 年後（7 歲）" loading="lazy">
+          <figcaption>📄 (36) 5 年後（7 歲）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-37-slide.jpg" alt="投影片 37：四次超音波並排：從來沒有出現失代償的臨床症狀" loading="lazy">
+          <figcaption>📄 (37) 四次超音波並排：從來沒有出現失代償的臨床症狀</figcaption>
+        </figure>
+        </div>
+        <p class="p"><span class="src src-slide">📄</span> 5 年間<strong>從來沒有出現失代償的臨床症狀</strong>。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 樂觀偏誤（38）</h3>
+        <figure class="fig">
+          <img src="photos/07-38-slide.jpg" alt="投影片 38：Optimism bias（Tali Sharot）" loading="lazy">
+          <figcaption>📄 (38) Optimism bias（Tali Sharot）</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>一種<strong>認知錯覺</strong>：傾向相信未來會比過去或現在好。</li>
+          <li>約 <strong>80%</strong> 的人有。</li>
+          <li>例子：群組信件、<strong>獸醫</strong>。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🩸</div>
+      <h2>5. 預防鞍狀血栓：藥物選項</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 四種選項（39）</h3>
+        <figure class="fig">
+          <img src="photos/07-39-slide.jpg" alt="投影片 39：Preventing saddle thrombi: Rx options" loading="lazy">
+          <figcaption>📄 (39) Preventing saddle thrombi: Rx options</figcaption>
+        </figure>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>藥物</th><th>講義劑量</th><th>評價</th></tr>
+            <tr><td><strong>Clopidogrel</strong></td><td><strong>18.75 mg/貓 PO q24h</strong></td><td><strong>確定有預防效果</strong>（FATCAT 研究）</td></tr>
+            <tr><td>Aspirin</td><td>81 mg PO q3 天</td><td>效果很小或無效；貓唯一的證據是體外研究（Greene 1986）</td></tr>
+            <tr><td>Warfarin</td><td>0.2 mg/kg PO q24h</td><td>依連續 PT 調整劑量；效果高但<strong>出血風險也高</strong></td></tr>
+            <tr><td>低分子量肝素</td><td>Dalteparin 100 IU/kg SC q12–24h</td><td>沒有明顯比未分段肝素好</td></tr>
+          </table>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> FATCAT（Hogan 2015 <em>JVECC</em>）比較已經發生過 ATE 的貓：clopidogrel 組再發時間中位數 443 天，aspirin 組 192 天。Clopidogrel 錠劑很苦，可以裝膠囊或用明膠空膠囊。依 2020 ACVIM 共識，<strong>B2 期</strong>（左心房中度以上擴大）、有<strong>自發性顯影或血栓</strong>、或曾經 ATE 的貓建議用。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">💉</div>
+      <h2>6. Rivaroxaban＋clopidogrel</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 機轉（40）</h3>
+        <figure class="fig">
+          <img src="photos/07-40-slide.jpg" alt="投影片 40：Rivaroxaban：直接 Xa 因子抑制劑" loading="lazy">
+          <figcaption>📄 (40) Rivaroxaban：直接 Xa 因子抑制劑</figcaption>
+        </figure>
+        <p class="p">直接 <strong>Xa 因子抑制劑</strong>（抗凝血），所以可以和 clopidogrel（<strong>抗血小板</strong>）一起用。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> Lo et al., JFMS：32 隻貓（41–45）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/07-41-slide.jpg" alt="投影片 41：32 隻貓回溯病例系列：clopidogrel 18.75 mg＋rivaroxaban 2.5 mg PO q24h" loading="lazy">
+          <figcaption>📄 (41) 32 隻貓回溯病例系列：clopidogrel 18.75 mg＋rivaroxaban 2.5 mg PO q24h</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-42-slide.jpg" alt="投影片 42：5/32 出血副作用；ATE 侵犯 2 肢以上存活中位數 725 天" loading="lazy">
+          <figcaption>📄 (42) 5/32 出血副作用；ATE 侵犯 2 肢以上存活中位數 725 天</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-43-slide.jpg" alt="投影片 43：摘要：用藥原因（ATE 18、心內血栓 17、自發性顯影 16）" loading="lazy">
+          <figcaption>📄 (43) 摘要：用藥原因（ATE 18、心內血栓 17、自發性顯影 16）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-44-slide.jpg" alt="投影片 44：摘要：5 隻貓有可能和藥物有關的副作用" loading="lazy">
+          <figcaption>📄 (44) 摘要：5 隻貓有可能和藥物有關的副作用</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-45-slide.jpg" alt="投影片 45：摘要：存活時間與 ATE 再發率" loading="lazy">
+          <figcaption>📄 (45) 摘要：存活時間與 ATE 再發率</figcaption>
+        </figure>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>項目</th><th>結果</th></tr>
+            <tr><td>劑量</td><td>Clopidogrel <strong>18.75 mg</strong> PO q24h＋rivaroxaban <strong>2.5 mg</strong> PO q24h（每隻貓）</td></tr>
+            <tr><td>用藥原因（可重複）</td><td>ATE 18、心內血栓 17、自發性顯影 16</td></tr>
+            <tr><td>副作用</td><td><strong>5/32</strong>：流鼻血、吐血、血便或血尿，中位數在開始後 13 天；<strong>沒有一隻需要住院</strong></td></tr>
+            <tr><td>存活中位數（從開始治療）</td><td>全部 257 天；ATE 貓 502 天；<strong>ATE 侵犯 2 肢以上 725 天</strong>；只侵犯 1 肢 301 天</td></tr>
+            <tr><td>ATE 再發率</td><td><strong>16.7%</strong>；<strong>沒有一隻</strong>在雙重治療下<strong>新發生</strong> ATE</td></tr>
+          </table>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> 2 肢 ATE 存活反而比 1 肢長，很可能是回溯研究的選擇偏差（能出院、活到開始用藥的才被納入），不是真的比較好。沒有對照組，所以無法知道比單用 clopidogrel 好多少。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 回到 Sphynx 病例：後來怎麼治療（46–48）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/07-46-slide.jpg" alt="投影片 46：初診、2 年後：不治療；4 年後：開始 clopidogrel；5 年後：clopidogrel＋rivaroxaban" loading="lazy">
+          <figcaption>📄 (46) 初診、2 年後：不治療；4 年後：開始 clopidogrel；5 年後：clopidogrel＋rivaroxaban</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-47-slide.jpg" alt="投影片 47：Clopidogrel + rivaroxaban = 開心的貓，到目前沒有血栓" loading="lazy">
+          <figcaption>📄 (47) Clopidogrel + rivaroxaban = 開心的貓，到目前沒有血栓</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-48-slide.jpg" alt="投影片 48：有必要嗎？比完全不治療好嗎？沒有人知道。" loading="lazy">
+          <figcaption>📄 (48) 有必要嗎？比完全不治療好嗎？沒有人知道。</figcaption>
+        </figure>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> 這個病例把第 3 節和第 5–6 節串起來：一隻 HCM 貓 5 年都沒事，左心房慢慢變大後開始抗血栓、再加藥。貓目前很好，但這<strong>不能證明</strong>是藥的功勞——講者把「樂觀偏誤」的書再放上來，提醒我們容易把好結果歸功給治療。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🫁</div>
+      <h2>7. CHF 的標準治療</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 急性與慢性（49–51）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/07-49-slide.jpg" alt="投影片 49：Treatment of congestive heart failure in cats with HCM" loading="lazy">
+          <figcaption>📄 (49) Treatment of congestive heart failure in cats with HCM</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-50-slide.jpg" alt="投影片 50：急性：furosemide IV、胸腔穿刺、氧氣、保持安靜（PLOS One 2019 躲藏箱研究）" loading="lazy">
+          <figcaption>📄 (50) 急性：furosemide IV、胸腔穿刺、氧氣、保持安靜（PLOS One 2019 躲藏箱研究）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-51-slide.jpg" alt="投影片 51：慢性：furosemide PO；其他藥都打問號" loading="lazy">
+          <figcaption>📄 (51) 慢性：furosemide PO；其他藥都打問號</figcaption>
+        </figure>
+        </div>
+        <div class="vs">
+          <div>
+            <h4>急性</h4>
+            <ul class="notes">
+              <li><strong>Furosemide 2–4 mg/kg IV</strong>：急性、嚴重呼吸窘迫（肺水腫）</li>
+              <li>大量胸腔積液 → <strong>胸腔穿刺</strong></li>
+              <li><strong>氧氣</strong></li>
+              <li><strong>保持安靜</strong>：± butorphanol、buprenorphine</li>
+            </ul>
+          </div>
+          <div>
+            <h4>慢性</h4>
+            <ul class="notes">
+              <li><strong>Furosemide 1–3 mg/kg PO q12h</strong></li>
+              <li>可以的話矯正原發問題（不常見）</li>
+              <li>ACE 抑制劑（例如 enalapril 0.5 mg PO q12h）？</li>
+              <li>鈣離子阻斷劑？</li>
+              <li>Pimobendan？</li>
+            </ul>
+          </div>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> 第 50 張引用 PLOS One 2019：荷蘭收容所的貓<strong>有躲藏箱</strong>，壓力分數較低。住院的 CHF 貓給一個可以躲的箱子或毛巾，也是「讓牠安靜」的一部分。慢性期常見作法是把 furosemide 調到能控制呼吸速率的<strong>最低劑量</strong>，請飼主在家量<strong>睡眠呼吸速率</strong>（一般 &lt; 30 次／分）。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🧬</div>
+      <h2>8. HCM＋CHF 的 ACE 抑制劑</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 研究 1：Amberger 1999（52–53）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/07-52-slide.jpg" alt="投影片 52：Amberger et al., JVC 1999：benazepril 治療貓 HCM 的前瞻性開放多中心試驗" loading="lazy">
+          <figcaption>📄 (52) Amberger et al., JVC 1999：benazepril 治療貓 HCM 的前瞻性開放多中心試驗</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-53-slide.jpg" alt="投影片 53：28 隻貓：diltiazem vs diltiazem＋benazepril" loading="lazy">
+          <figcaption>📄 (53) 28 隻貓：diltiazem vs diltiazem＋benazepril</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>28 隻貓：8 隻無症狀、20 隻 CHF；瑞士 5 家醫院；1 年前瞻性開放試驗。</li>
+          <li>9 隻 diltiazem、19 隻 diltiazem＋benazepril。</li>
+          <li>Benazepril：<strong>舒張期</strong>左心室游離壁變薄（每月 0.11 mm；P = 0.002）。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 研究 2：King et al., JVIM 2019（54–56）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/07-54-slide.jpg" alt="投影片 54：King et al., JVIM 2019：benazepril 前瞻性隨機盲性安慰劑對照試驗" loading="lazy">
+          <figcaption>📄 (54) King et al., JVIM 2019：benazepril 前瞻性隨機盲性安慰劑對照試驗</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-55-slide.jpg" alt="投影片 55：151 隻貓：benazepril 77 隻、安慰劑 74 隻，雙盲 1 年" loading="lazy">
+          <figcaption>📄 (55) 151 隻貓：benazepril 77 隻、安慰劑 74 隻，雙盲 1 年</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-56-slide.jpg" alt="投影片 56：結果：benazepril 沒有可辨識的好處" loading="lazy">
+          <figcaption>📄 (56) 結果：benazepril 沒有可辨識的好處</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>151 隻貓：38% 無症狀、62% CHF；benazepril（≥ 0.5 mg/kg PO q24h）77 隻 vs 安慰劑 74 隻；1 年<strong>雙盲隨機安慰劑對照</strong>。</li>
+          <li>結果：<strong>benazepril 沒有可辨識的好處</strong>。
+            <ul>
+              <li>全死因治療失敗時間 P = 0.42；心因性治療失敗時間 P = 0.21</li>
+              <li>多變項分析：全死因治療失敗 HR = 1.00（0.57–1.74）</li>
+              <li>左心房直徑、左心室厚度、<strong>生活品質</strong>都沒有差異</li>
+            </ul>
+          </li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 和第 2 節同樣的模式：小型開放研究有效，大型雙盲研究無效。ACE 抑制劑仍可能用在合併慢性腎病、高血壓或蛋白尿的貓，但不要期待它改善 HCM 本身。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">⏱️</div>
+      <h2>9. 鈣離子阻斷劑（diltiazem）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> Bright et al., JVIM 1991（57–61）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/07-57-slide.jpg" alt="投影片 57：Calcium-channel blockers in cats with HCM + CHF" loading="lazy">
+          <figcaption>📄 (57) Calcium-channel blockers in cats with HCM + CHF</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-58-slide.jpg" alt="投影片 58：Bright et al., JVIM 1991：diltiazem 與 verapamil 治療貓 HCM" loading="lazy">
+          <figcaption>📄 (58) Bright et al., JVIM 1991：diltiazem 與 verapamil 治療貓 HCM</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-59-slide.jpg" alt="投影片 59：對照前瞻試驗：diltiazem vs verapamil vs propranolol" loading="lazy">
+          <figcaption>📄 (59) 對照前瞻試驗：diltiazem vs verapamil vs propranolol</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-60-slide.jpg" alt="投影片 60：結果：diltiazem 耐受良好、左心房縮回正常、48–72 小時內不再需要 furosemide" loading="lazy">
+          <figcaption>📄 (60) 結果：diltiazem 耐受良好、左心房縮回正常、48–72 小時內不再需要 furosemide</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-61-slide.jpg" alt="投影片 61：為什麼今天不用了？" loading="lazy">
+          <figcaption>📄 (61) 為什麼今天不用了？</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>對照前瞻試驗，HCM＋CHF 的貓：diltiazem vs verapamil vs propranolol PO。</li>
+          <li>Diltiazem <strong>耐受良好</strong>；左心房大小中位數<strong>回到正常</strong>；舒張功能指標改善。</li>
+          <li>用 diltiazem 的貓（<strong>12/17</strong>）在開始治療 48–72 小時內都<strong>不再需要 furosemide</strong>。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">❓</span><span><strong>為什麼今天不用？</strong>要 <strong>q8h</strong> 給藥（atenolol q12h；長效 diltiazem q24h）；結果<strong>沒有被重現</strong>——但也從來沒有同樣強的研究被發表。</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">💗</div>
+      <h2>10. Pimobendan</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 回溯研究：存活 626 vs 103 天（62–63）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/07-62-slide.jpg" alt="投影片 62：Reina-Doreste et al., NCSU, JAVMA 2014：病例對照研究" loading="lazy">
+          <figcaption>📄 (62) Reina-Doreste et al., NCSU, JAVMA 2014：病例對照研究</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-63-slide.jpg" alt="投影片 63：Furosemide＋ACEI 存活中位數 103 天 vs 加上 pimobendan 626 天" loading="lazy">
+          <figcaption>📄 (63) Furosemide＋ACEI 存活中位數 103 天 vs 加上 pimobendan 626 天</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>Furosemide＋ACE 抑制劑（27 隻）：存活中位數 <strong>103 天</strong></li>
+          <li>Furosemide＋ACE 抑制劑＋<strong>pimobendan</strong>（27 隻）：存活中位數 <strong>626 天</strong></li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 前瞻試驗：沒有差異（64–67）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/07-64-slide.jpg" alt="投影片 64：Schober et al., JVIM 2021：pimobendan 用於 HCM＋近期 CHF 的貓" loading="lazy">
+          <figcaption>📄 (64) Schober et al., JVIM 2021：pimobendan 用於 HCM＋近期 CHF 的貓</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-65-slide.jpg" alt="投影片 65：Features of studies：注意副標題「nonpivotal, exploratory」" loading="lazy">
+          <figcaption>📄 (65) Features of studies：注意副標題「nonpivotal, exploratory」</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-66-slide.jpg" alt="投影片 66：臨床試驗分期：Phase 0–III；只有 Phase III 是樞紐性試驗" loading="lazy">
+          <figcaption>📄 (66) 臨床試驗分期：Phase 0–III；只有 Phase III 是樞紐性試驗</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-67-slide.jpg" alt="投影片 67：83 隻貓：成功率 31% vs 35%，P = 0.75" loading="lazy">
+          <figcaption>📄 (67) 83 隻貓：成功率 31% vs 35%，P = 0.75</figcaption>
+        </figure>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>臨床試驗分期</th><th>問題</th><th>規模</th><th></th></tr>
+            <tr><td>Phase 0</td><td>實驗室、動物模型</td><td></td><td rowspan="3">非樞紐性</td></tr>
+            <tr><td>Phase I</td><td>安全嗎？</td><td>數十個，無安慰劑</td></tr>
+            <tr><td>Phase II</td><td>有效嗎？</td><td>約 25–100 個，無安慰劑</td></tr>
+            <tr><td>Phase III</td><td>比現行治療好嗎？</td><td>數百到數千個，安慰劑對照、雙盲 → FDA 核准</td><td><strong>樞紐性</strong></td></tr>
+          </table>
+        </div>
+        <ul class="notes">
+          <li>Schober 2021：83 隻貓，過去 60 天內 CHF 已緩解；30 隻有流出道阻塞、53 隻沒有。</li>
+          <li>Pimobendan 0.3 mg/kg PO q12h＋furosemide（43 隻）vs 單用 furosemide（39 隻）。</li>
+          <li>成功定義：<strong>180 天存活、不需要增加 furosemide</strong>。</li>
+          <li>結果：<strong>12/39 vs 13/37（31% vs 35%，P = 0.75）</strong>——沒有差異。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 講者插入「研究分期」的投影片，是要提醒：這篇論文的副標題自己寫了「<strong>非樞紐性、探索性</strong>」（nonpivotal, exploratory），規模不足以確定沒有效果；而 2014 的 626 vs 103 天是回溯病例對照，偏差更大。兩者都不是定論。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 為什麼 pimobendan 可能對 HCM 有用？（68–71）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/07-68-slide.jpg" alt="投影片 68：嚴重病例的收縮功能異常？（HCM 嚴重 vs 輕微）" loading="lazy">
+          <figcaption>📄 (68) 嚴重病例的收縮功能異常？（HCM 嚴重 vs 輕微）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-69-slide.jpg" alt="投影片 69：Pimobendan 對左心房心肌的作用？（單劑量交叉研究，13 隻緬因貓）" loading="lazy">
+          <figcaption>📄 (69) Pimobendan 對左心房心肌的作用？（單劑量交叉研究，13 隻緬因貓）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-70-slide.jpg" alt="投影片 70：Pimobendan 對左心房輸送功能的影響（22 隻 HCM、11 隻對照）" loading="lazy">
+          <figcaption>📄 (70) Pimobendan 對左心房輸送功能的影響（22 隻 HCM、11 隻對照）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-71-slide.jpg" alt="投影片 71：其他作用？抗血小板（狗沒有）、磷酸二酯酶抑制（AJVR 2013）" loading="lazy">
+          <figcaption>📄 (71) 其他作用？抗血小板（狗沒有）、磷酸二酯酶抑制（AJVR 2013）</figcaption>
+        </figure>
+        </div>
+        <ol class="notes">
+          <li><strong>嚴重病例有收縮功能異常</strong>？</li>
+          <li>Pimobendan 對<strong>左心房心肌</strong>的作用（改善左心房功能）？</li>
+          <li>其他作用？抗血小板（狗沒有）？磷酸二酯酶抑制？</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 講者的擔心（72–74）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/07-72-slide.jpg" alt="投影片 72：Pimobendan：理想開始時機？貓的副作用？「我對貓用 pimobendan 的擔心……」" loading="lazy">
+          <figcaption>📄 (72) Pimobendan：理想開始時機？貓的副作用？「我對貓用 pimobendan 的擔心……」</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-73-slide.jpg" alt="投影片 73：Côté et al., JAVMA 2015：偶然發現心雜音的處理" loading="lazy">
+          <figcaption>📄 (73) Côté et al., JAVMA 2015：偶然發現心雜音的處理</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-74-slide.jpg" alt="投影片 74：FAQ：飼主預算有限，要不要直接開藥而不做檢查？不要。" loading="lazy">
+          <figcaption>📄 (74) FAQ：飼主預算有限，要不要直接開藥而不做檢查？不要。</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>貓開始用 pimobendan 的<strong>理想時機</strong>？貓的<strong>副作用</strong>？</li>
+          <li>「我對貓用 pimobendan 的擔心……」接著放他 2015 年的 JAVMA 文章：<strong>偶然發現的心雜音</strong>。</li>
+          <li>文章的 FAQ：貓有偶然發現的心雜音、飼主預算很少，是不是把錢拿去<strong>直接開藥</strong>（clopidogrel、β 阻斷劑）比做檢查好？<strong>不是</strong>。原因：很多雜音是良性的（例如動態右心室流出道阻塞）；沒有明確治療目標（例如左心房擴大需要抗血小板），治療只是猜測，可能沒必要，甚至<strong>弊大於利</strong>。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> ❔ 推測講者的擔心是：pimobendan 在狗 MMVD 很成功，大家會開始對「有雜音的貓」不做超音波就開 pimobendan。HCM 有流出道阻塞時，正性收縮藥理論上可能讓阻塞更嚴重。待錄音確認。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 結論（75–76）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/07-75-slide.jpg" alt="投影片 75：結論：可考慮用在確定 CHF 的嚴重病例" loading="lazy">
+          <figcaption>📄 (75) 結論：可考慮用在確定 CHF 的嚴重病例</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/07-76-slide.jpg" alt="投影片 76：藥物動力學：貓的半衰期 2.5 倍、最高血中濃度 9 倍" loading="lazy">
+          <figcaption>📄 (76) 藥物動力學：貓的半衰期 2.5 倍、最高血中濃度 9 倍</figcaption>
+        </figure>
+        </div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><span><strong>結論</strong>：pimobendan <strong>可以考慮</strong>用在進展的病例（<strong>確定是嚴重 HCM 或 RCM／UCM 造成的 CHF</strong>）。<strong>貓的藥物動力學要小心</strong>：半衰期是狗的 <strong>2.5 倍</strong>，最高血中濃度是狗的 <strong>9 倍</strong>。</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">📌</div>
+      <h2>11. 速查表</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-add">💡 補充</span> 依分期整理講義內容</h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>分期（見 <a href="feline-heart-intro-classification.html#s4">05 第 4 節</a>）</th><th>講義的證據</th><th>實務</th></tr>
+            <tr><td><strong>B1</strong></td><td>Atenolol、ACE 抑制劑都沒有說服力的好處；rapamycin 長期效益未知</td><td>通常不用藥，定期追蹤超音波</td></tr>
+            <tr><td><strong>B2</strong></td><td>Clopidogrel 有確定抗血栓證據（FATCAT）</td><td>Clopidogrel 18.75 mg/貓 q24h；高風險可加 rivaroxaban 2.5 mg/貓 q24h</td></tr>
+            <tr><td><strong>C 急性</strong></td><td>—</td><td>Furosemide 2–4 mg/kg IV、氧氣、胸腔穿刺、安靜（butorphanol）</td></tr>
+            <tr><td><strong>C 慢性</strong></td><td>Benazepril 無效（King 2019）；diltiazem 舊研究有效但沒重現；pimobendan 結果矛盾</td><td>Furosemide 1–3 mg/kg PO q12h＋抗血栓；嚴重病例可考慮 pimobendan</td></tr>
+            <tr><td><strong>D</strong></td><td>—</td><td>（講義未提；第 4 堂病例可能談到）</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">📘</div>
+      <h2>12. 課前思考題</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <ol class="notes">
+        <li>Rapamycin：講者會建議用在哪些貓？還是等更多資料？</li>
+        <li>B2 期：講者自己會不會一開始就用 clopidogrel＋rivaroxaban，還是只有 SEC／血栓才加？</li>
+        <li>有流出道阻塞（SAM）的貓用 pimobendan 會不會變糟？講者的「擔心」是什麼？</li>
+        <li>D 期頑固性 CHF：torsemide、spironolactone 的角色？</li>
+        <li>Atenolol 在講者手上還用在哪些情況（心跳快、嚴重阻塞）？</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ══ S13 ══ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🎤</div>
+      <h2>13. 課堂補充（待錄音）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="alert alert-info"><span class="alert-icon">⏳</span><span>錄音或現場筆記到了之後，把講者口述、回答第 12 節的問題與 Q&amp;A 補在這裡，並修正和 💡 補充不一致的地方。</span></div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="feline-heart-diagnosis.html">06 貓心臟病（二）：貓心肌病的診斷</a>。下一場：Côté Session 4 貓心臟病例討論（整理中）。</p>
+    <a href="index.html">回到系列列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+<script src="gate.js?v=2"></script>
+</body>
+</html>
