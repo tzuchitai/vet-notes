@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>貓心臟病（四）：病例討論｜2026 FASAVA 研討會筆記</title>
+<meta name="robots" content="noindex, nofollow">
+<style>html{visibility:hidden}</style>
+<script>
+(function(){ if (sessionStorage.getItem('fasavaGateOK') === '1') { document.documentElement.style.visibility = 'visible'; } })();
+</script>
+<style>
+  :root {
+    --primary: #BE185D;
+    --primary-light: #FCE7F3;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2A0B1A;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E9B6CD; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A1730;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E9B6CD; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E9B6CD;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A1730;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #A86A88;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #831843 0%, #DB2777 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2A0B1A; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A1730; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .src-doc { background: #e0f2fe; color: #075985; }
+  .pending { border: 2px dashed #F5D3E3; border-radius: 10px; padding: 16px 18px; color: var(--text-muted); font-size: 13.5px; background: #fffbfd; }
+<style>
+  .fig img { border-color: #F5D3E3; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  @media (max-width: 900px) { .vs { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← FASAVA 筆記</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 FASAVA 研討會筆記</a>
+  <div class="logo">
+    <h2>08｜貓心臟病（四）<br>病例討論</h2>
+    <p>Etienne Côté｜2026-11-02｜講義版</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">場次資訊</a>
+    <div class="nav-section">病例</div>
+    <a href="#s1">1. HCM B1 追蹤 6 年</a>
+    <a href="#s2">2. 前縱膈腫塊</a>
+    <a href="#s3">3. PPDH</a>
+    <a href="#s4">4. 缺氧性抽搐</a>
+    <div class="nav-section">課堂</div>
+    <a href="#s5">5. 課堂補充（待錄音）</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>貓心臟病（四）：病例討論</h1>
+    <p>原標題：Case Studies in Feline Cardiology</p>
+    <p>主講：Etienne Côté DVM, DACVIM (Cardiology)（Atlantic Veterinary College, UPEI，加拿大）｜Session 4，16:00–17:30｜FASAVA 2026｜場次 08</p>
+    <div class="tags">
+      <span class="tag">HCM 分期與追蹤</span>
+      <span class="tag">前縱膈腫塊</span>
+      <span class="tag">PPDH</span>
+      <span class="tag">暈厥 vs 癲癇</span>
+      <span class="tag">房室阻斷</span>
+      <span class="tag">心律調節器</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 講者提供的投影片講義（44 張全部依序放入，括號內為投影片編號）
+    <span class="src src-add">💡 補充</span> 整理者補充（教科書／原始文獻）；❔ 表示推測，待錄音確認
+    <span class="src src-hand">✍️ 筆記</span> 你的課堂筆記
+    <br><span class="muted">目前只有講義，<strong>還沒有錄音</strong>。很多投影片是「先問問題」，講者的答案之後補到第 5 節，並以 🎤 標示。前三場：<a href="feline-heart-intro-classification.html">05 介紹與分類</a>、<a href="feline-heart-diagnosis.html">06 診斷</a>、<a href="feline-heart-treatment.html">07 治療</a>。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 本場重點</h3>
+    <ul>
+      <li><strong>病例 1</strong>：偶然雜音 → HCM B1，不治療、定期回診；重點是追蹤<strong>左心房何時變大</strong></li>
+      <li><strong>病例 2</strong>：呼吸困難＋胸水＋氣管背移、前縱膈變寬 → 前縱膈腫塊；做檢查前先<strong>按壓前胸</strong></li>
+      <li><strong>病例 3</strong>：嘔吐的年輕貓心影巨大 → <strong>PPDH</strong>，看<strong>背側間皮殘留</strong>；治療是<strong>手術</strong></li>
+      <li><strong>病例 4</strong>：「癲癇」其實是<strong>心室停頓</strong>造成的缺氧性抽搐：短（&lt; 30 秒）、立刻恢復、角弓反張、沒有強直陣攣；像癲癇也像暈厥時<strong>先查心臟</strong></li>
+    </ul>
+  </div>
+
+  <!-- ══ S0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🎯</div>
+      <h2>場次資訊</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 開場（1–3）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/08-01-slide.jpg" alt="投影片 1：Case Studies in Feline Cardiology" loading="lazy">
+          <figcaption>📄 (1) Case Studies in Feline Cardiology</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-02-slide.jpg" alt="投影片 2：Thank you" loading="lazy">
+          <figcaption>📄 (2) Thank you</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-03-slide.jpg" alt="投影片 3：Disclosures" loading="lazy">
+          <figcaption>📄 (3) Disclosures</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>Côté 第 4 場（16:00–17:30），用 4 個病例把前三場的觀念串起來；投影片多半是<strong>先問問題、下一張才給答案</strong>。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 四個病例剛好對應前三場：病例 1 是 HCM 分期與追蹤（05、07）；病例 2、3 是「看起來像心臟病，其實不是」（06 的診斷）；病例 4 是心律不整與暈厥。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🐱</div>
+      <h2>病例 1：6 歲 DSH，偶然聽到雜音（HCM B1，追蹤 6 年）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 病史與理學檢查（4）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/08-04-slide.jpg" alt="投影片 4：病例 1：6 歲 DSH，年度健檢聽到心雜音" loading="lazy">
+          <figcaption>📄 (4) 病例 1：6 歲 DSH，年度健檢聽到心雜音</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>年度健檢偶然聽到 <strong>II/VI 左胸骨旁收縮期雜音</strong>，沒有症狀、沒吃藥。</li>
+          <li>精神好、友善；心跳 <strong>220</strong>，脈搏同步；呼吸正常。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 06 講過：住院環境心跳到 260 都算正常；有雜音的貓約 30–40% 是 HCM。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 超音波（5–8）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/08-05-slide.jpg" alt="投影片 5：超音波：右側長軸切面（你的判讀？）" loading="lazy">
+          <figcaption>📄 (5) 超音波：右側長軸切面（你的判讀？）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-06-slide.jpg" alt="投影片 6：超音波：右側短軸切面（你的判讀？）" loading="lazy">
+          <figcaption>📄 (6) 超音波：右側短軸切面（你的判讀？）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-07-slide.jpg" alt="投影片 7：超音波結果：輕度瀰漫性左心室增厚、左心房正常 → HCM B1" loading="lazy">
+          <figcaption>📄 (7) 超音波結果：輕度瀰漫性左心室增厚、左心房正常 → HCM B1</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-08-slide.jpg" alt="投影片 8：要怎麼治療？什麼時候回診？" loading="lazy">
+          <figcaption>📄 (8) 要怎麼治療？什麼時候回診？</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li><strong>輕度瀰漫性左心室增厚</strong>，中膈可能比游離壁厚；<strong>左心房正常</strong>。</li>
+          <li>工作診斷（假設不是擬表型）：<strong>HCM B1</strong>。</li>
+          <li>問題：要怎麼治療？什麼時候回診？</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 排除擬表型：這個年紀要量<strong>血壓</strong>、驗 <strong>T4</strong>；脫水也會讓心肌看起來變厚（假性肥厚）。</p>
+        <p class="p"><span class="src src-add">💡</span> 依 07 講者的說法：B1（左心房正常）<strong>不需要治療</strong>，建議 <strong>12–18 個月</strong>回診；飼主很焦慮就接近 12 個月，回診困難就接近 18 個月。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 追蹤 1–5 年（9–11）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/08-09-slide.jpg" alt="投影片 9：7、8、9 歲回診：3 年沒有變化" loading="lazy">
+          <figcaption>📄 (9) 7、8、9 歲回診：3 年沒有變化</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-10-slide.jpg" alt="投影片 10：10 歲：第 4 年跳過，第 5 年回診的超音波" loading="lazy">
+          <figcaption>📄 (10) 10 歲：第 4 年跳過，第 5 年回診的超音波</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-11-slide.jpg" alt="投影片 11：第 5 年回診超音波怎麼判讀？" loading="lazy">
+          <figcaption>📄 (11) 第 5 年回診超音波怎麼判讀？</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>第 1、2、3 年回診：<strong>3 年沒有變化</strong>。</li>
+          <li>因為很穩定，<strong>第 4 年跳過</strong>，第 5 年才回診。問題：第 5 年的超音波怎麼判讀？</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 第 6 年（12–13）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/08-12-slide.jpg" alt="投影片 12：11 歲：第 6 年回診的超音波" loading="lazy">
+          <figcaption>📄 (12) 11 歲：第 6 年回診的超音波</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-13-slide.jpg" alt="投影片 13：第 6 年怎麼判讀？無症狀的貓要不要治療？" loading="lazy">
+          <figcaption>📄 (13) 第 6 年怎麼判讀？無症狀的貓要不要治療？</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>問題：第 6 年的超音波怎麼判讀？這隻<strong>沒有症狀</strong>的貓，要治療嗎？要的話用什麼？</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> ❔ 講義沒有給答案，待錄音。判讀重點是<strong>左心房有沒有變大</strong>（LA:Ao &gt; 1.6、短軸是否像 07 Sphynx 那隻一樣變圓、左心耳變大），有沒有 SEC 或血栓。</p>
+        <p class="p"><span class="src src-add">💡</span> 如果左心房已經擴大（B2），依 2020 ACVIM 共識建議開始 <strong>clopidogrel</strong>；07 講者則提醒，發生 ATE 前用抗血栓藥<strong>沒有確定證據</strong>，要跟飼主說明，而且貓要好餵藥。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🫁</div>
+      <h2>病例 2：呼吸困難的 14 歲貓（前縱膈腫塊）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> X 光（14–16）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/08-14-slide.jpg" alt="投影片 14：病例 2：呼吸困難的 14 歲貓，側照" loading="lazy">
+          <figcaption>📄 (14) 病例 2：呼吸困難的 14 歲貓，側照</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-15-slide.jpg" alt="投影片 15：病例 2：腹背照（VD）" loading="lazy">
+          <figcaption>📄 (15) 病例 2：腹背照（VD）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-16-slide.jpg" alt="投影片 16：X 光怎麼判讀？做檢查前，理學檢查下一步做什麼？" loading="lazy">
+          <figcaption>📄 (16) X 光怎麼判讀？做檢查前，理學檢查下一步做什麼？</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>14 歲貓，<strong>呼吸困難</strong>。</li>
+          <li>問題：X 光怎麼判讀？做任何檢查之前，理學檢查的下一步是什麼？</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 答案（17）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/08-17-slide.jpg" alt="投影片 17：答案：前縱膈腫塊＋胸水；按壓前胸（這隻異常）" loading="lazy">
+          <figcaption>📄 (17) 答案：前縱膈腫塊＋胸水；按壓前胸（這隻異常）</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li><strong>中度胸水</strong></li>
+          <li><strong>氣管分岔（carina）往背側移位</strong></li>
+          <li><strong>前縱膈變寬</strong></li>
+          <li>結論：懷疑<strong>前縱膈腫塊</strong></li>
+          <li>理學檢查下一步：<strong>用手指按壓前胸</strong>（compression of the cranial thorax）；<strong>這隻貓是異常的</strong>。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">👐</span><span><strong>按壓前胸</strong>：正常貓的前胸可以被輕輕壓縮（年輕貓尤其有彈性）；前縱膈有腫塊時會<strong>壓不下去、阻力變大</strong>。不用任何儀器，呼吸困難的貓也能做。</span></div>
+        <p class="p"><span class="src src-add">💡</span> 貓前縱膈腫塊最常見是<strong>淋巴瘤</strong>（年輕、FeLV 陽性較常見）和<strong>胸腺瘤</strong>（老貓）。下一步通常是胸腔穿刺（治療兼細胞學），再做超音波導引細針抽吸；胸腺瘤可能伴隨剝落性皮膚炎、重症肌無力。</p>
+        <p class="p"><span class="src src-add">💡</span> 和 06 的連結：胸水不一定是心衰竭。這隻如果直接當 CHF 給 furosemide，就錯過了真正的病因。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🩻</div>
+      <h2>病例 3：4 歲貓嘔吐、心影巨大（PPDH）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 病史與 X 光（18–21）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/08-18-slide.jpg" alt="投影片 18：病例 3：4 歲公貓（已去勢）DSH，厭食、嘔吐，腹部 X 光看到心影很大" loading="lazy">
+          <figcaption>📄 (18) 病例 3：4 歲公貓（已去勢）DSH，厭食、嘔吐，腹部 X 光看到心影很大</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-19-slide.jpg" alt="投影片 19：病例 3：腹部側照" loading="lazy">
+          <figcaption>📄 (19) 病例 3：腹部側照</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-20-slide.jpg" alt="投影片 20：病例 3：胸腔側照" loading="lazy">
+          <figcaption>📄 (20) 病例 3：胸腔側照</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-21-slide.jpg" alt="投影片 21：病例 3：胸腔 VD" loading="lazy">
+          <figcaption>📄 (21) 病例 3：胸腔 VD</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>4 歲公貓（已去勢）DSH，<strong>厭食、嘔吐</strong>好幾天。</li>
+          <li>腹部 X 光看起來<strong>心影非常大</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 選擇治療（22）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/08-22-slide.jpg" alt="投影片 22：最佳治療是？COP 化療、安樂死、furosemide、手術" loading="lazy">
+          <figcaption>📄 (22) 最佳治療是？COP 化療、安樂死、furosemide、手術</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>最佳治療是：COP 化療（當作淋巴瘤）、安樂死、furosemide，還是手術？</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 再看一次 X 光（23–27）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/08-23-slide.jpg" alt="投影片 23：病例 3：胸腔側照（再看一次）" loading="lazy">
+          <figcaption>📄 (23) 病例 3：胸腔側照（再看一次）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-24-slide.jpg" alt="投影片 24：放大：心影與橫膈交界" loading="lazy">
+          <figcaption>📄 (24) 放大：心影與橫膈交界</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-25-slide.jpg" alt="投影片 25：同一處，色塊標示" loading="lazy">
+          <figcaption>📄 (25) 同一處，色塊標示</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-26-slide.jpg" alt="投影片 26：同一處，未標示" loading="lazy">
+          <figcaption>📄 (26) 同一處，未標示</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-27-slide.jpg" alt="投影片 27：病例 3：胸腔側照" loading="lazy">
+          <figcaption>📄 (27) 病例 3：胸腔側照</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>放大心影與橫膈交界的地方，講義用藍、紅色塊標示。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> ❔ 推測色塊標的是心影腹側與橫膈之間的構造，也就是第 28 張說的<strong>背側間皮殘留</strong>。待錄音確認。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 診斷：PPDH（28–30）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/08-28-slide.jpg" alt="投影片 28：PPDH（腹膜心包膜橫膈疝氣）：特徵是背側間皮殘留" loading="lazy">
+          <figcaption>📄 (28) PPDH（腹膜心包膜橫膈疝氣）：特徵是背側間皮殘留</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-29-slide.jpg" alt="投影片 29：手術矯正：術前／術後側照" loading="lazy">
+          <figcaption>📄 (29) 手術矯正：術前／術後側照</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-30-slide.jpg" alt="投影片 30：手術矯正：術前／術後 VD" loading="lazy">
+          <figcaption>📄 (30) 手術矯正：術前／術後 VD</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li><strong>腹膜心包膜橫膈疝氣</strong>（peritoneopericardial diaphragmatic hernia）。</li>
+          <li><strong>特徵性（pathognomonic）X 光徵象：持續存在的背側間皮殘留</strong>（persistent dorsal mesothelial remnant）。</li>
+          <li><strong>手術矯正 PPDH 是常規手術</strong>，這隻貓順利出院；術後心影恢復正常大小。</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><span>答案是<strong>手術</strong>。心影大不一定是心臟病，也不一定是腫瘤：不能當淋巴瘤化療，也不是 CHF 不需要 furosemide。</span></div>
+        <p class="p"><span class="src src-add">💡</span> PPDH 是先天性的，是貓最常見的心包膜疾病。X 光：心影很大很圓、心影和橫膈的界線消失，心包膜內可能看到<strong>腸道氣體或糞便</strong>；超音波可以看到肝臟等腹腔器官在心包膜裡。很多是偶然發現、沒有症狀的老貓，可以保守觀察；年輕、有腸胃或呼吸症狀的貓通常建議手術。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">⚡</div>
+      <h2>病例 4：14 歲貓的「癲癇」（心室停頓、缺氧性抽搐）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 病史與檢查（31–35）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/08-31-slide.jpg" alt="投影片 31：病例 4：14 歲公貓（已去勢）DSH，1 年來叢集性「癲癇」" loading="lazy">
+          <figcaption>📄 (31) 病例 4：14 歲公貓（已去勢）DSH，1 年來叢集性「癲癇」</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-32-slide.jpg" alt="投影片 32：理學檢查：心跳規則 180，偶有早期收縮" loading="lazy">
+          <figcaption>📄 (32) 理學檢查：心跳規則 180，偶有早期收縮</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-33-slide.jpg" alt="投影片 33：心電圖：竇性節律／竇性頻脈，偶發 APC" loading="lazy">
+          <figcaption>📄 (33) 心電圖：竇性節律／竇性頻脈，偶發 APC</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-34-slide.jpg" alt="投影片 34：X 光正常；超音波：輕度基部中膈肥厚、LA:Ao 正常" loading="lazy">
+          <figcaption>📄 (34) X 光正常；超音波：輕度基部中膈肥厚、LA:Ao 正常</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-35-slide.jpg" alt="投影片 35：神經學檢查正常" loading="lazy">
+          <figcaption>📄 (35) 神經學檢查正常</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>14 歲公貓（已去勢）DSH，<strong>1 年來叢集性「癲癇」</strong>。</li>
+          <li>1 年前原本的醫院聽到「心律不整」，開 <strong>sotalol 2 mg/kg PO q12h</strong> 一直吃到現在（講義打了「奇怪？？」）。</li>
+          <li>理學檢查：精神好；心跳規則 180，偶有早期收縮；心音肺音正常；脈搏好；休息時沒有神經學缺損。</li>
+          <li>心電圖：竇性節律／竇性頻脈，偶發<strong>心房早期收縮（APC）</strong>。X 光正常；超音波：<strong>輕度基部中膈肥厚</strong>、LA:Ao 正常。神經學檢查正常。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> Sotalol 是第 III 類抗心律不整藥，同時有 <strong>β 阻斷</strong>作用。偶發 APC 通常不需要治療；如果真正的問題是間歇性心搏過緩，sotalol 反而可能讓它更糟，這大概就是「奇怪」的原因。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 監測（36–37）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/08-36-slide.jpg" alt="投影片 36：住院心電圖、24 小時 Holter：都沒發作；帶事件記錄器回家 2 週" loading="lazy">
+          <figcaption>📄 (36) 住院心電圖、24 小時 Holter：都沒發作；帶事件記錄器回家 2 週</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-37-slide.jpg" alt="投影片 37：事件記錄器：沒有發作，在家觸發都是竇性節律" loading="lazy">
+          <figcaption>📄 (37) 事件記錄器：沒有發作，在家觸發都是竇性節律</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>入院當天多次心電圖：竇性節律＋偶發 APC。</li>
+          <li>住院＋<strong>24 小時 Holter</strong>：一樣，<strong>沒有發作</strong>。</li>
+          <li>帶<strong>心臟事件記錄器</strong>回家 2 週：沒有發作；在家手動觸發的時候都是竇性節律。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 腦還是心臟？（38）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/08-38-slide.jpg" alt="投影片 38：腦還是心臟？兩者都像時，先查暈厥" loading="lazy">
+          <figcaption>📄 (38) 腦還是心臟？兩者都像時，先查暈厥</figcaption>
+        </figure>
+        </div>
+        <div class="alert alert-info"><span class="alert-icon">🧠</span><span>發作的特徵<strong>同時像癲癇和暈厥</strong>時，<strong>先查暈厥</strong>。另一條路（<strong>MRI、腦脊髓液</strong>）要<strong>麻醉</strong>；如果底下的問題是<strong>間歇性嚴重心搏過緩</strong>，麻醉的風險非常高。</span></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 再發與診斷（39–41）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/08-39-slide.jpg" alt="投影片 39：6 週後再發：住院、頭部 CT、持續監測，第 5 天記錄到發作" loading="lazy">
+          <figcaption>📄 (39) 6 週後再發：住院、頭部 CT、持續監測，第 5 天記錄到發作</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-40-slide.jpg" alt="投影片 40：發作時的心電圖" loading="lazy">
+          <figcaption>📄 (40) 發作時的心電圖</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-41-slide.jpg" alt="投影片 41：診斷：心室停頓造成的缺氧性抽搐（Penning et al., JVIM 2009）" loading="lazy">
+          <figcaption>📄 (41) 診斷：心室停頓造成的缺氧性抽搐（Penning et al., JVIM 2009）</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>6 週後急性再發 → 住院 → 2 天沒有發作 → <strong>頭部 CT</strong> → 住院中持續心臟事件監測 → <strong>第 5 天發作時剛好記錄到心電圖</strong>。</li>
+          <li>診斷：<strong>心室停頓造成的缺氧性抽搐</strong>（anoxic seizures due to ventricular standstill）：嚴重心律不整（心搏過緩），推測造成暫時性腦缺氧。</li>
+        </ul>
+        <div class="alert alert-warn"><span class="alert-icon">⚡</span><span><strong>缺氧性抽搐的特徵</strong>：<strong>很短（&lt; 30 秒）</strong>；<strong>極快恢復正常、沒有發作後期</strong>；<strong>常見角弓反張</strong>（opisthotonos）；<strong>沒有</strong>強直陣攣動作。</span></div>
+        <p class="p"><span class="src src-add">💡</span> 第 41 張引用 Penning et al., JVIM 2009：3 隻貓因<strong>間歇性高度房室傳導異常</strong>出現類似癲癇的發作。貓的間歇性三度房室阻斷，平常心電圖常常完全正常，所以要靠長時間監測抓到發作。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 治療與結尾（42–44）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/08-42-slide.jpg" alt="投影片 42：治療後側照：心律調節器" loading="lazy">
+          <figcaption>📄 (42) 治療後側照：心律調節器</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-43-slide.jpg" alt="投影片 43：Thank you" loading="lazy">
+          <figcaption>📄 (43) Thank you</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/08-44-slide.jpg" alt="投影片 44：Questions?" loading="lazy">
+          <figcaption>📄 (44) Questions?</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>第 42 張 X 光可以看到<strong>心律調節器</strong>（脈衝產生器在腹部，導線接到心臟）。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 貓通常用<strong>經橫膈放置心外膜導線</strong>的方式裝心律調節器，脈衝產生器放在腹壁。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🎤</div>
+      <h2>課堂補充（待錄音）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+        <div class="alert alert-info"><span class="alert-icon">⏳</span><span>錄音或現場筆記到了之後，把講者對各題的回答、Q&amp;A 補在這裡，並修正和 💡 補充不一致的地方。</span></div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="feline-heart-treatment.html">07 貓心臟病（三）：治療</a>。Côté 系列四場到此結束。</p>
+    <a href="index.html">回到系列列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+<script src="gate.js?v=2"></script>
+</body>
+</html>
