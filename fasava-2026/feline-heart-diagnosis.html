@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>貓心臟病（二）：貓心肌病的診斷｜2026 FASAVA 研討會筆記</title>
+<meta name="robots" content="noindex, nofollow">
+<style>html{visibility:hidden}</style>
+<script>
+(function(){ if (sessionStorage.getItem('fasavaGateOK') === '1') { document.documentElement.style.visibility = 'visible'; } })();
+</script>
+<style>
+  :root {
+    --primary: #BE185D;
+    --primary-light: #FCE7F3;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2A0B1A;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E9B6CD; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A1730;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E9B6CD; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E9B6CD;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A1730;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #A86A88;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #831843 0%, #DB2777 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2A0B1A; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A1730; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .src-doc { background: #e0f2fe; color: #075985; }
+  .pending { border: 2px dashed #F5D3E3; border-radius: 10px; padding: 16px 18px; color: var(--text-muted); font-size: 13.5px; background: #fffbfd; }
+<style>
+  .fig img { border-color: #F5D3E3; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  @media (max-width: 900px) { .vs { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← FASAVA 筆記</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 FASAVA 研討會筆記</a>
+  <div class="logo">
+    <h2>06｜貓心臟病（二）<br>貓心肌病的診斷</h2>
+    <p>Etienne Côté｜2026-11-02｜講義版</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">場次資訊</a>
+    <a href="#s1">1. 貓為什麼來看心臟？</a>
+    <a href="#s2">2. 病史</a>
+    <a href="#s3">3. 理學檢查與觸診</a>
+    <a href="#s4">4. 聽診：怎麼聽、在哪聽</a>
+    <a href="#s5">5. 第三心音與奔馬律</a>
+    <a href="#s6">6. 雜音的臨床意義</a>
+    <a href="#s7">7. 心臟超音波</a>
+    <a href="#s8">8. 床邊超音波（TFAST）</a>
+    <a href="#s9">9. 心臟生物標記</a>
+    <a href="#s10">10. X 光</a>
+    <a href="#s11">11. 本場總結</a>
+    <div class="nav-section">課堂</div>
+    <a href="#s12">12. 課前思考題</a>
+    <a href="#s13">13. 課堂補充（待錄音）</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>貓心臟病（二）：貓心肌病的診斷</h1>
+    <p>原標題：Feline Cardiomyopathies: Diagnosis</p>
+    <p>主講：Etienne Côté DVM, DACVIM (Cardiology), FASE（Atlantic Veterinary College, UPEI，加拿大）｜Session 2，11:00–12:30｜FASAVA 2026｜場次 06</p>
+    <div class="tags">
+      <span class="tag">病史</span>
+      <span class="tag">聽診</span>
+      <span class="tag">奔馬律／第三心音</span>
+      <span class="tag">心臟超音波</span>
+      <span class="tag">TFAST</span>
+      <span class="tag">cTnI</span>
+      <span class="tag">NT-proBNP</span>
+      <span class="tag">VHS／VLAS</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 講者提供的投影片講義（59 張，括號內為投影片編號）
+    <span class="src src-add">💡 補充</span> 整理者補充（教科書／原始文獻，供課前預習）
+    <br><span class="muted">目前只有講義，<strong>還沒有錄音</strong>。講義裡的聽診錄音與動畫（11–12、17、25）在 PDF 上只剩靜態畫面，等錄音到了再補到第 13 節，並以 🎤 標示。上一場：<a href="feline-heart-intro-classification.html">05 介紹與分類</a>。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 本場重點</h3>
+    <ul>
+      <li>講者：設備越先進，他越看重最簡單的東西——<strong>病史與理學檢查</strong></li>
+      <li>貓的心臟要在<strong>左側、右側和胸骨上</strong>都聽；貓的胸腔較方、心臟貼著胸骨</li>
+      <li>「第三心音」是一個類別，<strong>奔馬律只是其中一種</strong>（唯一的低頻音，用<strong>鐘面</strong>聽）；貓的第三心音也可能是 SAM 造成的收縮期喀答聲，<strong>不代表 CHF</strong></li>
+      <li>任何貓有 15% 機率有 HCM；<strong>有雜音的貓約 30–40%</strong></li>
+      <li><strong>心臟超音波仍是最佳檢查</strong>；床邊超音波看 <strong>LA:Ao 與 B 線</strong>很有用；生物標記可輔助但不能確診；X 光適合有症狀的貓，<strong>不適合篩檢無症狀的貓</strong></li>
+    </ul>
+  </div>
+
+  <!-- ══ S0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🎯</div>
+      <h2>場次資訊</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <ul class="notes">
+          <li>講者 Etienne Côté 的貓心臟一日課程第 2 場（11:00–12:30）。第 1 場見 <a href="feline-heart-intro-classification.html">05 介紹與分類</a>；第 3 場治療、第 4 場病例的講義也已收到。</li>
+          <li><span class="src src-slide">📄</span> 本場大綱（4）：主訴（為什麼要評估貓的心臟）→ 診斷：病史、理學檢查、心臟超音波、生物標記、X 光。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🩺</div>
+      <h2>1. 貓為什麼來看心臟？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> AVC 心臟科最近 100 隻新貓病例（2025–26）（5）</h3>
+        <figure class="fig">
+          <img src="photos/06-05-chief-concerns.jpg" alt="AVC 心臟科 100 隻貓的主訴" loading="lazy">
+          <figcaption>📄 (5) 已發表的資料出乎意料地少，所以講者整理了自己醫院的病例</figcaption>
+        </figure>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>主訴</th><th>病例數</th></tr>
+            <tr><td><strong>偶然發現心雜音</strong></td><td><strong>72</strong></td></tr>
+            <tr><td>NT-proBNP 上升</td><td>17</td></tr>
+            <tr><td>麻醉前評估</td><td>16</td></tr>
+            <tr><td>呼吸症狀</td><td>14</td></tr>
+            <tr><td>X 光心臟變大</td><td>11</td></tr>
+            <tr><td>心律不整</td><td>6</td></tr>
+            <tr><td>奔馬律</td><td>4</td></tr>
+            <tr><td>配種前評估</td><td>2</td></tr>
+            <tr><td>其他</td><td>5</td></tr>
+          </table>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> 加總超過 100，表示一隻貓可能有不只一個轉診原因。大部分貓是<strong>沒有症狀</strong>來的（雜音、NT-proBNP、麻醉前），真正因呼吸症狀來的只有 14 隻。第 7 節會看到每個主訴的「超音波異常率」差很多。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">📝</div>
+      <h2>2. 病史</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 要問什麼（7–8）</h3>
+        <figure class="fig">
+          <img src="photos/06-07-history-belly-breathing.jpg" alt="病史：精神、食慾、呼吸、跛行" loading="lazy">
+          <figcaption>📄 (7) 飼主常把貓的呼吸困難形容成「用肚子呼吸」</figcaption>
+        </figure>
+        <ul class="notes">
+          <li><strong>精神、活動力、反應</strong>：有沒有<strong>躲起來</strong>？</li>
+          <li><strong>食慾</strong></li>
+          <li><strong>呼吸症狀</strong>：呼吸困難？（<strong>咳嗽——不是</strong>）。飼主看到的貓呼吸困難常是「用肚子呼吸」（矛盾性呼吸）。</li>
+          <li><strong>跛行／輕癱／癱瘓</strong>：可能是<strong>主動脈血栓栓塞</strong>（ATE）。</li>
+          <li><strong>飲食</strong>：
+            <ul>
+              <li>最近才出現 CHF 的貓，要問有沒有<strong>吃太多鈉</strong>（例如新的鮪魚零食、開始加沙丁魚）。<strong>B2 期的貓，飲食鈉過量就可能誘發 CHF</strong>。</li>
+              <li>高豆類（pulse／legume）飲食。</li>
+            </ul>
+          </li>
+          <li><strong>用藥</strong>、<strong>心臟以外的疾病</strong></li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 「咳嗽——不是」：貓的心衰竭很少咳嗽（和狗不同），貓咳嗽先想到氣喘、心絲蟲、肺部疾病。講義上的 "high-pulse" 應是指<strong>豆類（pulses：豌豆、扁豆、鷹嘴豆）</strong>含量高的飲食，也就是犬「無穀飼料相關 DCM」討論中的那類配方。另外別忘了問最近有沒有<strong>打點滴、類固醇（尤其長效針劑）或麻醉</strong>，這些都是常見的 CHF 誘因，見 <a href="../case-discussions/feline-chf-fluid-intolerance.html">梅醫師病例 07 Neko</a>。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">✋</div>
+      <h2>3. 理學檢查與觸診</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 遠距觀察與觸診心跳（9）</h3>
+        <ul class="notes">
+          <li><strong>遠距觀察</strong>：精神、警覺、反應。CHF 的貓常<strong>看起來比狗安靜</strong>，不要被「乖乖的」騙了。</li>
+          <li><strong>觸診心尖搏動</strong>：
+            <ul>
+              <li>左側比右側強 = 正常</li>
+              <li>心尖搏動強度：正常還是微弱</li>
+              <li>節律應該規則；<strong>在醫院環境心跳到 260 次／分都算預期內</strong></li>
+              <li>和股動脈脈搏是否同步</li>
+            </ul>
+          </li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 心跳和脈搏不同步（脈搏缺失）提示心律不整。心尖搏動減弱可能是胸腔積液、心包膜積液或肥胖。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 肺部聽診（10）</h3>
+        <ul class="notes">
+          <li>呼吸音<strong>消失</strong>：胸腔積液</li>
+          <li><strong>囉音</strong>可能出現，但<strong>不一定</strong>聽得到</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 貓肺水腫時不一定有囉音，所以「肺音正常」不能排除 CHF；胸腔積液在貓 CHF 比狗常見，通常是腹側呼吸音減弱。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">👂</div>
+      <h2>4. 聽診：怎麼聽、在哪聽</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 聽診步驟（11–13）</h3>
+        <ol class="notes">
+          <li>先<strong>觸診心尖搏動</strong>：通常在胸骨左側、約<strong>第 5 肋間</strong>。</li>
+          <li>把聽診器放在那裡。</li>
+          <li>稍微往背側、再稍微往腹側移動。</li>
+          <li>往頭側移一格再重複，直到再往前就聽不到心音為止。</li>
+          <li>在<strong>右側</strong>重複（範圍較小）。</li>
+          <li>在<strong>胸骨上</strong>從尾側往頭側聽一遍。</li>
+        </ol>
+        <figure class="fig">
+          <img src="photos/06-11-auscultation-process.jpg" alt="聽診步驟" loading="lazy">
+          <figcaption>📄 (11) 聽診流程（12–13 是骨骼動畫，PDF 只剩靜態畫面）</figcaption>
+        </figure>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 為什麼貓一定要聽胸骨上？（14–16）</h3>
+        <figure class="fig">
+          <img src="photos/06-16-sternum-ct.jpg" alt="狗與貓胸腔 CT 比較" loading="lazy">
+          <figcaption>📄 (15) 貓的胸腔比較「方」，心臟和胸骨接觸面較大（CT 比較：狗 vs 貓）</figcaption>
+        </figure>
+        <p class="p"><span class="src src-slide">📄</span> 貓的雜音常在<strong>胸骨旁</strong>（parasternal）最清楚，而不是狗習慣的左側心尖。</p>
+        <p class="p"><span class="src src-add">💡</span> 貓 HCM 常見的動態左心室流出道阻塞（DLVOTO）和動態右心室流出道阻塞，雜音的最強點常在胸骨或胸骨旁，而且<strong>會隨心跳、緊張程度變化</strong>：同一隻貓這次聽到、下次聽不到很常見。只聽左側心尖容易漏掉。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🐎</div>
+      <h2>5. 第三心音與奔馬律</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 聽診要找什麼（17）</h3>
+        <ul class="notes">
+          <li><strong>雜音</strong>？（講義附左胸骨旁收縮期雜音錄音：正常速度與半速）</li>
+          <li><strong>心律不整</strong>？</li>
+          <li><strong>第三心音</strong>？奔馬律，或其他（例如二尖瓣<strong>收縮期前向運動（SAM）</strong>造成的收縮期喀答聲）</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 「第三心音」不等於「奔馬律」（18–20）</h3>
+        <p class="p">兩個詞常被混用，因為聽起來都像馬在跑，但這是錯的。<strong>第三心音是一個類別</strong>，包括：</p>
+        <ul class="notes">
+          <li>S1 分裂</li>
+          <li>S2 分裂</li>
+          <li>收縮期喀答聲（systolic click）</li>
+          <li><strong>奔馬律</strong>：唯一的<strong>低頻</strong>第三心音</li>
+        </ul>
+        <div class="vs">
+          <figure class="fig">
+            <img src="photos/06-19-third-heart-sounds.jpg" alt="心電圖與心音圖：S1 S2 S3 S4" loading="lazy">
+            <figcaption>📄 (19) ECG 與心音圖上 S1、S2、S3、S4 的位置（Dr. Kristin Lavely 提供）</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/06-20-bell-diaphragm.jpg" alt="聽診器膜面與鐘面" loading="lazy">
+            <figcaption>📄 (20) 膜面：正常心音、雜音；<strong>鐘面：奔馬律</strong></figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 奔馬律（21–22）</h3>
+        <figure class="fig">
+          <img src="photos/06-21-audibility.jpg" alt="心音頻率與人耳聽閾" loading="lazy">
+          <figcaption>📄 (21) 心音與雜音大多在人耳聽閾的低頻邊緣</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>第三心音的一種，<strong>唯一的低頻</strong>第三心音</li>
+          <li>所以<strong>用聽診器的鐘面聽最清楚</strong></li>
+          <li>可能表示<strong>左心室充填壓上升</strong></li>
+          <li>可能代表 <strong>CHF 即將發生或已經發生</strong></li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 鐘面要<strong>輕輕</strong>貼在皮膚上，壓太緊皮膚會變成膜面、把低頻濾掉。貓心跳快，S3 和 S4 常融合成一個「summation gallop」。奔馬律也是 <a href="feline-heart-intro-classification.html#s4">05 第 4 節</a> B2 期的高風險特徵之一。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 但貓的第三心音不一定是奔馬律（23–26）</h3>
+        <div class="vs">
+          <figure class="fig">
+            <img src="photos/06-23-sam-third-sound-2023.jpg" alt="JVIM 2023 收縮期第三心音與 SAM" loading="lazy">
+            <figcaption>📄 (23) <em>JVIM</em> 2023：阻塞性 HCM 貓的收縮期第三心音與 SAM</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/06-24-systolic-click.jpg" alt="收縮期喀答聲在心音圖的位置" loading="lazy">
+            <figcaption>📄 (24) 收縮期喀答聲在 S1 和 S2 之間（藍圈）</figcaption>
+          </figure>
+        </div>
+        <ul class="notes">
+          <li>50 隻貓中 <strong>20 隻（40%）</strong>有第三心音，和<strong>二尖瓣 SAM 強烈相關</strong>，但<strong>和 CHF 無關</strong>。</li>
+          <li>結論（26）：貓的第三心音可能是<strong>奔馬律</strong>（CHF 即將或已經發生），也可能是<strong>非 CHF</strong> 的聲音（收縮期喀答聲、和 SAM 有關）。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 實用區分：奔馬律在<strong>舒張期</strong>（S2 之後或 S1 之前）、低頻、鐘面較清楚；SAM 喀答聲在<strong>收縮期中段</strong>（S1 和 S2 之間）、較尖。心跳快的貓用耳朵很難分，聽到「三個音」時，最穩當的是做超音波看左心房大小與有沒有 SAM。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🔊</div>
+      <h2>6. 雜音的臨床意義</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 有雜音的貓，約 1/3 有 HCM（27）</h3>
+        <figure class="fig">
+          <img src="photos/06-27-murmur-hcm-37.jpg" alt="有雜音的貓 37% 有 HCM" loading="lazy">
+          <figcaption>📄 (27) AVC 心臟科最近 100 隻新病例（未發表）</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>任何貓有 <strong>15%</strong> 機率有 HCM（見 <a href="feline-heart-intro-classification.html#s2">05 CatScan 研究</a>）。</li>
+          <li><strong>有雜音的貓約 30–40%</strong> 有 HCM。</li>
+          <li>AVC：100 隻中 52 隻「只因為雜音」來評估，其中 <strong>19 隻（37%）</strong>有 HCM 或 HOCM（B1、B2 或 C 期）。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 反過來說，有雜音的貓<strong>約 6 成心臟是正常的</strong>（多半是動態右心室流出道阻塞等生理性雜音）。雜音提高懷疑，但不能直接當作 HCM。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 雜音＋SNAP NT-proBNP（28）</h3>
+        <figure class="fig">
+          <img src="photos/06-28-lu-snap-ntprobnp.jpg" alt="Lu 等 JVIM 一般診所 SNAP NT-proBNP 篩檢" loading="lazy">
+          <figcaption>📄 (28) Lu, Côté, Kuo, Wu, Wang, Hung, <em>JVIM</em>：用床邊 NT-proBNP 篩檢一般診所看似健康的貓</figcaption>
+        </figure>
+        <p class="p">在一般診所，有心臟病的貓 <strong>43%</strong> SNAP NT-proBNP 陽性；如果<strong>只測有心雜音的貓</strong>，提高到 <strong>71%</strong>。</p>
+        <p class="p"><span class="src src-add">💡</span> 第一作者 Ta-Li Lu 就是講者在謝詞中感謝的 FASAVA 籌備會<strong>呂大立醫師</strong>（台北中安動物醫院），這是台灣一般診所的資料，對我們最貼近。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🫀</div>
+      <h2>7. 心臟超音波</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 首選檢查（29）</h3>
+        <ul class="notes">
+          <li>確立診斷</li>
+          <li>分期</li>
+          <li>找併發症：<strong>肺高壓、血栓</strong></li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 例子（30–34）</h3>
+        <figure class="fig">
+          <img src="photos/06-30-basal-septal-diagram.jpg" alt="正常 vs 基部中膈肥厚示意圖" loading="lazy">
+          <figcaption>📄 (30) 心室中膈基部局部增厚、左心房不大：<strong>老化變化 vs B1 HCM</strong></figcaption>
+        </figure>
+        <div class="vs">
+          <figure class="fig">
+            <img src="photos/06-31-echo-basal-septal.jpg" alt="基部中膈肥厚超音波" loading="lazy">
+            <figcaption>📄 (31) 基部中膈局部增厚，無左心房擴大：老化 vs B1 HCM</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/06-32-echo-b2-hcm.jpg" alt="B2 HCM 超音波" loading="lazy">
+            <figcaption>📄 (32) 瀰漫性明顯左心室肥厚，中膈 &gt; 游離壁，左心房擴大：<strong>B2 HCM</strong></figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/06-33-echo-cd-thrombus.jpg" alt="C/D 期 HCM 合併左心房血栓" loading="lazy">
+            <figcaption>📄 (33) 嚴重肥厚、收縮功能異常、左心房明顯擴大＋<strong>血栓</strong>：<strong>C/D 期 HCM</strong></figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/06-34-echo-b2-rcm.jpg" alt="B2 RCM 超音波" loading="lazy">
+            <figcaption>📄 (34) 左右心室正常、<strong>雙心房明顯擴大</strong>、限制型充填（未顯示）：<strong>B2 RCM</strong></figcaption>
+          </figure>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> 基部中膈局部增厚在老貓很常見，講者把它放在「老化 vs B1 HCM」的灰色地帶，呼應 <a href="feline-heart-intro-classification.html#s5">05 第 5 節</a>「不對稱增厚：HCM、腫瘤、（正常老化？）」。左心房大小是分期的關鍵，因為它決定 B1 還是 B2。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 各種轉診原因的超音波異常率（35）</h3>
+        <figure class="fig">
+          <img src="photos/06-35-echo-yield.jpg" alt="各轉診原因的超音波異常比例" loading="lazy">
+          <figcaption>📄 (35) AVC 心臟科最近 100 隻新病例</figcaption>
+        </figure>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>做超音波的原因</th><th>超音波異常</th></tr>
+            <tr><td>偶然發現心雜音</td><td>37%</td></tr>
+            <tr><td>X 光心臟變大</td><td>61%</td></tr>
+            <tr><td>心律不整</td><td>67%</td></tr>
+            <tr><td>NT-proBNP 上升</td><td>71%</td></tr>
+            <tr><td>奔馬律</td><td>75%</td></tr>
+            <tr><td><strong>雜音＋NT-proBNP 上升</strong></td><td><strong>&gt; 83%</strong></td></tr>
+          </table>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> 和飼主溝通轉診時很好用：只有雜音，大約 1/3 會有問題；雜音加上 NT-proBNP 陽性，超過 8 成會有問題。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">📡</div>
+      <h2>8. 沒有完整超音波時：床邊超音波（TFAST）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> Ward et al., JVIM 2018（36–39）</h3>
+        <figure class="fig">
+          <img src="photos/06-38-tfast-ward-2018.jpg" alt="床邊超音波：肺 B 線與 LA/Ao" loading="lazy">
+          <figcaption>📄 (38) 床邊胸腔超音波看兩件事：<strong>肺（B 線）</strong>與<strong>心臟（LA/Ao）</strong></figcaption>
+        </figure>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>發現</th><th>診斷 CHF 的敏感度</th><th>特異度</th></tr>
+            <tr><td>每個掃描點 <strong>&gt; 3 條 B 線</strong></td><td>79%</td><td>83%</td></tr>
+            <tr><td><strong>左心房擴大</strong></td><td><strong>97%</strong></td><td><strong>100%</strong></td></tr>
+          </table>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> 呼吸窘迫的貓不要急著躺著拍 X 光；先在胸骨位或貓舒服的姿勢下，用右側胸骨旁短軸看 <strong>LA:Ao</strong>（一般 ≥ 1.5–1.6 視為擴大），再掃肺看 B 線和胸腔積液。左心房不大，CHF 的可能性就很低。詳見 <a href="../tsfm-feline-ecc-2026/cant-breathe-localization.html">TSFM 03 呼吸困難定位</a>。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🧪</div>
+      <h2>9. 心臟生物標記</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 床邊心肌鈣蛋白 I（cTnI）（41–45）</h3>
+        <ul class="notes">
+          <li>cTnI 在<strong>心肌受損</strong>時釋放（包括貓 HCM）。</li>
+          <li>優點：檢驗<strong>不分物種</strong>，現有的獸醫分析儀也能做。</li>
+          <li>研究：44 隻呼吸困難的貓、37 隻正常對照（<em>JAVMA</em> 2014）。</li>
+        </ul>
+        <figure class="fig">
+          <img src="photos/06-44-ctni-cutoffs.jpg" alt="cTnI 切點的敏感度與特異度" loading="lazy">
+          <figcaption>📄 (44) cTnI 切點（Wells et al., <em>JAVMA</em> 2014）</figcaption>
+        </figure>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>cTnI（ng/mL）</th><th>心因性呼吸困難的敏感度</th><th>特異度</th><th>解讀</th></tr>
+            <tr><td>≥ 0.24</td><td>100%</td><td>57.1%</td><td><strong>&lt; 0.24：心臟病非常不可能</strong></td></tr>
+            <tr><td>≥ 0.5</td><td>84.0%</td><td>85.7%</td><td></td></tr>
+            <tr><td>&gt; 0.66</td><td>72.0%</td><td>100%</td><td><strong>&gt; 0.66：心臟病非常可能</strong></td></tr>
+          </table>
+        </div>
+        <p class="p"><span class="src src-slide">📄</span> 結論：呼吸困難的貓，<strong>X 光看不清楚</strong>（例如肥胖）或<strong>太不穩定不能拍 X 光</strong>時很有用。</p>
+        <p class="p"><span class="src src-add">💡</span> 切點依分析儀而定，這組數字是該研究的床邊儀器，不同機器不能直接套用。cTnI 很高也提醒要想到 <a href="feline-heart-intro-classification.html#s6">05 第 6 節</a>的心肌炎／暫時性心肌增厚。</p>
+      </div>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> NT-proBNP 是什麼（47–48）</h3>
+        <figure class="fig">
+          <img src="photos/06-48-ntprobnp-cleavage.jpg" alt="proBNP 切成 NT-proBNP 與 BNP" loading="lazy">
+          <figcaption>📄 (48) proBNP 切成兩段：BNP 有生物活性（利鈉），NT-proBNP 沒有作用但<strong>穩定、好測</strong></figcaption>
+        </figure>
+        <p class="p">NT-proBNP 在<strong>心肌被撐開</strong>（stretch）時釋放（包括貓 HCM）。</p>
+      </div>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 呼吸困難的貓：SNAP NT-proBNP（49–50）</h3>
+        <p class="p">陽性結果診斷 CHF：<strong>敏感度 94%、特異度 72%</strong>。</p>
+        <p class="p"><span class="src src-add">💡</span> 敏感度高，所以 SNAP <strong>陰性</strong>時 CHF 不太可能；特異度普通，陽性時還是要用超音波或 X 光確認。另外胸腔積液的貓可以測<strong>積液</strong>的 NT-proBNP。</p>
+      </div>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 無症狀的貓：定量 NT-proBNP（51–52）</h3>
+        <figure class="fig">
+          <img src="photos/06-52-ntprobnp-quantitative.jpg" alt="217 隻貓定量 NT-proBNP" loading="lazy">
+          <figcaption>📄 (52) 217 隻貓的定量 NT-proBNP（Lu, Côté et al., <em>JVIM</em>）</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>正常貓<strong>偽陽性</strong>（&gt; 270 pmol/L）：約 <strong>5–10%</strong></li>
+          <li>有病的貓<strong>偽陰性</strong>（&lt; 100 pmol/L）：約 <strong>50%</strong>，多半是輕微／極輕微的病</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 無症狀的貓：SNAP NT-proBNP（53）</h3>
+        <figure class="fig">
+          <img src="photos/06-53-snap-asymptomatic.jpg" alt="SNAP NT-proBNP 在無症狀貓的表現" loading="lazy">
+          <figcaption>📄 (53) 床邊 SNAP NT-proBNP（IDEXX 2015）</figcaption>
+        </figure>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>指標</th><th>數值</th><th>講義的白話說明</th></tr>
+            <tr><td>敏感度</td><td><strong>43%</strong></td><td>100 隻有心臟病的貓，只有 43 隻會陽性</td></tr>
+            <tr><td>敏感度（有心雜音的貓）</td><td><strong>71%</strong></td><td>只測有雜音的貓，抓到的比例提高</td></tr>
+            <tr><td>特異度</td><td><strong>96%</strong></td><td>講義寫「100 個陽性中 96 隻真的有心臟病」</td></tr>
+          </table>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> 嚴格來說，「陽性中有幾隻真的有病」是<strong>陽性預測值</strong>，不是特異度（特異度是「沒病的貓有幾隻會陰性」）；兩者在盛行率不同時數值會不同。實際意義不變：無症狀的貓 SNAP <strong>陽性就要做超音波</strong>，<strong>陰性不能排除</strong>（一半以上的輕微病例會漏掉）。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🩻</div>
+      <h2>10. X 光</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 診斷 CHF 的基石（55）</h3>
+        <figure class="fig">
+          <img src="photos/06-55-radiographs-chf.jpg" alt="貓 CHF 的 X 光：肺水腫與胸腔積液" loading="lazy">
+          <figcaption>📄 (55) 肺水腫、胸腔積液</figcaption>
+        </figure>
+        <p class="p"><span class="src src-add">💡</span> 貓心因性肺水腫的分布常是<strong>斑塊狀、不規則</strong>，不一定像狗集中在肺門周圍，容易和支氣管肺炎或氣喘混淆。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 呼吸困難貓的 VHS（56）</h3>
+        <figure class="fig">
+          <img src="photos/06-56-vhs-dyspneic.jpg" alt="Sleeper 2013 VHS 區分心因性與非心因性呼吸窘迫" loading="lazy">
+          <figcaption>📄 (56) Sleeper, Roland, Drobatz, <em>JAVMA</em> 2013：67 隻呼吸窘迫的貓</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>VHS 明顯正常或偏小（<strong>&lt; 8.0</strong>）：CHF 不太可能</li>
+          <li>VHS 明顯偏高（<strong>&gt; 9.3</strong>）：CHF 可能</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 8.0–9.3 之間是灰色地帶，要靠超音波或生物標記。貓 VHS 的參考上限一般約 8.0（側照）。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 左心房的椎體分數：VLAS 與 LA-VHS（57–58）</h3>
+        <div class="vs">
+          <figure class="fig">
+            <img src="photos/06-57-vlas-lavhs.jpg" alt="VLAS 與 LA-VHS 量法" loading="lazy">
+            <figcaption>📄 (57) VLAS（左）與 LA-VHS（右）的量法</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/06-58-vlas-boxplot.jpg" alt="VLAS 與 LA-VHS 在正常 B1 B2 的分布" loading="lazy">
+            <figcaption>📄 (58) 正常、B1、B2 三組的分布</figcaption>
+          </figure>
+        </div>
+        <p class="p"><span class="src src-slide">📄</span> Chen et al., ECVIM Congress, Berlin 2026（新資料）。</p>
+        <p class="p"><span class="src src-add">💡</span> 從盒鬚圖看，VLAS 三組重疊很多；<strong>LA-VHS 在 B2 組較明顯偏高</strong>（圖上有星號），正常與 B1 則幾乎分不開。這符合講者的總結：X 光<strong>不適合篩檢無症狀的貓</strong>，最多幫忙抓出左心房已經明顯擴大的 B2。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">📌</div>
+      <h2>11. 本場總結</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 講者的總結（59）</h3>
+        <ul class="notes">
+          <li><strong>主訴</strong>很有幫助，可以提高或降低懷疑心臟病的程度。</li>
+          <li><strong>病史與理學檢查</strong>能提供重要線索。</li>
+          <li><strong>心臟超音波仍是最好的檢查</strong>；床邊超音波很有用，特別是 <strong>LA:Ao</strong> 與<strong>肺部 B 線</strong>。</li>
+          <li><strong>生物標記</strong>提供額外資訊，但<strong>不能確診</strong>。</li>
+          <li><strong>X 光</strong>適合有症狀的病患（肺水腫、胸腔積液），<strong>不適合無症狀的病患</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-add">💡 補充</span> 兩種情境的速查</h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>情境</th><th>建議順序</th></tr>
+            <tr><td><strong>呼吸困難的貓</strong>（是不是 CHF？）</td><td>先穩定、給氧 → 床邊超音波看 <strong>LA:Ao＋B 線＋胸腔積液</strong> → 可以時拍 X 光（VHS &lt; 8 不像、&gt; 9.3 像）→ 不確定時 SNAP NT-proBNP（陰性幾乎排除）或 cTnI（&lt; 0.24 不像、&gt; 0.66 像）</td></tr>
+            <tr><td><strong>無症狀的貓</strong>（有沒有心肌病？）</td><td>病史＋左右側與胸骨聽診（雜音、第三心音、心律）→ 有雜音或奔馬律時考慮 NT-proBNP → <strong>陽性或有奔馬律、心律不整就做心臟超音波</strong>；X 光不適合篩檢</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">📘</div>
+      <h2>12. 課前思考題</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <ol class="notes">
+        <li>麻醉前評估的貓：有雜音但沒時間做超音波，講者會怎麼做？SNAP 陰性就可以麻醉嗎？</li>
+        <li>講者用多少 LA:Ao 或左心房直徑（mm）區分 B1 和 B2？</li>
+        <li>雜音強度（分級）和 HCM 的機率有沒有關係？</li>
+        <li>VLAS／LA-VHS 有沒有建議的切點？</li>
+        <li>高豆類飲食和貓心肌病有關嗎？還是只是提醒？</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ══ S13 ══ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🎤</div>
+      <h2>13. 課堂補充（待錄音）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="alert alert-info"><span class="alert-icon">⏳</span><span>錄音或現場筆記到了之後，把講者口述、聽診錄音的說明、回答第 12 節的問題與 Q&amp;A 補在這裡，並修正和 💡 補充不一致的地方。</span></div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="feline-heart-intro-classification.html">05 貓心臟病（一）：介紹與分類</a>。下一場：Côté Session 3 貓心臟病的治療（整理中）。</p>
+    <a href="index.html">回到系列列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+<script src="gate.js?v=2"></script>
+</body>
+</html>
