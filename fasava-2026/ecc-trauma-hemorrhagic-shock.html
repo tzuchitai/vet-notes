@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>急診（二）：創傷與出血性休克｜2026 FASAVA 研討會筆記</title>
+<meta name="robots" content="noindex, nofollow">
+<style>html{visibility:hidden}</style>
+<script>
+(function(){ if (sessionStorage.getItem('fasavaGateOK') === '1') { document.documentElement.style.visibility = 'visible'; } })();
+</script>
+<style>
+  :root {
+    --primary: #BE185D;
+    --primary-light: #FCE7F3;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2A0B1A;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E9B6CD; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A1730;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E9B6CD; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E9B6CD;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A1730;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #A86A88;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #831843 0%, #DB2777 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2A0B1A; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A1730; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .src-doc { background: #e0f2fe; color: #075985; }
+  .pending { border: 2px dashed #F5D3E3; border-radius: 10px; padding: 16px 18px; color: var(--text-muted); font-size: 13.5px; background: #fffbfd; }
+<style>
+  .fig img { border-color: #F5D3E3; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  @media (max-width: 900px) { .vs { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← FASAVA 筆記</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 FASAVA 研討會筆記</a>
+  <div class="logo">
+    <h2>10｜急診（二）<br>創傷與出血性休克</h2>
+    <p>Corrin Boyd｜2026-11-02｜講義版</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">場次資訊</a>
+    <div class="nav-section">評估</div>
+    <a href="#s1">1. 評估目標</a>
+    <div class="nav-section">處置</div>
+    <a href="#s2">2. 分類與處置目標</a>
+    <a href="#s3">3. 輕度／已控制出血</a>
+    <a href="#s4">4. 嚴重未控制出血</a>
+    <a href="#s5">5. 課堂補充（待錄音）</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>急診（二）：創傷與出血性休克</h1>
+    <p>原標題：Trauma and Hemorrhagic Shock</p>
+    <p>主講：Corrin Boyd BVMS, PhD, DACVECC（Murdoch University 急診重症資深講師，西澳伯斯）｜FASAVA 2026｜場次 10</p>
+    <div class="tags">
+      <span class="tag">初級評估 XABCD</span>
+      <span class="tag">休克分級</span>
+      <span class="tag">致死三角</span>
+      <span class="tag">TEG/ROTEM</span>
+      <span class="tag">大量輸血 1:1:1</span>
+      <span class="tag">自體輸血</span>
+      <span class="tag">冷藏液態血漿</span>
+      <span class="tag">TXA</span>
+      <span class="tag">低血鈣</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 講者提供的投影片講義（65 張全部依序放入，括號內為投影片編號）
+    <span class="src src-add">💡 補充</span> 整理者的解說與補充（教科書／原始文獻）；❔ 表示推測，待錄音確認
+    <br><span class="muted">目前只有講義，<strong>還沒有錄音</strong>。開場和結尾是同一隻黑色犬的照片（第 2、63、64 張），講義沒有交代病史，待錄音補充。Boyd 醫師四場：<a href="ecc-evidence-based-medicine.html">09 實證醫學</a>、10 創傷與出血性休克、<a href="ecc-pocus.html">11 POCUS</a>、<a href="ecc-fluid-types.html">12 輸液種類</a>。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 本場重點</h3>
+    <ul>
+      <li>評估出血性休克有三個目標：<strong>找出血來源</strong>、<strong>評估灌流受損程度</strong>、<strong>辨識休克的全身影響</strong>（致死三角：低體溫、凝血病、酸中毒）</li>
+      <li><strong>PCV/TS 一開始不會掉</strong>：全血流失時兩者等比例減少；之後組織液回流才稀釋；脾臟收縮讓 PCV 相對較高，<strong>TS &lt; 5.5 g/dL</strong> 要懷疑大量失血</li>
+      <li>輕度／已控制出血：先給<strong>平衡等張晶體</strong>（PCV &gt; 30% 推 10–40 mL/kg；&lt; 30% 推 10–20 mL/kg），仍休克就輸 PRBC；0.9% 生理食鹽水沒有優點</li>
+      <li>嚴重未控制出血：儘快止血＋<strong>大量輸血</strong>（PRBC 推注、血漿 ± 血小板依 1:1(:1) 或凝血檢測），同時處理低體溫、酸中毒、<strong>低血鈣</strong></li>
+      <li>沒有大血庫也能做：<strong>自體輸血</strong>、<strong>冷藏液態血漿</strong>（解凍 FFP 冷藏可放 28 天）、<strong>冷藏全血</strong></li>
+      <li>講者的輔助治療：<strong>maropitant 1 mg/kg IV、TXA 20 mg/kg IV</strong>（也可局部使用）；血小板功能異常可考慮 desmopressin</li>
+    </ul>
+  </div>
+
+  <!-- ══ S0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🎯</div>
+      <h2>場次資訊與開場病例</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 開場（1–4）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/10-01-slide.jpg" alt="投影片 1：Trauma and Hemorrhagic Shock" loading="lazy">
+          <figcaption>📄 (1) Trauma and Hemorrhagic Shock</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-02-slide.jpg" alt="投影片 2：開場病例：戴面罩給氧、有靜脈留置針的犬" loading="lazy">
+          <figcaption>📄 (2) 開場病例：戴面罩給氧、有靜脈留置針的犬</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-03-slide.jpg" alt="投影片 3：Primary Survey 初級評估" loading="lazy">
+          <figcaption>📄 (3) Primary Survey 初級評估</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-04-slide.jpg" alt="投影片 4：超音波影像（開場病例）" loading="lazy">
+          <figcaption>📄 (4) 超音波影像（開場病例）</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>第 2 張和第 4 張是開場病例：一隻戴面罩給氧、前肢有留置針的黑色犬，以及一張超音波影像；講義沒有文字說明，待錄音補。</li>
+          <li><strong>初級評估</strong>順序是 <strong>X-A-B-C-D</strong>：X = exsanguinating hemorrhage（<strong>大出血先止</strong>）、A 呼吸道、B 呼吸、C 循環、D 神經狀態；接著量生命徵象、簡短理學檢查、床邊血液檢查、POCUS。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 傳統是 ABC；創傷醫學加上「X」放在最前面，因為四肢或體表的大量出血在幾分鐘內就能致死，先壓迫止血再處理呼吸道。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🩸</div>
+      <h2>休克的定義與評估目標</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 什麼是休克（5–7）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/10-05-slide.jpg" alt="投影片 5：氧氣輸送的決定因子" loading="lazy">
+          <figcaption>📄 (5) 氧氣輸送的決定因子</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-06-slide.jpg" alt="投影片 6：出血性休克的兩種情境" loading="lazy">
+          <figcaption>📄 (6) 出血性休克的兩種情境</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-07-slide.jpg" alt="投影片 7：評估的三大目標" loading="lazy">
+          <figcaption>📄 (7) 評估的三大目標</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>第 5 張是氧輸送的公式樹：<strong>組織氧合</strong> ← 氧輸送（DO₂）＝ <strong>心輸出量 × 動脈血氧含量</strong>。心輸出量 = 心跳 × 心搏量（前負荷、後負荷、收縮力）；動脈血氧含量主要取決於<strong>血紅素濃度</strong>和血氧飽和度。出血性休克同時打掉兩邊：<strong>前負荷下降</strong>（血量少）＋<strong>血紅素下降</strong>。</li>
+          <li>兩種情境：先發現休克 → 去找出血；或先發現出血（已知高風險病患）→ 去評估休克。起點不同，後面評估的重點也不同。</li>
+          <li>三大目標：<strong>找出血來源</strong>、<strong>評估灌流受損程度</strong>、<strong>辨識休克的全身影響</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 找出血來源（8–10）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/10-08-slide.jpg" alt="投影片 8：病史與理學檢查的線索" loading="lazy">
+          <figcaption>📄 (8) 病史與理學檢查的線索</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-09-slide.jpg" alt="投影片 9：影像：超音波與 CT" loading="lazy">
+          <figcaption>📄 (9) 影像：超音波與 CT</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-10-slide.jpg" alt="投影片 10：為什麼會在那個位置出血？" loading="lazy">
+          <figcaption>📄 (10) 為什麼會在那個位置出血？</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>理學檢查線索：傷口、鼻出血、骨折處、<strong>呼吸急促／限制型呼吸</strong>（胸腔出血）、黑便／血便、吐血、腹部膨大、<strong>Cullen's sign</strong>（臍周瘀青，腹腔或後腹腔出血）。</li>
+          <li>影像：POCUS 看腹水／胸水，穩定後做 CT（第 9 張 CT 可見腹腔內顯影劑外滲）。</li>
+          <li>找到位置後還要問<strong>為什麼會在那裡出血</strong>：創傷？凝血病（先天或後天，例如殺鼠劑）？還是疾病本身（常是<strong>腫瘤</strong>，例如脾臟血管肉瘤）？</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 灌流受損分級（11–15）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/10-11-slide.jpg" alt="投影片 11：休克嚴重度：輕度、中度、重度" loading="lazy">
+          <figcaption>📄 (11) 休克嚴重度：輕度、中度、重度</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-12-slide.jpg" alt="投影片 12：血壓、乳酸與血液氣體" loading="lazy">
+          <figcaption>📄 (12) 血壓、乳酸與血液氣體</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-13-slide.jpg" alt="投影片 13：為什麼不用 PCV/TS？（Tucker 2022）" loading="lazy">
+          <figcaption>📄 (13) 為什麼不用 PCV/TS？（Tucker 2022）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-14-slide.jpg" alt="投影片 14：POCUS：肝靜脈與後腔靜脈（DH view）" loading="lazy">
+          <figcaption>📄 (14) POCUS：肝靜脈與後腔靜脈（DH view）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-15-slide.jpg" alt="投影片 15：POCUS：心臟容積不足" loading="lazy">
+          <figcaption>📄 (15) POCUS：心臟容積不足</figcaption>
+        </figure>
+        </div>
+        <div class="tbl-wrap"><table>
+        <tr><th>灌流參數</th><th>輕度</th><th>中度</th><th>重度</th></tr>
+        <tr><td>精神</td><td>輕度沉鬱</td><td>沉鬱</td><td>木僵到昏迷</td></tr>
+        <tr><td>心跳</td><td>上升</td><td>上升（<strong>貓可能下降</strong>）</td><td>上升或下降</td></tr>
+        <tr><td>脈搏</td><td>尚可到良好</td><td>差</td><td>摸不到</td></tr>
+        <tr><td>黏膜</td><td>粉紅到稍白</td><td>淡粉紅</td><td>白／灰</td></tr>
+        <tr><td>CRT</td><td>2 秒</td><td>2–3 秒</td><td>&gt; 3 秒</td></tr>
+        <tr><td>肢端溫度</td><td>正常</td><td>涼</td><td>冷</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li><strong>血壓</strong>在急診室幫助不大，比較適合在 ICU 監測高風險病患。<strong>乳酸</strong>不具特異性，<strong>碱基過剩（BE）</strong>可能是較好的指標；兩者都比較適合當<strong>監測工具</strong>（看趨勢）。</li>
+          <li><strong>PCV/TS 為什麼不可靠</strong>：全血流失時紅血球和蛋白等比例流失，PCV/TS 一開始<strong>不變</strong>；之後液體從組織間隙回流到血管內才稀釋下降。脾臟收縮會讓 PCV 相對高於 TS。<strong>TS &lt; 5.5 g/dL（55 g/L）</strong>要懷疑有明顯失血。</li>
+          <li>結論：<strong>合併灌流參數、血壓、乳酸</strong>來判斷是否為危急出血。</li>
+          <li>POCUS：第 14 張 DH view 看後腔靜脈（CdVC）與肝靜脈；後腔靜脈塌陷、心臟容積不足（第 15 張左心室腔變小、「心室壁相碰」）都支持低血容。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 貓的休克常見「心跳慢、低體溫、低血壓」三聯徵，心跳不快不代表沒有休克。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 全身影響：致死三角（16–17）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/10-16-slide.jpg" alt="投影片 16：The &#x27;Lethal Triad&#x27;" loading="lazy">
+          <figcaption>📄 (16) The 'Lethal Triad'</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-17-slide.jpg" alt="投影片 17：低體溫：保暖" loading="lazy">
+          <figcaption>📄 (17) 低體溫：保暖</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li><strong>低體溫 + 凝血病 + 酸中毒</strong>互相惡化：讓心血管功能更差、出血持續。</li>
+          <li>第 17 張：用保溫毯、加溫的照護方式保暖；注意低體溫會讓凝血酶活性下降，即使凝血因子足夠也止不了血。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 凝血評估（18–22）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/10-18-slide.jpg" alt="投影片 18：傳統 PT/aPTT、血小板 vs 黏彈性檢測" loading="lazy">
+          <figcaption>📄 (18) 傳統 PT/aPTT、血小板 vs 黏彈性檢測</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-19-slide.jpg" alt="投影片 19：黏彈性圖形：過度纖溶 vs 嚴重血小板／纖維蛋白原不足" loading="lazy">
+          <figcaption>📄 (19) 黏彈性圖形：過度纖溶 vs 嚴重血小板／纖維蛋白原不足</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-20-slide.jpg" alt="投影片 20：自發性腹腔出血犬的 TEG（Fletcher 2016 JVECC）" loading="lazy">
+          <figcaption>📄 (20) 自發性腹腔出血犬的 TEG（Fletcher 2016 JVECC）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-21-slide.jpg" alt="投影片 21：VCM Vet 床邊黏彈性儀（Hennink 2023 Animals）" loading="lazy">
+          <figcaption>📄 (21) VCM Vet 床邊黏彈性儀（Hennink 2023 Animals）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-22-slide.jpg" alt="投影片 22：TEG 6s" loading="lazy">
+          <figcaption>📄 (22) TEG 6s</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>傳統 PT/aPTT 只看到凝血因子；<strong>黏彈性檢測</strong>（TEG、ROTEM、VCM）看的是整個血塊從形成、強度到溶解的過程。</li>
+          <li>第 19 張：<strong>過度纖溶</strong>是血塊形成後很快變窄消失（左）；<strong>嚴重血小板／纖維蛋白原不足</strong>是血塊一直很細（右）。兩種的治療不同：前者用抗纖溶藥（TXA），後者補血小板／冷凍沉澱品。</li>
+          <li>第 20 張：28 隻自發性腹腔出血犬的 TEG，<strong>MA（血塊強度）顯著低於對照組</strong>（42.5 vs 51.1 mm），部分有過度纖溶。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 酸中毒與器官損傷（23–24）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/10-23-slide.jpg" alt="投影片 23：乳酸與氫離子的來源" loading="lazy">
+          <figcaption>📄 (23) 乳酸與氫離子的來源</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-24-slide.jpg" alt="投影片 24：器官損傷：先建立基準再監測" loading="lazy">
+          <figcaption>📄 (24) 器官損傷：先建立基準再監測</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>第 23 張：組織缺氧時粒線體無法運作，葡萄糖經無氧糖解產生乳酸；但<strong>酸中毒的氫離子主要來自 ATP 水解</strong>（ATP → ADP + H⁺），不是乳酸本身。</li>
+          <li>器官評估：CBC、生化、<strong>尿量／尿液分析</strong>、電解質／酸鹼、肺功能、腸胃功能——先抓基準值，之後持續監測。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🧭</div>
+      <h2>病患分類與處置目標</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 兩類病患（25–27）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/10-25-slide.jpg" alt="投影片 25：輕度／已控制 vs 嚴重未控制出血" loading="lazy">
+          <figcaption>📄 (25) 輕度／已控制 vs 嚴重未控制出血</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-26-slide.jpg" alt="投影片 26：處置目標" loading="lazy">
+          <figcaption>📄 (26) 處置目標</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-27-slide.jpg" alt="投影片 27：處置流程圖（Silverstein &amp; Hopper SACCM 3rd ed.）" loading="lazy">
+          <figcaption>📄 (27) 處置流程圖（Silverstein & Hopper SACCM 3rd ed.）</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>分類雖然主觀，但能幫助決定處置：<strong>輕度或已控制的出血</strong> vs <strong>嚴重未控制的出血</strong>。</li>
+          <li>處置目標：① <strong>防止繼續出血</strong>（儘量確實止血、確保凝血功能）；② <strong>恢復心血管恆定</strong>（補血量、補血紅素、確保心臟與血管功能）；③ 減少其他器官的影響。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">💧</div>
+      <h2>輕度／已控制出血</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 處置流程（28–29）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/10-28-slide.jpg" alt="投影片 28：Mild/Controlled 流程" loading="lazy">
+          <figcaption>📄 (28) Mild/Controlled 流程</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-29-slide.jpg" alt="投影片 29：先給「清澈」輸液，需要時再輸血" loading="lazy">
+          <figcaption>📄 (29) 先給「清澈」輸液，需要時再輸血</figcaption>
+        </figure>
+        </div>
+        <div class="tbl-wrap"><table>
+        <tr><th></th><th>PCV &gt; 30%</th><th>PCV &lt; 30%</th></tr>
+        <tr><td>第一步</td><td>推注 <strong>10–40 mL/kg</strong> 平衡等張晶體</td><td>推注 <strong>10–20 mL/kg</strong> 平衡等張晶體</td></tr>
+        <tr><td>仍在休克</td><td colspan="2">複測 PCV，<strong>緊急</strong>輸 PRBC 5–15 mL/kg/hr；PRBC 超過 10 mL/kg 時給血漿 10–20 mL/kg</td></tr>
+        <tr><td>已脫離休克</td><td colspan="2">複測 PCV，依貧血程度輸 PRBC 3–5 mL/kg/hr；有凝血病時給血漿 10–20 mL/kg</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 晶體液的選擇（30–31）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/10-30-slide.jpg" alt="投影片 30：等張晶體：LRS、P-148、0.9% NaCl（Smart 2018 Inflammation）" loading="lazy">
+          <figcaption>📄 (30) 等張晶體：LRS、P-148、0.9% NaCl（Smart 2018 Inflammation）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-31-slide.jpg" alt="投影片 31：高張晶體：體外 vs 體內的凝血影響" loading="lazy">
+          <figcaption>📄 (31) 高張晶體：體外 vs 體內的凝血影響</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li><strong>LRS／Hartmann's</strong>：含緩衝劑（乳酸）限制酸中毒，含少量鈣。</li>
+          <li><strong>Plasma-Lyte 148／Normosol-R</strong>：緩衝劑（醋酸）、不含鈣；醋酸可能有血管擴張作用？</li>
+          <li><strong>0.9% 生理食鹽水</strong>：會加重酸中毒，<strong>沒有任何優點</strong>。</li>
+          <li>第 30 張右圖（講者團隊的犬出血性休克模型，Smart 2018）：大量晶體液會增加<strong>醣萼（glycocalyx）脫落與發炎</strong>。圖中是各組復甦後的離子鈣：<strong>新鮮全血（FWB，含檸檬酸抗凝劑）</strong>與 <strong>P148（80 mL/kg）</strong>組在 20 分鐘降到約 0.8–0.9 mmol/L，HES、明膠組則下降較少。</li>
+          <li><strong>高張食鹽水</strong>：體外試驗的低凝效果大於單純稀釋，但<strong>體內沒有證據</strong>顯示比稀釋更糟。酸鹼方面可以做「緩衝化的高張液」：高張食鹽水 + 碳酸氫鈉（前提是能增加通氣排掉 CO₂），或高張醋酸鈉／乳酸鈉。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 合成膠體（32–34）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/10-32-slide.jpg" alt="投影片 32：HES vs 晶體液對自發性腹腔出血犬凝血的影響（Iannucci）" loading="lazy">
+          <figcaption>📄 (32) HES vs 晶體液對自發性腹腔出血犬凝血的影響（Iannucci）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-33-slide.jpg" alt="投影片 33：Boyd 2021 Front Vet Sci：輸液與凝血系統" loading="lazy">
+          <figcaption>📄 (33) Boyd 2021 Front Vet Sci：輸液與凝血系統</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-34-slide.jpg" alt="投影片 34：回到流程" loading="lazy">
+          <figcaption>📄 (34) 回到流程</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>第 32 張：6% HES 130/0.4 和晶體液比較的隨機試驗，<strong>HES 組凝血時間延長、血塊強度（MCF）下降</strong>較明顯。</li>
+          <li>結論：出血病患<strong>避免合成膠體</strong>，需要膠體效果時用血液製品（詳見 <a href="ecc-fluid-types.html">12 輸液種類</a>）。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 第 33 張是講者自己寫的回顧文（QR code 可下載），整理各種輸液對凝血的影響，值得一讀。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🚨</div>
+      <h2>嚴重未控制出血與大量輸血</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 處置原則（35–36）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/10-35-slide.jpg" alt="投影片 35：Severe Uncontrolled Hemorrhage（急診室現場）" loading="lazy">
+          <figcaption>📄 (35) Severe Uncontrolled Hemorrhage（急診室現場）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-36-slide.jpg" alt="投影片 36：Severe Uncontrolled 處置" loading="lazy">
+          <figcaption>📄 (36) Severe Uncontrolled 處置</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>儘可能<strong>確實止血</strong>，同時啟動<strong>大量輸血流程</strong>：PRBC 推注；血漿 ± 血小板依<strong>固定比例或凝血檢測</strong>給；監測並處理<strong>低體溫、酸中毒、低血鈣</strong>；考慮輔助治療。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 大量輸血（37–40）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/10-37-slide.jpg" alt="投影片 37：Massive transfusion 的概念與選項" loading="lazy">
+          <figcaption>📄 (37) Massive transfusion 的概念與選項</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-38-slide.jpg" alt="投影片 38：人醫範例：Fiona Stanley Hospital 大量輸血流程與 ROTEM 演算法" loading="lazy">
+          <figcaption>📄 (38) 人醫範例：Fiona Stanley Hospital 大量輸血流程與 ROTEM 演算法</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-39-slide.jpg" alt="投影片 39：大量輸血與凝血：1:1(:1) 或依黏彈性檢測" loading="lazy">
+          <figcaption>📄 (39) 大量輸血與凝血：1:1(:1) 或依黏彈性檢測</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-40-slide.jpg" alt="投影片 40：人醫證據：PROMMTT（Holcomb 2013）與 PROPPR（Holcomb 2015）" loading="lazy">
+          <figcaption>📄 (40) 人醫證據：PROMMTT（Holcomb 2013）與 PROPPR（Holcomb 2015）</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>不用拘泥定義：概念是<strong>用推注的血液製品同時治療低血容、補血紅素、補止血能力</strong>。</li>
+          <li>選項：<strong>PRBC + 血漿 ± 血小板</strong>、<strong>全血</strong>、<strong>自體輸血 + 血漿</strong>。</li>
+          <li>比例：最佳（有限）證據是 <strong>PRBC:血漿(:血小板) = 1:1(:1)</strong>，或依連續的黏彈性檢測給血漿 ± 血小板。</li>
+          <li>人醫 PROMMTT（905 位，≥ 3 次輸血）：血漿:RBC、血小板:RBC 比例越高，<strong>6 小時死亡率越低</strong>，24 小時沒差。PROPPR（680 位）：1:1:1 比 1:1:2 <strong>失血致死較少（9.2% vs 14.6%）、止血成功較多（86% vs 78%）</strong>，但 24 小時與 30 天死亡率、併發症沒差。結論：出血當下就用 1:1:1，止血後改為依檢驗指導。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 沒有大血庫：自體輸血（41–43）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/10-41-slide.jpg" alt="投影片 41：Higgs 2015 JVECC：犬胸腹腔出血自體輸血 25 例" loading="lazy">
+          <figcaption>📄 (41) Higgs 2015 JVECC：犬胸腹腔出血自體輸血 25 例</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-42-slide.jpg" alt="投影片 42：自體輸血的方法" loading="lazy">
+          <figcaption>📄 (42) 自體輸血的方法</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-43-slide.jpg" alt="投影片 43：自體輸血的優缺點" loading="lazy">
+          <figcaption>📄 (43) 自體輸血的優缺點</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>從體腔<strong>無菌收集</strong>到無菌袋或針筒。<strong>不一定需要抗凝</strong>：體腔內的血已經「去纖維蛋白」；部分系統（cell-saver）會加抗凝劑。輸回前要經過<strong>血液過濾器</strong>（輸液套管內建濾網或 Hemonate 濾器）。</li>
+          <li>方法由高科技到低科技：cell-saver（洗滌紅血球後回輸，會移除凝血因子與血小板）→ 抽吸收集系統 → 手動收集；可加白血球過濾器。</li>
+          <li>優點：<strong>沒有血型不合</strong>、輸血反應風險低、比捐血犬的血更快取得、反正要抽（胸腔穿刺解除呼吸困難、手術時吸除腹腔血）、便宜、節省資源。</li>
+          <li>缺點：已去纖維蛋白，<strong>不提供凝血因子</strong>；血小板數量與功能可能受損；<strong>可能含腫瘤細胞或細菌</strong>；比從冰箱拿血慢。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 腫瘤出血（如疑似脾臟血管肉瘤）理論上有散播風險，但在致命出血時，救命優先；這是常見的臨床取捨。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 沒有大血庫：冷藏液態血漿（44–51）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/10-44-slide.jpg" alt="投影片 44：FFP 解凍要時間（溫水浴約 35 分鐘）" loading="lazy">
+          <figcaption>📄 (44) FFP 解凍要時間（溫水浴約 35 分鐘）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-45-slide.jpg" alt="投影片 45：冷藏犬血漿的體外凝血效果（Grochowsky）" loading="lazy">
+          <figcaption>📄 (45) 冷藏犬血漿的體外凝血效果（Grochowsky）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-46-slide.jpg" alt="投影片 46：從未冷凍的冷藏血漿：效期 32 天" loading="lazy">
+          <figcaption>📄 (46) 從未冷凍的冷藏血漿：效期 32 天</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-47-slide.jpg" alt="投影片 47：解凍 FFP 再冷藏：效期 28 天" loading="lazy">
+          <figcaption>📄 (47) 解凍 FFP 再冷藏：效期 28 天</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-48-slide.jpg" alt="投影片 48：四種犬血漿冷藏後的止血穩定性（Edwards 2020 AJVR）：凝血因子" loading="lazy">
+          <figcaption>📄 (48) 四種犬血漿冷藏後的止血穩定性（Edwards 2020 AJVR）：凝血因子</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-49-slide.jpg" alt="投影片 49：同上：TEG 參數" loading="lazy">
+          <figcaption>📄 (49) 同上：TEG 參數</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-50-slide.jpg" alt="投影片 50：講者團隊的臨床資料（166 隻犬）" loading="lazy">
+          <figcaption>📄 (50) 講者團隊的臨床資料（166 隻犬）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-51-slide.jpg" alt="投影片 51：實務建議" loading="lazy">
+          <figcaption>📄 (51) 實務建議</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>問題：FFP 解凍要時間（溫水浴約 35 分鐘），專用解凍機快但貴。解法是<strong>冰箱裡隨時放一袋已解凍的液態血漿</strong>。</li>
+          <li>第 46–47 張（講者團隊研究，42 天）：<strong>從未冷凍的冷藏血漿</strong>效期 32 天；<strong>解凍後再冷藏的 FFP</strong>效期 28 天，大部分凝血因子維持在 50% 以上（第 VIII 因子下降最多）。</li>
+          <li>臨床資料（n = 166，論文準備中）：最常見的輸注原因是<strong>抗凝血殺鼠劑中毒（22.3%）</strong>、創傷（13.2%）、自發性腹腔出血（13.2%）；存活 60.8%。屬描述性研究，但結果符合預期。</li>
+          <li>實務建議：用 <strong>28 天效期</strong>；先評估用量——<strong>每 28 天至少用掉一袋 FFP</strong> 才划算；所有需要血漿的病患<strong>先用冷藏的那袋</strong>；訂流程：冷藏的一用掉就<strong>立刻解凍一袋補上</strong>，並<strong>馬上寫上新效期</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 沒有大血庫：冷藏全血（52–56）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/10-52-slide.jpg" alt="投影片 52：Stored Whole Blood" loading="lazy">
+          <figcaption>📄 (52) Stored Whole Blood</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-53-slide.jpg" alt="投影片 53：人醫：冷藏全血的止血能力（Pidcoke 2013、Strandenes 2015）" loading="lazy">
+          <figcaption>📄 (53) 人醫：冷藏全血的止血能力（Pidcoke 2013、Strandenes 2015）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-54-slide.jpg" alt="投影片 54：犬冷藏全血止血能力隨時間變化（Edwards）" loading="lazy">
+          <figcaption>📄 (54) 犬冷藏全血止血能力隨時間變化（Edwards）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-55-slide.jpg" alt="投影片 55：灰獵犬與非灰獵犬冷藏全血 42 天（Cooper，講者團隊）" loading="lazy">
+          <figcaption>📄 (55) 灰獵犬與非灰獵犬冷藏全血 42 天（Cooper，講者團隊）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-56-slide.jpg" alt="投影片 56：需要臨床研究（全血回溯病例系列進行中）" loading="lazy">
+          <figcaption>📄 (56) 需要臨床研究（全血回溯病例系列進行中）</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li><strong>新鮮全血</strong>是出血性休克的理想製品，但要在短時間內取得足夠的量通常不實際。很多診所能採全血但無法分離成分。</li>
+          <li>傳統觀念認為冷藏全血很快就失去止血能力，但研究顯示：冷藏全血的血塊強度與功能<strong>逐漸下降，但前 1–2 週仍保留相當的止血能力</strong>；第 55 張顯示灰獵犬的血比非灰獵犬保留得差一些。</li>
+          <li>下一步需要臨床研究（講者正在做全血的回溯病例系列）。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 對沒有成分分離設備的診所，這代表「採了全血冷藏起來」對出血病患仍有價值，不只是紅血球。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 輸血併發症（57）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/10-57-slide.jpg" alt="投影片 57：輸血反應分類" loading="lazy">
+          <figcaption>📄 (57) 輸血反應分類</figcaption>
+        </figure>
+        </div>
+        <div class="tbl-wrap"><table>
+        <tr><th></th><th>免疫性</th><th>非免疫性</th></tr>
+        <tr><td><strong>溶血性</strong></td><td>急性、延遲性；貓血型不合；新生兒溶血；血型或交叉配對錯誤</td><td>捐血端溶血（保存或輸注不當）；受血者本身因素（創傷、腫瘤）；體外循環（透析、心肺機）</td></tr>
+        <tr><td><strong>非溶血性</strong></td><td>第一型過敏；輸血相關急性肺損傷（TRALI）；輸血相關免疫調節（TRIM）；發燒性非溶血反應</td><td>輸血相關循環過載（TACO）；<strong>低血鈣、低血鎂（檸檬酸毒性，尤其大量輸血）</strong>；高血氨；傳染病、細菌污染</td></tr>
+        </table></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 低血鈣（58–59）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/10-58-slide.jpg" alt="投影片 58：Calcium：鈣在血管張力與凝血中的角色" loading="lazy">
+          <figcaption>📄 (58) Calcium：鈣在血管張力與凝血中的角色</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-59-slide.jpg" alt="投影片 59：歐洲創傷大出血指引第 6 版（Rossaint 2023）：建議 31" loading="lazy">
+          <figcaption>📄 (59) 歐洲創傷大出血指引第 6 版（Rossaint 2023）：建議 31</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>第 58 張左邊兩張圖說明鈣的兩個角色：① 平滑肌與心肌收縮（鈣–calmodulin–MLCK），影響<strong>血管張力與心收縮力</strong>；② 凝血瀑布中多個步驟的<strong>輔因子</strong>。</li>
+          <li>大量輸血時，血品裡的<strong>檸檬酸</strong>會螯合鈣；大量晶體液稀釋也會讓離子鈣下降（右圖同第 30 張：全血與 P148 組的離子鈣在 20 分鐘最低）。</li>
+          <li>人醫指引建議 31：重大創傷後、尤其大量輸血期間，要<strong>監測並維持離子鈣在正常範圍</strong>，低血鈣用<strong>氯化鈣</strong>矯正（1C）。</li>
+          <li>第 59 張的菱形：致死三角已經擴充成「<strong>致死菱形</strong>」——低體溫、酸中毒、凝血病，再加上<strong>低血鈣</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 輔助治療（60–61）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/10-60-slide.jpg" alt="投影片 60：Adjuncts：講者的流程" loading="lazy">
+          <figcaption>📄 (60) Adjuncts：講者的流程</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-61-slide.jpg" alt="投影片 61：TXA 可阻止出血性休克犬的過度纖溶（Mays，JAVMA 隨機對照試驗）" loading="lazy">
+          <figcaption>📄 (61) TXA 可阻止出血性休克犬的過度纖溶（Mays，JAVMA 隨機對照試驗）</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>講者的流程：<strong>Maropitant 1 mg/kg IV</strong>、<strong>TXA（tranexamic acid）20 mg/kg IV</strong>；TXA 也可以<strong>局部使用</strong>。</li>
+          <li>若有<strong>血小板功能異常</strong>：第 60 張右下是 desmopressin（DDAVP）。</li>
+          <li>第 61 張：隨機對照試驗中，TXA 組在 8 與 12 小時時的 tPA 誘發血塊溶解比例（LY30）明顯低於生理食鹽水組——<strong>TXA 能阻止過度纖溶</strong>。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> TXA 在犬的副作用主要是嘔吐（尤其快速 IV），這可能也是講者同時給 maropitant 的原因（❔ 待錄音確認）。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 確實止血（62–64）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/10-62-slide.jpg" alt="投影片 62：Definitive Control of Hemorrhage" loading="lazy">
+          <figcaption>📄 (62) Definitive Control of Hemorrhage</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-63-slide.jpg" alt="投影片 63：回到開場病例" loading="lazy">
+          <figcaption>📄 (63) 回到開場病例</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/10-64-slide.jpg" alt="投影片 64：開場病例的處置原則" loading="lazy">
+          <figcaption>📄 (64) 開場病例的處置原則</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>這些病患<strong>是可以麻醉的</strong>：麻醉中持續積極復甦，用平衡麻醉（誘導與維持劑量都降到最低）。</li>
+          <li>手術或介入止血？<strong>速度與安全最重要</strong>，也取決於操作者的技術與經驗。</li>
+          <li>第 63–64 張回到開場病例，套用嚴重未控制出血的處置框架。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 結尾（65）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/10-65-slide.jpg" alt="投影片 65：Thank you（c.boyd@murdoch.edu.au）" loading="lazy">
+          <figcaption>📄 (65) Thank you（c.boyd@murdoch.edu.au）</figcaption>
+        </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🎤</div>
+      <h2>課堂補充（待錄音）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+        <div class="alert alert-info"><span class="alert-icon">⏳</span><span>錄音或現場筆記到了之後，把開場病例的經過、Q&amp;A 補在這裡，並修正和 💡 不一致的地方。</span></div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="ecc-evidence-based-medicine.html">09 實證醫學</a>｜下一場：<a href="ecc-pocus.html">11 急診（三）：POCUS</a></p>
+    <a href="index.html">回到系列列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+<script src="gate.js?v=2"></script>
+</body>
+</html>

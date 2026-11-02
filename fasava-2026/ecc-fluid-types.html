@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>急診（四）：輸液種類與適應症｜2026 FASAVA 研討會筆記</title>
+<meta name="robots" content="noindex, nofollow">
+<style>html{visibility:hidden}</style>
+<script>
+(function(){ if (sessionStorage.getItem('fasavaGateOK') === '1') { document.documentElement.style.visibility = 'visible'; } })();
+</script>
+<style>
+  :root {
+    --primary: #BE185D;
+    --primary-light: #FCE7F3;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2A0B1A;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E9B6CD; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A1730;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E9B6CD; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E9B6CD;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A1730;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #A86A88;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #831843 0%, #DB2777 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2A0B1A; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A1730; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .src-doc { background: #e0f2fe; color: #075985; }
+  .pending { border: 2px dashed #F5D3E3; border-radius: 10px; padding: 16px 18px; color: var(--text-muted); font-size: 13.5px; background: #fffbfd; }
+<style>
+  .fig img { border-color: #F5D3E3; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  @media (max-width: 900px) { .vs { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← FASAVA 筆記</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 FASAVA 研討會筆記</a>
+  <div class="logo">
+    <h2>12｜急診（四）<br>輸液種類與適應症</h2>
+    <p>Corrin Boyd｜2026-11-02｜講義版</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">場次資訊與總論</a>
+    <div class="nav-section">晶體</div>
+    <a href="#s1">1. 等張晶體</a>
+    <div class="nav-section">膠體</div>
+    <a href="#s2">2. 膠體與 Starling</a>
+    <div class="nav-section">添加物</div>
+    <a href="#s3">3. 添加物</a>
+    <a href="#s4">4. 課堂補充（待錄音）</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>急診（四）：輸液種類與適應症</h1>
+    <p>原標題：Fluid Therapy — Types and Indications</p>
+    <p>主講：Corrin Boyd BVMS, PhD, DACVECC（Murdoch University 急診重症資深講師，西澳伯斯）｜FASAVA 2026｜場次 12</p>
+    <div class="tags">
+      <span class="tag">等張晶體</span>
+      <span class="tag">0.9% NaCl 與高氯</span>
+      <span class="tag">高張食鹽水</span>
+      <span class="tag">D5W 與高血鈉</span>
+      <span class="tag">Revised Starling</span>
+      <span class="tag">醣萼</span>
+      <span class="tag">HES</span>
+      <span class="tag">明膠</span>
+      <span class="tag">白蛋白</span>
+      <span class="tag">血漿</span>
+      <span class="tag">葡萄糖</span>
+      <span class="tag">KCl</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 講者提供的投影片講義（69 張全部依序放入，括號內為投影片編號）
+    <span class="src src-add">💡 補充</span> 整理者的解說與補充（教科書／原始文獻）；❔ 表示推測，待錄音確認
+    <br><span class="muted">目前只有講義，<strong>還沒有錄音</strong>。病例的「答案」除了講義寫出的部分，其餘以 💡 補充。Boyd 醫師四場：<a href="ecc-evidence-based-medicine.html">09 實證醫學</a>、<a href="ecc-trauma-hemorrhagic-shock.html">10 創傷與出血性休克</a>、<a href="ecc-pocus.html">11 POCUS</a>、12 輸液種類。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 本場重點</h3>
+    <ul>
+      <li>輸液的四大適應症：<strong>低血容性休克、脫水、維持需求、異常持續流失</strong>；同時可矯正酸鹼與電解質</li>
+      <li><strong>平衡等張晶體（LRS）是大多數狀況的首選</strong>；0.9% NaCl 會造成高氯性代謝性酸中毒，<strong>只有代謝性鹼中毒</strong>（如上消化道阻塞）才是好適應症</li>
+      <li>等張晶體 IV 後 30–60 分鐘分布到整個細胞外液，<strong>只有約 1/4 留在血管內</strong></li>
+      <li><strong>高張食鹽水 7%：3–5 mL/kg、5 分鐘</strong>，用於快速擴充血容（大型犬）、腦水腫（尤其創傷合併低血容）；之後要接等張晶體；不能用於脫水或維持</li>
+      <li><strong>D5W 不是治療低血糖用的</strong>，是補「自由水」治療高血鈉；輕度可用 3.7 mL/kg/h</li>
+      <li>依 Revised Starling 原則，膠體的優勢比想像中小（人醫晶體:膠體約 1–1.5:1）；<strong>合成膠體有凝血與 AKI 風險</strong>：只在確定低血容、晶體反應短暫、低白蛋白時考慮，出血病患改用血液製品</li>
+      <li><strong>KCl 不可超過 0.5 mEq/kg/h、絕不推注</strong>；50% 葡萄糖推注要至少 1:1 稀釋</li>
+    </ul>
+  </div>
+
+  <!-- ══ S0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🎯</div>
+      <h2>場次資訊與輸液總論</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 開場與學習目標（1–4）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/12-01-slide.jpg" alt="投影片 1：Fluid Therapy: Types and Indications" loading="lazy">
+          <figcaption>📄 (1) Fluid Therapy: Types and Indications</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-02-slide.jpg" alt="投影片 2：Learning outcomes" loading="lazy">
+          <figcaption>📄 (2) Learning outcomes</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-03-slide.jpg" alt="投影片 3：2024 AAHA 犬貓輸液指引" loading="lazy">
+          <figcaption>📄 (3) 2024 AAHA 犬貓輸液指引</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-04-slide.jpg" alt="投影片 4：AAHA 指引重點（QR code）" loading="lazy">
+          <figcaption>📄 (4) AAHA 指引重點（QR code）</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>四個學習目標：① <strong>低張晶體</strong>（0.45% NaCl、D5W）與高血鈉的自由水缺乏；② <strong>高張晶體</strong>（7.5% NaCl）與高滲透壓治療（創傷性腦損傷降顱內壓）；③ <strong>合成膠體</strong>的特性，以及 Revised Starling 原則和傷害證據如何改變我們的看法；④ <strong>添加物</strong>（50% 葡萄糖、鉀、碳酸氫鈉）的角色。</li>
+          <li>2024 AAHA 指引的核心：<strong>輸液就是藥物</strong>，要有處方、目標與監測；<strong>一個輸液速率不適合所有病患</strong>（例如「兩倍維持量」）；<strong>小心液體過載</strong>；不要設定好就不管，要定期評估。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> AAHA 指引免費下載（aaha.org/fluid-therapy），有犬貓輸液的流程與計算，很適合當院內 SOP。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 四大適應症與分類（5–7）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/12-05-slide.jpg" alt="投影片 5：IV 輸液的四大適應症" loading="lazy">
+          <figcaption>📄 (5) IV 輸液的四大適應症</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-06-slide.jpg" alt="投影片 6：該選哪一袋？" loading="lazy">
+          <figcaption>📄 (6) 該選哪一袋？</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-07-slide.jpg" alt="投影片 7：輸液分類" loading="lazy">
+          <figcaption>📄 (7) 輸液分類</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>四大適應症：① <strong>治療低血容性休克</strong>；② <strong>治療脫水</strong>（恢復組織間液）；③ <strong>提供維持需求</strong>；④ <strong>補充異常持續流失</strong>。同時可矯正酸鹼與電解質異常。</li>
+          <li>分類：<strong>晶體</strong>（等張、高張、低張）、<strong>膠體</strong>（合成、天然）、<strong>添加物</strong>（碳酸氫鈉、葡萄糖、鉀）。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">💧</div>
+      <h2>等張晶體</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 分布：只有 1/4 留在血管內（8–11）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/12-08-slide.jpg" alt="投影片 8：晶體 = 水 + 電解質" loading="lazy">
+          <figcaption>📄 (8) 晶體 = 水 + 電解質</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-09-slide.jpg" alt="投影片 9：體液分布（DiBartola Ch1）" loading="lazy">
+          <figcaption>📄 (9) 體液分布（DiBartola Ch1）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-10-slide.jpg" alt="投影片 10：等張晶體的血容擴充效果（Silverstein 2003 JVECC）" loading="lazy">
+          <figcaption>📄 (10) 等張晶體的血容擴充效果（Silverstein 2003 JVECC）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-11-slide.jpg" alt="投影片 11：等張晶體的用途" loading="lazy">
+          <figcaption>📄 (11) 等張晶體的用途</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>晶體只有水和電解質（鹽），和細胞外液等張（約 300 mOsm/L）：IV 給予後先在血管內，<strong>30–60 分鐘內重新分布到整個細胞外液</strong>，不影響細胞內液。</li>
+          <li>體液比例（第 9 張）：總體水 = 體重 60%；細胞內液 40%、細胞外液 20%（組織間液 15%、血漿 5%）。例如 10 kg 犬：總體水 6 L，細胞內 4 L，組織間 1.5 L，血漿 0.5 L。</li>
+          <li>所以給低血容病患等張晶體，<strong>約 1/4 留在血管內</strong>（血漿 5 / 細胞外液 20）。適合擴充或維持細胞外液：低血容、脫水、維持、異常流失。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 平衡晶體：LRS 與 Plasma-Lyte（12–15）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/12-12-slide.jpg" alt="投影片 12：Balanced Isotonic Crystalloids：Gamblegram" loading="lazy">
+          <figcaption>📄 (12) Balanced Isotonic Crystalloids：Gamblegram</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-13-slide.jpg" alt="投影片 13：Hartmann&#x27;s／LRS" loading="lazy">
+          <figcaption>📄 (13) Hartmann's／LRS</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-14-slide.jpg" alt="投影片 14：Plasma-Lyte 148／Normosol-R" loading="lazy">
+          <figcaption>📄 (14) Plasma-Lyte 148／Normosol-R</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-15-slide.jpg" alt="投影片 15：等張碳酸氫鈉" loading="lazy">
+          <figcaption>📄 (15) 等張碳酸氫鈉</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>「平衡」= 電解質組成接近正常細胞外液（第 12 張 Gamblegram：Na⁺ 145、Cl⁻ 110、HCO₃⁻ 21…）。</li>
+          <li><strong>LRS／Hartmann's</strong>：其實是<strong>輕度低張</strong>，但接近到可以叫等張；陽離子 Na、K、Ca，陰離子 Cl 和<strong>乳酸（緩衝劑）</strong>。<strong>大多數適應症的首選</strong>。</li>
+          <li><strong>Plasma-Lyte 148／Normosol-R</strong>：滲透壓更接近細胞外液（真正等張）；陽離子 Na、K、<strong>Mg</strong>，陰離子 Cl、<strong>醋酸</strong>（緩衝）、葡萄糖酸（緩衝？）；比 LRS 貴。適應症：補少量鎂；不能代謝乳酸時（醋酸代謝較快較有效）；<strong>要避免任何自由水時（如創傷性腦損傷）</strong>。風險：醋酸可能造成血管擴張／促發炎？</li>
+          <li><strong>等張碳酸氫鈉</strong>：用於對平衡晶體沒反應的<strong>嚴重高氯性代謝性酸中毒</strong>。把濃縮 NaHCO₃ 加到滅菌注射用水，做成和病患等張（例如 Na 145、HCO₃ 145 mmol/L）；取代維持晶體；計算 HCO₃⁻ 缺乏量，<strong>每給 25–50% 就複驗</strong>；<strong>每天現配</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 0.9% NaCl 與氯（16–18）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/12-16-slide.jpg" alt="投影片 16：0.9% Sodium Chloride" loading="lazy">
+          <figcaption>📄 (16) 0.9% Sodium Chloride</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-17-slide.jpg" alt="投影片 17：氯與 AKI：管球回饋（Rein &amp; Coca 2019）" loading="lazy">
+          <figcaption>📄 (17) 氯與 AKI：管球回饋（Rein & Coca 2019）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-18-slide.jpg" alt="投影片 18：平衡晶體 vs 生理食鹽水（SMART 試驗，NEJM 2018）" loading="lazy">
+          <figcaption>📄 (18) 平衡晶體 vs 生理食鹽水（SMART 試驗，NEJM 2018）</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>0.9% NaCl 是等張但<strong>不平衡、無緩衝</strong>，氯很高（154 mmol/L）→ <strong>高氯性代謝性酸中毒</strong>，可能導致腎損傷。</li>
+          <li>適應症：<strong>代謝性鹼中毒</strong>；其他大多數理由都不成立。</li>
+          <li>第 17 張機制：低灌流時，緻密斑感受到的氯增加 → <strong>入球小動脈收縮</strong>（管球回饋）→ GFR 下降。</li>
+          <li>第 18 張（人醫 SMART 試驗，約 15,800 位重症成人）：平衡晶體組 30 天內<strong>重大腎臟不良事件較少</strong>（14.3% vs 15.4%，OR 0.90）。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 病例 Wilson：吃了襪子的拉布拉多貴賓（19–23）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/12-19-slide.jpg" alt="投影片 19：Wilson：1 歲公（已結紮）Labradoodle，嘔吐 24 小時" loading="lazy">
+          <figcaption>📄 (19) Wilson：1 歲公（已結紮）Labradoodle，嘔吐 24 小時</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-20-slide.jpg" alt="投影片 20：PCV/TS 與靜脈血氣" loading="lazy">
+          <figcaption>📄 (20) PCV/TS 與靜脈血氣</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-21-slide.jpg" alt="投影片 21：腹部 X 光" loading="lazy">
+          <figcaption>📄 (21) 腹部 X 光</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-22-slide.jpg" alt="投影片 22：小腸襪子異物、機械性腸阻塞" loading="lazy">
+          <figcaption>📄 (22) 小腸襪子異物、機械性腸阻塞</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-23-slide.jpg" alt="投影片 23：Wilson 的治療" loading="lazy">
+          <figcaption>📄 (23) Wilson 的治療</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>一週前吃襪子，當時催吐成功；昨天早上吐出麥片棒包裝後持續嘔吐 10–20 次。理學檢查：<strong>脫水 10% 以上</strong>、中度血管收縮性休克、腹部緊繃、<strong>大量流涎</strong>。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+        <tr><th>項目</th><th>結果</th><th>參考值</th></tr>
+        <tr><td>PCV / TSP</td><td>64% / 92 g/L</td><td>37–55 / 60–80</td></tr>
+        <tr><td>Na / K / Cl</td><td>136.2 / <strong>2.9</strong> / <strong>95</strong></td><td>140–150 / 3.9–4.9 / 109–120</td></tr>
+        <tr><td>Lactate</td><td>5.4</td><td>0.5–2.0</td></tr>
+        <tr><td>pH / pCO₂ / HCO₃⁻ / BE</td><td><strong>7.517</strong> / 35.9 / <strong>29.4</strong> / +6.3</td><td>7.34–7.38 / 40–46 / 22–24 / −2 to 2</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li>評估：血液濃縮（脫水）、<strong>低氯、低鉀性代謝性鹼中毒</strong>、高乳酸（低灌流）。X 光：小腸內有襪子異物、腸道氣體擴張 → 機械性腸阻塞。</li>
+          <li>治療：<strong>0.9% NaCl</strong> 復甦休克並快速補水；<strong>積極補鉀：KCl 0.5 mmol/kg/h CRI 直到 K &gt; 3.5</strong>（KCl 也能幫忙補氯）；密切監測電解質；剖腹探查、腸切開取出襪子。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 上消化道（胃、近端小腸）阻塞時大量吐出胃酸（HCl），流失氯和氫離子 → 低氯性代謝性鹼中毒。腎臟要排出 HCO₃⁻ 需要足夠的氯，所以這是 0.9% NaCl 少數真正的好適應症：補氯才能矯正鹼中毒。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 高張晶體與甘露醇（24–27）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/12-24-slide.jpg" alt="投影片 24：Hypertonic Crystalloids" loading="lazy">
+          <figcaption>📄 (24) Hypertonic Crystalloids</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-25-slide.jpg" alt="投影片 25：劑量、適應症與風險" loading="lazy">
+          <figcaption>📄 (25) 劑量、適應症與風險</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-26-slide.jpg" alt="投影片 26：高張食鹽水與氯：低氯高張液研究（ACETatE、Bourdeaux 2011）" loading="lazy">
+          <figcaption>📄 (26) 高張食鹽水與氯：低氯高張液研究（ACETatE、Bourdeaux 2011）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-27-slide.jpg" alt="投影片 27：Mannitol" loading="lazy">
+          <figcaption>📄 (27) Mannitol</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>主要是高張食鹽水（3%、7–7.5%、23.4%）；未稀釋的 NaHCO₃ 其實也是高張晶體。</li>
+          <li>靠滲透壓讓液體移動：<strong>組織間 → 血管內</strong>（立即但短暫），<strong>細胞內 → 細胞外</strong>（較慢但較持久）。</li>
+          <li><strong>7% 劑量：3–5 mL/kg、5 分鐘以上</strong>。</li>
+          <li>適應症：<strong>快速擴充血容</strong>（尤其<strong>非常大型的動物</strong>），之後<strong>一定要接其他輸液</strong>（如平衡等張晶體）維持效果；<strong>治療腦水腫</strong>，特別是同時需要擴充血容時（例如創傷）。</li>
+          <li><strong>不能</strong>用於脫水、維持或持續流失。風險：高血鈉、高血氯；可能影響凝血（臨床意義不明）。</li>
+          <li>第 26 張：為了避免高氯，人醫在研究<strong>低氯的高張液</strong>（高張醋酸鈉、8.4% 碳酸氫鈉）來降顱內壓。</li>
+          <li><strong>甘露醇</strong>也是治療腦水腫的高滲藥物，但通常不歸在輸液：它是<strong>滲透性利尿劑</strong>，擴充血容的時間很短，之後反而<strong>降低血容</strong>。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 這就是為什麼「創傷性腦損傷 + 低血容」偏好高張食鹽水而不是甘露醇：腦部灌注壓 = 平均動脈壓 − 顱內壓，低血壓本身就會傷腦。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 低張晶體與 D5W（28–29）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/12-28-slide.jpg" alt="投影片 28：Hypotonic Crystalloids（維持晶體）" loading="lazy">
+          <figcaption>📄 (28) Hypotonic Crystalloids（維持晶體）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-29-slide.jpg" alt="投影片 29：5% 葡萄糖（D5W）" loading="lazy">
+          <figcaption>📄 (29) 5% 葡萄糖（D5W）</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>低張晶體電解質濃度比細胞外液低，也<strong>含葡萄糖</strong>：純水不能 IV（滲透壓造成紅血球破裂），葡萄糖進入細胞後留下水，所以等於給<strong>自由水</strong>。</li>
+          <li><strong>不要用來治療低血糖</strong>（5% 葡萄糖含糖量太低）。</li>
+          <li>用於需要自由水時；可用於<strong>長期維持</strong>（反映正常飲食的鈉與水攝取）；風險是<strong>低血鈉</strong>。例子：D5W、0.45% NaCl + 2.5% 葡萄糖、Plasma-Lyte 56。</li>
+          <li><strong>D5W</strong> 用於治療<strong>高血鈉（自由水缺乏）</strong>；精確速率的計算很複雜（見重症教科書），<strong>輕度病例可用 3.7 mL/kg/h</strong>。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 3.7 mL/kg/h 的由來：以總體水 60% 體重計算，這個速率的自由水大約讓血鈉每小時下降 1 mmol/L。急性（&lt; 24–48 小時）高血鈉可以這樣矯正；慢性高血鈉要更慢（≤ 0.5 mmol/L/h），以免腦水腫。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 病例 Princess：CKD 貓的高血鈉（30–32）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/12-30-slide.jpg" alt="投影片 30：Princess：12 歲母（已結紮）DSH，已知 CKD IRIS 2 期" loading="lazy">
+          <figcaption>📄 (30) Princess：12 歲母（已結紮）DSH，已知 CKD IRIS 2 期</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-31-slide.jpg" alt="投影片 31：第 2 天：發生了什麼事？" loading="lazy">
+          <figcaption>📄 (31) 第 2 天：發生了什麼事？</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-32-slide.jpg" alt="投影片 32：答案：腎臟流失自由水" loading="lazy">
+          <figcaption>📄 (32) 答案：腎臟流失自由水</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>急性嘔吐、厭食，脫水 7%，生命徵象正常，腎臟小而不痛。治療：<strong>LRS + KCl 20 mmol/L</strong>，18 小時矯正 7% 脫水並提供維持。</li>
+          <li>第 2 天：夜裡頻尿，理學檢查正常；<strong>Na 150 → 165</strong>、Cl 120 → 133。</li>
+          <li>講義答案：<strong>USG 1.004</strong>，CKD 造成<strong>尿液大量流失自由水</strong>，需要補自由水——<strong>D5W 3.7 mL/kg/h 給 15 小時</strong>，同時<strong>繼續 LRS</strong>。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 為什麼會發生：CKD 貓無法濃縮尿液，LRS（Na 130）比牠尿中的鈉濃度高得多，等於「給鹽、尿水」，血鈉一天升 15。15 小時 × 約 1 mmol/L/h ≈ 把血鈉拉回 150。CKD、尿崩症、利尿期的病患用等張晶體時，要每天追蹤血鈉。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🧪</div>
+      <h2>膠體與 Revised Starling 原則</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 膠體的傳統觀念（33–36）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/12-33-slide.jpg" alt="投影片 33：輸液分類（膠體）" loading="lazy">
+          <figcaption>📄 (33) 輸液分類（膠體）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-34-slide.jpg" alt="投影片 34：膠體 = 水 + 電解質 + 大分子" loading="lazy">
+          <figcaption>📄 (34) 膠體 = 水 + 電解質 + 大分子</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-35-slide.jpg" alt="投影片 35：膠體的血容擴充效果（Silverstein 2003）" loading="lazy">
+          <figcaption>📄 (35) 膠體的血容擴充效果（Silverstein 2003）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-36-slide.jpg" alt="投影片 36：晶體 vs 膠體對微血管壓力的影響" loading="lazy">
+          <figcaption>📄 (36) 晶體 vs 膠體對微血管壓力的影響</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>膠體含有<strong>大分子</strong>，傳統觀念認為它們會<strong>留在血管內</strong>。</li>
+          <li>第 36 張：給晶體會<strong>降低</strong>血漿膠體滲透壓（πc）、提高微血管靜水壓（Pc）→ 液體往外滲；給膠體則提高 πc 和 Pc。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 醣萼與 Revised Starling 原則（37–40）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/12-37-slide.jpg" alt="投影片 37：內皮醣萼：傳統說法還成立嗎？" loading="lazy">
+          <figcaption>📄 (37) 內皮醣萼：傳統說法還成立嗎？</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-38-slide.jpg" alt="投影片 38：Revised Starling Principle：傳統 vs 修正模型" loading="lazy">
+          <figcaption>📄 (38) Revised Starling Principle：傳統 vs 修正模型</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-39-slide.jpg" alt="投影片 39：一般狀況下的濾出曲線（Woodcock 2012 BJA）" loading="lazy">
+          <figcaption>📄 (39) 一般狀況下的濾出曲線（Woodcock 2012 BJA）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-40-slide.jpg" alt="投影片 40：實際結果：晶體:膠體約 1.0–1.5:1" loading="lazy">
+          <figcaption>📄 (40) 實際結果：晶體:膠體約 1.0–1.5:1</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>新觀點：膠體滲透壓對液體外滲的影響<strong>受內皮醣萼調控</strong>；醣萼必須<strong>完整</strong>，膠體滲透壓效果才會發揮；所以<strong>應優先使用晶體</strong>。</li>
+          <li>修正模型（第 38 張 B）：真正決定液體移動的，是<strong>血管內與醣萼下方空間（πsg）</strong>之間的膠體滲透壓差，而不是血管內與組織間液之間。</li>
+          <li>第 39 張：微血管壓力低（10–20 mmHg，例如低血容時）的時候，<strong>不管膠體滲透壓高低，濾出量都接近零</strong>；只有微血管壓力升高後，膠體滲透壓才造成差異。</li>
+          <li>結果：理論上要 3–4 倍晶體才等於膠體效果，但人醫臨床研究的<strong>晶體:膠體比只有 1.0–1.5</strong>，講者團隊的犬研究約 <strong>1.1</strong>。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 實務意義：低血容時晶體留在血管內的比例比「1/4」好；等到血壓恢復（微血管壓力上升）才會大量外滲。這也是「先晶體、看反應」的生理基礎。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 膠體種類與天然膠體（41–49）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/12-41-slide.jpg" alt="投影片 41：Types of Colloid Fluid：合成 vs 天然" loading="lazy">
+          <figcaption>📄 (41) Types of Colloid Fluid：合成 vs 天然</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-42-slide.jpg" alt="投影片 42：犬白蛋白：理想的犬用膠體？" loading="lazy">
+          <figcaption>📄 (42) 犬白蛋白：理想的犬用膠體？</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-43-slide.jpg" alt="投影片 43：物種專一性白蛋白：SAFE 試驗（NEJM 2004）" loading="lazy">
+          <figcaption>📄 (43) 物種專一性白蛋白：SAFE 試驗（NEJM 2004）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-44-slide.jpg" alt="投影片 44：物種專一性白蛋白的效果" loading="lazy">
+          <figcaption>📄 (44) 物種專一性白蛋白的效果</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-45-slide.jpg" alt="投影片 45：人白蛋白：各物種白蛋白相似度（Chruszcz 2013）" loading="lazy">
+          <figcaption>📄 (45) 人白蛋白：各物種白蛋白相似度（Chruszcz 2013）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-46-slide.jpg" alt="投影片 46：人白蛋白在犬的第三型過敏反應（Mazzaferro 2020、Powell 2013）" loading="lazy">
+          <figcaption>📄 (46) 人白蛋白在犬的第三型過敏反應（Mazzaferro 2020、Powell 2013）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-47-slide.jpg" alt="投影片 47：血漿製品" loading="lazy">
+          <figcaption>📄 (47) 血漿製品</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-48-slide.jpg" alt="投影片 48：血漿的好處與壞處" loading="lazy">
+          <figcaption>📄 (48) 血漿的好處與壞處</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-49-slide.jpg" alt="投影片 49：血漿的適應症" loading="lazy">
+          <figcaption>📄 (49) 血漿的適應症</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>合成：<strong>羥乙基澱粉（HES）</strong>最常見（Voluven、Vetstarch）；<strong>明膠</strong>（Gelofusine，部分國家使用增加）；<strong>右旋糖酐</strong>（幾乎只剩丹麥有）。天然：<strong>白蛋白</strong>（犬白蛋白不普及；人白蛋白有過敏風險）；<strong>血漿</strong>也可視為天然膠體。</li>
+          <li><strong>犬白蛋白</strong>：理想但貴、取得有限、只有小型臨床研究。物種專一性白蛋白：可能幫助<strong>修復醣萼</strong>；輕度低凝（比合成膠體輕）；沒有證據會造成 AKI（非過敏機制），甚至有限證據顯示有保護作用。</li>
+          <li>SAFE 試驗（人醫約 7,000 位 ICU 病人）：白蛋白 vs 生理食鹽水 <strong>28 天死亡率沒有差異</strong>（20.9% vs 21.1%）。</li>
+          <li><strong>人白蛋白</strong>：犬白蛋白和人白蛋白相似度約 80%，在犬會引起<strong>第三型（免疫複合體）過敏反應</strong>，延遲發生，可造成 AKI（第 46 張兩篇病例系列）。</li>
+          <li><strong>血漿製品</strong>：新鮮冷凍血漿、冷凍血漿、冷藏液態血漿、冷沉澱後血漿（cryopoor）。</li>
+          <li>好處：<strong>促進凝血</strong>、對出血性休克有益、沒有證據會經滲透機制造成 AKI、可能幫助修復醣萼。壞處：<strong>促發炎</strong>、<strong>拉高膠體滲透壓效率很差</strong>、取得有限。</li>
+          <li>適應症：有支持的——<strong>治療凝血病</strong>、<strong>有出血或凝血病風險的低血容</strong>、低白蛋白血症（？）；支持很少——傳染病（如小病毒）、胰臟炎。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 用血漿補白蛋白很沒效率：要讓白蛋白上升約 0.5 g/dL，大約需要 22 mL/kg 血漿。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 合成膠體：HES（50–55）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/12-50-slide.jpg" alt="投影片 50：Hydroxyethyl Starch" loading="lazy">
+          <figcaption>📄 (50) Hydroxyethyl Starch</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-51-slide.jpg" alt="投影片 51：人醫：HES 增加輸血需求（Cochrane review）" loading="lazy">
+          <figcaption>📄 (51) 人醫：HES 增加輸血需求（Cochrane review）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-52-slide.jpg" alt="投影片 52：犬自發性腹腔出血：HES vs 晶體對凝血的影響（Iannucci）" loading="lazy">
+          <figcaption>📄 (52) 犬自發性腹腔出血：HES vs 晶體對凝血的影響（Iannucci）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-53-slide.jpg" alt="投影片 53：人醫：HES 與 AKI 的關係已確立（Cochrane review）" loading="lazy">
+          <figcaption>📄 (53) 人醫：HES 與 AKI 的關係已確立（Cochrane review）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-54-slide.jpg" alt="投影片 54：獸醫 HES 與 AKI 的研究" loading="lazy">
+          <figcaption>📄 (54) 獸醫 HES 與 AKI 的研究</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-55-slide.jpg" alt="投影片 55：講者的隨機盲化試驗：HES vs Hartmann&#x27;s 的 AKI 生物標記（Boyd 2019 JVECC）" loading="lazy">
+          <figcaption>📄 (55) 講者的隨機盲化試驗：HES vs Hartmann's 的 AKI 生物標記（Boyd 2019 JVECC）</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>HES 是從玉米、馬鈴薯或高粱的支鏈澱粉加上羥乙基；性質不一，新一代分子量和取代度較低，目的是減少副作用。主要顧慮：<strong>凝血病與 AKI</strong>。</li>
+          <li>人醫統合分析：HES 組<strong>輸血需求增加</strong>（RR 1.19）、<strong>需要腎臟替代療法增加</strong>（RR 1.30）。</li>
+          <li>獸醫研究結果不一（第 54 張）：Hayes 2016 犬回溯世代研究——和 AKI／死亡的複合結果相關；Sigrist 2017 犬——<strong>使用時間</strong>和 AKI 相關；Yozova 2016 犬、Sigrist 2017 貓、Yozova 貓——沒有關聯。</li>
+          <li>第 55 張講者的試驗：犬 HES vs Hartmann's，尿液 NGAL、KIM-1、clusterin 等腎損傷標記與 VAKI 分數<strong>沒有差異</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 合成膠體：明膠（56–58）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/12-56-slide.jpg" alt="投影片 56：Gelatin" loading="lazy">
+          <figcaption>📄 (56) Gelatin</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-57-slide.jpg" alt="投影片 57：犬出血性休克模型：明膠加重低凝與血小板功能異常（Boyd）" loading="lazy">
+          <figcaption>📄 (57) 犬出血性休克模型：明膠加重低凝與血小板功能異常（Boyd）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-58-slide.jpg" alt="投影片 58：明膠與 HES 的腎損傷生物標記與組織學（Boyd 2019 JVECC）" loading="lazy">
+          <figcaption>📄 (58) 明膠與 HES 的腎損傷生物標記與組織學（Boyd 2019 JVECC）</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>明膠：牛膠原蛋白經化學修飾（琥珀酸化、尿素連結、氧化聚明膠）；分子量比 HES 小，<strong>自由濾過、幾乎不代謝、半衰期短</strong>。和 HES 一樣，顧慮是凝血病和 AKI。</li>
+          <li>第 57 張：犬出血性休克模型（HES、明膠、新鮮全血 20 mL/kg 或 P148 80 mL/kg），<strong>明膠組的血小板閉合時間明顯延長</strong>——證據比 HES 少，但人醫也有和出血增加相關的報告。</li>
+          <li>第 58 張：明膠組腎小管的組織變化（箭頭）；人醫研究主要在心臟手術，結果不一。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 膠體使用的變化與建議（59–64）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/12-59-slide.jpg" alt="投影片 59：人醫 ICU 膠體使用 2007→2014（Hammond 2017 PLOS ONE）" loading="lazy">
+          <figcaption>📄 (59) 人醫 ICU 膠體使用 2007→2014（Hammond 2017 PLOS ONE）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-60-slide.jpg" alt="投影片 60：獸醫合成膠體使用趨勢調查（Yozova 2017 Front Vet Sci）" loading="lazy">
+          <figcaption>📄 (60) 獸醫合成膠體使用趨勢調查（Yozova 2017 Front Vet Sci）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-61-slide.jpg" alt="投影片 61：英國小動物醫院輸液與血品調查（Beeston，RVC）" loading="lazy">
+          <figcaption>📄 (61) 英國小動物醫院輸液與血品調查（Beeston，RVC）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-62-slide.jpg" alt="投影片 62：膠體的適應症" loading="lazy">
+          <figcaption>📄 (62) 膠體的適應症</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-63-slide.jpg" alt="投影片 63：膠體建議（一）：只在低血容考慮" loading="lazy">
+          <figcaption>📄 (63) 膠體建議（一）：只在低血容考慮</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-64-slide.jpg" alt="投影片 64：膠體建議（二）：如果要用" loading="lazy">
+          <figcaption>📄 (64) 膠體建議（二）：如果要用</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>人醫 2007→2014：膠體使用比例明顯下降，HES 大幅減少，白蛋白增加。獸醫調查也顯示 HES 使用頻率與劑量下降。</li>
+          <li>第 61 張（英國小動物醫院調查）：45% 的醫院有庫存合成膠體，其中，87.1% 是明膠、13% 是 HES——<strong>HES 價格是 4 倍</strong>。</li>
+          <li>適應症：膠體留在血管內，<strong>只對低血容有用</strong>；在某些狀況可能比晶體有效，特別是<strong>膠體滲透壓低（低白蛋白）</strong>造成問題時。不用於脫水、維持或持續流失。通常是<strong>先試過晶體復甦</strong>之後才考慮。</li>
+          <li>建議（仍有爭議，獸醫急診、麻醉、內科<strong>沒有共識</strong>）：<strong>平衡等張晶體是第一線</strong>。考慮膠體的條件：確定真的是<strong>低血容</strong>、已試過合理量的晶體（例如犬 <strong>30 mL/kg</strong>）、晶體<strong>反應短暫</strong>、有理由相信膠體效果較持久（低白蛋白）。</li>
+          <li>如果要用：<strong>有活動性出血或高出血風險不要用合成膠體</strong>（血液製品，包括血漿，可能最好）；<strong>高 AKI 風險要非常小心</strong>；若用合成膠體，<strong>優先選 HES</strong>（明膠研究較少、會造成嚴重血小板功能異常、腎損傷證據稍多）；用<strong>最低有效劑量</strong>：<strong>3–5 mL/kg 推注、依效果調整</strong>；<strong>膠體 CRI 大概弊多於利</strong>。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 注意這和一般印象相反：很多地方因為明膠便宜而改用明膠，但講者認為若真要用合成膠體，HES 反而是較好的選擇。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">💉</div>
+      <h2>葡萄糖與電解質添加物</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 葡萄糖與鉀（65–68）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/12-65-slide.jpg" alt="投影片 65：輸液分類（添加物）" loading="lazy">
+          <figcaption>📄 (65) 輸液分類（添加物）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-66-slide.jpg" alt="投影片 66：葡萄糖與電解質補充" loading="lazy">
+          <figcaption>📄 (66) 葡萄糖與電解質補充</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-67-slide.jpg" alt="投影片 67：50% 葡萄糖" loading="lazy">
+          <figcaption>📄 (67) 50% 葡萄糖</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/12-68-slide.jpg" alt="投影片 68：鉀（Silverstein &amp; Hopper SACCM 2nd ed.）" loading="lazy">
+          <figcaption>📄 (68) 鉀（Silverstein & Hopper SACCM 2nd ed.）</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>添加物可以加進晶體，或單獨推注／CRI，依電解質而不同。</li>
+          <li><strong>50% 葡萄糖</strong>（治療低血糖）：</li>
+          <li><strong>推注</strong>：至少 <strong>1:1 稀釋</strong>（用等張晶體或注射用水；有中心靜脈管例外），給 <strong>0.25–1 g/kg</strong>；1 g/kg = 2 mL/kg 未稀釋 50% = 稀釋後至少 4 mL/kg。</li>
+          <li><strong>加到輸液（CRI）</strong>：做成 2.5% 或 5%。<strong>2.5%</strong> = 1 L 袋中 25 g 葡萄糖 → 抽掉 50 mL 晶體、加入 50 mL 50% 葡萄糖；<strong>5%</strong> = 50 g → 抽掉 100 mL、加入 100 mL。</li>
+          <li><strong>鉀</strong>：最常補充的電解質，治療或預防低血鉀；通常用 KCl（會加重高氯）；通常加到晶體裡，<strong>一定要混勻</strong>；注意速率，有<strong>心律不整甚至停搏</strong>風險——<strong>不可超過 0.5 mEq/kg/h</strong>；偶爾經中心靜脈 CRI；<strong>絕對不能推注</strong>。</li>
+        </ul>
+        <div class="tbl-wrap"><table>
+        <tr><th>血鉀（mEq/L）</th><th>每 1 L 輸液加 KCl（mEq）</th><th>每 250 mL 加（mEq）</th><th>最大輸液速率（mL/kg/h）</th></tr>
+        <tr><td>&lt; 2.0</td><td>80</td><td>20</td><td>6</td></tr>
+        <tr><td>2.1–2.5</td><td>60</td><td>15</td><td>8</td></tr>
+        <tr><td>2.6–3.0</td><td>40</td><td>10</td><td>12</td></tr>
+        <tr><td>3.1–3.5</td><td>28</td><td>7</td><td>18</td></tr>
+        <tr><td>3.6–5.0</td><td>20</td><td>5</td><td>25</td></tr>
+        </table></div>
+        <p class="p"><span class="src src-add">💡</span> 第 68 張右表（SACCM 2nd ed.）：最大速率就是讓鉀不超過 0.5 mEq/kg/h 換算來的，例如 80 mEq/L × 6 mL/kg/h ≈ 0.48 mEq/kg/h。表的註腳強調加 KCl 時要<strong>先關掉輸液管</strong>、加完後<strong>徹底混勻</strong>：沒搖勻的 KCl 會沉在軟袋出口端，前幾毫升濃度極高。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 結尾（69）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/12-69-slide.jpg" alt="投影片 69：Thank you（c.boyd@murdoch.edu.au）" loading="lazy">
+          <figcaption>📄 (69) Thank you（c.boyd@murdoch.edu.au）</figcaption>
+        </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🎤</div>
+      <h2>課堂補充（待錄音）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+        <div class="alert alert-info"><span class="alert-icon">⏳</span><span>錄音或現場筆記到了之後，把講者對病例的討論、Q&amp;A 補在這裡，並修正和 💡 不一致的地方。</span></div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="ecc-pocus.html">11 POCUS</a>。Boyd 急診系列四場到此結束。</p>
+    <a href="index.html">回到系列列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+<script src="gate.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>急診（三）：床邊超音波 POCUS｜2026 FASAVA 研討會筆記</title>
+<meta name="robots" content="noindex, nofollow">
+<style>html{visibility:hidden}</style>
+<script>
+(function(){ if (sessionStorage.getItem('fasavaGateOK') === '1') { document.documentElement.style.visibility = 'visible'; } })();
+</script>
+<style>
+  :root {
+    --primary: #BE185D;
+    --primary-light: #FCE7F3;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2A0B1A;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E9B6CD; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A1730;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E9B6CD; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E9B6CD;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A1730;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #A86A88;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #831843 0%, #DB2777 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2A0B1A; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A1730; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .src-doc { background: #e0f2fe; color: #075985; }
+  .pending { border: 2px dashed #F5D3E3; border-radius: 10px; padding: 16px 18px; color: var(--text-muted); font-size: 13.5px; background: #fffbfd; }
+<style>
+  .fig img { border-color: #F5D3E3; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  @media (max-width: 900px) { .vs { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← FASAVA 筆記</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 FASAVA 研討會筆記</a>
+  <div class="logo">
+    <h2>11｜急診（三）<br>床邊超音波 POCUS</h2>
+    <p>Corrin Boyd｜2026-11-02｜講義版</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">場次資訊</a>
+    <div class="nav-section">基本觀念</div>
+    <a href="#s1">1. POCUS 的定位</a>
+    <div class="nav-section">病例 1：呼吸困難的貓</div>
+    <a href="#s2">2. 病例 1 Barney</a>
+    <div class="nav-section">病例 2：倒下的犬</div>
+    <a href="#s3">3. 病例 2 倒下的犬</a>
+    <div class="nav-section">病例 3：鈍挫傷</div>
+    <a href="#s4">4. 病例 3 Peppa</a>
+    <a href="#s5">5. 課堂補充（待錄音）</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>急診（三）：床邊超音波 POCUS</h1>
+    <p>原標題：Point of Care Ultrasound</p>
+    <p>主講：Corrin Boyd BVMS, PhD, DACVECC（Murdoch University 急診重症資深講師，西澳伯斯）｜FASAVA 2026｜場次 11</p>
+    <div class="tags">
+      <span class="tag">POCUS</span>
+      <span class="tag">TFAST</span>
+      <span class="tag">VetBLUE</span>
+      <span class="tag">AFAST</span>
+      <span class="tag">胸水</span>
+      <span class="tag">LA:Ao</span>
+      <span class="tag">心包膜積液</span>
+      <span class="tag">膽囊壁水腫</span>
+      <span class="tag">後腔靜脈</span>
+      <span class="tag">尿腹</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 講者提供的投影片講義（81 張全部依序放入，括號內為投影片編號）
+    <span class="src src-add">💡 補充</span> 整理者的解說與補充（教科書／原始文獻）；❔ 表示推測，待錄音確認
+    <br><span class="muted">目前只有講義，<strong>還沒有錄音</strong>。原講義的超音波多半是影片，PDF 只留下靜止畫面（第 31、58 張空白）；講者沒在講義寫出的判讀以 💡 補充。Boyd 醫師四場：<a href="ecc-evidence-based-medicine.html">09 實證醫學</a>、<a href="ecc-trauma-hemorrhagic-shock.html">10 創傷與出血性休克</a>、11 POCUS、<a href="ecc-fluid-types.html">12 輸液種類</a>。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 本場重點</h3>
+    <ul>
+      <li>POCUS 是用特定掃描方式回答<strong>是非題</strong>，只找明顯異常；完整超音波則要描述每個器官、給診斷——兩者<strong>互補</strong>，不互相取代</li>
+      <li>胸腔第一線六題：<strong>胸水？氣胸？濕肺？其他肺病灶？心包膜積液？左心房擴大？</strong>先挑和這隻病患最相關的題目</li>
+      <li>病例 1 Barney（呼吸困難的貓）：<strong>胸水 + LA:Ao 2.06</strong> → 心肌病造成的心衰竭；胸水 &gt; 10 mm 就做超音波導引胸腔穿刺</li>
+      <li>病例 2（突然倒下的拉布拉多）：DH view 看到<strong>心包膜積液 + 心包填塞</strong>；膽囊壁水腫、後腔靜脈也是線索 → 先排除凝血病、再做心包膜穿刺</li>
+      <li>病例 3 Peppa（被車碾過的巴哥混種）：腹水分數 4/4、肺有 B 線、心臟容積不足；腹水<strong>肌酸酐 1763 vs 血中 317、鉀 16.7 vs 6.8</strong> → 尿腹，手術發現<strong>膀胱完全撕脫</strong></li>
+    </ul>
+  </div>
+
+  <!-- ══ S0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🎯</div>
+      <h2>場次資訊</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 開場與學習目標（1–4）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/11-01-slide.jpg" alt="投影片 1：Point of Care Ultrasound" loading="lazy">
+          <figcaption>📄 (1) Point of Care Ultrasound</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-02-slide.jpg" alt="投影片 2：Lecture Learning Outcomes" loading="lazy">
+          <figcaption>📄 (2) Lecture Learning Outcomes</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-03-slide.jpg" alt="投影片 3：POCUS 延伸資源：Calgary Veterinary POCUS Training Academy" loading="lazy">
+          <figcaption>📄 (3) POCUS 延伸資源：Calgary Veterinary POCUS Training Academy</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-04-slide.jpg" alt="投影片 4：Acknowledgements（影像來源：Murdoch 動物醫院）" loading="lazy">
+          <figcaption>📄 (4) Acknowledgements（影像來源：Murdoch 動物醫院）</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>三個學習目標：① 胸腔 POCUS 判斷<strong>胸膜腔疾病（胸水、氣胸）與濕肺</strong>；② 心臟 POCUS 判斷<strong>心包膜積液、左心房擴大、收縮功能不全</strong>；③ 腹部 POCUS 判斷<strong>腹水</strong>，並檢查膽囊、脾臟、肝臟等特定器官。</li>
+          <li>延伸學習：<a href="https://www.calgaryvpocusacademy.com" target="_blank" rel="noopener">Calgary Veterinary POCUS Training Academy</a> 線上資源與教科書。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🔊</div>
+      <h2>POCUS 的定位與設定</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 完整超音波 vs POCUS（5–7）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/11-05-slide.jpg" alt="投影片 5：Complete Ultrasound Study vs POCUS：目的" loading="lazy">
+          <figcaption>📄 (5) Complete Ultrasound Study vs POCUS：目的</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-06-slide.jpg" alt="投影片 6：Complete Ultrasound Study vs POCUS：條件" loading="lazy">
+          <figcaption>📄 (6) Complete Ultrasound Study vs POCUS：條件</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-07-slide.jpg" alt="投影片 7：POCUS 和其他影像互補" loading="lazy">
+          <figcaption>📄 (7) POCUS 和其他影像互補</figcaption>
+        </figure>
+        </div>
+        <div class="tbl-wrap"><table>
+        <tr><th></th><th>完整超音波</th><th>POCUS</th></tr>
+        <tr><td>目的</td><td>徹底掃描區域內每個器官，正常也要記錄，明顯與細微異常都描述，給確診或鑑別診斷</td><td>用特定掃描方式回答<strong>是非題</strong>，只找<strong>明顯</strong>異常</td></tr>
+        <tr><td>操作者</td><td>需要大量訓練與經驗，最好是放射科專科</td><td>各個項目可以較快學會，通常是治療的臨床醫師</td></tr>
+        <tr><td>時間</td><td>30–60 分鐘</td><td><strong>&lt; 10 分鐘</strong></td></tr>
+        <tr><td>準備</td><td>剃毛、鎮靜、側躺或仰躺</td><td>± 剃毛與鎮靜，用<strong>病患最舒服的姿勢</strong></td></tr>
+        </table></div>
+        <ul class="notes">
+          <li>互補的例子：POCUS 發現腹水和疑似腫塊 → 先穩定、抽水 → 穩定後再做完整腹部超音波或 CT。反過來，X 光已確診的肺炎可以用 POCUS 追蹤，變化很大時再照 X 光。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 探頭與設定（8）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/11-08-slide.jpg" alt="投影片 8：Probe Selection and Settings" loading="lazy">
+          <figcaption>📄 (8) Probe Selection and Settings</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>大多數初步檢查用<strong>凸陣（curvilinear）探頭</strong>：前腹部要從肋骨下方斜打，需要弧形探頭。中後腹部要看細節（例如腸道）可換線性探頭。</li>
+          <li>依深度調整頻率；最重要的三個設定：<strong>深度、增益、頻率</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 三個病例（9）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/11-09-slide.jpg" alt="投影片 9：Overview – 3 cases：呼吸困難的貓、倒下的犬、鈍挫傷" loading="lazy">
+          <figcaption>📄 (9) Overview – 3 cases：呼吸困難的貓、倒下的犬、鈍挫傷</figcaption>
+        </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🐱</div>
+      <h2>病例 1 Barney：呼吸困難的貓</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 病史與理學檢查（10–13）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/11-10-slide.jpg" alt="投影片 10：Barney：8 歲公（已結紮）DSH，2 天漸進性呼吸困難" loading="lazy">
+          <figcaption>📄 (10) Barney：8 歲公（已結紮）DSH，2 天漸進性呼吸困難</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-11-slide.jpg" alt="投影片 11：理學檢查" loading="lazy">
+          <figcaption>📄 (11) 理學檢查</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-12-slide.jpg" alt="投影片 12：怎麼評估這隻貓？" loading="lazy">
+          <figcaption>📄 (12) 怎麼評估這隻貓？</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-13-slide.jpg" alt="投影片 13：評估：呼吸窘迫是第一優先" loading="lazy">
+          <figcaption>📄 (13) 評估：呼吸窘迫是第一優先</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>室內貓、之前健康；2 天來呼吸速率與費力增加、沉鬱、躲起來。</li>
+          <li>精神沉鬱、黏膜淡粉紅、<strong>心跳 220</strong>、沒有雜音或奔馬律；股動脈脈搏難摸，但後肢能動、摸起來溫的；<strong>呼吸 60 次／分、費力</strong>；腹側肺音可能減弱（但聽診困難）；<strong>肛溫 36.6 °C</strong>。</li>
+          <li>評估：<strong>呼吸窘迫優先</strong>；要<strong>低壓力保定</strong>；鑑別心因性 vs 非心因性呼吸困難；懷疑<strong>胸水</strong>。胸腔 POCUS 能怎麼幫忙？</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 貓的心衰竭常常沒有雜音或奔馬律，而且常合併低體溫；「低體溫 + 心跳不快」的呼吸困難貓要特別想到心因性。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 胸腔 POCUS 的角色與技術（14–21）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/11-14-slide.jpg" alt="投影片 14：Thoracic POCUS 的角色" loading="lazy">
+          <figcaption>📄 (14) Thoracic POCUS 的角色</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-15-slide.jpg" alt="投影片 15：Thoracic ultrasound 可以看到的結構" loading="lazy">
+          <figcaption>📄 (15) Thoracic ultrasound 可以看到的結構</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-16-slide.jpg" alt="投影片 16：三類胸腔 POCUS 技術" loading="lazy">
+          <figcaption>📄 (16) 三類胸腔 POCUS 技術</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-17-slide.jpg" alt="投影片 17：技術要點：姿勢、時間、酒精、探頭" loading="lazy">
+          <figcaption>📄 (17) 技術要點：姿勢、時間、酒精、探頭</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-18-slide.jpg" alt="投影片 18：讓病患用最舒服的姿勢掃描" loading="lazy">
+          <figcaption>📄 (18) 讓病患用最舒服的姿勢掃描</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-19-slide.jpg" alt="投影片 19：tFAST：4 點掃描（Lisciandro 2008 JVECC）" loading="lazy">
+          <figcaption>📄 (19) tFAST：4 點掃描（Lisciandro 2008 JVECC）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-20-slide.jpg" alt="投影片 20：VetBLUE：每側 4 點的肺部掃描" loading="lazy">
+          <figcaption>📄 (20) VetBLUE：每側 4 點的肺部掃描</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-21-slide.jpg" alt="投影片 21：滑動式／延伸掃描（Vezzosi 法，Rigot 2024 JVECC）" loading="lazy">
+          <figcaption>📄 (21) 滑動式／延伸掃描（Vezzosi 法，Rigot 2024 JVECC）</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>胸腔 POCUS 是<strong>理學檢查的延伸</strong>：微創、低壓力，能快速發現危及生命的狀況並立即處置；但不取代完整心臟超音波、三視角 X 光或 CT。</li>
+          <li>可以看：胸壁、胸膜腔、肺、心包膜腔、心臟。</li>
+          <li>三類技術：① <strong>tFAST</strong>（最早的胸腔 POCUS，擴充為 tFAST3：Trauma、Triage、Tracking）；② <strong>VetBLUE</strong>（擴大到肺）；③ <strong>滑動式／延伸掃描</strong>（比 VetBLUE 更完整的肺評估）。講者會依病例調整。</li>
+          <li>技術要點：用病患<strong>最舒服的姿勢</strong>（趴、站、側躺再換邊；側躺時注意下側肺擴張不全）；目標 <strong>&lt; 5 分鐘</strong>；<strong>很少剃毛</strong>，用酒精 ± 凝膠；凸陣探頭、腹部設定。</li>
+          <li><strong>tFAST 4 點</strong>：兩側<strong>胸管位置（CTS）</strong>只用橫切看肺，找<strong>氣胸</strong>（空氣往背側跑）；兩側<strong>心包位置（PCS）</strong>橫切加縱切，找<strong>胸水與心包膜積液</strong>。</li>
+          <li><strong>VetBLUE 8 點</strong>：每側 4 點——後葉（cdll）、肺門周圍（phll）、中葉（mdll）、前葉（crll），每點記錄 B 線數量（0、1、2、3、&gt;3）。</li>
+          <li><strong>Vezzosi 法</strong>：每一個肋間都從背側往腹側掃，前往後或後往前。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 胸腔六題（22–24）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/11-22-slide.jpg" alt="投影片 22：Thoracic POCUS：第一線是非題" loading="lazy">
+          <figcaption>📄 (22) Thoracic POCUS：第一線是非題</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-23-slide.jpg" alt="投影片 23：Barney 最相關的是哪幾題？" loading="lazy">
+          <figcaption>📄 (23) Barney 最相關的是哪幾題？</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-24-slide.jpg" alt="投影片 24：第一線與第二線問題" loading="lazy">
+          <figcaption>📄 (24) 第一線與第二線問題</figcaption>
+        </figure>
+        </div>
+        <div class="tbl-wrap"><table>
+        <tr><th>第一線（有沒有？）</th><th>第二線（有的話…）</th></tr>
+        <tr><td>1. 胸水？</td><td>多少？回音性？在哪？導引胸腔穿刺</td></tr>
+        <tr><td>2. 氣胸？</td><td>多嚴重？肺點（lung point）在哪？</td></tr>
+        <tr><td>3. 濕肺？</td><td>在哪？局部還是瀰漫？</td></tr>
+        <tr><td>4. 其他肺病灶（肺表面的結節、實質化）？</td><td></td></tr>
+        <tr><td>5. 心包膜積液？</td><td>有沒有心包填塞？看得到腫塊嗎？導引心包膜穿刺</td></tr>
+        <tr><td>6. 左心房擴大？</td><td></td></tr>
+        </table></div>
+        <p class="p"><span class="src src-add">💡</span> Barney 最相關的應該是：胸水（肺音腹側減弱）、濕肺與左心房擴大（鑑別心因性），❔ 待錄音確認講者的選擇。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 有沒有胸水？（25–30）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/11-25-slide.jpg" alt="投影片 25：胸水的定義與鑑別診斷" loading="lazy">
+          <figcaption>📄 (25) 胸水的定義與鑑別診斷</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-26-slide.jpg" alt="投影片 26：正常胸膜腔與肺：肋骨影、胸膜線、A 線（gator sign）" loading="lazy">
+          <figcaption>📄 (26) 正常胸膜腔與肺：肋骨影、胸膜線、A 線（gator sign）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-27-slide.jpg" alt="投影片 27：胸水的超音波影像（Burnotte 2023 Front）" loading="lazy">
+          <figcaption>📄 (27) 胸水的超音波影像（Burnotte 2023 Front）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-28-slide.jpg" alt="投影片 28：Barney：有胸水嗎？" loading="lazy">
+          <figcaption>📄 (28) Barney：有胸水嗎？</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-29-slide.jpg" alt="投影片 29：另一個胸水病例" loading="lazy">
+          <figcaption>📄 (29) 另一個胸水病例</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-30-slide.jpg" alt="投影片 30：回想胸水的 X 光表現" loading="lazy">
+          <figcaption>📄 (30) 回想胸水的 X 光表現</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>胸水 = 壁層與臟層胸膜之間有液體；常見呼吸窘迫、肺音安靜或消失。鑑別：<strong>漏出液</strong>（如 CHF）、<strong>血胸</strong>（凝血病、出血腫瘤）、<strong>乳糜胸</strong>（心衰竭、特發性）、<strong>膿胸</strong>（肺炎、穿刺傷）。</li>
+          <li>正常：用<strong>肋骨影</strong>定位，找到兩根肋骨之間的<strong>胸膜線</strong>（兩根肋骨像鱷魚眼睛，叫 gator sign）；<strong>A 線</strong>是胸膜線的重複回音假影，代表<strong>正常充氣的肺</strong>；胸膜線以下看不到結構。</li>
+          <li>胸水：壁層與臟層胸膜之間出現無回音（黑色）區，肺葉在液體中漂浮。</li>
+          <li>X 光：心影與橫膈<strong>輪廓消失</strong>、肺葉邊緣呈<strong>扇貝狀</strong>、<strong>肺從胸壁退縮</strong>、<strong>葉間裂線</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 有胸水，然後呢？（31–32）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/11-31-slide.jpg" alt="投影片 31：有胸水，然後呢？（影片：乳糜胸）" loading="lazy">
+          <figcaption>📄 (31) 有胸水，然後呢？（影片：乳糜胸）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-32-slide.jpg" alt="投影片 32：診斷性與治療性胸腔穿刺" loading="lazy">
+          <figcaption>📄 (32) 診斷性與治療性胸腔穿刺</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>假設厚度 <strong>&gt; 10 mm</strong>：做<strong>診斷性胸腔穿刺</strong>（液體分析找原因）與<strong>治療性胸腔穿刺</strong>（解除呼吸窘迫）。</li>
+          <li>超音波導引可提高安全性與抽出量；位置通常在<strong>心臟後方（心臟與橫膈之間）、胸腔腹側 1/3</strong>。</li>
+          <li>講義標註這隻是<strong>乳糜胸</strong>（第 31、32 張）。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 貓的乳糜胸常見原因之一就是心衰竭；所以抽完水後還是要看心臟。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 有沒有左心房擴大？（33–37）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/11-33-slide.jpg" alt="投影片 33：左心房擴大的意義與測量" loading="lazy">
+          <figcaption>📄 (33) 左心房擴大的意義與測量</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-34-slide.jpg" alt="投影片 34：右胸骨旁短軸：心尖到心基部" loading="lazy">
+          <figcaption>📄 (34) 右胸骨旁短軸：心尖到心基部</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-35-slide.jpg" alt="投影片 35：LA:Ao &amp;gt; 1.6:1 為擴大" loading="lazy">
+          <figcaption>📄 (35) LA:Ao &gt; 1.6:1 為擴大</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-36-slide.jpg" alt="投影片 36：Barney：LA:Ao = 2.06，有擴大" loading="lazy">
+          <figcaption>📄 (36) Barney：LA:Ao = 2.06，有擴大</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-37-slide.jpg" alt="投影片 37：有左心房擴大，然後呢？" loading="lazy">
+          <figcaption>📄 (37) 有左心房擴大，然後呢？</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>左心房擴大代表<strong>左側容積過載</strong>：正在或即將發生容積過載或左心衰竭；常伴隨呼吸速率／費力增加、心搏過速、頸靜脈怒張。</li>
+          <li>最容易用<strong>右胸骨旁短軸心基部</strong>（「賓士標誌」切面，主動脈三個瓣葉像賓士 logo）量：正常 <strong>LA:Ao 約 1:1</strong>，<strong>&gt; 1.6:1</strong> 為擴大。</li>
+          <li>Barney：Ao 0.94 cm、LA 1.94 cm，<strong>LA:Ao = 2.06</strong>。</li>
+          <li>然後：配合臨床症狀與肺超音波判讀；可以順便看<strong>左心室游離壁厚度</strong>；有左心衰竭證據就持續給氧、furosemide 等；穩定後、時間與經費允許時做完整心臟超音波。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 心肌病與治療（38–40）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/11-38-slide.jpg" alt="投影片 38：2020 ACVIM 貓心肌病共識：分類（Fuentes 2020 JVIM）" loading="lazy">
+          <figcaption>📄 (38) 2020 ACVIM 貓心肌病共識：分類（Fuentes 2020 JVIM）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-39-slide.jpg" alt="投影片 39：Barney 的持續治療" loading="lazy">
+          <figcaption>📄 (39) Barney 的持續治療</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-40-slide.jpg" alt="投影片 40：貓心肌病分期（JFMS 2021）" loading="lazy">
+          <figcaption>📄 (40) 貓心肌病分期（JFMS 2021）</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>第 38 張：左心室壁增厚的「HCM 表現型」要先排除<strong>高血壓、甲狀腺亢進、肢端肥大症、暫時性心肌增厚、低血容（假性肥厚）、腫瘤浸潤</strong>等擬表型。</li>
+          <li>第 40 張分期：A（易感、心臟正常）→ B1（左心房正常或輕度擴大，低風險）→ B2（左心房中重度擴大，高風險）→ C（目前或曾經 CHF／ATE）→ D（難治性 CHF）。Barney 是 <strong>C 期</strong>。</li>
+          <li>Barney 的治療：</li>
+          <li><strong>給氧</strong>；<strong>butorphanol 0.2 mg/kg IM/IV</strong> 抗焦慮，需要時重複。</li>
+          <li><strong>Furosemide (0.5)–1–2 mg/kg IV</strong>，需要時重複，直到<strong>呼吸 &lt; 40 次／分</strong>；<strong>貓的劑量比狗低</strong>。呼吸 &lt; 40 後改 q8–12h，回家 q12h，依<strong>在家睡眠呼吸 &lt; 30 次／分</strong>調整。</li>
+          <li><strong>Clopidogrel</strong>：負荷劑量 <strong>37.5 mg PO</strong>，之後 <strong>18.75 mg PO q24h 終身</strong>；可考慮裝膠囊（藥很苦）。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> Côté 的貓心臟系列（<a href="feline-heart-intro-classification.html">05</a>–<a href="feline-heart-case-studies.html">08</a>）有更完整的分類、診斷與治療。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🐕</div>
+      <h2>病例 2：突然倒下的拉布拉多</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 病史與初級評估（41–45）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/11-41-slide.jpg" alt="投影片 41：病例 2：8 歲公（已結紮）拉布拉多，在花園被發現倒下" loading="lazy">
+          <figcaption>📄 (41) 病例 2：8 歲公（已結紮）拉布拉多，在花園被發現倒下</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-42-slide.jpg" alt="投影片 42：理學檢查／初級評估" loading="lazy">
+          <figcaption>📄 (42) 理學檢查／初級評估</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-43-slide.jpg" alt="投影片 43：怎麼評估？" loading="lazy">
+          <figcaption>📄 (43) 怎麼評估？</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-44-slide.jpg" alt="投影片 44：評估：中重度血管收縮性休克" loading="lazy">
+          <figcaption>📄 (44) 評估：中重度血管收縮性休克</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-45-slide.jpg" alt="投影片 45：初步處置與檢查" loading="lazy">
+          <figcaption>📄 (45) 初步處置與檢查</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>病史只有異位性皮膚炎，其他健康。</li>
+          <li><strong>沉鬱、心跳 180–200、心音很難聽到、股動脈脈搏弱、黏膜非常蒼白、CRT 3 秒、肢端冷</strong>；呼吸 48 次／分、快而淺；<strong>腹部膨大、輕微液波感</strong>。</li>
+          <li>評估：<strong>中到重度血管收縮性休克</strong>。</li>
+          <li>初步處置：面罩給氧、放留置針、<strong>LRS 10 mL/kg 5–10 分鐘推注</strong>。檢查：靜脈血氣、PCV/TS、POCUS、CBC／生化。</li>
+          <li>針對鑑別診斷，POCUS 要回答什麼問題？</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 「心音很難聽到 + 脈搏弱 + 腹水」要同時想到兩件事：<strong>腹腔出血</strong>（如脾臟腫瘤破裂）和<strong>心包膜積液</strong>（心音悶、右心衰竭造成腹水）。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> AFAST：有沒有腹水？（46–48）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/11-46-slide.jpg" alt="投影片 46：AFAST：四（或五）點" loading="lazy">
+          <figcaption>📄 (46) AFAST：四（或五）點</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-47-slide.jpg" alt="投影片 47：DH view（影片截圖）" loading="lazy">
+          <figcaption>📄 (47) DH view（影片截圖）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-48-slide.jpg" alt="投影片 48：DH view" loading="lazy">
+          <figcaption>📄 (48) DH view</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>姿勢：側躺、仰躺或站立皆可；<strong>四（或五）個點</strong>，縱切加橫切。</li>
+          <li>四點：<strong>DH</strong>（橫膈–肝，劍突下）、<strong>SR</strong>（脾–腎，左腹側）、<strong>CC</strong>（膀胱–結腸）、<strong>HR</strong>（肝–腎，右腹側）；第 5 點是<strong>臍部</strong>。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> AFAST 有腹水評分（每個陽性點 1 分，0–4 分）；病例 3 的「4/4」就是四點都有液體。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 膽囊與後腔靜脈（49–54）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/11-49-slide.jpg" alt="投影片 49：膽囊壁異常的原因" loading="lazy">
+          <figcaption>📄 (49) 膽囊壁異常的原因</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-50-slide.jpg" alt="投影片 50：正常膽囊（DH 位置）" loading="lazy">
+          <figcaption>📄 (50) 正常膽囊（DH 位置）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-51-slide.jpg" alt="投影片 51：膽囊壁水腫：輕度（&amp;gt; 2 mm）" loading="lazy">
+          <figcaption>📄 (51) 膽囊壁水腫：輕度（&gt; 2 mm）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-52-slide.jpg" alt="投影片 52：膽囊壁水腫：嚴重（雙層「光暈」）" loading="lazy">
+          <figcaption>📄 (52) 膽囊壁水腫：嚴重（雙層「光暈」）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-53-slide.jpg" alt="投影片 53：後腔靜脈能幫忙嗎？（一）" loading="lazy">
+          <figcaption>📄 (53) 後腔靜脈能幫忙嗎？（一）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-54-slide.jpg" alt="投影片 54：後腔靜脈能幫忙嗎？（二）" loading="lazy">
+          <figcaption>📄 (54) 後腔靜脈能幫忙嗎？（二）</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>膽囊壁異常可見於：<strong>過敏性休克</strong>、<strong>心包膜積液</strong>、<strong>右心疾病</strong>、膽囊炎、輸血後、鎮靜／麻醉。問的是：<strong>有沒有膽囊壁水腫？</strong></li>
+          <li>輕度：壁厚 &gt; 2 mm；嚴重：壁呈雙層、中間低回音（光暈、「條紋」狀）。</li>
+          <li>後腔靜脈（CVC）：<strong>塌陷、扁平</strong>支持低血容；<strong>飽滿、不隨呼吸變化</strong>支持右心壓力上升（例如心包填塞、右心衰竭）。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 犬的膽囊壁水腫 + 腹水，臨床上常是「過敏性休克」或「心包填塞」的線索；兩者都會讓肝臟鬱血。這隻的答案在下一頁。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 有沒有心包膜積液？（55–59）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/11-55-slide.jpg" alt="投影片 55：心包膜積液的掃描位置：CTS、PCS、DH" loading="lazy">
+          <figcaption>📄 (55) 心包膜積液的掃描位置：CTS、PCS、DH</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-56-slide.jpg" alt="投影片 56：DH 位置看到心包膜積液：肝臟和膽囊當聲窗" loading="lazy">
+          <figcaption>📄 (56) DH 位置看到心包膜積液：肝臟和膽囊當聲窗</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-57-slide.jpg" alt="投影片 57：有沒有心包填塞？" loading="lazy">
+          <figcaption>📄 (57) 有沒有心包填塞？</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-58-slide.jpg" alt="投影片 58：有心包膜積液，然後呢？（影片）" loading="lazy">
+          <figcaption>📄 (58) 有心包膜積液，然後呢？（影片）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-59-slide.jpg" alt="投影片 59：處置" loading="lazy">
+          <figcaption>📄 (59) 處置</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>位置：探頭放在心臟上（PCS），或用 AFAST 的 <strong>DH／劍突下</strong>位置往前打穿橫膈。</li>
+          <li>DH 位置的優點：<strong>肝臟和膽囊當聲窗</strong>，避開肺的空氣干擾。</li>
+          <li><strong>心包填塞</strong> = 心包膜積液壓迫心臟，使充盈與心輸出量下降（<strong>阻塞性休克</strong>）；依理學檢查的灌流不良和超音波表現判斷。</li>
+          <li>處置：心包填塞解釋了牠的循環不穩定，所以——<strong>先排除凝血病（有的話先治療）</strong>；做<strong>治療性心包膜穿刺</strong>（超音波找最好的窗口）；之後可能需要進一步影像與檢查找原因：犬多半是<strong>腫瘤</strong>（血管肉瘤、心基部腫瘤）。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 心包填塞的超音波特徵是<strong>右心房（舒張期）塌陷</strong>；排除凝血病是因為殺鼠劑中毒也會造成出血性心包膜積液，這時穿刺前要先補血漿與維生素 K。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🚗</div>
+      <h2>病例 3 Peppa：被車碾過的巴哥混種</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 病史與初級評估（60–62）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/11-60-slide.jpg" alt="投影片 60：Peppa：3 歲母（已結紮）巴哥混種，在車道被碾過" loading="lazy">
+          <figcaption>📄 (60) Peppa：3 歲母（已結紮）巴哥混種，在車道被碾過</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-61-slide.jpg" alt="投影片 61：初級評估" loading="lazy">
+          <figcaption>📄 (61) 初級評估</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-62-slide.jpg" alt="投影片 62：初步處置與檢查" loading="lazy">
+          <figcaption>📄 (62) 初步處置與檢查</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>體重 13.3 kg、體溫 37.4 °C、<strong>心跳 168、脈搏細弱</strong>、黏膜淡粉紅、CRT 2 秒、<strong>呼吸 44 次／分、費力</strong>。</li>
+          <li>初步處置：面罩給氧、留置針、<strong>LRS 10 mL/kg 推注</strong>、<strong>methadone 0.2 mg/kg IV</strong> 止痛。檢查：VBG、PCV/TS、CBC／生化、POCUS。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> POCUS（63–68）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/11-63-slide.jpg" alt="投影片 63：POCUS 現場" loading="lazy">
+          <figcaption>📄 (63) POCUS 現場</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-64-slide.jpg" alt="投影片 64：腹水分數 4/4（HR 與 SR view）" loading="lazy">
+          <figcaption>📄 (64) 腹水分數 4/4（HR 與 SR view）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-65-slide.jpg" alt="投影片 65：胸腔六題" loading="lazy">
+          <figcaption>📄 (65) 胸腔六題</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-66-slide.jpg" alt="投影片 66：有滑動徵象 = 正常（沒有氣胸）" loading="lazy">
+          <figcaption>📄 (66) 有滑動徵象 = 正常（沒有氣胸）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-67-slide.jpg" alt="投影片 67：有滑動徵象，但也有 B 線" loading="lazy">
+          <figcaption>📄 (67) 有滑動徵象，但也有 B 線</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-68-slide.jpg" alt="投影片 68：心臟容積不足" loading="lazy">
+          <figcaption>📄 (68) 心臟容積不足</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>腹部：<strong>AFAST 四點都有液體（4/4）</strong>。</li>
+          <li>胸腔：<strong>有胸膜滑動徵象（glide sign）</strong> → 該點<strong>沒有氣胸</strong>；但有 <strong>B 線</strong>（從胸膜線往深處延伸、隨呼吸移動的雷射狀高回音線）→ 濕肺，創傷病患最可能是<strong>肺挫傷</strong>。</li>
+          <li>心臟：<strong>容積不足</strong>（左心室腔小）→ 低血容。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 血氣與腹水分析（69–71）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/11-69-slide.jpg" alt="投影片 69：VBG" loading="lazy">
+          <figcaption>📄 (69) VBG</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-70-slide.jpg" alt="投影片 70：腹腔穿刺" loading="lazy">
+          <figcaption>📄 (70) 腹腔穿刺</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-71-slide.jpg" alt="投影片 71：血液 vs 腹水比較" loading="lazy">
+          <figcaption>📄 (71) 血液 vs 腹水比較</figcaption>
+        </figure>
+        </div>
+        <div class="tbl-wrap"><table>
+        <tr><th>項目</th><th>血液</th><th>腹水</th><th>參考值</th></tr>
+        <tr><td>PCV (%)</td><td>50</td><td>10</td><td>37–55</td></tr>
+        <tr><td>TSP (g/L)</td><td>62</td><td>10</td><td>60–80</td></tr>
+        <tr><td>Na (mmol/L)</td><td>141</td><td>131</td><td>140–150</td></tr>
+        <tr><td><strong>K (mmol/L)</strong></td><td><strong>6.8</strong></td><td><strong>16.7</strong></td><td>3.9–4.9</td></tr>
+        <tr><td>Cl (mmol/L)</td><td>122</td><td>113</td><td>109–120</td></tr>
+        <tr><td>iCa (mmol/L)</td><td>1.32</td><td>1.18</td><td>1.25–1.5</td></tr>
+        <tr><td>BG (mmol/L)</td><td>7.7</td><td>4.8</td><td>3.6–6.2</td></tr>
+        <tr><td>Lactate (mmol/L)</td><td>2.1</td><td>2.5</td><td>0.5–2.0</td></tr>
+        <tr><td>pH</td><td>7.083</td><td>7.004</td><td>7.34–7.38</td></tr>
+        <tr><td>pCO₂ (mmHg)</td><td>36.8</td><td>46.9</td><td>40–46</td></tr>
+        <tr><td>HCO₃⁻ (mmol/L)</td><td>10.4</td><td>11.1</td><td>22–24</td></tr>
+        <tr><td>BE (mmol/L)</td><td>−17.5</td><td>−17.9</td><td>−2 to 2</td></tr>
+        <tr><td>AG (mmol/L)</td><td>15.9</td><td>23.6</td><td>8–21</td></tr>
+        <tr><td><strong>Creatinine (µmol/L)</strong></td><td><strong>317</strong></td><td><strong>1763</strong></td><td>27–124</td></tr>
+        </table></div>
+        <ul class="notes">
+          <li>血液：<strong>高血鉀 6.8</strong>、嚴重<strong>代謝性酸中毒</strong>（pH 7.08、HCO₃⁻ 10.4、BE −17.5）、高氯、<strong>氮血症（肌酸酐 317 µmol/L ≈ 3.6 mg/dL）</strong>、乳酸只輕微上升。</li>
+          <li>腹水：PCV 10%、TP 10 g/L——不是出血，而是稀薄的液體；<strong>腹水肌酸酐 1763 vs 血液 317（比值約 5.6）</strong>、<strong>鉀 16.7 vs 6.8（約 2.5）</strong> → <strong>尿腹（uroabdomen）</strong>。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 犬尿腹的診斷標準：腹水:血液肌酸酐 <strong>&gt; 2:1</strong>、腹水:血液鉀 <strong>&gt; 1.4:1</strong>。Peppa 兩項都遠超過。高血鉀與代謝性酸中毒都是尿液被腹膜吸收造成的；處置是先引流（腹腔引流或導尿）、穩定血鉀，再手術。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 影像、手術與結果（72–79）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/11-72-slide.jpg" alt="投影片 72：側面 X 光" loading="lazy">
+          <figcaption>📄 (72) 側面 X 光</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-73-slide.jpg" alt="投影片 73：顯影 X 光：側面" loading="lazy">
+          <figcaption>📄 (73) 顯影 X 光：側面</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-74-slide.jpg" alt="投影片 74：顯影 X 光：腹背（腎臟與輸尿管顯影）" loading="lazy">
+          <figcaption>📄 (74) 顯影 X 光：腹背（腎臟與輸尿管顯影）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-75-slide.jpg" alt="投影片 75：腹部瘀青" loading="lazy">
+          <figcaption>📄 (75) 腹部瘀青</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-76-slide.jpg" alt="投影片 76：手術" loading="lazy">
+          <figcaption>📄 (76) 手術</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-77-slide.jpg" alt="投影片 77：膀胱完全撕脫" loading="lazy">
+          <figcaption>📄 (77) 膀胱完全撕脫</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-78-slide.jpg" alt="投影片 78：膀胱與尿道吻合" loading="lazy">
+          <figcaption>📄 (78) 膀胱與尿道吻合</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-79-slide.jpg" alt="投影片 79：隔天就能走動" loading="lazy">
+          <figcaption>📄 (79) 隔天就能走動</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>X 光：第 73–74 張腎臟與輸尿管有顯影劑，❔ 推測是排泄性尿路攝影，用來找漏尿位置（待錄音確認）。</li>
+          <li>手術發現<strong>膀胱完全從尿道撕脫</strong>，將膀胱與尿道吻合；Peppa <strong>隔天就能走動</strong>。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 鈍挫傷後「看起來還能尿」不代表泌尿道完整；腹水要常規測肌酸酐與鉀。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 結尾（80–81）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/11-80-slide.jpg" alt="投影片 80：回顧學習目標" loading="lazy">
+          <figcaption>📄 (80) 回顧學習目標</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/11-81-slide.jpg" alt="投影片 81：Thank you（c.boyd@murdoch.edu.au）" loading="lazy">
+          <figcaption>📄 (81) Thank you（c.boyd@murdoch.edu.au）</figcaption>
+        </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🎤</div>
+      <h2>課堂補充（待錄音）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+        <div class="alert alert-info"><span class="alert-icon">⏳</span><span>錄音或現場筆記到了之後，把影片的判讀、病例 2 的後續、Q&amp;A 補在這裡，並修正和 💡 不一致的地方。</span></div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="ecc-trauma-hemorrhagic-shock.html">10 創傷與出血性休克</a>｜下一場：<a href="ecc-fluid-types.html">12 急診（四）：輸液種類與適應症</a></p>
+    <a href="index.html">回到系列列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+<script src="gate.js?v=2"></script>
+</body>
+</html>
