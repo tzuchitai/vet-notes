@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>貓心臟病（一）：介紹與分類｜2026 FASAVA 研討會筆記</title>
+<meta name="robots" content="noindex, nofollow">
+<style>html{visibility:hidden}</style>
+<script>
+(function(){ if (sessionStorage.getItem('fasavaGateOK') === '1') { document.documentElement.style.visibility = 'visible'; } })();
+</script>
+<style>
+  :root {
+    --primary: #BE185D;
+    --primary-light: #FCE7F3;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2A0B1A;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E9B6CD; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A1730;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E9B6CD; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E9B6CD;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A1730;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #A86A88;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #831843 0%, #DB2777 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2A0B1A; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A1730; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .src-doc { background: #e0f2fe; color: #075985; }
+  .pending { border: 2px dashed #F5D3E3; border-radius: 10px; padding: 16px 18px; color: var(--text-muted); font-size: 13.5px; background: #fffbfd; }
+<style>
+  .fig img { border-color: #F5D3E3; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  @media (max-width: 900px) { .vs { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← FASAVA 筆記</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 FASAVA 研討會筆記</a>
+  <div class="logo">
+    <h2>05｜貓心臟病（一）<br>介紹與分類</h2>
+    <p>Etienne Côté｜2026-11-02｜講義版</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">場次資訊</a>
+    <a href="#s1">1. 貓心臟學的演進</a>
+    <a href="#s2">2. 貓心臟病的種類與盛行率</a>
+    <a href="#s3">3. 心肌病的定義與表型分類</a>
+    <a href="#s4">4. HCM 分期（A–D）</a>
+    <a href="#s5">5. 擬表型：長得像 HCM 的其他病</a>
+    <a href="#s6">6. 暫時性心肌增厚（TMT）</a>
+    <a href="#s7">7. 病例：1 歲長毛貓</a>
+    <a href="#s8">8. 排除擬表型的實用流程</a>
+    <div class="nav-section">課堂</div>
+    <a href="#s9">9. 課前思考題</a>
+    <a href="#s10">10. 課堂補充（待錄音）</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>貓心臟病（一）：介紹與分類</h1>
+    <p>原標題：Feline Heart Disease: Introduction and Classification</p>
+    <p>主講：Etienne Côté DVM, DACVIM (Cardiology), FASE（Atlantic Veterinary College, UPEI，加拿大）｜Session 1，09:00–10:30｜FASAVA 2026｜場次 05</p>
+    <div class="tags">
+      <span class="tag">HCM</span>
+      <span class="tag">ACVIM 2020 共識</span>
+      <span class="tag">RCM／DCM／ARVC／NSCM</span>
+      <span class="tag">分期 A–D</span>
+      <span class="tag">Phenocopy</span>
+      <span class="tag">暫時性心肌增厚</span>
+      <span class="tag">心肌炎</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 講者提供的投影片講義（63 張，括號內為投影片編號）
+    <span class="src src-add">💡 補充</span> 整理者補充（教科書／原始文獻，供課前預習）
+    <br><span class="muted">目前只有講義，<strong>還沒有錄音</strong>。講者口述、Q&amp;A 與 2026 未發表資料的細節，等錄音到了再補到第 10 節，並以 🎤 標示。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 本場重點</h3>
+    <ul>
+      <li>貓的心臟病 <strong>96% 是 HCM</strong>；看起來健康的貓約 <strong>15%</strong> 有心臟病，先天性心臟病只有 0.15%</li>
+      <li>心肌病依 <strong>ACVIM 2020 共識</strong>以<strong>表型</strong>分類：HCM、RCM、DCM、ARVC、非特異性（NSCM，取代舊稱 UCM）</li>
+      <li>HCM 是<strong>排除性診斷</strong>：先排除高血壓、甲亢、肢端肥大症、主動脈狹窄、心跳過快、暫時性心肌增厚等<strong>擬表型</strong></li>
+      <li>分期 A → B1 → B2 → C → D：<strong>B1 和 B2 的分界是心房擴大程度</strong>與其他高風險特徵</li>
+      <li><strong>暫時性心肌增厚（TMT）</strong>：年輕、有誘發事件、肌鈣蛋白很高、心房不太大，預後遠好於 HCM，但只能<strong>事後回頭</strong>確診</li>
+    </ul>
+  </div>
+
+  <!-- ══ S0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🎯</div>
+      <h2>場次資訊</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 講者與一整天的貓心臟課程（4）</h3>
+        <ul class="notes">
+          <li>講者：<strong>Etienne Côté</strong>，DACVIM（心臟）、FASE，加拿大愛德華王子島大學大西洋獸醫學院（AVC-UPEI）。他是 2020 ACVIM 貓心肌病共識的作者之一，也是《Ettinger 內科學》與 <em>Clinical Veterinary Advisor</em> 的主編。<span class="src src-add">💡</span></li>
+          <li>感謝 FASAVA 籌備會呂大立醫師（台北中安動物醫院）。講義註明：<strong>這份簡報沒有使用生成式 AI</strong>。</li>
+        </ul>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>場次</th><th>時間</th><th>主題</th></tr>
+            <tr><td><strong>Session 1（本篇）</strong></td><td>09:00–10:30</td><td>貓心臟病介紹與分類</td></tr>
+            <tr><td>Session 2</td><td>11:00–12:30</td><td>貓心肌病的診斷（講義已存，下一篇）</td></tr>
+            <tr><td>Session 3</td><td>13:30–15:00</td><td>貓心臟病的治療</td></tr>
+            <tr><td>Session 4</td><td>15:30–17:00</td><td>貓心臟病例討論</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">📜</div>
+      <h2>1. 貓心臟學的演進</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 從「貓不會得心臟病」到一萬多篇文獻（6–12）</h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>年代</th><th>里程碑</th></tr>
+            <tr><td>1968</td><td>心臟專科 Neil Harpster 還是學生時被教「<strong>貓不會得心臟病</strong>」</td></tr>
+            <tr><td>1970</td><td>Liu 等，<em>JAVMA</em>：貓的鬱血性心衰竭（早期病理描述）</td></tr>
+            <tr><td>1987</td><td>Pion 等，<em>Science</em>：<strong>低血漿牛磺酸造成可逆的 DCM</strong></td></tr>
+            <tr><td>1992</td><td>Atkins 等，<em>JAVMA</em>：74 隻特發性 HCM 貓的危險因子、症狀與存活</td></tr>
+            <tr><td>2000s 起</td><td>專書、ACVIM 2020 共識、REVEAL 研究（HCM 與看似正常貓的長期預後）</td></tr>
+            <tr><td>今天</td><td>PubMed 搜尋 "feline heart" 有 <strong>超過 11,500 篇</strong></td></tr>
+          </table>
+        </div>
+        <div class="vs">
+          <figure class="fig">
+            <img src="photos/05-08-liu-1970.jpg" alt="Liu 1970 JAVMA 貓鬱血性心衰竭" loading="lazy">
+            <figcaption>📄 (8) Liu et al., <em>JAVMA</em> 1970</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/05-09-pion-1987-taurine.jpg" alt="Pion 1987 Science 牛磺酸與心肌衰竭" loading="lazy">
+            <figcaption>📄 (9) Pion et al., <em>Science</em> 1987</figcaption>
+          </figure>
+        </div>
+        <p class="p"><span class="src src-slide">📄</span> 講者引用數學家 Georg Cantor 的話來描述新觀念被接受的三個階段：一開始被說「不是真的」，被證實後被說「不重要」，重要性無法否認後又被說「這也不是新東西」。</p>
+        <p class="p"><span class="src src-add">💡</span> 1987 年之前，貓 DCM 很常見；發現與牛磺酸有關、商業飼料補足牛磺酸之後，貓 DCM 大幅減少，所以現在看到的貓心肌病絕大多數是 HCM。自製飼料或素食飼料的貓仍要想到牛磺酸缺乏。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">📊</div>
+      <h2>2. 貓心臟病的種類與盛行率</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 三大類（13）</h3>
+        <ul class="notes">
+          <li><strong>先天性畸形</strong></li>
+          <li><strong>原發性心肌病</strong>：心肌病（cardiomyopathies）</li>
+          <li><strong>續發性心肌病</strong>：「擬表型」（phenocopies）
+            <ul>
+              <li>內分泌：甲狀腺機能亢進、肢端肥大症</li>
+              <li>全身性高血壓</li>
+              <li>適應性肥大：主動脈狹窄、幼貓貧血</li>
+              <li>其他：暫時性心肌增厚、心跳過快</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 看起來健康的貓：15% 有心臟病，其中 96% 是 HCM（14、19）</h3>
+        <figure class="fig">
+          <img src="photos/05-14-catscan-prevalence.jpg" alt="CatScan 研究 780 隻貓心臟病盛行率" loading="lazy">
+          <figcaption>📄 (14) Payne et al., <em>J Vet Cardiol</em> 2015（CatScan study）：收容中心 780 隻看似健康的貓</figcaption>
+        </figure>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>心臟超音波診斷</th><th>隻數（/780）</th></tr>
+            <tr><td>正常</td><td>660（85%）</td></tr>
+            <tr><td><strong>HCM</strong></td><td><strong>115（15%）</strong></td></tr>
+            <tr><td>UCM（未分類心肌病）</td><td>1（0.1%）</td></tr>
+            <tr><td>先天性：腹膜心包膜橫膈疝氣（PPDH）</td><td>2（0.2%）</td></tr>
+            <tr><td>先天性：心室中膈缺損（VSD）</td><td>1（0.1%）</td></tr>
+            <tr><td>先天性：瓣膜上二尖瓣狹窄（SVMS）</td><td>1（0.1%）</td></tr>
+          </table>
+        </div>
+        <p class="p"><span class="src src-slide">📄</span> 有心臟病 120/780 = <strong>15%</strong>；其中 <strong>115/120（96%）是 HCM</strong>。</p>
+        <p class="p"><span class="src src-add">💡</span> 這些都是「看起來健康」的貓，大部分是無症狀的 B1 期。臨床意義：門診裡每 7 隻貓就可能有 1 隻有 HCM，聽診正常不代表沒有。</p>
+      </div>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 先天性心臟病（15–18）</h3>
+        <figure class="fig">
+          <img src="photos/05-15-congenital-prevalence.jpg" alt="Schrope 2015 犬貓先天性心臟病盛行率" loading="lazy">
+          <figcaption>📄 (15) Schrope, <em>J Vet Cardiol</em> 2015：76,301 隻混種犬與 57,025 隻混種貓</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>貓先天性心臟病盛行率：87/57,025 = <strong>0.15%</strong>。</li>
+          <li>最常見 <strong>VSD</strong>，其次是<strong>瓣膜性主動脈狹窄</strong>；意外的是二尖瓣發育不良（MVD）、三尖瓣發育不良（TVD）和 PPDH 都不常見。</li>
+        </ul>
+        <div class="vs">
+          <figure class="fig">
+            <img src="photos/05-17-vsd-small-large.jpg" alt="VSD 小洞雜音大、大洞雜音小" loading="lazy">
+            <figcaption>📄 (17) VSD：洞小雜音大 → 預後好；洞大雜音小 → 預後保留</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/05-18-mitral-dysplasia.jpg" alt="二尖瓣發育不良" loading="lazy">
+            <figcaption>📄 (18) 二尖瓣發育不良：乳頭肌直接接在瓣葉上（沒有腱索）、左心房明顯擴大</figcaption>
+          </figure>
+        </div>
+        <div class="vs">
+          <div>
+            <h4>VSD（16–17）</h4>
+            <ul class="notes">
+              <li>通常在<strong>膜周部</strong>，沒有實際可行的手術</li>
+              <li>通常<strong>左到右</strong>分流、通常<strong>洞很小</strong>、血行動力學上不重要</li>
+              <li>多半是因為偶然聽到雜音才發現，雜音<strong>在右側比較大聲</strong></li>
+              <li><strong>雜音大聲 = 洞小 = 預後好</strong>；雜音小聲 = 洞大 = 預後保留</li>
+            </ul>
+          </div>
+          <div>
+            <h4>二尖瓣發育不良（18）</h4>
+            <ul class="notes">
+              <li>二尖瓣裝置的畸形 → <strong>二尖瓣逆流</strong>，可能合併二尖瓣狹窄</li>
+              <li>左胸骨旁收縮期雜音</li>
+              <li>沒有手術選項</li>
+            </ul>
+          </div>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> VSD 雜音在右側最大聲，是因為血流從左心室噴進右心室、朝向右胸壁。小洞兩側壓差大、流速快，所以雜音響亮；大洞兩側壓力接近、流速慢，雜音反而小聲，但分流量大、容易造成左心容積負荷與心衰竭。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🗂️</div>
+      <h2>3. 心肌病的定義與表型分類</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 依據：ACVIM 2020 共識（20–21）</h3>
+        <p class="p">Luis Fuentes, Abbott, Chetboul, Côté, Fox, Häggström, Kittleson, Schober, Stern：<em>ACVIM consensus statement guidelines for the classification, diagnosis, and management of cardiomyopathies in cats</em>（<em>JVIM</em> 2020）。本場內容：共識的重點、之後的更新、講者自己應用共識時的建議與偏好。</p>
+      </div>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 定義（22）</h3>
+        <ul class="notes">
+          <li><strong>心肌病</strong>：心肌結構及／或功能異常，而且<strong>沒有其他足以造成這種異常的心血管疾病</strong>。</li>
+          <li><strong>表型（phenotype）</strong>：疾病的外在表現（相對於基因型）。例如左心室肥厚就是 HCM 的主要表型。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 貓大多數心肌病的病因（基因型）不清楚，只有緬因貓 <em>MYBPC3</em> A31P、布偶貓 <em>MYBPC3</em> R820W 等少數突變確定，所以共識改用「看起來像什麼」（表型）分類，而不是用病因分類。</p>
+      </div>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 五種表型（24–28）</h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>表型</th><th>定義（講義）</th></tr>
+            <tr><td><strong>HCM</strong> 肥厚型</td><td>左心室壁增厚，且沒有其他可造成這種程度肥厚的疾病（如先天性主動脈狹窄、全身性高血壓）。常見<strong>動態左心室流出道阻塞</strong>及二尖瓣、乳頭肌異常。<strong>排除性診斷</strong>：排除其他左心室增厚原因後，剩下的才是 HCM。</td></tr>
+            <tr><td><strong>RCM</strong> 限制型</td><td><strong>心肌型</strong>：心室腔與心室壁大小正常，因舒張功能受損而心房擴大。<br><strong>心內膜型</strong>：心內膜疤痕橋接心室中膈與左心室游離壁，可能有左心室中段阻塞或心尖動脈瘤，合併心房擴大。</td></tr>
+            <tr><td><strong>DCM</strong> 擴張型</td><td>左心室收縮功能異常，心室逐漸擴大，最後心房也擴大。</td></tr>
+            <tr><td><strong>ARVC</strong> 致心律不整性（右心室）</td><td>右心室與右心房嚴重擴張，常有右心室收縮功能異常、右心室壁變薄；<strong>心律不整很常見</strong>。</td></tr>
+            <tr><td><strong>NSCM</strong> 非特異性</td><td>不符合上面任何經典類別，就寫「非特異性表型」＋<strong>描述形態與功能</strong>。以前叫「未分類心肌病（UCM）」。</td></tr>
+          </table>
+        </div>
+        <figure class="fig">
+          <img src="photos/05-24-hcm-definition.jpg" alt="HCM 定義投影片" loading="lazy">
+          <figcaption>📄 (24) HCM 是排除性診斷（剖面照片 courtesy Kristin Lavely）</figcaption>
+        </figure>
+        <div class="vs">
+          <figure class="fig">
+            <img src="photos/05-25-rcm.jpg" alt="RCM 心肌型與心內膜型" loading="lazy">
+            <figcaption>📄 (25) RCM：心肌型 vs 心內膜型（Fox et al., <em>CV Path</em> 2014）</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/05-26-dcm.jpg" alt="DCM 表型" loading="lazy">
+            <figcaption>📄 (26) DCM 表型</figcaption>
+          </figure>
+        </div>
+        <figure class="fig">
+          <img src="photos/05-27-arvc.jpg" alt="ARVC 表型" loading="lazy">
+          <figcaption>📄 (27) ARVC 表型（Fox et al., <em>Circulation</em> 2000）</figcaption>
+        </figure>
+      </div>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 貓分類的困難（29–30）</h3>
+        <ul class="notes">
+          <li>病因通常不明</li>
+          <li>每一類表型內部差異很大</li>
+          <li>不同表型之間有重疊</li>
+          <li>心臟會隨時間<strong>重塑</strong>，表型可能改變（例如 HCM 末期變成收縮功能差、心室變薄）</li>
+        </ul>
+        <figure class="fig">
+          <img src="photos/05-30-phenotype-overlap.jpg" alt="HCM 表型與其他表型及擬表型的重疊圖" loading="lazy">
+          <figcaption>📄 (30) 修改自 2020 共識：大圓「HCM 表型（左心室壁增厚）」由多種原因造成；右下是其他心肌病表型與末期 HCM 的重疊</figcaption>
+        </figure>
+        <p class="p"><span class="src src-slide">📄</span> 圖的重點：<strong>造成「HCM 表型」的箭頭</strong>有先天性主動脈狹窄、高血壓、暫時性心肌增厚、肢端肥大症、甲狀腺機能亢進、心跳過快造成的假性肥厚；DCM 表型則可能來自牛磺酸缺乏、心跳過快誘發心肌病、末期 HCM。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🪜</div>
+      <h2>4. HCM 分期（A–D）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 分期總覽（31）</h3>
+        <figure class="fig">
+          <img src="photos/05-31-staging.jpg" alt="HCM 分期 A B1 B2 C D" loading="lazy">
+          <figcaption>📄 (31) HCM 分期</figcaption>
+        </figure>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>分期</th><th>定義</th><th>症狀</th></tr>
+            <tr><td><strong>A</strong></td><td>易發（predisposed），心臟還正常</td><td rowspan="3">無症狀</td></tr>
+            <tr><td><strong>B1</strong>（低風險）</td><td>無症狀，心房<strong>正常或輕度</strong>擴大</td></tr>
+            <tr><td><strong>B2</strong>（較高風險）</td><td>無症狀，心房<strong>中度到重度</strong>擴大</td></tr>
+            <tr><td><strong>C</strong></td><td>目前或曾經有 <strong>CHF 或 ATE</strong>（主動脈血栓栓塞）</td><td rowspan="2">有症狀，或曾有症狀、用藥控制中</td></tr>
+            <tr><td><strong>D</strong></td><td><strong>頑固性</strong> CHF</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 誰算 A 期？誰是 B2？（32–33）</h3>
+        <div class="vs">
+          <figure class="fig">
+            <img src="photos/05-32-staging-b1.jpg" alt="HCM 易發因素" loading="lazy">
+            <figcaption>📄 (32) 易發因素</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/05-33-staging-b2.jpg" alt="B2 高風險特徵" loading="lazy">
+            <figcaption>📄 (33) B2 期的高風險特徵</figcaption>
+          </figure>
+        </div>
+        <div class="vs">
+          <div>
+            <h4>易發因素（32）</h4>
+            <ul class="notes">
+              <li>年紀增加</li>
+              <li>公貓</li>
+              <li>大聲的收縮期雜音</li>
+              <li>心肌病家族史</li>
+            </ul>
+          </div>
+          <div>
+            <h4>B2 高風險特徵（33）</h4>
+            <ul class="notes">
+              <li>奔馬律</li>
+              <li>心律不整</li>
+              <li><strong>中度到重度左心房擴大</strong>／左心房功能差</li>
+              <li>極度左心室肥厚</li>
+              <li>左心室收縮功能異常</li>
+              <li><strong>自發性顯影（煙霧）／心內血栓</strong></li>
+              <li>局部左心室壁變薄／運動減弱</li>
+              <li>限制型舒張充填模式</li>
+            </ul>
+          </div>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> 分期的用處在治療決策：依 2020 共識，B1 通常不用藥、定期追蹤；B2 因為 CHF 與 ATE 風險較高，建議考慮<strong>抗血栓藥（clopidogrel）</strong>；C 期加上利尿劑等。治療細節是 Session 3 的主題，屆時以講者說法為準。「極度肥厚」在共識中大約指左心室壁 ≥ 9 mm。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">👯</div>
+      <h2>5. 擬表型：長得像 HCM 的其他病</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> Phenocopy = 心肌病的「雙胞胎」（34）</h3>
+        <p class="p">外表（超音波上的左心室增厚）一樣，原因不一樣。很多擬表型<strong>可逆</strong>，治好原發病心肌就會變薄，這是它們和 HCM 最重要的差別。</p>
+      </div>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 高血壓性心臟病（35–36）</h3>
+        <figure class="fig">
+          <img src="photos/05-36-hypertension-amlodipine.jpg" alt="Snyder 2001 amlodipine 對高血壓貓心臟超音波的影響" loading="lazy">
+          <figcaption>📄 (36) Snyder, Sadek, Jones, <em>JVIM</em> 2001：amlodipine 治療高血壓貓至少 3 個月</figcaption>
+        </figure>
+        <ul class="notes">
+          <li>高血壓貓的心室中膈、左心室游離壁（收縮與舒張期）比正常參考值厚，左心房也較大；<strong>74%（14/19）</strong>符合左心室肥厚（舒張期中膈或游離壁 &gt; 6.0 mm）。</li>
+          <li>用 amlodipine 之後，左心室肥厚的貓從 <strong>11/14 降到 6/14</strong>（P = .006）。</li>
+          <li>血壓控制好，<strong>增厚可以逆轉</strong>。</li>
+          <li>高血壓造成的左心室增厚是<strong>對稱的</strong>；HCM 可能對稱，也可能不對稱。</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 增厚的分布：對稱還是不對稱？（37）</h3>
+        <figure class="fig">
+          <img src="photos/05-37-lv-thickening-distribution.jpg" alt="左心室增厚分布：正常、對稱、不對稱" loading="lazy">
+          <figcaption>📄 (37) 左心室增厚的分布</figcaption>
+        </figure>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>對稱性增厚</th><th>不對稱增厚</th></tr>
+            <tr><td>高血壓、甲狀腺機能亢進、肢端肥大症、其他擬表型、<strong>HCM</strong></td><td><strong>HCM</strong>、腫瘤（罕見）、（正常老化？）</td></tr>
+          </table>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> 所以「不對稱」偏向 HCM，但「對稱」不能排除 HCM，只是提醒要先找擬表型。老貓的室中膈基部常突起（sigmoid septum／基部中膈隆起），可能就是講義上的「正常老化？」。</p>
+      </div>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 甲狀腺機能亢進（38）</h3>
+        <p class="p">Weichselbaum, Feeney, Jessen（91 隻甲亢貓碘-131 治療前後的心臟超音波）：和高血壓一樣，甲亢造成的左心室肥厚是<strong>對稱</strong>而且<strong>可逆</strong>的。</p>
+        <p class="p"><span class="src src-add">💡</span> 第 8 節講者的流程：<strong>6 歲以上</strong>的貓看到左心室增厚就要驗 T4。甲亢的完整處理見 <a href="../texas-endocrine-2026/feline-hyperthyroidism.html">Texas 18 貓甲狀腺機能亢進</a>。</p>
+      </div>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 心跳過快造成的假性肥厚（39–42）</h3>
+        <div class="vs">
+          <figure class="fig">
+            <img src="photos/05-40-tachycardia-segments.jpg" alt="Sugimoto 2017 左心室壁分段測量" loading="lazy">
+            <figcaption>📄 (40) Sugimoto et al., <em>JFMS</em> 2017：健康貓左心室壁分四段測量</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/05-41-tachycardia-heart-rate.jpg" alt="心跳越快壁越厚、心室腔越小" loading="lazy">
+            <figcaption>📄 (41) 心跳 120→180 bpm：第 1 段壁厚上升、LVIDd 下降</figcaption>
+          </figure>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> 從圖上的回歸線換算：心跳 120 → 180 bpm，第 1 段壁厚約 <strong>3.1 → 4.3 mm</strong>（每 bpm +0.02 mm），舒張末期左心室內徑約 <strong>15.7 → 14.4 mm</strong>。心跳快時舒張期短、心室充填少，心室腔變小、壁看起來就變厚。</p>
+        <ul class="notes">
+          <li><strong>過度診斷 HCM 的風險</strong>：貓在醫院緊張心跳快。</li>
+          <li>講者建議：<strong>每份心臟超音波報告都記錄心跳</strong>？</li>
+          <li>要和<strong>慢性、病理性心跳過快</strong>區分：長期心跳過快會讓心肌疲乏，產生 <strong>DCM 表型</strong>（心跳過快誘發心肌病）。短暫心跳快 → 看起來像 HCM；長期心跳快 → 變成 DCM。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">⏳</div>
+      <h2>6. 暫時性心肌增厚（TMT）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 是什麼（43）</h3>
+        <ul class="notes">
+          <li>心室增厚，看起來就像 HCM</li>
+          <li><strong>會自行改善或消失</strong></li>
+          <li>和<strong>心肌發炎</strong>有關：臨床上 <strong>心肌鈣蛋白 I（cTnI）大幅上升</strong>；死後病理可見發炎細胞浸潤</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> Novo Matos 2018 回溯研究（44–48）</h3>
+        <ul class="notes">
+          <li>21 隻左心室壁 ≥ 6 mm 且有 CHF、<strong>兩者後來都消失</strong> → TMT</li>
+          <li>21 隻左心室壁 ≥ 6 mm 且有 CHF、<strong>持續存在</strong> → HCM</li>
+        </ul>
+        <figure class="fig">
+          <img src="photos/05-47-tmt-cases.jpg" alt="TMT 兩個病例 T=0 與 7 個月後超音波" loading="lazy">
+          <figcaption>📄 (47) 兩個病例：T=0 增厚，7 個月後恢復（Novo Matos et al., <em>JVIM</em> 2018）</figcaption>
+        </figure>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th></th><th>TMT</th><th>HCM</th></tr>
+            <tr><td>平均年齡</td><td><strong>2 歲</strong></td><td>8 歲</td></tr>
+            <tr><td>CHF 前有誘發／先行事件</td><td><strong>15/21</strong></td><td>6/21</td></tr>
+            <tr><td>停掉心臟藥</td><td><strong>20/21</strong></td><td>0/21</td></tr>
+            <tr><td>誘發事件：全身麻醉</td><td>33%</td><td>5%</td></tr>
+            <tr><td>誘發事件：車禍</td><td>10%</td><td>0%</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 臨床特點（49–50）</h3>
+        <ul class="notes">
+          <li>臨床表現、心臟超音波都<strong>和 HCM 一模一樣</strong>；<strong>只有事後回頭才能確診</strong></li>
+          <li>不成比例地多見於<strong>年輕貓</strong>、多有<strong>誘發事件</strong>（麻醉、車禍、加州野火）</li>
+          <li>個案報告與感染有關：<em>Bartonella</em>、<em>Toxoplasma</em></li>
+          <li><strong>最佳治療不明</strong>：抗菌藥？類固醇？什麼時候給？給誰？</li>
+          <li>預後<strong>明顯優於</strong>同樣有 CHF 的 HCM，但也是事後才知道</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 這一點很實際：年輕貓麻醉、輸液或車禍後突然 CHF，超音波看起來像 HCM，不要馬上告訴飼主「這是一輩子的病、預後很差」。先治 CHF，量 cTnI，<strong>幾週到幾個月後重新做超音波</strong>，再決定能不能減藥、停藥。</p>
+      </div>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 2026 更新：116 隻貓（未發表）（51）</h3>
+        <figure class="fig">
+          <img src="photos/05-51-tmt-2026-update.jpg" alt="TMT 2026 更新" loading="lazy">
+          <figcaption>📄 (51) Novo Matos, ECVIM Congress, Berlin 2026（58 隻 TMT vs 58 隻 HCM）</figcaption>
+        </figure>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>線索</th><th>偏向 TMT</th><th>講義推測的原因</th></tr>
+            <tr><td>左心房擴大</td><td><strong>比較輕</strong></td><td>急性過程，心房還來不及變大？</td></tr>
+            <tr><td>心肌鈣蛋白 I</td><td><strong>比較高</strong></td><td>心肌炎？</td></tr>
+            <tr><td>左心室厚度</td><td><strong>不會極度增厚</strong>（不到 &gt; 8 mm）</td><td></td></tr>
+            <tr><td>先行事件</td><td><strong>比較常見</strong></td><td></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🐈</div>
+      <h2>7. 病例：1 歲家貓長毛</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 臨床表現與工作診斷（52–55）</h3>
+        <div class="vs">
+          <figure class="fig">
+            <img src="photos/05-52-case-presentation.jpg" alt="1 歲長毛貓呼吸困難給氧" loading="lazy">
+            <figcaption>📄 (52) 就診時呼吸困難、給氧</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/05-53-case-radiograph.jpg" alt="1 歲長毛貓胸腔 X 光" loading="lazy">
+            <figcaption>📄 (53) 胸腔 X 光（腹背照）</figcaption>
+          </figure>
+        </div>
+        <ul class="notes">
+          <li><strong>床邊胸腔超音波（POCUS）</strong>：左心室瀰漫性中度增厚；左心房擴大，估計 LA:Ao 約 <strong>2.5:1</strong>；大量 <strong>B 線</strong>。</li>
+          <li>工作診斷：<strong>HCM 造成的左心鬱血性心衰竭</strong>。</li>
+          <li>病程：氧氣、靜脈利尿劑等處置下仍<strong>快速惡化</strong>、嚴重呼吸困難 → <strong>安樂死</strong>。</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 病理（56–59，Dr. Shannon Martinson 提供）</h3>
+        <div class="vs">
+          <figure class="fig">
+            <img src="photos/05-56-case-postmortem-la.jpg" alt="明顯左心房擴大" loading="lazy">
+            <figcaption>📄 (56) 左心房明顯擴大</figcaption>
+          </figure>
+          <figure class="fig">
+            <img src="photos/05-57-case-postmortem-lv.jpg" alt="左心室瀰漫性中度增厚" loading="lazy">
+            <figcaption>📄 (57) 左心室瀰漫性中度增厚</figcaption>
+          </figure>
+        </div>
+        <figure class="fig">
+          <img src="photos/05-58-case-histology.jpg" alt="心肌大量發炎細胞浸潤" loading="lazy">
+          <figcaption>📄 (58) 心肌組織：大量發炎細胞浸潤</figcaption>
+        </figure>
+        <p class="p"><span class="src src-slide">📄</span> 講者：「<strong>我很驚訝！</strong>我原本預期會看到 HCM 的肥大、肌纖維排列紊亂和纖維化。」</p>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><span><strong>最後診斷（60）</strong>：嚴重<strong>心肌炎</strong>伴隨左心室增厚造成的 CHF，<strong>沒有 HCM 的證據</strong>。如果這隻貓活下來，左心室增厚很可能會消失，也就是 TMT。</span></div>
+        <p class="p"><span class="src src-add">💡</span> 這個病例把第 6 節串起來：1 歲（TMT 平均 2 歲）、左心室中度而非極度增厚、病理是發炎。生前能做的區分是量 <strong>cTnI</strong>；但就算懷疑 TMT，急性期的 CHF 處置還是一樣。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">✅</div>
+      <h2>8. 排除擬表型的實用流程</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 在下「HCM」診斷前，逐題問自己（61–62）</h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>問題</th><th>如果「是」</th></tr>
+            <tr><td>超音波上有沒有<strong>其他造成增厚的證據</strong>？<br>・左心室流出道阻塞（如主動脈狹窄）<br>・左心室心肌回音<strong>不均勻、斑駁</strong>（如腫瘤浸潤）</td><td>那就是擬表型，<strong>不是 HCM</strong></td></tr>
+            <tr><td>貓是否<strong>小於 6 歲</strong>？</td><td>是 → 甲亢造成增厚的機會很低；<strong>≥ 6 歲就驗 T4</strong></td></tr>
+            <tr><td>貓有沒有<strong>高血壓</strong>？</td><td>・先排除<strong>情境性高血壓（白袍效應）</strong>，非常常見<br>・做<strong>眼底檢查</strong>找高血壓性視網膜病變<br>・找原發病：<strong>慢性腎病、甲亢</strong></td></tr>
+            <tr><td>有沒有<strong>難以控制的糖尿病</strong>？</td><td>考慮<strong>肢端肥大症</strong></td></tr>
+          </table>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> 再加上前面兩點：<strong>記錄心跳</strong>（心跳快可能假性增厚）、年輕貓有誘發事件時想到 <strong>TMT</strong>，量 cTnI 並安排回診超音波。肢端肥大症的篩檢（IGF-1）見 <a href="../texas-endocrine-2026/feline-hypersomatotropism.html">Texas 23 貓生長激素過多症</a>。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">📘</div>
+      <h2>9. 課前思考題</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <ol class="notes">
+        <li>講者說「每份超音波報告記錄心跳」後面加了問號：心跳多快以上，壁厚的判讀要打折？有沒有建議的鎮靜方式（如 gabapentin、butorphanol）會影響壁厚？</li>
+        <li>TMT 的治療：講者會不會給類固醇或 doxycycline？cTnI 多高要懷疑心肌炎？</li>
+        <li>B2 的判定：左心房「中度到重度」擴大，講者用 LA:Ao 還是左心房直徑（mm）當切點？</li>
+        <li>對稱性增厚的老貓，T4 正常、血壓正常，還需要驗 IGF-1 嗎？</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ══ S10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🎤</div>
+      <h2>10. 課堂補充（待錄音）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="alert alert-info"><span class="alert-icon">⏳</span><span>錄音或現場筆記到了之後，把講者口述、回答第 9 節的問題與 Q&amp;A 補在這裡，並修正和 💡 補充不一致的地方。</span></div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>上一場：<a href="dermatology-emergency.html">04 皮膚科急症</a>。下一場：Côté Session 2 貓心肌病的診斷（整理中）。</p>
+    <a href="index.html">回到系列列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+<script src="gate.js?v=2"></script>
+</body>
+</html>

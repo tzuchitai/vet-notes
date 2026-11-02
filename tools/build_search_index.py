@@ -73,6 +73,7 @@ FOLDER_SPECS = {
 }
 
 SPECS = {
+    'fasava-2026/feline-heart-intro-classification.html': ['cardio'],
     'fasava-2026/dermatology-emergency.html':     ['derm', 'ecc'],
     'fasava-2026/feline-eye-ocular-surface.html': ['ophtho', 'infect'],
     'texas-endocrine-2026/endocrine-neoplasia.html': ['endo', 'onc'],
