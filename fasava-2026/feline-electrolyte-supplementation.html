@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>補充：貓重症病患鉀・鎂・磷補充（老師回覆）｜2026 FASAVA 研討會筆記</title>
+<meta name="robots" content="noindex, nofollow">
+<style>html{visibility:hidden}</style>
+<script>
+(function(){ if (sessionStorage.getItem('fasavaGateOK') === '1') { document.documentElement.style.visibility = 'visible'; } })();
+</script>
+<style>
+  :root {
+    --primary: #BE185D;
+    --primary-light: #FCE7F3;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2A0B1A;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E9B6CD; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A1730;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E9B6CD; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E9B6CD;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A1730;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #A86A88;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #831843 0%, #DB2777 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2A0B1A; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A1730; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .src-doc { background: #e0f2fe; color: #075985; }
+  .pending { border: 2px dashed #F5D3E3; border-radius: 10px; padding: 16px 18px; color: var(--text-muted); font-size: 13.5px; background: #fffbfd; }
+<style>
+  .fig img { border-color: #F5D3E3; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  @media (max-width: 900px) { .vs { grid-template-columns: 1fr; } }
+  .calc { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px 16px; margin: 12px 0; }
+  .calc label { font-size: 13px; color: var(--text-muted); display: flex; flex-direction: column; gap: 4px; }
+  .calc input { font: inherit; font-size: 15px; padding: 7px 10px; border: 1px solid var(--border); border-radius: 8px; color: var(--text); background: #fff; }
+  .calc-out td.num, .calc-out th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .calc-out tfoot td { font-weight: 700; }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← FASAVA 筆記</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 FASAVA 研討會筆記</a>
+  <div class="logo">
+    <h2>補充 S1｜貓重症病患<br>鉀・鎂・磷補充</h2>
+    <p>貓科老師會後回覆｜2026-11-03</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">來源說明</a>
+    <a href="#s1">1. 劑量</a>
+    <a href="#s2">2. 老師的做法（時序）</a>
+    <a href="#s3">3. 第 2 天實例</a>
+    <a href="#s4">4. 配方計算（10 kg）</a>
+    <a href="#s5">5. 老師的提醒</a>
+    <a href="#s6">6. 整理者補充：單位陷阱</a>
+    <a href="#s7">7. 配方計算器</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>補充：貓重症病患的鉀・鎂・磷補充</h1>
+    <p>原文：貓科老師會後以英文回覆的補離子方式（KCl／MgSO4／KPhos CRI），整理者翻譯整理</p>
+    <p>其他人筆記補充資料｜FASAVA 2026｜補充 S1</p>
+    <div class="tags">
+      <span class="tag">KCl</span>
+      <span class="tag">MgSO4</span>
+      <span class="tag">KPhos</span>
+      <span class="tag">CRI</span>
+      <span class="tag">低血鉀</span>
+      <span class="tag">低血磷</span>
+      <span class="tag">低血鎂</span>
+      <span class="tag">ARFT</span>
+      <span class="tag">針筒幫浦配方</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-doc">📨 老師回覆</span> 貓科老師會後回覆的原話（翻譯）
+    <span class="src src-add">💡 補充</span> 整理者的解說、驗算與單位提醒；❔ 表示推測
+    <br><span class="muted">這份不是現場講義或錄音，而是有人會後詢問、老師以文字回覆的內容，由同學轉貼。講者姓名待補。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 重點</h3>
+    <ul>
+      <li><strong>KCl：0.1–0.5 mEq/kg/<u>小時</u></strong>；<strong>MgSO4：0.25–0.5 mEq/kg/<u>天</u></strong>；<strong>KPhos：0.03–0.12 mEq/kg/<u>小時</u></strong></li>
+      <li>要補的鉀可以 <strong>1/3–1/2 用 KPhos、其餘用 KCl</strong>；加 KPhos 時要<strong>同步調降 KCl</strong>，讓總鉀量維持不變</li>
+      <li>很嚴重的病患：<strong>先做急性復甦輸液（ARFT）</strong>，做完馬上驗鉀，再主動補；一開始鉀就低的，可以<strong>另開第二條靜脈管</strong>在 ARFT 時就同步補 KCl（專用管路）</li>
+      <li>嚴重脫水來的通常<strong>鎂、磷是偏高的</strong>，所以 KPhos、MgSO4 多半第 2 天才開始；但<strong>如果磷一開始就偏低或正常偏低，要跟 KCl 一樣早開始</strong></li>
+      <li>穩定後 K／Mg／P <strong>每 24 小時驗一次</strong>，把 24 小時份量配成 <strong>總量 48 mL、以 2 mL/h 跑</strong>，每天依檢驗調整</li>
+      <li>⚠️ <strong>各國藥品濃度不同，不能直接照抄配方</strong>；MgSO4 慣例以「每天」計</li>
+    </ul>
+  </div>
+
+  <!-- ══ S0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">📨</div>
+      <h2>來源說明</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p class="p">有學員在課後問貓科老師「重症貓怎麼補離子」，老師回信說明自己的劑量（與講義相同）、實際做法，並舉一個第 2 天的病例示範配方怎麼算。以下依原文順序翻譯，劑量與數字照原文保留；整理者的驗算與提醒另外用 <span class="src src-add">💡 補充</span> 標示。</p>
+    </div>
+  </div>
+
+  <!-- ══ S1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">💊</div>
+      <h2>1. 劑量（與講義相同）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-doc">📨 老師回覆</span> 我的劑量</h3>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>藥物</th><th>給法</th><th>劑量</th><th>備註</th></tr></thead>
+            <tbody>
+              <tr><td><strong>KCl</strong></td><td>CRI</td><td><strong>0.1–0.5 mEq/kg/hr</strong></td><td></td></tr>
+              <tr><td><strong>MgSO4</strong></td><td>CRI</td><td><strong>0.25–0.5 mEq/kg/<u>DAY</u></strong></td><td>注意單位是「每天」</td></tr>
+              <tr><td><strong>KPhos</strong>（磷酸鉀）</td><td>CRI</td><td><strong>0.03–0.12 mEq/kg/hr</strong></td><td>要補的鉀可以 ⅓–½ 用 KPhos、其餘用 KCl</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">⏱️</div>
+      <h2>2. 老師的做法（依時序）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-doc">📨 老師回覆</span> 來院當下：先復甦，再補鉀</h3>
+        <ul class="p">
+          <li>病患很嚴重時，<strong>先做急性復甦輸液治療（acute resuscitative fluid therapy, ARFT）</strong>，做完<strong>馬上驗鉀</strong>，然後<strong>主動（proactively）補充</strong>。</li>
+          <li>如果一開始鉀就低，老師甚至會<strong>放第二條靜脈留置針</strong>，在 ARFT 的同時就開始經驗性補 KCl——但要走<strong>另一條專用管路</strong>（不跟復甦輸液混在一起）。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-doc">📨 老師回覆</span> 鎂與磷：通常第 2 天才補</h3>
+        <ul class="p">
+          <li>這些貓來的時候通常<strong>嚴重脫水，所以多半是高血鎂、高血磷</strong>，因此老師通常<strong>第 2 天之前不補 KPhos 和 MgSO4</strong>。</li>
+          <li><strong>但是</strong>，如果磷一開始就是<strong>正常偏低或偏低</strong>，老師<strong>一定會一開始就補</strong>，跟 KCl 一樣早。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-doc">📨 老師回覆</span> 穩定後：一天驗一次、一天配一次</h3>
+        <ul class="p">
+          <li>病患穩定之後，<strong>K、Mg、P 只每 24 小時驗一次</strong>。</li>
+          <li>因此把<strong>24 小時份量的藥配成總體積 48 mL</strong>（藥物＋稀釋液），<strong>以 2 mL/h 跑</strong>，跑到下一次驗電解質為止，然後每 24 小時依結果重新配。</li>
+        </ul>
+        <div class="alert alert-info"><span class="alert-icon">💡</span><span><span class="src src-add">💡 補充</span> 48 mL ÷ 2 mL/h = 24 小時，剛好是一支 50 mL 針筒的量，所以這是用<strong>針筒幫浦另外跑的電解質線</strong>，跟主輸液分開。好處是主輸液速率要調整時，電解質的給予量不會跟著變。</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🐱</div>
+      <h2>3. 第 2 天實例：怎麼調整</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-doc">📨 老師回覆</span> 情境</h3>
+        <p class="p">第 2 天、血行動力學穩定的病患，到目前為止一直在接受 <strong>KCl 0.25 mEq/kg/hr</strong>。第 2 天複驗：</p>
+        <ul class="p">
+          <li><strong>K：正常範圍中段</strong>（因為一直有在補）</li>
+          <li><strong>P、Mg：兩者都中度偏低</strong></li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-doc">📨 老師回覆</span> 老師的處置</h3>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>項目</th><th>調整</th><th>理由</th></tr></thead>
+            <tbody>
+              <tr><td><strong>總鉀量</strong></td><td>維持不變</td><td>目前速率有效（K 在中段）</td></tr>
+              <tr><td><strong>MgSO4</strong></td><td>開始，中等劑量，例如 <strong>0.3 mEq/kg/DAY</strong></td><td>中度偏低 → 中等劑量</td></tr>
+              <tr><td><strong>KPhos</strong></td><td>開始，中等劑量，例如 <strong>0.06 mEq/kg/hr</strong></td><td>中度偏低 → 中等劑量</td></tr>
+              <tr><td><strong>KCl</strong></td><td>從 0.25 <strong>降到 0.15 mEq/kg/hr</strong></td><td>KPhos 也含鉀，加了 KPhos 就要把 KCl 調降，總鉀量才不會增加</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><span><span class="src src-add">💡 補充</span> 原文在 MgSO4 後面寫「0.3 meq/kg/DAY（0.6 mmol/kg/DAY）」。鎂是二價離子，<strong>1 mmol = 2 mEq</strong>，所以 0.3 mEq 應該是 <strong>0.15 mmol</strong>，括號裡的 0.6 mmol 看起來是筆誤（方向寫反、倍數也不對）。下面的配方計算是用 0.3 mEq 算的，結果正確。</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🧪</div>
+      <h2>4. 配方計算（10 kg 病患，北美濃度）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-doc">📨 老師回覆</span> 每種藥要抽多少</h3>
+        <p class="p">實際配方要看你們藥品的濃度，以下只是用北美濃度舉例。配 24 小時份量、總體積 48 mL、2 mL/h。</p>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>藥物</th><th>劑量</th><th>24 小時總量</th><th>濃度（北美）</th><th>抽取體積</th></tr></thead>
+            <tbody>
+              <tr><td>MgSO4</td><td>0.3 mEq/kg/day</td><td>0.3 × 10 = <strong>3 mEq</strong></td><td>4 mEq/mL</td><td><strong>0.75 mL</strong></td></tr>
+              <tr><td>KPhos</td><td>0.06 mEq/kg/hr</td><td>0.06 × 10 × 24 = <strong>14.4 mEq</strong></td><td>3 mEq/mL</td><td><strong>4.8 mL</strong></td></tr>
+              <tr><td>KCl</td><td>0.15 mEq/kg/hr</td><td>0.15 × 10 × 24 = <strong>36 mEq</strong></td><td>2 mEq/mL</td><td><strong>18 mL</strong></td></tr>
+            </tbody>
+            <tfoot>
+              <tr><td colspan="4"><strong>藥物合計</strong></td><td><strong>23.55 mL</strong></td></tr>
+              <tr><td colspan="4"><strong>稀釋液（0.9% NaCl）</strong> 補到 48 mL</td><td><strong>24.45 mL</strong></td></tr>
+              <tr><td colspan="4"><strong>總體積</strong>（2 mL/h 跑 24 小時）</td><td><strong>48 mL</strong></td></tr>
+            </tfoot>
+          </table>
+        </div>
+        <p class="p">這樣配出 48 mL 的溶液，以 2 mL/h 跑剛好 24 小時，裡面正好是各藥物在處方速率下 24 小時的份量。</p>
+        <div class="alert alert-success"><span class="alert-icon">✅</span><span><span class="src src-add">💡 補充</span> 整理者逐項驗算，原文的數字都正確（3 mEq → 0.75 mL；14.4 mEq → 4.8 mL；36 mEq → 18 mL；23.55 + 24.45 = 48 mL）。</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">⚠️</div>
+      <h2>5. 老師的提醒</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-doc">📨 老師回覆</span> 請記得</h3>
+        <ul class="p">
+          <li><strong>世界各地的藥品濃度不同</strong>，上面的配方沒核對過不要直接用。</li>
+          <li><strong>MgSO4 的劑量依慣例是以「每天」表示</strong>，不是每小時。</li>
+          <li>劑量需要臨床判斷並<strong>追蹤趨勢</strong>。看檢驗結果時，永遠要<strong>對照你目前給了多少、以及數值的走向</strong>。</li>
+          <li>這只是其中一種做法的例子。請再用你們自己的處方集與參考資料核對劑量。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">💡</div>
+      <h2>6. 整理者補充：在台灣用之前要注意的單位</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-add">💡 補充</span> KPhos 的「mEq」是鉀還是磷？</h3>
+        <p class="p">北美常見的 potassium phosphate 注射液每 mL 含 <strong>磷酸 3 mmol + 鉀 4.4 mEq</strong>。老師寫「3 meq/ml」，對應的應該是<strong>磷 3 mmol/mL</strong>；也就是說，KPhos 的 0.03–0.12 劑量實際上多半是以<strong>磷（mmol/kg/hr）</strong>計，教科書通常也是寫 0.01–0.12 mmol/kg/hr。❔</p>
+        <p class="p">如果照這樣算，例子裡 KPhos 4.8 mL 帶進來的鉀約 4.8 × 4.4 ≈ 21 mEq（≈ 0.088 mEq/kg/hr），加上 KCl 0.15，總鉀約 <strong>0.24 mEq/kg/hr</strong>，跟原本的 0.25 幾乎一樣——這正好符合老師「總鉀量維持不變」的說法。❔</p>
+        <div class="alert alert-warn"><span class="alert-icon">⚠️</span><span>院內磷酸鉀的標示請確認是「mmol P/mL」還是「mEq K/mL」，兩者不能混用；開立 KPhos 醫囑時寫清楚是以磷的 mmol 計。</span></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-add">💡 補充</span> MgSO4 濃度差很多</h3>
+        <p class="p">北美例子用的是 <strong>50% MgSO4（約 4 mEq/mL）</strong>。如果院內用的是 <strong>10% MgSO4（約 0.8 mEq/mL）</strong>，同樣 3 mEq 要抽約 <strong>3.7 mL</strong>，不是 0.75 mL。KCl 也要確認濃度（例如 2 mEq/mL）。請用 §7 計算器換成院內濃度。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-add">💡 補充</span> 安全提醒</h3>
+        <ul class="p">
+          <li>例子中針筒裡 KCl 濃度約 36 mEq ÷ 48 mL = <strong>0.75 mEq/mL</strong>，非常濃：一定要用<strong>針筒幫浦</strong>、清楚標示，絕不推注。</li>
+          <li>總鉀速率不要超過 <strong>0.5 mEq/kg/hr</strong>（KCl＋KPhos 帶進來的鉀一起算，見 <a href="ecc-fluid-types.html">12 輸液種類</a>）。</li>
+          <li>磷酸鹽不要跟含鈣的輸液（例如 LRS）走同一條管路，以免沉澱。</li>
+          <li>主輸液若也有加鉀，要一起算進總鉀量。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🧮</div>
+      <h2>7. 配方計算器（用院內濃度重算）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <p class="p"><span class="src src-add">💡 補充</span> 預設值是老師的 10 kg 例子；改成院內藥品濃度就會重算。僅供核對，開立前請再人工確認。</p>
+        <div class="calc">
+          <label>體重（kg）<input type="number" id="c-wt" value="10" min="0" step="0.1"></label>
+          <label>總體積（mL）<input type="number" id="c-vol" value="48" min="0" step="1"></label>
+          <label>持續時間（小時）<input type="number" id="c-hr" value="24" min="1" step="1"></label>
+          <label>KCl 劑量（mEq/kg/hr）<input type="number" id="c-kcl" value="0.15" min="0" step="0.01"></label>
+          <label>KCl 濃度（mEq/mL）<input type="number" id="c-kclc" value="2" min="0" step="0.1"></label>
+          <label>KPhos 劑量（mmol P/kg/hr）<input type="number" id="c-kp" value="0.06" min="0" step="0.01"></label>
+          <label>KPhos 濃度（mmol P/mL）<input type="number" id="c-kpc" value="3" min="0" step="0.1"></label>
+          <label>KPhos 含鉀（mEq K/mL）<input type="number" id="c-kpk" value="4.4" min="0" step="0.1"></label>
+          <label>MgSO4 劑量（mEq/kg/天）<input type="number" id="c-mg" value="0.3" min="0" step="0.05"></label>
+          <label>MgSO4 濃度（mEq/mL）<input type="number" id="c-mgc" value="4" min="0" step="0.1"></label>
+        </div>
+        <div class="tbl-wrap">
+          <table class="calc-out">
+            <thead><tr><th>項目</th><th class="num">總量</th><th class="num">抽取體積（mL）</th></tr></thead>
+            <tbody id="c-body"></tbody>
+            <tfoot id="c-foot"></tfoot>
+          </table>
+        </div>
+        <div id="c-msg"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>相關：<a href="ecc-fluid-types.html">12 急診（四）：輸液種類與適應症</a>（KCl 速率上限）。</p>
+    <a href="index.html">回到系列列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+
+// Electrolyte syringe calculator
+(function () {
+  const ids = ['wt','vol','hr','kcl','kclc','kp','kpc','kpk','mg','mgc'];
+  const v = id => parseFloat(document.getElementById('c-' + id).value) || 0;
+  const f = (n, d) => (Math.round(n * 10 ** d) / 10 ** d).toString();
+  function calc() {
+    const wt = v('wt'), vol = v('vol'), hr = v('hr');
+    const kcl = v('kcl') * wt * hr, kclMl = v('kclc') ? kcl / v('kclc') : 0;
+    const kp = v('kp') * wt * hr, kpMl = v('kpc') ? kp / v('kpc') : 0;
+    const mg = v('mg') * wt * hr / 24, mgMl = v('mgc') ? mg / v('mgc') : 0;
+    const drug = kclMl + kpMl + mgMl, dil = vol - drug;
+    const kTotal = kcl + kpMl * v('kpk');
+    const kRate = wt && hr ? kTotal / wt / hr : 0;
+    document.getElementById('c-body').innerHTML =
+      `<tr><td>KCl</td><td class="num">${f(kcl,2)} mEq</td><td class="num">${f(kclMl,2)}</td></tr>` +
+      `<tr><td>KPhos</td><td class="num">${f(kp,2)} mmol P（含 K ${f(kpMl * v('kpk'),1)} mEq）</td><td class="num">${f(kpMl,2)}</td></tr>` +
+      `<tr><td>MgSO4</td><td class="num">${f(mg,2)} mEq</td><td class="num">${f(mgMl,2)}</td></tr>`;
+    document.getElementById('c-foot').innerHTML =
+      `<tr><td colspan="2">藥物合計</td><td class="num">${f(drug,2)}</td></tr>` +
+      `<tr><td colspan="2">0.9% NaCl 稀釋液</td><td class="num">${f(dil,2)}</td></tr>` +
+      `<tr><td colspan="2">輸注速率</td><td class="num">${hr ? f(vol / hr,2) : '—'} mL/h</td></tr>`;
+    let msg = `<div class="alert alert-info"><span class="alert-icon">ℹ️</span><span>總鉀速率（KCl＋KPhos）≈ <strong>${f(kRate,3)} mEq/kg/hr</strong></span></div>`;
+    if (kRate > 0.5) msg += `<div class="alert alert-danger"><span class="alert-icon">⛔</span><span>總鉀速率超過 0.5 mEq/kg/hr。</span></div>`;
+    if (dil < 0) msg += `<div class="alert alert-danger"><span class="alert-icon">⛔</span><span>藥物體積已超過總體積，請加大總體積或改用較濃的藥品。</span></div>`;
+    document.getElementById('c-msg').innerHTML = msg;
+  }
+  ids.forEach(id => document.getElementById('c-' + id).addEventListener('input', calc));
+  calc();
+})();
+</script>
+<script src="gate.js?v=2"></script>
+</body>
+</html>
