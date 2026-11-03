@@ -83,6 +83,7 @@ SPECS = {
     'fasava-2026/ecc-pocus.html': ['ecc', 'us'],
     'fasava-2026/ecc-fluid-types.html': ['ecc'],
     'fasava-2026/feline-electrolyte-supplementation.html': ['ecc'],
+    'fasava-2026/hong-cardiology-notes.html': ['cardio'],
     'fasava-2026/feline-eye-ocular-surface.html': ['ophtho', 'infect'],
     'texas-endocrine-2026/endocrine-neoplasia.html': ['endo', 'onc'],
     'texas-endocrine-2026/hypercalcemia.html':       ['endo', 'onc'],
