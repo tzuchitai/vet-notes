@@ -56,6 +56,7 @@ SERIES = {
     'lulich-urology-2026':     'Jody Lulich 泌尿講座',
     'rita-ho-oncology-2026':   'Rita Ho 腫瘤科講座',
     'fasava-2026':              '2026 FASAVA 研討會筆記',
+    'lu-ming-ortho':            '卓越講堂・呂明醫師骨關節系列',
     'ultrasound':              '超音波專區',
     'notes':                   '單篇筆記',
 }
@@ -70,6 +71,7 @@ FOLDER_SPECS = {
     'lulich-urology-2026':  ['uro'],
     'rita-ho-oncology-2026': ['onc'],
     'fasava-2026':           ['neuro'],
+    'lu-ming-ortho':         ['surg'],
 }
 
 SPECS = {
@@ -123,7 +125,7 @@ SPECS = {
 }
 
 # 有密碼保護的系列：只收標題，不收內文
-GATED = ('echocardiography/', 'fasava-2026/')
+GATED = ('echocardiography/', 'fasava-2026/', 'lu-ming-ortho/')
 
 SKIP_TAGS = {'head', 'title', 'script', 'style', 'noscript', 'svg', 'template'}
 HEADINGS = {'h1', 'h2', 'h3'}

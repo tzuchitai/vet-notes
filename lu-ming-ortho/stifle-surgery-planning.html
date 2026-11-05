@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>常見膝關節手術選擇與規劃｜卓越講堂・呂明醫師骨關節系列</title>
+<meta name="robots" content="noindex, nofollow">
+<style>html{visibility:hidden}</style>
+<script>
+(function(){ if (sessionStorage.getItem('luMingOrthoGateOK') === '1') { document.documentElement.style.visibility = 'visible'; } })();
+</script>
+<style>
+  :root {
+    --primary: #9A3412;
+    --primary-light: #FFEDD5;
+    --secondary: #0891b2;
+    --accent: #9a3412;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2A0E05;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #FDBA74; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #431407;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #FDBA74; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #FDBA74;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #431407;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #B07A55;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #7C2D12 0%, #C2410C 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  h3.sub { font-size: 15px; font-weight: 700; color: var(--primary); margin: 22px 0 10px; padding-bottom: 6px; border-bottom: 2px solid var(--primary-light); }
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2A0E05; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #431407; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .src-doc { background: #e0f2fe; color: #075985; }
+  .pending { border: 2px dashed #FED7AA; border-radius: 10px; padding: 16px 18px; color: var(--text-muted); font-size: 13.5px; background: #fffaf5; }
+</style>
+</head>
+<style>
+  .fig.live img { border-color: #FED7AA; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  @media (max-width: 900px) { .vs { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 骨關節系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 卓越講堂・呂明醫師骨關節系列</a>
+  <div class="logo">
+    <h2>01｜常見膝關節手術選擇與規劃</h2>
+    <p>From Diagnosis to Treatment III｜2026-11-05｜現場整理中</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">場次資訊</a>
+    <a href="#s1">1. 膝關節疾病總覽</a>
+    <a href="#s2">2. 理學與骨科檢查：CrCL 與髕骨脫位</a>
+    <a href="#s2-tests">　各項檢查怎麼做</a>
+    <a href="#s3">3. CrCL 部分斷裂</a>
+    <a href="#s3-bands">　兩條纖維束與屈曲時抽屜</a>
+    <a href="#s3-rads">　X 光</a>
+    <a href="#s9">9. 課堂內容（持續更新）</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>從診斷到治療 III：常見膝關節手術選擇與規劃</h1>
+    <p>From Diagnosis to Treatment III: Common Knee Surgery Options and Planning｜講者：呂明 獸醫師（美國加州大學戴維斯分校助理教授；專長小動物外科、關節置換、關節手術）</p>
+    <p>2026 年 11 月 5 日｜聯盟獸醫教育中心 卓越講堂｜主持人：戴子綺 院長</p>
+    <div class="tags">
+      <span class="tag">膝關節</span>
+      <span class="tag">前十字韌帶 CrCL</span>
+      <span class="tag">髕骨脫位</span>
+      <span class="tag">骨科檢查</span>
+      <span class="tag">抽屜試驗</span>
+      <span class="tag">脛骨推力試驗</span>
+      <span class="tag">部分斷裂</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-photo">📸 現場</span> 課堂投影片截圖
+    <span class="src src-add">💡 補充</span> 整理者補充（教科書知識，非講者內容）
+    <span class="src src-hand">✍️ 筆記</span> 現場筆記
+    <br><span class="muted">線上課程進行中，依截圖逐步更新；目前 3 張投影片。💡 部分是整理者依教科書補的解釋，之後會依講者內容或錄音更正。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 目前重點</h3>
+    <ul>
+      <li>膝關節問題分兩個關節看：<strong>股脛關節（CrCL）</strong>與<strong>股髕關節（髕骨脫位）</strong>，另有 OCD、髕骨損傷（髕韌帶斷裂）、其他不穩定（CdCL、側副韌帶）</li>
+      <li>CrCL 斷裂與髕骨脫位都<strong>非常常見</strong>，而且常同時存在</li>
+      <li>步態：跛行程度不一，受<strong>肢體排列、疼痛、慢性程度</strong>影響；慢性病例可以是<strong>機械性跛行</strong>（不痛但走路異常）</li>
+      <li>站立檢查<strong>兩側比較</strong>：關節積液、<strong>內側增厚（medial buttress）</strong>、肌肉萎縮、髕骨脫位</li>
+      <li>側躺檢查：<strong>前／後抽屜、脛骨推力、外展與內收、髕骨脫位</strong></li>
+      <li>CrCL <strong>部分斷裂</strong>：表現較不明顯、間歇性跛行，<strong>抽屜只在屈曲時出現</strong>，因為<strong>尾外側束只在伸直時拉緊</strong></li>
+    </ul>
+  </div>
+
+  <!-- ══ S0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ffedd5">🎯</div>
+      <h2>場次資訊</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <figure class="fig" style="max-width:520px">
+        <img src="photos/01-poster.jpg" alt="卓越講堂海報：從診斷到治療 III：常見膝關節手術選擇與規劃，講者呂明獸醫師，主持人戴子綺院長" loading="lazy">
+        <figcaption>卓越講堂海報</figcaption>
+      </figure>
+      <ul class="notes">
+        <li>主題：<strong>從診斷到治療 III：常見膝關節手術選擇與規劃</strong>（From Diagnosis to Treatment III: Common Knee Surgery Options and Planning）。</li>
+        <li>講者：<strong>呂明 獸醫師</strong>，美國加州大學戴維斯分校（UC Davis）助理教授；專長小動物外科、關節置換、關節手術。學歷：美國奧勒岡州立大學獸醫系碩士、國立台灣大學獸醫學系學士／臨床碩士。</li>
+        <li>主持人：聯盟獸醫教育中心負責人 <strong>戴子綺 院長</strong>。</li>
+        <li>形式：線上講座（2026-11-05）。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ S1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">🦴</div>
+      <h2>1. 膝關節疾病總覽</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <figure class="fig live">
+        <img src="photos/01-stifle-overview-live.jpg" alt="Stifle 投影片：Femorotibial joint (CrCL)、Femoropatellar joint (Patellar luxation)、OCD、Patellar injury（Patellar ligament rupture）、Other instability (CdCL, collateral ligaments, etc)" loading="lazy">
+        <figcaption>📸 Stifle</figcaption>
+      </figure>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th><span class="src src-photo">📸</span> 投影片</th><th>中文</th><th><span class="src src-add">💡</span> 補充</th></tr>
+          <tr><td>Femorotibial joint (CrCL)</td><td>股脛關節：前十字韌帶</td><td>犬最常見的後肢跛行原因；多為慢性退化性斷裂，常見雙側（另一側之後也斷的比例高）。</td></tr>
+          <tr><td>Femoropatellar joint (Patellar luxation)</td><td>股髕關節：髕骨脫位</td><td>小型犬多為內側脫位（MPL），大型犬也可見外側脫位；常合併 CrCL 斷裂。</td></tr>
+          <tr><td>OCD</td><td>剝離性骨軟骨炎</td><td>膝關節 OCD 好發於股骨外髁內側面，年輕大型犬，常雙側。</td></tr>
+          <tr><td>Patellar injury — Patellar ligament rupture</td><td>髕骨損傷：髕韌帶斷裂</td><td>多為外傷，或 TPLO 等手術後的髕韌帶炎／斷裂。</td></tr>
+          <tr><td>Other instability (CdCL, collateral ligaments, etc)</td><td>其他不穩定：後十字韌帶、側副韌帶等</td><td>單獨的 CdCL 斷裂少見，多為外傷造成的多韌帶損傷（膝關節脫臼）。</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🩺</div>
+      <h2>2. 理學與骨科檢查：CrCL 與髕骨脫位</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <figure class="fig live">
+        <img src="photos/01-ortho-exam-live.jpg" alt="Physical and orthopedic exam — CrCL and patellar luxation：Very common；Gait: varying degrees of lameness（Limb alignment, pain, chronicity (can be mechanical lameness)）；Standing exam: compare both sides（Joint effusion, medial buttress, muscle atrophy, patellar luxation）；Recumbent exam: Cranial and caudal drawer, tibial thrust, abduction and adduction, patellar luxation" loading="lazy">
+        <figcaption>📸 Physical and orthopedic exam — CrCL and patellar luxation</figcaption>
+      </figure>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>檢查階段</th><th><span class="src src-photo">📸</span> 投影片要點</th></tr>
+          <tr><td><strong>整體</strong></td><td>CrCL 斷裂與髕骨脫位都<strong>非常常見</strong>。</td></tr>
+          <tr><td><strong>步態</strong></td><td>跛行程度不一，受<strong>肢體排列</strong>、<strong>疼痛</strong>、<strong>慢性程度</strong>影響；可以是<strong>機械性跛行</strong>。</td></tr>
+          <tr><td><strong>站立檢查</strong></td><td><strong>兩側比較</strong>：關節積液、內側增厚（medial buttress）、肌肉萎縮、髕骨脫位。</td></tr>
+          <tr><td><strong>側躺檢查</strong></td><td>前抽屜與後抽屜、脛骨推力、外展與內收、髕骨脫位。</td></tr>
+        </table>
+      </div>
+
+      <h3 id="s2-tests" style="margin-top:18px">各項檢查怎麼做 <span class="src src-add">💡</span></h3>
+      <ul class="notes">
+        <li><strong>機械性跛行</strong>：慢性病例關節纖維化、內側增厚後，疼痛可能不明顯，但活動範圍受限、步態仍異常；典型例子是長期髕骨脫位造成的跳步（skipping）或膝關節無法完全伸直。</li>
+        <li><strong>關節積液</strong>：站立時摸髕韌帶兩側，正常可清楚摸到髕韌帶邊緣；積液時邊緣變鈍、韌帶摸起來不清楚。</li>
+        <li><strong>內側增厚（medial buttress）</strong>：慢性 CrCL 斷裂後，膝關節內側關節囊纖維化與骨贅形成，在脛骨近端內側摸到硬的隆起；兩側比較最明顯。</li>
+        <li><strong>肌肉萎縮</strong>：大腿肌群（股四頭肌、腿後肌群）兩側比較，代表慢性、不願負重。</li>
+        <li><strong>前抽屜試驗（cranial drawer）</strong>：一手拇指放在腓骨頭後方、食指放在脛骨粗隆，另一手拇指放在股骨外髁後方、食指放在髕骨；固定股骨，把脛骨往前推。脛骨相對股骨往前移動＝陽性。年輕動物正常會有少量移動但有明確停止點（puppy drawer）。</li>
+        <li><strong>後抽屜</strong>：同樣手勢把脛骨往後推，檢查後十字韌帶（CdCL）。</li>
+        <li><strong>脛骨推力試驗（tibial thrust / tibial compression test）</strong>：一手固定股骨遠端、食指放在脛骨粗隆，另一手將跗關節屈曲；腓腸肌拉緊時脛骨被推向前方，食指感覺到脛骨粗隆往前移＝陽性。比抽屜試驗不需要那麼放鬆，清醒動物也較容易做。</li>
+        <li><strong>外展與內收</strong>：膝關節伸直時對脛骨施加內外翻力量，檢查內側與外側側副韌帶。</li>
+        <li><strong>髕骨脫位</strong>：伸直膝關節並將腳掌內旋，用拇指把髕骨往內推（內側脫位）；外旋並往外推（外側脫位）。依可否自行復位、是否持續脫位分 I–IV 級。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ S3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🧵</div>
+      <h2>3. CrCL 部分斷裂</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <figure class="fig live">
+        <img src="photos/01-crcl-partial-tear-live.jpg" alt="CrCL Partial tears 投影片：Less obvious；Intermittent lameness；Drawer during flexion（Caudolateral band is tight only in extension）；下方為兩張膝關節側位與兩張前後位 X 光" loading="lazy">
+        <figcaption>📸 CrCL — Partial tears</figcaption>
+      </figure>
+      <ul class="notes">
+        <li><span class="src src-photo">📸</span> 部分斷裂<strong>比較不明顯</strong>，常是<strong>間歇性跛行</strong>。</li>
+        <li><span class="src src-photo">📸</span> <strong>抽屜只在屈曲時出現</strong>：因為<strong>尾外側束（caudolateral band）只在伸直時拉緊</strong>。</li>
+      </ul>
+
+      <h3 id="s3-bands" style="margin-top:18px">兩條纖維束與屈曲時抽屜 <span class="src src-add">💡</span></h3>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>纖維束</th><th>伸直</th><th>屈曲</th><th>部分斷裂時</th></tr>
+          <tr><td><strong>頭內側束</strong>（craniomedial band）</td><td>拉緊</td><td>拉緊</td><td>部分斷裂最常斷的是這一束</td></tr>
+          <tr><td><strong>尾外側束</strong>（caudolateral band）</td><td>拉緊</td><td>放鬆</td><td>還完整</td></tr>
+        </table>
+      </div>
+      <ul class="notes">
+        <li>頭內側束斷了、尾外側束還在：<strong>伸直時</strong>尾外側束仍拉緊、擋住脛骨前移 → 伸直做抽屜是陰性；<strong>屈曲時</strong>尾外側束放鬆 → 才摸得到前抽屜。</li>
+        <li>所以懷疑部分斷裂時，抽屜試驗要<strong>在伸直、站立角度與屈曲三種角度都做</strong>，只在伸直做會漏掉。</li>
+        <li>部分斷裂多數會進展成完全斷裂，這也是很多外科醫師對部分斷裂也建議手術（如 TPLO）的理由；術前可配合關節鏡評估殘存韌帶。</li>
+      </ul>
+
+      <h3 id="s3-rads" style="margin-top:18px">X 光</h3>
+      <ul class="notes">
+        <li><span class="src src-photo">📸</span> 投影片下方是兩張膝關節側位片與兩張前後位片。</li>
+        <li><span class="src src-add">💡</span> CrCL 疾病在 X 光上看的是<strong>間接徵象</strong>：髕下脂肪墊被積液推擠變小（effusion sign）、關節周圍骨贅、脛骨相對股骨前移（不一定看得到）；X 光無法直接看到韌帶，部分斷裂時可能只有輕微積液。講者對這幾張片子的說明待補。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ S9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">⏳</div>
+      <h2>9. 課堂內容（持續更新）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="pending">課程進行中：後續的手術選擇（如 TPLO、TTA、關節外縫線、髕骨脫位矯正）與術前規劃，會依現場投影片截圖與錄音陸續加入。</div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <a href="index.html">回到系列列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+<script src="gate.js?v=2"></script>
+</body>
+</html>
