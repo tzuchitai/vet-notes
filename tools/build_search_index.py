@@ -58,6 +58,7 @@ SERIES = {
     'fasava-2026':              '2026 FASAVA 研討會筆記',
     'lu-ming-ortho':            '卓越講堂・呂明醫師骨關節系列',
     'ultrasound':              '超音波專區',
+    'cardio-reading':          '臨床閱讀筆記',
     'notes':                   '單篇筆記',
 }
 
@@ -66,6 +67,7 @@ FOLDER_SPECS = {
     'texas-endocrine-2026': ['endo'],
     'tsfm-feline-ecc-2026': ['ecc'],
     'echocardiography':     ['cardio', 'us'],
+    'cardio-reading':       ['cardio'],
     'ultrasound':           ['us'],
     'antimicrobial-selection': ['infect'],
     'lulich-urology-2026':  ['uro'],
