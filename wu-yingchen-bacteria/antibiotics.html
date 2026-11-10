@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>抗生素相關｜吳迎晨老師細菌課</title>
+<meta name="robots" content="noindex, nofollow">
+<style>html{visibility:hidden}</style>
+<script>
+(function(){ if (sessionStorage.getItem('wuBacteriaGateOK') === '1') { document.documentElement.style.visibility = 'visible'; } })();
+</script>
+<style>
+  :root {
+    --primary: #5B3EBD;
+    --primary-light: #EDE9FE;
+    --secondary: #0891b2;
+    --accent: #5B3EBD;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #1E1340;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #C4B5FD; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #2E1F66;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #C4B5FD; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #C4B5FD;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #2E1F66;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #9F8FD6;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #3B2A8C 0%, #5B3EBD 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  h3.sub { font-size: 15px; font-weight: 700; color: var(--primary); margin: 22px 0 10px; padding-bottom: 6px; border-bottom: 2px solid var(--primary-light); }
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #1E1340; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #2E1F66; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .src-doc { background: #e0f2fe; color: #075985; }
+  .pending { border: 2px dashed #DDD6FE; border-radius: 10px; padding: 16px 18px; color: var(--text-muted); font-size: 13.5px; background: #faf8ff; }
+</style>
+<style>
+  .fig.live img { border-color: #DDD6FE; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  @media (max-width: 900px) { .vs { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 細菌課系列</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 吳迎晨老師細菌課</a>
+  <div class="logo">
+    <h2>01｜抗生素相關</h2>
+    <p>常見菌種・感染位置 ＋ 細菌抗藥性｜兩份講義整理</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">講義資訊</a>
+    <a href="#s1">1. 經驗性用藥的思考框架</a>
+    <a href="#s1-human">　人醫資料能套用多少</a>
+    <a href="#s1-steps">　選藥五步驟</a>
+    <a href="#s2">2. 抗藥性的基本概念</a>
+    <a href="#s2-fail">　治療失敗的原因</a>
+    <a href="#s3">3. 依菌群：抗菌譜與天然抗藥</a>
+    <a href="#s3-carba">　Carbapenem 與 vanco/linezolid</a>
+    <a href="#s4">4. 依感染部位：常見菌與首選藥</a>
+    <a href="#s4-resp">　呼吸道與膿胸</a>
+    <a href="#s4-cns">　中樞神經</a>
+    <a href="#s4-abd">　腹腔與肝膽</a>
+    <a href="#s4-skin">　皮膚：膿皮與咬傷</a>
+    <a href="#s4-bone">　關節與椎間盤</a>
+    <a href="#s4-uti">　泌尿道與前列腺</a>
+    <a href="#s4-sepsis">　菌血症與敗血症</a>
+    <a href="#s4-ie">　心內膜炎</a>
+    <a href="#s4-myco">　黴漿菌</a>
+    <a href="#s5">5. 泌尿道案例：腸球菌與 E. coli</a>
+    <a href="#s6">6. 抗藥菌：ESBL、CRE、MDR-PA、MRSP</a>
+    <a href="#s6-mrsp">　MRSP／MRSA 與 VRE</a>
+    <a href="#s6-gnb">　ESBL、CRE、AmpC、CRAB</a>
+    <a href="#s7">7. 氟喹諾酮類（FQ）怎麼挑</a>
+    <a href="#s8">8. 中興大學臨床分離菌資料</a>
+    <a href="#s9">9. Take-home</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>抗生素相關：常見菌種、感染位置與抗藥性</h1>
+    <p>吳迎晨 Ying-Chen Wu（中興大學動物醫學研究中心助理研究員；中興大學動物疾病診斷中心兼任獸醫師；中興大學病理生物學研究所兼任助理教授）</p>
+    <p>講義一：〈常見菌種 感染位置 資料整理〉（2024-09-23，97 張）｜講義二：〈Antimicrobial Therapy and Drug-Resistant Bacteria in Companion Animals〉（細菌抗藥性，102 張）</p>
+    <div class="tags">
+      <span class="tag">經驗性用藥</span>
+      <span class="tag">抗菌譜</span>
+      <span class="tag">天然抗藥</span>
+      <span class="tag">MRSP</span>
+      <span class="tag">ESBL</span>
+      <span class="tag">CRE</span>
+      <span class="tag">腸球菌</span>
+      <span class="tag">Greene's 2023</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義一</span> 〈常見菌種 感染位置〉投影片（頁碼＝投影片頁碼）
+    <span class="src src-doc">📄 講義二</span> 〈細菌抗藥性〉投影片
+    <span class="src src-add">💡 補充</span> 整理者的白話解釋（非講者內容）
+    <br><span class="muted">兩份講義大量引用 Greene's Infectious Diseases of the Dog and Cat（2023）、The Sanford Guide to Antimicrobial Therapy 2023、Johns Hopkins ABX Guide、IDSA 指引、ISCAID 指引、丹麥獸醫協會 Antibiotic Use Guidelines、台灣感染症醫學會與臺中榮總的經驗性用藥指引；表格中標示的出處都是講義投影片上寫的出處。劑量只列講義上出現的，<strong>沒有另外補劑量</strong>；人醫劑量（IDSA／Sanford 表格）不適用於犬貓，這裡不列。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 本篇重點</h3>
+    <ul>
+      <li>看 paper 跟看培養結果一樣重要；<strong>先確認「無效」，再找「有效」</strong>：無效＝藥動差、毒性大、試驗證明無效；有效＝有劑量、有治療文獻</li>
+      <li>套用人醫資料：抗菌譜差異小，<strong>PK/PD 差異極大</strong>；流行病學在繼發感染、哺乳類差異小，原發感染、非哺乳類、環境菌差異大</li>
+      <li>參考人醫經驗性用藥前，<strong>先確認該部位常見菌種是否和人相同</strong></li>
+      <li>天然抗藥（intrinsic）≠ 後天抗藥（acquired）：E. coli 天生不怕 penicillin；E. coli 從 amp S 變 amp R 才是後天抗藥</li>
+      <li><strong>腸球菌</strong>天然抗 cephalosporin、clindamycin、aminoglycoside、TMP-SMX；腸桿菌科天然抗 clindamycin、vancomycin、linezolid、macrolide</li>
+      <li>泌尿道：約 70% 是 GNB、50% 是 E. coli；混合感染 23%；復發感染 E. coli 52%、腸球菌 17%、葡萄球菌 12%</li>
+      <li><strong>混合感染時腸球菌常是次要角色</strong>：其他菌治好後腸球菌通常自己消失（泌尿、膽道、腹腔都適用）</li>
+      <li>呼吸道：原發感染 doxy 或 amp(±cla)；嚴重／吸入性／繼發感染用 <strong>FQ ＋ amp(aug) 或 clinda</strong> 補陽性菌與厭氧菌</li>
+      <li>腹腔、膽道、膿胸、肛門腺膿瘍、子宮蓄膿都要想到<strong>厭氧菌</strong>；cephalosporin 一般不建議拿來治厭氧菌</li>
+      <li>敗血症：<strong>陽性菌、陰性菌、厭氧菌都要 cover，IV 給藥</strong>，1–2 小時內開始，之後依培養降階</li>
+      <li><strong>MRSP 膿皮症</strong>：停全身性抗生素、以外用為主（chlorhexidine、mupirocin 2%）；必須全身用藥時避開 β-lactam，依藥敏個別化</li>
+      <li>ESBL 菌血症：即使藥敏 S，cefepime、pip-tazo 的死亡率都比 carbapenem 高（人醫資料）；與<strong>接種量效應</strong>有關</li>
+      <li>FQ 不是都一樣：PA 用 cip／mar 較好，GPC、厭氧菌、呼吸道則 mox／pra 較好；cipro 口服吸收犬 58%（變異大）、貓只有 22–33%</li>
+      <li>中興大學犬貓臨床分離菌：<strong>腸桿菌科 60–67%、GPC 24–27%、PA 7–10%</strong>；E. coli 約 40%</li>
+    </ul>
+  </div>
+
+  <!-- ══ S0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">🎯</div>
+      <h2>講義資訊</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <ul class="notes">
+        <li>講者：<strong>吳迎晨 Ying-Chen Wu</strong>，中興大學動物醫學研究中心助理研究員、中興大學動物疾病診斷中心兼任獸醫師、中興大學病理生物學研究所兼任助理教授。</li>
+        <li>講義一：〈<strong>常見菌種 感染位置 資料整理</strong>〉（檔名：迎晨細菌上課-指引整理20240923），依部位整理常見菌與經驗性用藥，主要出處 Greene's 2023、Sanford Guide 2023、IDSA。</li>
+        <li>講義二：〈<strong>Antimicrobial Therapy and Drug-Resistant Bacteria in Companion Animals</strong>〉（檔名：迎晨細菌上課-細菌抗藥性-261109），以真實藥敏報告示範如何判讀天然抗藥、混合感染、抗藥菌，並附中興大學臨床分離菌統計。</li>
+        <li>原始 PDF 存在 Google Drive：study › infectious 資料夾（<a href="https://drive.google.com/file/d/1JR8l3auemQaN1_hClFQ9juJTD3XTf4Fz/view" target="_blank" rel="noopener">講義一</a>、<a href="https://drive.google.com/file/d/1CI54cep259oksA_-UCYGpsgOPRuvZLM-/view" target="_blank" rel="noopener">講義二</a>，僅本人帳號可開）。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ S1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🧭</div>
+      <h2>1. 經驗性用藥的思考框架</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <ul class="notes">
+        <li><span class="src src-slide">📄 講義一 p2</span> <strong>看 papers 跟看培養結果一樣重要</strong>，但人的資料多、動物資料少，資料能不能互通要想清楚。</li>
+        <li>抗菌譜是「菌跟藥」的事；療效還要額外考慮<strong>病患的藥動</strong>。</li>
+        <li>參考人的經驗性用藥時，<strong>務必先確認該感染的常見菌種是否相同</strong>。</li>
+        <li>關鍵要素：<strong>先確認是否無效，再找是否有效</strong>。無效包含藥動差、毒性大、試驗證明無效；有效包含有劑量、有治療文獻。</li>
+      </ul>
+
+      <h3 id="s1-human">人醫資料能套用多少</h3>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>面向</th><th>人醫資料 vs 動物資料</th><th><span class="src src-slide">📄 講義一 p2</span> 能不能套用人醫資料</th></tr>
+          <tr><td>流行病學 Epidemiology</td><td>多 vs 少</td><td>差異小：繼發感染、哺乳類；差異大：原發感染、非哺乳類、環境病原菌</td></tr>
+          <tr><td>抗菌譜 Spectrum</td><td>多 vs 少</td><td>差異小（動物專用藥沒有人醫資料）</td></tr>
+          <tr><td>抗藥菌的抗菌譜</td><td>多 vs 少</td><td>差異小（動物專用藥沒有人醫資料）</td></tr>
+          <tr><td>PK/PD</td><td>多 vs 少</td><td><strong>差異極大</strong></td></tr>
+          <tr><td>臨床研究 Clinical research</td><td>多 vs 少</td><td>未知；可看致病機制：物種沒有特殊致病機制或特別高的毒性時，常見重要菌種與抗藥菌株對特定藥物（PK/PD 正常下）的體內治療反應通常可參考</td></tr>
+        </table>
+      </div>
+      <ul class="notes">
+        <li><span class="src src-slide">📄 講義一 p3</span> 動物的 CLSI（VET08）也會把<strong>人的藥敏標準套用在動物上</strong>：Group B 藥物使用人醫 breakpoint，但「許多獸醫應用的結果尚未被證實」，通常無法完全反映臨床療效；動物資料不足，目前無法解決這個困境。</li>
+        <li><span class="src src-slide">📄 講義一 p4–14</span> 依 G+、G−、G− 厭氧菌整理的抗菌譜總表（Sanford Guide Table 4A；Johns Hopkins ABX Guide），可當查表工具使用。</li>
+      </ul>
+
+      <h3 id="s1-steps">選藥五步驟</h3>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>步驟</th><th><span class="src src-doc">📄 講義二 p83</span> 要想的事</th><th>講義舉例</th></tr>
+          <tr><td>1. 抗菌譜 Spect.</td><td>能不能 cover 該部位最常見的病原（GNB、GPC、厭氧菌、PA）</td><td>clinda、lzd、dox 主要是 GPC；enro 主要是 GNB</td></tr>
+          <tr><td>2. 穿透 Penetration</td><td>藥物能不能到感染部位</td><td>pip-taz、4 代 cepha、carba</td></tr>
+          <tr><td>3. 抗藥模式或報告</td><td>當地抗藥資料、過去培養結果</td><td>pip-taz、4 代 cepha、carba</td></tr>
+          <tr><td>4. 病患特性</td><td>共病、嚴重度</td><td>重症考慮 carba</td></tr>
+          <tr><td>5. 病原特性</td><td>感染部位、接種量效應（inoculum effect）</td><td>高菌量考慮 carba</td></tr>
+        </table>
+      </div>
+      <ul class="notes">
+        <li><span class="src src-doc">📄 講義二 p33</span> 重症的降階（de-escalation）：重症 → 先用 carbapenem → 達到<strong>臨床改善、感染源控制、組織穿透、血行動力學穩定、有藥敏結果</strong> → 降階。適用於腹腔內、皮膚軟組織、肺炎的 ESBL 腸桿菌感染。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ S2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">🛡️</div>
+      <h2>2. 抗藥性的基本概念</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>名詞</th><th><span class="src src-doc">📄 講義二 p4–7</span> 定義／例子</th><th><span class="src src-add">💡</span> 白話</th></tr>
+          <tr><td>Intrinsic resistance（內源／固有／先天／天然抗藥）</td><td>天然具備抵抗藥物的能力，例：E. coli 對 penicillin R</td><td>這個菌種本來就不在藥的抗菌譜內，藥敏報告常不列或直接標 R</td></tr>
+          <tr><td>Acquired resistance（後天抗藥）</td><td>例：E. coli（amp S）→ E. coli（amp R）</td><td>原本會被殺的菌，透過突變或取得抗藥基因變成不怕</td></tr>
+          <tr><td>Tolerance（耐受）</td><td>「以逸待勞、養精蓄銳、避其鋒芒」；例：Enterococcus faecium</td><td>藥敏顯示 S，但藥只能抑制、殺不太死</td></tr>
+          <tr><td>Persistent（持續菌）</td><td>「深度休眠、韜光養晦」</td><td>少數菌進入休眠，停藥後再長回來</td></tr>
+        </table>
+      </div>
+      <ul class="notes">
+        <li><span class="src src-doc">📄 講義二 p2–3</span> 選藥同時看三件事：<strong>常見病原／感染位置、天然抗藥、抗菌譜</strong>。</li>
+        <li><span class="src src-doc">📄 講義二 p28</span> 尿道致病性 E. coli 會躲在膀胱上皮細胞內形成<strong>靜止的胞內貯藏庫</strong>，是復發的原因之一（PNAS 2006；PLoS One 2014）。</li>
+        <li><span class="src src-doc">📄 講義二 p39</span> <strong>接種量效應</strong>：菌量高 → 抗藥高 → 藥效差。總菌量超過產生抗藥性的突變頻率時，菌群中已經存在抗藥株；細菌感染組織可達 10<sup>8</sup> cfu/g。</li>
+      </ul>
+      <h3 id="s2-fail">治療失敗的原因</h3>
+      <ul class="notes">
+        <li><span class="src src-doc">📄 講義二 p40</span> 初始菌量太高、感染源持續存在、<strong>生物膜</strong>、免疫抑制、劑量不足、選錯藥、治療中斷。</li>
+        <li>講義案例：感染 Day 0 用 amo/cla，Day 3 仍失敗，就要回頭檢查以上原因。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ S3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">🧫</div>
+      <h2>3. 依菌群：抗菌譜與天然抗藥</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p class="muted">括號內是次選或需依藥敏的藥物。出處：<span class="src src-doc">📄 講義二 p60、p69、p77</span>（Greene's 2023 整理）</p>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>菌群</th><th>常見菌與部位</th><th>可用藥（依序由窄到廣）</th><th>天然抗藥</th></tr>
+          <tr><td><strong>腸桿菌科</strong>（E. coli、Proteus、Klebsiella、Enterobacter、Serratia、Citrobacter、Salmonella）</td><td>任何部位；抗藥模式複雜，低到高度都有</td><td>amp、amo（TS）→ amo/cla、1 代 ceph → 3 代 ceph、FQ（AMG）→ carba（4 代 ceph、pip-tazo）。E. coli 抗藥率：amo/cla、1 代 ceph 36%；3 代 ceph、FQ 23–31%；carba 1%（n = 376）</td><td>metro、clinda、vanco、linezolid、RIF、fusidic acid、mupirocin、penicillin、oxacillin、macrolide（Salmonella 例外）</td></tr>
+          <tr><td><strong>Pasteurella、Neisseria、Bordetella</strong>（呼吸道、口腔）</td><td>傷口、呼吸道、口腔；抗藥程度低</td><td>Past ＋ Nei 最敏感：P、amp（DO、TS）→ amo/cla → 3 代 cepha（FQ）→ carba；<em>B. bronchiseptica</em>：DO、FQ</td><td>metro、clinda、vanco</td></tr>
+          <tr><td><strong>P. aeruginosa（PA）、Acinetobacter</strong>（環境菌）</td><td>任何部位；中到高度抗藥</td><td>FQ（CIP+++、MAR++、ENR、LEV+）、AMG（AK+++）、ceftazidime、pip-tazo、4 代 ceph、carba（ertapenem 除外）、colistin／polymyxin B；Acinetobacter 可能是 PDRAB</td><td>amo/cla、amp/sulb、1／2／3 代 ceph（ceftazidime 除外）、dox、TS、azm、metro、clinda、vanco、linezolid、RIF</td></tr>
+          <tr><td><strong>葡萄球菌</strong>（S. pseudintermedius、S. aureus、S. schleiferi、CoNS 如 S. felis）</td><td>任何部位；分 MS／MR，低到高度抗藥</td><td>MS：amo/cla、1 代 ceph（DO、TS、clinda、AZM）（FQ）；MR：（DO、TS、clinda、AZM）（FQ）、vanco、linezolid；其他：mupirocin、fusidic acid、RIF、AMG</td><td>metro、colistin；CAZ、CFM 敏感度低</td></tr>
+          <tr><td><strong>鏈球菌</strong>（β 溶血：S. canis 等；Viridans group）</td><td>任何部位；β-lactam 抗藥程度低</td><td>pen、amo、amo/cla、1 代 ceph（DO、TS、clinda、AZM）（FQ）→ 3 代 ceph（CRO+）→ vanco、linezolid</td><td>metro</td></tr>
+          <tr><td><strong>腸球菌</strong> E. faecalis</td><td>任何部位；中到高度抗藥</td><td>pen、amo、amo/cla（dox、FQ、pip/tazo、ipm）、vanco、linezolid</td><td rowspan="2">metro、ceph、clinda、TS、AMG（講義二 p9）</td></tr>
+          <tr><td><strong>腸球菌</strong> E. faecium</td><td>常對 amp 也抗</td><td>（dox、FQ、pip/tazo、ipm）、vanco、linezolid</td></tr>
+        </table>
+      </div>
+      <ul class="notes">
+        <li><span class="src src-doc">📄 講義二 p25</span> 腸桿菌科天然抗 clindamycin、daptomycin、fusidic acid、glycopeptide（vancomycin、teicoplanin）、linezolid、rifampin、macrolide（erythromycin、clarithromycin、azithromycin）。報告上「Cover E. coli？」時，azithromycin、clindamycin 這類藥不用考慮。</li>
+        <li><span class="src src-doc">📄 講義二 p77</span> PA 等非發酵 GNB 也天然抗 penicillin、1、2 代 cephalosporin、cephamycin、clindamycin、glycopeptide、linezolid、macrolide、rifampin。</li>
+        <li><span class="src src-doc">📄 講義二 p61–63</span> 天然抗藥要去哪裡查：CLSI M100、Sanford Guide 等表格。</li>
+      </ul>
+      <h3 id="s3-carba">Carbapenem 與 vancomycin／linezolid</h3>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th><span class="src src-doc">📄 講義二 p32</span></th><th>腸桿菌科（G−）</th><th>腸球菌</th><th>葡萄球菌</th><th>鏈球菌</th></tr>
+          <tr><td>Imipenem／Meropenem</td><td>S</td><td>imipenem S～；meropenem I～R</td><td>S～ 或 I～R</td><td>S</td></tr>
+          <tr><td>Vancomycin／Linezolid</td><td>R（天然抗藥）</td><td>S</td><td>S</td><td>S</td></tr>
+        </table>
+      </div>
+      <ul class="notes">
+        <li>carba 對腸球菌的效果不如 ampicillin；葡萄球菌對 carba 抗藥很常見（MRS）；carba 對鏈球菌效果好，但大多 ampicillin 就很好（carba 是「效果溢出」）。</li>
+        <li><span class="src src-doc">📄 講義二 p13</span> 腸球菌粗略比較：E. faecalis 對 ampicillin、imipenem 多為 S～I，meropenem I～R；E. faecium 對 ampicillin R、meropenem R+。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ S4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">📍</div>
+      <h2>4. 依感染部位：常見菌與首選藥</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <p><span class="src src-slide">📄 講義一 p17</span> Greene's 2023 Box 8.3：不同部位的初始經驗性用藥</p>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>部位</th><th>適當的經驗性用藥</th></tr>
+          <tr><td>皮膚</td><td>Cephalexin、amoxicillin-clavulanate、clindamycin</td></tr>
+          <tr><td>泌尿道</td><td>Amoxicillin、amoxicillin-clavulanate、cephalosporins、TMP-SMX</td></tr>
+          <tr><td>前列腺</td><td>TMP-SMX、FQ（enrofloxacin、marbofloxacin、orbifloxacin、levofloxacin）</td></tr>
+          <tr><td>呼吸道</td><td>Tetracyclines（doxycycline、minocycline）、FQ</td></tr>
+          <tr><td>腸道（肝性腦病）</td><td>Ampicillin、neomycin</td></tr>
+          <tr><td>膽道</td><td>Amoxicillin-clavulanate、cephalosporins、FQ</td></tr>
+          <tr><td>腦</td><td>Metronidazole（只對厭氧菌）、FQ、TMP-sulfonamides</td></tr>
+          <tr><td>骨</td><td>Clindamycin、cephalosporins、amoxicillin-clavulanate</td></tr>
+        </table>
+      </div>
+
+      <h3 id="s4-resp">呼吸道與膿胸</h3>
+      <ul class="notes">
+        <li><span class="src src-slide">📄 講義一 p18–20</span> 健康犬貓的鼻腔、氣管、支氣管肺泡灌洗都培養得到菌（Greene's Table 124.1、124.2）；<strong>健康貓的氣管支氣管灌洗約 7 成有菌（10<sup>2</sup>–10<sup>5</sup> cfu/mL）</strong>（JVIM 1996）。<span class="src src-doc">📄 講義二 p71</span> 77% 健康貓培養陽性 → 有菌 ≠ 要治療。</li>
+        <li><span class="src src-slide">📄 講義一 p21</span> Greene's：疑似 <em>B. bronchiseptica</em> 或 <em>Mycoplasma</em> 肺炎建議 <strong>doxycycline</strong>；疑似鏈球菌肺炎（例：收容所 GPC 爆發）<strong>penicillin</strong> 是首選。敗血症徵象要在 <strong>1–2 小時內</strong>開始經驗性治療，廣效策略要涵蓋 GNB（例：FQ）＋ GPC 與厭氧菌（例：ampicillin 或 clindamycin），之後依培養調整。</li>
+        <li><span class="src src-slide">📄 講義一 p22</span> ISCAID：危及生命的病例用<strong>雙藥針劑</strong>，之後依臨床反應與藥敏降階、改口服。enrofloxacin 常被選用，因為有獸醫針劑、對 GNB 與 Mycoplasma 廣效；<strong>用 FQ 建議加上抗厭氧菌藥</strong>（ampicillin 涵蓋腸球菌與鏈球菌，clindamycin 涵蓋 Toxoplasma、Neospora）。Cephalosporin 一般不建議治療厭氧菌。</li>
+      </ul>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th><span class="src src-doc">📄 講義二 p74</span>（Greene's 2023）</th><th>犬</th><th>貓</th></tr>
+          <tr><td>上呼吸道</td><td>B. bronchiseptica、Strep、Staph、Mycoplasma</td><td>B. bronchiseptica、Strep、Past、Nei、PA、Mycoplasma、Chlamydia</td></tr>
+          <tr><td>支氣管炎</td><td>少</td><td>少</td></tr>
+          <tr><td>肺炎</td><td>B. bronchiseptica、Strep、Mycoplasma</td><td>Past、Staph、Mycoplasma、厭氧菌</td></tr>
+          <tr><td>吸入性肺炎</td><td>E. coli、En、Past、Staph、厭氧菌、Actinomyces、Mycoplasma</td><td>GPC、GNB</td></tr>
+          <tr><td>膿胸</td><td>厭氧菌、E. coli、Staph、Past、Actinomyces…</td><td>厭氧菌、Past、Actinomyces</td></tr>
+          <tr><td colspan="3">輕中度：doxy（Bb、Myco）；amp、amo/cla（Strep）｜嚴重（吸入性）：FQ（GNB）＋ amp 或 clinda（GPC、厭氧菌）</td></tr>
+        </table>
+      </div>
+      <ul class="notes">
+        <li><span class="src src-doc">📄 講義二 p72</span> 原發感染（Past、Nei、Strep、B. bronchiseptica、Mycoplasma）：amp ± cla ± doxy；嚴重／吸入性／繼發感染（E. coli、PA、En、Staph、厭氧菌）：FQ ＋ amo/cla 或 metro、clinda。</li>
+        <li><span class="src src-slide">📄 講義一 p23–24</span> 台灣感染症醫學會（人醫）：<strong>社區型肺炎</strong>會加入殺非典型菌的藥；<strong>吸入性肺炎不可套用原發呼吸道感染用藥</strong>，不殺非典型菌、要涵蓋陰性菌＋厭氧菌。<strong>院內型肺炎</strong>以 PA 與抗藥陰性桿菌為主、少非典型菌與厭氧菌，用 2、3 線 β-lactam 或 FQ（殺 PA、大多可殺 ESBL E. coli），必要時再加殺 MRSA；肺炎要區分原發與繼發，原發用藥在繼發的效果差。</li>
+        <li><span class="src src-slide">📄 講義一 p25</span> <strong>膿胸</strong>（Greene's）：犬常見 Bacteroides、Fusobacterium、E. coli、Pasteurella、Peptostreptococcus、Actinomyces、Prevotella、S. pseudintermedius；貓以 Pasteurella、Bacteroides、Fusobacterium、Clostridium 為主。只用全身抗生素通常不夠，<strong>需要胸腔灌洗或引流</strong>；初始建議 <strong>FQ（enro 或 marbo）＋ penicillin 或 clindamycin</strong>，處方一定要含抗厭氧菌藥，理想療程<strong>至少 4–6 週</strong>。</li>
+      </ul>
+
+      <h3 id="s4-cns">中樞神經</h3>
+      <ul class="notes">
+        <li><span class="src src-slide">📄 講義一 p26</span> Greene's：急性發炎的腦膜幾乎所有藥都能穿透；但<strong>實質膿瘍</strong>抗生素可能進不去，除了全身治療還需要<strong>神經外科引流</strong>。</li>
+        <li><span class="src src-slide">📄 講義一 p27–28</span> IDSA 2017 醫源性腦室炎／腦膜炎（人醫）：抗藥菌多，依抗藥菌種選藥；經驗性用藥 vancomycin ＋ 抗 PA 的 β-lactam（cefepime、ceftazidime 或 meropenem）。確定菌種：MSSA 用 oxacillin；MRSA 用 vancomycin；GNB 用 ceftriaxone 或 cefotaxime；ESBL 腸桿菌用 meropenem；PA 用 cefepime、ceftazidime 或 meropenem。療程 10–14 天，部分專家認為 GNB 要 21 天；CSF 反覆培養陽性則在最後一次陽性後再治療 10–14 天。</li>
+      </ul>
+
+      <h3 id="s4-abd">腹腔與肝膽</h3>
+      <ul class="notes">
+        <li><span class="src src-slide">📄 講義一 p31</span> Greene's 腹腔手術常見病原：食道胃十二指腸 → 腸道 GNB、GPC；結直腸 → 腸道 GNB、厭氧菌、腸球菌；肝膽 → 腸道 GNB、腸球菌、Clostridia；泌尿生殖 → 腸道 GNB、腸球菌；穿刺傷 → GNB、GPC、Actinomyces／Nocardia。敗血性腹膜炎確診後就要盡快 <strong>IV 廣效</strong>用藥，涵蓋 GPC、GNB、厭氧菌與好氧菌，有培養結果後再降階。</li>
+        <li><span class="src src-slide">📄 講義一 p32</span> 健康犬貓的膽汁與肝臟也可能有少量菌，<strong>膽汁培養要搭配臨床與細胞學判讀</strong>。</li>
+        <li><span class="src src-slide">📄 講義一 p35</span> 膽囊炎／膽管炎（Greene's）：經驗性用藥針對腸道 GNB、腸球菌、厭氧菌，並且要能<strong>濃縮在膽汁</strong>。可用 ampicillin-sulbactam 或 amoxicillin-clavulanate，或 FQ ＋ metronidazole；248 隻犬貓的培養結果支持 FQ ＋ penicillin ＋ metronidazole（<strong>貓肝膽病 metronidazole 減量 50%</strong>），或 FQ ＋ amo/cla、或 clindamycin。<strong>膽囊混合感染時 E. faecalis、E. faecium 次要處理，可能自己消失</strong>。壞死性或氣腫性膽囊炎需要膽囊切除。</li>
+        <li><span class="src src-doc">📄 講義二 p52–59</span> 腹腔感染要同時想 <strong>E. coli、腸球菌、厭氧菌</strong>。各指引：台灣感染症醫學會、臺中榮總：amo/cla 或 carba 可全包；3 代 cepha 或 FQ 需加 metro。IDSA 2010：3、4 代 cepha、AMG、FQ ＋ metro（或 clinda）；pip/taz、carba 可全包。Greene's：amo/cla（amp/sulb）、FQ ＋ metro（± amo）、FQ ＋ amo/cla、FQ ＋ clinda。</li>
+      </ul>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th><span class="src src-doc">📄 講義二 p59</span> 腹腔感染總整理</th><th>可用藥</th></tr>
+          <tr><td>E. coli</td><td>amp、amo（TS）→ amo/cla、1 代 ceph → 3 代 ceph、FQ（AMG）→ carba（4 代 ceph、pip-tazo）；抗藥 &gt;10% 時往上一階</td></tr>
+          <tr><td>腸球菌</td><td>pen、amo、amo/cla（dox、FQ、ipm）、vanco、linezolid</td></tr>
+          <tr><td>厭氧菌</td><td>amo/cla、metro、clinda → pip/tazo、moxi、FQ → carba</td></tr>
+        </table>
+      </div>
+      <ul class="notes">
+        <li><span class="src src-doc">📄 講義二 p45–51</span> 其他要想到厭氧菌的部位：腹腔內感染（++ 厭氧菌）、膽道感染（＋酵母菌）、肛門腺膿瘍、子宮蓄膿（＋厭氧菌）。犬貓常見厭氧菌：Bacteroides、Fusobacterium、Peptostreptococcus、Clostridium、Porphyromonas、Prevotella（口腔菌叢會隨吞食改變）。厭氧菌抗藥資料可查 CLSI M100 ED34:2024。</li>
+      </ul>
+
+      <h3 id="s4-skin">皮膚：膿皮與咬傷</h3>
+      <ul class="notes">
+        <li><span class="src src-slide">📄 講義一 p46–47</span> 丹麥獸醫協會 Antibiotic Use Guidelines（第 2 版）：
+          <ul>
+            <li><strong>表層膿皮</strong>（限角質層）：皮褶炎、急性濕疹（hot spot）通常<strong>不需要全身抗生素</strong>；剃毛、chlorhexidine 外用、乾燥劑，細菌過度增生時可用外用 fusidic acid BID 5–7 天（hot spot 可用含 betamethasone 的製劑）；hot spot 周圍若有丘疹、膿皰等衛星病灶（膿創性毛囊炎、癤病）才保留全身抗生素。</li>
+            <li><strong>淺層膿皮</strong>：<strong>洗劑是第一選擇</strong>，很多只靠洗澡就會好；洗劑要停留 5–10 分鐘再沖。全身治療目前建議持續到<strong>臨床痊癒後再 1 週</strong>。</li>
+            <li>淺層毛囊炎對外用無效時：(1) clindamycin 5.5 mg/kg PO BID 或 11 mg/kg PO SID；(2) amoxicillin/clavulanate 12.5 mg/kg PO BID 或 1 代 cephalosporin（cefalexin 25 mg/kg PO BID 或 cefadroxil 20 mg/kg PO BID）。洗劑建議每週 2 次、連續 2–3 週。</li>
+            <li>貓淺層膿皮較少見，確定是感染才用上述全身藥；要排除過敏、免疫抑制等潛在病因，<strong>不建議貓用外用治療</strong>。</li>
+          </ul>
+        </li>
+        <li><span class="src src-slide">📄 講義一 p41–43</span> 咬傷、創傷、術後皮膚感染可查 Sanford Guide 2023 對應表格。</li>
+        <li><span class="src src-doc">📄 講義二 p66–67</span> 犬咬傷膿瘍案例（CoNS，對 oxacillin、amo/cla、1 代 ceph 都 S）：口腔菌包括 Past、Nei、Strep、Staph、厭氧菌；Past ＋ Nei 最敏感（P、amp），Strep 用 pen、amo、amo/cla、1 代 ceph；講義特別標註 <strong>clinda 單一用藥</strong>的問題：clinda 對 Past、Nei 天然抗藥，蓋不到。</li>
+      </ul>
+
+      <h3 id="s4-bone">關節與椎間盤</h3>
+      <ul class="notes">
+        <li><span class="src src-slide">📄 講義一 p49</span> Greene's：<strong>單關節炎</strong>多來自骨科手術（如 TPLO）、鄰近軟組織或骨頭感染擴散、外傷或咬傷，最常見 Staphylococcus（尤其 S. pseudintermedius），其次 Strep、E. coli、PA。<strong>多關節炎</strong>多為全身性擴散，病媒傳染（Anaplasma、Ehrlichia、Borrelia、Rickettsia）用 <strong>doxycycline</strong>，通常 24–48 小時內有反應；其他細菌以 Strep、Staph、Erysipelothrix 為主時用 <strong>amoxicillin-clavulanate</strong>（鏈球菌可能性高時用 amoxicillin）。<strong>犬多關節炎幾乎都合併心內膜炎</strong>，療程依病灶消退決定。</li>
+        <li><span class="src src-slide">📄 講義一 p50–52</span> Sanford（人醫）：單關節急性 → 3 代 ceph（＋vanco）、4 代 ceph（＋vanco）或 carba（＋vanco）；單關節慢性要確認分枝桿菌、真菌、布氏桿菌；多關節急性要確認系統性感染。手術植入物感染依菌種，MSS／MRS 都會合併 RIF。</li>
+        <li><span class="src src-slide">📄 講義一 p55</span> <strong>椎間盤脊椎炎</strong>（Greene's）：依培養與藥敏，以高劑量對 Staph、E. coli 有效的藥為主，如 <strong>amoxicillin-clavulanate 或 cephalexin</strong>；β-lactam 治療 <strong>1 週沒改善</strong>就考慮加 <strong>FQ 或 AMG</strong>（可能是 K. pneumoniae、PA 或 MRSP）。全身不適或有神經症狀時盡量住院打針（理想至少 10 天）再改口服；療程<strong>至少 6–8 週</strong>，有時要好幾個月。真菌性用 voriconazole 或 itraconazole（<strong>fluconazole 對黴菌無效</strong>）± amphotericin B。曾有以 linezolid 治療 MDR MRSP 椎間盤脊椎炎成功的病例（JAAHA 2014）。</li>
+      </ul>
+
+      <h3 id="s4-uti">泌尿道與前列腺</h3>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th><span class="src src-slide">📄 講義一 p57</span>（Vet Clin Small Anim 2022）</th><th>首選</th><th>療程</th><th>追蹤</th></tr>
+          <tr><td>散發性膀胱炎（sporadic UTI）</td><td>等培養時先給止痛（NSAID），輕症可單用止痛；經驗性用藥考慮 amoxicillin 或 TMP-sulfonamide（沒有 amoxicillin 時才用 amo/cla）</td><td>3–5 天</td><td>症狀緩解就不需要再培養</td></tr>
+          <tr><td>再感染</td><td>依培養</td><td>3–5 天</td><td>症狀緩解不需再培養</td></tr>
+          <tr><td>頑固／持續感染</td><td>依培養</td><td>7–14 天</td><td>停藥後 5–7 天再培養</td></tr>
+          <tr><td>亞臨床菌尿症（SBU）</td><td>不建議治療；需要時比照散發性 UTI</td><td>—</td><td>—</td></tr>
+          <tr><td>腎盂腎炎</td><td><strong>先用 FQ</strong>，依培養重新評估</td><td>10–14 天</td><td>治療後 1–2 週做理學檢查、Cre、尿檢、尿培養</td></tr>
+          <tr><td>前列腺炎</td><td>TMP-sulfonamide、enrofloxacin、chloramphenicol</td><td>4–6 週</td><td>去勢；有膿瘍要引流；8–12 週後再評估前列腺</td></tr>
+          <tr><td>導尿管相關 UTI</td><td>有症狀才治療</td><td>3–5 天</td><td>症狀緩解不需再培養</td></tr>
+        </table>
+      </div>
+      <ul class="notes">
+        <li>同一頁也附<strong>黴菌性膀胱炎</strong>：C. albicans 用 fluconazole 5–10 mg/kg PO q12h 4–6 週，每 2–3 週複驗尿沉渣與培養；非 albicans 依培養；失敗時可考慮膀胱內灌注 1% clotrimazole 或 amphotericin B 等。</li>
+        <li><span class="src src-doc">📄 講義二 p43–44</span> 貓腎盂腎炎（K. pneumoniae）與犬前列腺炎案例：要選<strong>在該部位濃度夠</strong>的藥。腎盂腎炎選 FQ、3 代 cepha，10–14 天；前列腺選 FQ、TS（fosfomycin？），4–6 週，並評估膿瘍引流與去勢。</li>
+        <li><span class="src src-doc">📄 講義二 p100</span> <strong>SUB 等植入物</strong>容易形成生物膜，菌尿很難根除；SBU 是否治療還需研究。氮血症惡化（且沒有其他原因）時才治療並追蹤 Cre／SDMA，沒改善就不一定要繼續；要做泌尿道手術、或犬 SBU 合併葡萄球菌（與鳥糞石有關）時至少治療一次（Greene's 2023）。</li>
+      </ul>
+
+      <h3 id="s4-sepsis">菌血症與敗血症</h3>
+      <ul class="notes">
+        <li><span class="src src-slide">📄 講義一 p61</span> Greene's：<strong>低水平亞臨床菌血症（≤10 CFU/mL）</strong>常見於牙科、內視鏡、腸胃手術、放置導管後，通常短暫，吞噬細胞 15–30 分鐘內清除。<strong>有臨床症狀的菌血症</strong>：感染源過多（腎盂腎炎、膿胸、嚴重膿皮症、細菌性腹膜炎、子宮蓄膿、肺炎、胰臟炎、腸胃疾病、咬傷、骨科或導管相關感染）或免疫抑制（糖尿病、腫瘤、嗜中性球減少）。繼發可造成心內膜炎、椎間盤脊椎炎、各處膿瘍。</li>
+        <li><span class="src src-slide">📄 講義一 p61–62</span> 犬：Staphylococcus、Streptococcus（尤其 S. canis）、E. coli，厭氧菌通常 &lt;10%。貓：菌血比狗少見，以 GNB（E. coli、其他腸桿菌、厭氧菌）為主；貓 bartonellosis 比狗常見。混合菌血約 10–20%，腸道損傷來源的厭氧菌與混合比例較高。</li>
+      </ul>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th><span class="src src-slide">📄 講義一 p63</span> Greene's：重度敗血症／敗血性休克的 IV 經驗性組合</th><th>抗菌譜（講義註記）</th><th>疑似感染源</th></tr>
+          <tr><td>Ampicillin 或 clindamycin ＋ aminoglycoside</td><td>GNB、MRS、鏈球菌、腸球菌、多數厭氧菌；aug ＋ AMG 有機會殺 ESBL E. coli、PA</td><td>泌尿道、腹腔（呼吸道受累時不是好選擇）</td></tr>
+          <tr><td>Ampicillin 或 clindamycin ＋ FQ</td><td>多數厭氧菌、鏈球菌、敏感葡萄球菌、GNB；對部分 MRS、腸球菌、MDR GNB 無效；aug ＋ FQs 有機會殺 ESBL E. coli、PA</td><td>肺、泌尿道、腹腔、膿胸</td></tr>
+          <tr><td>Meropenem</td><td>GNB 通殺（含 PA）、厭氧菌、鏈球菌；<strong>MRS、腸球菌不行</strong></td><td>腹腔、吸入性肺炎</td></tr>
+          <tr><td>Vancomycin ＋ meropenem</td><td>G+、G− 通殺；不殺 Chryseobacterium、Stenotrophomonas、Candida</td><td>皮膚軟組織、泌尿道、腹腔；MDR GNB、MRS 混合感染的最後一線</td></tr>
+        </table>
+      </div>
+      <p class="muted">講義上的 IV 劑量（腎功能正常，Greene's）：amikacin 15 mg/kg q24h（犬）；ampicillin sodium 20 mg/kg q6h；ampicillin-sulbactam 20–50 mg/kg q6–8h；clindamycin phosphate 10 mg/kg q12h（以生理食鹽水 1:10 稀釋，30 分鐘慢打）；enrofloxacin 15 mg/kg IV q24h（犬）；gentamicin 14 mg/kg q24h（犬）、8 mg/kg q24h（貓）；meropenem 12 mg/kg q8–12h；vancomycin 15 mg/kg q8h（稀釋後 30 分鐘慢打）。人醫資料顯示 amikacin 腎毒性比 gentamicin 低，重度敗血症可優先考慮。<strong>陽性菌、陰性菌、厭氧菌都要 cover，IV 給藥。</strong></p>
+
+      <h3 id="s4-ie">心內膜炎</h3>
+      <ul class="notes">
+        <li><span class="src src-slide">📄 講義一 p66–68</span> Greene's：犬貓心內膜炎難診斷、也很少被診斷出來。經驗性：以葡萄球菌、鏈球菌為主時 <strong>amp ＋ genta</strong>；懷疑抗藥葡萄球菌、腸球菌或抗藥 GNB 時 <strong>vanco ＋ mero</strong>。確定菌種後：MSS 用 AMG 組合、MRS 用 vanco ＋ RIF、鏈球菌與腸球菌用 amo、抗藥鏈球菌用 vanco ＋ genta。</li>
+      </ul>
+
+      <h3 id="s4-myco">黴漿菌</h3>
+      <ul class="notes">
+        <li><span class="src src-slide">📄 講義一 p85–87</span> Greene's：健康犬貓的上呼吸道、生殖道、眼部都可能帶有黴漿菌；&lt;25% 健康犬的氣管或肺有黴漿菌；28 隻肺病貓中 21% 的氣管支氣管灌洗檢出，18 隻健康貓則沒有。黴漿菌常是病毒、細菌或免疫抑制後的繼發感染，<strong>PCR 陽性的意義要搭配疾病過程與其他檢查判讀</strong>。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ S5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#e0f2fe">🚻</div>
+      <h2>5. 泌尿道案例：腸球菌與 E. coli</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <ul class="notes">
+        <li><span class="src src-doc">📄 講義二 p8–14</span> 用真實尿液藥敏報告示範：E. faecium（1000 cfu/mL）對 penicillin、amp、amo/cla、FQ、doxy、多數 cephalosporin、carba、clinda、TMP-SMX、metro 都是 R，<strong>只剩 vancomycin、linezolid S</strong>；E. faecalis 則對 penicillin、amp、amo/cla 仍 S。報告上 cephalosporin、clinda、AMG、TS 標 R 多半是<strong>天然抗藥</strong>，不代表菌「變強」。</li>
+        <li><span class="src src-doc">📄 講義二 p15–17</span> UTI 細菌約 <strong>70% 為 GNB、50% 為 E. coli</strong>；先問：預計使用的藥能不能 cover 該位置最常見的病原？</li>
+        <li><span class="src src-doc">📄 講義二 p26–29</span> 案例：Day 0 用 enro，Day 1 培養出 E. faecium（vanco、linezolid S）。UTI <strong>混合感染約 23%</strong>；<strong>復發感染 E. coli 52%、腸球菌 17%、葡萄球菌 12%</strong>。Greene's：<strong>其他菌治療後，腸球菌通常會自己消失</strong>；病史（治療、診斷）不清楚時，<strong>先把 enro 療程做完</strong>，不急著換成 vanco 或 linezolid。</li>
+        <li><span class="src src-doc">📄 講義二 p30</span> 腸球菌亞臨床菌尿案例：Day 0 用 amo/cla，Day 4 E. faecium（amo/cla R、linezolid S），Day 7 出現臨床症狀 → 才要考慮 amo/cla 換 linezolid 嗎？</li>
+        <li><span class="src src-doc">📄 講義二 p34–35</span> UTI 總整理：(1) 要不要治療？(2) 是不是混合感染？(3) Amp R &gt;10% 時經驗性用藥要往上；(4) 是不是腎盂腎炎（穿透）？還要看共病、嚴重度、感染部位與接種量效應（ISCAID 2019；Greene's 2023）。</li>
+        <li><span class="src src-doc">📄 講義二 p41–42</span> 貓 UTI S. felis（大多 S）與犬 UTI E. coli（amp、amo/cla、1 代 ceph、3 代 ceph、FQ、TS 全 R；amikacin、gentamicin、imipenem、meropenem、fosfomycin S）兩種報告對照：後者是典型多重抗藥 E. coli。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ S6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fee2e2">⚠️</div>
+      <h2>6. 抗藥菌：ESBL、CRE、MDR-PA、MRSP</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <h3 id="s6-mrsp">MRSP／MRSA 與 VRE</h3>
+      <ul class="notes">
+        <li><span class="src src-slide">📄 講義一 p46</span> <strong>MRSP 定義</strong>：取得 methicillin 抗藥基因 <em>mecA</em> 的 S. pseudintermedius（與 MRSA 同一基因）。歐洲 2006 年首次發現，ST71 株快速擴散；ST71 除了 β-lactam 抗藥，<strong>通常也抗 lincosamide、FQ、TMP-sulfa、macrolide、tetracycline、gentamicin</strong>（ST258 多重抗藥較少）。2016–2017 丹麥犬臨床分離 MRSP 約 5%。</li>
+        <li><span class="src src-slide">📄 講義一 p44</span> <strong>MRSP 膿皮症</strong>：對所有 β-lactam 抗藥、常多重抗藥，<strong>每隻都要做培養與藥敏</strong>。<strong>停掉全身性治療、以外用為主</strong>：抗菌洗劑（chlorhexidine、benzoyl peroxide、ethyl lactate），局部病灶可用 <strong>mupirocin 2% 軟膏</strong>；必須全身用藥時<strong>避開 β-lactam</strong>，依抗藥模式個別化。盡量隔離（特別是免疫低下的病患）、避免經人員的手與衣物傳播、診間與籠舍要消毒。</li>
+        <li><span class="src src-slide">📄 講義一 p73</span> Sanford／IDSA（人醫）多重抗藥 GPC 與 MRSA：MRSA 菌血症或心內膜炎以 vancomycin 為主，<strong>TMP-SMX 不建議用於菌血症</strong>（劣於 vanco），linezolid 是抑菌性、不建議單用於疑似血管內感染。<span class="src src-doc">📄 講義二 p76</span> 院內型肺炎加殺 MRSA 時用 vanco 或 lzd，「不會單用」。</li>
+      </ul>
+      <h3 id="s6-gnb">ESBL、CRE、AmpC、CRAB</h3>
+      <ul class="notes">
+        <li><span class="src src-slide">📄 講義一 p71</span>（IDSA 2021，人醫）<strong>ESBL 腸桿菌</strong>：ESBL 會破壞多數 penicillin、cephalosporin 與 aztreonam（ceftriaxone MIC ≥2 µg/mL 是表現型線索）。膀胱炎：nitrofurantoin、TMP-SMX（敏感時），替代 amo-clav、單劑 AMG、fosfomycin（E. coli）、CIP／Levo、carba；amo-clav、CIP、Levo 在尿中濃度高，有時即使報告不敏感也有效，盡量把 carbapenem 留給多重抗藥菌。腎盂腎炎與非泌尿道感染：ertapenem、meropenem、imipenem；非泌尿道感染<strong>即使藥敏 S 也避免 pip-tazo 與 cefepime</strong>。</li>
+        <li><span class="src src-doc">📄 講義二 p37–38</span> 人醫證據：ESBL 腸桿菌感染，藥敏同樣 S，<strong>cefepime 組</strong>的敗血症（47.1% vs 11.9%）、30 天死亡率（58.8% vs 17.9%）、死亡率（64.7% vs 39.3%）都比 carbapenem 組高（Clin Infect Dis 2013）；ESBL 菌血症 <strong>pip-taz vs meropenem 30 天死亡率 12% vs 4%</strong>。原因之一是<strong>接種量效應</strong>（菌量高時 MIC 上升）。</li>
+        <li><span class="src src-slide">📄 講義一 p71</span> <strong>CRE</strong>（carbapenem 抗藥腸桿菌，IDSA）：膀胱炎可用 nitrofurantoin、CIP、Levo、TMP-SMX（敏感時）；腎盂腎炎與其他感染用 ceftazidime-avibactam、meropenem-vaborbactam、imipenem-relebactam、cefiderocol；只有 ertapenem R、meropenem S 且非 carbapenemase 時可用 meropenem（延長輸注）。KPC、metallo-β-lactamase（NDM、VIM、IMP）、OXA-48 各有建議組合。</li>
+        <li><span class="src src-doc">📄 講義二 p87–92</span> 人醫 CRE 研究：14 天死亡率 34.1%（多數死在 2 週內），<strong>合併治療可降低 CRE 死亡率</strong>，meropenem MIC &lt;16 mg/L 時含 meropenem 的組合有幫助；ceftazidime-avibactam 30 天死亡率 9% vs colistin 32%；colistin 有 mcr-1 抗藥（CR E. coli，2018）。新藥年代：ceftazidime-avibactam 2015、meropenem-vaborbactam 2017、imipenem-cilastatin-relebactam 2019、cefiderocol 2019。</li>
+        <li><span class="src src-slide">📄 講義一 p72</span> <strong>難治 PA</strong>（對 pip-tazo、ceftazidime、cefepime、aztreonam、meropenem、imipenem、cipro、levo 都不敏感）：ceftolozane-tazobactam、ceftazidime-avibactam、imipenem-relebactam、cefiderocol；膀胱炎可單劑 AMG。<strong>AmpC</strong> 腸桿菌：避免 ceftriaxone（會誘導 β-lactamase 產生），也避免 pip/tazo。<strong>CRAB</strong>：沒有標準療法。<em>Stenotrophomonas</em>：TMP/SMX 為主，<strong>不論藥敏都避免 ceftazidime</strong>。</li>
+        <li><span class="src src-doc">📄 講義二 p95–97</span> 快速生長分枝桿菌（RGM）：M. abscessus complex（20 株）與 M. fortuitum（13 株）的藥敏表；clarithromycin 藥敏要判讀到第 14 天（Microbiol Spectr 2025）。</li>
+        <li><span class="src src-doc">📄 講義二 p101–103</span> 犬貓的「超級細菌」：對照美國 CDC 2019 年抗生素抗藥性威脅報告，重點類型包括 carbapenem 抗藥、vancomycin 抗藥、methicillin 抗藥（MRS）與 3 代 cephalosporin 抗藥。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ S7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dcfce7">💊</div>
+      <h2>7. 氟喹諾酮類（FQ）怎麼挑</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>目標</th><th><span class="src src-doc">📄 講義二 p78–82</span> 效果高 → 低</th></tr>
+          <tr><td>P. aeruginosa</td><td>cip、mar &gt; enr、lev &gt; mox、ofl、pra</td></tr>
+          <tr><td>E. coli</td><td>mar、cip、lev、enr、ofl &gt; mox</td></tr>
+          <tr><td>GPC</td><td>lev、mox、pra &gt; enr、mar、ofl、cip</td></tr>
+          <tr><td>厭氧菌</td><td>mox、pra &gt; enr、mar、ofl、cip</td></tr>
+          <tr><td>分枝桿菌</td><td>mox、pra</td></tr>
+          <tr><td>呼吸道</td><td>mox、pra、lev &gt; enr、mar</td></tr>
+          <tr><td>尿液</td><td>lev、mar、enr、moxi</td></tr>
+        </table>
+      </div>
+      <ul class="notes">
+        <li>出處：doi.org/10.3390/antibiotics11091204、Greene's 2017 與 2023。FQ 的 MIC 對 PA 與 S. aureus 差異大，MIC 與抗藥要一起看。</li>
+        <li><span class="src src-doc">📄 講義二 p82</span> <strong>Ciprofloxacin 口服吸收</strong>：犬學名藥錠劑 58%，但變異係數 45%；<strong>貓只吸收 22–33%</strong>（Greene's 2023）。</li>
+        <li><span class="src src-add">💡</span> 實務意思：同樣是 FQ，打 PA 選 cip／marbo、打 GPC／厭氧菌／呼吸道選 pradofloxacin 一類；貓不要指望口服 cipro。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ S8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#ede9fe">📊</div>
+      <h2>8. 中興大學臨床分離菌資料</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="tbl-wrap">
+        <table>
+          <tr><th><span class="src src-doc">📄 講義二 p84</span> 年份（n）</th><th>E. coli</th><th>Proteus mirabilis</th><th>S. pseudintermedius</th><th>Klebsiella</th><th>P. aeruginosa</th><th>Enterococcus</th><th>Acinetobacter</th><th>E. cloacae</th></tr>
+          <tr><td>2023（617）</td><td>243（39%）</td><td>73（12%）</td><td>80（13%）</td><td>51（8%）</td><td>59（10%）</td><td>57（9%）</td><td>11（2%）</td><td>9（1%）</td></tr>
+          <tr><td>2022（650）</td><td>270（42%）</td><td>87（13%）</td><td>76（12%）</td><td>71（11%）</td><td>48（7%）</td><td>49（8%）</td><td>9（1%）</td><td>5（1%）</td></tr>
+        </table>
+      </div>
+      <ul class="notes">
+        <li>整體：<strong>腸桿菌科 60–67%、GPC 24–27%、PA 7–10%</strong>。</li>
+        <li><span class="src src-doc">📄 講義二 p86</span> 2021 年犬貓 ESBL 腸桿菌的 FQ 抗藥：E. coli（n = 398）3 代 ceph 抗藥 19%，其中 <strong>68% 同時 FQ 抗藥</strong>；3 代 ceph 敏感的只有 8% FQ 抗藥。K. pneumoniae（n = 45）3 代 ceph 抗藥 38%，其中 <strong>79% FQ 抗藥</strong>；3 代 ceph 敏感的 11% FQ 抗藥。</li>
+        <li><span class="src src-add">💡</span> 也就是說：看到 3 代 cephalosporin 抗藥（疑似 ESBL）的 E. coli 或 Klebsiella，FQ 大概也靠不住。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ S9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fef3c7">✅</div>
+      <h2>9. Take-home</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <ul class="notes">
+        <li><strong>先問三件事</strong>：這個部位最常見什麼菌？我選的藥有沒有蓋到？藥能不能到那裡、濃度夠不夠？</li>
+        <li><strong>先排除無效的藥</strong>：天然抗藥（腸球菌 vs ceph／clinda／TS；腸桿菌 vs clinda／vanco／linezolid／azithro；PA vs amo/cla、dox、TS）、穿透差、毒性大的先刪掉。</li>
+        <li><strong>有菌不等於要治療</strong>：健康貓氣管 7 成有菌、膽汁與肝臟也可能有少量菌、SBU 多數不治療、黴漿菌 PCR 陽性要搭配病程判讀。</li>
+        <li><strong>混合感染先處理主角</strong>：E. coli ＋ 腸球菌時，先治 E. coli；腸球菌常會自己消失，不要急著用 vanco／linezolid。</li>
+        <li><strong>深部、腹腔、膿瘍要想厭氧菌</strong>；用 FQ 時記得補陽性菌與厭氧菌（amp 或 clinda、metro）。</li>
+        <li><strong>重症先廣後窄</strong>：IV、G+／G−／厭氧都 cover，達到臨床改善、感染源控制、血行動力學穩定、有藥敏後就降階。</li>
+        <li><strong>MRSP 以外用為主</strong>，全身用藥避開 β-lactam、依藥敏；做好隔離與消毒。</li>
+        <li><strong>ESBL／CRE 看人醫證據</strong>：藥敏 S 也不一定等於臨床有效（接種量效應），重症 ESBL 以 carbapenem 為主；3 代 ceph 抗藥的 E. coli、Klebsiella 多數 FQ 也抗。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <a href="index.html">回到系列列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+<script src="gate.js?v=2"></script>
+</body>
+</html>

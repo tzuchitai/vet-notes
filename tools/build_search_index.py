@@ -59,6 +59,7 @@ SERIES = {
     'lu-ming-ortho':            '卓越講堂・呂明醫師骨關節系列',
     'ultrasound':              '超音波專區',
     'cardio-reading':          '臨床閱讀筆記',
+    'wu-yingchen-bacteria':    '吳迎晨老師細菌課',
     'notes':                   '單篇筆記',
 }
 
@@ -74,6 +75,7 @@ FOLDER_SPECS = {
     'rita-ho-oncology-2026': ['onc'],
     'fasava-2026':           ['neuro'],
     'lu-ming-ortho':         ['surg'],
+    'wu-yingchen-bacteria':  ['infect'],
 }
 
 SPECS = {
@@ -127,7 +129,7 @@ SPECS = {
 }
 
 # 有密碼保護的系列：只收標題，不收內文
-GATED = ('echocardiography/', 'fasava-2026/', 'lu-ming-ortho/')
+GATED = ('echocardiography/', 'fasava-2026/', 'lu-ming-ortho/', 'wu-yingchen-bacteria/')
 
 SKIP_TAGS = {'head', 'title', 'script', 'style', 'noscript', 'svg', 'template'}
 HEADINGS = {'h1', 'h2', 'h3'}
