@@ -110,6 +110,7 @@ SPECS = {
     'tsfm-feline-ecc-2026/fate.html':                ['ecc', 'cardio'],
     'tsfm-feline-ecc-2026/sepsis.html':              ['ecc', 'infect'],
     'case-discussions/canine-juvenile-thyroid-growth-retardation.html': ['endo'],
+    'case-discussions/canine-tachypnea-pneumomediastinum.html': ['resp', 'gi', 'infect'],
     'case-discussions/feline-chf-fluid-intolerance.html': ['cardio', 'kidney'],
     'case-discussions/feline-chronic-diarrhea.html': ['gi'],
     'case-discussions/feline-chronic-vomiting.html': ['gi'],
