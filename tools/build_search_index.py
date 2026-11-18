@@ -56,6 +56,7 @@ SERIES = {
     'lulich-urology-2026':     'Jody Lulich 泌尿講座',
     'rita-ho-oncology-2026':   'Rita Ho 腫瘤科講座',
     'fasava-2026':              '2026 FASAVA 研討會筆記',
+    'ophthalmology-study':      '眼科讀書會',
     'lu-ming-ortho':            '卓越講堂・呂明醫師骨關節系列',
     'ultrasound':              '超音波專區',
     'cardio-reading':          '臨床閱讀筆記',
@@ -74,6 +75,7 @@ FOLDER_SPECS = {
     'lulich-urology-2026':  ['uro'],
     'rita-ho-oncology-2026': ['onc'],
     'fasava-2026':           ['neuro'],
+    'ophthalmology-study':   ['ophtho'],
     'lu-ming-ortho':         ['surg'],
     'wu-yingchen-bacteria':  ['infect'],
 }

@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>犬貓淚液異常與溢淚｜眼科讀書會</title>
+<style>
+  :root {
+    --primary: #1D4ED8;
+    --primary-light: #DBEAFE;
+    --secondary: #0891b2;
+    --accent: #1d4ed8;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #0B1A3A;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #BFDBFE; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #1E3A8A;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #BFDBFE; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #BFDBFE;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #1E3A8A;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #A86A88;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #831843 0%, #DB2777 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #0B1A3A; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #1E3A8A; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #dbeafe; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .src-doc { background: #e0f2fe; color: #075985; }
+  .pending { border: 2px dashed #BFDBFE; border-radius: 10px; padding: 16px 18px; color: var(--text-muted); font-size: 13.5px; background: #f8fbff; }
+<style>
+  .fig img { border-color: #BFDBFE; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  @media (max-width: 900px) { .vs { grid-template-columns: 1fr; } }
+</style>
+<style>
+  .flow { display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin:10px 0; }
+  .flow-step { background:#dbeafe; color:#1e3a8a; border-radius:8px; padding:6px 10px; font-size:13.5px; font-weight:600; }
+  .flow-arrow { color:#1d4ed8; font-weight:700; }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← 眼科讀書會</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 眼科讀書會</a>
+  <div class="logo">
+    <h2>01｜犬貓淚液異常<br>與溢淚</h2>
+    <p>眼科讀書會｜2026-11-18｜錄音版</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">開場與名詞</a>
+    <div class="nav-section">生理</div>
+    <a href="#s1">1. 淚膜與淚液功能單位</a>
+    <a href="#s2">2. 眨眼與鼻淚管路徑</a>
+    <div class="nav-section">異常</div>
+    <a href="#s3">3. 分泌增加</a>
+    <a href="#s4">4. 收集與排出異常</a>
+    <div class="nav-section">臨床</div>
+    <a href="#s5">5. 檢查順序與引流檢查</a>
+    <a href="#s6">6. 治療與討論</a>
+    <a href="#s7">7. 淚痕與延伸話題</a>
+    <a href="#s8">8. 速查表</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>犬貓淚液異常與溢淚：生理機制、臨床檢查及處置</h1>
+    <p>眼科讀書會｜2026-11-18（線上，兩週一次）｜主報：說話者 1（姓名待補）｜講評：蔡醫師</p>
+    <div class="tags">
+      <span class="tag">Epiphora</span>
+      <span class="tag">淚膜</span>
+      <span class="tag">淚液功能單位</span>
+      <span class="tag">倒睫／雙排睫／異位睫</span>
+      <span class="tag">顏面神經</span>
+      <span class="tag">鼻淚管</span>
+      <span class="tag">淚囊炎</span>
+      <span class="tag">Jones test</span>
+      <span class="tag">CT 淚道造影</span>
+      <span class="tag">淚痕</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-rec">🎤 錄音</span> 讀書會錄音（<a href="https://web.plaud.ai/s/pub_6dc34f04-703d-468b-b505-14039364fef5::dOM3-8NgeGikcVMRQZBWTLY1zO30rQAofLRkkv4im-YaT66mKRfEDRXsIqfcJjdu6Cpt6-nZwqThycDjcdyJzwI" target="_blank" rel="noopener">Plaud 錄音與逐字稿</a>＋完整記錄 PDF）
+    <span class="src src-add">💡 補充</span> 整理者補充（教科書知識、逐字稿誤聽的更正）
+    <br><span class="muted">沒有投影片檔，文中「左圖、右表」是主報描述的投影片內容。錄音從開場第 2 張左右開始；結束後錄到的其他影片聲音已略過。Plaud 誤聽的專有名詞已依上下文更正，不確定處標 ❔。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 本場重點</h3>
+    <ul>
+      <li><strong>流淚是結果，不是診斷</strong>：沿著「分泌 → 分布 → 收集 → 排出」四段找問題在哪裡</li>
+      <li>突然<strong>單側流淚＋瞇眼、畏光</strong> → 先找疼痛來源：角膜潰瘍、異物、異位睫、葡萄膜炎、青光眼（螢光染色＋眼壓）</li>
+      <li>長期流淚、眼表平靜 → 看<strong>眼瞼貼合、淚點位置、引流功能</strong></li>
+      <li>水液量足夠 ≠ 淚膜正常；眼周濕 ≠ 分泌正常（顏面神經病變可能同時<strong>閉眼不全＋神經性乾眼</strong>）</li>
+      <li>三種引流檢查互補：<strong>Jones test 陰性不等於阻塞</strong>（短吻犬可能從副開口流到後鼻腔）；<strong>沖得通也不等於平常排得好</strong></li>
+      <li>🎤 蔡醫師：早期、發炎性的鼻淚管阻塞，<strong>局部類固醇效果很好</strong>；長期（幼犬起就有淚痕）的就沒效。麻醉下通鼻淚管成功率大約 10 隻 1–2 隻</li>
+      <li>🎤 病歷用詞：原因未明或偏向阻塞 → <strong>epiphora</strong>；已找到刺激源（疼痛、異物、神經性）→ <strong>hyperlacrimation</strong></li>
+    </ul>
+  </div>
+
+  <!-- ══ S0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dbeafe">🎯</div>
+      <h2>開場：主訴是「眼睛濕」</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 濕的來源與淚痕</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 眼周濕可能來自<strong>分泌增加</strong>，也可能是眼淚<strong>沒有被有效收集或排出</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 淚痕反映的是眼淚接觸毛髮後留下的變化，<strong>不能直接用顏色或範圍判斷當下的分泌量</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 問診時先分清楚飼主說的是<strong>長期染色、持續濕潤</strong>，還是<strong>最近突然大量流眼淚</strong>。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 逐字稿寫「我們直接用它的顏色或範圍去判斷」，依上下文應是「不能直接用」——淚痕是長期累積的結果。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 名詞：epiphora vs hyperlacrimation（蔡醫師）</h3>
+        <div class="vs">
+          <div class="card-mini">
+            <h4>Epiphora（溢淚）</h4>
+            <ul>
+              <li>眼淚溢出來的統稱，看到淚水變多就可以寫</li>
+              <li>原因還沒找到時用</li>
+              <li>確定鼻淚管阻塞時也寫 epiphora</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>Hyperlacrimation（淚液分泌過多）</h4>
+            <ul>
+              <li>已經找到<strong>刺激源</strong>：疼痛、不舒服、異物</li>
+              <li>或神經性的分泌增加</li>
+              <li>表示「過度分泌」這件事已被確認</li>
+            </ul>
+          </div>
+        </div>
+        <p class="p"><span class="src src-rec">🎤</span> 蔡醫師：兩者學理上本來就有重疊，臨床寫病歷是<strong>診斷導向</strong>——寫這個字想表達什麼。寫 tearing（流眼淚）也可以，只是有證據時想寫精準一點，眼科會有這個考量。</p>
+        <p class="p"><span class="src src-add">💡</span> 嚴格定義：epiphora 是眼淚溢出眼瞼的<strong>臨床徵象</strong>（不論原因）；有些教科書把「排出不良」稱 epiphora、「分泌過多」稱 hyperlacrimation。蔡醫師的用法與此相容。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dbeafe">💧</div>
+      <h2>1. 正常淚膜與淚液功能單位</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 淚膜組成</h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>成分</th><th>來源</th><th>功能</th></tr>
+            <tr><td>水樣液</td><td><strong>主淚腺＋第三眼瞼腺</strong></td><td>水、電解質、分泌蛋白</td></tr>
+            <tr><td>脂質</td><td>瞼板腺（meibomian gland）</td><td>限制蒸發、維持淚膜穩定</td></tr>
+            <tr><td>黏蛋白</td><td>結膜杯狀細胞＋眼表上皮</td><td>讓眼淚在眼表形成良好覆蓋</td></tr>
+          </table>
+        </div>
+        <p class="p"><span class="src src-rec">🎤</span> 傳統分三層，但實際上各成分互相作用，是動態系統。<strong>水液量足夠，不代表淚膜功能正常。</strong></p>
+        <p class="p"><span class="src src-add">💡</span> 犬的第三眼瞼腺約貢獻 30–50% 的水樣液，所以櫻桃眼手術要「復位」而不是切除，否則日後容易乾眼。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 淚液功能單位：感覺傳入 → 腦幹 → 分泌傳出</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 教科書把眼表、淚腺和相關神經合稱<strong>淚液功能單位（lacrimal functional unit）</strong>，是功能上的統稱，不是獨立器官。</li>
+          <li><span class="src src-rec">🎤</span> 角膜或結膜受刺激 → 感覺神經傳到腦幹 → 分泌神經輸出 → 淚腺調整分泌量。例如異物碰到角膜會增加眼淚。</li>
+          <li><span class="src src-rec">🎤</span> <strong>基礎分泌</strong>維持日常；刺激強時增加<strong>反射性分泌</strong>。兩者不是完全獨立，共同維持眼表環境。</li>
+          <li><span class="src src-rec">🎤</span> 傳入：角膜機械或化學刺激 → 經<strong>三叉神經眼支（CN V1）</strong>傳入 → 腦幹整合 → 增加淚腺的<strong>副交感</strong>輸出。這是角膜摩擦、異物會突然流淚的基礎。</li>
+          <li><span class="src src-rec">🎤</span> 感覺輸入不限眼表：狗的研究中<strong>刺激鼻子可以增加 STT 讀數</strong>；鼻黏膜麻醉後有些狗反射性分泌下降 → 支持<strong>鼻淚反射</strong>存在。但不能推論所有鼻炎都會造成臨床 epiphora。</li>
+        </ul>
+        <p class="p"><span class="src src-rec">🎤</span> 傳出路徑：腦幹的副交感纖維 → 沿中間神經／顏面神經 → <strong>岩大神經</strong> → <strong>翼腭神經節</strong>換神經元 → 節後纖維伴隨三叉神經分支 → 淚腺。</p>
+        <p class="p"><span class="src src-add">💡</span> 逐字稿把「岩大神經（greater petrosal nerve）」聽成「大眼神經」、「翼腭神經節（pterygopalatine ganglion）」聽成「E 二神經節」，已更正。節後纖維一般描述是搭三叉神經上頜支的顴神經分支到淚腺。</p>
+        <p class="p"><span class="src src-rec">🎤</span> 所以<strong>顏面神經有兩種功能</strong>：讓眼瞼閉合、調控淚液分泌。兩種纖維走向不同，病灶影響的功能也可能不同——有些只是閉眼不全，有些連淚液分泌都下降。看到顏面神經異常時，要<strong>分別檢查眨眼功能和淚液量</strong>。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 淚腺細胞怎麼分泌</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 神經末梢釋放：<strong>乙醯膽鹼</strong> → 細胞內鈣離子訊號；<strong>VIP</strong>（血管活性腸肽）→ cAMP 訊號。</li>
+          <li><span class="src src-rec">🎤</span> 細胞受刺激 → 改變離子運輸、建立滲透梯度 → 水跟著進入腺腔；同時釋放分泌蛋白，導管再調整成分。所以神經調控影響的不只是量，<strong>也影響組成</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 交感神經也參與，作用依受體與細胞種類而不同，不能簡化成增加或抑制。這些機制多來自齧齒類等比較生理研究。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 臨床連結：pilocarpine（膽鹼促效劑）口服或局部可用於<strong>神經性乾眼</strong>，就是在補這條副交感路徑；而 atropine 會降低 STT。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dbeafe">👁️</div>
+      <h2>2. 眨眼、眼瞼貼合與鼻淚管路徑</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 完整眨眼才能鋪開淚膜</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 完整眨眼可以重新鋪展淚膜；眼瞼和眼球良好貼合，眼淚才會往內眼角匯集。</li>
+          <li><span class="src src-rec">🎤</span> <strong>28 隻西施犬</strong>研究的箱形圖：完整眨眼中位數約<strong>每分鐘 2.5 次</strong>，不完整眨眼約<strong>每分鐘 15 次</strong>。這群狗水液量足夠，但眼表和淚膜穩定性仍有異常。</li>
+          <li><span class="src src-rec">🎤</span> 檢查時要看<strong>每一次眨眼是否完整</strong>，不能只看有沒有眨。這張圖不能單獨證明個別病患流淚的原因，但提醒我們<strong>保定前先觀察自然眨眼</strong>。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 短吻犬眼球突出、眼裂大，常見「眨了但沒閉到底」（lagophthalmos），下方角膜中央容易乾、色素沉著。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 鼻淚管解剖與 CT 淚道造影</h3>
+        <div class="flow">
+          <div class="flow-step">上、下淚點（1a、1b）</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">上、下淚小管</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">淚囊（2）</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">鼻淚管（3）</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">鼻腔</div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> CT 淚道造影：從淚點注入顯影劑，CT 追蹤後重建 3D（綠色＝顯影管道，灰色＝骨骼）。可以辨認路徑和病變位置，和單純測淚液量是不同的資訊。</li>
+          <li><span class="src src-rec">🎤</span> 比較<strong>英國鬥牛犬 vs 羅德西亞背脊犬</strong>：短吻犬的路徑比較擁擠、前段方向改變；長吻犬鼻淚管沿著長吻部向前延伸。</li>
+          <li><span class="src src-rec">🎤</span> <strong>路徑形狀不同 ≠ 已經阻塞</strong>，還要配合其他檢查判斷功能。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dbeafe">🔥</div>
+      <h2>3. 分泌增加：眼表刺激、淚液品質與神經</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 反射性流淚的四個來源</h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>來源</th><th>例子</th></tr>
+            <tr><td>角膜</td><td>上皮缺損、潰瘍、角膜炎</td></tr>
+            <tr><td>結膜</td><td>結膜炎、結膜囊異物、<strong>藏在第三眼瞼後方的異物</strong></td></tr>
+            <tr><td>外界刺激</td><td>風、粉塵、煙霧、化學物質 → 急性或間歇性流淚</td></tr>
+            <tr><td>眼內疼痛</td><td>葡萄膜炎、青光眼</td></tr>
+          </table>
+        </div>
+        <p class="p"><span class="src src-rec">🎤</span> <strong>單側流淚＋瞇眼、畏光或抓眼睛</strong> → 優先考慮疼痛與刺激來源。檢查要搭配<strong>螢光染色＋適當的眼壓評估</strong>。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 毛髮與睫毛接觸</h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>類型</th><th>特徵</th></tr>
+            <tr><td>倒睫（trichiasis）</td><td>正常位置長出的毛髮朝向眼表；<strong>鼻褶毛</strong>、眼周毛摩擦也屬這類</td></tr>
+            <tr><td>雙排睫（distichiasis）</td><td>從<strong>瞼板腺開口附近</strong>長出</td></tr>
+            <tr><td>異位睫（ectopic cilia）</td><td>穿出<strong>瞼結膜</strong>直接刺角膜 → 明顯疼痛＋局部潰瘍</td></tr>
+          </table>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 下眼瞼倒睫照片：細小毛髮從眼瞼邊緣伸向眼表，<strong>沒有放大觀察很容易漏掉</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 要放大看，必要時<strong>翻開眼瞼</strong>、檢查第三眼瞼後方。</li>
+          <li><span class="src src-rec">🎤</span> 找到異常毛髮後要確認<strong>是否真的接觸到病灶</strong>：有些柔軟的雙排睫不是傷害主因，不能看到就斷定它造成流淚。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 異位睫典型是年輕犬、上眼瞼中央、角膜 12 點鐘附近的垂直線狀潰瘍，非常痛、治療反應差。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 淚液品質：淚液結晶（ferning）試驗</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 取淚液在玻片上乾燥，顯微鏡看結晶分支型態。<strong>0–1 級</strong>：分支密集、間隙小；<strong>2–3 級</strong>：分支較粗、間隔變大；<strong>4 級</strong>：規則分支明顯變少或沒有清楚結晶。</li>
+          <li><span class="src src-rec">🎤</span> 原理：電解質、蛋白質的成分比例會影響乾燥時的結晶 → 可以提示組成是否異常。</li>
+          <li><span class="src src-rec">🎤</span> 限制：<strong>不能指出是黏蛋白、脂質還是哪種電解質不足</strong>；圖片來自前面的西施犬研究，不同族群結晶狀態不同，不能當主要依據。臨床要結合<strong>淚液量（STT）＋淚膜破裂時間（TBUT）＋眼表檢查</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 顏面神經異常</h3>
+        <div class="vs">
+          <div class="card-mini">
+            <h4>運動功能受損</h4>
+            <ul>
+              <li>眼輪匝肌無法正常閉眼</li>
+              <li>淚膜分布不均、鋪展與收集效率下降</li>
+              <li>若感覺與分泌反射保留 → 眼表刺激反而增加反射性分泌</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>分泌功能受損</h4>
+            <ul>
+              <li>同時傷到往淚腺的副交感路徑</li>
+              <li>水液分泌下降 → <strong>神經性乾眼</strong></li>
+              <li>眼周看起來濕，不代表分泌正常</li>
+            </ul>
+          </div>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 2026 年一篇犬顏面神經功能異常的回溯研究，強調了<strong>神經性乾眼與角膜傷害</strong>的重要性。</li>
+          <li><span class="src src-rec">🎤</span> 檢查：自然眨眼、眼瞼反射、<strong>角膜感覺</strong>、<strong>STT</strong>，再配合其他神經與<strong>耳部</strong>徵象定位。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 神經性乾眼常見<strong>同側鼻孔乾</strong>（外側鼻腺也受同一副交感路徑支配），是很好用的定位線索。中耳炎、特發性顏面神經麻痺、甲狀腺功能低下都要想到。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 鱷魚淚症候群（味覺性流淚）</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 人醫：顏面神經受傷後，原本支配唾液分泌的纖維<strong>錯誤再生</strong>到淚腺，進食咀嚼時單側流淚。說明分泌迴路可能接錯線。</li>
+          <li><span class="src src-rec">🎤</span> 犬貓直接證據有限，<strong>不能列為常見鑑別診斷</strong>。飼主說吃東西時流淚，仍要先排除常見的眼表與引流問題。</li>
+          <li><span class="src src-rec">🎤</span> 有<strong>腮腺管轉位術</strong>病史時，要想到是<strong>唾液流到眼表</strong>，和味覺性流淚是不同狀況。</li>
+        </ul>
+        <p class="p"><span class="src src-rec">🎤</span> 蔡醫師補充：鱷魚吃獵物時流眼淚的傳說，比喻假惺惺的眼淚。咀嚼、打哈欠時流淚在動物不算罕見，可能是內眼角下方積了淚、咀嚼時溢出來；真正神經錯接的他看過很少，動物反而比較常走向神經性乾眼。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dbeafe">🚰</div>
+      <h2>4. 收集與排出異常</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 入口位置：眼瞼與淚點</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 獵犬下眼瞼外翻照片：結膜外露、眼瞼無法貼合眼球 → 收集與眼表保護受影響，但<strong>不代表淚道阻塞</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 眼瞼外翻／鬆弛、眼球眼瞼貼合不佳 → 眼淚無法有效集中；<strong>內側下眼瞼內翻</strong> → 改變淚點方向，接不到眼淚；內眼角構型改變 → 容納、匯聚眼淚的能力下降。</li>
+          <li><span class="src src-rec">🎤</span> 共同點：管道可能沒塞，問題在<strong>入口和周邊的構型</strong>。所以這類狗<strong>沖洗試驗通過，仍會持續流淚</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 淚點與淚小管本身的病變</h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>類別</th><th>重點</th></tr>
+            <tr><td>先天性</td><td>幼年或一直流淚 → 淚點未開通（imperforate punctum）、閉鎖、發育異常；但要先排除眼表刺激與構型問題</td></tr>
+            <tr><td>外傷</td><td>內眼角附近損傷可能同時影響淚點與淚小管</td></tr>
+            <tr><td>醫源性</td><td>手術後狹窄</td></tr>
+            <tr><td>結膜變形</td><td>慢性發炎後狹窄；<strong>貓</strong>曾有嚴重結膜病或沾黏（如 FHV-1 後 symblepharon）→ 淚點被拉扯、扭曲</td></tr>
+          </table>
+        </div>
+        <p class="p"><span class="src src-rec">🎤</span> 檢查除了找到淚點，也要看位置、開口和周圍組織。能不能重建開口或改道，取決於<strong>後方還有沒有可用的通道</strong>把淚液排到鼻腔。</p>
+        <p class="p"><span class="src src-add">💡</span> 淚點未開通多見於可卡、貴賓等，通常是下淚點；沖洗上淚點時，下淚點處的結膜會鼓起來，剪開即可。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 淚囊炎與管腔內阻塞</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 原因：<strong>異物</strong>（如草籽）、發炎碎屑、黏膜腫脹，位置多在淚囊與鼻淚管近端。</li>
+          <li><span class="src src-rec">🎤</span> 圖：箭頭指向<strong>內眼角下方的瘻管開口</strong>，是慢性淚囊炎的表現。這個位置反覆腫脹、流液時，除了皮膚與眼科問題，也要檢查淚液排出路徑。</li>
+          <li><span class="src src-rec">🎤</span> 線索：持續性<strong>單側</strong>流淚、黏稠膿性分泌物、反覆結膜炎、內眼角下方腫痛或瘻管。這些常讓人<strong>一直換抗生素</strong>，但異物與引流障礙還在就會復發。</li>
+          <li><span class="src src-rec">🎤</span> 沖洗時記錄<strong>阻力、逆流方向、是否帶出分泌物或異物</strong>，必要時取樣（培養、細胞學）。</li>
+          <li><span class="src src-rec">🎤</span> 治療：控制發炎與感染，<strong>同時處理阻塞原因</strong>，評估能否恢復通暢。慢性病程會留下狹窄或纖維化。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 管腔外壓迫</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 附近腫塊、鼻腔病變、顏面外傷、骨骼變形都可能影響引流。</li>
+          <li><span class="src src-rec">🎤</span> 牙根周圍疾病是否影響淚管要看病灶位置和影像，<strong>不能把所有流淚都歸咎牙齒</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 慢性單側阻塞性溢淚合併<strong>鼻腔分泌物增加或疼痛</strong> → 檢查範圍擴大到鼻腔、口腔與周圍組織。一般檢查和沖洗找不出原因 → 考慮 <strong>CT 或淚道造影</strong>，找狹窄位置，也確認有沒有壓迫、破壞或需要取樣的病灶。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 逐字稿寫「慢性單側阻塞性耳聾」「C D P T」，依上下文應是「溢淚」和「CT」。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 短吻犬貓：多個機制同時存在</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 短吻動物可能同時有<strong>鼻淚管副開口、內側下眼瞼內翻、毛髮刺激、引流路徑改變</strong>，要逐項檢查。</li>
+          <li><span class="src src-rec">🎤</span> 3D CT 重建：上下淚小管 → 淚囊 → 鼻淚管；白色箭頭指出<strong>副開口</strong>附近顯影劑進入鼻腔——液體<strong>不一定走完整條管道才到鼻孔</strong>。CT 橫切面也標出左右兩側副開口區域。</li>
+          <li><span class="src src-rec">🎤</span> 所以螢光染劑如果先從副開口排到<strong>較後方的鼻腔</strong>，前方鼻孔看不到染劑，<strong>Jones test 陰性也不能判定阻塞</strong>。研究把這個試驗和沖洗、CT 造影一起比較。</li>
+          <li><span class="src src-rec">🎤</span> 這是解剖差異，不能單憑副開口或短吻外觀就診斷 epiphora 的原因。短吻貓也有路徑變化的研究，但右邊是狗的影像，<strong>不能直接當貓的解剖圖</strong>。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 實務小技巧：Jones test 陰性時，也可以看<strong>口咽部</strong>（張嘴用鈷藍光照）有沒有螢光，短吻犬貓常流到後鼻腔再到咽部。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dbeafe">🔍</div>
+      <h2>5. 檢查順序與三種引流檢查</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 溢淚病患的檢查順序</h3>
+        <ol class="notes">
+          <li><span class="src src-rec">🎤</span> <strong>病史</strong>：多久了、單側或雙側、有無疼痛或其他症狀、之前做過什麼處置。</li>
+          <li><span class="src src-rec">🎤</span> <strong>保定前自然觀察</strong>：自然眨眼、閉合程度、眼淚從哪裡溢出。</li>
+          <li><span class="src src-rec">🎤</span> <strong>STT</strong>：排在點藥和明顯的眼表操作<strong>之前</strong>，減少干擾。STT-1 包含基礎＋反射分泌，<strong>數字高不能直接判定原發性分泌過多</strong>。</li>
+          <li><span class="src src-rec">🎤</span> <strong>放大檢查</strong>：眼瞼、睫毛、淚點、結膜、第三眼瞼。</li>
+          <li><span class="src src-rec">🎤</span> <strong>螢光染色＋適當的眼壓評估</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 眼表表現和水液量不一致 → 評估<strong>淚膜穩定性</strong>（TBUT）。</li>
+          <li><span class="src src-rec">🎤</span> 懷疑收集或排出障礙 → <strong>引流檢查</strong>。</li>
+        </ol>
+        <p class="p"><span class="src src-rec">🎤</span> 單側或雙側可以調整鑑別診斷順序，但不能單獨作為診斷。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 三種引流檢查</h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>檢查</th><th>做法</th><th>陽性代表</th><th>限制</th></tr>
+            <tr><td><strong>螢光染劑通過試驗（Jones test）</strong></td><td>眼表滴螢光染劑，觀察同側鼻孔</td><td>至少有一條可通行的路徑</td><td>陰性要考慮通過時間、頭型、測試方法、副開口 → <strong>不能證明完全阻塞</strong></td></tr>
+            <tr><td><strong>鼻淚管沖洗</strong></td><td>經淚點放入沖洗管，慢慢注入生理食鹽水；看是否通過、阻力、逆流、帶出黏液或膿</td><td>施加壓力下是通的</td><td><strong>沖得通不代表平常排得夠好</strong></td></tr>
+            <tr><td><strong>CT 淚道造影</strong></td><td>經淚點注入顯影劑，CT 顯示淚道與周圍構造</td><td>找出異常的位置</td><td>需要麻醉、設備</td></tr>
+          </table>
+        </div>
+        <p class="p"><span class="src src-rec">🎤</span> 範例圖：上排短吻犬（逐字稿聽成「發抖」❔）、下排一般頭型米克斯；A 淚小管、B 淚囊、C 鼻淚管骨內段、D 中段、E 遠端。這是比較解剖位置，<strong>不是上排異常、下排正常</strong>。三種檢查互補，還要配合眼表、眼瞼、淚點檢查一起判讀。</p>
+        <p class="p"><span class="src src-add">💡</span> Jones test 一般約 5 分鐘內出現於鼻孔，貓與短吻犬可能更久或根本不出現在前鼻孔。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 蔡醫師：門診做得到沖洗嗎？</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 最容易成功的是<strong>大型、溫和的拉布拉多、黃金</strong>：熟悉淚點位置、找過兩三次之後，點局部麻醉藥就可以在門診做。</li>
+          <li><span class="src src-rec">🎤</span> 已經確認可能塞住、又要硬在門診通，加上狗貓反抗 → 很難。建議<strong>鎮靜或輕度麻醉</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 器材：大狗用<strong>鼻淚管 cannula</strong>（他們用人用的，前端有頭，插進去推就能沖，不用另外壓住淚點）；小狗或貓鎮靜後用<strong>留置針的軟外套管</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 淚點很難找時，先用<strong>鈍頭的淚點擴張器</strong>（逐字稿「筆袋杆 platter」❔，應是 punctal dilator）插進去轉一轉把開口撐大，再換軟針或 cannula 去沖。以前做 X 光／CT 造影就是這樣打顯影劑。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dbeafe">💊</div>
+      <h2>6. 依病灶選擇治療</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 主報的治療原則</h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>病灶</th><th>處理</th></tr>
+            <tr><td>眼表、眼內疾病造成的反射性流淚</td><td>控制原發病，再評估是否還有 epiphora</td></tr>
+            <tr><td>眼瞼或毛髮接觸</td><td>依實際傷害與功能影響，考慮矯正手術</td></tr>
+            <tr><td>淚膜不穩定</td><td>加強眼表保護，評估相關腺體功能</td></tr>
+            <tr><td>異物、淚囊炎、狹窄</td><td>移除病因、恢復通暢，控制伴隨的發炎與感染；有些需要放引流管維持；複雜或不可逆病變轉專科手術評估</td></tr>
+          </table>
+        </div>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 治療後追蹤：是否還濕、舒適度、角膜健康、眼瞼功能、分泌物。</li>
+          <li><span class="src src-rec">🎤</span> 多個機制同時存在時，單一處理可能只改善一部分，<strong>短吻構型病例</strong>尤其如此——要事先和飼主溝通可能殘留的流淚。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 臨床情境整理</h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>情境</th><th>先查什麼</th></tr>
+            <tr><td>突然單側流淚＋明顯瞇眼</td><td>角膜傷害、異物、眼內疼痛</td></tr>
+            <tr><td>長期流淚、眼表相對平靜</td><td>眼瞼貼合、淚點位置、引流功能</td></tr>
+            <tr><td>合併閉眼不全或顏面不對稱</td><td>運動、感覺、分泌功能<strong>分開檢查</strong></td></tr>
+            <tr><td>多種異常同時存在</td><td>處理後再追蹤剩下的症狀</td></tr>
+          </table>
+        </div>
+        <div class="quote">眼淚流出來是我們看到的結果；沿著分泌、分布、收集、排出的路徑檢查，才知道問題在哪裡。</div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 討論：流淚很多還要點人工淚液嗎？</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 提問：淚液不穩定的治療是增加潤滑，但淚液已經過多，再點玻尿酸，飼主會覺得更濕？</li>
+          <li><span class="src src-rec">🎤</span> 主報：一開始是刺激（多半是機械性）造成分泌增加，但這些反射淚只是眾多成分中比較不重要的一部分，淚膜本身已經不健康，還是需要人工淚液讓眼表長期維持濕潤。</li>
+          <li><span class="src src-rec">🎤</span> 主持人：可以跟飼主說，淚液過多其實是保護機制，我們是在減緩刺激、處理根本原因。</li>
+          <li><span class="src src-rec">🎤</span> 蔡醫師：就像今天那隻<strong>眼瞼內翻的貓</strong>，都要給玻尿酸——毛或眼瞼刺激就是一種異物刺激，在眼表加一層<strong>潤滑層</strong>（不是保濕），讓摩擦刺激減少。效果一定有限，真正內翻還是要處理。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 討論：鼻淚管阻塞給類固醇？要不要通？</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 主持人：阻塞時不去通，好像只能給類固醇（口服或點眼）？蔡醫師：<strong>其實也只能這樣</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 難處理的是<strong>先天開口異常、長期發炎、淚囊發炎、纖維化</strong>。年輕或常常發炎塞住的，<strong>初期類固醇效果非常好</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 但如果是紅貴賓、白貴賓，飼主說兩三個月大就有淚痕、一歲才來看 → 給類固醇基本上沒效，要回到改善淚液氧化狀態，或真的檢查鼻淚管構造。</li>
+          <li><span class="src src-rec">🎤</span> 反過來，<strong>最近兩週</strong>才流淚增加、現場看到結膜炎 → 推測鼻淚管有發炎。他覺得<strong>局部類固醇（點眼）效果比口服好</strong>；想一次衝成功時會加很低劑量口服類固醇。</li>
+          <li><span class="src src-rec">🎤</span> 前提：突然流淚要<strong>先排除睫毛異常、角膜潰瘍</strong>等常見問題；角膜沒事、只有結膜炎、螢光試驗不通 → 懷疑鼻淚管阻塞，這時給類固醇，在狗<strong>好的機會蠻高</strong>。</li>
+          <li><span class="src src-rec">🎤</span> 什麼時候建議麻醉通？現在大家（包括他自己）多半不通：要成功得很早期、不是明顯纖維化、而是有東西堵在裡面；實際成功率<strong>大約 10 隻 1–2 隻</strong>，又要麻醉、費用不高、要跟飼主解釋很多。這是醫師這邊的考量，不是動物的考量。</li>
+          <li><span class="src src-rec">🎤</span> 值得做的情況：判斷阻塞與發炎機會高，或<strong>壓內眼角下方能壓出分泌物</strong>——這時成功率高，可以建議麻醉下沖洗，甚至把類固醇打進淚囊。</li>
+          <li><span class="src src-rec">🎤</span> 通完之後：沿用以前的做法，在鼻淚管<strong>上下都留一點類固醇</strong>（學理上不確定有沒有效）；真的只能做一邊就做<strong>下面</strong>，下淚小管比上面大一點。</li>
+          <li><span class="src src-rec">🎤</span> 點 NSAID 可以嗎？可以，但類固醇成功率都不高了，用 NSAID 更不知道有沒有效。</li>
+          <li><span class="src src-rec">🎤</span> 蔡醫師也提到，這幾年比較少做之後，年輕醫師找淚點的速度和能力變差了，鼓勵大家練。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 用類固醇前一定要先做螢光染色確認<strong>沒有角膜潰瘍</strong>；貓有 FHV-1 病史時局部類固醇要特別小心。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dbeafe">🐩</div>
+      <h2>7. 蔡醫師延伸：淚痕、口服淚痕產品與淚液液態切片</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 淚痕與市售口服產品</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 貴賓、白色犬種常有很大一條淚痕，有些和遺傳、發炎、皮膚問題、鼻淚管開口有關，研究很多但還沒有被徹底弄清楚。</li>
+          <li><span class="src src-rec">🎤</span> 市售口服淚痕產品（如 Angel Eye）主打<strong>抗氧化劑</strong>，有的加 B12、營養劑、胺基酸、神經相關成分。<strong>少部分</strong>狗吃了有效。</li>
+          <li><span class="src src-rec">🎤</span> 改善淚痕不一定是眼淚變少：可能<strong>還是會流，只是不變成淚痕</strong>。淚液中的含鐵成分接觸空氣、過度氧化會變鐵鏽色。</li>
+          <li><span class="src src-rec">🎤</span> 有些醫師發現狗吃 <strong>metronidazole 或 doxycycline</strong>（因皮膚病等原因）後淚痕變少——可能是改變了淚液成分與氧化，而不是流量。</li>
+          <li><span class="src src-rec">🎤</span> 「水汪汪」眼藥的適應症是白內障，也有抗氧化成分，但廠商沒有說能治淚痕；可以試，合理但效果難講。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 淚痕的紅棕色一般認為主要來自淚液中的<strong>卟啉（porphyrin）</strong>，加上潮濕處的細菌、馬拉色菌；蔡醫師提的是乳鐵蛋白（含鐵）氧化的說法。早期的 Angel Eyes 含 <strong>tylosin（抗生素）</strong>，在美國曾被 FDA 要求下架，現行配方已改。長期用抗生素只為了淚痕不建議。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 淚液當「液態切片」</h3>
+        <p class="p"><span class="src src-rec">🎤</span> 人醫與獸醫學界有 <strong>liquid biopsy</strong> 的概念：拿體液做分析當作類似切片。動物已有不少論文把<strong>淚液做蛋白質體分析</strong>，用來評估眼睛發炎、推測乾眼症、甚至腫瘤。日本、美國很多研究在做，未來「一滴眼淚看到事情」可能有突破，值得期待。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-rec">🎤 錄音</span> 其他提到的</h3>
+        <ul class="notes">
+          <li><span class="src src-rec">🎤</span> 蔡醫師推薦近兩年關於<strong>貓虹膜色素沉著</strong>（FDIM）的論文（含 OCT、追蹤 12 年以上的長期研究，2026 年 6 月接受刊登），討論會不會惡化、轉移、要不要早點摘眼——可以讓大家跟飼主多講很多。</li>
+          <li><span class="src src-rec">🎤</span> 讀書會兩週一次、晚上 10 點；下一次在 12 月 2 日左右（12/9 實作課前），主報待定。新成員劉醫師（臨床病理／細胞學背景）會參加眼科實作，想學裂隙燈、眼壓量測（TonoVet 量測變異大）、間接眼底鏡。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 貓虹膜黑色素病變可參考同站 <a href="../fasava-2026/feline-eye-ocular-surface.html">FASAVA 03 貓眼的獨特之處：FHV-1 與 FDIM</a>（Kayes 2025、Gregorio 2026 等）。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#dbeafe">📋</div>
+      <h2>8. 速查：溢淚的鑑別</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-add">💡 整理</span> 四段路徑對照</h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>環節</th><th>常見原因</th><th>關鍵檢查</th></tr>
+            <tr><td>分泌增加</td><td>角膜潰瘍、結膜炎、異物、倒睫／雙排睫／異位睫、葡萄膜炎、青光眼、環境刺激</td><td>放大檢查、翻眼瞼、螢光染色、眼壓</td></tr>
+            <tr><td>分布異常</td><td>不完整眨眼、閉眼不全（顏面神經）、淚膜不穩定</td><td>自然眨眼觀察、眼瞼反射、STT、TBUT</td></tr>
+            <tr><td>收集異常</td><td>眼瞼外翻、內側下眼瞼內翻、內眼角構型、淚點位置異常</td><td>眼瞼與淚點檢查（沖洗可能正常）</td></tr>
+            <tr><td>排出異常</td><td>淚點未開通、淚小管狹窄、淚囊炎、異物、管外腫塊／鼻腔病／牙根病、短吻構型</td><td>Jones test、沖洗、CT 淚道造影</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>眼科讀書會下一次預計 12 月初。</p>
+    <a href="index.html">回到系列列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
