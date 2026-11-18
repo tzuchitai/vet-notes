@@ -88,6 +88,7 @@ SPECS = {
     'fasava-2026/ecc-trauma-hemorrhagic-shock.html': ['ecc', 'heme'],
     'fasava-2026/ecc-pocus.html': ['ecc', 'us'],
     'fasava-2026/ecc-fluid-types.html': ['ecc'],
+    'fasava-2026/respiratory-care-airways-lungs-heart.html': ['resp', 'cardio', 'ecc'],
     'fasava-2026/feline-electrolyte-supplementation.html': ['ecc'],
     'fasava-2026/hong-cardiology-notes.html': ['cardio'],
     'fasava-2026/feline-eye-ocular-surface.html': ['ophtho', 'infect'],

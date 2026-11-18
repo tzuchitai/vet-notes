@@ -1,0 +1,1814 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>呼吸照護：呼吸道、肺臟與心臟｜2026 FASAVA 研討會筆記</title>
+<meta name="robots" content="noindex, nofollow">
+<style>html{visibility:hidden}</style>
+<script>
+(function(){ if (sessionStorage.getItem('fasavaGateOK') === '1') { document.documentElement.style.visibility = 'visible'; } })();
+</script>
+<style>
+  :root {
+    --primary: #BE185D;
+    --primary-light: #FCE7F3;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2A0B1A;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E9B6CD; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A1730;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E9B6CD; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E9B6CD;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A1730;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #A86A88;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #831843 0%, #DB2777 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2A0B1A; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A1730; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #0b4f49; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .src-doc { background: #e0f2fe; color: #075985; }
+  .pending { border: 2px dashed #F5D3E3; border-radius: 10px; padding: 16px 18px; color: var(--text-muted); font-size: 13.5px; background: #fffbfd; }
+<style>
+  .fig img { border-color: #F5D3E3; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  @media (max-width: 900px) { .vs { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- ══════════ SIDEBAR ══════════ -->
+<a class="home-link-fab" href="index.html">← FASAVA 筆記</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 2026 FASAVA 研討會筆記</a>
+  <div class="logo">
+    <h2>13｜呼吸照護：<br>呼吸道、肺臟與心臟</h2>
+    <p>林中惠｜2026-11-02｜講義版</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div>
+    <a href="#s0">場次資訊與大綱</a>
+    <div class="nav-section">呼吸照護策略</div>
+    <a href="#s1">1. 心肺交互作用</a>
+    <a href="#s2">2. CPE 與 PEEP／CPAP</a>
+    <a href="#s3">3. 呼吸道用藥與噴霧</a>
+    <a href="#s4">4. 非心因性肺水腫</a>
+    <div class="nav-section">被忽略、可預防的傷害</div>
+    <a href="#s5">5. 貓 HARD</a>
+    <a href="#s6">6. KBr 支氣管炎</a>
+    <a href="#s7">7. 礦物油脂質肺炎</a>
+    <a href="#s8">8. Minoxidil 中毒</a>
+    <div class="nav-section">肺高壓</div>
+    <a href="#s9">9. 第三類肺高壓與肺心症</a>
+    <a href="#s10">10. 支氣管軟化</a>
+    <a href="#s11">11. 間質性肺病</a>
+    <div class="nav-section">病例與整理</div>
+    <a href="#s12">12. 病例：反覆咯血西施犬</a>
+    <a href="#s13">13. 速查表</a>
+    <a href="#s14">14. 錄音（待補）</a>
+  </nav>
+</nav>
+
+<!-- ══════════ MAIN ══════════ -->
+<div id="main">
+
+  <div class="page-header">
+    <h1>呼吸照護：跨越呼吸道、肺臟與心臟的挑戰</h1>
+    <p>原標題：Respiratory Care in Dogs and Cats: Challenging Conditions across the Airways, Lungs, and Heart</p>
+    <p>主講：林中惠 Joan Chung-Hui Lin DVM, MVM, PhD, DAiCVIM, FASE（TACS-Alliance Research Center／國立臺灣大學）｜2026-11-02｜FASAVA 2026｜場次 13</p>
+    <div class="tags">
+      <span class="tag">心肺交互作用</span>
+      <span class="tag">Helmet CPAP</span>
+      <span class="tag">心因性肺水腫</span>
+      <span class="tag">NCPE</span>
+      <span class="tag">HARD</span>
+      <span class="tag">KBr 支氣管炎</span>
+      <span class="tag">礦物油脂質肺炎</span>
+      <span class="tag">Minoxidil</span>
+      <span class="tag">肺高壓</span>
+      <span class="tag">支氣管軟化</span>
+      <span class="tag">間質性肺病</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📄 講義</span> 講者提供的 2-up 講義（141 張全部依序放入，括號內為講義順序；投影片右下的「NN/168」是原始簡報頁碼，講義有刪減）
+    <span class="src src-add">💡 解說</span> 整理者的中文解釋與教科書補充
+    <span class="src src-hand">✍️ 筆記</span> 你寫在講義上的手寫筆記（字跡辨識不確定處標 ❔）
+    <br><span class="muted">尚無錄音；之後有 Plaud 逐字稿可再合併成 🎤。藥物劑量照講義抄錄，使用前請再核對。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 本場重點</h3>
+    <ul>
+      <li><strong>每一次呼吸都是心血管事件</strong>：胸腔內壓、肺容積／肺血管阻力、心室互相依存，三條路把呼吸和心臟綁在一起</li>
+      <li>心因性肺水腫：<strong>正壓（PEEP/CPAP）降低左心室跨壁壓 → 降低後負荷</strong>；犬 helmet CPAP 研究：給氧時間 5.4 vs 14 h、利尿劑用量少約四成</li>
+      <li>呼吸道用藥會傷心（β2 促效劑、茶鹼類）；<strong>噴霧也有鈉負荷</strong>，4 kg CHF 犬每天吞 10 mL 7% 食鹽水就超標 2.3 倍——<strong>Less is more</strong></li>
+      <li>NCPE 不是一種病：依機轉治療，<strong>利尿劑不是常規答案</strong></li>
+      <li>四個「被忽略、可預防」的心肺傷害：<strong>貓 HARD</strong>（不需成蟲）、<strong>KBr 支氣管炎</strong>（貓別用）、<strong>礦物油脂質肺炎</strong>（永遠不要口服）、<strong>Minoxidil／落建中毒</strong>（貓致死）</li>
+      <li>支氣管軟化（BM）不是「只會咳」：中位存活 998 天、64% 死於心肺原因；<strong>肺高壓是關鍵共病</strong>，要持續追蹤（PRIME score）</li>
+      <li>ILD：間質紋 ≠ ILD ≠ 纖維化；<strong>不同病程 → 不同治療目標</strong>，要趁纖維化前找出可治療的原因</li>
+      <li>病例：夜間反覆咯血＋紅血球暫時升高的西施犬 → 推測交感失調，<strong>prazosin（α1 阻斷）</strong>後 23 個月無再發</li>
+    </ul>
+  </div>
+
+  <!-- ══ S0 ══ -->
+  <div class="section" id="s0">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🎯</div>
+      <h2>場次資訊與大綱</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 摘要與大綱（1–2）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-001-slide.jpg" alt="投影片 1：Abstract：Respiratory Care in Dogs and Cats" loading="lazy">
+          <figcaption>📄 (1) Abstract：Respiratory Care in Dogs and Cats</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-002-slide.jpg" alt="投影片 2：Outline" loading="lazy">
+          <figcaption>📄 (2) Outline</figcaption>
+        </figure>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> 講者摘要大意：呼吸照護是處理呼吸道、肺臟、心臟疾病的核心。呼吸方式、氣道壓力、肺容積、心臟負荷、肺血管阻力彼此牽連，<strong>對其中一個環節的介入，可能在別處造成重要後果</strong>。這場用生理學、最新證據和真實病例來談。</p>
+        <ul class="notes">
+          <li>心肺交互作用（Heart–lung interactions）</li>
+          <li>各種困難情境下的呼吸照護策略：① 不同情境怎麼給呼吸支持；② 目前臨床上<strong>被低估、但可預防</strong>的心肺傷害</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S1 ══ -->
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🫀</div>
+      <h2>1. 心肺交互作用：每一次呼吸都是心血管事件</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 呼吸改變心臟負荷（3–5）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-003-slide.jpg" alt="投影片 3：Heart–lung interactions：Every breath is also a cardiovascular event" loading="lazy">
+          <figcaption>📄 (3) Heart–lung interactions：Every breath is also a cardiovascular event</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-004-slide.jpg" alt="投影片 4：受影響的項目與例子" loading="lazy">
+          <figcaption>📄 (4) 受影響的項目與例子</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-005-slide.jpg" alt="投影片 5：Primarily mediated through" loading="lazy">
+          <figcaption>📄 (5) Primarily mediated through</figcaption>
+        </figure>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> 心臟關在胸腔裡，胸腔壓力隨每次呼吸改變，所以吸氣、吐氣、咳嗽、正壓通氣（PPV）都會<strong>立刻</strong>改變心臟的前、後負荷。講義的四個例子：</p>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>情境</th><th>結果</th><th>💡 白話</th></tr>
+            <tr><td>自主吸氣</td><td>↑ 靜脈回流</td><td>胸腔變負壓，把血「吸」回右心</td></tr>
+            <tr><td>正壓通氣</td><td>↓ 右心充填 → 最後 ↓ 左心充填</td><td>胸腔變正壓，壓住大靜脈，回流變少</td></tr>
+            <tr><td>肺過度膨脹</td><td>↑ 右心後負荷</td><td>肺泡撐太開，壓扁肺泡旁微血管，肺血管阻力上升</td></tr>
+            <tr><td>嚴重上呼吸道阻塞（UAO）</td><td>↑ 左心室跨壁後負荷</td><td>用力吸氣造成極大負壓，左心室要更用力才能把血打出去</td></tr>
+          </table>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> 三條主要途徑：<strong>胸腔內壓</strong>、<strong>肺容積與肺血管阻力</strong>、<strong>心室互相依存</strong>（左右心室共用中膈和心包膜，一邊撐大就會擠壓另一邊）。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 跨壁壓：同樣 120 mmHg，負擔不一樣（6–8）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-006-slide.jpg" alt="投影片 6：Transmural pressure：正常" loading="lazy">
+          <figcaption>📄 (6) Transmural pressure：正常</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-007-slide.jpg" alt="投影片 7：UAO：胸膜壓 −20 mmHg" loading="lazy">
+          <figcaption>📄 (7) UAO：胸膜壓 −20 mmHg</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-008-slide.jpg" alt="投影片 8：Positive-pressure ventilation / CPAP：胸膜壓 +10 mmHg" loading="lazy">
+          <figcaption>📄 (8) Positive-pressure ventilation / CPAP：胸膜壓 +10 mmHg</figcaption>
+        </figure>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> <strong>跨壁壓 = 左心室腔內壓 − 心臟外面（胸膜腔）的壓力</strong>，才是心肌真正感受到的撐開力量與壁張力。左心室腔內壓都是 120 mmHg：</p>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>情境</th><th>胸膜壓</th><th>跨壁壓</th><th>後負荷</th></tr>
+            <tr><td>正常</td><td>−4</td><td>124</td><td>基準</td></tr>
+            <tr><td>上呼吸道阻塞</td><td>−20</td><td><strong>140</strong></td><td>↑ 壁張力、↑ 有效後負荷（負壓把左心室往外拉）</td></tr>
+            <tr><td>正壓通氣／CPAP</td><td>+10</td><td><strong>110</strong></td><td>↓ 壁張力、↓ 有效後負荷（正壓幫忙「托住」左心室）</td></tr>
+          </table>
+        </div>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> UAO：跨壁壓 ↑。PPV：跨壁壓 ↓。</p>
+        <p class="p"><span class="src src-add">💡</span> 臨床連結：喉麻痺、短吻犬呼吸道症候群的狗嚴重吸氣困難時，除了缺氧，也在加重左心負擔；這也是阻塞性呼吸困難可能併發「負壓性肺水腫」的原因（見第 4 節）。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S2 ══ -->
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">💨</div>
+      <h2>2. 心因性肺水腫（CPE）與 PEEP／CPAP</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> CPE vs NCPE（9）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-009-slide.jpg" alt="投影片 9：Pulmonary edema：CPE vs NCPE" loading="lazy">
+          <figcaption>📄 (9) Pulmonary edema：CPE vs NCPE</figcaption>
+        </figure>
+        </div>
+        <div class="vs">
+          <div class="card-mini">
+            <h4>CPE 心因性（例：MMVD）</h4>
+            <ul>
+              <li>靜水壓為主</li>
+              <li>↑ 左心房壓 → ↑ 肺靜脈壓</li>
+              <li>液體被「推」進肺</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>NCPE 非心因性</h4>
+            <ul>
+              <li>機轉多樣</li>
+              <li>通透性傷害、負壓性、神經性（例：癲癇）、復張性（例：抽完胸水後肺快速擴張）</li>
+            </ul>
+          </div>
+        </div>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> CPE＝心因性，ex. MMVD；左心房壓力、肺靜脈壓。NCPE＝非心因性，成因多、機轉複雜；通透性、神經性 ex. 癲癇、肺擴張 ex. 抽胸水後。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 標準治療＋呼吸照護（10–12）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-010-slide.jpg" alt="投影片 10：CPE：Standard of care vs Adjunctive／Add-on therapy" loading="lazy">
+          <figcaption>📄 (10) CPE：Standard of care vs Adjunctive／Add-on therapy</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-011-slide.jpg" alt="投影片 11：NEJM 1991 RCT＋JAMA 2005 meta-analysis" loading="lazy">
+          <figcaption>📄 (11) NEJM 1991 RCT＋JAMA 2005 meta-analysis</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-012-slide.jpg" alt="投影片 12：CPE：PAP 對心臟病患的血行動力學影響" loading="lazy">
+          <figcaption>📄 (12) CPE：PAP 對心臟病患的血行動力學影響</figcaption>
+        </figure>
+        </div>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> 標準治療：急性期 → pimobendan &amp; furosemide；慢性期 → 長期口服用藥 ❔。</p>
+        <p class="p"><span class="src src-add">💡</span> 講者把呼吸照護定位成<strong>標準治療之外的輔助治療</strong>，不是取代利尿劑。人醫證據：</p>
+        <ul class="notes">
+          <li><strong>NEJM 1991 RCT</strong>（面罩 CPAP vs 一般給氧）：插管率 <strong>35% vs 0%</strong>；ICU 天數 2.7 vs 1.2 天；治療 30 分鐘後 CPAP 組呼吸速率、PaCO₂、PaO₂/FiO₂ 改善較快。</li>
+          <li><strong>JAMA 2005 統合分析</strong>（15 篇 RCT）：CPAP 讓插管風險相對下降 <strong>60%</strong>、院內死亡率下降約 <strong>47%</strong>。</li>
+        </ul>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> 插管、天數、減少插管、死亡率 ↓。</p>
+        <p class="p"><span class="src src-add">💡</span> 第 12 張（Di Cristo 2025）：正壓對<strong>肺</strong>（↓ 缺氧性血管收縮、↓ 肺泡阻力、↑ 通氣與順應性）和<strong>左心</strong>（↓ 跨壁壓、↓ 後負荷）有利；對<strong>右心</strong>則是壓迫右心房與胸內靜脈 → ↓ 右心充填、↓ 右心搏出量。CPE 時，<strong>降後負荷的好處通常大過降前負荷的壞處</strong>（而 CPE 病患前負荷本來就太多，少一點反而好）。</p>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> 小結：左心房壓力 ↑ → 靜脈回流 ↓ → 肺水腫改善!!；左心室壓力 ↓ → output ↑。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 給 PEEP／CPAP 的方式（13–14）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-013-slide.jpg" alt="投影片 13：Options for PEEP/CPAP：invasive vs non-invasive" loading="lazy">
+          <figcaption>📄 (13) Options for PEEP/CPAP：invasive vs non-invasive</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-014-slide.jpg" alt="投影片 14：Helmet CPAP（人醫照片）" loading="lazy">
+          <figcaption>📄 (14) Helmet CPAP（人醫照片）</figcaption>
+        </figure>
+        </div>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> 侵入性＝插管；非侵入性＝mask、helmet。正壓 ❔。</p>
+        <p class="p"><span class="src src-add">💡</span> Helmet（頭罩）CPAP 是一個透明頭罩，頸部用軟環密封，持續送入高流量氣體，出口接 PEEP 閥維持正壓。好處是不用插管、不用鎮靜，狗通常比緊貼口鼻的面罩容易接受。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 犬 helmet CPAP 研究（JAVMA 2023）（15–19）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-015-slide.jpg" alt="投影片 15：JAVMA 2023：CPAP in dogs with ACPE（研究設計）" loading="lazy">
+          <figcaption>📄 (15) JAVMA 2023：CPAP in dogs with ACPE（研究設計）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-016-slide.jpg" alt="投影片 16：呼吸速率比較" loading="lazy">
+          <figcaption>📄 (16) 呼吸速率比較</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-017-slide.jpg" alt="投影片 17：給氧時間與脫離標準" loading="lazy">
+          <figcaption>📄 (17) 給氧時間與脫離標準</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-018-slide.jpg" alt="投影片 18：Loop-diuretic requirement" loading="lazy">
+          <figcaption>📄 (18) Loop-diuretic requirement</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-019-slide.jpg" alt="投影片 19：結論：Respiratory care strategies with helmet CPAP" loading="lazy">
+          <figcaption>📄 (19) 結論：Respiratory care strategies with helmet CPAP</figcaption>
+        </figure>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th></th><th>Helmet CPAP（n=42）</th><th>標準組：鼻導管（n=41）</th></tr>
+            <tr><td>設定</td><td>FiO₂ ~40%、CPAP 5–6 cmH₂O</td><td>FiO₂ ~40%、100–150 mL/kg/min</td></tr>
+            <tr><td>呼吸速率 1 h（次/分）</td><td><strong>50.4</strong>（入院 89.1）</td><td>74.1（入院 84.7）</td></tr>
+            <tr><td>呼吸速率 12 h</td><td><strong>30.5</strong></td><td>41.7</td></tr>
+            <tr><td>給氧時間</td><td><strong>5.4 ± 3.0 h</strong></td><td>13.98 ± 7.7 h</td></tr>
+            <tr><td>前 12 h 累積 furosemide 當量</td><td><strong>7.7 ± 1.8 mg/kg</strong></td><td>13.2 ± 2.8 mg/kg</td></tr>
+            <tr><td>整個住院累積</td><td><strong>11.6 ± 3.1 mg/kg</strong></td><td>19.5 ± 5.9 mg/kg</td></tr>
+            <tr><td>住院天數、短期死亡率</td><td colspan="2">兩組<strong>無顯著差異</strong></td></tr>
+          </table>
+        </div>
+        <ul class="notes">
+          <li>族群：ACVIM C／D 期 MMVD、因急性心因性肺水腫住院的 83 隻犬（2019/1–2021/4，回溯性）。</li>
+          <li>脫離氧氣標準：呼吸速率<strong>持續 &lt; 40 次/分</strong>、<strong>1 小時內重複確認</strong>、沒有明顯呼吸費力。</li>
+          <li>Torsemide 用 <strong>1:10</strong> 換算成 furosemide 當量（torsemide 1 mg ≈ furosemide 10 mg 的利尿效果）。</li>
+        </ul>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> RR 剛入院；以前給氧的時間；很快 &lt;1 h；目前看不到（住院／死亡率的）顯著差異；利尿劑用量降低。</p>
+        <p class="p"><span class="src src-add">💡</span> 白話結論：加上 helmet CPAP，狗<strong>穩定得更快、更早脫離氧氣、利尿劑少用約四成</strong>。利尿劑少用的意義是腎前性氮血症、電解質失衡、脫水的風險較低——但存活沒有因此改變，而且是回溯研究，分組不是隨機的。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> PEEP 能讓胸膜壓升多少？（20–24）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-020-slide.jpg" alt="投影片 20：How much can PEEP increase pleural pressure?" loading="lazy">
+          <figcaption>📄 (20) How much can PEEP increase pleural pressure?</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-021-slide.jpg" alt="投影片 21：Nespoulet 2013：健康人 PEEP 10" loading="lazy">
+          <figcaption>📄 (21) Nespoulet 2013：健康人 PEEP 10</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-022-slide.jpg" alt="投影片 22：Schuster 1990：嚴重左心衰竭病人" loading="lazy">
+          <figcaption>📄 (22) Schuster 1990：嚴重左心衰竭病人</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-023-slide.jpg" alt="投影片 23：Craven &amp; Wood 1981：實驗犬" loading="lazy">
+          <figcaption>📄 (23) Craven &amp; Wood 1981：實驗犬</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-024-slide.jpg" alt="投影片 24：CPE：helmet CPAP 小結" loading="lazy">
+          <figcaption>📄 (24) CPE：helmet CPAP 小結</figcaption>
+        </figure>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> Helmet 內實際的 PEEP 不是只看閥門，而是<strong>流速設定、PEEP 閥設定、系統漏氣、病患自己的吸氣流量</strong>四者共同決定。而且外面加的 PEEP 傳到胸膜腔（用食道壓 Pes 估計）只剩一部分：</p>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>研究</th><th>外加 PEEP</th><th>胸內壓上升</th></tr>
+            <tr><td>健康人（Nespoulet 2013）</td><td>0 → 10 cmH₂O</td><td>吐氣 Pes 擺幅 ↑ 5.4 ± 3.2</td></tr>
+            <tr><td>實驗犬（Craven 1981）</td><td>0 → 10</td><td>Pes +6.2；左／右心包外壓 +5.6／+5.3</td></tr>
+            <tr><td></td><td>10 → 20</td><td>Pes 再 +5.8；心包外壓再 +5.0／+5.4</td></tr>
+            <tr><td>嚴重左心衰竭病人 n=11（Schuster 1990）</td><td>0／4／8／12／16</td><td>Pes 4.5／6.4／7.7／9.9／12.2</td></tr>
+          </table>
+        </div>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> 食道壓力 ≈ 胸膜腔壓力，但較易測量 ❔；外部 PEEP → 食道 PEEP；外部 PEEP 傳到體內的增加幅度沒有外部設定那麼大 ❔。Helmet PEEP 的四個因素：流速、氣閥、漏氣、病患呼吸（小於…❔）。</p>
+        <p class="p"><span class="src src-add">💡</span> 意思是：helmet 只設 5–6 cmH₂O，傳到心臟周圍大約只有一半（幾 cmH₂O），就足以有臨床效果；而且壓力小，對右心回流的副作用也小。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S3 ══ -->
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">💊</div>
+      <h2>3. CPE 合併呼吸道疾病：藥物與噴霧的陷阱</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 心臟病犬常合併下呼吸道疾病（25–27）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-025-slide.jpg" alt="投影片 25：CPE：Influence of concurrent LRT disease on POCUS in small-breed MMVD dogs（JVIM 2022）" loading="lazy">
+          <figcaption>📄 (25) CPE：Influence of concurrent LRT disease on POCUS in small-breed MMVD dogs（JVIM 2022）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-026-slide.jpg" alt="投影片 26：Cardiovascular adverse effects：Bronchodilators" loading="lazy">
+          <figcaption>📄 (26) Cardiovascular adverse effects：Bronchodilators</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-027-slide.jpg" alt="投影片 27：Drugs affecting the respiratory system" loading="lazy">
+          <figcaption>📄 (27) Drugs affecting the respiratory system</figcaption>
+        </figure>
+        </div>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> key：Less is more。CPE 常伴隨其他疾病 ex. 呼吸道疾病。常造成心肺影響的藥物；氣管擴張劑。</p>
+        <p class="p"><span class="src src-add">💡</span> 小型犬 MMVD 很多同時有氣管塌陷、慢性支氣管炎、支氣管軟化。講者團隊（Lam 2022）指出合併下呼吸道疾病會影響肺部 POCUS 的判讀——B 線不一定是心因性肺水腫。治療呼吸道的藥也會回頭影響心臟：</p>
+        <ul class="notes">
+          <li><strong>β2 促效劑</strong>（短效或長效；口服／注射／吸入）→ 心搏過速、心律不整</li>
+          <li><strong>甲基黃嘌呤類</strong>（theophylline 等）→ 心搏過速、快速性心律不整</li>
+          <li>血壓過高／過低</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 呼吸系統用藥種類（第 27 張）：支氣管擴張劑、抗生素、抗微生物藥、抗發炎藥、細胞毒性藥、止咳藥、化痰藥、祛痰藥；給藥途徑有口服、注射（IV/IM/SC）、吸入。每一類都要想「對心臟有什麼影響」。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 噴霧也有風險：鈉負荷（28–31）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-028-slide.jpg" alt="投影片 28：Cardiovascular adverse effects：Nebulization（0.9%／3%／7% saline）" loading="lazy">
+          <figcaption>📄 (28) Cardiovascular adverse effects：Nebulization（0.9%／3%／7% saline）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-029-slide.jpg" alt="投影片 29：Na limit for a 4-kg CHF patient：Watch for" loading="lazy">
+          <figcaption>📄 (29) Na limit for a 4-kg CHF patient：Watch for</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-030-slide.jpg" alt="投影片 30：Nebulization 沉積比例" loading="lazy">
+          <figcaption>📄 (30) Nebulization 沉積比例</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-031-slide.jpg" alt="投影片 31：4 kg CHF 犬：吞下噴霧量的鈉含量" loading="lazy">
+          <figcaption>📄 (31) 4 kg CHF 犬：吞下噴霧量的鈉含量</figcaption>
+        </figure>
+        </div>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> NS 噴霧也有影響；非常容易汙染；到呼吸道 4.2%、到口內外的部分 50%；Good strategy：less is more。</p>
+        <ul class="notes">
+          <li>要注意：<strong>汙染／感染</strong>（噴霧器沒清乾淨）、呼吸道刺激或支氣管痙攣、呼吸道過度水化或鈉負荷。</li>
+          <li>4 kg CHF 犬的鈉上限：每天 <strong>≤ 120 mg</strong>（60 kcal/kg/day × 4 kg = 240 kcal；≤ 50 mg Na／100 kcal）。</li>
+          <li>噴霧真正沉積在呼吸道的只有 <strong>4.2 ± 1.4%</strong>；沉積在頭部＋消化道（口鼻、口咽、食道、胃）的有 <strong>50.0 ± 8.8%</strong>——大部分是被吞下去的。</li>
+        </ul>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>每天累積吞下量</th><th>0.9% NaCl</th><th>3% saline</th><th>7% saline</th></tr>
+            <tr><td>1 mL</td><td>3.54 mg（3%）</td><td>11.8 mg（10%）</td><td>27.5 mg（23%）</td></tr>
+            <tr><td>5 mL</td><td>17.7 mg（15%）</td><td>59.0 mg（49%）</td><td>137.7 mg（<strong>115%</strong>）</td></tr>
+            <tr><td>10 mL</td><td>35.4 mg（30%）</td><td>118 mg（<strong>98%</strong>）</td><td>275 mg（<strong>230%</strong>）</td></tr>
+          </table>
+        </div>
+        <p class="p muted">（括號內＝占每日 120 mg 鈉上限的比例）</p>
+        <p class="p"><span class="src src-add">💡</span> 高張食鹽水噴霧常用來化痰，但對一隻 4 kg 心衰竭的狗，<strong>每天吞下 5 mL 的 7% 食鹽水就超過整天的鈉上限</strong>。所以講者強調 less is more：需要時才噴、選低濃度、量少、器材保持乾淨。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S4 ══ -->
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🌊</div>
+      <h2>4. 非心因性肺水腫（NCPE）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> NCPE 不是一種病（32–33）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-032-slide.jpg" alt="投影片 32：NCPE is not one disease" loading="lazy">
+          <figcaption>📄 (32) NCPE is not one disease</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-033-slide.jpg" alt="投影片 33：NCPE：PEEP／CPAP 的肺部好處與心血管代價" loading="lazy">
+          <figcaption>📄 (33) NCPE：PEEP／CPAP 的肺部好處與心血管代價</figcaption>
+        </figure>
+        </div>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> NCPE 不是單一疾病，機轉很多；ARDS＝急性，通透性為主、容易滲出 ❔；神經性 ex. 癲癇、電擊；溺水。不像 CPE 一樣有固定機轉 ❔。∵ 肺有 2 套供血系統 ∴ 理想 PVR 在中間；肺容積。</p>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>類型</th><th>機轉／誘因</th></tr>
+            <tr><td>ARDS／急性肺損傷</td><td>通透性為主</td></tr>
+            <tr><td>阻塞後（負壓性）肺水腫</td><td>上呼吸道阻塞（UAO）</td></tr>
+            <tr><td>神經性肺水腫</td><td>癲癇、電擊</td></tr>
+            <tr><td>復張性肺水腫</td><td>塌陷的肺快速撐開（如大量抽胸水後）</td></tr>
+            <tr><td>其他誘因</td><td>TRALI（輸血相關急性肺損傷）、藥物／毒物、溺水</td></tr>
+          </table>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> 和 CPE 不同：<strong>利尿劑不是常規答案</strong>、治療不一致、要看病因與機轉。通透性↑ 或「左心房壓不高、但微血管靜水壓升高」，或兩者都有。</p>
+        <p class="p"><span class="src src-add">💡</span> 第 33 張的 U 形曲線：肺血管阻力（PVR）在<strong>功能性肺餘量（FRC）時最低</strong>。肺容積太小 → 肺泡外血管阻力↑＋缺氧性肺血管收縮 → PVR↑；肺過度膨脹 → 肺泡壁血管被壓扁 → PVR↑。PEEP／CPAP 的好處是打開塌陷肺泡（↑ 氧合、↓ 呼吸功、解除缺氧性血管收縮）；代價是 ↓ 靜脈回流、↓ 右心前負荷，壓太高還會 ↑ PVR、↑ 右心後負荷——對<strong>低血容、肺高壓、右心功能差</strong>的病患血行動力學風險高。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 依類型處理（34–35）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-034-slide.jpg" alt="投影片 34：NCPE：ARDS、阻塞後、神經性的處理" loading="lazy">
+          <figcaption>📄 (34) NCPE：ARDS、阻塞後、神經性的處理</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-035-slide.jpg" alt="投影片 35：NCPE：復張性與其他誘因的處理" loading="lazy">
+          <figcaption>📄 (35) NCPE：復張性與其他誘因的處理</figcaption>
+        </figure>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>類型</th><th>處理重點</th></tr>
+            <tr><td>ARDS</td><td>PEEP、肺保護性通氣、輸液策略很重要；利尿劑或類固醇只在特定病例審慎使用</td></tr>
+            <tr><td>阻塞後（負壓性）</td><td>解除 UAO＋O₂ ± CPAP；<strong>處理的是阻塞，不是液體</strong>；利尿劑有爭議（可能有益也可能有害）；類固醇不常規</td></tr>
+            <tr><td>神經性</td><td>控制神經性誘因＋呼吸支持；用藥看中樞神經原發病</td></tr>
+            <tr><td>復張性</td><td>避免讓肺太快復張＋呼吸支持；<strong>預防 &gt; 藥物治療</strong>；利尿劑或類固醇沒有證實的角色</td></tr>
+            <tr><td>其他誘因（TRALI、藥物、溺水）</td><td>停用或治療致病因子＋呼吸支持；只有特定發炎／藥物反應型才用類固醇</td></tr>
+          </table>
+        </div>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> 預防 &gt; 藥物（成效非藥物）；利尿劑「有爭議的」。</p>
+        <p class="p"><span class="src src-add">💡</span> 獸醫界對 NCPE 治療<strong>沒有共識</strong>，主要是支持療法（給氧，嚴重時呼吸器），<strong>沒有任何藥物被證實有益</strong>。實務：抽胸水時不要一次抽到負壓很大或抽太快，就是在預防復張性肺水腫。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S5 ══ -->
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🦟</div>
+      <h2>5. 被忽略的傷害（一）：貓心絲蟲相關呼吸道疾病（HARD）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 我們還漏了什麼？（36–38）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-036-slide.jpg" alt="投影片 36：Underrecognized or Preventable Cardiopulmonary Harm：What else are we missing?" loading="lazy">
+          <figcaption>📄 (36) Underrecognized or Preventable Cardiopulmonary Harm：What else are we missing?</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-037-slide.jpg" alt="投影片 37：HARD：犬 vs 貓" loading="lazy">
+          <figcaption>📄 (37) HARD：犬 vs 貓</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-038-slide.jpg" alt="投影片 38：Adult heartworms are NOT required" loading="lazy">
+          <figcaption>📄 (38) Adult heartworms are NOT required</figcaption>
+        </figure>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> 犬心絲蟲病大家很熟（嗜酸性肺炎等）；<strong>貓的 HARD 可能更常見，但被低估</strong>。關鍵是<strong>貓不需要有成蟲就會生病</strong>：</p>
+        <ul class="notes">
+          <li>未成熟成蟲在感染後約 <strong>75–90 天</strong>到達肺動脈</li>
+          <li>蟲「到達」或「死亡」都會引起肺動脈＋呼吸道＋間質的病變</li>
+          <li>成蟲可能根本沒長成 → <strong>沒成功感染的成蟲，仍能造成嚴重肺病</strong></li>
+        </ul>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> 無須成蟲也能致病；是幼蟲進入肺、在肺內死亡就造成發炎反應 ❔。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 診斷：抗體 vs 抗原（39–40）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-039-slide.jpg" alt="投影片 39：貓心絲蟲診斷總覽（American Heartworm Society）" loading="lazy">
+          <figcaption>📄 (39) 貓心絲蟲診斷總覽（American Heartworm Society）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-040-slide.jpg" alt="投影片 40：FeHW Ab test available in Taiwan" loading="lazy">
+          <figcaption>📄 (40) FeHW Ab test available in Taiwan</figcaption>
+        </figure>
+        </div>
+        <div class="vs">
+          <div class="card-mini">
+            <h4>抗體檢測 → 「接觸過幼蟲」的證據</h4>
+            <ul>
+              <li>陽性：提高懷疑</li>
+              <li>陰性：降低懷疑</li>
+              <li>可搭配胸腔 X 光</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>抗原檢測 → 「有成熟雌蟲」的證據</h4>
+            <ul>
+              <li>陽性：可確診</li>
+              <li>陰性：無法排除</li>
+              <li>可搭配心臟超音波（看到蟲體）</li>
+            </ul>
+          </div>
+        </div>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> → 在貓：是否有成蟲很難排除；是否有暴露（抗體）最重要 ❔。</p>
+        <p class="p"><span class="src src-add">💡</span> 台灣有貓心絲蟲抗體檢測（投影片 QR code 連到 Winni Chen 實驗室的送檢資訊）。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 台灣的盛行率（41–43）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-041-slide.jpg" alt="投影片 41：Canine heartworm prevalence in Taiwan" loading="lazy">
+          <figcaption>📄 (41) Canine heartworm prevalence in Taiwan</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-042-slide.jpg" alt="投影片 42：Lin 2017 JFMS（貓抗體）＋Lu 2017 Parasit Vectors" loading="lazy">
+          <figcaption>📄 (42) Lin 2017 JFMS（貓抗體）＋Lu 2017 Parasit Vectors</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-043-slide.jpg" alt="投影片 43：From Winni Chen Lab：各縣市陽性數" loading="lazy">
+          <figcaption>📄 (43) From Winni Chen Lab：各縣市陽性數</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>台灣犬心絲蟲：<strong>流浪犬 ≈ 50%、家犬 ≈ 20%</strong>（1996–2017 多篇研究）</li>
+          <li>貓心絲蟲感染估計 ≈ 當地<strong>犬盛行率的 20%</strong></li>
+          <li>Lin 2017 JFMS：心絲蟲流行區家貓的抗體陽性率約 10%，有／無下呼吸道症狀的貓陽性率沒有顯著差異</li>
+          <li>Winni Chen 實驗室 2021/11–2026/6 送檢：49/515，<strong>陽性率 9.5%</strong></li>
+        </ul>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> 10%。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 為什麼 HARD 很「hard」？（44–46）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-044-slide.jpg" alt="投影片 44：Why is HARD hard?" loading="lazy">
+          <figcaption>📄 (44) Why is HARD hard?</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-045-slide.jpg" alt="投影片 45：Dillon 2014：感染幼蟲 8 個月後的 CT" loading="lazy">
+          <figcaption>📄 (45) Dillon 2014：感染幼蟲 8 個月後的 CT</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-046-slide.jpg" alt="投影片 46：HARD take-home" loading="lazy">
+          <figcaption>📄 (46) HARD take-home</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li><strong>診斷被低估</strong>：抗原陽性＝有成蟲；抗原陰性對 HARD 沒有診斷意義。抗體只代表接觸過，而且<strong>可能隨時間轉陰</strong>。很容易被誤診成<strong>貓氣喘或慢性呼吸道疾病</strong>。</li>
+          <li><strong>治療與預後很不確定</strong>：有些隨時間改善；有些持續肌纖維母細胞增生，可能進展成<strong>限制性肺病</strong>。</li>
+          <li>Dillon 2014 實驗：未預防的貓感染幼蟲 8 個月後 CT 有瀰漫性間質浸潤與肺動脈擴大；<strong>事先用 selamectin 預防</strong>的貓 CT 正常。</li>
+        </ul>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> 抗體消失。沒有預防藥／有預防藥。HARD 跟氣喘難區分，but 都可以試著用類固醇。</p>
+        <div class="quote">HARD is hard to diagnose and treat — but easy to prevent.<span class="quote-zh">HARD 難診斷、難治療，但很容易預防。</span></div>
+        <p class="p"><span class="src src-add">💡</span> 實務：在心絲蟲流行區（台灣就是），<strong>貓也應該全年使用心絲蟲預防藥</strong>，包括室內貓（蚊子會進屋）。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S6 ══ -->
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🐱</div>
+      <h2>6. 被忽略的傷害（二）：溴化鉀（KBr）誘發的貓支氣管炎</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 2002 年就知道了（47–49）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-047-slide.jpg" alt="投影片 47：KBr-induced bronchitis in cats：Known since 2002" loading="lazy">
+          <figcaption>📄 (47) KBr-induced bronchitis in cats：Known since 2002</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-048-slide.jpg" alt="投影片 48：Variable clinical severity" loading="lazy">
+          <figcaption>📄 (48) Variable clinical severity</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-049-slide.jpg" alt="投影片 49：When does it occur?" loading="lazy">
+          <figcaption>📄 (49) When does it occur?</figcaption>
+        </figure>
+        </div>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> KBr 是犬用，非貓用。</p>
+        <ul class="notes">
+          <li>Boothe 2002 JAVMA：17 隻用溴化物控制癲癇的貓，<strong>6 隻出現咳嗽</strong>，1 隻因嚴重咳嗽＋支氣管肺變化安樂死。結論是不良反應的發生率不支持常規用溴化物治療貓癲癇。2002 年就知道，但<strong>病例仍持續發生</strong>。</li>
+          <li>嚴重度差很多：輕微咳嗽 → 喘鳴、呼吸費力 → 需要住院給氧 → 嚴重肺病可能致死。</li>
+          <li>X 光：支氣管紋、支氣管擴張；嚴重時有較廣泛的實質變化。BAL／病理：<strong>嗜中性球或嗜酸性球</strong>發炎、呼吸道重塑 ± 纖維化。</li>
+          <li>發生時間不固定：開始用藥後 <strong>2 週到 23 個月</strong>，最晚有 <strong>8 年</strong>的報告；<strong>和劑量或血中溴濃度無明確關係</strong>。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 為什麼？怎麼處理？（50–52）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-050-slide.jpg" alt="投影片 50：Why bromide?? Why cats??" loading="lazy">
+          <figcaption>📄 (50) Why bromide?? Why cats??</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-051-slide.jpg" alt="投影片 51：Discontinue KBr!!" loading="lazy">
+          <figcaption>📄 (51) Discontinue KBr!!</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-052-slide.jpg" alt="投影片 52：KBr take-home" loading="lazy">
+          <figcaption>📄 (52) KBr take-home</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>Bertolani 2012 JFMS：7 隻貓（6 隻 KBr＋1 隻 NaBr），NaBr 那隻在飼主<strong>再次給藥後復發</strong>——支持是溴離子本身的問題。</li>
+          <li>可能機轉（貓未經實驗證實）：特異體質過敏反應？嗜酸性球優先利用 Br⁻？類趨化激素作用？</li>
+          <li><strong>處理：停用 KBr！</strong>需要時給呼吸支持（O₂）；用類固醇控制呼吸道發炎（很多貓最後能完全停類固醇，但不是全部）；追蹤恢復——改善可能不是立刻，<strong>有些可逆、有些不可逆</strong>。</li>
+        </ul>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> 無法預期的反應（idiosyncratic）；貓的氣管嗜酸 ❔；不一定可逆。</p>
+        <div class="quote">KBr should generally NOT be used in cats.<span class="quote-zh">貓一般不應該使用溴化鉀。</span></div>
+        <p class="p"><span class="src src-add">💡</span> 貓的抗癲癇首選通常是 phenobarbital，其次 levetiracetam、zonisamide 等。如果接手一隻正在吃 KBr 的貓出現咳嗽，先想到藥物。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S7 ══ -->
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🧴</div>
+      <h2>7. 被忽略的傷害（三）：外源性脂質肺炎（礦物油）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 定義與典型暴露（53–56）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-053-slide.jpg" alt="投影片 53：Exogenous lipid (lipoid) pneumonia：定義" loading="lazy">
+          <figcaption>📄 (53) Exogenous lipid (lipoid) pneumonia：定義</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-054-slide.jpg" alt="投影片 54：Norris：貓最常見的原因" loading="lazy">
+          <figcaption>📄 (54) Norris：貓最常見的原因</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-055-slide.jpg" alt="投影片 55：Classic exposure &amp; clinical signs" loading="lazy">
+          <figcaption>📄 (55) Classic exposure &amp; clinical signs</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-056-slide.jpg" alt="投影片 56：Mineral oil readily causes silent aspiration" loading="lazy">
+          <figcaption>📄 (56) Mineral oil readily causes silent aspiration</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>非感染性的發炎／刺激性肺炎：肺泡內有細胞內或細胞外的<strong>脂肪滴</strong>，常合併混合發炎細胞與纖維化。</li>
+          <li><strong>外源性</strong>＝吸入含脂物質；<strong>內源性</strong>＝脂質來自肺內（常和阻塞性肺病有關）。</li>
+          <li>King 教科書第 60 章（Norris）：「在貓，<strong>長期強迫餵礦物油治療便秘和毛球</strong>，似乎是外源性脂質肺炎最常見的原因。」</li>
+          <li>典型暴露：為了「治療」便秘、毛球而<strong>長期反覆</strong>吸入。症狀從輕微到嚴重呼吸窘迫都有。</li>
+        </ul>
+        <p class="p"><span class="src src-add">💡</span> 為什麼礦物油特別危險——<strong>無聲吸入（silent aspiration）</strong>：</p>
+        <ol class="notes">
+          <li>幾乎不刺激呼吸道 → 很少或沒有咳嗽反射，吸進去也不咳</li>
+          <li>抑制黏膜纖毛運輸 → 吸進去的油清不掉</li>
+          <li>肺泡巨噬細胞吞了油卻<strong>無法代謝</strong> → 細胞退化、油再被釋放 → 持續累積、慢性發炎</li>
+        </ol>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 影像與預後（57–62）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-057-slide.jpg" alt="投影片 57：Thoracic images：clinical–imaging mismatch" loading="lazy">
+          <figcaption>📄 (57) Thoracic images：clinical–imaging mismatch</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-058-slide.jpg" alt="投影片 58：Prognosis（插圖）" loading="lazy">
+          <figcaption>📄 (58) Prognosis（插圖）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-059-slide.jpg" alt="投影片 59：Prognosis" loading="lazy">
+          <figcaption>📄 (59) Prognosis</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-060-slide.jpg" alt="投影片 60：Take-home" loading="lazy">
+          <figcaption>📄 (60) Take-home</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-061-slide.jpg" alt="投影片 61：Take-home（重複頁）" loading="lazy">
+          <figcaption>📄 (61) Take-home（重複頁）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-062-slide.jpg" alt="投影片 62：Take-home（重複頁）" loading="lazy">
+          <figcaption>📄 (62) Take-home（重複頁）</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>影像常<strong>和臨床不相符</strong>：症狀輕微，X 光／CT 卻變化明顯；可能像<strong>肺腫瘤</strong>（腫塊樣病灶，Can Vet J 2011 病例報告）。</li>
+          <li>預後（由好到壞）：非常短期暴露＋非常幸運才完全恢復 → 臨床改善但肺損傷持續 → <strong>不可逆肺纖維化</strong> → 慢性低血氧性呼吸衰竭 → <strong>肺心症</strong> → 續發肺部感染（特別是<strong>非結核分枝桿菌 NTM</strong>）→ 長期病灶區發生肺癌（人醫報告，因果未證實）→ 死亡。</li>
+        </ul>
+        <div class="quote">Mineral oil should NEVER be given orally for treating constipation.<span class="quote-zh">永遠不要口服礦物油治療便秘。</span></div>
+        <p class="p"><span class="src src-add">💡</span> 替代：便秘用 lactulose、PEG 3350、增加纖維與水分；毛球靠規律梳毛、高纖處方食品。很多飼主會自己在網路上看到「餵礦物油／嬰兒油」，問診時要主動問。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S8 ══ -->
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">☠️</div>
+      <h2>8. 被忽略的傷害（四）：Minoxidil 的心肺毒性</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 生髮水「落建」與作用機轉（63–65）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-063-slide.jpg" alt="投影片 63：Google 搜尋「落建」" loading="lazy">
+          <figcaption>📄 (63) Google 搜尋「落建」</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-064-slide.jpg" alt="投影片 64：Minoxidil：KATP-channel opener" loading="lazy">
+          <figcaption>📄 (64) Minoxidil：KATP-channel opener</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-065-slide.jpg" alt="投影片 65：Possible ↑ vascular permeability／drug-induced lung injury" loading="lazy">
+          <figcaption>📄 (65) Possible ↑ vascular permeability／drug-induced lung injury</figcaption>
+        </figure>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> Minoxidil 是落建（Regaine）等生髮產品的成分，台灣很容易買到。它是 <strong>K<sub>ATP</sub> 通道開啟劑</strong>：</p>
+        <ul class="notes">
+          <li>強力<strong>小動脈擴張</strong> → ↓ 全身血管阻力 → <strong>低血壓</strong> → 反射性心搏過速、收縮過強 → ↑ 心肌耗氧</li>
+          <li>↓ 舒張壓＋心搏過速 → ↓ 心內膜下灌流 → <strong>心肌損傷／乳頭肌—心內膜下壞死</strong></li>
+          <li>血管擴張 → 代償性交感／RAAS 活化 → 腎臟滯留鈉水、↑ 血漿容積 → <strong>肺水腫／胸水</strong></li>
+          <li>可能 ↑ 血管通透性 → 非心因性水腫；藥物誘發發炎性肺損傷 → 間質性或機化性肺炎、肉芽腫性發炎（機轉都不明確）</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 犬貓的表現（66–68）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-066-slide.jpg" alt="投影片 66：Cardiovascular toxicity in dogs and cats" loading="lazy">
+          <figcaption>📄 (66) Cardiovascular toxicity in dogs and cats</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-067-slide.jpg" alt="投影片 67：Pulmonary toxicity in dogs and cats" loading="lazy">
+          <figcaption>📄 (67) Pulmonary toxicity in dogs and cats</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-068-slide.jpg" alt="投影片 68：暴露途徑：一滴就致命" loading="lazy">
+          <figcaption>📄 (68) 暴露途徑：一滴就致命</figcaption>
+        </figure>
+        </div>
+        <div class="vs">
+          <div class="card-mini">
+            <h4>心血管毒性</h4>
+            <ul>
+              <li>低血壓＋心搏過速</li>
+              <li>心肌損傷（↑ cTnI）</li>
+              <li>犬（實驗毒理）：左心室乳頭肌／心內膜下壞死＋右心房出血病灶</li>
+              <li>貓：<strong>暫時性心肌增厚</strong> ± 左心房擴大、CHF</li>
+            </ul>
+          </div>
+          <div class="card-mini">
+            <h4>肺部毒性</h4>
+            <ul>
+              <li>呼吸急促／窘迫</li>
+              <li>肺水腫</li>
+              <li><strong>貓的呼吸表現更明顯</strong>：胸水 ± 肺鬱血，有嚴重致死的報告</li>
+              <li>犬貓尚未證實直接藥物性肺損傷（人醫有個案）</li>
+            </ul>
+          </div>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> 第 68 張的重點是暴露途徑：貓舔到主人頭皮、靠在剛擦藥的枕頭／手上、理毛時舔到；狗咬破瓶子。<strong>很少的量就夠</strong>。貓的暫時性心肌增厚會被誤認為 HCM（呼應 Côté 場次講的 TMT）。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 治療與死亡率（69–72）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-069-slide.jpg" alt="投影片 69：No specific antidote：Supportive, individualized care" loading="lazy">
+          <figcaption>📄 (69) No specific antidote：Supportive, individualized care</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-070-slide.jpg" alt="投影片 70：死亡率：Tater 2021／McMullen 2025／Ong 2025" loading="lazy">
+          <figcaption>📄 (70) 死亡率：Tater 2021／McMullen 2025／Ong 2025</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-071-slide.jpg" alt="投影片 71：Minoxidil take-home" loading="lazy">
+          <figcaption>📄 (71) Minoxidil take-home</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-072-slide.jpg" alt="投影片 72：Sometimes, awareness is the most important intervention" loading="lazy">
+          <figcaption>📄 (72) Sometimes, awareness is the most important intervention</figcaption>
+        </figure>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>問題</th><th>處理</th></tr>
+            <tr><td>所有暴露</td><td>去汙染＋監測（<strong>即使沒症狀</strong>）</td></tr>
+            <tr><td>低血壓</td><td>恢復血管張力：謹慎輸液；持續低血壓時<strong>早點用升壓劑</strong></td></tr>
+            <tr><td>胸水</td><td>O₂＋胸腔穿刺</td></tr>
+            <tr><td>肺水腫</td><td>O₂ ± 謹慎使用 furosemide</td></tr>
+            <tr><td>血壓恢復後仍嚴重心搏過速</td><td>考慮短效 β 阻斷劑（esmolol）</td></tr>
+            <tr><td>嚴重／難治</td><td>IV 脂肪乳劑（可能輔助）、血液透析（可能救援）</td></tr>
+          </table>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>研究</th><th>貓死亡</th><th>犬死亡</th></tr>
+            <tr><td>Tater 2021（87 例有症狀）</td><td>8/62（12.9%）</td><td>0/25（0%）</td></tr>
+            <tr><td>McMullen 2025（94 例已發表中毒）</td><td>10/68（14.7%）</td><td>0/26（0%）</td></tr>
+            <tr><td>Ong 2025（ASPCA 2013–2024，只算已知結果）</td><td>5/16（31.3%）*</td><td>0/12（0%）</td></tr>
+          </table>
+        </div>
+        <p class="p muted">* 3 隻死亡＋2 隻安樂死；701 例中只有 28 例有已知結果，31.3% 不能解讀成整體致死率。三組資料有重疊，不能合併。</p>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> 狗中毒 but 死亡率不高 ❔。</p>
+        <div class="quote">Even minimal minoxidil exposure can cause severe toxicosis — pet owners should be warned.<span class="quote-zh">極少量接觸也可能嚴重中毒，要提醒飼主。</span></div>
+        <p class="p"><span class="src src-add">💡</span> 這一大段的總結（第 72 張）：有些問題不需要新藥或新設備，只需要我們<strong>辨認風險 → 避免或移除誘因 → 預防傷害</strong>。有時候，<strong>「知道」就是最重要的介入</strong>。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S9 ══ -->
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">📈</div>
+      <h2>9. 第三類肺高壓與肺心症</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 肺心症的定義（73–75）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-073-slide.jpg" alt="投影片 73：Heart–lung interactions：Typical unfavorable consequences" loading="lazy">
+          <figcaption>📄 (73) Heart–lung interactions：Typical unfavorable consequences</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-074-slide.jpg" alt="投影片 74：Cor pulmonale (pulmonary heart disease)" loading="lazy">
+          <figcaption>📄 (74) Cor pulmonale (pulmonary heart disease)</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-075-slide.jpg" alt="投影片 75：Group III Pulmonary hypertension" loading="lazy">
+          <figcaption>📄 (75) Group III Pulmonary hypertension</figcaption>
+        </figure>
+        </div>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> Group III PH＝肺高壓；Cor pulmonale＝肺心症；呼吸系統 → 右心受影響。</p>
+        <p class="p"><span class="src src-add">💡</span> <strong>肺心症</strong>：由<strong>原發呼吸系統疾病</strong>造成的右心室結構和／或功能改變。兩個常見誤解：</p>
+        <ul class="notes">
+          <li>肺心症 ≠ 右心衰竭：肺心症常會造成右心衰竭，但右心衰竭也可以來自和肺無關的原因（嚴重肺動脈狹窄、三尖瓣發育不良…）。</li>
+          <li>肺心症 ≠ 肺高壓：例如<strong>左心病造成的肺高壓</strong>就明確排除在肺心症定義之外。</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 肺高壓定義與分類（76–83）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-076-slide.jpg" alt="投影片 76：Pulmonary hypertension：Definition" loading="lazy">
+          <figcaption>📄 (76) Pulmonary hypertension：Definition</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-077-slide.jpg" alt="投影片 77：PH severity" loading="lazy">
+          <figcaption>📄 (77) PH severity</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-078-slide.jpg" alt="投影片 78：Pre-capillary vs Post-capillary" loading="lazy">
+          <figcaption>📄 (78) Pre-capillary vs Post-capillary</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-079-slide.jpg" alt="投影片 79：ACVIM consensus 2020" loading="lazy">
+          <figcaption>📄 (79) ACVIM consensus 2020</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-080-slide.jpg" alt="投影片 80：PH 六大類" loading="lazy">
+          <figcaption>📄 (80) PH 六大類</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-081-slide.jpg" alt="投影片 81：WHO Symposia on PH（1973–2024）" loading="lazy">
+          <figcaption>📄 (81) WHO Symposia on PH（1973–2024）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-082-slide.jpg" alt="投影片 82：Because prognosis and treatment vary" loading="lazy">
+          <figcaption>📄 (82) Because prognosis and treatment vary</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-083-slide.jpg" alt="投影片 83：Group III PH：PH secondary to respiratory disease, hypoxia or both" loading="lazy">
+          <figcaption>📄 (83) Group III PH：PH secondary to respiratory disease, hypoxia or both</figcaption>
+        </figure>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>定義</th><th>數值</th></tr>
+            <tr><td>傳統</td><td>收縮期 PAP &gt; 35 mmHg；平均 PAP &gt; 25 mmHg</td></tr>
+            <tr><td>人醫新定義（2022 ESC/ERS，2025 ASE 也採用）</td><td><strong>平均 PAP &gt; 20 mmHg</strong></td></tr>
+            <tr><td>2020 ACVIM 犬共識</td><td>mPAP ≥ 25 mmHg（引用 2013 人醫）</td></tr>
+            <tr><td>嚴重度（收縮壓）</td><td>輕度 35–55、中度 55–80、重度 &gt; 80 mmHg</td></tr>
+          </table>
+        </div>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> 有分類；右心室／左心室。原因：呼吸系統、缺氧。</p>
+        <p class="p"><span class="src src-add">💡</span> <strong>微血管前（pre-capillary）</strong>＝問題在肺動脈端（如 CTEPH、肺病），右心室直接受壓；<strong>微血管後（post-capillary）</strong>＝問題在左心，壓力往回傳。ACVIM 犬肺高壓六大類：</p>
+        <ol class="notes">
+          <li>肺動脈高壓（1′ 肺靜脈閉塞病／肺微血管血管瘤病）</li>
+          <li>左心疾病</li>
+          <li><strong>呼吸道疾病／缺氧</strong>（本場重點）</li>
+          <li>肺栓塞／血栓</li>
+          <li>寄生蟲（心絲蟲、Angiostrongylus）</li>
+          <li>多因素或機轉不明</li>
+        </ol>
+        <p class="p"><span class="src src-add">💡</span> 分類從 1973 年 Geneva 一路演變到 2024 Barcelona，因為<strong>預後與治療隨類別不同</strong>。第三類又細分：3a 慢性阻塞性呼吸道疾病（<strong>氣管或主支氣管塌陷、支氣管軟化</strong>）、3b 原發肺實質病（<strong>間質性肺病</strong>：纖維化、機化性肺炎、肺泡蛋白沉積、嗜酸性肺病…；感染性肺炎；瀰漫性肺腫瘤）、3c 睡眠呼吸障礙、3d 高海拔、3e 發育性、3f 其他。接下來兩段分別講 3a 的<strong>支氣管軟化</strong>和 3b 的 <strong>ILD</strong>。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S10 ══ -->
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🫁</div>
+      <h2>10. 支氣管軟化（BM）：台灣犬的最新證據</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> BM 與肺高壓（84–87）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-084-slide.jpg" alt="投影片 84：Group III PH：Bronchomalacia" loading="lazy">
+          <figcaption>📄 (84) Group III PH：Bronchomalacia</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-085-slide.jpg" alt="投影片 85：BM：Updated evidence from dogs in Taiwan（Chang JVIM 2026）" loading="lazy">
+          <figcaption>📄 (85) BM：Updated evidence from dogs in Taiwan（Chang JVIM 2026）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-086-slide.jpg" alt="投影片 86：What happens next after a dog is diagnosed with BM?" loading="lazy">
+          <figcaption>📄 (86) What happens next after a dog is diagnosed with BM?</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-087-slide.jpg" alt="投影片 87：PH is the key comorbidity" loading="lazy">
+          <figcaption>📄 (87) PH is the key comorbidity</figcaption>
+        </figure>
+        </div>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> 支氣管軟化；都約 4 成。出現咳嗽、氣管塌陷 → 很可能是 BM 重症 ❔。診斷後中位數約 2.7 年；心肺相關。後續可能會有肺高壓。</p>
+        <ul class="notes">
+          <li>先前研究：Bottero 2013——動態＋靜態塌陷的 BM 和肺高壓顯著相關；Gamracy 2022——接受心超的 BM 犬約 <strong>40%</strong> 有臨床相關的肺高壓機率；Chang 2026——<strong>44.4%</strong> 在追蹤期間出現中至高肺高壓機率。</li>
+          <li><strong>Chang 2026 JVIM</strong>（講者團隊，72 隻支氣管鏡確診 BM 犬長期追蹤）：全因中位存活 <strong>998 天（約 2.7 年）</strong>；死亡中 <strong>64% 是心肺相關</strong>。</li>
+          <li>肺高壓盛行率：支氣管鏡診斷時 28% → 追蹤結束時 <strong>44%</strong>。<strong>診斷時心超正常，不代表以後不會有肺高壓。</strong></li>
+          <li>肺高壓相關風險：肺炎 HR 3.2、全因死亡 HR 2.0、心肺死亡 sHR 2.4。</li>
+        </ul>
+        <div class="quote">Bronchomalacia is NOT merely a condition that causes chronic cough without significantly impacting lifespan.<span class="quote-zh">支氣管軟化不只是「會咳嗽但不影響壽命」的病。</span></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 用心超追蹤肺高壓（88–96）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-088-slide.jpg" alt="投影片 88：Monitor for PH：Peak TR velocity" loading="lazy">
+          <figcaption>📄 (88) Monitor for PH：Peak TR velocity</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-089-slide.jpg" alt="投影片 89：TRV 頻譜量測範例（ACVIM 2020）" loading="lazy">
+          <figcaption>📄 (89) TRV 頻譜量測範例（ACVIM 2020）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-090-slide.jpg" alt="投影片 90：Challenges in obtaining optimal TR tracings" loading="lazy">
+          <figcaption>📄 (90) Challenges in obtaining optimal TR tracings</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-091-slide.jpg" alt="投影片 91：Echocardiographic probability of PH（Table 2）" loading="lazy">
+          <figcaption>📄 (91) Echocardiographic probability of PH（Table 2）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-092-slide.jpg" alt="投影片 92：Example：RV — same anatomic site, different PH severity" loading="lazy">
+          <figcaption>📄 (92) Example：RV — same anatomic site, different PH severity</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-093-slide.jpg" alt="投影片 93：Johnson 1999：53 dogs with Doppler-derived PH" loading="lazy">
+          <figcaption>📄 (93) Johnson 1999：53 dogs with Doppler-derived PH</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-094-slide.jpg" alt="投影片 94：Pyle 2004：PH and cardiovascular sequelae in 54 dogs" loading="lazy">
+          <figcaption>📄 (94) Pyle 2004：PH and cardiovascular sequelae in 54 dogs</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-095-slide.jpg" alt="投影片 95：PRIME score 的發展（ECVIM 2023 → JVIM 2026）" loading="lazy">
+          <figcaption>📄 (95) PRIME score 的發展（ECVIM 2023 → JVIM 2026）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-096-slide.jpg" alt="投影片 96：JVIM 2026：composite echo score — precapillary PH 90% correctly classified" loading="lazy">
+          <figcaption>📄 (96) JVIM 2026：composite echo score — precapillary PH 90% correctly classified</figcaption>
+        </figure>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> <strong>三尖瓣逆流峰速（pTRV）</strong>估肺動脈收縮壓：簡化 Bernoulli 壓差 = 4v²。例：TR 4.2 m/s → 4 × 4.2² = 70.56 → 右心室到右心房壓差 71 mmHg；加上右心房壓 5 mmHg → 肺動脈收縮壓約 76；右心房壓 10 → 約 81 mmHg。</p>
+        <p class="p"><span class="src src-add">💡</span> 其他心超方法：舒張早期 PR 峰速、右肺動脈擴張指數（RPAD）、TAPSE、肺靜脈／肺動脈比（PV/PA）。</p>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> 心臟的壓力 ↑ ❔。TR 流速＋心臟形態變化。</p>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>pTRV（m/s）</th><th>出現肺高壓徵象的解剖部位數</th><th>肺高壓機率</th></tr>
+            <tr><td>≤ 3.0 或量不到</td><td>0 或 1</td><td>低</td></tr>
+            <tr><td>≤ 3.0 或量不到</td><td>2</td><td>中</td></tr>
+            <tr><td>3.0–3.4</td><td>0 或 1</td><td>中</td></tr>
+            <tr><td>&gt; 3.4</td><td>0</td><td>中</td></tr>
+            <tr><td>≤ 3.0 或量不到</td><td>3</td><td>高</td></tr>
+            <tr><td>3.0–3.4</td><td>≥ 2</td><td>高</td></tr>
+            <tr><td>&gt; 3.4</td><td>≥ 1</td><td>高</td></tr>
+          </table>
+        </div>
+        <p class="p muted">（ACVIM 2020 Table 2。三個解剖部位：心室、肺動脈、右心房與後腔靜脈）</p>
+        <p class="p"><span class="src src-add">💡</span> 問題：<strong>常咳嗽、呼吸費力的狗很難量到好的 TR 頻譜</strong>（訊號不完整會低估，羽毛狀邊緣會高估）。而且同一個「解剖部位」（例如右心室）在不同嚴重度的變化程度不同，ACVIM 表只計「有沒有」，沒算「多嚴重」。Johnson 1999、Pyle 2004 早就發現心臟的結構變化程度和肺高壓嚴重度平行——所以講者團隊發展了把嚴重度分級的分數。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> PRIME score：25 分肺高壓分數（97–98）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-097-slide.jpg" alt="投影片 97：25-point PH score (PRIME score)：correlation & accuracy" loading="lazy">
+          <figcaption>📄 (97) 25-point PH score (PRIME score)：correlation & accuracy</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-098-slide.jpg" alt="投影片 98：PRIME score cut-offs" loading="lazy">
+          <figcaption>📄 (98) PRIME score cut-offs</figcaption>
+        </figure>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>6 個心超項目</th><th>分數</th></tr>
+            <tr><td>右心室擴大</td><td>0–6</td></tr>
+            <tr><td>右心室壁增厚</td><td>0–2</td></tr>
+            <tr><td>右心房擴大</td><td>0–6</td></tr>
+            <tr><td>心室中膈扁平</td><td>0–4</td></tr>
+            <tr><td>肺動脈擴大</td><td>0–6</td></tr>
+            <tr><td>右心室流出道頻譜收縮中期切跡（notching）</td><td>0–1</td></tr>
+          </table>
+        </div>
+        <ul class="notes">
+          <li>和 pTRV 強正相關：r<sub>s</sub> = 0.88；排除 LA:Ao ≥ 2.0 後 r<sub>s</sub> = 0.92。</li>
+          <li>預測 pTRV ≥ 3.4 m/s：AUC 0.95；≥ 4.3 m/s：AUC 0.98；5 折交叉驗證準確度 86 ± 10%、95 ± 4%。</li>
+          <li><strong>分數 ≥ 3（或 4）→ 提示 pTRV ≥ 3.4 m/s；分數 ≥ 9 → 提示 pTRV ≥ 4.3 m/s。</strong></li>
+          <li><strong>LA:Ao ≥ 2.0 時不要依賴這個分數</strong>（左心病會干擾）。在微血管前肺高壓表現最好，約 90% 分類正確。</li>
+        </ul>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> Health＝Point 0 → Sick＝25。只要看右側躺 3–4 個切面 ❔。左心房擴大（時）不準確。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 肺炎與預後因子（99–101）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-099-slide.jpg" alt="投影片 99：Pneumonia/Pneumonitis is a major clinical event" loading="lazy">
+          <figcaption>📄 (99) Pneumonia/Pneumonitis is a major clinical event</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-100-slide.jpg" alt="投影片 100：Which dogs have a worse prognosis?" loading="lazy">
+          <figcaption>📄 (100) Which dogs have a worse prognosis?</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-101-slide.jpg" alt="投影片 101：BM：Grading of severity" loading="lazy">
+          <figcaption>📄 (101) BM：Grading of severity</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li><strong>35%</strong> BM 犬發生肺炎／肺部發炎，其中 <strong>44% 在第一次記錄到的發作就死亡</strong>——<strong>急性惡化要認真看待</strong>。</li>
+          <li>肺炎風險因子：年齡（每年 HR 1.25）、<strong>需要類固醇的發炎性呼吸道疾病（IAD-steroid）</strong>（HR 3.09）、肺高壓（HR 3.20）。</li>
+        </ul>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>結果</th><th>獨立預測因子</th></tr>
+            <tr><td>肺炎／肺部發炎</td><td>年齡、IAD-steroid、肺高壓</td></tr>
+            <tr><td>全因死亡</td><td>年齡、<strong>重度 BM</strong>、肺高壓</td></tr>
+            <tr><td>心肺死亡</td><td><strong>高級別氣管塌陷</strong>、IAD-steroid、肺高壓</td></tr>
+          </table>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> 預後取決於 <strong>BM 嚴重度和整體共病</strong>，不只是「有沒有 BM」。BM 分級（Lin 2023 Vet Q 改編）：輕度＝塌陷 25–50%、LPB/RPB/LB1/RB1/RB2/RB3/RB4 中 ≤ 2 處；重度＝≥ 3 支支氣管塌陷 51–75% 或至少 1 支 &gt; 75%，<strong>加上</strong>上述 ≥ 3 處受影響或有分節支氣管受影響；中度介於兩者。肺高壓盛行率：重度 BM <strong>54.6%</strong> vs 輕中度 11.8%。</p>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> 1/3 的狗有肺炎，其中近一半在第一次肺炎就死亡。免疫抑制劑控制的呼吸道疾病（IAD）。肺高壓與肺炎相關 ❔。Poodle 好發。grade 3、4 氣管塌陷。塌的程度、塌的數量。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 臨床上該怎麼做（102–105）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-102-slide.jpg" alt="投影片 102：What should we do differently in practice?" loading="lazy">
+          <figcaption>📄 (102) What should we do differently in practice?</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-103-slide.jpg" alt="投影片 103：BM：PEEP／CPAP?" loading="lazy">
+          <figcaption>📄 (103) BM：PEEP／CPAP?</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-104-slide.jpg" alt="投影片 104：BM：PEEP／CPAP 的好處與代價" loading="lazy">
+          <figcaption>📄 (104) BM：PEEP／CPAP 的好處與代價</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-105-slide.jpg" alt="投影片 105：BM take-home：No simple solution" loading="lazy">
+          <figcaption>📄 (105) BM take-home：No simple solution</figcaption>
+        </figure>
+        </div>
+        <div class="grid2">
+          <div class="card-mini"><h4>結構性呼吸道疾病</h4><ul><li>BM 嚴重度分級</li><li>氣管塌陷分級</li><li>支氣管擴張</li></ul></div>
+          <div class="card-mini"><h4>可處理的共病</h4><ul><li>發炎性呼吸道疾病</li><li>感染</li><li>體重（BCS）</li></ul></div>
+          <div class="card-mini"><h4>肺高壓</h4><ul><li>基準評估</li><li>需要時重新評估</li></ul></div>
+          <div class="card-mini"><h4>急性惡化</h4><ul><li>新出現的呼吸急促</li><li>呼吸更費力</li><li>咳嗽突然變嚴重</li></ul></div>
+        </div>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> BM 會致死。如：肺炎、體重 ❔。PEEP 可以打開 BM 的氣管，但要用少量，多 PEEP 須小心。</p>
+        <p class="p"><span class="src src-add">💡</span> PEEP／CPAP 理論上可以撐開軟化塌陷的支氣管，但 BM 犬常合併肺高壓——PEEP 過高會壓迫肺泡血管、↑ PVR、↑ 右心後負荷、↓ 回流。所以「打開氣道」和「右心代價」要平衡，用低壓。</p>
+        <div class="quote">No simple solution — accurately identify all, carefully monitor all, manage all.<span class="quote-zh">沒有簡單的解法：全部找出來、全部仔細追蹤、全部處理。</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S11 ══ -->
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🕸️</div>
+      <h2>11. 間質性肺病（ILD）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 兩個常見誤解與分類（106–112）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-106-slide.jpg" alt="投影片 106：Group III PH：Interstitial lung disease" loading="lazy">
+          <figcaption>📄 (106) Group III PH：Interstitial lung disease</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-107-slide.jpg" alt="投影片 107：ILD：Two common misconceptions" loading="lazy">
+          <figcaption>📄 (107) ILD：Two common misconceptions</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-108-slide.jpg" alt="投影片 108：ILD：a heterogeneous group of disorders" loading="lazy">
+          <figcaption>📄 (108) ILD：a heterogeneous group of disorders</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-109-slide.jpg" alt="投影片 109：ILD classification（Reinero 2019）" loading="lazy">
+          <figcaption>📄 (109) ILD classification（Reinero 2019）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-110-slide.jpg" alt="投影片 110：Fibrotic ILD 與 NSIP" loading="lazy">
+          <figcaption>📄 (110) Fibrotic ILD 與 NSIP</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-111-slide.jpg" alt="投影片 111：A multidisciplinary diagnostic approach to pulmonary fibrosis（Reinero 2026）" loading="lazy">
+          <figcaption>📄 (111) A multidisciplinary diagnostic approach to pulmonary fibrosis（Reinero 2026）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-112-slide.jpg" alt="投影片 112：Pulmonary fibrosis is an end-stage response" loading="lazy">
+          <figcaption>📄 (112) Pulmonary fibrosis is an end-stage response</figcaption>
+        </figure>
+        </div>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> 間質性肺病；限制性。</p>
+        <ul class="notes">
+          <li>限制性肺病（如肺纖維化）是呼吸道疾病相關肺高壓的已知原因；<strong>ILD／限制性肺病可能比阻塞性呼吸道病造成更嚴重的肺高壓</strong>（Yuchi 2023 JVIM）。</li>
+          <li>兩個誤解：<strong>X 光間質紋 ≠ ILD ≠ 肺纖維化</strong>；<strong>沒有間質紋 ≠ 沒有 ILD ≠ 沒有纖維化</strong>。</li>
+          <li>「間質」這個名字容易誤導：病灶可能也在肺泡、小呼吸道、血管和肋膜。人醫已知 &gt; 200 種 ILD；犬貓 2019 年由 Reinero 參考人醫提出分類。</li>
+        </ul>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>大類（Reinero 2019）</th><th>內容</th></tr>
+            <tr><td>1. 特發性間質性肺炎（IIPs）</td><td>散發／家族性纖維化 ILD、NSIP 與 LIP、AIP、COP、其他</td></tr>
+            <tr><td>2. 已知原因的 ILD</td><td>吸入性（塵肺、其他吸入物 → <strong>過敏性肺炎樣 ILD</strong>）；續發性（藥物、放射線、免疫媒介）</td></tr>
+            <tr><td>3. 其他</td><td>嗜酸性肺病、肺泡蛋白沉積症、瀰漫性肺泡出血、脂質肺炎、肺透明變性、LCH/PLCH、肺泡微石症</td></tr>
+          </table>
+        </div>
+        <ul class="notes">
+          <li><strong>纖維化 ILD</strong>：最有名的是西高地白梗（WHWT）的犬特發性肺纖維化（IPF）——組織學混合 UIP 與 NSIP 特徵、像人類 IPF 一樣進行性；其他犬種也有。貓和人或犬的 IPF 不太一樣：可能很年輕、有些沒有明顯呼吸症狀。</li>
+          <li><strong>NSIP</strong>：細胞型或纖維化型；預後比 IPF 好，特別是細胞型。</li>
+        </ul>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> 預後 bad（WHWT 西高地白梗）；預後不一定；預後較佳（NSIP）。</p>
+        <p class="p"><span class="src src-add">💡</span> 肺纖維化是<strong>終末反應，不是單一疾病</strong> → 要積極找<strong>潛在原因</strong>；切片要取有代表性、較早期的病灶，不只是終末疤痕；診斷要整合臨床、影像、病理。<strong>目標：在不可逆纖維化前找出可治療的驅動因子。</strong></p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 機化性肺炎與過敏性肺炎（113–118）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-113-slide.jpg" alt="投影片 113：Organizing pneumonia" loading="lazy">
+          <figcaption>📄 (113) Organizing pneumonia</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-114-slide.jpg" alt="投影片 114：Cryptogenic organizing pneumonia (COP)" loading="lazy">
+          <figcaption>📄 (114) Cryptogenic organizing pneumonia (COP)</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-115-slide.jpg" alt="投影片 115：Hypersensitivity pneumonitis" loading="lazy">
+          <figcaption>📄 (115) Hypersensitivity pneumonitis</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-116-slide.jpg" alt="投影片 116：病例：Lycoperdonosis 造成的過敏性肺炎（JVIM 2026）" loading="lazy">
+          <figcaption>📄 (116) 病例：Lycoperdonosis 造成的過敏性肺炎（JVIM 2026）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-117-slide.jpg" alt="投影片 117：Lycoperdon：puffball mushrooms" loading="lazy">
+          <figcaption>📄 (117) Lycoperdon：puffball mushrooms</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-118-slide.jpg" alt="投影片 118：Clinical recovery ≠ Complete resolution of Dz" loading="lazy">
+          <figcaption>📄 (118) Clinical recovery ≠ Complete resolution of Dz</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li><strong>機化性肺炎</strong>：對肺損傷的修復反應，肺泡內纖維母細胞增生；通常用抗發炎／免疫抑制治療<strong>可逆</strong>。</li>
+          <li><strong>COP</strong>（原因不明）：人——瀰漫型用類固醇（有些要長期）、少數不需治療、局部型手術切除。犬——有些對類固醇有反應；1 隻肺葉切除後治癒；有些需要免疫抑制劑量類固醇；<strong>在呼吸衰竭前診斷和治療，預後良好到極佳</strong>。貓——只有 1 例，症狀起伏 18 個月，結果不明。</li>
+          <li><strong>過敏性肺炎（HP）</strong>：吸入抗原後小呼吸道與肺實質的免疫媒介發炎。人分非纖維化（發炎型，可改善）和纖維化型。人的胸部 X 光可能正常；靠 CT＋暴露史＋BAL 淋巴球增多診斷。犬有自然病例，貓尚無確認病例。</li>
+        </ul>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> 預後良好；纖維化肺炎 ❔；Rx 類固醇或免疫抑制劑，或手術。Puff ball mushroom。出名：非常容易導致 ILD ❔。用免疫抑制劑期間 → 沒有症狀 ❔。</p>
+        <div class="card-mini">
+          <h4>病例：Lycoperdonosis（馬勃菌孢子吸入）</h4>
+          <ul>
+            <li>7 歲去勢公 Cocker Spaniel，可自由進出鄉下土地、大量挖土；10 天進行性嗜睡、呼吸急促、咳嗽</li>
+            <li>FNA：化膿性肉芽腫發炎；看到 <strong>3–5 µm 蘑菇孢子</strong>；BAL 淋巴球增多</li>
+            <li>Lycoperdon＝馬勃菌（puffball），長在草地、草坪、林地落葉與腐木，公園和庭院也有，<strong>台灣也有</strong></li>
+            <li>以前犬的報告多是急性、嚴重／猛爆型，<strong>6 隻只活 3 隻</strong></li>
+            <li>本例：<strong>糖皮質素免疫抑制</strong> → 臨床快速恢復；2 個月無症狀、BAL 正常、CT 明顯改善</li>
+            <li>1 年後：仍無症狀，但 CT 出現新的實質與小呼吸道病變，BAL 再次找到孢子 → <strong>再暴露＋慢性非纖維化 HP</strong></li>
+          </ul>
+        </div>
+        <div class="quote">Clinical recovery ≠ Complete resolution of disease.<span class="quote-zh">臨床恢復 ≠ 疾病完全消失。</span></div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 不同病程 → 不同治療目標（119–124）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-119-slide.jpg" alt="投影片 119：Different behaviors → Different Tx goals" loading="lazy">
+          <figcaption>📄 (119) Different behaviors → Different Tx goals</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-120-slide.jpg" alt="投影片 120：Potentially reversible" loading="lazy">
+          <figcaption>📄 (120) Potentially reversible</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-121-slide.jpg" alt="投影片 121：Reversible but may recur or progress" loading="lazy">
+          <figcaption>📄 (121) Reversible but may recur or progress</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-122-slide.jpg" alt="投影片 122：Progressive fibrotic disease" loading="lazy">
+          <figcaption>📄 (122) Progressive fibrotic disease</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-123-slide.jpg" alt="投影片 123：ILD take-home" loading="lazy">
+          <figcaption>📄 (123) ILD take-home</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-124-slide.jpg" alt="投影片 124：Cardiovascular–lung interactions（下一段標題）" loading="lazy">
+          <figcaption>📄 (124) Cardiovascular–lung interactions（下一段標題）</figcaption>
+        </figure>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>病程</th><th>例子</th><th>目標</th><th>做法</th></tr>
+            <tr><td>可能可逆</td><td>COP、非纖維化 HP、細胞型 NSIP</td><td><strong>緩解／消退</strong></td><td>移除誘因、抗發炎、免疫抑制</td></tr>
+            <tr><td>可逆但可能復發或進展</td><td>COP、部分 NSIP、部分 HP</td><td><strong>維持緩解、預防進展</strong></td><td>治療活動性發炎、消除病因／暴露</td></tr>
+            <tr><td>進行性纖維化</td><td>IPF、其他進行性纖維化 ILD</td><td><strong>減緩進展、穩定病情</strong></td><td>找出並控制持續的肺損傷（如<strong>逆流</strong>）、監測並治療併發症（如<strong>肺高壓</strong>）、新臨床試驗（目前沒有證實有效的治療）</td></tr>
+          </table>
+        </div>
+        <div class="quote">Different behaviors → Different Tx goals：Accurate Dx, make Dx as early as possible.<span class="quote-zh">病程不同，目標就不同：診斷要準確，而且要越早越好。</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S12 ══ -->
+  <div class="section" id="s12">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🐶</div>
+      <h2>12. 病例：夜間反覆咯血的西施犬</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 病史（125–128）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-125-slide.jpg" alt="投影片 125：Dog/Shih-Tzu, Fsp, 6.5 y/o：發作經過" loading="lazy">
+          <figcaption>📄 (125) Dog/Shih-Tzu, Fsp, 6.5 y/o：發作經過</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-126-slide.jpg" alt="投影片 126：ER：Resp distress resolved within hours" loading="lazy">
+          <figcaption>📄 (126) ER：Resp distress resolved within hours</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-127-slide.jpg" alt="投影片 127：ER, ER, ER…：Between episodes clinically normal" loading="lazy">
+          <figcaption>📄 (127) ER, ER, ER…：Between episodes clinically normal</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-128-slide.jpg" alt="投影片 128：發作間隔 Q4–7M → Q2–3M；ER 處置" loading="lazy">
+          <figcaption>📄 (128) 發作間隔 Q4–7M → Q2–3M；ER 處置</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>6.5 歲已絕育母西施犬。發作都在<strong>晚上睡著後</strong>：突然驚醒、呼吸速率 &gt; 90 次/分，快速進展成嚴重端坐呼吸，有粗糙濕囉音；間歇咳嗽，接著<strong>咯血</strong>。</li>
+          <li>每次到急診，支持療法後<strong>幾小時內</strong>呼吸窘迫就緩解；發作之間<strong>完全正常</strong>。</li>
+          <li>發作間隔從每 4–7 個月 → 縮短到每 2–3 個月。</li>
+          <li>急診：肺部浸潤＋CRP ↑ → 暫定肺炎 → O₂＋IV 輸液＋抗生素；之後幾天 X 光異常逐漸消退。</li>
+        </ul>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> 咳血。</p>
+        <p class="p"><span class="src src-add">💡</span> 想一想：真的是肺炎嗎？肺炎不會「幾小時」就好，X 光也不會幾天就退。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 一個一個排除（129–136）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-129-slide.jpg" alt="投影片 129：Hemoptysis?" loading="lazy">
+          <figcaption>📄 (129) Hemoptysis?</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-130-slide.jpg" alt="投影片 130：Hemoptysis：An uncommon clinical sign — common DDx" loading="lazy">
+          <figcaption>📄 (130) Hemoptysis：An uncommon clinical sign — common DDx</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-131-slide.jpg" alt="投影片 131：Suspicion（4 個假設）" loading="lazy">
+          <figcaption>📄 (131) Suspicion（4 個假設）</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-132-slide.jpg" alt="投影片 132：Episodic GERD with secondary pneumonia? → 仍再發" loading="lazy">
+          <figcaption>📄 (132) Episodic GERD with secondary pneumonia? → 仍再發</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-133-slide.jpg" alt="投影片 133：第 5 次發作後一週：BAL 與支氣管鏡" loading="lazy">
+          <figcaption>📄 (133) 第 5 次發作後一週：BAL 與支氣管鏡</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-134-slide.jpg" alt="投影片 134：Some episodes seemed to occur the day after grooming → sildenafil" loading="lazy">
+          <figcaption>📄 (134) Some episodes seemed to occur the day after grooming → sildenafil</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-135-slide.jpg" alt="投影片 135：EIPH 與獵犬肺水腫文獻" loading="lazy">
+          <figcaption>📄 (135) EIPH 與獵犬肺水腫文獻</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-136-slide.jpg" alt="投影片 136：EIPH-like mechanism? → furosemide 無法預防" loading="lazy">
+          <figcaption>📄 (136) EIPH-like mechanism? → furosemide 無法預防</figcaption>
+        </figure>
+        </div>
+        <p class="p"><span class="src src-add">💡</span> 咯血常見鑑別診斷——<strong>全部被劃掉</strong>：心絲蟲、肺癌、黴菌感染、肺栓塞、肺葉扭轉、肺高壓、鬱血性心衰竭、下呼吸道異物、全身性凝血病、肺出血（如鉤端螺旋體）。</p>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>假設</th><th>嘗試／檢查</th><th>結果</th></tr>
+            <tr><td>睡眠中胃食道逆流造成反覆肺炎？</td><td>Omeprazole、maropitant、mosapride</td><td>仍再發 ✗</td></tr>
+            <tr><td>中央呼吸道血管異常？</td><td>第 5 次發作後一週支氣管鏡＋BAL</td><td>無血管異常；<strong>普魯士藍確認含鐵血黃素</strong>、少量新鮮紅血球；無感染證據 ✗</td></tr>
+            <tr><td>不明原因暫時性肺高壓？</td><td>有幾次發作似乎在<strong>美容後隔天</strong> → 美容前給 <strong>sildenafil 2 mg/kg PO</strong></td><td>仍再發 ✗</td></tr>
+            <tr><td>非典型 NCPE？（類似馬運動誘發肺出血 EIPH、瑞典獵犬肺水腫）</td><td><strong>Furosemide 1 mg/kg PO q12h</strong>，夜間呼吸急促時加到 4 mg/kg</td><td>前 2 個月沒發作，之後又進急診——<strong>furosemide 無法預防</strong> ✗</td></tr>
+          </table>
+        </div>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> 胃食道逆流；運動後肺出血。</p>
+        <p class="p"><span class="src src-add">💡</span> 含鐵血黃素＝巨噬細胞吞了紅血球、分解後留下的鐵，代表<strong>反覆肺出血</strong>，不是一次性的。EIPH 的機轉：劇烈運動 → 心輸出量↑＋肺微血管壓力急升＋胸內負壓更大 → 跨壁壓↑ → <strong>微血管壓力性破裂</strong> → 出血。</p>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-slide">📄 講義</span> 重新定義問題：紅血球暫時升高（137–141）</h3>
+        <div class="vs">
+          <figure class="fig">
+          <img src="photos/13-137-slide.jpg" alt="投影片 137：Reframed the problem：hemoptysis + transient erythrocytosis" loading="lazy">
+          <figcaption>📄 (137) Reframed the problem：hemoptysis + transient erythrocytosis</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-138-slide.jpg" alt="投影片 138：What if：α-adrenergic stimulation empties the splenic reservoir" loading="lazy">
+          <figcaption>📄 (138) What if：α-adrenergic stimulation empties the splenic reservoir</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-139-slide.jpg" alt="投影片 139：Suspicion：Sympathetic dysregulation → Prazosin" loading="lazy">
+          <figcaption>📄 (139) Suspicion：Sympathetic dysregulation → Prazosin</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-140-slide.jpg" alt="投影片 140：No further emergency episodes over the subsequent 23 months" loading="lazy">
+          <figcaption>📄 (140) No further emergency episodes over the subsequent 23 months</figcaption>
+        </figure>
+          <figure class="fig">
+          <img src="photos/13-141-slide.jpg" alt="投影片 141：Chen PY et al. Animals 2026;16:1384（病例報告 QR）" loading="lazy">
+          <figcaption>📄 (141) Chen PY et al. Animals 2026;16:1384（病例報告 QR）</figcaption>
+        </figure>
+        </div>
+        <ul class="notes">
+          <li>反覆出現的線索：<strong>每次危機都是咯血＋暫時性紅血球增多</strong>。發作當天 PCV <strong>71%</strong>，第 1 天 51.7%、第 9 天 58%；平常大約 5X%。CRP 第 0 天 3.0 → 第 1 天 82.0 → 第 9 天 6.0。</li>
+          <li>→ <strong>紅血球快速重新分布？</strong></li>
+          <li>借用其他模型的機轉：<strong>神經性肺水腫</strong>（NCPE 的一種）：中樞傷害 → 強烈交感活化 → 全身血管強烈收縮 → 血液往中央／肺循環轉移 → 肺血管容積與壓力 ↑ → 水腫。<strong>EIPH</strong>：劇烈運動 → 心輸出量 ↑＋肺微血管壓力突然升高＋胸內負壓更大 → 跨壁壓 ↑ → 微血管壓力性破裂 → 出血。</li>
+          <li>講者的假設：某種誘因 → 強烈交感活化 → 中央血液重分布，<strong>再加上 α 腎上腺素刺激把脾臟儲存的紅血球快速擠出</strong>（PCV 突然升高）→ 肺微血管壓力突然升高 → 微血管破裂 → 咯血。</li>
+          <li>誘因？沒有癲癇、頭部外傷或明顯呼吸道阻塞；NEJM 1993 研究指出正常人睡眠時（特別是 REM 期）交感神經活性會變化。<strong>推測：交感失調</strong>。</li>
+          <li>誘因<strong>無法確認也無法避免</strong> → 改成<strong>阻斷下游路徑</strong>：推測是 α1 媒介的反應 → <strong>Prazosin</strong>（α1 阻斷）：可減弱脾臟收縮與全身血管反應、血管擴張與減少靜脈回流。</li>
+          <li>結果：之後 <strong>23 個月沒有再進急診</strong>。</li>
+        </ul>
+        <p class="p"><span class="src src-hand">✍️ 筆記</span> 肺血管收縮 ❔。</p>
+        <p class="p"><span class="src src-add">💡</span> 這個病例回到全場主題「心血管—肺交互作用」：問題不在肺本身，而是血行動力學突然改變。講義沒寫 prazosin 劑量，請看原始病例報告（Animals 2026;16:1384）。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S13 ══ -->
+  <div class="section" id="s13">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">📋</div>
+      <h2>13. 速查表</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="subsection">
+        <h3><span class="src src-add">💡 整理</span> 四個可預防的心肺傷害</h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>問題</th><th>物種</th><th>關鍵</th><th>預防／處理</th></tr>
+            <tr><td>HARD</td><td>貓</td><td>不需成蟲；抗原陰性沒意義；常誤診為氣喘</td><td>全年心絲蟲預防</td></tr>
+            <tr><td>KBr 支氣管炎</td><td>貓</td><td>2 週–8 年都可能發生，與劑量無關</td><td>貓不要用 KBr；發生就停藥＋類固醇</td></tr>
+            <tr><td>外源性脂質肺炎</td><td>貓為主</td><td>礦物油無聲吸入；症狀輕、影像重；可像腫瘤</td><td>永遠不要口服礦物油</td></tr>
+            <tr><td>Minoxidil 中毒</td><td>貓（犬也會但死亡少）</td><td>低血壓、心肌損傷、胸水、肺水腫；貓死亡 13–31%</td><td>提醒用落建的飼主；去汙染、支持療法</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="subsection">
+        <h3><span class="src src-add">💡 整理</span> 數字</h3>
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>項目</th><th>數字</th></tr>
+            <tr><td>犬 helmet CPAP 設定</td><td>FiO₂ ~40%、CPAP 5–6 cmH₂O</td></tr>
+            <tr><td>脫離氧氣</td><td>RR 持續 &lt; 40、1 小時內重複確認、不費力</td></tr>
+            <tr><td>4 kg CHF 犬鈉上限</td><td>≤ 120 mg/day</td></tr>
+            <tr><td>噴霧沉積</td><td>呼吸道 4.2%、頭＋消化道 50%</td></tr>
+            <tr><td>肺高壓新定義</td><td>mPAP &gt; 20 mmHg（人）；ACVIM 2020 ≥ 25</td></tr>
+            <tr><td>BM 中位存活</td><td>998 天；64% 死於心肺原因</td></tr>
+            <tr><td>BM 肺高壓</td><td>診斷時 28% → 追蹤 44%；重度 BM 54.6%</td></tr>
+            <tr><td>PRIME score</td><td>≥ 3–4 → pTRV ≥ 3.4；≥ 9 → pTRV ≥ 4.3；LA:Ao ≥ 2.0 不適用</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ S14 ══ -->
+  <div class="section" id="s14">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#fce7f3">🎤</div>
+      <h2>14. 講者口述與 Q&amp;A</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="pending">🎤 尚未合併錄音。有 Plaud 逐字稿或完整記錄 PDF 時，可以補進每節最後一段並整理 Q&amp;A。</div>
+    </div>
+  </div>
+
+  <div class="next-up">
+    <p>相關場次：<a href="ecc-pocus.html">11 急診（三）：床邊超音波 POCUS</a>、<a href="feline-heart-intro-classification.html">05 貓心臟病（一）</a>（暫時性心肌增厚 TMT）。</p>
+    <a href="index.html">回到系列列表 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+
+// Scrollspy
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
+  });
+});
+</script>
+<script src="gate.js?v=2"></script>
+</body>
+</html>
