@@ -58,6 +58,7 @@ SERIES = {
     'fasava-2026':              '2026 FASAVA 研討會筆記',
     'ophthalmology-study':      '眼科讀書會',
     'lu-ming-ortho':            '卓越講堂・呂明醫師骨關節系列',
+    'excellence-neuro':         '卓越講堂・神經系列',
     'ultrasound':              '超音波專區',
     'cardio-reading':          '臨床閱讀筆記',
     'wu-yingchen-bacteria':    '吳迎晨老師細菌課',
@@ -77,6 +78,7 @@ FOLDER_SPECS = {
     'fasava-2026':           ['neuro'],
     'ophthalmology-study':   ['ophtho'],
     'lu-ming-ortho':         ['surg'],
+    'excellence-neuro':      ['neuro'],
     'wu-yingchen-bacteria':  ['infect'],
 }
 
@@ -133,7 +135,7 @@ SPECS = {
 }
 
 # 有密碼保護的系列：只收標題，不收內文
-GATED = ('echocardiography/', 'fasava-2026/', 'lu-ming-ortho/', 'wu-yingchen-bacteria/')
+GATED = ('echocardiography/', 'fasava-2026/', 'lu-ming-ortho/', 'wu-yingchen-bacteria/', 'excellence-neuro/')
 
 SKIP_TAGS = {'head', 'title', 'script', 'style', 'noscript', 'svg', 'template'}
 HEADINGS = {'h1', 'h2', 'h3'}
