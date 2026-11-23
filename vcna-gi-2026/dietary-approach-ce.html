@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>犬貓慢性腸病的飲食策略｜VCNA 腸胃學特刊 2026</title>
+<style>
+  :root {
+    --primary: #8A4B0F;
+    --primary-light: #F6EBDD;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2B1A0B;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E5C9A8; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A2E14;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E5C9A8; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E5C9A8;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A2E14;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #C9A27A;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #5A320C 0%, #C47F2B 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2B1A0B; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A2E14; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #5A320C; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+  .figlink { font-size: 12px; font-weight: 600; color: var(--primary); text-decoration: none; background: var(--primary-light); border-radius: 999px; padding: 2px 9px; margin-left: 4px; white-space: nowrap; }
+  .figlink:hover { text-decoration: underline; }
+  .fig.diagram svg { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; background: #fff; }
+  @media (max-width: 600px) { .fig.diagram { overflow-x: auto; } .fig.diagram svg { min-width: 560px; } .fig.diagram figcaption::before { content: "← 左右滑動看完整圖 →"; display: block; font-size: 11px; opacity: .6; margin-bottom: 2px; } }
+</style>
+
+</head>
+<body>
+
+<a class="home-link-fab" href="index.html">← 回到特刊目錄</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← VCNA 腸胃學特刊 2026</a>
+  <div class="logo">
+    <h2>04｜慢性腸病飲食策略</h2>
+    <p>VCNA 2026;56(3) 論文整理</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div><a href="#s1">1. 飲食在慢性腸病的角色</a><a href="#s2">2. 飲食成分逐項看</a><a href="#s3">3. 擬定餵食計畫</a><a href="#s4">4. 三類商業處方</a><a href="#s5">5. 試幾種、試多久、怎麼選</a><a href="#s6">6. 補充品、零食與餵食方式</a><a href="#ref">原文出處</a>
+  </nav>
+</nav>
+
+<div id="main">
+
+  <div class="page-header">
+    <h1>犬貓慢性腸病的飲食策略</h1>
+    <p>作者：Cecilia Villaverde（論文整理）</p>
+    <p>Dietary Approach to Chronic Enteropathy in Dogs and Cats｜Vet Clin Small Anim 2026;56(3):591–602</p>
+    <div class="tags"><span class="tag">慢性腸病</span><span class="tag">食物反應性腸病</span><span class="tag">腸胃處方</span><span class="tag">水解飼料</span><span class="tag">新蛋白</span><span class="tag">低脂飲食</span><span class="tag">PLE</span><span class="tag">纖維</span><span class="tag">TDF</span><span class="tag">鈷胺素</span><span class="tag">Omega-3</span><span class="tag">自製飲食</span><span class="tag">餵食計畫</span></div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📑 原文</span> 論文內容 <span class="src src-add">💡 補充</span> 整理者補充（臨床提醒、交叉參照；不是作者說的）
+    <br><span class="muted">依原文重點整理成中文，不是逐句翻譯；未標記的段落都是原文內容。原文的圖表版權屬 Elsevier，這裡沒有轉載，表格是依內文重新整理。藥物劑量請回原文與最新文獻確認。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記重點</h3>
+    <ul><li>食物反應性腸病占 CE：<strong>貓約 60%、犬 38–89%</strong>；非食物反應性的狗 1 年後也可能被重新分類為食物反應性</li><li>三大類商業處方：<strong>腸胃處方</strong>（高消化率）、<strong>排除飲食</strong>（新蛋白／水解／胺基酸）、<strong>高纖飲食</strong>；同一類中一種失敗不代表整類失敗</li><li>首選：非 PLE 的 CE → <strong>排除飲食</strong>；PLE → <strong>低脂</strong>（腸胃或水解）；單純結腸炎 → <strong>高纖</strong></li><li>犬脂肪分級：低脂 <strong>1.7–2.9 g/100 kcal</strong>、中脂 3–5、超低脂 &lt; 1.7（多需自製）；<strong>貓通常不建議限脂</strong></li><li>犬纖維（TDF）分級：低 &lt; 2、中 2–4、高 &gt; 4 g/100 kcal；貓 &lt; 1、1–2.5、&gt; 2.5；<strong>粗纖維會大幅低估 TDF</strong></li><li><strong>至少試 3 種</strong>處方，每種<strong>至少 2 週</strong>（要涵蓋發作間隔）</li><li>犬 EPA＋DHA <strong>125 mg/kg^0.75</strong>；鈷胺素低就補；<strong>沒有低血鈣不建議補維生素 D</strong></li><li>零食 <strong>≤ 每日熱量 10%</strong>，且要符合主食策略；換食至少 <strong>1 週</strong></li></ul>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🎯</div>
+      <h2>1. 飲食在慢性腸病的角色</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>營養透過對腸上皮的營養作用、調節菌相、影響蠕動等方式，影響腸胃功能與結構</li><li><strong>每隻 CE 病患都要做飲食試驗</strong>，找出可主要靠飲食控制的食物反應性腸病</li><li>食物反應性比例：<strong>貓約 60%、犬 38–89%</strong>；這些病例飲食本身就是維持緩解的治療</li><li>非食物反應性病例，飲食仍是支持療法；一研究中部分免疫調節反應性 CE 犬在診斷 1 年後被重新歸類為食物反應性 → 這些病例也值得用 CE 處方</li></ul></div></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🧬</div>
+      <h2>2. 飲食成分逐項看</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>能量</h3><ul class="notes"><li>消化不良／吸收不良 → 能量攝取不足、體重下降；<strong>小腸型</strong> CE 比大腸型更常見；食慾差也會加重</li><li>PLE 犬常見低體態分數；CE 整體的過瘦盛行率未有報告</li><li>低 BCS、有體重下降者用<strong>高能量密度</strong>飲食；能量密度主要取決於<strong>脂肪</strong>，纖維與水分會稀釋</li></ul></div><div class="subsection"><h3>消化率</h3><ul class="notes"><li>高消化率飲食在腸胃功能異常時能更有效率提供營養；未消化物進入大腸會有害</li><li>多數 CE 處方同時有多種策略，很難單獨評估「高消化率」本身的效果</li></ul></div><div class="subsection"><h3>蛋白質</h3><ul class="notes"><li>傳統用<strong>限制成分＋新蛋白</strong>降低致敏性、調節免疫</li><li>近來<strong>水解蛋白</strong>較普遍：把蛋白切成寡胜肽、改變抗原決定位，也提高消化率</li><li>兩種策略沒有直接比較研究，但近期犬研究多用水解飼料；犬另有<strong>純化胺基酸飲食</strong></li><li>CE 犬貓血漿胺基酸會改變（如<strong>色胺酸下降</strong>），但<strong>胺基酸補充未經測試、目前不建議</strong></li></ul></div><div class="subsection"><h3>脂肪</h3><ul class="notes"><li>每克熱量是蛋白與碳水的 2 倍以上、適口性好 → 適合瘦、食慾不穩的病患</li><li>CE 時脂肪消化率可能下降，未消化脂肪傷害結腸</li><li>犬 CE（尤其 <strong>PLE</strong>）對不同程度限脂有正面反應；淋巴管擴張時減少脂肪可降低淋巴流量與乳糜管壓力，其他類型 PLE 也可能受益</li><li><strong>貓通常不建議限脂</strong>：一研究比較兩種不同脂肪含量飲食治療貓慢性腹瀉，效果沒差</li><li><strong>Omega-3（EPA＋DHA）</strong>：常建議用於抗發炎，但前瞻研究少；犬建議 <strong>125 mg EPA＋DHA / kg^0.75</strong></li><li><strong>中鏈三酸甘油酯（MCT）</strong>：理論上經門脈吸收、淋巴受損時仍可提供能量，但<strong>沒有臨床研究支持</strong>；唯一的 18 犬椰子油自製飲食研究同時用了限制成分與新蛋白</li></ul></div><div class="subsection"><h3>纖維</h3><ul class="notes"><li>小腸無法消化、大腸可部分或完全發酵的植物性成分，種類很多</li><li>依水中分散性分<strong>可溶 vs 不可溶</strong>；也可依發酵速度、黏度、保水力分類；可溶不一定快速發酵</li><li>能促進有益菌生長的可發酵纖維＝<strong>益生元纖維</strong>，常加在 CE 飲食；發酵產物營養黏膜、強化屏障</li><li>一般 CE 飲食會壓低總膳食纖維（TDF）以維持高消化率與能量密度；但<strong>結腸炎</strong>用高纖飲食在多篇犬研究有改善</li></ul></div><div class="subsection"><h3>其他</h3><ul class="notes"><li><strong>鈷胺素（B12）</strong>：攝取或吸收下降都會缺乏；貓三體炎併發胰臟炎時內在因子分泌也可能下降</li><li><strong>維生素 D</strong>：犬 CE（尤其 PLE 與免疫抑制劑反應型）血清維生素 D 指標較低</li></ul></div></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📋</div>
+      <h2>3. 擬定餵食計畫</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>營養評估</h3><ul class="notes"><li>評估動物、飲食、環境三方面的營養風險因子；<strong>每次回診都要做</strong></li><li><strong>完整詳細的飲食史</strong>極重要：目前的能量與營養攝取、過去試過什麼、換食與症狀變化的關聯</li><li>飼主與轉診醫師提供的飲食史常不完整 → 可用 <strong>WSAVA 營養工具包</strong>的飲食史表格</li></ul></div><div class="subsection"><h3>原文 Box 1：餵食計畫三要素</h3><div class="tbl-wrap"><table><tr><th>要素</th><th>內容</th></tr><tr><td>餵什麼</td><td>主食、零食、營養品；考量需求、疾病、體態、病患與飼主偏好</td></tr><tr><td>餵多少</td><td>成犬貓體重穩定、體態理想；依能量需求</td></tr><tr><td>怎麼餵</td><td>任食 vs 定量、餐數；換食一定要給<strong>緩慢轉換計畫</strong></td></tr></table></div></div></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🥫</div>
+      <h2>4. 三類商業處方</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>腸胃處方（GI diets）</h3><ul class="notes"><li>完整均衡、<strong>高消化率</strong>；常含益生元纖維與 EPA＋DHA</li><li>適應症廣：急性腸胃炎、術後、部分肝與胰臟病，也可用於 CE</li><li>貓慢性腹瀉的中期研究顯示糞便品質改善，但缺長期資料</li><li>犬研究：腸胃處方與水解處方 3 個月時都改善，但 <strong>6 個月到 1 年後水解組維持無症狀的比較多</strong> → 腸胃處方可能不是長期緩解的最佳選擇</li></ul></div><div class="subsection"><h3>低脂腸胃處方（犬）</h3><div class="tbl-wrap"><table><tr><th>分級（無官方共識）</th><th>脂肪 g/100 kcal</th></tr><tr><td>超低脂</td><td><strong>&lt; 1.7</strong>（目前多半只能自製）</td></tr><tr><td>低脂</td><td><strong>1.7–2.9</strong></td></tr><tr><td>中脂</td><td>3–5</td></tr></table></div><ul class="notes"><li>常用於胰臟炎；在部分 PLE 犬效果好（商業、自製或合併使用）</li><li>非 PLE 病例資料少，作者經驗是其他方法失敗時值得一試</li><li>低脂處方能量密度較低；過瘦／體重下降時選<strong>乾糧</strong>較能補足熱量；沒有限脂適應症時不要用</li><li>要靠飲食史判斷：市售低脂處方跟原本的飲食比起來，<strong>是否真的有降低脂肪</strong>，或需要自製超低脂</li></ul></div><div class="subsection"><h3>排除飲食（「低過敏」）</h3><ul class="notes"><li>完整均衡、限制成分（通常一種蛋白＋一種碳水），用<strong>新蛋白</strong>或<strong>水解蛋白</strong>降低抗原性；犬在部分地區有<strong>純化胺基酸</strong>飲食</li><li>通常是找出食物反應性 CE 的<strong>第一個嘗試</strong>（尤其水解）</li><li>水解飼料另有調節菌相的效果，也高消化率、含益生元與 omega-3</li><li>犬有許多研究支持（ACVIM CIE 共識有回顧）；貓證據有限</li><li>對新蛋白或其他水解飼料無效的犬，可改用<strong>更高度水解</strong>或<strong>胺基酸</strong>飲食</li><li>新出現<strong>水解＋低脂</strong>處方，同時降低抗原性與脂肪 → 適合 PLE 或合併對脂肪敏感疾病的 CE</li></ul></div><div class="subsection"><h3>原文表 1：新蛋白 vs 水解／胺基酸飲食</h3><div class="tbl-wrap"><table><tr><th></th><th>新蛋白飲食</th><th>水解蛋白／純化胺基酸</th></tr><tr><td>優點</td><td>適口性可能較好</td><td>不受過去吃過什麼影響；犬 CE 近期研究支持較多</td></tr><tr><td>缺點</td><td>成分選擇有限；飲食史不完整、標示不清、吃過太多種時<strong>找不到新蛋白</strong></td><td>價格高；部分病患適口性差；<strong>貓濕食選擇少</strong></td></tr></table></div></div><div class="subsection"><h3>高纖飲食</h3><ul class="notes"><li>多篇犬研究（多為非對照）顯示高纖飲食或補充<strong>洋車前子殼</strong>可改善<strong>大腸型腹瀉</strong></li></ul><div class="tbl-wrap"><table><tr><th>分級（作者提議）</th><th>犬 TDF g/100 kcal</th><th>貓 TDF g/100 kcal</th></tr><tr><td>低</td><td>&lt; 2</td><td>&lt; 1</td></tr><tr><td>中</td><td>2–4</td><td>1–2.5</td></tr><tr><td>高</td><td>&gt; 4</td><td>&gt; 2.5</td></tr></table></div><ul class="notes"><li>比較飲食最好看 <strong>TDF</strong>（與可溶：不可溶比例）；北美標示將改為 TDF，但目前多數只標<strong>粗纖維，會大幅低估 TDF</strong> → 可直接問廠商</li><li>最佳纖維量與種類因個體而異；結腸炎病例要<strong>多試幾種高纖飲食再放棄</strong></li></ul></div><div class="subsection"><h3>原文 Box 2：自製飲食</h3><ul class="notes"><li>可組合各種策略（但做不到蛋白水解或純化胺基酸）</li><li>優點：可客製、照顧併發疾病、病患拒吃處方時可用；可做到<strong>超低脂</strong>（市售低脂無法控制的 PLE）</li><li>缺點：比乾處方貴、費時費空間；可能因沒有營養檢測、配合度差或配方不當而<strong>營養不足</strong></li><li>只在<strong>沒有合適商業選擇</strong>時建議，且配方應由<strong>獸醫營養專科醫師</strong>提供</li></ul></div></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🔁</div>
+      <h2>5. 試幾種、試多久、怎麼選</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>數量與時間</h3><ul class="notes"><li>一些研究建議<strong>至少試 3 種</strong>處方，有些病患需要更多 → 要有系統、有紀錄</li><li>不太病、體態好的穩定病患，花時間多試幾種沒有壞處</li><li>每種<strong>至少 2 週</strong>；反覆發作的病例要試到涵蓋<strong>發作間隔</strong></li><li>部分病患在<strong>無症狀 14 週</strong>後可回到維持飲食，但 <strong>PLE 較不可能</strong>，需個別評估</li><li>處方只要對生命階段完整均衡、預算允許，<strong>長期吃沒有營養上的壞處</strong></li><li>非食物反應性病患：需更多檢查，並<strong>維持在耐受最好的處方</strong></li></ul></div><div class="subsection"><h3>怎麼選第一種</h3><div class="tbl-wrap"><table><tr><th>情境</th><th>首選</th></tr><tr><td>非 PLE 的 CE</td><td>排除飲食（水解或新蛋白）</td></tr><tr><td>PLE</td><td>低脂（腸胃低脂或水解低脂）</td></tr><tr><td>單純結腸炎</td><td>高纖飲食</td></tr></table></div><ul class="notes"><li>同類中再依生命階段、適口性、能量密度、價格、取得性、想要的脂肪與纖維量、飼主偏好挑選</li><li><strong>濕食</strong>：保水、適口性較好，但較貴、能量密度低很多</li><li><strong>乾糧</strong>：小體積提供較多熱量 → 過瘦、體重下降的病患優先</li></ul></div></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">💊</div>
+      <h2>6. 補充品、零食與餵食方式</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>補充品</h3><ul class="notes"><li>先確認飲食是否完整（不均衡自製飲食可能缺乏）</li><li><strong>低鈷胺素 → 補充 B12</strong></li><li><strong>維生素 D</strong>：維生素 D 指標低但離子鈣正常的 PLE 犬，口服 cholecalciferol 400 IU/kg vs 安慰劑 3 週<strong>沒有臨床益處</strong>；有中毒風險 → <strong>沒有低血鈣時不建議補</strong></li><li><strong>纖維補充</strong>（無法用高纖飲食時）：洋車前子殼、纖維素、菊糖；劑量未明確，作者通常從<strong>每天 ½–1 茶匙</strong>分餐開始，<strong>每週調升</strong>到有效或出現副作用；可溶纖維過多會加重腹瀉，不可溶過多會有大量硬便</li><li><strong>Omega-3</strong>（魚油、藻油）：處方劑量不足時補；產品 EPA＋DHA 至少 <strong>20–30%</strong>，並注意污染物與脂溶性維生素（可能中毒）</li></ul></div><div class="subsection"><h3>零食</h3><ul class="notes"><li>任何不均衡的東西都算零食，<strong>≤ 每日熱量 10%</strong>，且要符合主食策略 → 排除飲食期間避免一般零食</li><li>有廠商出同成分的水解零食；新蛋白飲食可買同種肉類自己煮成配料</li><li>試驗有效且穩定後，想給的零食（如水果、蔬菜）<strong>一次加一種</strong>評估耐受</li></ul></div><div class="subsection"><h3>每日餵食量</h3><ul class="notes"><li>依飲食史知道目前攝取量，再調整到體重與 BCS 目標（成犬貓體重穩定、體態理想）</li><li>不知道目前攝取量時，可用包裝建議或公式起算，但誤差大，需<strong>每 2 週調整</strong></li></ul></div><div class="subsection"><h3>餵食方式</h3><ul class="notes"><li><strong>任食</strong>：適合過瘦、挑食、家中情況允許時</li><li><strong>定量</strong>：適合易胖、多寵家庭</li><li><strong>多餐</strong>可減輕腸道負擔</li><li>換新飲食要有清楚的轉換說明，<strong>緩慢轉換至少 1 週</strong>，可及早發現問題並減少腸胃不適</li></ul></div></div>
+  </div>
+  <div class="section" id="ref">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📚</div>
+      <h2>原文出處</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><div class="ref-list"><div class="ref-item">Cecilia Villaverde. Dietary Approach to Chronic Enteropathy in Dogs and Cats. <em>Vet Clin North Am Small Anim Pract</em> 2026;56(3):591–602. <a href="https://doi.org/10.1016/j.cvsm.2026.02.001" target="_blank" rel="noopener">doi:10.1016/j.cvsm.2026.02.001</a></div><div class="ref-item">特刊：Gastroenterology（主編 M. Katherine Tolbert、Sara A. Jablonski），<em>Vet Clin North Am Small Anim Pract</em> 2026 年 5 月號，第 56 卷第 3 期。© 2026 Elsevier Inc.</div></div></div></div>
+  </div>
+
+  <div class="next-up">
+    <p>同一期特刊的其他文章請回目錄。</p>
+    <a href="index.html">回到特刊目錄 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  navLinks.forEach(a => { a.classList.remove('active'); if (a.getAttribute('href') === '#' + cur) a.classList.add('active'); });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>呼吸消化道疾病與食道疾病｜VCNA 腸胃學特刊 2026</title>
+<style>
+  :root {
+    --primary: #8A4B0F;
+    --primary-light: #F6EBDD;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2B1A0B;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E5C9A8; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A2E14;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E5C9A8; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E5C9A8;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A2E14;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #C9A27A;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #5A320C 0%, #C47F2B 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2B1A0B; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A2E14; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #5A320C; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+  .figlink { font-size: 12px; font-weight: 600; color: var(--primary); text-decoration: none; background: var(--primary-light); border-radius: 999px; padding: 2px 9px; margin-left: 4px; white-space: nowrap; }
+  .figlink:hover { text-decoration: underline; }
+  .fig.diagram svg { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; background: #fff; }
+  @media (max-width: 600px) { .fig.diagram { overflow-x: auto; } .fig.diagram svg { min-width: 560px; } .fig.diagram figcaption::before { content: "← 左右滑動看完整圖 →"; display: block; font-size: 11px; opacity: .6; margin-bottom: 2px; } }
+</style>
+
+</head>
+<body>
+
+<a class="home-link-fab" href="index.html">← 回到特刊目錄</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← VCNA 腸胃學特刊 2026</a>
+  <div class="logo">
+    <h2>02｜呼吸消化道與食道疾病</h2>
+    <p>VCNA 2026;56(3) 論文整理</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div><a href="#s1">1. 氣道保護與吞嚥生理</a><a href="#s2">2. 呼吸消化道的發炎</a><a href="#s3">3. 臨床評估</a><a href="#s4">4. 診斷工具</a><a href="#s5">5. 食道運動異常、巨食道、LES 失弛緩樣症候群</a><a href="#s6">6. 逆流</a><a href="#s7">7. 食道炎</a><a href="#s8">8. 作者的 Clinics Care Points</a><a href="#ref">原文出處</a>
+  </nav>
+</nav>
+
+<div id="main">
+
+  <div class="page-header">
+    <h1>呼吸消化道疾病與食道疾病</h1>
+    <p>作者：Megan Grobman（論文整理）</p>
+    <p>Aerodigestive and Esophageal Diseases｜Vet Clin Small Anim 2026;56(3):563–577</p>
+    <div class="tags"><span class="tag">呼吸消化道疾病</span><span class="tag">AeroD</span><span class="tag">氣道保護</span><span class="tag">吸入性肺炎</span><span class="tag">隱性吸入</span><span class="tag">VFSS</span><span class="tag">P–A 評分</span><span class="tag">巨食道</span><span class="tag">LES 失弛緩樣症候群</span><span class="tag">胃食道逆流</span><span class="tag">食道炎</span></div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📑 原文</span> 論文內容 <span class="src src-add">💡 補充</span> 整理者補充（臨床提醒、交叉參照；不是作者說的）
+    <br><span class="muted">依原文重點整理成中文，不是逐句翻譯；未標記的段落都是原文內容。原文的圖表版權屬 Elsevier，這裡沒有轉載，表格是依內文重新整理。藥物劑量請回原文與最新文獻確認。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記重點</h3>
+    <ul><li>呼吸消化道疾病（AeroD）＝<strong>氣道保護失敗</strong>、吞嚥異常或兩者；<strong>食道疾病是吸入的獨立危險因子</strong></li><li><strong>可以只有呼吸症狀、胸片也可以正常</strong>；VFSS 研究常見<strong>隱性吸入</strong>（吸入但不咳）</li><li>狗約 <strong>90% 的吞嚥發生在吸氣期</strong>（人是呼氣期）</li><li>酸性吸入＋小顆粒吸入有<strong>加乘</strong>發炎效果；慢性少量吸入可表現為<strong>支氣管疾病</strong>而不是肺炎</li><li>吸入性肺炎的貓 <strong>75.8%</strong> 有腸胃疾病，其中 64% 是食道疾病</li><li>診斷要<strong>多模式</strong>：胸片（3 張＋頸部側照）＋動態影像（VFSS、呼吸透視），VFSS 用 <strong>P–A 評分 ≥ 3 為異常</strong></li><li><strong>LES 失弛緩樣症候群（LES-AS）</strong>要讓食團實際挑戰 LES 才能診斷；sildenafil、Heller 肌切開＋Dor 胃底折疊或肉毒桿菌＋氣球擴張可改善</li><li><strong>生理性逆流</strong>很常見（VFSS 41%、閃爍掃描 100% 健康犬）；GERD 治療試驗要給 <strong>6–8 週</strong>；sucralfate 只在懷疑食道炎時用</li></ul>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🫁</div>
+      <h2>1. 氣道保護與吞嚥生理</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>什麼是 AeroD</h3><ul class="notes"><li>氣道保護（AirPro）失敗、吞嚥異常或兩者並存；在人與狗，治療 AeroD 可改善預後</li><li>食道同時負責吞嚥與防禦，是呼吸消化道的重要部分；食道疾病（ED）是 AeroD 的重要危險因子</li></ul></div><div class="subsection"><h3>原文表 1：依解剖位置的代表性 AeroD</h3><div class="tbl-wrap"><table><tr><th>部位</th><th>疾病</th></tr><tr><td>上呼吸道</td><td>吞氣症、BOAS、喉炎、喉麻痺／塌陷、喉部穿透、喉咽逆流、鼻腔腫塊／異物、鼻咽狹窄、中耳炎、鼻炎、睡眠呼吸中止、上呼吸道阻塞</td></tr><tr><td>氣管、支氣管、肺實質</td><td>ARDS、吸入性肺炎／肺炎、支氣管擴張、支氣管軟化、吸入性細支氣管炎、慢性咳嗽、外源性脂質肺炎、間質性肺病、發炎性氣道疾病、大氣道阻塞、氣管炎</td></tr><tr><td>吞嚥困難：口腔準備期</td><td>腦神經 V、VII、XII 缺損、牙周病、肌病／神經病</td></tr><tr><td>吞嚥困難：咽期</td><td>環咽失弛緩／不同步、腦神經 IX、X、XI 缺損、咽無力、咽腫塊、咽逆流</td></tr><tr><td>吞嚥困難：食道期</td><td>食道憩室、異物、低蠕動、腫塊、食道炎、LES 失弛緩樣症候群、巨食道、血管環異常</td></tr><tr><td>胃</td><td>嘔吐（急性或慢性）</td></tr><tr><td>胃食道交界</td><td>逆流、滑動型裂孔疝氣</td></tr></table></div></div><div class="subsection"><h3>呼吸與吞嚥的協調</h3><ul class="notes"><li>吞嚥要在呼吸週期的特定時相發生；不協調會增加吸入風險</li><li><strong>狗近 90% 吞嚥在吸氣期啟動</strong>（可能和散熱／喘氣有關）；人在呼氣期；不論時相，咽部吞嚥時都有短暫呼吸暫停</li><li><strong>基礎防線</strong>（不需刺激）：逆流物要越過 LES 與 UES，且超過食道殘餘容量，才會被吸入</li><li><strong>反應防線</strong>（受刺激才啟動）：① 容量清除 ② LES 壓力上升 ③ UES 壓力上升 ④ 喉部閉合 ⑤ 把東西從氣道清出</li></ul></div><div class="subsection"><h3>吞嚥三期</h3><div class="tbl-wrap"><table><tr><th>期別</th><th>內容</th></tr><tr><td>口腔準備期（OPP，隨意）</td><td>攝取、潤濕、咀嚼，把食團推到會厭谷；反射性吞嚥（吞口水）沒有這一期</td></tr><tr><td>咽期（PP，不隨意）</td><td>會厭谷有足夠食團啟動；CN IX、X 感覺傳入；食團經 UES 進入食道。咽期後咽部殘留、或 OPP 時就越過會厭谷 → 病理性，吸入風險高</td></tr><tr><td>食道期（EP）</td><td>初級蠕動＋LES 放鬆；管腔擴張引發次級蠕動；食物入胃後 LES 關閉並短暫高張力防逆流</td></tr></table></div></div></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🔥</div>
+      <h2>2. 呼吸消化道的發炎</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>胃酸、消化因子（胃蛋白酶、胰蛋白酶、膽酸）、異物（含顯微顆粒）、細菌可單獨或加乘造成傷害</li><li>正常動物也有少量逆流與吸入；是否致病取決於<strong>頻率、量、接觸時間、成分</strong></li><li><strong>酸性吸入是雙相反應</strong>：立即直接傷害呼吸上皮，數小時後出現嗜中性球發炎</li><li>消化因子直接有細胞毒性，在逆流相關呼吸病的人與狗 BALF 中都測得到</li><li>小動物模型：氣管內注入 <strong>&lt; 10 µm 顆粒</strong> → 嗜中性球發炎；<strong>酸＋顆粒的發炎比單獨任一種嚴重</strong></li><li><strong>嗜中性球胞外陷阱（NETs）</strong>：過度活化可加重發炎、血栓、組織傷害；馬氣喘 BALF 已找到，犬貓待研究</li></ul></div><div class="subsection"><h3>食道內的發炎</h3><ul class="notes"><li>內視鏡可見紅斑、潰瘍、糜爛；但人類 GERD 約 70% 是<strong>非糜爛性逆流病</strong>，只能靠組織學或阻抗壓力測定發現</li><li>食道為厚的複層鱗狀上皮，切片不易取得</li><li>新觀念：黏膜發炎與通透性可由 T 細胞、嗜中性球經 IL-8、IL-1β、IL-6、PGE2 引發，<strong>不一定需要酸暴露</strong>；人類還有「逆流過敏」（對正常酸量過度反應）</li><li>葡萄牙水犬巨食道病例：食道肌間神經叢周圍明顯淋巴球浸潤；肌間神經叢發炎／萎縮也與 LES-AS 有關</li><li>食道疾病犬的續發感染（如 *Candida albicans*）可能加重症狀</li></ul></div></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🩺</div>
+      <h2>3. 臨床評估</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>表現</h3><ul class="notes"><li>可能<strong>只有呼吸症狀</strong>、只有消化症狀或兩者；多篇研究在只有呼吸症狀的狗找到巨食道、滑動型裂孔疝氣、食道低蠕動、吞氣症、逆流病</li><li>VFSS 常見<strong>隱性吸入</strong>（沒有咳嗽）</li><li>貓的 AeroD 研究剛起步，已知有巨食道（±LES-AS）、食道炎、喉麻痺等</li></ul></div><div class="subsection"><h3>危險因子</h3><ul class="notes"><li>意識降低（中樞神經疾病、鎮靜／麻醉）、氣道保護缺損、吞嚥困難／嘔吐／反流、上呼吸道阻塞（BOAS 與非 BOAS）</li><li>狗：<strong>食道疾病是吸入的獨立危險因子</strong></li><li>吸入性肺炎的貓：最常見危險因子是腸胃疾病（<strong>75.8%</strong>），其中 <strong>64%</strong> 是食道疾病</li></ul></div><div class="subsection"><h3>食道疾病的症狀</h3><ul class="notes"><li>流涎、口臭、乾嘔、反覆吞嚥（不吃不喝也一直吞＝乾吞）、不安、食慾時好時壞、腹痛（咬腰窩、祈禱姿勢）、舔唇、伸頭伸頸、虛弱、體重下降／肌少、反流</li><li><strong>一定要分清楚</strong>反流、嘔吐、口腔／咽期吞嚥困難與咳出物 → 仔細觀察進食；住院不肯吃的，請飼主拍影片</li><li>同時有反流與嘔吐時，先釐清哪個先出現</li><li>也要找呼吸道症狀：鼾聲／喘鳴、囉音、咳嗽、運動不耐、呼吸窘迫</li><li>即使沒有明顯呼吸症狀也常建議胸片篩檢；但<strong>多篇研究顯示胸片正常也可能有 AeroD</strong></li></ul></div><div class="subsection"><h3>身體與神經學檢查</h3><ul class="notes"><li>每隻都要完整理學＋神經學檢查：腦神經缺損、喉功能異常（叫聲改變、喘鳴）、多發性神經病（本體感覺缺損、無力）、肌病（肌肉萎縮）、上呼吸道阻塞</li><li>肺音粗糙（吸入性肺炎）、發燒（吸入性肺炎、發炎性肌病）</li><li>巨食道時，充滿液體的食道可在<strong>左頸部看到「鼓起」</strong></li></ul></div></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🔎</div>
+      <h2>4. 診斷工具</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>實驗室</h3><ul class="notes"><li>最低資料庫：CBC（含抹片）、生化<strong>含 CK</strong>、尿液分析</li><li>CRP（犬）、SAA（貓）可幫助發現併發肌病，或決定細菌性吸入性肺炎的抗生素療程長短；但單獨使用缺乏特異性</li></ul></div><div class="subsection"><h3>口腔與上呼吸道功能評估（FUAE）</h3><ul class="notes"><li>喉、咽、近端食道神經支配相同，咽／食道吞嚥困難的病患尤其需要</li><li>評估頭頸、鼻氣流、硬軟顎、牙齒、舌頭、喉與會厭動作；<strong>喉功能檢查要在非常淺的麻醉下做</strong></li><li>理想麻醉方案無共識；常建議檢查前給 <strong>doxapram</strong> 減少偽陽性</li></ul></div><div class="subsection"><h3>影像</h3><ul class="notes"><li><strong>胸片至少 3 張＋頸部側照</strong>（T1 到顱骨後緣）——頸段食道病變也會造成症狀</li><li>吸入性肺炎典型是<strong>低位肺葉</strong>（右中、右前、左後）間質－肺泡浸潤；但吸入時的體位決定位置（俯臥吸入 → 後葉）</li><li>慢性少量吸入可能表現為瀰漫／局部<strong>支氣管紋路、支氣管擴張</strong>，而非肺炎</li><li>CT 解析度高，可評估呼吸道病變嚴重度與分布</li><li><strong>VFSS 與呼吸透視</strong>評估動態／功能性疾病優於胸片與 CT → 常需要多模式</li><li>超音波：可看頸段、腹段食道與賁門（左肝窗）；胸腔段要靠內視鏡超音波；胸腔超音波不能當唯一影像</li></ul></div><div class="subsection"><h3>VFSS 與呼吸透視</h3><ul class="notes"><li>可即時看到所有吞嚥期；<strong>自由進食法</strong>越來越常用（模擬日常食團大小與姿勢、降低吸入風險）</li><li>兩者合做時<strong>先做呼吸透視</strong>，避免食道顯影劑遮住氣道</li></ul></div><div class="subsection"><h3>原文表 2：犬的穿透–吸入（P–A）評分（≥ 3 為病理性）</h3><div class="tbl-wrap"><table><tr><th>分類</th><th>分數</th><th>描述</th></tr><tr><td>正常</td><td>1</td><td>吞嚥時沒有東西進入聲門上空間</td></tr><tr><td>穿透</td><td>2</td><td>進入聲門上空間，但吞嚥完成前被排出</td></tr><tr><td>穿透</td><td>3</td><td>少量進入聲門上空間且吞嚥後仍在，或咽部殘留大量</td></tr><tr><td>穿透</td><td>4</td><td>大量進入聲門上空間且吞嚥後仍在</td></tr><tr><td>吸入</td><td>5</td><td>越過聲帶，但咳出</td></tr><tr><td>吸入</td><td>6</td><td>越過聲帶，咳了但沒咳出</td></tr><tr><td>吸入</td><td>7</td><td>越過聲帶且<strong>沒有咳嗽</strong>（隱性吸入）</td></tr></table></div></div><div class="subsection"><h3>其他檢查</h3><ul class="notes"><li><strong>逆流閃爍掃描</strong>：已在健康犬驗證（餐中含 99mTc phytate；計數 ≥ 背景 200% 且胃計數下降＝逆流）；不需麻醉、不受胃 pH 影響，病犬資料待補</li><li><strong>食道鏡</strong>：找狹窄、潰瘍、異物、黏膜病灶，可同時切片、取異物、氣球擴張；犬用膠囊內視鏡食道影像太少，仍建議傳統內視鏡；<strong>食道鏡對逆流病特異但不敏感</strong></li><li>鼻咽內視鏡、支氣管鏡＋BALF（細胞學、培養）仍是氣道與肺實質評估主力</li><li><strong>高解析度壓力測定（HRM）</strong>：人類評估食道運動的首選；<strong>EndoFLIP</strong> 評估括約肌擴張性與順應性——兩者在獸醫都不普及</li><li><strong>24–96 小時食道／胃 pH 監測</strong>：可評估逆流、胃運動、裂孔疝氣、制酸治療反應；但抓不到非酸性逆流；阻抗監測可補足但不普及</li></ul></div></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🫗</div>
+      <h2>5. 食道運動異常、巨食道、LES 失弛緩樣症候群</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>食道運動異常（EDys）可在<strong>沒有巨食道</strong>時就造成症狀，可能是巨食道的前期</li><li><strong>食道成熟延遲</strong>（如㹴犬）：食道成熟可持續到 <strong>1 歲</strong>，幼犬輕微運動異常不要過度解讀</li><li><strong>麻醉／鎮靜後運動異常</strong>是麻醉後食道炎的成因之一；人類 24–72 小時恢復，犬未知 → 剛麻醉或術後不要做運動功能檢查</li><li>巨食道要先排除其他食道擴張原因（如<strong>吞氣症</strong>）</li><li>新發現：德牧先天特發性巨食道與 <strong>MCHR2 基因突變</strong>有關；2014–2018 年拉脫維亞與澳洲曾懷疑巨食道與兩個乾飼料品牌有關</li><li>多腺體症候群（Schmidt-like）與肌間神經叢發炎／萎縮病例 → 可能有被低估的<strong>自體免疫</strong>成分</li></ul></div><div class="subsection"><h3>原文表 3：品種傾向</h3><div class="tbl-wrap"><table><tr><th>疾病</th><th>品種</th></tr><tr><td>特發性食道運動異常</td><td>沙皮、法蘭德斯畜牧犬、㹴犬</td></tr><tr><td>血管環異常</td><td>德牧、愛爾蘭雪達</td></tr><tr><td>胃食道套疊</td><td>德牧</td></tr><tr><td>裂孔疝氣</td><td>短吻犬、沙皮</td></tr><tr><td>遺傳性巨食道</td><td>剛毛獵狐㹴、迷你雪納瑞</td></tr><tr><td>先天性巨食道</td><td>拉布拉多、紐芬蘭、沙皮、大丹、德牧、愛爾蘭雪達</td></tr><tr><td>家族性巨食道</td><td>大丹、紐芬蘭、德牧、愛爾蘭雪達、暹羅貓</td></tr></table></div></div><div class="subsection"><h3>診斷</h3><ul class="notes"><li>胸片可見局部或全面食道擴張，但 <strong>EDys 與 LES-AS 要靠 VFSS 或其他功能檢查</strong></li><li>EDys：每 2–3 個月拍片追蹤是否出現擴張</li><li><strong>LES-AS</strong>：要確認 LES 在咽部吞嚥時<strong>無法放鬆</strong>；必須用食團實際挑戰 LES；<strong>直立餵食</strong>有助診斷（原文圖 1：兩隻巨食道犬，一隻 LES 正常打開、一隻不打開＝LES-AS）</li></ul></div><div class="subsection"><h3>治療</h3><ul class="notes"><li>核心：維持理想體態、減少吸入</li><li>新選項：<strong>sildenafil 1 mg/kg PO q8–12h</strong>（巨食道）；針對 LES 的介入（<strong>Heller 肌切開＋Dor 胃底折疊</strong>，或<strong>肉毒桿菌注射＋氣球擴張</strong>）可改善 LES-AS</li></ul><p class="p"><span class="src src-add">💡 補充</span> 找出巨食道背後是否為 LES-AS 很重要，因為 LES-AS 有針對性的治療；傳統只做直立餵食的巨食道處置，對 LES-AS 效果有限。</p></div></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">↩️</div>
+      <h2>6. 逆流</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>不要把「逆流」等同 GERD</h3><ul class="notes"><li><strong>生理性逆流</strong>：健康犬 VFSS 41%、逆流閃爍掃描 <strong>100%</strong></li><li><strong>病理性逆流</strong>：量較大、自發（不是在進食時）、超過食道遠端 1/3，且病患有相符症狀</li><li><strong>食道外逆流（EERD）</strong>：逆流物越過 UES 接觸上呼吸消化道；可能和反流分不出來 → 有食道症狀但食道運動正常的犬貓要考慮</li><li>隱性逆流可能默默造成喉功能異常、<strong>BOAS 惡化</strong>、中耳炎、慢性鼻炎；幼齡動物可引起呼吸暫停、心搏過緩、喉部閉合甚至死亡</li><li><strong>非酸性逆流</strong>：胃蛋白酶、膽酸、胰蛋白酶在中性或弱酸 pH 也會致病 → 只制酸可能失敗，大多需要多模式治療</li></ul></div><div class="subsection"><h3>典型 vs 非典型症狀</h3><div class="tbl-wrap"><table><tr><th>類型</th><th>症狀</th></tr><tr><td>典型（消化道）</td><td>流涎、口臭、上腹痛、不安、喘、反覆乾吞、舔唇、伸頸、厭食、嘔吐或反流</td></tr><tr><td>非典型（EERD／吸入）</td><td>逆向噴嚏、咳嗽、鼻分泌物、叫聲改變、上呼吸道雜音（喘鳴、鼾聲）</td></tr></table></div></div><div class="subsection"><h3>診斷</h3><ul class="notes"><li>好發：短吻、上呼吸道阻塞、胃排空遲緩等</li><li><strong>首選動態影像（VFSS）</strong>：觀察時間較長，也能找出誘發或併發疾病（原文圖 2：法鬥咳嗽 10 個月＋反射性乾吞，VFSS 見逆流越過 UES、P–A 7 隱性吸入）</li><li>酸性逆流或未用制酸劑者可做 pH 監測；閃爍掃描、內視鏡視個案</li><li>無法做功能影像或沒拍到逆流但高度懷疑時 → <strong>治療試驗</strong></li></ul></div><div class="subsection"><h3>治療</h3><ul class="notes"><li>主軸是內科＋飲食，難治病例才考慮手術</li><li>組合：<strong>促動劑</strong>（cisapride）＋<strong>制酸</strong>（omeprazole、esomeprazole、pantoprazole）＋<strong>低脂、少量多餐</strong></li><li>治療試驗可能要 <strong>6–8 週</strong>才有反應，非典型症狀尤其慢</li><li><strong>Sucralfate 只在懷疑食道炎時用</strong>：可覆蓋受損黏膜、干擾胃蛋白酶；但在正常黏膜滯留差、非酸性環境下很快被清除 → <strong>不能預防</strong>未來的食道炎</li></ul></div></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🩹</div>
+      <h2>7. 食道炎</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>成因</h3><ul class="notes"><li>可以是其他食道病的因或果；運動變差 → 逆流物接觸久 → 食道炎</li><li>續發感染：*Candida albicans*</li><li>原發感染：*Spirocerca lupi*；美國東南部犬的 *Pythium insidiosum* 肉芽腫壞死性食道炎</li><li>直接傷害：異物、外傷、腐蝕物、<strong>藥物（貓的 doxycycline、clindamycin）</strong></li><li><strong>嗜酸性食道炎（EE）</strong>：較少人知但重要的原發發炎疾病，嗜酸性球浸潤伴水腫、纖維化</li><li>不論原因，食道炎都會降低食道運動與 LES 張力 → <strong>惡性循環</strong>，易導致更嚴重疾病、吸入、狹窄</li></ul></div><div class="subsection"><h3>症狀與診斷</h3><ul class="notes"><li>反射性吞嚥、流涎、吞嚥疼痛、反流、乾嘔、不安、口臭、<strong>有興趣但不肯吃</strong>；配合病史（近期麻醉、用藥）提高懷疑</li><li>胸片可正常，嚴重時瀰漫或節段性擴張，或有吸入性肺炎</li><li>確診靠內視鏡看到紅斑、糜爛／潰瘍；但<strong>不是每隻都看得到病灶</strong></li><li>黏膜明顯異常（結節、顆粒、腫塊）或懷疑感染時做切片或刷抹細胞學；感染性另做 *Pythium* 血清學、糞檢</li><li>VFSS 可找潛在運動異常，但輕度原發 EDys 與食道炎造成的運動異常不易區分</li><li>Barrett 食道需組織學確診；犬罕見、貓未報告</li></ul></div><div class="subsection"><h3>治療</h3><ul class="notes"><li>除感染或 EE 外，治療同逆流；加 sucralfate 等黏膜保護劑，<strong>1–2 週</strong></li><li>是否暫停經口餵食有爭議；目前建議<strong>盡早給軟質、最好低脂的食物</strong></li></ul><p class="p"><span class="src src-add">💡 補充</span> 貓吃 doxycycline／clindamycin 膠囊或錠劑後，用水或少量食物送下，是預防藥物性食道炎與狹窄的常規做法。</p></div></div>
+  </div>
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📌</div>
+      <h2>8. 作者的 Clinics Care Points</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>吸入可造成<strong>氣道疾病</strong>，不只是吸入性肺炎</li><li>吸入不一定被看到，<strong>隱性吸入很常見</strong></li><li>找出高風險病患是處置關鍵</li><li>大多數病患需要<strong>多模式</strong>診斷</li></ul></div></div>
+  </div>
+  <div class="section" id="ref">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📚</div>
+      <h2>原文出處</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><div class="ref-list"><div class="ref-item">Megan Grobman. Aerodigestive and Esophageal Diseases. <em>Vet Clin North Am Small Anim Pract</em> 2026;56(3):563–577. <a href="https://doi.org/10.1016/j.cvsm.2025.12.002" target="_blank" rel="noopener">doi:10.1016/j.cvsm.2025.12.002</a></div><div class="ref-item">特刊：Gastroenterology（主編 M. Katherine Tolbert、Sara A. Jablonski），<em>Vet Clin North Am Small Anim Pract</em> 2026 年 5 月號，第 56 卷第 3 期。© 2026 Elsevier Inc.</div></div></div></div>
+  </div>
+
+  <div class="next-up">
+    <p>同一期特刊的其他文章請回目錄。</p>
+    <a href="index.html">回到特刊目錄 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  navLinks.forEach(a => { a.classList.remove('active'); if (a.getAttribute('href') === '#' + cur) a.classList.add('active'); });
+});
+</script>
+</body>
+</html>

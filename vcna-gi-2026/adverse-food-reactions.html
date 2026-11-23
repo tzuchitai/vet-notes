@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>犬貓的食物不良反應｜VCNA 腸胃學特刊 2026</title>
+<style>
+  :root {
+    --primary: #8A4B0F;
+    --primary-light: #F6EBDD;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2B1A0B;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E5C9A8; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A2E14;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E5C9A8; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E5C9A8;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A2E14;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #C9A27A;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #5A320C 0%, #C47F2B 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2B1A0B; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A2E14; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #5A320C; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+  .figlink { font-size: 12px; font-weight: 600; color: var(--primary); text-decoration: none; background: var(--primary-light); border-radius: 999px; padding: 2px 9px; margin-left: 4px; white-space: nowrap; }
+  .figlink:hover { text-decoration: underline; }
+  .fig.diagram svg { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; background: #fff; }
+  @media (max-width: 600px) { .fig.diagram { overflow-x: auto; } .fig.diagram svg { min-width: 560px; } .fig.diagram figcaption::before { content: "← 左右滑動看完整圖 →"; display: block; font-size: 11px; opacity: .6; margin-bottom: 2px; } }
+</style>
+
+</head>
+<body>
+
+<a class="home-link-fab" href="index.html">← 回到特刊目錄</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← VCNA 腸胃學特刊 2026</a>
+  <div class="logo">
+    <h2>03｜食物不良反應</h2>
+    <p>VCNA 2026;56(3) 論文整理</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div><a href="#s1">1. 定義與臨床表現</a><a href="#s2">2. 為什麼過敏原檢測不能用</a><a href="#s3">3. 排除飲食試驗（EDT）</a><a href="#s4">4. 非免疫性食物反應</a><a href="#s5">5. 作者的 Clinics Care Points</a><a href="#ref">原文出處</a>
+  </nav>
+</nav>
+
+<div id="main">
+
+  <div class="page-header">
+    <h1>犬貓的食物不良反應</h1>
+    <p>作者：Laura Udraite Vovk, Ralf S. Mueller（論文整理）</p>
+    <p>Adverse Food Reactions in Dogs and Cats｜Vet Clin Small Anim 2026;56(3):579–589</p>
+    <div class="tags"><span class="tag">食物不良反應</span><span class="tag">食物過敏</span><span class="tag">排除飲食試驗</span><span class="tag">再激發</span><span class="tag">水解飼料</span><span class="tag">元素飼料</span><span class="tag">IgE</span><span class="tag">IgG</span><span class="tag">淋巴球增生試驗</span><span class="tag">巧克力</span><span class="tag">木糖醇</span><span class="tag">葡萄</span></div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📑 原文</span> 論文內容 <span class="src src-add">💡 補充</span> 整理者補充（臨床提醒、交叉參照；不是作者說的）
+    <br><span class="muted">依原文重點整理成中文，不是逐句翻譯；未標記的段落都是原文內容。原文的圖表版權屬 Elsevier，這裡沒有轉載，表格是依內文重新整理。藥物劑量請回原文與最新文獻確認。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記重點</h3>
+    <ul><li>食物不良反應（AFR）＝<strong>免疫性</strong>（食物過敏）＋<strong>非免疫性</strong>（毒性、藥理、代謝、特異體質）；可表現為皮膚、腸胃或兩者</li><li>是犬貓<strong>慢性腸病與慢性搔癢最常見原因之一</strong>，任何年齡都會發生</li><li><strong>血清 IgE／IgG、皮內試驗、唾液 IgA/IgM、毛髮檢測都不可靠</strong>；淋巴球增生試驗較準但尚未商業化</li><li>犬的食物過敏多屬<strong>遲發型 T 細胞（第 IV 型）</strong>反應，IgE 介導的蕁麻疹／血管性水腫很少見</li><li>確診要<strong>排除飲食改善＋再激發復發</strong>；只有改善不算確診</li><li>水解飼料主要防 IgE，<strong>殘留線性胜肽仍可能刺激 T 細胞</strong>；水解程度越高（<strong>&lt; 1 kDa</strong>）越好</li><li>「新蛋白」商業飼料常有<strong>未標示蛋白污染</strong>；被測的水解飼料沒有</li><li>有皮膚症狀：試驗至少 <strong>8 週</strong>；只有腸胃症狀：常 <strong>2 週內改善、4–6 週達最大反應</strong></li></ul>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🍽️</div>
+      <h2>1. 定義與臨床表現</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>分類</h3><div class="tbl-wrap"><table><tr><th>類型</th><th>機制</th><th>例子</th></tr><tr><td>免疫性（食物過敏）</td><td>IgE 或 T 細胞介導</td><td>食物誘發的犬異位性皮膚炎（CAD）、貓異位性症候群（FAS）、食物反應性腸病</td></tr><tr><td>非免疫性：毒性</td><td>微生物污染或其毒素</td><td>鯖魚毒（組織胺）、黃麴毒素、DON 黴菌毒素</td></tr><tr><td>非免疫性：藥理</td><td>食物中的生物活性物質</td><td>可可鹼、蔥屬、木糖醇</td></tr><tr><td>非免疫性：代謝</td><td>消化酵素不足</td><td>乳糖不耐</td></tr><tr><td>非免疫性：特異體質</td><td>機制不明</td><td>葡萄／葡萄乾腎衰竭</td></tr></table></div></div><div class="subsection"><h3>臨床表現</h3><ul class="notes"><li>最常見：<strong>嘔吐、腹瀉</strong>，以及食物過敏原誘發的 <strong>CAD／FAS</strong>（典型部位搔癢）</li><li>其他腸胃：腹部不適、脹氣、腸鳴、<strong>大腸型腹瀉</strong></li><li>其他皮膚：急性濕疹（pyotraumatic dermatitis）、復發性膿皮症、慢性外耳炎、蕁麻疹、肛周瘻管、對稱性類狼瘡甲脫落、嗜酸性肉芽腫複合症</li><li>全身／眼／呼吸：過敏性休克、結膜炎、氣喘、打噴嚏</li><li>神經：<strong>陣發性麩質敏感性運動障礙</strong></li><li>與環境性 CAD／FAS 臨床上<strong>無法區分</strong>，腸胃症狀也和其他慢性腸病重疊 → AFR 是<strong>排除性診斷</strong></li></ul></div></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🧪</div>
+      <h2>2. 為什麼過敏原檢測不能用</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>被證實沒有臨床價值的檢查</h3><ul class="notes"><li>血清食物特異性 <strong>IgE</strong>、<strong>IgG</strong></li><li>皮內試驗</li><li>唾液食物特異性 IgA、IgM</li><li>胃鏡、大腸鏡下的黏膜試驗、<strong>毛髮檢測</strong></li><li><strong>淋巴球增生試驗</strong>：較準、有前景，但<strong>尚未商業化</strong></li></ul></div><div class="subsection"><h3>IgG</h3><ul class="notes"><li>AFR 犬與健康犬的陽性反應數<strong>沒有差別</strong>，也分不出食物過敏與環境過敏</li><li>8 週排除飲食後 IgG 濃度沒有下降</li><li>在人類，IgG 只代表<strong>反覆接觸過</strong>該食物抗原；一研究中正常與過敏犬對幾乎所有蛋白都有 IgG</li></ul></div><div class="subsection"><h3>IgE</h3><ul class="notes"><li>多數確診 AFR 犬有食物特異 IgE，但<strong>健康犬、環境性 CAD 犬也有相似比例陽性</strong></li><li>8 週排除飲食後 IgE 不降；IgE 結果與單一蛋白再激發的結果<strong>相關性差</strong></li><li>有些犬對<strong>從沒吃過</strong>的蛋白 IgE 陽性 → 可能是與其他食物或環境過敏原的<strong>交叉反應</strong></li></ul></div><div class="subsection"><h3>致病機制：主要是 T 細胞</h3><ul class="notes"><li>IgE 介導的第 I 型過敏（食物誘發蕁麻疹、血管性水腫）在犬<strong>很少見</strong></li><li>慢性腸病與慢性搔癢表型較符合<strong>遲發型 T 細胞第 IV 型過敏</strong>（CAD 新定義也是以 T 細胞為主）</li><li>皮膚 AFR 犬：淋巴球對食物過敏原的增生反應與再激發結果高度相關，回到排除飲食後反應下降</li><li>腸胃症狀的食物過敏犬目前沒有類似研究</li></ul></div></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🥣</div>
+      <h2>3. 排除飲食試驗（EDT）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>判讀原則</h3><ul class="notes"><li><strong>改善不等於確診</strong>：環境過敏原季節變化、同時使用的抗發炎／止癢藥、藥浴、必需脂肪酸都可能造成改善假象</li><li>Oclacitinib、prednisolone 可縮短皮膚病例所需的試驗時間，但可能<strong>掩蓋</strong>真正的飲食反應</li><li>食物反應性腸病但<strong>不是</strong> AFR 的狗，吃水解飼料也會因為<strong>消化率高</strong>而改善</li><li><strong>確診＝EDT 期間改善＋控制下再激發時復發</strong>；沒有再激發，容易誤診而造成不必要的長期飲食限制或治療</li></ul></div><div class="subsection"><h3>飲食選擇</h3><div class="tbl-wrap"><table><tr><th>選項</th><th>優點</th><th>限制</th></tr><tr><td>自製單一新蛋白</td><td>避開商業飼料中的功能性成分</td><td>飼主配合度差，很多人提早放棄；需充分指導</td></tr><tr><td>商業新蛋白飼料</td><td>方便</td><td>真正「沒吃過」的蛋白越來越難找；<strong>常有未標示蛋白污染</strong>；相關蛋白交叉反應</td></tr><tr><td>水解飼料</td><td>方便、配合度較好；受測產品<strong>沒有污染</strong></td><td>殘留線性胜肽仍可能刺激 T 細胞</td></tr><tr><td>元素飼料</td><td>理論上抗原性最低、應無污染</td><td>仍待研究，可能是未來選項</td></tr></table></div></div><div class="subsection"><h3>水解飼料的限制</h3><ul class="notes"><li>酵素切割把蛋白切到<strong>無法交聯肥大細胞上的 IgE</strong> → 主要設計來防 IgE 反應</li><li>但切剩的小胜肽仍可能含線性序列，可被 MHC II 呈現給輔助 T 細胞；羽毛或雞肉水解物萃取物曾刺激已致敏犬的 T 細胞增生</li><li>若水解來源是病患<strong>已經致敏</strong>的蛋白，偶爾會復發（通常較輕）</li><li>水解程度越高越安全，<strong>極度水解（&lt; 1 kDa）殘留抗原性最低</strong></li><li>另有<strong>調節菌相</strong>的效果，可能幫助食物反應性腸病；對皮膚症狀是否有幫助未知</li><li>結論：雖然無法完全消除 T 細胞反應，水解飼料兼具低抗原性與配合度，是<strong>合理的第一線選擇</strong></li></ul></div><div class="subsection"><h3>配合度</h3><ul class="notes"><li>要花時間解釋原理與為什麼要嚴格；家人（尤其小孩、長輩）偷餵、零食、營養品、<strong>咀嚼型藥物</strong>都要避免</li></ul></div><div class="subsection"><h3>試驗多久</h3><div class="tbl-wrap"><table><tr><th>症狀</th><th>建議時間</th></tr><tr><td>以皮膚為主</td><td><strong>8 週</strong>嚴格試驗才能抓到大多數反應者（目前黃金標準）</td></tr><tr><td>只有腸胃症狀</td><td>常在 <strong>2 週內</strong>開始改善，<strong>4–6 週</strong>達最大反應；2 週沒改善常改用另一種排除飲食或其他策略（如高纖），部分個案可給到 6 週</td></tr><tr><td>同時有皮膚症狀</td><td>仍要<strong>至少 8 週</strong></td></tr></table></div><p class="p"><span class="src src-add">💡 補充</span> 腸胃病例「2 週沒改善就換」的做法，文獻只描述改善開始的時間，並沒有定義要多久才能抓到大多數反應者——作者特別點出這個證據缺口。</p></div></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">☠️</div>
+      <h2>4. 非免疫性食物反應</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>較少見、通常較<strong>急性</strong>，<strong>不需要排除飲食試驗</strong>診斷，但可能嚴重甚至致死；詳細的飲食史是關鍵</li><li>幾乎都以腸胃症狀為主，偶有血液、神經、腎臟表現；除了早年低品質穀物飼料造成的缺鋅，<strong>沒有皮膚表現</strong></li></ul></div><div class="subsection"><h3>毒性</h3><ul class="notes"><li><strong>鯖魚毒</strong>：魚被產組織胺的細菌污染；犬吃生鯷魚後急性流涎、嘔吐、腹瀉</li><li><strong>黃麴毒素</strong>（*Aspergillus*）：犬很敏感，肝毒性 → 厭食、沉鬱、黃疸、嗜睡、黑便、嘔吐、血尿、腹瀉</li><li><strong>嘔吐毒素 DON</strong>（穀物污染）：厭食、嘔吐、出血性腹瀉</li><li><strong>震顫性黴菌毒素</strong>（*Penicillium*，穀物、堅果）：犬癲癇</li><li><strong>草酸</strong>（菠菜、大黃、甜菜根）：腸胃炎</li><li><strong>植酸</strong>（穀物的磷儲存形式）：高量時減少鋅吸收 → 早年低品質穀物／大豆乾飼料與犬<strong>鋅反應性皮膚病</strong>有關</li></ul></div><div class="subsection"><h3>藥理</h3><div class="tbl-wrap"><table><tr><th>物質</th><th>來源</th><th>中毒劑量／機制</th><th>症狀</th></tr><tr><td>可可鹼（甲基黃嘌呤）</td><td>巧克力（2–16 mg/g）</td><td>犬 LD50 250–500 mg/kg</td><td>多渴、嘔吐、腹瀉、脹氣、不安 → 多尿、運動失調、顫抖、癲癇；死因多為心律不整或呼吸衰竭</td></tr><tr><td>有機硫化物</td><td>洋蔥、大蒜、韭蔥</td><td>血紅素 → 變性血紅素；Heinz 小體溶血</td><td>早期嘔吐、腹瀉、腹痛、厭食；數天後黏膜蒼白、呼吸快、血紅素尿、黃疸、心搏過速</td></tr><tr><td>不明</td><td>葡萄、葡萄乾</td><td>10–60 g 果實/kg</td><td>24 小時內嘔吐 → 腹瀉、厭食、嗜睡、腹痛；<strong>急性腎衰竭</strong></td></tr><tr><td>木糖醇</td><td>人類食品、藥品、牙膏；部分寵物口腔保健飲水添加劑</td><td>刺激胰島素 → 低血糖；報告最低 0.3–3.5 mg/kg 就出現症狀</td><td>急性嘔吐、嗜睡；也可能黃疸、出血</td></tr></table></div><p class="p"><span class="src src-add">💡 補充</span> 原文寫的木糖醇「0.3–3.5 mg/kg」比一般毒理參考（犬低血糖約 ≥ 75–100 mg/kg、肝衰竭約 ≥ 500 mg/kg）低了好幾百倍，可能是單位或數字誤植（g/kg？），臨床判斷請以毒物學參考資料為準。</p></div><div class="subsection"><h3>代謝</h3><ul class="notes"><li><strong>乳糖不耐</strong>：犬成長後小腸乳糖酶活性常下降，但健康犬可耐受到 <strong>2 g/kg</strong>；作者找不到犬因乳糖不耐出現症狀的已發表病例</li></ul></div></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📌</div>
+      <h2>5. 作者的 Clinics Care Points</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>慢性搔癢和／或腸胃病都要考慮 AFR</li><li><strong>排除飲食＋控制下的再激發</strong>是臨床上唯一可靠的診斷方法</li><li>只有排除飲食期間改善<strong>不能確診</strong></li><li><strong>不要依賴</strong>體內或體外的「過敏原檢測」</li><li>注意「新蛋白」飼料中的隱藏蛋白與交叉污染</li><li>主動處理配合度問題，這是成敗關鍵</li><li>區分免疫性 AFR 與非免疫性毒性／藥理反應</li><li>留意未來發展，但臨床決策依據目前可用的工具</li></ul></div></div>
+  </div>
+  <div class="section" id="ref">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📚</div>
+      <h2>原文出處</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><div class="ref-list"><div class="ref-item">Laura Udraite Vovk, Ralf S. Mueller. Adverse Food Reactions in Dogs and Cats. <em>Vet Clin North Am Small Anim Pract</em> 2026;56(3):579–589. <a href="https://doi.org/10.1016/j.cvsm.2025.11.003" target="_blank" rel="noopener">doi:10.1016/j.cvsm.2025.11.003</a></div><div class="ref-item">特刊：Gastroenterology（主編 M. Katherine Tolbert、Sara A. Jablonski），<em>Vet Clin North Am Small Anim Pract</em> 2026 年 5 月號，第 56 卷第 3 期。© 2026 Elsevier Inc.</div></div></div></div>
+  </div>
+
+  <div class="next-up">
+    <p>同一期特刊的其他文章請回目錄。</p>
+    <a href="index.html">回到特刊目錄 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  navLinks.forEach(a => { a.classList.remove('active'); if (a.getAttribute('href') === '#' + cur) a.classList.add('active'); });
+});
+</script>
+</body>
+</html>

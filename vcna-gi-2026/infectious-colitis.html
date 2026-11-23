@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>犬貓感染性結腸炎：診斷、處置與預後｜VCNA 腸胃學特刊 2026</title>
+<style>
+  :root {
+    --primary: #8A4B0F;
+    --primary-light: #F6EBDD;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2B1A0B;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E5C9A8; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A2E14;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E5C9A8; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E5C9A8;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A2E14;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #C9A27A;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #5A320C 0%, #C47F2B 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2B1A0B; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A2E14; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #5A320C; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+  .figlink { font-size: 12px; font-weight: 600; color: var(--primary); text-decoration: none; background: var(--primary-light); border-radius: 999px; padding: 2px 9px; margin-left: 4px; white-space: nowrap; }
+  .figlink:hover { text-decoration: underline; }
+  .fig.diagram svg { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; background: #fff; }
+  @media (max-width: 600px) { .fig.diagram { overflow-x: auto; } .fig.diagram svg { min-width: 560px; } .fig.diagram figcaption::before { content: "← 左右滑動看完整圖 →"; display: block; font-size: 11px; opacity: .6; margin-bottom: 2px; } }
+</style>
+
+</head>
+<body>
+
+<a class="home-link-fab" href="index.html">← 回到特刊目錄</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← VCNA 腸胃學特刊 2026</a>
+  <div class="logo">
+    <h2>15｜感染性結腸炎</h2>
+    <p>VCNA 2026;56(3) 論文整理</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div><a href="#s1">1. 寄生蟲與原蟲性結腸炎</a><a href="#s2">2. 細菌性結腸炎</a><a href="#s3">3. 病毒性結腸炎：貓傳染性腹膜炎（FIP）</a><a href="#s4">4. 肉芽腫性結腸炎的感染原（原文表 2）</a><a href="#s5">5. 犬血吸蟲（*Heterobilharzia americana*）</a><a href="#s6">6. 組織漿菌症（*Histoplasma capsulatum*）</a><a href="#s7">7. 腐黴病（*Pythium insidiosum*）</a><a href="#s8">8. 原藻症（*Prototheca*）</a><a href="#s9">9. *E. coli* 相關肉芽腫性結腸炎（GC）</a><a href="#s10">10. 作者的 Clinics Care Points</a><a href="#ref">原文出處</a>
+  </nav>
+</nav>
+
+<div id="main">
+
+  <div class="page-header">
+    <h1>犬貓感染性結腸炎：診斷、處置與預後</h1>
+    <p>作者：Sarah M. Schmid（論文整理）</p>
+    <p>Infectious Colitis in Dogs and Cats：Diagnosis, Management, and Clinical Outcomes｜Vet Clin Small Anim 2026;56(3):769–787</p>
+    <div class="tags"><span class="tag">感染性結腸炎</span><span class="tag">鞭蟲</span><span class="tag">Tritrichomonas blagburni</span><span class="tag">ronidazole</span><span class="tag">Campylobacter</span><span class="tag">Clostridium perfringens</span><span class="tag">C. difficile</span><span class="tag">沙門氏菌</span><span class="tag">E. coli</span><span class="tag">FIP</span><span class="tag">血吸蟲</span><span class="tag">組織漿菌</span><span class="tag">腐黴</span><span class="tag">原藻</span><span class="tag">利什曼</span><span class="tag">肉芽腫性結腸炎</span><span class="tag">拳師犬</span><span class="tag">法鬥</span><span class="tag">enrofloxacin</span></div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📑 原文</span> 論文內容 <span class="src src-add">💡 補充</span> 整理者補充（臨床提醒、交叉參照；不是作者說的）
+    <br><span class="muted">依原文重點整理成中文，不是逐句翻譯；未標記的段落都是原文內容。原文的圖表版權屬 Elsevier，這裡沒有轉載，表格是依內文重新整理。藥物劑量請回原文與最新文獻確認。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記重點</h3>
+    <ul><li><strong>鞭蟲</strong>：潛伏期長、間歇排卵 → 用<strong>高比重糖液離心漂浮</strong>；fenbendazole 50 mg/kg × 3 天，<strong>3 週與 3 個月後重複</strong></li><li>貓 <strong>*Tritrichomonas blagburni</strong>*（舊稱 *T. foetus*）：年輕純種、擁擠環境，≤ 1 歲風險 <strong>2.1 倍</strong>；濕抹片敏感度 <strong>≤ 14%</strong> → <strong>糞便 PCR</strong>（糞便環採樣最好）；<strong>ronidazole 30 mg/kg PO q24h × 14 天</strong>，最多 25% 失敗</li><li>原發細菌性結腸炎<strong>不常見</strong>；許多病原在<strong>健康動物也驗得到</strong>，糞便培養、PCR、毒素 ELISA 都<strong>無法區分</strong>病與健康 → 檢出不代表致病</li><li>抗生素只給有全身性徵象、懷疑細菌移位／敗血症者；梨形蟲與 AHDS 用抗生素可能增加日後<strong>慢性腸胃症狀</strong></li><li>大腸型腹瀉＋全身性疾病 → 優先考慮<strong>血吸蟲、組織漿菌、腐黴、原藻、利什曼</strong>（依地區與旅遊史）</li><li>組織漿菌：尿 <strong>EIA 敏感度 89–95%</strong>；itraconazole 首選，症狀、影像、EIA 都恢復後<strong>再多給 1 個月</strong></li><li>原藻：<strong>拳師犬</strong>好發、從結腸開始、可擴散到眼與腦；<strong>最多 90% 無反應</strong>，多數 4 個月內死亡</li><li>年輕<strong>拳師犬與法鬥</strong>大腸型腹瀉 → 大腸鏡切片做組織學、<strong>FISH／IHC＋細菌培養藥敏</strong>（fluoroquinolone 抗藥 43–63%）</li></ul>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🪱</div>
+      <h2>1. 寄生蟲與原蟲性結腸炎</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>犬鞭蟲（*Trichuris vulpis*）</h3><ul class="notes"><li>寄生於盲腸與結腸，是犬結腸炎的常見原因；常無症狀，也可造成黏液性大腸型腹瀉、裡急後重、鮮血便</li><li>診斷困難：<strong>潛伏期長、間歇排卵</strong></li><li>蟲卵較重 → 用<strong>高比重糖液離心漂浮</strong>最好；<strong>糞便抗原檢測</strong>可再提高敏感度</li><li>治療：<strong>fenbendazole 50 mg/kg PO q24h × 3 天</strong>；未成熟鞭蟲有抗性，療程要涵蓋整個 <strong>3 個月潛伏期</strong> → <strong>3 週與 3 個月時重複</strong></li><li><strong>環境控制</strong>很重要：蟲卵可在環境中存活很久</li></ul><p class="p"><span class="src src-add">💡 補充</span> 鞭蟲可造成低鈉高鉀，臨床上可能被誤認為 Addison（「假性 Addison」），本特刊 14 大腸疾病一文的生化鑑別表也列了這點。</p></div><div class="subsection"><h3>貓 *Tritrichomonas blagburni*（舊稱 *T. foetus*）</h3><ul class="notes"><li>鞭毛原蟲，造成貓<strong>慢性結腸炎</strong>：糞便惡臭、帶黏液與鮮血</li><li>好發：<strong>年輕純種貓、擁擠環境</strong>；<strong>≤ 1 歲</strong>感染機率 <strong>2.1 倍</strong></li><li>新鮮糞便<strong>濕抹片</strong>：梨形滋養體、有波動膜、<strong>快速往前游</strong>（不同於梨形蟲的「落葉狀」擺動）</li><li>濕抹片敏感度 <strong>≤ 14%</strong> → 一般建議<strong>糞便 PCR</strong></li><li>樣本：自然排出的黏液便、<strong>糞便環（fecal loop）</strong>、結腸沖洗；一研究以結腸沖洗為標準，<strong>糞便環</strong>樣本陽性機率最高（OR 2.04）</li><li>高度懷疑但 PCR 陰性 → 重驗，且採樣前 <strong>1–2 週</strong>不要用抗菌藥（如 metronidazole、fenbendazole）</li><li>治療首選：<strong>ronidazole 30 mg/kg PO q24h × 14 天</strong>（貓非核准用藥）<ul class="notes"><li>神經毒性：嗜睡、食慾下降、運動失調、癲癇，停藥後多很快恢復</li></ul><ul class="notes"><li>治療失敗最多 <strong>25%</strong></li></ul></li></ul></div><div class="subsection"><h3>其他原蟲</h3><ul class="notes"><li>*Pentatrichomonas hominis*、*Entamoeba histolytica*、*Balantidium coli*：大腸寄生原蟲，<strong>很少</strong>造成犬貓大腸型腹瀉，但有重要的<strong>人畜共通</strong>潛力</li></ul></div></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🦠</div>
+      <h2>2. 細菌性結腸炎</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>原發細菌性結腸炎在犬貓<strong>不常見</strong></li><li>許多病原也能從<strong>健康動物糞便</strong>分離 → <strong>檢出不代表致病</strong></li></ul></div><div class="subsection"><h3>原文表 1：細菌病原</h3><div class="tbl-wrap"><table><tr><th>病原</th><th>致病證據</th><th>疾病</th><th>風險因子</th><th>診斷</th><th>處置</th></tr><tr><td>*Brachyspira pilosicoli*</td><td>弱</td><td>急性黏液出血性腹瀉</td><td>≤ 1 歲犬；密集飼養（犬舍、收容所）</td><td>培養、PCR</td><td>常無症狀；注意人畜共通</td></tr><tr><td>*Campylobacter coli / jejuni / upsaliensis*</td><td>中等</td><td>軟便到水樣或血性黏液腹瀉；罕見菌血症、膽囊炎</td><td>&lt; 1 歲幼犬幼貓；密集飼養；<strong>自製飲食</strong></td><td>培養、PCR</td><td>多無症狀，腹瀉多自限；重症才治療（<strong>erythromycin 10–15 mg/kg PO q8h</strong>）；人畜共通</td></tr><tr><td>*Clostridioides difficile*</td><td>弱到中等（無法實驗誘發）</td><td>院內感染、大小腸混合型腹瀉</td><td>抗生素；住院中用免疫抑制藥；接觸人類醫療機構</td><td>同時找到菌（培養、PCR）＋<strong>毒素</strong>（ELISA）</td><td>常是續發變化，<strong>不需標靶治療</strong>；全身性疾病才用（<strong>metronidazole 10 mg/kg PO q12h</strong>）</td></tr><tr><td>*Clostridium perfringens*</td><td>中等</td><td>急性、院內大腸型腹瀉；<strong>產 NetF 菌株與 AHDS 有關</strong></td><td>換食、抗生素、合併其他腸道病原</td><td>菌＋毒素</td><td>常自限，不需特定治療；<strong>治療不影響菌數且加重失調</strong>；全身性疾病才用</td></tr><tr><td>腸出血性／產志賀毒素 *E. coli*（EHEC／VTEC）</td><td>好</td><td>出血性水樣或黏液腹瀉；犬罕見<strong>溶血性尿毒症候群</strong></td><td>一研究灰獵犬帶菌率高（無腹瀉 25%、腹瀉 48%），可能與<strong>生食</strong>有關</td><td>糞便或分離株驗志賀樣毒素蛋白（ELISA）或基因（PCR）</td><td><strong>支持療法</strong>；人類用抗生素<strong>增加溶血性尿毒症候群風險</strong>；可能人畜共通</td></tr><tr><td>腸致病性 *E. coli*（EPEC）</td><td>好</td><td>急性到慢性水樣、有時出血性腹瀉</td><td>≤ 1 歲；合併其他病原</td><td>組織學＋無志賀樣毒素</td><td>支持療法；有革蘭陰性活性的抗生素</td></tr><tr><td>*Salmonella typhimurium*</td><td>好</td><td>水樣或黏液到出血性腹瀉；罕見內毒素血症</td><td>吃<strong>生食、脫水或未煮熟的肉品</strong>；&lt; 1 歲犬</td><td>培養、PCR</td><td>支持療法；<strong>菌血症或內毒素血症</strong>才用抗生素；人畜共通</td></tr><tr><td>*Yersinia enterocolitica*</td><td>弱</td><td>急性或慢性出血性腹瀉</td><td><strong>餵生豬肉</strong></td><td>培養</td><td>不常致病；人畜共通</td></tr></table></div></div><div class="subsection"><h3>診斷與處置原則</h3><ul class="notes"><li>依年齡、風險因子（飼養方式如<strong>生食</strong>、環境暴露如<strong>擁擠或接觸家畜</strong>）決定是否檢查</li><li>糞便培養、PCR 套組、ELISA 毒素套組<strong>無法可靠區分健康與腹瀉動物</strong>，使用可能導致<strong>不必要的抗生素</strong></li><li>很多細菌可能是<strong>續發變化</strong>而非原發病原</li><li>處置重點：<strong>支持療法</strong>＋找出並處理潛在疾病</li><li>Metronidazole 等抗生素會造成<strong>菌相失調與症狀復發</strong></li><li>急性腹瀉用抗生素可能增加日後<strong>慢性腸胃症狀</strong>的風險（梨形蟲症犬已證實、AHDS 犬疑似）</li><li>優先治療急性大腸型腹瀉本身（如<strong>纖維</strong>）或其病因；抗生素只留給有全身性徵象、懷疑<strong>細菌移位＋菌血症或敗血症</strong>的重症</li></ul></div></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🧬</div>
+      <h2>3. 病毒性結腸炎：貓傳染性腹膜炎（FIP）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>不常見，可在結腸或迴盲結腸交界造成<strong>膿性肉芽腫性壁內病變</strong></li><li>症狀：腹瀉或嘔吐，伴嗜睡、發燒、體重下降或神經症狀</li><li>多為結腸或迴結腸壁增厚，也可能形成<strong>可觸摸到的腫塊</strong></li><li><strong>核苷類似物</strong>治療可達臨床緩解、超音波變化消失；<strong>≥ 80%</strong> 治療貓臨床緩解</li></ul><p class="p"><span class="src src-add">💡 補充</span> 臨床上年輕貓出現迴盲結腸交界腫塊時，FIP 與淋巴瘤都應列入鑑別；腫塊抽吸細胞學加 FCoV RT-PCR／免疫染色有助區分。</p></div></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🔬</div>
+      <h2>4. 肉芽腫性結腸炎的感染原（原文表 2）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><div class="tbl-wrap"><table><tr><th>病原（疾病）</th><th>類型</th><th>地區</th><th>犬／貓</th><th>腸胃特徵</th><th>腸外</th><th>診斷</th><th>治療</th><th>預後</th></tr><tr><td>*Heterobilharzia americana*（血吸蟲）</td><td>吸蟲</td><td>墨西哥灣沿岸、南大西洋</td><td>犬</td><td>腸壁<strong>營養不良性礦化 44–64%</strong>；小腸壁分層不均＋腸、肝 ± 腸繫膜淋巴結<strong>針點高回音</strong>，PPV 94%；<strong>高血鈣 7–59%</strong></td><td>肝、腎、淋巴結</td><td>糞便沉澱、糞便 PCR、組織學</td><td>praziquantel＋fenbendazole ± prednisone</td><td>肝腎受損前治療則好；180 天存活 74%</td></tr><tr><td>*Histoplasma capsulatum*（組織漿菌）</td><td>雙相真菌</td><td>美國中西部、南部、加拿大</td><td>犬、貓</td><td><strong>大腸 &gt; 小腸</strong>；慢性腹瀉犬約 50%、貓 12–14%；<strong>84%</strong> 結腸壁增厚且分層破壞</td><td>肝、肺、淋巴結、眼、骨髓（貓）</td><td><strong>尿 EIA</strong>、細胞學、直腸刮片、組織學</td><td>itraconazole、fluconazole</td><td>保留到好，依器官受累</td></tr><tr><td>*Pythium insidiosum*（腐黴）</td><td>卵菌</td><td>美國東南與墨西哥灣沿岸</td><td>犬 &gt; 貓</td><td>壞死性<strong>穿壁</strong>嗜酸性肉芽腫到膿性肉芽腫發炎；胃十二指腸與迴結腸區；貓多為皮膚</td><td>皮膚、淋巴結</td><td>細胞學（GMS）、直腸刮片、組織學、抗體 IgG EIA</td><td>根治性切除；itraconazole、terbinafine、prednisone ± mefenoxam</td><td>歷來差（反應率約 20%）；多藥治療反應率 50%、中位 90 天；<strong>局部、遠端</strong>病變預後較好</td></tr><tr><td>*Prototheca bovis / ciferrii*（原藻）</td><td>藻類</td><td>美國東南</td><td>犬</td><td>通常<strong>從結腸開始</strong>；慢性反覆大腸型腹瀉、體重下降</td><td>眼、中樞、腎、淋巴結</td><td>細胞學、直腸刮片、組織學、培養</td><td>唑類＋amphotericin B</td><td>保留；最多 <strong>90% 無反應</strong>；多數 4 個月內死亡</td></tr><tr><td>*Leishmania infantum*（利什曼）</td><td>原蟲</td><td>中南美、非洲、亞洲、地中海</td><td>犬 &gt; 貓</td><td>結腸炎是<strong>少見</strong>表現；3–30% 犬慢性大小腸型腹瀉</td><td>皮膚、淋巴結、腎（腎絲球腎炎）、肝、脾、骨髓</td><td>細胞學、組織學、組織 PCR、抗體 IgG EIA</td><td>meglumine antimoniate＋allopurinol；miltefosine＋allopurinol；domperidone</td><td><strong>無腎臟受累</strong>者 75% 存活 &gt; 4 年；沒有治療能完全根除</td></tr></table></div></div></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🐟</div>
+      <h2>5. 犬血吸蟲（*Heterobilharzia americana*）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>吸蟲，造成腸胃道（有時肝臟）明顯<strong>肉芽腫性發炎</strong></li><li><strong>高血鈣</strong>出現於 <strong>7–59%</strong> 病犬，可造成腎損傷</li><li>流行於北美墨西哥灣沿岸與南大西洋區，感染州數增加 → 地理擴張</li><li>好發：<strong>年輕到中年、大型犬、可接觸淡水</strong>；嗜睡、腹瀉、鮮血便、體重下降、食慾差、嘔吐；可能多尿多渴（高血鈣和／或腎功能不全）</li><li>超音波：<strong>44–64%</strong> 小腸壁和／或肝臟營養不良性礦化</li><li><strong>小腸壁分層不均＋腸、肝和／或腸繫膜淋巴結針點高回音</strong>，對感染的 <strong>PPV 94%</strong> → 應進一步檢查</li><li>診斷：糞便沉澱法、糞便 PCR、組織病理</li><li>治療：有症狀犬用<strong>高劑量 praziquantel 25–30 mg/kg PO q8h × 2 天</strong>＋<strong>fenbendazole 50 mg/kg PO q24h × 7–10 天</strong>；加<strong>抗發炎劑量 prednisone</strong> 減輕成蟲死亡引起的發炎</li><li>幼蟲對 praziquantel 較有抗性 → <strong>治療 4 週後重驗</strong>，陽性再做第二輪</li><li>肝腎受損前診斷治療，預後通常好：一研究約 <strong>74%</strong> 180 天存活</li></ul></div></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🍄</div>
+      <h2>6. 組織漿菌症（*Histoplasma capsulatum*）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>土壤中的雙相真菌，是犬慢性腹瀉的重要原因（貓較少）</li><li>喜歡被<strong>鳥類或蝙蝠排泄物</strong>污染的富氮土壤；美國中西部與南部流行，加拿大等地零星</li><li>吸入或吞入小分生孢子 → 體溫下轉為酵母，在巨噬細胞內增殖 → 血行或淋巴擴散</li><li>可侷限於呼吸道或腸胃道，或全身性：肝、脾、腸胃、淋巴結、眼、皮膚、骨骼（原文圖 1：4 歲混種犬極度惡病質、皮膚潰瘍、皮下肉芽腫，抽吸確診播散性組織漿菌症）</li></ul></div><div class="subsection"><h3>病患特徵</h3><ul class="notes"><li>任何年齡，以年輕者多：中位年齡<strong>犬 3 歲、貓 6.5 歲</strong></li><li>運動犬與工作犬好發；一研究中<strong>玩具犬多為腸胃型</strong>、<strong>工作犬多為播散型</strong></li><li><strong>約 50% 犬有慢性腹瀉</strong>，多為大腸症狀，也可能小腸受累造成 <strong>PLE</strong></li><li>貓較少腹瀉（12–14%），較常播散：厭食、體重下降、發燒、無力</li><li><strong>貓眼睛症狀最多 82%</strong>：前葡萄膜炎、肉芽腫性脈絡膜炎、視網膜剝離，常致失明（原文圖 2）；貓可能摸到腹部腫塊</li><li>犬腸胃型超音波：瀰漫或多灶性結腸增厚、壁分層破壞（<strong>84%</strong>）</li></ul></div><div class="subsection"><h3>診斷</h3><ul class="notes"><li>直腸刮片、皮膚壓片、組織抽吸細胞學：膿性肉芽腫或肉芽腫性發炎，單核吞噬細胞內有<strong>胞內酵母</strong>（原文圖 3）</li><li>市售<strong>尿液 galactomannan 抗原 EIA</strong>：敏感度 <strong>89–95%</strong>，也可監測治療（成功時下降、復發時上升）</li><li><strong>5–10%</strong> 感染動物尿 EIA 陰性 → 高度懷疑時加做<strong>抗體</strong></li></ul></div><div class="subsection"><h3>治療</h3><div class="tbl-wrap"><table><tr><th>藥物</th><th>劑量</th><th>說明</th></tr><tr><td><strong>Itraconazole</strong>（首選）</td><td>犬：前 3 天 10 mg/kg/天負荷，之後 <strong>5 mg/kg/天</strong>；貓：<strong>膠囊 10 mg/kg/天</strong>、<strong>液劑 7.5 mg/kg/天</strong> PO</td><td>—</td></tr><tr><td>Fluconazole</td><td><strong>20 mg/kg/天</strong></td><td>眼或中樞受累時偏好（組織穿透較好）</td></tr><tr><td>Amphotericin B</td><td>—</td><td>重症可考慮加上；每次給藥前驗腎指數</td></tr></table></div><ul class="notes"><li>回溯研究：itraconazole 與 fluconazole 的存活、復發、緩解率<strong>無顯著差異</strong></li><li>最多 <strong>25%</strong> 分離株 fluconazole MIC 超過可達血中濃度 → 反應不佳或復發時改 itraconazole 或其他三唑類</li><li>唑類治療期間<strong>每月驗肝指數</strong></li><li><strong>症狀、影像、尿 EIA 都恢復後再繼續至少 1 個月</strong>；抗原陰性時可用<strong>血清 CRP</strong> 評估反應</li><li>臨床緩解者中位療程 <strong>4–6 個月</strong></li></ul></div><div class="subsection"><h3>預後</h3><ul class="notes"><li>播散型或腸胃型：保留到好，依器官受累與嚴重度</li><li>較差：<strong>呼吸困難、可觸及器官腫大、黃疸</strong>；檢驗上貧血、血小板減少、高血鈣、ALP 上升、高膽紅素</li><li><strong>有腹瀉者 6 個月存活較好</strong></li></ul></div></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🌊</div>
+      <h2>7. 腐黴病（*Pythium insidiosum*）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>水生卵菌，造成犬（貓較少）皮膚或腸胃道嚴重、進行性、常致命的疾病</li><li>美國東南部與墨西哥灣沿岸最多，全美零星</li><li>好發：<strong>年輕大型犬、可接觸湖泊池塘沼澤</strong>；多在 <strong>10 月到 2 月</strong>診斷（夏季感染、延後就診）</li><li>腸胃型：<strong>壞死性穿壁</strong>嗜酸性肉芽腫到膿性肉芽腫發炎，多在<strong>胃十二指腸與迴結腸區</strong>（原文圖 4A：2 歲哈士奇結腸壁明顯增厚、分層消失）</li><li>只在結腸時：慢性血性黏液大腸型腹瀉＋體重下降</li><li>貓罕見、多為皮膚病變；腸胃型多表現為體重下降、嘔吐或腹部腫塊，而非大腸病</li></ul></div><div class="subsection"><h3>診斷</h3><ul class="notes"><li>組織中找到 *P. insidiosum*</li><li>增厚腸壁或淋巴結 FNA：膿性肉芽腫或嗜酸性發炎中可見<strong>寬（平均 4 µm，2–7 µm）、少隔、偶有分枝</strong>的菌絲（原文圖 4B）；常規染色差，<strong>GMS</strong> 較清楚</li><li>組織學：多處壞死灶周圍嗜酸性到膿性肉芽腫發炎，蟲體在壞死區</li><li><strong>沒看到菌絲不能排除</strong>（可能很少）→ 抗體或組織 PCR</li><li>市售<strong>抗體 EIA</strong> 高敏感高特異；罕見交叉反應，最明顯是 <strong>basidiobolomycosis</strong>（也可造成結腸炎）</li></ul></div><div class="subsection"><h3>治療</h3><ul class="notes"><li><strong>寬邊界手術切除</strong>是首選，但很多診斷時已無法開刀</li><li>卵菌細胞膜<strong>沒有麥角固醇</strong>（多數抗真菌藥的標靶）→ 內科治療困難</li></ul><div class="tbl-wrap"><table><tr><th>藥物</th><th>劑量</th></tr><tr><td>Itraconazole</td><td><strong>6–10 mg/kg PO q24h</strong></td></tr><tr><td>Terbinafine</td><td><strong>5–10 mg/kg PO q24h</strong></td></tr><tr><td>Prednisone（抗發炎）</td><td><strong>0.5–1 mg/kg PO q24h</strong>，之後減量</td></tr><tr><td><strong>Mefenoxam</strong>（農用殺菌劑，多藥方案之一）</td><td><strong>4 mg/kg PO q12h</strong>，可改善存活</td></tr></table></div><ul class="notes"><li>抗體力價可監測治療：成功後 <strong>3–6 個月</strong>恢復正常</li></ul></div><div class="subsection"><h3>預後</h3><ul class="notes"><li>歷來差：反應率約 <strong>20%</strong>、中位存活 <strong>26.5 天</strong>、多數發病 3 個月內死亡</li><li>近期回溯：16 隻犬用含 mefenoxam 的多藥方案，<strong>反應率 50%</strong>，中位死亡時間 90 天（21–203）</li><li><strong>局部且較遠端</strong>（遠端迴腸到直腸）病變，即使不手術長期預後也可能較好</li><li>多藥治療 ± 手術，部分犬持續緩解 1–5 年；但仍有犬無效死亡</li></ul></div></div>
+  </div>
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🟢</div>
+      <h2>8. 原藻症（*Prototheca*）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>普遍存在的單細胞藻類，可造成犬腸胃與播散性疾病</li><li>犬播散型多為 <strong>*P. bovis</strong>*，較少 *P. ciferrii*；*P. wickerhamii* 造成犬貓皮膚感染</li><li>好發：<strong>年輕成犬</strong>（中位 4 歲），<strong>拳師犬</strong>比例特別高</li><li>感染通常<strong>從結腸開始</strong>：慢性反覆大腸型腹瀉，常有鮮血便、進行性體重下降</li><li>之後可擴散到內臟、<strong>腦與眼</strong>：眼或神經症狀可能在腹瀉開始<strong>數月後</strong>才出現；也可能視力漸失、聽力喪失、腦神經麻痺、跛行、多尿多渴</li></ul></div><div class="subsection"><h3>診斷</h3><ul class="notes"><li>細胞學或組織學看到病原；腎臟受累時看<strong>尿沉渣</strong></li><li>外觀：<strong>卵圓形到腎形</strong>、透明細胞壁、嗜鹼性顆粒狀細胞質（原文圖 5）</li><li>結腸炎犬：<strong>直腸刮片</strong>、結腸切片或感染淋巴結抽吸</li></ul></div><div class="subsection"><h3>治療與預後</h3><ul class="notes"><li>播散型是<strong>毀滅性</strong>疾病，治療方案未明、長期預後保留</li><li>多數方案 <strong>≥ 3 種藥</strong>，常是<strong>唑類＋amphotericin B</strong>；可能的話依藥敏</li><li>多國分離株研究：常用唑類（itraconazole、ketoconazole、fluconazole）體外活性差；efinaconazole、ravuconazole 較好但犬未報告或核准</li><li>對 <strong>amphotericin B</strong> 敏感性可預測，使用與存活改善有關</li><li><strong>最多 90% 治療無反應</strong>；皮膚型死亡率最低；播散型預後差，<strong>神經受累</strong>尤其差</li><li>播散或腸道型多在診斷後 <strong>4 個月內</strong>死亡；罕見存活 &gt; 1 年</li></ul></div></div>
+  </div>
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🥊</div>
+      <h2>9. *E. coli* 相關肉芽腫性結腸炎（GC）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>舊稱<strong>組織球性潰瘍性結腸炎</strong>；罕見的慢性結腸發炎</li><li>結腸固有層與黏膜下層大量 <strong>PAS 陽性巨噬細胞</strong>浸潤、上皮糜爛或潰瘍、杯狀細胞消失</li><li>PAS 陽性反映巨噬細胞內堆積<strong>富含碳水的細菌殘骸</strong>；與主要在泌尿系統的 malakoplakia 相似</li></ul></div><div class="subsection"><h3>誰會得</h3><ul class="notes"><li><strong>年輕拳師犬與法鬥</strong>最常見，其他品種零星</li><li>多數 <strong>&lt; 2 歲</strong>，&gt; 5 歲罕見（有一隻 9 歲報告）</li><li>貓零星：4–10 歲、多為公貓</li></ul></div><div class="subsection"><h3>臨床</h3><ul class="notes"><li>嚴重慢性結腸炎：腹瀉、鮮血便、裡急後重、黏液便、排便次數增加</li><li>體重下降 <strong>26–78%</strong>（可能因迴腸也受累）</li><li>不像人類 Whipple 病，<strong>全身擴散罕見</strong>，多限於區域腸繫膜淋巴結；有一隻貓擴散到腸繫膜淋巴結、脾、腦</li></ul></div><div class="subsection"><h3>診斷</h3><ul class="notes"><li><strong>直腸刮片</strong>：可評估組織漿菌、原藻等鑑別；看到大量輕度退化、含嗜鹼性包涵體的巨噬細胞時，提高 GC 的懷疑</li><li>確診需<strong>大腸鏡＋切片</strong>：黏膜充血、水腫、不規則，有出血與潰瘍（原文圖 6：2 歲法鬥慢性黏液血便 1 年＋體重下降，培養出多重抗藥 *E. coli*，用 <strong>meropenem</strong> 治療）</li><li>切片以 <strong>FISH</strong> 或 <strong>IHC</strong> 確認<strong>黏附侵入性 *E. coli*（AIEC）</strong></li><li>切片時同時做<strong>結腸黏膜培養＋藥敏</strong>——抗藥菌常見</li></ul></div><div class="subsection"><h3>治療</h3><ul class="notes"><li>依藥敏選<strong>能穿透巨噬細胞</strong>的抗生素：<strong>fluoroquinolone、chloramphenicol、rifampicin、carbapenem、TMS</strong></li><li>傳統：<strong>enrofloxacin 5–10 mg/kg PO q24h × 6–8 週</strong>，症狀快速緩解、長期緩解</li><li>多數 <strong>3–12 天</strong>內反應，但需<strong>長療程</strong>以防復發與抗藥</li><li><strong>Fluoroquinolone 抗藥性</strong>發展快，GC 病例 <strong>43–63%</strong>，與先前用過 fluoroquinolone 有關；抗藥 AIEC 常反應差而安樂死 → <strong>切片時一定要做黏膜培養</strong></li></ul></div><div class="subsection"><h3>預後</h3><ul class="notes"><li>犬貓長期結果多數良好：犬中位無病期約 <strong>47 個月</strong></li><li>部分發展出多重抗藥 AIEC、抗生素無效而安樂死</li><li>懷疑復發 → <strong>重新切片＋FISH＋培養</strong>；有些病例組織學確認 AIEC 已根除，症狀其實來自併發疾病（如慢性發炎性腸病）</li></ul><p class="p"><span class="src src-add">💡 補充</span> 本特刊 13 腸胃道切片一文提醒：懷疑 GC 時至少 <strong>2 塊新鮮結腸切片</strong>放運送培養基送培養，其餘福馬林固定做 PAS 與 FISH。</p></div></div>
+  </div>
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📌</div>
+      <h2>10. 作者的 Clinics Care Points</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>犬貓細菌性結腸炎<strong>不常見</strong>；多數細菌分離或 PCR 陽性反映<strong>續發變化</strong>，不需標靶治療</li><li>肉芽腫性結腸炎犬（尤其有全身性受累）應依<strong>目前所在地區與旅遊史</strong>檢查血吸蟲、組織漿菌、腐黴、原藻、利什曼</li><li><strong>年輕拳師犬與法鬥</strong>有大腸型腹瀉 → 大腸鏡切片送組織學、FISH 或 IHC、細菌培養與藥敏</li><li>單純結腸炎<strong>不需抗生素</strong>，只留給懷疑細菌移位、菌血症或敗血症的重症</li><li>總結：鞭蟲（犬）與 *T. blagburni*（貓）是常見原因，應<strong>例行篩檢</strong></li></ul><p class="p"><span class="src src-add">💡 補充</span> 台灣讀者注意：原文的地理分布以北美為主；血吸蟲（*H. americana*）、組織漿菌、利什曼在台灣犬貓很少見或未見報告，旅遊史與進口動物要特別問。腐黴與原藻在亞洲熱帶地區都有報告。</p></div></div>
+  </div>
+  <div class="section" id="ref">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📚</div>
+      <h2>原文出處</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><div class="ref-list"><div class="ref-item">Sarah M. Schmid. Infectious Colitis in Dogs and Cats: Diagnosis, Management, and Clinical Outcomes. <em>Vet Clin North Am Small Anim Pract</em> 2026;56(3):769–787. <a href="https://doi.org/10.1016/j.cvsm.2026.01.004" target="_blank" rel="noopener">doi:10.1016/j.cvsm.2026.01.004</a></div><div class="ref-item">特刊：Gastroenterology（主編 M. Katherine Tolbert、Sara A. Jablonski），<em>Vet Clin North Am Small Anim Pract</em> 2026 年 5 月號，第 56 卷第 3 期。© 2026 Elsevier Inc.</div></div></div></div>
+  </div>
+
+  <div class="next-up">
+    <p>同一期特刊的其他文章請回目錄。</p>
+    <a href="index.html">回到特刊目錄 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  navLinks.forEach(a => { a.classList.remove('active'); if (a.getAttribute('href') === '#' + cur) a.classList.add('active'); });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>從診斷到痊癒：犬貓急性腹瀉實務指南｜VCNA 腸胃學特刊 2026</title>
+<style>
+  :root {
+    --primary: #8A4B0F;
+    --primary-light: #F6EBDD;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2B1A0B;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E5C9A8; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A2E14;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E5C9A8; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E5C9A8;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A2E14;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #C9A27A;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #5A320C 0%, #C47F2B 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2B1A0B; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A2E14; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #5A320C; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+  .figlink { font-size: 12px; font-weight: 600; color: var(--primary); text-decoration: none; background: var(--primary-light); border-radius: 999px; padding: 2px 9px; margin-left: 4px; white-space: nowrap; }
+  .figlink:hover { text-decoration: underline; }
+  .fig.diagram svg { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; background: #fff; }
+  @media (max-width: 600px) { .fig.diagram { overflow-x: auto; } .fig.diagram svg { min-width: 560px; } .fig.diagram figcaption::before { content: "← 左右滑動看完整圖 →"; display: block; font-size: 11px; opacity: .6; margin-bottom: 2px; } }
+</style>
+
+</head>
+<body>
+
+<a class="home-link-fab" href="index.html">← 回到特刊目錄</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← VCNA 腸胃學特刊 2026</a>
+  <div class="logo">
+    <h2>09｜急性腹瀉實務</h2>
+    <p>VCNA 2026;56(3) 論文整理</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div><a href="#s1">1. 定義與分類</a><a href="#s2">2. 病理生理</a><a href="#s3">3. 臨床表現與嚴重度</a><a href="#s4">4. 什麼時候要檢查、做什麼</a><a href="#s5">5. 輸液與電解質</a><a href="#s6">6. 飲食</a><a href="#s7">7. 益生元與益生菌</a><a href="#s8">8. 抗生素：大多數不需要</a><a href="#s9">9. 其他治療與照護</a><a href="#s10">10. 作者的 Clinics Care Points</a><a href="#ref">原文出處</a>
+  </nav>
+</nav>
+
+<div id="main">
+
+  <div class="page-header">
+    <h1>從診斷到痊癒：犬貓急性腹瀉實務指南</h1>
+    <p>作者：Sophia Amirsultan, Adesola Odunayo（論文整理）</p>
+    <p>From Diagnosis to Resolution：A Practical Guide to Acute Diarrhea in Veterinary Patients｜Vet Clin Small Anim 2026;56(3):665–679</p>
+    <div class="tags"><span class="tag">急性腹瀉</span><span class="tag">AHDS</span><span class="tag">ENOVAT</span><span class="tag">嚴重度分級</span><span class="tag">輸液</span><span class="tag">皮下輸液</span><span class="tag">口服電解質</span><span class="tag">早期腸道營養</span><span class="tag">鼻食道管</span><span class="tag">益生菌</span><span class="tag">益生元</span><span class="tag">metronidazole</span><span class="tag">抗生素管理</span><span class="tag">crofelemer</span></div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📑 原文</span> 論文內容 <span class="src src-add">💡 補充</span> 整理者補充（臨床提醒、交叉參照；不是作者說的）
+    <br><span class="muted">依原文重點整理成中文，不是逐句翻譯；未標記的段落都是原文內容。原文的圖表版權屬 Elsevier，這裡沒有轉載，表格是依內文重新整理。藥物劑量請回原文與最新文獻確認。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記重點</h3>
+    <ul><li>急性腹瀉＝<strong>&lt; 14 天</strong>；多會自限，<strong>78% 在 2 天內</strong>緩解；貓比狗少見</li><li>多數病例<strong>檢查收穫低</strong>，輕症可直接症狀治療</li><li><strong>ENOVAT 分級</strong>（不論有無血便）：輕＝精神好、無脫水／發燒，門診；中＝脫水或低血容、對輸液反應快，住院支持；重＝意識明顯改變＋全身性徵象，住院甚至加護</li><li>3,000 多隻急性腹瀉犬：<strong>84% 輕、15% 中、&lt; 1% 重</strong></li><li><strong>AHDS 犬 PCV 通常正常或偏高</strong>；*netF* 陽性 *C. perfringens* PCR 支持 AHDS</li><li>例行抗生素<strong>不會縮短病程</strong>、還會破壞菌相 2–6 週以上；統合分析高確定性證據顯示輕中度病例<strong>無臨床效益</strong>——<strong>連血便與 AHDS 也不建議例行使用</strong></li><li>抗生素只用於<strong>敗血症、疑似細菌移位（白血球／嗜中性球低下）、免疫抑制＋全身性疾病</strong>，療程 <strong>3–7 天</strong></li><li>理想飲食：中高熱量、中等量<strong>高消化率蛋白</strong>、<strong>低纖但混合纖維</strong>；能吃就早點吃</li></ul>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">💧</div>
+      <h2>1. 定義與分類</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>腹瀉＝糞便含水量增加，可伴隨次數與量增加（希臘文「流過」）</li><li><strong>急性 &lt; 14 天</strong>；<strong>慢性 &gt; 14 天</strong></li><li>是犬貓最常見的就診原因之一；多數自限、只需少量檢查與治療</li><li>但嚴重脫水、低血容、電解質異常、細菌移位、器官衰竭時可能危及生命</li></ul></div><div class="subsection"><h3>急性出血性腹瀉症候群（AHDS）</h3><ul class="notes"><li>病因不明，<strong>小型犬</strong>較常見、貓罕見</li><li>推測：食物過敏反應、梭菌毒素（NetF）、壓力、寄生蟲／病毒感染</li><li>急性血便，多數伴隨嗜睡與嘔吐；比其他急性腹瀉嚴重，嗜中性球低下較常見，常需住院積極支持</li><li>多數會恢復，但<strong>未治療死亡率高</strong></li></ul><p class="p"><span class="src src-add">💡 補充</span> 原文把 NetF 寫成「*Clostridioides difficile* 毒素」，但 *netF* 是 <strong>*Clostridium perfringens</strong>* 的毒素基因（本文後段與 06 菌相一文都寫 *C. perfringens*），應是筆誤。</p></div><div class="subsection"><h3>原文表 1：小腸型 vs 大腸型腹瀉</h3><div class="tbl-wrap"><table><tr><th>特徵</th><th>小腸型</th><th>大腸型</th></tr><tr><td>糞便量</td><td>正常到稍多</td><td>減少</td></tr><tr><td>排便次數</td><td>正常到稍增</td><td>增加</td></tr><tr><td>黏液</td><td>少見</td><td>常見</td></tr><tr><td>血</td><td><strong>黑便</strong></td><td><strong>鮮血便</strong></td></tr><tr><td>裡急後重</td><td>少見</td><td>有</td></tr><tr><td>急迫</td><td>少見</td><td>有</td></tr><tr><td>脂肪便</td><td>可能有</td><td>無</td></tr><tr><td>嘔吐</td><td>可能有</td><td>少見</td></tr><tr><td>體重下降</td><td>可能有</td><td>少見</td></tr></table></div></div><div class="subsection"><h3>原文 Box 1：急性腹瀉的原因</h3><div class="tbl-wrap"><table><tr><th>類別</th><th>原因</th></tr><tr><td>飲食</td><td>過敏、食物不耐、突然換食、亂吃、誤食毒物</td></tr><tr><td>寄生蟲</td><td>*Giardia*、鞭蟲、蛔蟲、鉤蟲、*Tritrichomonas blagburni*、*Cryptosporidium felis*、球蟲</td></tr><tr><td>細菌</td><td>梭菌腸毒素、*Campylobacter*、*Salmonella*、*Helicobacter*、致瀉性 *E. coli*、*Yersinia*、*Shigella*</td></tr><tr><td>病毒</td><td>犬小病毒、冠狀病毒、犬瘟熱、貓泛白血球減少症、貓冠狀病毒、貓白血病病毒</td></tr><tr><td>真菌</td><td>—</td></tr><tr><td>全身性疾病</td><td><strong>Addison</strong>、Cushing、急性與慢性腎病、肝病、甲亢、急性胰臟炎</td></tr><tr><td>其他</td><td>特發性、異物阻塞、AHDS、藥物（抗生素、NSAID、類固醇等）</td></tr></table></div><p class="p"><span class="src src-add">💡 補充</span> 原文 Box 1 寫「Feline leukopenia virus」，應指貓白血病病毒（FeLV）。</p></div></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">⚙️</div>
+      <h2>2. 病理生理</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>腸道吸收與分泌的平衡被破壞；常有不只一種機制</li></ul></div><div class="subsection"><h3>滲透性腹瀉</h3><ul class="notes"><li>腸腔滲透活性物質增加 → 水被動進入腸腔，超過吸收能力</li><li><strong>禁食可能改善</strong>（減少溶質負荷）</li><li>原因：吃了無法吸收的溶質（如 lactulose）、黏膜吸收面受損（腸病、食物不耐）、蠕動異常使接觸時間變短（甲亢、鴉片類）</li></ul></div><div class="subsection"><h3>分泌性腹瀉</h3><ul class="notes"><li>離子運輸異常 → 過度分泌液體；吸收機制還在但被壓垮</li><li><strong>禁食通常無效</strong></li><li><strong>促分泌物</strong>改變上皮細胞內 cAMP、cGMP、鈣和／或蛋白激酶 → 中性 NaCl 吸收減少或氯離子分泌增加<ul class="notes"><li>細菌腸毒素（*E. coli*、梭菌）</li></ul><ul class="notes"><li>激素（血清素、降鈣素等）</li></ul><ul class="notes"><li>清潔劑類（<strong>膽酸</strong>、脂肪酸、瀉劑）</li></ul><ul class="notes"><li>發炎性腸病</li></ul></li></ul></div><div class="subsection"><h3>其他機制</h3><ul class="notes"><li>腸道通透性改變、特定營養素吸收不良、發炎物質、上皮更新速率、蠕動改變</li><li>「<strong>病細胞症候群</strong>」：上皮被毒素或發炎介質壓垮，功能變差但沒有死亡</li></ul></div></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🩺</div>
+      <h2>3. 臨床表現與嚴重度</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>近期（&lt; 14 天）小腸、大腸或混合型腹瀉，可伴厭食、嘔吐、嗜睡</li><li>理學檢查：脫水、腹部不適／疼痛、腸袢擴張、直腸檢查見血；也可能有淋巴結腫大、腹腔腫塊、異物</li><li><strong>直腸檢查很重要</strong>（貓可能不配合）</li><li>嚴重者有休克徵象：心搏過速、脈搏弱、CRT 延長、黏膜蒼白、低血壓</li></ul></div><div class="subsection"><h3>原文表 2：ENOVAT 犬急性腹瀉嚴重度分級（不論有無血便）</h3><div class="tbl-wrap"><table><tr><th>分級</th><th>定義</th><th>處置</th></tr><tr><td>輕度</td><td>精神好、警覺、反應正常；<strong>無脫水、低血容、發燒</strong></td><td>通常門診</td></tr><tr><td>中度</td><td>精神輕到中度改變；有脫水或低血容；可能心搏過速，<strong>對輸液反應快</strong>；無發燒、無壓倒性發炎（嚴重嗜中性球增多／低下、膽紅素上升）</td><td>常需住院支持</td></tr><tr><td>重度</td><td>精神中到重度改變＋全身性疾病徵象（體溫異常、嗜中性球增多等）</td><td>住院，有時需加護</td></tr></table></div><ul class="notes"><li>3,000 多隻急性腹瀉犬（主治醫師判定）：<strong>84% 輕、15% 中、&lt; 1% 重</strong></li></ul></div></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🔬</div>
+      <h2>4. 什麼時候要檢查、做什麼</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>優先檢查的病患</h3><ul class="notes"><li>合併其他症狀（嘔吐、嗜睡、厭食），尤其<strong>中重度</strong></li><li>病史提示續發原因：<strong>未打疫苗的幼犬</strong>（懷疑小病毒）、<strong>一窩小貓</strong>都腹瀉（優先考慮感染）</li><li>症狀不緩解、症狀治療失敗</li></ul></div><div class="subsection"><h3>血液與尿液</h3><ul class="notes"><li>有全身性徵象（嘔吐、厭食、多尿多渴）時做 CBC、生化、尿檢：排除其他原因並評估嚴重度（腎前性氮血症＝脫水；白血球低下＝細菌移位或骨髓受累）</li><li><strong>AHDS 犬雖然腸胃出血，PCV 通常正常或偏高</strong></li><li>尿檢可區分腎性與腎前性氮血症，並找可能造成腹瀉的泌尿道感染</li><li>各種病因的腹瀉犬常見異常：白血球低下、低血糖、氮血症、低膽固醇、ALT 上升</li></ul></div><div class="subsection"><h3>糞便檢查</h3><ul class="notes"><li>依年齡、病史、是否常規驅蟲、地區決定</li><li>寄生蟲陽性率：<strong>&lt; 6 月齡 29.6%</strong>、&gt; 1 歲 6.1%（所有年齡都有）</li><li>美國地區差異：南部鉤蟲最多（4%）；西部蛔蟲卵（2.8%）與梨形蟲囊體（6.3%）最多</li><li><strong>離心漂浮法優於被動漂浮</strong>；直接抹片可看梨形蟲滋養體，但找蟲卵不如漂浮法</li><li>梨形蟲抗原 ELISA、糞便 PCR：蟲卵少、幼蟲感染、單性感染時有幫助；PCR 也能測驅蟲藥抗藥性標記</li><li>美國 CAPC 建議<strong>糞便 PCR＋顯微鏡蟲卵檢查</strong>合併使用</li></ul></div><div class="subsection"><h3>影像</h3><ul class="notes"><li>X 光：排除異物、腹腔游離氣體、腫瘤</li><li>POCUS（有時 X 光）看到游離液體 → 考慮血腹、尿腹、膽汁、敗血性腹膜炎</li></ul></div><div class="subsection"><h3>原文表 3：視個案考慮的檢查</h3><div class="tbl-wrap"><table><tr><th>檢查</th><th>說明</th></tr><tr><td>血液氣體</td><td>酸鹼與電解質；可見低鉀、低鈉、低氯</td></tr><tr><td>基礎皮質醇或 ACTH 刺激試驗</td><td>基礎皮質醇 <strong>&gt; 2 µg/dL 可排除 Addison</strong>；≤ 2 µg/dL 需做 ACTH 刺激試驗確認或排除</td></tr><tr><td>特定感染檢查</td><td>梭菌腸毒素、小病毒 ELISA 或 IFA；<strong>*netF* 陽性 *C. perfringens* PCR 支持 AHDS</strong>；*T. foetus*、*Cryptosporidium* 的培養或 PCR</td></tr><tr><td>Spec cPL／cPLI／SNAP cPL</td><td>胰臟炎敏感度 21–100%、特異度 59–100%</td></tr><tr><td>糞便培養</td><td>找 *Salmonella*、*E. coli* 多半沒收穫；<strong>培養 *C. perfringens* 不能診斷 AHDS</strong></td></tr><tr><td>腹部超音波</td><td>中重度或慢性腹瀉；可見慢性腸病（瀰漫性腸壁增厚）、腫瘤、胰臟炎</td></tr><tr><td>腹部 CT</td><td>重症且超音波不確定時</td></tr><tr><td>*Pythium* 血清學</td><td>依地區、慢性腹瀉與體重下降等病史</td></tr></table></div></div></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">💉</div>
+      <h2>5. 輸液與電解質</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>有特定原因（如寄生蟲）就針對治療；多數原因不明 → 補液與電解質、調整飲食、驅蟲、處理持續流失</li><li><strong>支持療法是基石</strong>，依嚴重度調整</li></ul></div><div class="subsection"><h3>輕度</h3><ul class="notes"><li>食慾好、不吐或很少吐 → <strong>口服補液</strong>最理想；提供乾淨飲水並監看避免一次喝太多</li><li>市售含葡萄糖與電解質的口服液可矯正輕度脫水，耐受性與效果不錯</li><li>飼主很難評估攝入與流失 → 可經驗性<strong>皮下輸液</strong>：平衡等張晶體液（LRS、Normosol-R、Plasma-Lyte A）<strong>20–30 mL/kg，每天 1–2 次</strong>，依皮膚彈性決定每個部位的量</li><li><strong>避免皮下打 0.9% NaCl</strong>（pH 低、會痛）</li><li>有輸液不耐風險（嚴重心臟病）或出血傾向者小心</li></ul></div><div class="subsection"><h3>中重度</h3><ul class="notes"><li>住院；可能低血容、脫水、中重度電解質與酸鹼異常（低血糖、低鉀、高或低鈉、高或低氯）</li><li>低血容 → 立即<strong>輸液推注</strong>，再開矯正脫水的輸液計畫；推注無效時偶需升壓劑</li><li>每隻住院病患都要有個別計畫：矯正脫水＋維持量＋<strong>持續流失</strong>（急性腹瀉的流失量大且變化大）</li><li>腹瀉便富含鈉、鉀、氯、碳酸氫根：失水 &gt; 失電解質 → 高鈉、高氯；失電解質 &gt; 失水 → 低鈉、低鉀、低氯</li></ul></div><div class="subsection"><h3>原文表 4：住院腹瀉病患的輸液</h3><div class="tbl-wrap"><table><tr><th>目的</th><th>估計量</th><th>補充時間</th></tr><tr><td>復甦</td><td>等張晶體液 <strong>5–20 mL/kg</strong> 推注，可依反應重複 2–3 次</td><td>10–15 分鐘</td></tr><tr><td>補脫水</td><td>脫水 % × 體重（kg）＝缺水量（L）</td><td>12–24 小時</td></tr><tr><td>維持</td><td>40–60 mL/kg/24h；或 RER＝70 × 體重^0.75 /24h（犬貓）；幼齡 80–120 mL/kg/24h</td><td>24 小時</td></tr><tr><td>補持續流失</td><td>估計腹瀉流失量</td><td>6–12 小時</td></tr></table></div></div></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🍲</div>
+      <h2>6. 飲食</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>營養是急性腹瀉處置的主要部分；重點是<strong>能量、脂肪、纖維</strong>，<strong>消化率</strong>是維持攝取、最大化能量利用、改善糞便評分的關鍵</li><li>高消化率飲食改善營養吸收，但纖維較少</li><li>可發酵纖維 → SCFA；<strong>丁酸</strong>是結腸細胞主要能量，幫助鈉與氯吸收、利於屏障修復</li><li>可溶纖維（果膠、洋車前子）較易發酵、糞便較軟；不可溶纖維（纖維素）增加糞便量、減少水分</li><li><strong>理想急性腹瀉飲食</strong>：中高熱量、中等量高消化率蛋白、<strong>低纖且混合纖維</strong></li></ul></div><div class="subsection"><h3>早期營養</h3><ul class="notes"><li>重症住院病患常不耐進食；ESPEN 人類重症指引：不耐進食 <strong>48 小時內</strong>開始營養，<strong>腸道優於靜脈</strong></li><li>延後腸道營養的情況：難治休克、嚴重低血氧、酸中毒、大量腸胃出血、嚴重胃輕癱、腸阻塞與缺血性疾病</li><li>早期腸道營養對犬貓急性胰臟炎有益，並改善小病毒犬的預後</li></ul></div><div class="subsection"><h3>居家鼻食道管</h3><ul class="notes"><li>輕中度但厭食、無法負擔續住院的病患 → 放<strong>鼻食道管回家</strong></li><li>研究：管子中位留置 <strong>6 天</strong>，飼主滿意度高；併發症約 65.5%，多為輕微（主要是打噴嚏）</li></ul><p class="p"><span class="src src-add">💡 補充</span> 本特刊 05 膳食纖維一文提供了相反方向的證據：急性結腸炎用<strong>高纖</strong>飲食比加 metronidazole 好、復發少；兩篇可對照閱讀——小腸型或混合型偏向高消化率低纖，大腸型結腸炎可考慮高纖。</p></div></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🦠</div>
+      <h2>7. 益生元與益生菌</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li><strong>益生元</strong>：可發酵纖維（FOS、甜菜渣、菊糖），促進共生菌、抑制致病梭菌與 *E. coli*，與益生菌互補</li><li><strong>益生菌</strong>：活微生物（多為細菌或酵母），經競爭排除、產生抗菌物質、恢復有益菌群</li><li>益生元犬試驗：急性腹瀉有<strong>小幅</strong>正面效果</li><li>益生菌：部分研究縮短病程，但<strong>系統性回顧與統合分析顯示效果非常有限</strong>；多數研究樣本小、菌株與劑量不一、部分無安慰劑對照、結果定義不同 → 需更多研究</li></ul></div></div>
+  </div>
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🚫</div>
+      <h2>8. 抗生素：大多數不需要</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>高品質證據顯示，多數急性腹瀉用抗生素<strong>幾乎沒有臨床效益</strong>，還可能造成菌相失調與抗藥性</li><li><strong>Metronidazole</strong> 是犬最常開的；一研究平均縮短 1.5 天，但多數研究沒有改善；部分研究顯示停藥後菌相負面影響持續 <strong>2、4、6 週或更久</strong></li><li>統合分析（6 個 RCT）：<strong>高確定性</strong>證據顯示輕中度犬急性腹瀉用抗生素，在腹瀉時間、住院時間、疾病進展、死亡率<strong>都沒有臨床相關效果</strong></li><li>現行抗生素管理指引：<strong>不建議</strong>在犬貓輕中度急性腹瀉例行使用，<strong>即使有血便或是 AHDS</strong></li></ul></div><div class="subsection"><h3>什麼時候要用</h3><ul class="notes"><li>符合<strong>敗血症</strong>標準</li><li>懷疑<strong>細菌移位</strong>（嗜中性球低下、白血球低下）</li><li>免疫抑制＋合併全身性疾病</li><li>以上情況可考慮廣效抗生素（依臨床評估，不是經驗處方）；多數狗 <strong>3–7 天</strong>足夠</li><li>少見的原發細菌性腹瀉（*Salmonella*、*E. coli* 等）：急性腹瀉／血便＋中重度全身性受損（發燒、發炎性白血球像或白血球低下）＋低血容／電解質異常；依病史、糞便培養、腸毒素檢測決定</li></ul><p class="p"><span class="src src-add">💡 補充</span> 本站相關：<a href="../case-discussions/feline-chf-fluid-intolerance.html">梅醫師病例討論 07：貓 CHF 輸液不耐（含 ENOVAT 指引討論）</a>。</p></div></div>
+  </div>
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">💊</div>
+      <h2>9. 其他治療與照護</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>止吐</h3><ul class="notes"><li><strong>Maropitant</strong> 1 mg/kg IV 或 2 mg/kg PO q24h</li><li><strong>Ondansetron</strong> 0.5–1 mg/kg IV、SC 或 PO q8–12h</li></ul></div><div class="subsection"><h3>止瀉劑</h3><ul class="notes"><li>loperamide、diphenoxylate、kaolin/pectin、bismuth subsalicylate <strong>不常規使用</strong>；腹瀉影響動物或飼主休息時可考慮</li><li><strong>貓避免 bismuth subsalicylate</strong>（對水楊酸非常敏感）；loperamide、diphenoxylate 可造成<strong>貓過度興奮</strong></li></ul></div><div class="subsection"><h3>驅蟲</h3><ul class="notes"><li>糞檢陽性，或病史、年齡提示寄生蟲風險高（如幼貓）時使用</li></ul></div><div class="subsection"><h3>Crofelemer（化療相關腹瀉）</h3><ul class="notes"><li>FDA 有條件核准（Canalevia-CA1）；來自 *Croton lechleri* 植物，抑制腸上皮腔面<strong>氯離子通道</strong>，減少分泌性腹瀉</li><li>先導研究最常見副作用是嘔吐（11/134，8%）；多中心田野研究中不同病因的腹瀉犬 9/12 在 48 小時內緩解；尚無化療相關腹瀉的 RCT</li></ul></div><div class="subsection"><h3>護理</h3><ul class="notes"><li>告知飼主衛生：可能需要定期清洗肛周，用<strong>隔離霜</strong>與溫和清潔預防皮膚刺激</li><li>住院大量腹瀉 → <strong>Foley 直腸導管</strong>維持衛生，並可量化持續流失以調整輸液</li></ul><p class="p"><span class="src src-add">💡 補充</span> 原文把 crofelemer 產品名印作「Cavalevia-CA1」，美國核准的產品名是 Canalevia-CA1。</p></div></div>
+  </div>
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📌</div>
+      <h2>10. 作者的 Clinics Care Points</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>完整病史與臨床評估是犬貓急性腹瀉評估的關鍵</li><li><strong>多數急性腹瀉靠症狀治療就會恢復，即使是出血性腹瀉也不需要例行使用抗生素</strong></li></ul></div></div>
+  </div>
+  <div class="section" id="ref">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📚</div>
+      <h2>原文出處</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><div class="ref-list"><div class="ref-item">Sophia Amirsultan, Adesola Odunayo. From Diagnosis to Resolution: A Practical Guide to Acute Diarrhea in Veterinary Patients. <em>Vet Clin North Am Small Anim Pract</em> 2026;56(3):665–679. <a href="https://doi.org/10.1016/j.cvsm.2025.12.003" target="_blank" rel="noopener">doi:10.1016/j.cvsm.2025.12.003</a></div><div class="ref-item">特刊：Gastroenterology（主編 M. Katherine Tolbert、Sara A. Jablonski），<em>Vet Clin North Am Small Anim Pract</em> 2026 年 5 月號，第 56 卷第 3 期。© 2026 Elsevier Inc.</div></div></div></div>
+  </div>
+
+  <div class="next-up">
+    <p>同一期特刊的其他文章請回目錄。</p>
+    <a href="index.html">回到特刊目錄 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  navLinks.forEach(a => { a.classList.remove('active'); if (a.getAttribute('href') === '#' + cur) a.classList.add('active'); });
+});
+</script>
+</body>
+</html>

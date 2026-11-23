@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>犬蛋白質流失性腸病的新觀念與治療｜VCNA 腸胃學特刊 2026</title>
+<style>
+  :root {
+    --primary: #8A4B0F;
+    --primary-light: #F6EBDD;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2B1A0B;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E5C9A8; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A2E14;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E5C9A8; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E5C9A8;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A2E14;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #C9A27A;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #5A320C 0%, #C47F2B 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2B1A0B; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A2E14; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #5A320C; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+  .figlink { font-size: 12px; font-weight: 600; color: var(--primary); text-decoration: none; background: var(--primary-light); border-radius: 999px; padding: 2px 9px; margin-left: 4px; white-space: nowrap; }
+  .figlink:hover { text-decoration: underline; }
+  .fig.diagram svg { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; background: #fff; }
+  @media (max-width: 600px) { .fig.diagram { overflow-x: auto; } .fig.diagram svg { min-width: 560px; } .fig.diagram figcaption::before { content: "← 左右滑動看完整圖 →"; display: block; font-size: 11px; opacity: .6; margin-bottom: 2px; } }
+</style>
+
+</head>
+<body>
+
+<a class="home-link-fab" href="index.html">← 回到特刊目錄</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← VCNA 腸胃學特刊 2026</a>
+  <div class="logo">
+    <h2>12｜犬蛋白質流失性腸病</h2>
+    <p>VCNA 2026;56(3) 論文整理</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div><a href="#s1">1. PLE 是什麼</a><a href="#s2">2. 病因與致病機制</a><a href="#s3">3. 初始治療：飲食最關鍵</a><a href="#s4">4. 初始治療：糖皮質素與第二線免疫抑制</a><a href="#s5">5. 治療與預防併發症</a><a href="#s6">6. 後續治療</a><a href="#s7">7. 展望與 Clinics Care Points</a><a href="#ref">原文出處</a>
+  </nav>
+</nav>
+
+<div id="main">
+
+  <div class="page-header">
+    <h1>犬蛋白質流失性腸病的新觀念與治療</h1>
+    <p>作者：Sara A. Jablonski（論文整理）</p>
+    <p>Emerging Concepts in the Understanding and Treatment of Canine Protein-Losing Enteropathy｜Vet Clin Small Anim 2026;56(3):715–729</p>
+    <div class="tags"><span class="tag">蛋白質流失性腸病</span><span class="tag">PLE</span><span class="tag">低白蛋白血症</span><span class="tag">腸淋巴管擴張</span><span class="tag">乳糜管擴張</span><span class="tag">膠囊內視鏡</span><span class="tag">低脂</span><span class="tag">超低脂</span><span class="tag">水解低脂</span><span class="tag">自製飲食</span><span class="tag">prednisolone</span><span class="tag">budesonide</span><span class="tag">cyclosporine</span><span class="tag">chlorambucil</span><span class="tag">鈷胺素</span><span class="tag">維生素 D</span><span class="tag">低血鈣</span><span class="tag">血栓預防</span><span class="tag">clopidogrel</span></div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📑 原文</span> 論文內容 <span class="src src-add">💡 補充</span> 整理者補充（臨床提醒、交叉參照；不是作者說的）
+    <br><span class="muted">依原文重點整理成中文，不是逐句翻譯；未標記的段落都是原文內容。原文的圖表版權屬 Elsevier，這裡沒有轉載，表格是依內文重新整理。藥物劑量請回原文與最新文獻確認。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記重點</h3>
+    <ul><li>PLE 是<strong>症候群</strong>：腸道通透性上升、黏膜糜爛潰瘍、<strong>淋巴管功能異常</strong>（單獨或合併）</li><li>腸道發炎嚴重度與臨床嚴重度、低白蛋白<strong>不相關</strong> → PLE 可能不只是「嚴重的慢性腸炎」，而有獨特機制</li><li>有腸炎＋低白蛋白的狗，切片有<strong>乳糜管擴張的機率是白蛋白正常者的 5 倍</strong>；淋巴管擴張可能<strong>嚴重被低估</strong>（斑塊分布、可在深層）</li><li><strong>飲食是最關鍵的治療</strong>：低脂單一飲食 6/14 緩解；類固醇難治的淋巴管擴張 <strong>19/24</strong> 降脂後改善</li><li>2024 年起有<strong>水解＋低脂</strong>處方，是病因混合或不明時的首選；低脂 1.6–2.5、<strong>超低脂 ≤ 1.5 g/100 kcal</strong></li><li>Prednisolone 作者認為<strong>不需超過 1 mg/kg/天</strong>；淋巴管擴張為主者 0.5–0.75 mg/kg；上限 60 mg/隻；PLE 犬口服吸收正常</li><li>開始時就加第二線免疫抑制劑<strong>沒有好處</strong>；類固醇＋初始飲食失敗的狗，<strong>80–90%</strong> 換成針對性飲食（常為超低脂自製）可緩解——先改飲食、別加藥</li><li>PLE 屬<strong>血栓高風險</strong>：CT 血管攝影 13.6–22% 有血栓（多無症狀）；作者常規 <strong>clopidogrel 2–3 mg/kg q24h</strong></li></ul>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🩸</div>
+      <h2>1. PLE 是什麼</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>蛋白質經病變或功能異常的腸黏膜過度流失的<strong>症候群</strong>，不是單一診斷</li></ul></div><div class="subsection"><h3>三種機制（原文圖 1）</h3><ul class="notes"><li><strong>糜爛性</strong>：蛋白從微血管擴散到間質，經受損黏膜流入腸腔</li><li><strong>通透性上升</strong>：上皮屏障通透性增加（無糜爛）</li><li><strong>淋巴管擴張（IL）</strong>：擴大的乳糜管滲漏或破裂；常合併通透性上升；微血管通透性增加時間質積液又加重流失</li><li>一般講「PLE」多指<strong>非腫瘤、非感染性</strong>的 PLE：主要由<strong>腸淋巴管擴張</strong>與<strong>特發性發炎性小腸疾病</strong>造成</li></ul></div><div class="subsection"><h3>原文表 1：犬腸道蛋白流失的原因</h3><div class="tbl-wrap"><table><tr><th>改變通透性和／或黏膜損傷</th><th>淋巴管疾病</th></tr><tr><td>腸道發炎（CIE／IBD）</td><td>「原發性」淋巴管擴張（懷疑遺傳）</td></tr><tr><td>感染：真菌（組織漿菌、腐黴）、寄生蟲（鉤蟲、血吸蟲）、病毒（小病毒）、細菌（罕見：*Campylobacter*、沙門氏菌）</td><td>「續發性」淋巴管擴張：腸道發炎、腸道腫瘤；理論上（獸醫未證實）右心衰竭、縮窄性心包膜炎、門脈高壓</td></tr><tr><td>慢性腸阻塞：異物、腸套疊</td><td>局部脂肪肉芽腫性淋巴管炎</td></tr><tr><td>腫瘤：腸淋巴瘤（單一或瀰漫）、腸腺癌</td><td></td></tr><tr><td>腸腺窩疾病（原發或續發不明）</td><td></td></tr><tr><td><strong>Addison 病</strong></td><td></td></tr><tr><td>腸潰瘍</td><td></td></tr></table></div></div><div class="subsection"><h3>臨床與診斷</h3><ul class="notes"><li>症狀：慢性復發或進行性腸胃症狀（腹瀉、體重下降、食慾差、嘔吐）＋低白蛋白相關（<strong>腹水、胸水、周邊水腫</strong>）</li><li>先排除其他低白蛋白原因：最重要是<strong>蛋白流失性腎病</strong>與<strong>肝功能不全</strong></li><li>再找特定病因，並篩檢併發症：最重要是<strong>低鈷胺素、離子低血鈣、積液</strong></li><li>排除 Addison 與感染、非侵入性檢查無法診斷時，<strong>建議腸道切片</strong>：可排除感染（組織漿菌症）或腫瘤（淋巴瘤），並判斷是發炎還是淋巴管擴張為主</li><li>切片前可考慮<strong>經驗性飲食試驗</strong>，特別是輕症、食慾好的狗</li><li>常見組織學：<strong>乳糜管擴張（LD）</strong>、各種發炎浸潤、<strong>腺窩擴張囊腫</strong>、黏膜水腫</li></ul></div><div class="subsection"><h3>預後</h3><ul class="notes"><li>歷史文獻：<strong>&gt; 50%</strong> PLE 犬安樂死或死於疾病</li><li>約克夏 PLE 研究：約 50%「類固醇反應」，其餘無反應</li><li>作者：疾病異質性高，「一套方案打天下」已不可接受</li></ul></div></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🧬</div>
+      <h2>2. 病因與致病機制</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>好發品種</h3><ul class="notes"><li>PLE：<strong>約克夏</strong>、邊境牧羊犬、羅威納、馬爾濟斯、臘腸、英國史賓格、<strong>軟毛麥色㹴</strong>；巴吉度（Basenji）有特殊的免疫增生性腸病</li><li>淋巴管擴張：約克夏、馬爾濟斯、羅威納、軟毛麥色㹴、<strong>挪威獵鳥犬（Lundehund）</strong>、沙皮</li><li>遺傳原因尚未找到；人類 <strong>CHAPLE 症候群</strong>（CD55 突變造成淋巴管擴張＋發炎性腸炎）的發現帶來了特效治療 → 犬若找到基因變異，可用於育種、預測療效、開發標靶治療</li></ul></div><div class="subsection"><h3>通透性</h3><ul class="notes"><li>淋巴漿細胞性腸炎犬腸道通透性上升；雙糖吸收試驗：<strong>白蛋白 &lt; 2.5 g/dL</strong> 者通透性明顯較高</li></ul></div><div class="subsection"><h3>乳糜管擴張可能是區分 PLE 的關鍵</h3><ul class="notes"><li>有腸道發炎＋<strong>低白蛋白</strong>的狗，切片看到 LD 的機率是<strong>白蛋白正常者的 5 倍</strong></li><li>94 隻淋巴漿細胞性腸炎犬：絨毛乳糜管寬度與<strong>白蛋白、膽固醇強烈負相關</strong></li></ul></div><div class="subsection"><h3>淋巴管擴張被低估</h3><ul class="notes"><li>文獻說 PLE 約 50% 有 IL，但診斷限制很大</li><li>人類 IL 的乳糜管變化可是區域性或局部（有時甚至手術切除病變腸段）</li><li>作者觀察：部分 PLE 犬超音波的<strong>高回音黏膜條紋只出現在空腸</strong>，十二指腸正常（原文圖 2：11 歲馬爾濟斯）</li><li><strong>膠囊內視鏡（VCE）</strong>：人類原發 IL 中可發現傳統內視鏡沒評估到的區域 LD；作者進行中的犬研究初步顯示 VCE 偵測肉眼 LD <strong>比傳統內視鏡敏感</strong>（原文圖 3：8 歲紐芬蘭犬 VCE 見斑塊狀「白點」，十二指腸與迴腸組織學只有輕微罕見 LD）</li><li><strong>IHC</strong> 顯示淋巴管異常<strong>不只在黏膜</strong>：黏膜下層、肌層、漿膜／腸繫膜都可能有；有時深層有病變但絨毛乳糜管沒有擴張（斑塊分布、取樣誤差、人工假象）→ 應更廣泛使用<strong>淋巴管內皮細胞（LEC）標記</strong></li><li>非侵入性標記：IL 犬的血清 CRP、細菌 LPS、切割型 cytokeratin 18、血清與糞便 zonulin 較其他腸胃病高</li><li>同一段腸道內 LD 也可能斑塊分布，切片可能漏掉</li><li>淋巴管異常不只 LD：3 隻 PLE 犬 LEC 染色顯示<strong>全面性腸淋巴管發育不全</strong>（沒有絨毛乳糜管）；需切片＋IHC 才能診斷，可能被低估</li></ul></div><div class="subsection"><h3>為什麼重要</h3><ul class="notes"><li>判斷個案是<strong>發炎／通透性</strong>為主還是<strong>淋巴管疾病</strong>為主，理論上應決定治療選擇</li><li>目前知識與檢查有限 → 治療要兼顧證據與個別化，並<strong>優先選安全性最好、證實有效</strong>的介入</li></ul></div></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🥩</div>
+      <h2>3. 初始治療：飲食最關鍵</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>大量證據顯示飲食可以<strong>單獨</strong>達成緩解，也能在<strong>藥物失敗時</strong>救回病例</li><li>作者經驗：飲食的選擇與優化常決定狗是緩解還是持續惡化</li></ul></div><div class="subsection"><h3>治療典範的鐘擺</h3><ul class="notes"><li>1960–70 年代：PLE 多被描述為 IL，以飲食為主（同人類）</li><li>之後數十年轉向積極免疫抑制（類固醇等）</li><li>現在鐘擺回到較平衡的方式，重新重視飲食</li></ul></div><div class="subsection"><h3>飲食單一治療的證據</h3><ul class="notes"><li>早期報告即有成功的飲食管理</li><li>推定 PLE 的約克夏：單靠飲食緩解</li><li>疾病較輕（<strong>CCECAI &lt; 8</strong>）的 PLE 犬，對單純飲食介入反應好</li><li>前瞻試驗：推定 PLE 犬只用<strong>低脂飲食</strong>，<strong>6/14</strong> 臨床緩解</li></ul></div><div class="subsection"><h3>怎麼選</h3><ul class="notes"><li>PLE 犬不是同質族群；依營養評估、詳細飲食史、檢查結果個別化；常要試<strong>不只一種</strong></li><li><strong>CIE 驅動的 PLE</strong>：蛋白來源與形式重要 → 新蛋白或水解；但吸收不良嚴重時，蛋白量要權衡<strong>過度發酵</strong>的風險</li><li><strong>限脂</strong>是人類 IL 的主軸（多數只靠飲食控制）；作者認為對犬 IL 也最重要，且即使以 CIE 為主、淋巴管是續發受累，限脂通常也有益</li></ul><div class="tbl-wrap"><table><tr><th>分類（無共識）</th><th>脂肪</th></tr><tr><td>市售「低脂」</td><td><strong>16–25 g/1000 kcal（1.6–2.5 g/100 kcal）</strong></td></tr><tr><td>「超低脂」</td><td><strong>≤ 15 g/1000 kcal（≤ 1.5 g/100 kcal）</strong></td></tr></table></div><ul class="notes"><li>部分 IL 犬需要比市售更低的脂肪 → <strong>獸醫營養師配方的自製飲食</strong></li><li>高纖或混合纖維飲食可能有益，但因犬而異</li></ul></div><div class="subsection"><h3>2024 年的進展：水解＋低脂處方</h3><ul class="notes"><li>同時水解、脂肪相對低的多功能處方</li><li>適合<strong>同時有 CIE 與 IL</strong>（似乎是多數）的狗，以及病因不明或沒有組織學時的經驗治療 → <strong>病因混合或不明的 PLE 應優先使用</strong></li><li>但 TDF 可能較低，有些狗糞便品質不夠 → 可能需換食或加纖維</li></ul></div><div class="subsection"><h3>依組織學與線索調整</h3><ul class="notes"><li>例：組織學<strong>嚴重 LD</strong>＋飲食史顯示<strong>低脂飲食無效</strong> → 初始就該考慮「超低脂」：低脂冷凍鮮食或營養師配方的超低脂自製飲食</li><li>沒有組織學時，可用<strong>品種傾向、臨床病理（尤其低膽固醇程度）、影像（超音波高回音條紋）</strong>引導經驗選擇；過去飲食史也透露需要限脂的程度</li><li>部分狗吃<strong>新蛋白低脂處方</strong>控制得一樣好，適口性可能較佳</li></ul></div><div class="subsection"><h3>執行要嚴格</h3><ul class="notes"><li>一開始就要嚴格；可提供安全的蔬果零食清單</li><li>餵藥可用<strong>純素棉花糖</strong>包</li><li><strong>嚴格避免高脂食物（如花生醬）與動物蛋白零食</strong></li><li>有效的飲食試驗通常 <strong>7–14 天</strong>改善腸胃症狀，很多在換食後 <strong>3–5 天</strong>就改善；沒改善就要準備調整</li></ul></div></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">💊</div>
+      <h2>4. 初始治療：糖皮質素與第二線免疫抑制</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>糖皮質素</h3><ul class="notes"><li>慢性腸炎機制：對腸腔抗原（飲食、細菌、環境）的免疫反應失調；乳糜管擴張與淋巴滲漏也會<strong>續發</strong>黏膜發炎 → 類固醇歷來是初始治療基石，對很多狗有效</li><li>Prednisone／prednisolone 最常用；傳統起始常用免疫抑制劑量 1–2 mg/kg PO 每天</li><li><strong>作者認為超過 1 mg/kg/天沒有明顯好處</strong>；ACVIM Forum 2025 摘要：免疫介導疾病犬 1 vs 2 mg/kg 的 prednisolone <strong>藥動學沒有差異</strong></li><li>依主要病程調整：<strong>淋巴管擴張為主 → 0.5–0.75 mg/kg/天</strong></li><li><strong>每日上限 60 mg/隻</strong></li><li>類固醇會<strong>加重肌肉分解</strong>、惡化 PLE 本就存在的<strong>高凝狀態</strong>；屏障受損的狗用高劑量免疫抑制，理論上增加細菌移位與敗血症風險 → 用<strong>最低有效劑量</strong></li><li>藥動學研究：PLE 犬 prednisolone <strong>吸收與健康犬無異</strong> → 不需要因擔心吸收不良而加高劑量或改注射</li></ul></div><div class="subsection"><h3>第二線免疫抑制劑：開始時不建議</h3><ul class="notes"><li>31 隻發炎性 PLE 犬：類固醇加第二線藥物，<strong>白蛋白恢復時間與預後都沒有比單用類固醇好</strong></li><li>43 隻犬回溯：<strong>只用飲食</strong>的狗預後明顯優於接受免疫抑制者（非研究主要目的）</li><li>常被推崇的 chlorambucil：回溯研究 chlorambucil＋prednisolone 比 azathioprine＋prednisolone 改善快、預後好，但<strong>沒有與單用類固醇比較</strong>，且 chlorambucil 組類固醇劑量較低（中位 1.7 vs 2.0 mg/kg/天）→ 好結果<strong>可能來自較低的類固醇劑量</strong></li><li>IL 沒有確立的免疫介導機制 → 淋巴管病變為主時，廣效免疫抑制<strong>缺乏理由</strong></li><li>人類原發 IL：與基因突變有關、免疫球蛋白與 T 細胞亞群不足，<strong>不用廣效免疫抑制</strong></li><li>未治療的 PLE 犬：血清免疫球蛋白與部分 T 細胞亞群明顯低於健康犬 → 積極免疫抑制要慎選病例，並<strong>提防續發感染</strong></li></ul></div></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🛡️</div>
+      <h2>5. 治療與預防併發症</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>維生素與礦物質</h3><ul class="notes"><li><strong>低鈷胺素</strong>：非腫瘤、非感染 PLE 犬 <strong>43–75%</strong>，應治療；<strong>口服與注射一樣有效</strong></li><li>低葉酸：可安全補充，但未有益處報告</li></ul></div><div class="subsection"><h3>維生素 D</h3><ul class="notes"><li>多研究：PLE 犬血清 25(OH)D 降低</li><li>前瞻雙盲 RCT：25(OH)D &lt; 50 nmol/L、無嚴重離子低血鈣的 PLE 犬，<strong>cholecalciferol 400 IU/kg/天</strong>（超過 NRC 安全上限）<ul class="notes"><li>4 週時 25(OH)D 明顯較高，但<strong>臨床與生化指標無差異</strong></li></ul><ul class="notes"><li><strong>安慰劑組 50% 在 4 週、約 80% 在研究結束時自行恢復正常</strong> → 治療原發病可能就能矯正</li></ul><ul class="notes"><li><strong>18%（5 隻）</strong>發生維生素 D 過量（無離子高血鈣）；飲食維生素 D 未控制、全部都用類固醇</li></ul></li><li>維生素 D 低但離子鈣正常：保守做法是治療 PLE 同時監測 25(OH)D；成犬補 <strong>25(OH)D3（calcifediol）</strong>比 D3 更快更有效率，可能較有臨床效果；積極處理原發病後仍持續低下者可考慮補充</li></ul></div><div class="subsection"><h3>離子低血鈣</h3><div class="tbl-wrap"><table><tr><th>情境</th><th>處置</th></tr><tr><td>有症狀（肌肉抽動、顫抖、搓臉、癲癇）</td><td><strong>10% 葡萄糖酸鈣 0.5–1 mL/kg IV</strong>，10–30 分鐘緩慢給，監測心率</td></tr><tr><td>口服補鈣</td><td><strong>碳酸鈣</strong> 元素鈣 25–50 mg/kg/天，每天一次或分 q12h</td></tr><tr><td>Calcitriol</td><td>起始 <strong>20–30 ng/kg PO q24h 3–4 天</strong>，維持 <strong>5–15 ng/kg PO q24h</strong>；與類固醇<strong>分開</strong>給；密切監測磷與離子鈣</td></tr></table></div></div><div class="subsection"><h3>血栓預防</h3><ul class="notes"><li><strong>2022 CURATIVE 指引</strong>：PLE 犬屬血栓<strong>高風險</strong></li><li>前瞻 CT 血管攝影：<strong>13.6%（3/22）</strong>有血栓，2 隻無症狀</li><li>作者未發表資料：初診時胸腹 CT 血管攝影 <strong>22%（11/51）</strong>有血栓，多數無症狀</li><li>發炎指標升高（高纖維蛋白原、血小板增多）、<strong>抗凝血酶低</strong>和／或嚴重低白蛋白者可能特別需要</li><li>作者常規：<strong>clopidogrel 2–3 mg/kg PO q24h</strong></li><li><strong>Xa 因子抑制劑</strong>（rivaroxaban、apixaban）被認為對靜脈血栓保護更好 → 極高風險或已確認靜脈血栓者可能較適合</li></ul></div><div class="subsection"><h3>菌相失調</h3><ul class="notes"><li>在 PLE 的盛行率與影響不明</li><li>傳聞：明顯大腸症狀（嚴重脹氣、頻繁急迫排便）的 PLE 犬，用益生菌、FMT 或抗生素（有時是為治療共病）後改善；需研究</li></ul></div><div class="subsection"><h3>支持治療</h3><ul class="notes"><li>積液只在造成<strong>不適或呼吸困難</strong>時才抽</li><li><strong>不建議利尿劑</strong>（常無效、易脫水）；需要晶體液時要謹慎</li><li><strong>血漿</strong>：要提高白蛋白需要的量太大，通常不實際 → 不建議</li><li><strong>膠體</strong>（羥乙基澱粉）最能改善水腫，但有禁忌</li><li><strong>不建議濃縮人白蛋白</strong>；<strong>犬白蛋白</strong>產品在低白蛋白後果嚴重時有用</li><li>止吐、止噁心、促食慾</li><li>飲食太重要 → 狗不吃建議的飲食時，<strong>輔助餵食</strong>可能救命，也能決定餵什麼</li></ul></div></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🔄</div>
+      <h2>6. 後續治療</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>類固醇有反應</h3><ul class="notes"><li>作者做法：初始 3–4 週後減 <strong>約 25%</strong>，之後每 3–4 週再減 25%，直到 <strong>&lt; 0.5 mg/kg PO 每天或隔天</strong></li><li>此劑量維持<strong>至少 3–4 個月</strong>再嘗試停藥（看能否只靠飲食控制）</li><li>減量中復發 → 回到上一個有效劑量，耐受的話長期使用（通常 &lt; 0.5 mg/kg/天，副作用有限）</li><li>無法耐受有效類固醇劑量 → 改口服 <strong>budesonide</strong> 長期使用；也可考慮 cyclosporine，但作者偏好有效且耐受的 budesonide</li><li>部分減量中復發的狗，換成<strong>更低脂的飲食</strong>後反應更好</li><li><strong>換飲食的 5 天內不要調整類固醇</strong>，才能分別評估每個改變的效果</li></ul></div><div class="subsection"><h3>類固醇無反應或反應不完全</h3><ul class="notes"><li>失敗原因可能：① 不是以免疫介導為主（<strong>淋巴管疾病</strong>才是主因）② 其他因素沒處理好（<strong>飲食讓 IL 惡化或引發免疫反應</strong>）③ 免疫介導但類固醇難治</li><li><strong>單靠飲食改變</strong>就能明顯改善類固醇難治病例：<ul class="notes"><li>Okanishi 等：類固醇難治 IL 犬 <strong>19/24</strong> 降低飲食脂肪後改善</li></ul><ul class="notes"><li>另一研究：類固醇難治發炎性 PLE <strong>8/10</strong> 對換食有反應</li></ul></li><li>許多市售飲食與免疫抑制都失敗的狗，被特別配方（常為<strong>新蛋白＋超低脂</strong>）的自製飲食救回</li><li>一開始<strong>避免補充油脂</strong>（會加重淋巴鬱積與腹瀉）</li><li>作者用的<strong>暫時性試驗飲食</strong>：<strong>瘦的新蛋白（鱈魚或吳郭魚）＋白米＋地瓜，重量各 1/3</strong>，先看初步反應；有改善就<strong>一定要找獸醫營養專科醫師</strong>配出完整均衡的長期飲食（穩定後可能要加必需脂肪酸）</li><li>有些狗好轉後可再轉回市售飲食</li></ul></div><div class="subsection"><h3>第二線免疫抑制劑：先改飲食再說</h3><ul class="notes"><li>類固醇本身就有效且廣效，加別的藥要有<strong>具體理由</strong></li><li>PLE 犬 prednisolone 吸收正常 → 吸收不良不是主要失敗原因；糖皮質素受體多型性在這麼多狗身上不太可能</li><li><strong>Cyclosporine</strong>：可能對高度 T 細胞驅動的疾病較有效；類固醇無效的發炎性腸炎犬 <strong>12/14</strong> 對 cyclosporine 有反應，但只有 5 隻低白蛋白、以發炎為主 → 不宜套用到所有 PLE</li><li><strong>Chlorambucil</strong>：烷化劑，對嚴重 B 細胞過度活化（淋巴瘤、淋巴性白血病）最有效；類固醇難治 PLE 只有傳聞，<strong>沒有臨床研究</strong></li><li>若主因是淋巴管疾病，或飲食持續引發發炎，加藥一樣無效，還增加<strong>伺機感染</strong>（最常見腸道細菌移位與敗血症）風險</li><li>作者：依文獻、經驗與未發表資料，類固醇與初始飲食失敗的 PLE 犬，<strong>80–90%</strong> 換成針對性飲食（常是超低脂自製）可臨床緩解 → <strong>強烈建議先改飲食，再考慮加第二線藥</strong></li><li>作者經驗：有些狗要等類固醇減到 <strong>≤ 1 mg/kg/天</strong>、停掉第二線藥後，對自製飲食的臨床與生化改善才最明顯</li><li>另一情境不同：<strong>類固醇有效但副作用嚴重</strong>時，加第二線藥以<strong>節省類固醇</strong>較有道理</li></ul></div><div class="subsection"><h3>什麼是可接受的反應</h3><ul class="notes"><li>目標不一定是白蛋白完全正常，而是<strong>臨床緩解、預防致命併發症</strong></li><li>症狀控制、沒有副作用、白蛋白維持在不太會造成嚴重併發症的程度 → 就算成功管理</li><li>以生活品質與長期穩定為優先</li></ul></div></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🔭</div>
+      <h2>7. 展望與 Clinics Care Points</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>在搞懂病理生理、以及為何現行免疫抑制常失敗之前，PLE 處置應採「<strong>最安全的方式</strong>」</li><li>未來：找出基因變異以在好發品種預防；以臨床、影像、檢驗標記預測哪隻狗對哪種治療有反應；開發針對<strong>淋巴管功能異常、腸道通透性、特定免疫異常</strong>的新療法</li></ul></div><div class="subsection"><h3>作者的 Clinics Care Points</h3><ul class="notes"><li>PLE 是異質性症候群，需要個別化處置</li><li><strong>飲食調整是犬 PLE 最關鍵的治療</strong>，每個病例都要處理</li><li>對類固醇、初始飲食 ± 第二線免疫抑制劑都沒反應的 PLE 犬，作者發現<strong>降低免疫抑制＋針對性飲食調整</strong>（常為超低脂自製）比加強免疫抑制更成功</li></ul><p class="p"><span class="src src-add">💡 補充</span> 本特刊相關：04 慢性腸病飲食策略（低脂分級、自製飲食原則）、01 亞臨床慢性腸病（軟毛麥色㹴 PLE 的前期變化）。</p></div></div>
+  </div>
+  <div class="section" id="ref">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📚</div>
+      <h2>原文出處</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><div class="ref-list"><div class="ref-item">Sara A. Jablonski. Emerging Concepts in the Understanding and Treatment of Canine Protein-Losing Enteropathy. <em>Vet Clin North Am Small Anim Pract</em> 2026;56(3):715–729. <a href="https://doi.org/10.1016/j.cvsm.2026.01.011" target="_blank" rel="noopener">doi:10.1016/j.cvsm.2026.01.011</a></div><div class="ref-item">特刊：Gastroenterology（主編 M. Katherine Tolbert、Sara A. Jablonski），<em>Vet Clin North Am Small Anim Pract</em> 2026 年 5 月號，第 56 卷第 3 期。© 2026 Elsevier Inc.</div></div></div></div>
+  </div>
+
+  <div class="next-up">
+    <p>同一期特刊的其他文章請回目錄。</p>
+    <a href="index.html">回到特刊目錄 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  navLinks.forEach(a => { a.classList.remove('active'); if (a.getAttribute('href') === '#' + cur) a.classList.add('active'); });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>診斷光譜：貓淋巴漿細胞性腸炎與低度腸道 T 細胞淋巴瘤｜VCNA 腸胃學特刊 2026</title>
+<style>
+  :root {
+    --primary: #8A4B0F;
+    --primary-light: #F6EBDD;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2B1A0B;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E5C9A8; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A2E14;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E5C9A8; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E5C9A8;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A2E14;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #C9A27A;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #5A320C 0%, #C47F2B 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2B1A0B; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A2E14; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #5A320C; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+  .figlink { font-size: 12px; font-weight: 600; color: var(--primary); text-decoration: none; background: var(--primary-light); border-radius: 999px; padding: 2px 9px; margin-left: 4px; white-space: nowrap; }
+  .figlink:hover { text-decoration: underline; }
+  .fig.diagram svg { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; background: #fff; }
+  @media (max-width: 600px) { .fig.diagram { overflow-x: auto; } .fig.diagram svg { min-width: 560px; } .fig.diagram figcaption::before { content: "← 左右滑動看完整圖 →"; display: block; font-size: 11px; opacity: .6; margin-bottom: 2px; } }
+</style>
+
+</head>
+<body>
+
+<a class="home-link-fab" href="index.html">← 回到特刊目錄</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← VCNA 腸胃學特刊 2026</a>
+  <div class="logo">
+    <h2>10｜貓 LPE vs 低度淋巴瘤</h2>
+    <p>VCNA 2026;56(3) 論文整理</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div><a href="#s1">1. 命名的混亂</a><a href="#s2">2. 診斷從表現開始</a><a href="#s3">3. 飲食試驗就是診斷測試</a><a href="#s4">4. 腹部超音波</a><a href="#s5">5. 鈷胺素：生物標記、定位工具，還是補充品？</a><a href="#s6">6. 切片：從哪裡取、怎麼處理</a><a href="#s7">7. 組織病理：提供「姓氏」</a><a href="#s8">8. 免疫組織化學（IHC）：提供「名字」</a><a href="#s9">9. PARR（抗原受體重組 PCR）</a><a href="#s10">10. 從發炎到淋巴瘤的連續光譜？</a><a href="#s11">11. 作者的 Clinics Care Points</a><a href="#ref">原文出處</a>
+  </nav>
+</nav>
+
+<div id="main">
+
+  <div class="page-header">
+    <h1>診斷光譜：貓淋巴漿細胞性腸炎與低度腸道 T 細胞淋巴瘤</h1>
+    <p>作者：Craig B. Webb, Anne Avery, Emily Rout（論文整理）</p>
+    <p>Navigating the Diagnostic Continuum：Feline Lymphoplasmacytic Enteritis and Low-Grade Intestinal T-cell Lymphoma｜Vet Clin Small Anim 2026;56(3):681–695</p>
+    <div class="tags"><span class="tag">貓</span><span class="tag">慢性腸病</span><span class="tag">LPE</span><span class="tag">IBD</span><span class="tag">低度消化道淋巴瘤</span><span class="tag">LGITL</span><span class="tag">小細胞淋巴瘤</span><span class="tag">飲食試驗</span><span class="tag">超音波</span><span class="tag">鈷胺素</span><span class="tag">內視鏡切片</span><span class="tag">迴腸</span><span class="tag">免疫組織化學</span><span class="tag">PARR</span><span class="tag">STAT5B</span></div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📑 原文</span> 論文內容 <span class="src src-add">💡 補充</span> 整理者補充（臨床提醒、交叉參照；不是作者說的）
+    <br><span class="muted">依原文重點整理成中文，不是逐句翻譯；未標記的段落都是原文內容。原文的圖表版權屬 Elsevier，這裡沒有轉載，表格是依內文重新整理。藥物劑量請回原文與最新文獻確認。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記重點</h3>
+    <ul><li>LPE 與 LGITL 的<strong>病史、症狀、多數檢查（含超音波）都分不出來</strong>；貓 CE <strong>嘔吐比腹瀉常見</strong></li><li>LPE 平均 <strong>8 歲</strong>、LGITL 平均 <strong>12 歲</strong>（範圍 1–20）</li><li><strong>飲食試驗是診斷工具</strong>：食物過敏的腸胃症狀會在 <strong>2 週內</strong>（轉換 5–7 天後）有反應；皮膚症狀可能要 3 個月</li><li>跳過飲食試驗直接切片 → 病理一定報「發炎」→ 一輩子吃 prednisolone，原本可能只要換食</li><li>超音波：腸壁增厚與分層消失在 LPE 和腫瘤都會出現，<strong>無法區分</strong>；有病變的腸也可能超音波「正常」</li><li><strong>上＋下消化道內視鏡</strong>（胃十二指腸＋迴結腸鏡）可診斷所有手術切片確診的 LGITL；單做胃十二指腸鏡 87%；沒有一隻只在空腸有病變</li><li>3 位病理學家判讀 158 份切片，<strong>只有 34% 一致</strong> → 疑似病例需要 <strong>IHC＋PARR</strong></li><li>加 IHC＋PARR 後 <strong>46–53%</strong> 原本判為 IBD 的病例被改判為淋巴瘤；PARR 各實驗室判讀標準不同</li></ul>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🏷️</div>
+      <h2>1. 命名的混亂</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>2019 年 Marsilio 問：「區分貓 IBD 與消化道淋巴瘤重要嗎？」——答案是重要，對貓、飼主、未來研究都重要</li><li>兩年後 ACVIM 發表區分 LGITL 與 LPE 的共識</li></ul><div class="tbl-wrap"><table><tr><th>名稱</th><th>同義詞</th></tr><tr><td>低度腸道 T 細胞淋巴瘤（LGITL）</td><td>低度消化道淋巴瘤（LGAL）、小細胞淋巴瘤</td></tr><tr><td>淋巴漿細胞性腸炎（LPE）</td><td>慢性發炎性腸病（CIE）、發炎性腸病（IBD）</td></tr></table></div><ul class="notes"><li><strong>慢性腸病（CE）</strong>：腸胃症狀 &gt; 3 週，且排除腸外原因、感染、阻塞、局部腫瘤</li><li>「食物反應性」「抗生素反應性」「類固醇／免疫抑制劑反應性」只是描述<strong>對什麼治療有反應</strong>，不是診斷</li><li>作者比喻：如果醫院出院摘要寫「NSAID 反應性疼痛，終生吃 ibuprofen」，沒有病人會滿意 → 找出潛在原因才能選最佳治療、預期病程</li></ul></div></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🐈</div>
+      <h2>2. 診斷從表現開始</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>症狀：慢性嘔吐、腹瀉、食慾差／厭食、體重下降——也見於其他原發腸胃病與腸外疾病</li><li>多篇研究：貓 CE <strong>嘔吐比腹瀉常見</strong></li><li>成年貓為主（任何性別、品種、體型、毛長）：LPE 平均 <strong>8 歲</strong>、LGITL 平均 <strong>12 歲</strong>，範圍 1–20 歲</li><li>先排除寄生蟲／感染與異物阻塞</li><li>最低資料庫：<strong>CBC、生化、尿檢、TT4＋TSH、PLI、TLI</strong>，可排除或確立多種腸外鑑別</li></ul></div><div class="subsection"><h3>原文表 1：與 LPE／LGITL 症狀相似的疾病</h3><div class="tbl-wrap"><table><tr><th>原發腸胃</th><th>腸外（續發）</th></tr><tr><td>「食物反應性」：食物過敏、食物不耐、其他（如纖維反應性「壓力性結腸炎」）</td><td><strong>甲狀腺功能亢進</strong></td></tr><tr><td>「類固醇反應性」：CIE／IBD／LPE、嗜酸性或肉芽腫性腸病、貓腸胃嗜酸性硬化性纖維增生、淋巴漿細胞性或組織球性結腸炎</td><td><strong>慢性腎病</strong></td></tr><tr><td>低度小細胞黏膜型淋巴瘤：LGAL／SCL／LGITL</td><td>膽管炎／膽管肝炎</td></tr><tr><td>高度大細胞穿壁型淋巴瘤：HGAL（B 或 T）、EATL type I、大細胞淋巴瘤、<strong>大顆粒淋巴球（LGL）淋巴瘤</strong></td><td>慢性胰臟炎</td></tr><tr><td>其他腫瘤：腺癌、GIST、平滑肌肉瘤／瘤、神經內分泌腫瘤、肥大細胞瘤、漿細胞瘤、未分化癌</td><td>腸外腫瘤、Cushing、嗜酸性症候群、糖尿病／DKA、<strong>胰臟外分泌不足（EPI）</strong></td></tr></table></div><ul class="notes"><li>註：黏膜型 T 細胞淋巴瘤以前被比作人類 EATL type II（現稱單形性親上皮腸道 T 細胞淋巴瘤）</li></ul></div></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🥣</div>
+      <h2>3. 飲食試驗就是診斷測試</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>飲食在貓 CE 的致病、診斷、治療都很關鍵；「食物不良反應」含食物過敏（最常見）、食物不耐、食物中毒</li><li>Guilford 等人的研究：食物過敏的腸胃症狀若會對某種飲食有反應，會在 <strong>2 週內</strong>出現（<strong>5–7 天轉換</strong>之後）；<strong>皮膚症狀可能要 3 個月</strong></li><li>經典試驗：單一蛋白＋單一碳水（低過敏）或水解飲食</li><li><strong>跳過這一步</strong>直接切片找 CIE → 病理學家幾乎一定會報告「發炎」→ 對 prednisolone 有反應 → 因為過敏原（飲食）持續刺激，<strong>prednisolone 要吃一輩子</strong>；其實 2 週的飲食試驗可能就能找到原因</li><li>每次試驗只要約 2 週 → 穩定的病患可試<strong>多種</strong>針對不同成分的飲食（低過敏、易消化、高纖）</li><li>有效的飲食介入也包含高纖、低脂、易消化、元素飲食、營養師配方自製飲食——不一定代表過敏或不耐，但病患顯然是食物反應性</li><li>作者經驗：多數食物過敏／反應性 CE 貓是<strong>狀況還不錯的成貓</strong>；<strong>老年、惡病質、長期食慾差且明顯消瘦</strong>的貓，多需要更快、更積極的診斷</li></ul></div></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🔊</div>
+      <h2>4. 腹部超音波</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>主要用來<strong>找出或排除腸外共病</strong>（如懷疑膽管炎時膽囊壁增厚），或找<strong>局部腸病</strong>（如腸腺癌）</li><li><strong>對區分 LPE 與 LGITL 幾乎沒有幫助</strong><ul class="notes"><li>即使排除操作者變異（設備、訓練、經驗、判讀），超音波異常的腸壁層與組織病理的位置也缺乏相關</li></ul><ul class="notes"><li>腸壁增厚、分層消失在 LPE 和腫瘤都會出現</li></ul><ul class="notes"><li>Daniaux 等：LPE 與腸淋巴瘤的超音波<strong>沒有差異</strong></li></ul><ul class="notes"><li>有腸道病變的貓，超音波也可能報告「正常」</li></ul></li></ul><p class="p"><span class="src src-add">💡 補充</span> 原文圖 1（小腸各層異常增厚的超音波）未轉載；可參考 Gieger. Vet Clin North Am Small Anim Pract 2011;41(2):419–32。</p></div></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">💉</div>
+      <h2>5. 鈷胺素：生物標記、定位工具，還是補充品？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>三者皆是；但作為診斷工具的角色越來越不明確</li><li>貓 <strong>EPI、IBD、LGITL、胰臟炎、三體炎、膽管炎／膽管肝炎</strong>，甚至可能<strong>甲亢</strong>（結果有爭議）都會鈷胺素缺乏 → 對個別疾病<strong>特異性差</strong></li><li>不論原因，鈷胺素是多條代謝路徑的關鍵；<strong>低鈷胺素的貓補充後會受益</strong>（已確立）</li></ul></div></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🔬</div>
+      <h2>6. 切片：從哪裡取、怎麼處理</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>全層 vs 內視鏡切片的爭論會一直持續</li><li>作者所屬機構：所有要回答「CIE 還是淋巴瘤」的貓，都做「<strong>上＋下</strong>」內視鏡（<strong>胃十二指腸鏡＋迴結腸鏡</strong>）</li><li>進入<strong>迴腸</strong>有挑戰，但經驗、耐心、正確技巧可改善，能取得多塊足以做組織學、IHC、PARR 的樣本</li><li>貓的十二指腸與迴腸都很短（<strong>2–10 cm</strong>），常規內視鏡很可能已經取到空腸</li></ul></div><div class="subsection"><h3>研究演進</h3><div class="tbl-wrap"><table><tr><th>研究</th><th>發現</th></tr><tr><td>早期研究</td><td>上消化道內視鏡切片不足以區分 LPE 與 LGITL，建議空腸與迴腸全層切片（限制：部分淋巴瘤貓十二指腸是盲取、只靠組織學沒做 IHC／PARR）</td></tr><tr><td>Chow 等</td><td>比較小腸上段與下段樣本並整合 IHC、PARR：兩處結果<strong>很少不一致</strong></td></tr><tr><td>Bernard 等（內視鏡 vs 手術）</td><td>手術切片確診 LGITL 的<strong>全部</strong>都被上＋下內視鏡正確診斷；只做胃十二指腸鏡 <strong>87%</strong>；15 隻 LGITL 與 12 隻 LPE <strong>沒有一隻只在空腸有病</strong> → 通常<strong>不需要手術取空腸</strong></td></tr></table></div></div><div class="subsection"><h3>內視鏡的限制</h3><ul class="notes"><li>無法偵測<strong>穿壁性</strong>病變（T 細胞淋巴瘤從固有層延伸到肌層）</li><li>穿壁型 T 細胞淋巴瘤症狀較明顯、預後較保留；但多數穿壁型是<strong>大細胞</strong>，小細胞 T 細胞淋巴瘤很少穿壁</li></ul></div></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🧫</div>
+      <h2>7. 組織病理：提供「姓氏」</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>組織學評估結構與細胞比例（淋巴球、漿細胞、嗜酸性球、嗜中性球、巨噬細胞），是診斷必需</li></ul><div class="tbl-wrap"><table><tr><th></th><th>LPE</th><th>LGITL</th></tr><tr><td>浸潤</td><td>黏膜內小淋巴球＋漿細胞（混合）</td><td>固有層與上皮內<strong>單形性小型克隆 T 細胞</strong></td></tr><tr><td>上皮內淋巴球（IEL）</td><td>可增加</td><td>增加</td></tr><tr><td>支持淋巴瘤的特徵</td><td>—</td><td><strong>巢狀</strong>（≥ 5 個 IEL 聚集）或<strong>斑塊</strong>（≥ 5 個相鄰上皮細胞被 IEL 淹沒）</td></tr></table></div><ul class="notes"><li>WSAVA 腸胃標準化小組：病理學家除了細胞種類，還應報告上皮損傷、黏膜結締組織增生、絨毛變短、乳糜管擴張、腺窩擴張、IEL</li></ul></div><div class="subsection"><h3>判讀一致性很低</h3><ul class="notes"><li>有明確 LPE、明確 LGITL，也有中間地帶（<strong>淋巴瘤萌芽中</strong>、或發炎與淋巴瘤並存）</li><li>一研究：中重度 LPE vs LGITL 有 <strong>17%</strong> 病理學家意見不同；另一研究 17 例中 <strong>41%</strong> 三位病理學家無法達成共識</li><li>作者研究：85 隻 CE 貓、158 份十二指腸與迴腸內視鏡切片，3 位病理學家獨立判讀：</li></ul><div class="tbl-wrap"><table><tr><th>判讀結果</th><th>比例</th></tr><tr><td>三人一致</td><td><strong>34%</strong>（LGITL 20%、LPE／無明顯發現 14%）</td></tr><tr><td>一位判 LGITL</td><td>21%</td></tr><tr><td>兩位判 LGITL</td><td>9%</td></tr><tr><td>只有一位以上「懷疑」LGITL</td><td>36%</td></tr></table></div><ul class="notes"><li>臨床研究可用單一病理學家、多數決等方式標準化，但<strong>臨床醫師通常沒有這些選擇</strong> → 小細胞 T 細胞浸潤但不確定時，常需輔助檢查</li></ul></div></div>
+  </div>
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🏷️</div>
+      <h2>8. 免疫組織化學（IHC）：提供「名字」</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li><strong>CD3</strong>（T 細胞）、<strong>CD20、PAX5</strong>（B 細胞）</li><li>LPE：T 細胞、B 細胞、漿細胞<strong>混合</strong>；LGITL：<strong>單形性 T 細胞</strong>；IEL 本來就是 T 細胞，CD3 可凸顯這群細胞</li><li>三個研究中，組織學判為 IBD 的 <strong>18–26%</strong> 經 IHC 改判淋巴瘤；一研究中判為<strong>重度 LPE 的 50%（9/18）</strong>改判淋巴瘤</li><li>但 LPE 的浸潤也常以 T 細胞為主 → <strong>IHC 不一定能區分</strong></li><li>其他在 LGITL 表現較高的標記：<strong>Ki67</strong>（增生）、<strong>磷酸化 STAT5</strong>（部分 LGITL 有 <strong>STAT5B 突變</strong>造成持續活化）——非例行檢查</li><li>懷疑<strong>併發高度淋巴瘤</strong>時也有用：一研究 <strong>4.8%（4/84）</strong>LGITL 合併胃或大腸的瀰漫性大 B 細胞淋巴瘤</li><li>懷疑<strong>大顆粒淋巴球</strong>型態時加做 <strong>granzyme B</strong>：腸道 LGL 淋巴瘤<strong>預後極差</strong>，細胞質顆粒在組織學上不易看到</li></ul></div></div>
+  </div>
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🧬</div>
+      <h2>9. PARR（抗原受體重組 PCR）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>原理</h3><ul class="notes"><li>評估淋巴球是<strong>克隆性</strong>（腫瘤的特徵）還是<strong>多克隆</strong>（反應性／發炎）</li><li>T 細胞發育時重組 T 細胞受體 γ（TRG）的 V 與 J 片段，接點處增減核苷酸（高度變異的 CDR3）→ 每個 T 細胞的受體基因長度不同</li><li>PCR 放大後以毛細管電泳依大小分離：發炎 → 多種大小的產物（多克隆）；淋巴瘤 → 單一大小的產物（克隆）</li><li>B 細胞則看免疫球蛋白基因重組</li><li>Moore 等：9 隻 LPE 貓腸道 T 細胞多克隆；28 隻腸道 T 細胞淋巴瘤中 <strong>22 隻</strong>克隆</li></ul></div><div class="subsection"><h3>臨床價值</h3><div class="tbl-wrap"><table><tr><th>研究</th><th>發現</th></tr><tr><td>Chow 等（57 隻貓）</td><td>加 IHC＋PARR 後 <strong>67%</strong> 從 IBD 或可能／疑似淋巴瘤改判<strong>確定淋巴瘤</strong>，包括組織學判為確定 IBD 的 <strong>46%</strong></td></tr><tr><td>Kiupel 等</td><td>組織學 IBD 的 <strong>53%</strong> 經 IHC＋PARR 改判淋巴瘤</td></tr><tr><td>Sabattini 等（77 隻 CE 貓十二指腸切片）</td><td>與細胞學、組織學、IHC 相比，<strong>只有克隆性</strong>與淋巴瘤貓較短存活顯著相關</td></tr></table></div><ul class="notes"><li>對<strong>早期</strong>、尚未有明顯結構改變的病例可能特別有用</li><li>可彌補內視鏡樣本數量、大小、方向、品質的不足</li><li>黏膜型 T 細胞淋巴瘤 PARR 敏感度 <strong>91%</strong></li></ul></div><div class="subsection"><h3>限制</h3><ul class="notes"><li>各實驗室的<strong>引子、方法、判讀標準不同</strong> → 敏感度與特異度只適用於各自實驗室</li><li>例：有的實驗室把「高於多克隆背景 <strong>3 倍</strong>的單一高峰」判為克隆，有的只要 <strong>2 倍</strong>；標準越嚴格，敏感度越低、特異度越高</li><li>實驗室應能提供用明確病例驗證的敏感度與特異度</li><li>PARR 是拼圖的一塊（可能是最後一塊），要和臨床、組織學、免疫表型<strong>一起解讀</strong></li></ul></div></div>
+  </div>
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🔀</div>
+      <h2>10. 從發炎到淋巴瘤的連續光譜？</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>「組織學上懷疑消化道淋巴瘤不應忽視，可能是初期淋巴瘤，或之後會進展成淋巴瘤」</li><li>貓最有名的「發炎中長出腫瘤」例子：<strong>注射部位肉瘤</strong>（慢性發炎觸發惡性轉化；可能因子包括注射物、細胞激素、生長因子、遺傳、COX-2、JAK/STAT 活化等）</li><li>長久以來認為 LGITL 由 LPE 演變而來；組織學也看到淋巴瘤長在發炎區域內或旁邊，但<strong>從未正式證實</strong>，轉化機制也不明</li></ul></div><div class="subsection"><h3>人類的模型：乳糜瀉</h3><ul class="notes"><li>部分乳糜瀉患者對無麩質飲食失效 → <strong>難治性乳糜瀉 type II</strong>：腸道克隆性 IEL 單形性擴增，帶 <strong>JAK/STAT</strong> 路徑驅動突變</li><li>現被視為<strong>低度上皮內淋巴瘤</strong>；部分進展為病程兇猛的腸病相關 T 細胞淋巴瘤</li><li>貓：可能是慢性發炎 → 獲得 JAK/STAT 驅動突變 → 小 T 細胞克隆擴增；相當比例 LGITL 貓有<strong>重複出現的 STAT5B 突變</strong></li></ul></div><div class="subsection"><h3>原文圖 5：假說模型</h3><div class="tbl-wrap"><table><tr><th>階段</th><th>特徵</th></tr><tr><td>正常</td><td>—</td></tr><tr><td>LPE</td><td>淋巴漿細胞性發炎</td></tr><tr><td>突變與克隆擴增</td><td>分子層級已有突變與克隆，組織結構可能還沒破壞</td></tr><tr><td>結構破壞</td><td>LGITL</td></tr></table></div><ul class="notes"><li>處於「淋巴瘤萌芽」階段的貓，IHC 與 PARR 可幫助歸類為 LGITL；但有些可能就處在<strong>過渡期</strong>，很難明確判定</li><li>需要追蹤臨床結果（是否進展為明顯淋巴瘤、對治療的反應），才能確認貓 CE 是否存在這種進展，並決定何時、如何治療</li></ul></div></div>
+  </div>
+  <div class="section" id="s11">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📌</div>
+      <h2>11. 作者的 Clinics Care Points</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>對 CE 貓做周全、適當的檢查（<strong>一次或多次飲食試驗</strong>）</li><li>選擇要聰明：簡單、敏感、特異的檢查不一定貴（如 <strong>TT4 與 TSH</strong>）</li><li>年齡品種、主訴、症狀與多數檢查（<strong>含超音波</strong>）都<strong>無法區分 CIE（LPE）與 LGITL</strong></li><li>走到「這是 LPE 還是 LGITL？」這一步時，<strong>組織病理＋IHC＋PARR</strong> 能回答絕大多數病例</li><li>和你信任的病理學家溝通</li></ul><p class="p"><span class="src src-add">💡 補充</span> 本站相關：<a href="../case-discussions/feline-chronic-vomiting.html">梅醫師病例討論：貓慢性嘔吐</a>、<a href="../case-discussions/feline-chronic-diarrhea.html">貓慢性腹瀉</a>；本特刊 11 貓三體炎一文也討論 LGITL 與三體炎的重疊。</p></div></div>
+  </div>
+  <div class="section" id="ref">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📚</div>
+      <h2>原文出處</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><div class="ref-list"><div class="ref-item">Craig B. Webb, Anne Avery, Emily Rout. Navigating the Diagnostic Continuum: Feline Lymphoplasmacytic Enteritis and Low-Grade Intestinal T-cell Lymphoma. <em>Vet Clin North Am Small Anim Pract</em> 2026;56(3):681–695. <a href="https://doi.org/10.1016/j.cvsm.2026.01.007" target="_blank" rel="noopener">doi:10.1016/j.cvsm.2026.01.007</a></div><div class="ref-item">特刊：Gastroenterology（主編 M. Katherine Tolbert、Sara A. Jablonski），<em>Vet Clin North Am Small Anim Pract</em> 2026 年 5 月號，第 56 卷第 3 期。© 2026 Elsevier Inc.</div></div></div></div>
+  </div>
+
+  <div class="next-up">
+    <p>同一期特刊的其他文章請回目錄。</p>
+    <a href="index.html">回到特刊目錄 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  navLinks.forEach(a => { a.classList.remove('active'); if (a.getAttribute('href') === '#' + cur) a.classList.add('active'); });
+});
+</script>
+</body>
+</html>

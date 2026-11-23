@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>短腸症候群：犬貓的腸道適應機制與處置策略｜VCNA 腸胃學特刊 2026</title>
+<style>
+  :root {
+    --primary: #8A4B0F;
+    --primary-light: #F6EBDD;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2B1A0B;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E5C9A8; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A2E14;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E5C9A8; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E5C9A8;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A2E14;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #C9A27A;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #5A320C 0%, #C47F2B 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2B1A0B; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A2E14; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #5A320C; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+  .figlink { font-size: 12px; font-weight: 600; color: var(--primary); text-decoration: none; background: var(--primary-light); border-radius: 999px; padding: 2px 9px; margin-left: 4px; white-space: nowrap; }
+  .figlink:hover { text-decoration: underline; }
+  .fig.diagram svg { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; background: #fff; }
+  @media (max-width: 600px) { .fig.diagram { overflow-x: auto; } .fig.diagram svg { min-width: 560px; } .fig.diagram figcaption::before { content: "← 左右滑動看完整圖 →"; display: block; font-size: 11px; opacity: .6; margin-bottom: 2px; } }
+</style>
+
+</head>
+<body>
+
+<a class="home-link-fab" href="index.html">← 回到特刊目錄</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← VCNA 腸胃學特刊 2026</a>
+  <div class="logo">
+    <h2>16｜短腸症候群</h2>
+    <p>VCNA 2026;56(3) 論文整理</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div><a href="#s1">1. 定義與病因</a><a href="#s2">2. 病理生理</a><a href="#s3">3. 急性期處置</a><a href="#s4">4. 藥物處置</a><a href="#s5">5. 營養處置</a><a href="#s6">6. 監測、併發症與預後</a><a href="#s7">7. 作者的 Clinics Care Points</a><a href="#ref">原文出處</a>
+  </nav>
+</nav>
+
+<div id="main">
+
+  <div class="page-header">
+    <h1>短腸症候群：犬貓的腸道適應機制與處置策略</h1>
+    <p>作者：Martha G. Cline, Roman Husnik（論文整理）</p>
+    <p>Short Bowel Syndrome：Adaptive Mechanisms and Management Strategies in Veterinary Patients｜Vet Clin Small Anim 2026;56(3):789–807</p>
+    <div class="tags"><span class="tag">短腸症候群</span><span class="tag">SBS</span><span class="tag">大範圍小腸切除</span><span class="tag">線性異物</span><span class="tag">迴結腸瓣</span><span class="tag">迴腸煞車</span><span class="tag">腸道適應</span><span class="tag">早期腸道營養</span><span class="tag">loperamide</span><span class="tag">促動劑</span><span class="tag">膽酸螯合劑</span><span class="tag">熊去氧膽酸</span><span class="tag">GLP-2</span><span class="tag">MCT</span><span class="tag">洋車前子</span><span class="tag">鈷胺素</span><span class="tag">牛磺酸</span><span class="tag">熱量需求</span></div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📑 原文</span> 論文內容 <span class="src src-add">💡 補充</span> 整理者補充（臨床提醒、交叉參照；不是作者說的）
+    <br><span class="muted">依原文重點整理成中文，不是逐句翻譯；未標記的段落都是原文內容。原文的圖表版權屬 Elsevier，這裡沒有轉載，表格是依內文重新整理。藥物劑量請回原文與最新文獻確認。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記重點</h3>
+    <ul><li>犬貓 <strong>≥ 50% 小腸切除</strong>就有短腸症候群（SBS）風險；切到<strong>迴腸末端與迴結腸瓣</strong>預後更差 → 手術時盡量保留</li><li>最常見原因：<strong>線性異物</strong>（犬貓都是）；不同於人類（Crohn、腸系膜缺血），犬貓切除前的腸道通常較健康</li><li>回溯資料：<strong>20–42%</strong> 犬因 SBS 症狀安樂死；存活者 <strong>47–83%</strong> 長期糞便評分理想</li><li>迴腸是 <strong>B12 與膽酸</strong>吸收主要部位；切掉迴腸 → 失去「<strong>迴腸煞車</strong>」→ 腸道通過加快、吸收不良、腹瀉</li><li>切除迴結腸交界：犬約 50%、貓 73% 長期結果好；但慢性腹瀉犬 44%、貓 27%</li><li><strong>腸道內有營養</strong>是適應的關鍵；病況穩定就開始<strong>腸道營養</strong>，3–4 天內逐步加到 RER</li><li>熱量需求高：犬模型 <strong>1.5–3.1 × RER</strong>（70–81 kcal/kg/天）；作者建議<strong>至少 2.0 × RER 起</strong>，每 2–4 週量體重調整</li><li>迴腸切除者要補 <strong>B12（注射 50 µg/kg SC）</strong>與<strong>牛磺酸 250–500 mg/天</strong>；監測 25(OH)D；抗生素<strong>不建議長期使用</strong></li></ul>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📏</div>
+      <h2>1. 定義與病因</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>定義</h3><ul class="notes"><li>SBS 是<strong>功能性診斷</strong>：小腸質量流失造成的臨床表現</li><li>犬模型通常切除 <strong>≥ 70%</strong> 小腸；但臨床病例 <strong>&gt; 50%</strong> 小腸流失，加上切除<strong>迴腸末端與迴結腸（迴盲）瓣（ICV）</strong>，也可能發生 SBS 且預後較差</li><li>一回溯研究定義「大範圍小腸切除」為 <strong>≥ 50%</strong></li></ul></div><div class="subsection"><h3>原文表 1：人類 SBS 的定義與分類</h3><ul class="notes"><li>定義：成人殘餘小腸 <strong>&lt; 200 cm</strong>（± 結腸）；兒童 &lt; 同齡正常長度 25%</li></ul><div class="tbl-wrap"><table><tr><th>分類方式</th><th>內容</th></tr><tr><td>解剖</td><td>Type 1 空腸／迴腸造口；Type 2 空腸－結腸吻合；Type 3 空腸－迴腸－結腸吻合（迴盲瓣與結腸連續）</td></tr><tr><td>病理生理</td><td>無結腸；有結腸（殘餘結腸 &lt; 50% 或 &gt; 50%）</td></tr><tr><td>時期</td><td><strong>早期</strong>（≤ 4 週）、<strong>復健期</strong>（≤ 3 年）、<strong>維持期</strong></td></tr><tr><td>臨床</td><td>口服／腸道／肌注補充即可＝腸道功能不足；需靜脈補充＝<strong>腸衰竭（IF）</strong></td></tr><tr><td>慢性 IF 嚴重度</td><td>依靜脈補充的種類與量（只補液與電解質，或含巨量營養素的 PN）</td></tr></table></div></div><div class="subsection"><h3>原文表 2：造成 SBS 的原因</h3><div class="tbl-wrap"><table><tr><th>犬貓（21 犬、7 貓）</th><th>人類成人（1880 人）</th><th>人類兒童（558 人）</th></tr><tr><td><strong>異物</strong>（± 穿孔）：<strong>線性（7 貓、6 犬）</strong>、單一（4 犬）</td><td>Crohn 病 27.1%</td><td>小兒腸假性阻塞 24.9%</td></tr><tr><td>腸繫膜扭轉（3 犬）</td><td>腸繫膜缺血 26.7%</td><td>腸道畸形 15.9%</td></tr><tr><td>手術併發症（3 犬：之前腸胃手術處裂開、絕育切口裂開、腸套疊術後切口裂開致腹膜炎）</td><td>手術併發症 16.7%</td><td>腸扭轉 13%</td></tr><tr><td>腸套疊（2 犬）</td><td>放射性腸炎 6.3%</td><td>壞死性腸炎 10.1%</td></tr><tr><td>先天（1 犬）、腸梗塞（1 犬）、腸腫瘤（1 犬）</td><td>扭轉、沾黏、慢性腸假性阻塞、息肉症、外傷、UC、腫瘤</td><td>腸繫膜缺血、Crohn、神經病、自體免疫腸病、胰臟病</td></tr></table></div><ul class="notes"><li>犬貓切除前腸道通常相對健康，可能有利術後恢復</li><li>症狀、嚴重度、處置取決於<strong>殘餘小腸的長度與位置</strong> → 外科醫師應<strong>記錄切除長度與部位</strong></li></ul></div><div class="subsection"><h3>臨床症狀</h3><ul class="notes"><li>不同程度腹瀉（軟便到水樣）＋<strong>體重下降</strong>；排便次數增加、惡臭、脹氣、裡急後重、黏液</li><li>體重下降可很嚴重，導致明顯肌肉流失與惡病質</li><li>其他：腸鳴、嘔吐、多渴、脫水、嗜睡</li><li>作者觀察食慾從<strong>多食</strong>到食慾差都有（後者見於嚴重營養不良）；人類 SBS 常多食（≥ 1.5 倍預測靜止能量消耗）</li></ul></div></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">⚙️</div>
+      <h2>2. 病理生理</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>吸收的改變</h3><ul class="notes"><li>人類切除後急性期：大量液體與電解質流失，可持續數週；手術操作可造成大量蛋白流失與低蛋白血症，靜脈晶體液可能加重並增加腸道分泌</li><li>巨量營養素（蛋白、脂肪、碳水）與多數微量營養素主要在<strong>近端空腸</strong>吸收；電解質也在結腸吸收</li><li>脂溶性維生素：在有飲食脂肪時於空腸被動擴散吸收</li><li><strong>迴腸</strong>是 <strong>B12</strong> 與<strong>膽酸</strong>吸收的主要部位</li></ul><div class="tbl-wrap"><table><tr><th>切除部位</th><th>影響</th></tr><tr><td>迴腸</td><td><strong>鈷胺素與膽酸</strong>吸收受損</td></tr><tr><td>十二指腸、近端空腸</td><td>胰膽分泌與黏膜酵素濃度改變 → 巨量營養素消化吸收受影響</td></tr></table></div></div><div class="subsection"><h3>迴結腸交界（ICJ）切除</h3><ul class="notes"><li>ICV 是大小腸間的物理屏障：控制食糜進入大腸、防止逆流</li><li>ICJ（迴腸＋ICV）是「<strong>迴腸煞車</strong>」機制的重要部分，減緩腸胃通過</li><li>ICJ 切除（合併不同程度小腸切除，從十二指腸–結腸到迴腸–結腸）：長期結果良好 <strong>犬 50%（10/20）、貓 73%（11/15）</strong>；慢性腹瀉 <strong>犬 44%（8/18）、貓 27%（4/15）</strong></li><li>住院的 6 隻犬：低 B12、低維生素 D、低血鈣、低牛磺酸</li><li>巨結腸貓切除 ICJ 者糞便明顯較稀 → <strong>盡可能保留 ICJ</strong></li></ul></div><div class="subsection"><h3>腸道適應</h3><ul class="notes"><li>殘餘腸道的結構與功能改變以增加吸收能力；程度與切除範圍、殘餘腸道解剖相關</li><li>多發生在第二期（從維持液體電解質平衡轉為營養支持）；人類主要在切除後 <strong>2 年內</strong>，之後也可能持續</li><li><strong>結構</strong>：黏膜上皮增生、腺窩細胞增生、腺窩加深、絨毛變高；局部血管新生、腸道擴張、腸道變長</li><li><strong>功能</strong>：小腸通過時間延長（犬模型切 50% 與 75%，4–12 週後通過時間分別增加 35% 與 29%）；轉運蛋白表現增加</li><li><strong>迴腸的適應比空腸明顯</strong>：犬模型近端切除後殘餘迴腸的長度、周徑、絨毛高度、腺窩深度都比遠端切除者好</li></ul></div><div class="subsection"><h3>腸道營養是適應的關鍵</h3><ul class="notes"><li>犬切除 50% 近端小腸：<strong>只走腸道營養</strong>者迴腸絨毛明顯變高；<strong>只靠靜脈營養</strong>者迴腸絨毛明顯變矮</li><li>飲食<strong>脂肪與 SCFA</strong> 促進適應；大鼠模型長鏈三酸甘油酯效果大於蛋白與多醣；可溶纖維（果膠）也增強適應</li><li>激素：<strong>GLP-2</strong>（迴腸 L 細胞分泌）是關鍵；生長激素在動物模型增強結構適應，但人類 Cochrane 回顧結論不一；<strong>Peptide YY</strong>（L 細胞）在 SBS 明顯升高，減緩蠕動、可能有助功能適應</li></ul></div><div class="subsection"><h3>蠕動的改變</h3><ul class="notes"><li>是 SBS 罹病的重要部分：人類中影響進食耐受、延長 PN 依賴、加重吸收不良</li><li><strong>低蠕動</strong>（胃排空延遲、無效或無順向蠕動）與<strong>高蠕動</strong>（通過加快）都可能</li><li>原因：神經失調、腸道激素分泌改變、腸神經缺血損傷、平滑肌功能異常、發炎、<strong>菌相失調</strong></li><li>殘餘腸道隨時間<strong>進行性擴張</strong>、蠕動不佳、通過不穩定 → 進一步加重失調</li><li><strong>高蠕動</strong>：正常時迴腸末端的營養（尤其脂質）觸發 neurotensin、GLP-1、PYY 釋放 → 抑制胃蠕動、調整通過；<strong>失去迴腸末端＝失去迴腸煞車</strong> → 近端通過加快、吸收不良、腹瀉</li><li>犬實驗：切除 <strong>70% 近端</strong>小腸 → 胃十二指腸排空與腸道流速下降，迴腸主要靠調節近端流速而非改變自身收縮 → 顯示<strong>遠端對近端的溝通</strong>很重要</li><li>切除 <strong>80% 遠端</strong>小腸但保留迴腸末端 → 急性期空腹 MMC 變少、傳播變慢中斷（代償性減緩通過）；慢性期部分恢復但速度仍受損 → 初期代償性減緩會隨蠕動重組而逐漸減少</li><li>結論：腸道適應包含<strong>隨時間變化的蠕動改變</strong>，處置要配合</li></ul></div></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🏥</div>
+      <h2>3. 急性期處置</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>大範圍小腸切除後需加護：<strong>靜脈輸液與電解質補充</strong></li><li>人類穩定後常規用<strong>靜脈營養（PN）</strong>；獸醫多限於有 24 小時照護的加護環境；<strong>部分 PN</strong> 可在過渡期輔助腸道營養；限制包括 24 小時照護、資源與費用</li><li><strong>病況穩定就開始腸道營養</strong>以促進適應</li><li>能自己吃的病患：<strong>3–4 天內</strong>逐步加到 <strong>RER</strong>，評估耐受後再加到維持能量需求（MER）</li><li>人類常用含葡萄糖與鈉的<strong>口服補液</strong>（經 SGLT 增加小腸淨水吸收），獸醫不常規使用</li><li><strong>聚合型</strong>液態腸道配方（含完整蛋白）在人與獸醫都常用；大鼠模型可能比單體型（游離胺基酸）更促進黏膜再生，但非所有研究支持；犬貓可用，優越性未知</li></ul></div></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">💊</div>
+      <h2>4. 藥物處置</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>給藥原則</h3><ul class="notes"><li>多數口服藥在近端空腸吸收，SBS 病患可用；但<strong>避免緩釋與延遲釋放劑型</strong></li><li>可考慮替代給藥方式（液劑、外用）並監測血中濃度</li><li>無效時：加劑量、調整給藥頻率、換劑型或途徑</li></ul></div><div class="subsection"><h3>原文表 3：SBS 常用藥物</h3><div class="tbl-wrap"><table><tr><th>藥物</th><th>劑量（犬貓，除非另註）</th><th>類別</th><th>注意</th></tr><tr><td>Kaolin/pectin</td><td><strong>0.5–1 mL/kg PO /24h</strong>，可分 q6–8h</td><td>吸附劑、緩和劑</td><td>—</td></tr><tr><td><strong>Loperamide</strong></td><td>犬 <strong>0.1–0.2 mg/kg PO q8–12h</strong>；貓 <strong>0.08–0.1 mg/kg PO q12h</strong></td><td>鴉片類止瀉</td><td><strong>MDR1 缺陷犬禁用</strong>；貓即使治療劑量也可能躁動；細菌或毒素性腹瀉禁用</td></tr><tr><td>Diphenoxylate</td><td>犬 <strong>0.1 mg/kg PO q8–12h</strong>；貓 <strong>0.05–0.1 mg/kg PO q12h</strong></td><td>鴉片類止瀉</td><td>細菌或毒素性腹瀉禁用</td></tr><tr><td>Metoclopramide</td><td><strong>0.5 mg/kg PO、SC q8h</strong>；CRI <strong>1–2 mg/kg/24h</strong></td><td>促動劑</td><td>—</td></tr><tr><td>Cisapride</td><td><strong>0.5 mg/kg PO q8–12h</strong></td><td>促動劑（5-HT4）</td><td>—</td></tr><tr><td>Mosapride</td><td>犬 <strong>0.5–2 mg/kg PO q12–24h</strong></td><td>促動劑（5-HT4）</td><td>只在日本有</td></tr><tr><td>Prucalopride</td><td><strong>0.05–0.5 mg/kg PO q12–24h</strong></td><td>促動劑（選擇性 5-HT4）</td><td>—</td></tr><tr><td>Erythromycin</td><td><strong>0.5–1.0 mg/kg IV、PO q8h</strong></td><td>促動劑（motilin 促效）</td><td>—</td></tr><tr><td>Azithromycin</td><td>犬 <strong>2.0 mg/kg IV、PO q8h</strong>；貓 <strong>3.5 mg/kg PO q24h</strong></td><td>促動劑（motilin 促效）</td><td>—</td></tr><tr><td>Cholestyramine</td><td>犬 <strong>0.5–2.0 g/隻 q12h</strong>；0.3–1 g/kg PO q8h</td><td>膽酸螯合劑</td><td>長期可致<strong>維生素 K 缺乏</strong>，可考慮補 K1 與葉酸</td></tr><tr><td>Ursodeoxycholic acid</td><td><strong>15 mg/kg PO q24h</strong></td><td>膽酸</td><td>—</td></tr></table></div></div><div class="subsection"><h3>止瀉與促動</h3><ul class="notes"><li>短腸與蠕動異常讓快速通過與腹瀉難控制；<strong>只靠飲食無效時</strong>可用止瀉劑與吸附劑</li><li>鴉片類（loperamide、diphenoxylate）：減少蠕動與液體分泌，增加分節收縮、液體電解質吸收、結腸與肛門括約肌張力；人類偏好 loperamide（控制較好、電解質流失少、副作用少）；<strong>從低劑量開始調整</strong>；<strong>嚴重菌相失調者不要用</strong></li><li>SBS 的低蠕動（胃排空延遲、腸道低蠕動）：處理原發病、調整飲食、促動劑；<strong>有阻塞或管腔狹窄時避免促動劑</strong></li><li><strong>Metoclopramide</strong>（D2 與 5-HT3 拮抗、5-HT4 促效）：縮短犬術後腸胃蠕動恢復時間、加速健康貓胃排空；人類數天到數週內<strong>快速耐受</strong></li><li><strong>Cisapride</strong>：人類因心律不整下市，但可經調劑取得；<strong>貓要 20 倍建議劑量</strong>才出現心律不整</li><li><strong>Prucalopride</strong>：改善人類胃輕癱；對犬幽門竇、小腸、犬貓結腸有促動作用</li><li><strong>Mosapride</strong>：亞洲核准用於犬</li><li><strong>Macrolide</strong>（低劑量）：motilin 促效，啟動 MMC 第 III 期；erythromycin 促進犬貓胃排空，但人類有 CYP450 抑制與致心律不整疑慮 → 謹慎；<strong>azithromycin 似乎較安全、在貓有效</strong></li></ul></div><div class="subsection"><h3>制酸</h3><ul class="notes"><li>大範圍腸切除後<strong>胃酸過度分泌與高胃泌素血症</strong>，人類持續 6–12 個月</li><li>制酸可減少胃分泌量、保護上消化道黏膜、保護胰酵素功能</li><li>但胃酸能抑制上消化道細菌過度生長 → <strong>12 個月後少用</strong>，尤其有菌相失調時，除非對糞便量或消化不良症狀有明確益處</li></ul></div><div class="subsection"><h3>吸附劑</h3><ul class="notes"><li>Kaolin、pectin 吸收液體、結合化合物與腸道毒素</li><li>大鼠 SBS 模型：pectin 明顯減少體重下降、改善糞便、改善結腸水分吸收；一名 SBS 兒童通過時間延長且不影響吸收</li><li>但嚴重蠕動異常與失調者，碳水發酵與 <strong>D-乳酸酸中毒</strong>風險可能增加</li></ul></div><div class="subsection"><h3>膽酸螯合劑</h3><ul class="notes"><li>迴腸病變或切除 → 過多膽鹽進入結腸 → <strong>分泌性腹瀉</strong></li><li><strong>Cholestyramine</strong> 改善 SBS 膽鹽吸收不良的糞便品質，犬推定膽酸性腹瀉也有成功記錄</li><li>至少在其他口服藥<strong>前 1 小時</strong>給</li><li><strong>貓要小心</strong>：增加糞便牛磺酸排出，長期使用造成<strong>牛磺酸耗竭</strong>；人類可能高氯性酸中毒；長期可能脂肪與脂溶性維生素吸收不良</li></ul></div><div class="subsection"><h3>膽酸類似物</h3><ul class="notes"><li><strong>熊去氧膽酸</strong>在貓與犬大範圍空迴腸切除模型中增強適應與吸收、改善營養狀態</li></ul></div><div class="subsection"><h3>GLP-1、GLP-2 類似物</h3><ul class="notes"><li>GLP-2（遠端小腸與近端結腸 L 細胞餐後分泌）：刺激腺窩細胞增生、減少上皮凋亡、增加吸收、抑制蠕動與分泌</li><li>GLP-1 促效劑 <strong>exenatide</strong> 減緩通過、減少成人 SBS 的 PN 需求；持續輸注 GLP-1 和／或 GLP-2 明顯減少糞便、能量、氮、鈉、鉀流失</li><li>Exenatide 延遲健康貓胃排空；CE 犬 GLP-2 分泌異常</li><li><strong>活動性腸胃惡性腫瘤避免 GLP-2 類似物</strong>（生長因子作用）；獸醫需研究</li></ul></div><div class="subsection"><h3>Octreotide</h3><ul class="notes"><li>其他治療失敗時可考慮抗分泌：減少腸胃分泌、減緩空腸通過</li><li>但可能抑制胰酵素分泌、加重吸收不良 → <strong>適應期避免</strong>，只留給大量糞便流失、液體電解質難以處理者</li></ul></div><div class="subsection"><h3>抗生素</h3><ul class="notes"><li><strong>不建議長期使用</strong></li><li>只用於懷疑<strong>細菌移位和／或敗血症</strong>，或適當飲食與支持治療後仍持續腹瀉的<strong>嚴重菌相失調</strong></li><li>此時可短期經驗性使用，減少細菌負荷、改善吸收、減輕黏膜發炎</li><li>優先選窄譜、全身影響小者（<strong>tylosin 或 metronidazole</strong>）；amoxicillin-clavulanate 或 oxytetracycline 較少用；敗血症犬靜脈給廣效殺菌劑</li><li>療程盡量短；不鼓勵長期或預防性使用；穩定後嘗試停藥</li></ul></div></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🍖</div>
+      <h2>5. 營養處置</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>熱量需求</h3><div class="tbl-wrap"><table><tr><th>犬模型</th><th>熱量</th><th>結果</th></tr><tr><td>切除 75% 空腸、保留迴腸</td><td><strong>70 kcal/kg/天</strong></td><td>40 週維持體重</td></tr><tr><td>切除 50% 近端小腸</td><td><strong>75 kcal/kg/天</strong></td><td>2 週內掉約 10% 體重，之後 6 週回升</td></tr><tr><td>切除 50% 近端空腸 vs 遠端（保留迴腸）</td><td>遠端 70 ± 3、近端 81 ± 7 kcal/kg</td><td>12 週都掉體重，遠端組最多</td></tr></table></div><ul class="notes"><li>推論：5–50 kg 犬可能需要 <strong>1.5–3.1 × RER（70–81 kcal/kg/天）</strong>；貓沒有資料</li><li>作者建議：<strong>至少從 2.0 × RER 開始</strong>，每 <strong>2–4 週</strong>量體重調整，維持或增加體重；鼓勵<strong>少量多餐</strong></li></ul></div><div class="subsection"><h3>飲食策略</h3><ul class="notes"><li>獸醫長期居家 PN 不實際 → <strong>腸道營養是必要的</strong>；犬貓 SBS 最佳飲食沒有共識</li><li>19 隻 SBS 犬回溯：各種飲食策略與預後無關（可能受適應階段不同影響）</li><li><strong>高消化率（低殘渣）飲食</strong>是常見第一線：最大化吸收、減少糞便量、減少滲透性腹瀉與產氣；獸醫腸胃處方、低脂腸胃處方、改質蛋白飲食（水解或元素／胺基酸型）都有高消化率</li><li><strong>元素飲食</strong>：犬與人 SBS 有臨床報告；高消化率減少糞便量，但獸醫研究只限於 CE 犬</li></ul></div><div class="subsection"><h3>脂肪</h3><ul class="notes"><li>迴腸切除失去 ASBT → 膽酸腸肝循環中斷 → <strong>脂肪吸收不良、腹瀉、脂肪便</strong> → 減少脂肪攝取或改變脂肪種類可能有幫助</li><li><strong>MCT</strong>：易消化吸收，幾乎不需胰脂酶與膽酸；部分經門脈吸收並快速氧化供能</li><li>但<strong>長鏈三酸甘油酯</strong>仍需要（必需脂肪酸、脂溶性維生素吸收）</li><li>MCT 可做進飲食或另外補充，劑量未定；加在已完整均衡的飲食上時<strong>不超過每日熱量 10%</strong>；<strong>貓可能降低適口性</strong></li></ul></div><div class="subsection"><h3>原文表 4：飲食脂肪分級（g/100 kcal）</h3><div class="tbl-wrap"><table><tr><th></th><th>AAFCO 成年維持最低</th><th>NRC 成年適當攝取</th><th>超低</th><th>低</th><th>中</th><th>高</th></tr><tr><td>犬</td><td>1.4</td><td>1.0</td><td><strong>&lt; 2</strong></td><td><strong>&lt; 3</strong></td><td>3–5</td><td>&gt; 5</td></tr><tr><td>貓</td><td>2.3</td><td>2.3</td><td>—</td><td><strong>&lt; 4</strong></td><td>4–6</td><td>&gt; 6</td></tr></table></div><p class="p"><span class="src src-add">💡 補充</span> 這裡的犬低脂分級（&lt; 3、超低 &lt; 2 g/100 kcal）和本特刊 04 飲食策略（低脂 1.7–2.9、超低 &lt; 1.7）、12 PLE 一文（低脂 1.6–2.5、超低 ≤ 1.5）引用的切點不同——三篇都說明沒有官方共識，比較飲食時要看實際 g/100 kcal 數字。</p></div><div class="subsection"><h3>纖維</h3><ul class="notes"><li>可能改善糞便性狀、改變蠕動、<strong>結合膽酸</strong>、產生 SCFA</li><li>人類 SBS 偏好<strong>可溶</strong>纖維；益生元纖維可能有助處理失調</li><li>加纖維會降低能量密度與蛋白、脂肪消化率 → 開始高纖飲食要密切監測</li></ul></div><div class="subsection"><h3>原文表 5：總膳食纖維分級（g/100 kcal）</h3><div class="tbl-wrap"><table><tr><th></th><th>低 TDF</th><th>高 TDF</th></tr><tr><td>犬</td><td>&lt; 2</td><td>&gt; 4</td></tr><tr><td>貓</td><td>&lt; 0.5</td><td>&gt; 2.5</td></tr></table></div></div><div class="subsection"><h3>原文表 6：洋車前子殼建議劑量</h3><ul class="notes"><li>作者經驗：從 <strong>0.25 g TDF/kg/天</strong>開始，逐步加到 <strong>1 g TDF/kg/天</strong>，監測糞便品質、排便次數、腹脹</li></ul><div class="tbl-wrap"><table><tr><th>體重（kg）</th><th>TDF（g/天）</th><th>洋車前子殼（茶匙/天，以 5 g TDF/茶匙計）</th></tr><tr><td>5</td><td>1.25–5</td><td>0.25–1</td></tr><tr><td>10</td><td>2.5–10</td><td>0.5–2</td></tr><tr><td>15</td><td>3.75–15</td><td>0.75–3</td></tr><tr><td>20</td><td>5–20</td><td>1–4</td></tr><tr><td>25</td><td>6.25–25</td><td>1.25–5</td></tr><tr><td>30</td><td>7.5–30</td><td>1.5–6</td></tr><tr><td>35</td><td>8.75–35</td><td>1.75–7</td></tr><tr><td>40</td><td>10–40</td><td>2–8</td></tr><tr><td>45</td><td>11.25–45</td><td>2.25–9</td></tr><tr><td>50</td><td>12.5–50</td><td>2.5–10</td></tr></table></div><ul class="notes"><li>註：各產品 TDF 常為 3–5 g/茶匙；可依醫師判斷與反應調整；3 茶匙＝1 大匙</li></ul></div><div class="subsection"><h3>特別要注意的營養素</h3><ul class="notes"><li><strong>鈷胺素</strong>：主要在迴腸與內在因子結合後受體媒介吸收（空腸較少）→ <strong>迴腸切除者必須補充</strong>；建議<strong>注射 50 µg/kg SC</strong>，頻率以維持正常濃度為準；口服在 CE 有效，但 SBS 效果未知 → 建議注射</li><li><strong>牛磺酸</strong>（犬非必需、貓必需）：在肝臟與膽酸結合；迴腸切除失去腸肝循環 → 可能耗竭 → 經飲食或補充 <strong>250–500 mg/天</strong></li><li><strong>脂溶性維生素</strong>：吸收依賴膽酸；人類 SBS 有 A、D、E 缺乏（A、E 注射、D 口服補充可改善）；作者遇過<strong>嚴重低維生素 D</strong> 的 SBS 病例</li><li><strong>麩醯胺酸</strong>：腸上皮優先使用的能量來源；犬 SBS 模型 PN 中加靜脈麩醯胺酸，腺窩加深、絨毛變高；人類文獻<strong>不支持</strong>用於 SBS 或 IF；犬貓口服研究缺乏</li></ul></div><div class="subsection"><h3>益生菌</h3><ul class="notes"><li>缺乏強力證據，但人類臨床前研究與兒童 SBS 報告有益處；效果依菌株</li><li>獸醫資料少 → 只用<strong>已證實對腸道菌相有益</strong>的特定益生菌</li></ul></div></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📋</div>
+      <h2>6. 監測、併發症與預後</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>監測</h3><ul class="notes"><li>營養不良風險高 → <strong>每次回診做延伸營養評估</strong></li><li>出院後初期每 <strong>1–4 週</strong>回診</li><li>每次記錄：飲食史、<strong>體重、BCS、MCS、糞便評分</strong></li><li>生化：評估電解質與蛋白流失，穩定前常做，長期也要定期追蹤營養不良</li><li>部分或完全迴腸切除者：監測<strong>鈷胺素</strong>、<strong>全血牛磺酸</strong></li><li>脂肪吸收不良與營養不良者：可監測<strong>血清 25(OH)D</strong></li><li>作者：切除後 <strong>2–6 個月</strong>檢查特定營養素，之後依個別評估</li><li>切除後前 <strong>2 年</strong>（適應期）：每 <strong>2–6 個月</strong>回診</li></ul></div><div class="subsection"><h3>併發症</h3><ul class="notes"><li>除營養不良與長期糞便品質差外，犬貓長期併發症描述不多</li><li>人類（部分與長期 PN 有關）：膽道疾病含膽結石、胃十二指腸潰瘍、代謝性骨病、<strong>草酸鈣腎結石</strong>、肝膽汁淤積、脂肪肝、<strong>D-乳酸酸中毒</strong></li><li>草酸鈣結石機制：腸道鈣與未吸收的脂肪酸結合 → 游離草酸進入大腸被吸收、經腎排出；犬貓尚無報告</li><li>人類慢性 IF＝無 PN 就無法滿足營養需求，最常見於空腸－結腸吻合；<strong>獸醫 IF 病患預後嚴重</strong></li></ul></div><div class="subsection"><h3>預後</h3><ul class="notes"><li>取決於殘餘小腸的<strong>適應能力</strong>；獸醫研究未發現切除範圍與預後相關</li><li>回溯（13 犬、7 貓，≥ 50% 小腸切除）：3 隻犬術後 5 天內死亡或安樂死；有追蹤的 10 犬 5 貓中位存活 <strong>828 天</strong>（7–1957），<strong>20%</strong> 因 SBS 安樂死；2/10 犬在 6 個月內因 SBS 安樂死；存活犬 25%（2/8）最後仍軟便</li><li>有追蹤的 5 貓：1 隻 4 週內因 SBS 安樂死；其餘 4 隻中 3 隻最後仍有軟便、量大和／或惡臭</li><li>整體 15 隻中 7 隻（6 犬 1 貓）最後追蹤時<strong>沒有 SBS 症狀</strong></li><li>另一多中心回溯（12 犬長期追蹤）：6 存活、6 安樂死（5 隻歸因於 SBS）；存活者 5 隻糞便評分理想</li></ul></div></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📌</div>
+      <h2>7. 作者的 Clinics Care Points</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>病患穩定後就<strong>建立腸道營養</strong>，促進腸道適應</li><li>營養策略要個別化，持續評估熱量攝取、體重、BCS、MCS、症狀，處理 SBS 相關的營養不良</li><li>可能需要<strong>止瀉劑或促動劑</strong>控制腹瀉與蠕動異常</li><li><strong>抗生素不建議長期使用</strong>，只用於懷疑細菌移位和／或敗血症，或適當飲食與支持治療後仍持續腹瀉的嚴重菌相失調</li></ul></div><div class="subsection"><h3>給外科醫師</h3><ul class="notes"><li>SBS 多為手術造成 → 外科醫師應熟悉其症狀、處置與預後，在圍術期向飼主說明</li><li><strong>≥ 50%</strong> 小腸切除就有風險；盡量<strong>保留迴腸末端與迴結腸瓣</strong></li><li>手術紀錄要寫清楚<strong>切除長度與部位</strong></li></ul><p class="p"><span class="src src-add">💡 補充</span> 本特刊相關：07 膽酸性腹瀉（迴腸切除後的膽酸吸收不良與 BAS 劑量）、05 膳食纖維（洋車前子的物化性質）。</p></div></div>
+  </div>
+  <div class="section" id="ref">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📚</div>
+      <h2>原文出處</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><div class="ref-list"><div class="ref-item">Martha G. Cline, Roman Husnik. Short Bowel Syndrome: Adaptive Mechanisms and Management Strategies in Veterinary Patients. <em>Vet Clin North Am Small Anim Pract</em> 2026;56(3):789–807. <a href="https://doi.org/10.1016/j.cvsm.2026.02.002" target="_blank" rel="noopener">doi:10.1016/j.cvsm.2026.02.002</a></div><div class="ref-item">特刊：Gastroenterology（主編 M. Katherine Tolbert、Sara A. Jablonski），<em>Vet Clin North Am Small Anim Pract</em> 2026 年 5 月號，第 56 卷第 3 期。© 2026 Elsevier Inc.</div></div></div></div>
+  </div>
+
+  <div class="next-up">
+    <p>同一期特刊的其他文章請回目錄。</p>
+    <a href="index.html">回到特刊目錄 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  navLinks.forEach(a => { a.classList.remove('active'); if (a.getAttribute('href') === '#' + cur) a.classList.add('active'); });
+});
+</script>
+</body>
+</html>

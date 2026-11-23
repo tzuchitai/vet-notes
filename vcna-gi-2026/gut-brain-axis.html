@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>雙向溝通：伴侶動物的腸腦軸｜VCNA 腸胃學特刊 2026</title>
+<style>
+  :root {
+    --primary: #8A4B0F;
+    --primary-light: #F6EBDD;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2B1A0B;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E5C9A8; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A2E14;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E5C9A8; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E5C9A8;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A2E14;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #C9A27A;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #5A320C 0%, #C47F2B 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2B1A0B; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A2E14; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #5A320C; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+  .figlink { font-size: 12px; font-weight: 600; color: var(--primary); text-decoration: none; background: var(--primary-light); border-radius: 999px; padding: 2px 9px; margin-left: 4px; white-space: nowrap; }
+  .figlink:hover { text-decoration: underline; }
+  .fig.diagram svg { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; background: #fff; }
+  @media (max-width: 600px) { .fig.diagram { overflow-x: auto; } .fig.diagram svg { min-width: 560px; } .fig.diagram figcaption::before { content: "← 左右滑動看完整圖 →"; display: block; font-size: 11px; opacity: .6; margin-bottom: 2px; } }
+</style>
+
+</head>
+<body>
+
+<a class="home-link-fab" href="index.html">← 回到特刊目錄</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← VCNA 腸胃學特刊 2026</a>
+  <div class="logo">
+    <h2>08｜腸腦軸</h2>
+    <p>VCNA 2026;56(3) 論文整理</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div><a href="#s1">1. 菌相–腸–腦軸（MGBA）</a><a href="#s2">2. 腸腦軸的病理變化</a><a href="#s3">3. 菌相失調與行為</a><a href="#s4">4. 腸腦互動障礙（DGBI）</a><a href="#s5">5. 腸胃病的行為表現</a><a href="#s6">6. 生物心理社會模式的治療</a><a href="#s7">7. 病例：異食、跳撲、咬人的狗</a><a href="#s8">8. 作者的 Clinics Care Points</a><a href="#ref">原文出處</a>
+  </nav>
+</nav>
+
+<div id="main">
+
+  <div class="page-header">
+    <h1>雙向溝通：伴侶動物的腸腦軸</h1>
+    <p>作者：Julia D. Albright, Lore I. Haug（論文整理）</p>
+    <p>Bidirectional Communication：The Gut–Brain Axis in Companion Animal Health｜Vet Clin Small Anim 2026;56(3):649–663</p>
+    <div class="tags"><span class="tag">腸腦軸</span><span class="tag">菌相</span><span class="tag">迷走神經</span><span class="tag">HPA 軸</span><span class="tag">壓力</span><span class="tag">短鏈脂肪酸</span><span class="tag">血清素</span><span class="tag">犬尿胺酸</span><span class="tag">異食癖</span><span class="tag">舔空氣</span><span class="tag">舔表面</span><span class="tag">食物嫌惡</span><span class="tag">腸躁症</span><span class="tag">DGBI</span><span class="tag">益生菌</span><span class="tag">心理益生菌</span></div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📑 原文</span> 論文內容 <span class="src src-add">💡 補充</span> 整理者補充（臨床提醒、交叉參照；不是作者說的）
+    <br><span class="muted">依原文重點整理成中文，不是逐句翻譯；未標記的段落都是原文內容。原文的圖表版權屬 Elsevier，這裡沒有轉載，表格是依內文重新整理。藥物劑量請回原文與最新文獻確認。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記重點</h3>
+    <ul><li>腸腦軸＝菌相與宿主<strong>腸道、免疫、神經、內分泌、代謝</strong>路徑的複雜互動；<strong>迷走神經</strong>是主要溝通途徑</li><li><strong>心理壓力與身體疾病</strong>都會造成菌相失調、發炎、破壞腸腦軸</li><li>慢性壓力 → 糖皮質素受體不敏感、CRF 抑制黏液分泌、削弱緊密連接、壓抑迷走神經 → 通透性上升、內臟過敏</li><li>發炎時色胺酸代謝從<strong>血清素轉向犬尿胺酸</strong>（產生神經毒性的 quinolinic acid）；犬的低血清素與攻擊性有關</li><li><strong>舔空氣／伸頸咬空氣</strong>的狗 <strong>7/7</strong> 有腸胃異常，5/7 治療後改善；<strong>過度舔物體表面</strong>的狗約 <strong>75%</strong> 有腸胃結構或運動異常</li><li>貓在噁心時吃到的食物可能<strong>永久拒吃</strong>（條件性食物嫌惡）；貓砂盆外排便可能是腸胃問題的第一個徵兆</li><li>腸胃＋行為共病的狗，<strong>兩者一起治療</strong> 68% 兩方面都改善，優於只治一邊</li><li>抗憂鬱劑本身有抗菌作用，也可能造成腹瀉、便秘、食慾差、噁心</li></ul>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🧠</div>
+      <h2>1. 菌相–腸–腦軸（MGBA）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>腸道菌相</h3><ul class="notes"><li>以細菌為主，也有病毒、真菌、古菌；影響免疫發育、屏障通透性、蠕動、營養吸收</li><li>從胃到結腸，菌量與多樣性遞增：</li></ul><div class="tbl-wrap"><table><tr><th>部位</th><th>主要菌群</th></tr><tr><td>胃</td><td>少量，主要是 *Helicobacter* 與部分產乳酸菌</td></tr><tr><td>小腸</td><td>需氧與兼性厭氧菌（*Lactobacillus*、*Streptococcus*）</td></tr><tr><td>結腸</td><td>以嚴格厭氧菌為主（*Bacteroides*、*Clostridium*、*Fusobacteria*）</td></tr></table></div><ul class="notes"><li>犬貓腸道以 Firmicutes、Bacteroidetes、Proteobacteria、Fusobacteria、Actinobacteria 為主</li></ul></div><div class="subsection"><h3>發育</h3><ul class="notes"><li>可能在子宮內就開始定殖，出生時經母體產道快速建立；母親舔舐把口腔與皮膚菌傳給幼仔</li><li>飲食終生影響菌相，<strong>早期發育時特別重要</strong>（出生到離乳菌相快速變化）</li><li><strong>無菌小鼠</strong>：HPA 軸異常、壓力反應過度（ACTH、皮質固酮升高）、記憶差、社交性降低、焦慮與動作模式改變（可能與 BDNF 有關），全身免疫發育不全</li><li>出生 <strong>3 週內</strong>重新定殖可恢復；延到 <strong>10 週</strong>才定殖，神經病理變化<strong>永久</strong></li></ul></div><div class="subsection"><h3>腸腦溝通路徑</h3><ul class="notes"><li>腸道神經內分泌因子（腸激素、代謝物、神經傳導物質）調節<strong>自主神經、腸神經系統、脊神經、HPA 軸</strong></li><li>HPA 經皮質醇調控免疫與腸道屏障</li><li>菌相影響胺基酸可得性 → 影響<strong>血清素、GABA、多巴胺、正腎上腺素</strong>的生成</li><li>腸道產生的神經傳導物質主要<strong>經迷走神經</strong>影響中樞；迷走神經也有全身與中樞的<strong>膽鹼性抗發炎</strong>作用</li><li><strong>SCFA</strong>（丁酸、丙酸、乙酸）：調節 T 細胞、GALT、GLP-1 → 增加 IL-10、抑制 IL-6、IL-8、TNF-α；<strong>丁酸增加 BDNF</strong></li><li>結腸產生的<strong>次級膽酸</strong>在腸神經與中樞有抗發炎作用</li></ul></div></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">⚡</div>
+      <h2>2. 腸腦軸的病理變化</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>免疫</h3><ul class="notes"><li>長期失衡 → 慢性發炎，同時傷害腸道與神經系統</li><li>促發炎細胞激素破壞黏液層與緊密連接 → <strong>腸道通透性上升＋血腦屏障受損</strong> → 微膠細胞介導的中樞發炎</li><li>發炎誘發適應性「生病行為」；慢性發炎可造成長期憂鬱狀態，與人類憂鬱症、雙極症、思覺失調、阿茲海默、帕金森、自閉症、焦慮有關（重鬱症患者 IL-6、TNF-α、CRP 升高）</li><li>犬貓：老年寵物的恐懼、焦慮、認知，以及犬癲癇，都有全身免疫失調的證據</li></ul></div><div class="subsection"><h3>內分泌（壓力）</h3><ul class="notes"><li>壓力 → 中樞釋放正腎上腺素與 <strong>CRF</strong>、腎上腺分泌糖皮質素</li><li>急性壓力短暫提升專注、能量動員、免疫防禦；皮質醇負回饋終止發炎、啟動修復</li><li><strong>慢性或早期生活壓力</strong> → <strong>糖皮質素受體不敏感</strong> → 發炎失去抑制、交感與 HPA 活性上升 → 過度警覺、恐懼制約增強、情緒與認知受損</li><li>CRF 影響腸胃蠕動與胃酸分泌；壓力性 CRF 與糖皮質素<strong>抑制黏液分泌、削弱緊密連接、壓抑迷走神經</strong></li></ul></div><div class="subsection"><h3>神經</h3><ul class="notes"><li>慢性壓力 → <strong>迷走神經撤退</strong> → 腸道通透性上升、<strong>內臟過敏</strong>、菌相失調、蠕動異常、神經退化、行為改變</li><li>臨床前模型：<strong>切斷迷走神經的動物，益生菌沒有效果</strong></li><li><strong>血清素</strong>主要在腸道由飲食色胺酸合成，調節蠕動與免疫；不穿過血腦屏障，但改變迷走神經訊號</li><li>發炎時色胺酸代謝轉向<strong>犬尿胺酸路徑</strong> → 產生神經毒素 <strong>quinolinic acid</strong></li><li>犬的<strong>低血清素與攻擊性</strong>有關</li><li>*Lactobacillus* 產生 <strong>GABA</strong>，經迷走與 HPA 抑制壓力與發炎反應；多巴胺失調與壓力相關疾病有關</li><li>SCFA 流失 → 屏障受損、細菌移位、免疫細胞過度活化、微膠細胞神經發炎；丁酸流失與迷走訊號、血清素生成失調有關</li></ul></div></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🦠</div>
+      <h2>3. 菌相失調與行為</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>成因：感染、心理壓力、不良飲食、抗生素、久坐</li><li>產 SCFA 菌（*Bacteroides*、*Faecalibacterium* 等 Firmicutes）減少＋促發炎菌增加，在神經精神疾病研究中一再出現</li><li>人類統合分析（憂鬱、雙極、思覺失調、焦慮）：各診斷沒有特異菌相，但整體<strong>菌種豐富度下降、*Faecalibacterium* 與 *Coprococcus* 減少、促發炎的 *Eggerthella* 增加</strong></li></ul></div><div class="subsection"><h3>犬的研究</h3><div class="tbl-wrap"><table><tr><th>行為表型</th><th>菌相發現</th></tr><tr><td>情緒、表現、行為障礙（跨人、犬、馬、豬）</td><td>Firmicutes（Clostridiaceae、Lachnospiraceae、Oscillospiraceae、Lactobacillaceae）相關最強</td></tr><tr><td>記憶表現較差</td><td>Actinobacteria 較多（類似部分人類阿茲海默發現）</td></tr><tr><td><strong>攻擊性</strong></td><td>*Lactobacillus* 與 Firmicutes 增加、<strong>Bacteroidetes 減少</strong>（與其他物種相反，原因不明）</td></tr><tr><td>「膽小」</td><td>*Roseburia* 與 *Faecalibacterium prausnitzii* 減少（與人、鼠焦慮研究一致）</td></tr><tr><td>恐懼（先導研究）</td><td>Firmicutes 增加、Proteobacteria 減少、<strong>血清膽酸上升</strong>、GABA 前驅物甘胺酸與麩醯胺酸降低</td></tr></table></div><ul class="notes"><li>限制：行為評估未驗證、細菌鑑定方法不同、樣本小、環境與病史混雜因子 → 研究間難比較</li><li>有學者主張依<strong>功能</strong>而非分類分組分析，功能剖面可能更貼近臨床表型</li><li><strong>貓</strong>：沒有菌相與臨床行為問題的研究，只有社交與標記行為的研究</li></ul></div></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🔁</div>
+      <h2>4. 腸腦互動障礙（DGBI）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>人類焦慮、憂鬱患者腸胃症狀較多；慢性腸胃病（尤其<strong>腸躁症 IBS</strong>）憂鬱焦慮比例較高</li><li>全基因體關聯研究：多種腸胃病與憂鬱、焦慮有<strong>共同遺傳易感性</strong>，許多基因座與免疫調節有關</li><li>「功能性腸胃病」已改稱 <strong>DGBI</strong>：IBS、IBD、胃輕癱等；有蠕動異常、內臟過敏、菌相失調、焦慮或認知障礙</li><li><strong>獸醫 IBS 定義</strong>：反覆腸胃症狀（嘔吐、腹瀉、便秘），常伴腹脹與內臟痛，<strong>組織學沒有發炎</strong>；屬排除診斷，與其他慢性腸病重疊而難診斷</li><li>心理壓力影響腸胃蠕動：手術後胃輕癱與腸阻塞常見，但<strong>健康犬住院或暴露噪音</strong>也會發生</li></ul></div></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">👀</div>
+      <h2>5. 腸胃病的行為表現</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>原文表 1</h3><div class="tbl-wrap"><table><tr><th>常見徵象</th><th>可能徵象</th></tr><tr><td>排泄頻率或地點改變</td><td>破壞行為</td></tr><tr><td>食慾改變</td><td>攻擊</td></tr><tr><td>異食癖</td><td>夜間醒來</td></tr><tr><td>過度舔舐</td><td>分離焦慮或噪音恐懼惡化</td></tr></table></div></div><div class="subsection"><h3>排泄改變</h3><ul class="notes"><li>排便頻率、急迫、裡急後重都是腸胃擾動的徵象；原因可是原發腸胃病或腸胃外疾病</li><li>變化可能很細微、飼主沒注意；<strong>貓在貓砂盆外排便可能是第一個徵兆</strong></li><li>每次看診都要特別問排泄習慣，並用<strong>標準化糞便評分</strong></li></ul></div><div class="subsection"><h3>進食行為</h3><ul class="notes"><li>食慾整合了進食中樞與情緒、獎賞、能量恆定迴路</li><li>多食較少見，多為內分泌（甲亢、糖尿病）或藥物（糖皮質素、benzodiazepine）</li><li>食慾差可來自促發炎細胞激素作用於皮質下食慾中樞、疾病或藥物造成的噁心嘔吐、腸胃痛</li></ul></div><div class="subsection"><h3>條件性食物嫌惡</h3><ul class="notes"><li>食物與噁心產生聯結 → 對特定飲食、質地、口味急性或長期拒吃；進食時的疼痛或恐懼也會造成</li><li><strong>即使進食與噁心相隔數小時也會形成</strong>，且噁心消失後仍持續</li><li><strong>噁心時給的食物可能被永久拒絕</strong>——貓特別常見（嚴格肉食、比雜食的狗更不願嘗試新食物）</li><li>飼主不小心制約：狗貓拒吃乾糧後給更好吃的 → 強化拒食</li><li>區分「仍在生病／噁心」「條件性嫌惡」「為了更好吃的而拒吃」不容易；可用<strong>止吐藥＋適當檢查</strong>找出身體病因，常需要消除制約的步驟</li></ul><p class="p"><span class="src src-add">💡 補充</span> 臨床應用：住院或噁心期間不要給打算長期使用的處方飼料，先控制噁心再換食，可避免讓貓把處方食物和噁心聯結在一起。</p></div><div class="subsection"><h3>異食癖</h3><ul class="notes"><li>吃非營養或無法消化的東西；吃部分有機物對犬貓是正常的，不算異食癖</li><li><strong>食糞</strong>：可能源自野生犬科的巢穴衛生行為，大多屬正常；也可能與多食或壓力替代行為有關；<strong>貓食糞極罕見</strong>，可能與中樞神經疾病有關</li><li><strong>吃草</strong>：傳說與腸胃不適有關，但研究找不到與營養缺乏或腸胃病的強烈關聯</li><li>吃布、塑膠、石頭可能與腸胃功能異常有關</li><li>貓飼主問卷：異食癖與<strong>梨形蟲症、低蠕動病史、每天少於 3 餐</strong>有關；異食貓較常打嗝、腸鳴、腹部波動；任食可能減少胃酸分泌、噁心與嘔吐</li><li>暹羅與伯曼貓「吸吮毛線」型異食：<strong>全部食慾增加</strong></li><li>異食癖也可能是缺鐵、神經疾病的非特異徵象；回溯研究提示可能是<strong>慢性腸胃炎</strong>的症狀</li><li>需手術取出異物的狗很多有恐懼、焦慮或衝動行為障礙（但無法排除疼痛等醫療因素）</li><li>排除腸胃與營養因素後，再考慮焦慮障礙</li></ul></div><div class="subsection"><h3>舔舐</h3><ul class="notes"><li>舔自己：多為該處搔癢或疼痛；也可能是社交理毛、討關注、壓力替代行為</li><li><strong>舔空氣、咬空氣</strong>的狗要強烈考慮腸胃問題（也要考慮眼疾、腦瘤、部分癲癇、脊髓空洞症等神經病痛）</li><li>小型前瞻研究：<strong>抬頭伸頸舔／咬空氣的 7 隻狗</strong>，內視鏡和／或組織學<strong>全部</strong>有腸胃異常；<strong>5/7</strong> 在針對性治療後此行為（及踱步等）消失；推測是胃食道不適（通常是逆流）讓狗伸頸想緩解</li><li>姊妹研究：<strong>過度舔無生命物體表面</strong>的狗約 <strong>75%</strong> 影像或組織學有腸胃結構或運動異常；<strong>超過一半</strong>在腸胃治療後停止舔表面</li><li>結論：所有舔空氣或舔表面的病例，即使沒有其他症狀，都應考慮腸胃鑑別</li></ul></div><div class="subsection"><h3>疼痛相關的非特異行為</h3><ul class="notes"><li>預期被碰會痛 → <strong>自我保護性攻擊</strong></li><li>被驚嚇時牽動痛處 → 噪音敏感惡化</li><li>疼痛的認知負擔抑制學習與表現（工作犬、運動犬、訓練中的幼犬最明顯）</li><li>疼痛增加焦慮 → 壓力替代行為（破壞、尿液標記、異常重複行為），或加重護食、分離焦慮</li><li>治療腸胃病與<strong>止痛試驗</strong>本身就是有效的行為治療</li></ul></div></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🧩</div>
+      <h2>6. 生物心理社會模式的治療</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>人類 DGBI 的標準架構：心理治療＋飲食與生活型態＋藥物（症狀與病理生理）</li><li>犬慢性腸病與焦慮障礙<strong>常共病</strong></li><li>回溯研究：沒有結構異常的腸胃症狀＋行為異常的狗，接受<strong>整合治療</strong>時 <strong>68%</strong> 兩個系統都改善，優於只做行為或只做腸胃治療</li><li>另一研究：慢性腸病治療後，狗的<strong>分離相關行為與討關注／黏人行為減少</strong></li></ul></div><div class="subsection"><h3>行為治療與益生菌</h3><ul class="notes"><li>典型行為治療：環境管理、制約技巧建立新的情緒與行為模式，必要時加精神藥物與營養品</li><li><strong>益生菌</strong>＝足量給予時對宿主有益的活菌；<strong>心理益生菌（psychobiotics）</strong>＝有神經行為益處者</li><li>囓齒類研究以 *Lactobacillus*、*Bifidobacterium* 最有前景，但人與獸醫的強力臨床資料缺乏</li><li><strong>_Bifidobacterium longum_ BL999</strong>：非同儕審查證據顯示可降低犬的恐懼反應，並改善 FHV-1 自然感染貓的壓力行為與病況</li><li>*Lactiplantibacillus plantarum*：兩研究提示可改善犬攻擊、分離焦慮等問題，但樣本小、無對照、評估工具未驗證</li><li>安慰劑對照研究：含 *L. reuteri* 的多成分補充品（另含磷蝦油 PUFA、後生元丁酸、5-HTP、L-theanine、不可溶纖維）→ 飼主回報行為問題明顯改善</li><li>部分研究顯示<strong>適量纖維本身</strong>就能改善健康與焦慮相關障礙（發酵產物與多酚）</li></ul></div><div class="subsection"><h3>抗發炎與抗憂鬱劑</h3><ul class="notes"><li><strong>PUFA</strong>：經花生四烯酸路徑抗發炎，可能也調節 HPA、神經可塑性、神經傳導物質</li><li><strong>抗憂鬱劑</strong>（SSRI、SNRI）在人類可防止微膠細胞活化、降低循環促發炎細胞激素</li><li>抗憂鬱劑本身是<strong>抗菌劑</strong>：減少失調可能是其作用機制之一，但也可能降低菌相豐富度、改變藥物代謝、產生抗藥性</li><li>腸胃副作用：<strong>腹瀉、便秘、食慾差、噁心</strong>；人類三環類（amitriptyline）較不易腹瀉，部分 SSRI 可能增加腹瀉</li></ul></div><div class="subsection"><h3>FMT</h3><ul class="notes"><li>憂鬱、焦慮甚至自閉症患者的糞便移植到無菌小鼠，可<strong>重現</strong>焦慮或憂鬱表型</li><li>IBS 患者接受健康人 FMT：焦慮與憂鬱常與腸胃症狀<strong>一起改善</strong>數個月</li><li>犬：癲癇犬可能較焦慮、衝動；一個治療犬癲癇的 FMT 試驗，這些行為與發作頻率都改善</li></ul></div></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🐕</div>
+      <h2>7. 病例：異食、跳撲、咬人的狗</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li><strong>1.5 歲公（已結紮）貴賓黃金獵犬</strong>：10 週齡帶回後就出現強烈跳撲、嘴咬，咬拉飼主衣服、手臂，越來越嚴重；每天發生、時地不定（含散步時）</li><li>只有在飼主試圖體罰時才低吼；<strong>12 月齡結紮無改善</strong></li><li>吃土、樹枝、石頭；間歇<strong>瘋狂吃草</strong>，之後有時嘔吐</li><li>糞便一直偏軟（<strong>Purina 5 分</strong>），至少每 2 週一次惡化（6 分）</li><li>理學檢查正常；慢性腹瀉檢查：沒有寄生蟲，<strong>血清鈷胺素低</strong></li><li>處置：預防性廣效驅蟲、多菌株益生菌、補鈷胺素、改<strong>低脂高纖腸胃處方</strong>＋行為矯正</li><li><strong>2 週內</strong>糞便改善到 3 分、異食減少、瘋狂吃草<strong>完全停止</strong></li><li><strong>6 週後</strong>跳撲咬人的強度降低 <strong>&gt; 75%</strong>，頻率降到每週一次；飼主說「像換了一隻狗」</li></ul><p class="p"><span class="src src-add">💡 補充</span> 這個病例的重點：幼犬期就開始的「行為問題」合併慢性軟便與異食，先處理腸胃再評估行為，可能比單純行為訓練更有效。</p></div></div>
+  </div>
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📌</div>
+      <h2>8. 作者的 Clinics Care Points</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>因<strong>腸胃或行為</strong>症狀就診的病患，都要做完整病史、理學檢查與診斷</li><li>心理壓力、身體疾病、不良飲食、抗生素等治療都可能破壞腸腦軸，導致腸胃與行為症狀</li><li><strong>同時處理腸胃與中樞的症狀與病理</strong>的整體治療計畫，臨床結果最好</li></ul><p class="p"><span class="src src-add">💡 補充</span> 本站相關：<a href="../excellence-neuro/ccds-cognitive-dysfunction.html">卓越講堂・神經系列：犬貓認知障礙症候群</a>（腸腦軸、MCT 飲食與行為）。</p></div></div>
+  </div>
+  <div class="section" id="ref">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📚</div>
+      <h2>原文出處</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><div class="ref-list"><div class="ref-item">Julia D. Albright, Lore I. Haug. Bidirectional Communication: The Gut–Brain Axis in Companion Animal Health. <em>Vet Clin North Am Small Anim Pract</em> 2026;56(3):649–663. <a href="https://doi.org/10.1016/j.cvsm.2026.01.008" target="_blank" rel="noopener">doi:10.1016/j.cvsm.2026.01.008</a></div><div class="ref-item">特刊：Gastroenterology（主編 M. Katherine Tolbert、Sara A. Jablonski），<em>Vet Clin North Am Small Anim Pract</em> 2026 年 5 月號，第 56 卷第 3 期。© 2026 Elsevier Inc.</div></div></div></div>
+  </div>
+
+  <div class="next-up">
+    <p>同一期特刊的其他文章請回目錄。</p>
+    <a href="index.html">回到特刊目錄 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  navLinks.forEach(a => { a.classList.remove('active'); if (a.getAttribute('href') === '#' + cur) a.classList.add('active'); });
+});
+</script>
+</body>
+</html>

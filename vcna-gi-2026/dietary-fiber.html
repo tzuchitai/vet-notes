@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>膳食纖維的治療應用：纖維反應性腸胃疾病｜VCNA 腸胃學特刊 2026</title>
+<style>
+  :root {
+    --primary: #8A4B0F;
+    --primary-light: #F6EBDD;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2B1A0B;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E5C9A8; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A2E14;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E5C9A8; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E5C9A8;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A2E14;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #C9A27A;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #5A320C 0%, #C47F2B 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2B1A0B; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A2E14; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #5A320C; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+  .figlink { font-size: 12px; font-weight: 600; color: var(--primary); text-decoration: none; background: var(--primary-light); border-radius: 999px; padding: 2px 9px; margin-left: 4px; white-space: nowrap; }
+  .figlink:hover { text-decoration: underline; }
+  .fig.diagram svg { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; background: #fff; }
+  @media (max-width: 600px) { .fig.diagram { overflow-x: auto; } .fig.diagram svg { min-width: 560px; } .fig.diagram figcaption::before { content: "← 左右滑動看完整圖 →"; display: block; font-size: 11px; opacity: .6; margin-bottom: 2px; } }
+</style>
+
+</head>
+<body>
+
+<a class="home-link-fab" href="index.html">← 回到特刊目錄</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← VCNA 腸胃學特刊 2026</a>
+  <div class="logo">
+    <h2>05｜膳食纖維的治療應用</h2>
+    <p>VCNA 2026;56(3) 論文整理</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div><a href="#s1">1. 纖維的物化性質</a><a href="#s2">2. 飼料的纖維需求與標示</a><a href="#s3">3. 怎麼給纖維</a><a href="#s4">4. 纖維對腸胃的作用</a><a href="#s5">5. 急性腹瀉</a><a href="#s6">6. 慢性腹瀉</a><a href="#s7">7. 毛球</a><a href="#s8">8. 便秘</a><a href="#s9">9. 作者的 Clinics Care Points</a><a href="#ref">原文出處</a>
+  </nav>
+</nav>
+
+<div id="main">
+
+  <div class="page-header">
+    <h1>膳食纖維的治療應用：纖維反應性腸胃疾病</h1>
+    <p>作者：Adam J. Rudinsky, Valerie J. Parker（論文整理）</p>
+    <p>Therapeutic Applications of Dietary Fiber：Managing Fiber-responsive Gastrointestinal Conditions in Dogs and Cats｜Vet Clin Small Anim 2026;56(3):603–617</p>
+    <div class="tags"><span class="tag">膳食纖維</span><span class="tag">可溶性纖維</span><span class="tag">不可溶纖維</span><span class="tag">發酵性</span><span class="tag">黏度</span><span class="tag">洋車前子</span><span class="tag">TDF</span><span class="tag">粗纖維</span><span class="tag">急性腹瀉</span><span class="tag">慢性腹瀉</span><span class="tag">便秘</span><span class="tag">毛球</span><span class="tag">益生元</span><span class="tag">短鏈脂肪酸</span></div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📑 原文</span> 論文內容 <span class="src src-add">💡 補充</span> 整理者補充（臨床提醒、交叉參照；不是作者說的）
+    <br><span class="muted">依原文重點整理成中文，不是逐句翻譯；未標記的段落都是原文內容。原文的圖表版權屬 Elsevier，這裡沒有轉載，表格是依內文重新整理。藥物劑量請回原文與最新文獻確認。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記重點</h3>
+    <ul><li>纖維三大性質：<strong>發酵性、溶解度、黏度</strong>；發酵越快 → 糞便量越少、短鏈脂肪酸越多</li><li><strong>洋車前子</strong>＝可溶、有黏性、<strong>慢</strong>發酵 → 既能軟化便秘的糞便，又能讓腹瀉的糞便成形</li><li>標示只有<strong>粗纖維（CF）</strong>，可能低估總膳食纖維（TDF）<strong>最多 50%</strong>；AAFCO 新標示 <strong>2030 年前</strong>改為 TDF 上限</li><li>比較飲食要用 <strong>g/100 kcal</strong>；市售犬貓飼料 TDF 從 &lt; 0.1 到 &gt; 11 g/100 kcal</li><li><strong>急性結腸炎</strong>：高纖飲食比加 metronidazole 改善快、復發少，且不傷菌相</li><li><strong>慢性大腸型腹瀉</strong>：洋車前子中位 <strong>0.13–0.14 大匙/kg/天</strong>，約 90% 反應好；小腸型、混合型也可能受益</li><li>小麥糊精（不黏）對慢性腹瀉<strong>沒有</strong>效果，甚至讓糞便變軟 → 纖維種類很重要</li><li>便秘：可溶與不可溶都可能有效；<strong>巨結腸等嚴重結腸運動異常禁用纖維</strong></li></ul>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🌾</div>
+      <h2>1. 纖維的物化性質</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>三種分類方式</h3><div class="tbl-wrap"><table><tr><th>性質</th><th>意義</th><th>臨床效果</th></tr><tr><td>發酵性</td><td>被腸道微生物發酵的速度與完整度（不可發酵／慢／中／快）</td><td>發酵越快 → 通過時間越短、糞便量越少、代謝物（主要是 <strong>SCFA</strong>）越多</td></tr><tr><td>溶解度</td><td>在水中分散的能力（連續光譜）</td><td>加熱與酵素處理會改變溶解度與功能</td></tr><tr><td>黏度</td><td>在溶液中增稠、形成凝膠的能力（多屬可溶纖維）</td><td>最影響食糜稠度、消化吸收、飽足感；<strong>發酵後就失去黏性</strong></td></tr></table></div><ul class="notes"><li><strong>不可發酵或慢發酵</strong>（纖維素、半纖維素）：通過腸道時結構幾乎不變；慢發酵纖維能在整段腸道結合水分 → <strong>增量效果最大</strong></li><li><strong>快速發酵</strong>（果膠、膠類）：SCFA 的主要來源</li><li>一般規律：快速發酵者多半可溶、有黏性（果膠、膠類）；難發酵者多半不可溶、無黏性（纖維素）——但有例外（原文圖 1B）</li></ul></div><div class="subsection"><h3>洋車前子為什麼特別</h3><ul class="notes"><li>可溶、有黏性、<strong>慢</strong>發酵 → 一直保有與水作用的能力</li><li>便秘時<strong>軟化</strong>糞便、腹瀉時<strong>讓糞便成形</strong>，發酵產物還可能有抗發炎作用</li></ul></div></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🏷️</div>
+      <h2>2. 飼料的纖維需求與標示</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>AAFCO 的規定</h3><ul class="notes"><li>可發酵纖維提供的能量 &lt; 犬貓需求 5%，<strong>纖維不是必需營養素</strong> → AAFCO 對犬貓沒有纖維最低需求</li><li>過量纖維理論上可能減少礦物質吸收、增加脹氣或腹瀉；不足則是「相對於動物需要」的缺乏，可造成腸胃功能異常</li></ul></div><div class="subsection"><h3>粗纖維 vs 總膳食纖維</h3><ul class="notes"><li>保證分析值歷來只要求列 <strong>粗纖維（CF）最大值</strong>；CF 無法估算 TDF，也看不出可溶／不可溶比例</li><li>幾乎所有飼料不可溶纖維都多於可溶 → CF 可能<strong>低估總纖維最多 50%</strong></li><li>AAFCO 寵物食品標示現代化計畫：2024 年 1 月公布新指引，預計 <strong>2030 年前</strong>生效，標示改為 <strong>TDF 最大值</strong></li><li>比較營養素要用<strong>熱量基礎（g/100 kcal）</strong>，不要用原樣百分比；市售犬貓飼料 TDF 從 <strong>≤ 0.1 到 &gt; 11 g/100 kcal</strong></li></ul></div><div class="subsection"><h3>原文表 1：四款貓腸胃乾糧的纖維剖面</h3><div class="tbl-wrap"><table><tr><th></th><th>水解</th><th>高消化率</th><th>限制成分</th><th>高纖</th></tr><tr><td>kcal/g</td><td>3.72</td><td>3.81</td><td>3.90</td><td>3.81</td></tr><tr><td>TDF（g/100 kcal）</td><td>1.80</td><td>1.8</td><td>2.6</td><td>2.8</td></tr><tr><td>CF（g/100 kcal）</td><td>0.79</td><td>0.3</td><td>1.0</td><td>0.8</td></tr><tr><td>不可溶（g/100 kcal）</td><td>1.71</td><td>1.68</td><td>2.5</td><td>2.4</td></tr><tr><td>可溶（g/100 kcal）</td><td>0.36</td><td>0.15</td><td>0.1</td><td>0.4</td></tr><tr><td>不可溶：可溶</td><td>4.8：1</td><td>11.2：1</td><td>25：1</td><td>6：1</td></tr><tr><td>纖維來源</td><td>豌豆、馬鈴薯、亞麻籽、南瓜、菊苣根等</td><td>大豆片、玉米澱粉、纖維素粉</td><td>黃／綠豌豆、纖維素粉</td><td>米、玉米、燕麥、胡桃殼、大麥、甜菜渣、亞麻籽、<strong>洋車前子殼</strong>、柑橘渣、南瓜、蔓越莓、FOS</td></tr></table></div><ul class="notes"><li>原文重點：CF 無法反映 TDF 或可溶／不可溶比例；各飼料纖維來源與比例差很多 → <strong>對一種飼料的反應不能預測另一種</strong>；產品配方會變，需定期重新確認</li></ul><p class="p"><span class="src src-add">💡 補充</span> 原文表 1 的熱量單位印作「Kcal per kg 3.72」，數值應是 kcal/g（即 3,720 kcal/kg）。</p></div></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🥄</div>
+      <h2>3. 怎麼給纖維</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>獸醫高纖處方通常混合<strong>可溶、不可溶與益生元纖維</strong>，整合在完整均衡的配方中</li><li>不想換處方時，可在原本完整均衡的飲食中<strong>另外加纖維</strong></li><li><strong>單一纖維來源</strong>的效果可能不如混合多種纖維的飲食或補充品；市面上有多纖維粉，但沒有發表資料</li><li>對一種纖維補充品或高纖飲食沒反應，換另一種仍可能有效</li></ul></div><div class="subsection"><h3>劑量</h3><ul class="notes"><li>洋車前子治療纖維反應性大腸病的犬研究：<strong>中位每天 2 大匙</strong>（範圍 0.25–6 大匙/天）</li><li>獸醫多纖維補充品的劑量由廠商提供，似乎不是依臨床試驗訂定</li><li>其餘多為經驗劑量：<strong>從低劑量開始、逐步增加</strong>，避免脹氣、腹脹、腹部絞痛、排便改變</li></ul></div></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">⚙️</div>
+      <h2>4. 纖維對腸胃的作用</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>蠕動與通過時間</h3><ul class="notes"><li>機制：增加糞便量、調節腸腔水分、刺激黏液分泌、細菌代謝產物（SCFA、次級膽酸）</li><li><strong>溶解度與黏度最能預測效果</strong>：<ul class="notes"><li>可溶、有黏性 → 胃排空<strong>變慢</strong>、小腸通過時間<strong>延長</strong></li></ul><ul class="notes"><li>不可溶 → 胃排空與小腸、結腸通過時間<strong>縮短</strong></li></ul></li><li>這是趨勢不是絕對，臨床上可能出現不典型反應</li></ul></div><div class="subsection"><h3>糞便量、水分與排便</h3><ul class="notes"><li>加纖維 → 糞便體積與重量增加、排便較容易</li><li>可溶可發酵纖維：增加保水、乾物質與細菌量（益生元效果）→ 糞便較重、較濕、較軟</li><li>不可溶難發酵纖維：靠保水與乾物質增量</li><li>對排便頻率的效果在犬差異大，貓資料更少</li></ul></div><div class="subsection"><h3>消化率</h3><ul class="notes"><li>纖維與飲食消化率<strong>呈反比</strong>：物理性阻隔酵素、改變通過時間</li><li>可能減少鎂、鈣、磷、鐵吸收，但獸醫研究中未被證實是大問題</li></ul></div><div class="subsection"><h3>益生元與結腸健康</h3><ul class="notes"><li>益生元＝被宿主微生物利用、促進共生菌但不促進病原菌的基質；犬已研究多種，常加在飼料中</li><li>SCFA 局部：上皮的能量來源、防止病原菌定殖、維持滲透平衡、影響宿主代謝</li><li>SCFA 全身（人與實驗動物）：改善血糖控制、調節基因表現、免疫調節、神經再生——犬貓未充分驗證</li></ul></div></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">💩</div>
+      <h2>5. 急性腹瀉</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>約 <strong>8%</strong> 的狗會有急性腹瀉；處置已從抗生素轉向<strong>營養</strong>等療法</li></ul></div><div class="subsection"><h3>急性結腸炎的兩個主要犬研究</h3><div class="tbl-wrap"><table><tr><th>研究</th><th>設計</th><th>結果</th></tr><tr><td>研究 1</td><td>兩種飲食都合併 metronidazole；高纖 TDF <strong>6.1</strong> vs 低纖 <strong>1.5</strong> g/100 kcal</td><td>高纖組糞便評分改善的比例較高</td></tr><tr><td>研究 2</td><td>易消化飲食＋安慰劑 vs 易消化＋metronidazole vs <strong>高纖易消化（TDF 2.8）＋安慰劑</strong></td><td>兩組「飲食＋安慰劑」痊癒時間都比 metronidazole 組快；<strong>高纖組 30 天內復發最少</strong></td></tr></table></div></div><div class="subsection"><h3>其他證據</h3><ul class="notes"><li>不限於結腸炎的急性腹瀉犬：同一基礎飲食，加<strong>纖維素</strong>（慢發酵）比加水解乾糧粉末的糞便改善更快</li><li>摘要研究：收容所幼犬吃多來源纖維飼料（CF 4.3%、可溶 2.0%）比對照（CF 3.3%、可溶 0.3%）恢復更快；收容所幼貓急性結腸炎（CF 3.0%、可溶 1.6% vs CF 1.1%、可溶 0.2%）腹瀉天數較短</li><li>合生素（益生菌＋益生元）也有支持資料，但分不出是哪個成分的效果</li><li>這些研究都<strong>沒有不良反應</strong>、沒有傷害菌相；部分研究中纖維組的菌相恢復或維持得比其他療法好</li><li>結論：高纖飲食治療犬貓急性腹瀉，結果<strong>優於傳統經驗療法（如 metronidazole）</strong>；最佳纖維種類、劑量、療程待研究</li></ul></div></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🔄</div>
+      <h2>6. 慢性腹瀉</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>傳統認為纖維反應性只限<strong>大腸型</strong>；現在發現<strong>小腸型或混合型</strong>也可能受益</li></ul></div><div class="subsection"><h3>單一纖維研究</h3><div class="tbl-wrap"><table><tr><th>研究</th><th>對象</th><th>劑量</th><th>結果</th></tr><tr><td>洋車前子（回溯）</td><td>37 隻慢性大腸型腹瀉犬（29 隻用高消化率處方＋洋車前子粉）</td><td>中位 <strong>0.13 大匙/kg/天</strong>（0.03–0.48）</td><td>持續使用的 27 隻中 26 隻反應良好到極佳；中位追蹤 15 個月</td></tr><tr><td>洋車前子（前瞻）</td><td>22 隻警犬慢性大腸型腹瀉</td><td>每天 <strong>4 大匙</strong>（中位 0.14 大匙/kg/天）</td><td><strong>90%</strong> 反應好或很好；排便次數 3.5 → 2.9 次/天；很多仍偏軟（Bristol 5），但 6 分的比例大降；停用後效果維持</td></tr><tr><td>小麥糊精（前瞻、安慰劑對照）</td><td>9 隻慢性腹瀉犬</td><td>&lt; 20 kg 每天 1 大匙（4.5 g）、≥ 20 kg 2 大匙（9 g）；14 天適應期＋14 天全劑量</td><td>CIBDAI 沒變；<strong>糞便反而變軟</strong>；SCFA 無差異</td></tr></table></div><ul class="notes"><li>兩者都是可溶纖維，差別在小麥糊精<strong>沒有黏性</strong>、較易發酵 → 改善糞便的能力不如會形成凝膠的洋車前子</li></ul></div><div class="subsection"><h3>混合纖維飲食</h3><ul class="notes"><li>前瞻：31 隻慢性大腸型腹瀉犬（部分併小腸症狀），含可溶＋不可溶纖維、抗氧化物、多酚的高纖飲食 → 糞便硬度、性狀、頻率改善，飼主回報生活品質提升</li><li>回溯：32 隻 CE 犬（小腸、大腸或混合型），多數（19/32）用高纖處方 → Purina 糞便評分 28/32 改善（中位 4.5 → 2）；CIBDAI 31/32 改善（中位 4.5 → 1）</li><li>犬對纖維的反應<strong>快</strong>且<strong>持久</strong>；有些可逐步減量或停用，若糞便品質、頻率或裡急後重復發，<strong>可安全長期使用</strong></li></ul></div><div class="subsection"><h3>貓</h3><ul class="notes"><li>12 隻慢性腹瀉貓：多數只靠飲食或合併輔助藥物就有反應，最常用高纖或補纖維飲食</li><li>19 隻貓交叉研究：混合可溶纖維飲食改善糞便評分、減少軟便頻率</li><li>結合多種纖維與抗發炎、抗氧化成分的飲食，效果優於傳統纖維來源</li></ul></div></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🐈</div>
+      <h2>7. 毛球</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>毛球可造成嘔吐、厭食、腹痛、腸阻塞；盛行率高但管理證據有限</li><li>最強證據是<strong>增加膳食纖維</strong>以促進毛髮從糞便排出；最佳種類與劑量未知</li></ul><div class="tbl-wrap"><table><tr><th>纖維</th><th>結果</th></tr><tr><td>甘蔗纖維</td><td>一研究減少糞便毛髮排出；另一研究合併角蛋白分解酵素改變毛髮排出</td></tr><tr><td>洋車前子</td><td><strong>長毛貓</strong>有效、短毛貓無效</td></tr><tr><td>芒草（Miscanthus）</td><td>每克乾糞的總毛重與毛團數減少</td></tr><tr><td>甜菜渣、纖維素（單一來源）</td><td><strong>無效</strong></td></tr><tr><td>TDF 14.2% 飲食（摘要）</td><td>優於 11% 與 6.9% TDF 對照</td></tr></table></div><ul class="notes"><li>關鍵限制：<strong>沒有研究以「吐毛球次數」當結果指標</strong>，真正的臨床效果未被檢驗</li></ul></div></div>
+  </div>
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🚽</div>
+      <h2>8. 便秘</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>建議多來自人類資料、專家意見、體外研究與少量動物研究</li><li><strong>可溶、有黏性</strong>纖維：形成凝膠、增加 SCFA 與糞便水分；SCFA 對結腸有促動作用</li><li><strong>不可溶或不可發酵</strong>纖維：增加糞便量、刺激蠕動、稀釋腸腔毒素</li><li>貓比多數家畜更常便秘；富含抗氧化與抗發炎成分的纖維來源可改善症狀</li><li><strong>巨結腸等嚴重結腸運動異常禁用纖維</strong>（結腸已無有效功能）</li><li>犬：實驗性便秘中無花果泥增加排便且無併發症；含菊糖的合生素在健康犬有通便效果</li></ul><p class="p"><span class="src src-add">💡 補充</span> 嚴重便秘或已有巨結腸傾向的貓，臨床上通常改用低殘渣、高消化率飲食搭配滲透性軟便劑（如 lactulose、PEG 3350），而不是加纖維。</p></div></div>
+  </div>
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📌</div>
+      <h2>9. 作者的 Clinics Care Points</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>腸胃高纖處方的纖維來源通常比其他腸胃處方（如水解飼料）<strong>更多樣</strong></li><li>用<strong>粗纖維</strong>評估飲食，無法準確反映纖維總量與種類</li><li><strong>纖維量與來源</strong>都會影響犬貓腸胃病的臨床結果</li><li>了解特定纖維的物化性質，可預測臨床效果</li><li><strong>合生素通常優於單純益生菌</strong>，因為其中的益生元纖維也有效果</li></ul></div></div>
+  </div>
+  <div class="section" id="ref">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📚</div>
+      <h2>原文出處</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><div class="ref-list"><div class="ref-item">Adam J. Rudinsky, Valerie J. Parker. Therapeutic Applications of Dietary Fiber: Managing Fiber-responsive Gastrointestinal Conditions in Dogs and Cats. <em>Vet Clin North Am Small Anim Pract</em> 2026;56(3):603–617. <a href="https://doi.org/10.1016/j.cvsm.2025.12.004" target="_blank" rel="noopener">doi:10.1016/j.cvsm.2025.12.004</a></div><div class="ref-item">特刊：Gastroenterology（主編 M. Katherine Tolbert、Sara A. Jablonski），<em>Vet Clin North Am Small Anim Pract</em> 2026 年 5 月號，第 56 卷第 3 期。© 2026 Elsevier Inc.</div></div></div></div>
+  </div>
+
+  <div class="next-up">
+    <p>同一期特刊的其他文章請回目錄。</p>
+    <a href="index.html">回到特刊目錄 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  navLinks.forEach(a => { a.classList.remove('active'); if (a.getAttribute('href') === '#' + cur) a.classList.add('active'); });
+});
+</script>
+</body>
+</html>

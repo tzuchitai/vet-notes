@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>通往診斷之路：腸胃道切片採集與組織病理判讀的最佳實務｜VCNA 腸胃學特刊 2026</title>
+<style>
+  :root {
+    --primary: #8A4B0F;
+    --primary-light: #F6EBDD;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2B1A0B;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E5C9A8; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A2E14;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E5C9A8; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E5C9A8;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A2E14;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #C9A27A;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #5A320C 0%, #C47F2B 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2B1A0B; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A2E14; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #5A320C; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+  .figlink { font-size: 12px; font-weight: 600; color: var(--primary); text-decoration: none; background: var(--primary-light); border-radius: 999px; padding: 2px 9px; margin-left: 4px; white-space: nowrap; }
+  .figlink:hover { text-decoration: underline; }
+  .fig.diagram svg { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; background: #fff; }
+  @media (max-width: 600px) { .fig.diagram { overflow-x: auto; } .fig.diagram svg { min-width: 560px; } .fig.diagram figcaption::before { content: "← 左右滑動看完整圖 →"; display: block; font-size: 11px; opacity: .6; margin-bottom: 2px; } }
+</style>
+
+</head>
+<body>
+
+<a class="home-link-fab" href="index.html">← 回到特刊目錄</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← VCNA 腸胃學特刊 2026</a>
+  <div class="logo">
+    <h2>13｜腸胃道切片最佳實務</h2>
+    <p>VCNA 2026;56(3) 論文整理</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div><a href="#s1">1. 什麼時候該切片</a><a href="#s2">2. 採樣：內視鏡 vs 全層、要幾塊</a><a href="#s3">3. 樣本處理、固定與運送</a><a href="#s4">4. 送檢單</a><a href="#s5">5. 組織實驗室處理</a><a href="#s6">6. 判讀：樣本品質與病理學家差異</a><a href="#s7">7. 犬慢性腸病的組織學</a><a href="#s8">8. 貓慢性腸病：LPE vs LGITL</a><a href="#s9">9. 輔助檢查與特殊染色</a><a href="#s10">10. 作者的 Clinics Care Points</a><a href="#ref">原文出處</a>
+  </nav>
+</nav>
+
+<div id="main">
+
+  <div class="page-header">
+    <h1>通往診斷之路：腸胃道切片採集與組織病理判讀的最佳實務</h1>
+    <p>作者：Paula R. Giaretta（論文整理）</p>
+    <p>The Path to Diagnosis：Best Practices in Gastrointestinal Histopathology Collection and Examination｜Vet Clin Small Anim 2026;56(3):731–746</p>
+    <div class="tags"><span class="tag">內視鏡切片</span><span class="tag">全層切片</span><span class="tag">切片數量</span><span class="tag">海綿固定</span><span class="tag">壓碎假象</span><span class="tag">送檢單</span><span class="tag">組織處理</span><span class="tag">包埋方向</span><span class="tag">WSAVA 分級</span><span class="tag">乳糜管擴張</span><span class="tag">腺窩擴張</span><span class="tag">LPE</span><span class="tag">LGITL</span><span class="tag">IHC</span><span class="tag">PARR</span><span class="tag">特殊染色</span><span class="tag">肉芽腫性結腸炎</span></div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📑 原文</span> 論文內容 <span class="src src-add">💡 補充</span> 整理者補充（臨床提醒、交叉參照；不是作者說的）
+    <br><span class="muted">依原文重點整理成中文，不是逐句翻譯；未標記的段落都是原文內容。原文的圖表版權屬 Elsevier，這裡沒有轉載，表格是依內文重新整理。藥物劑量請回原文與最新文獻確認。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記重點</h3>
+    <ul><li>切片前先排除寄生蟲、異物、腸外疾病，並<strong>先做飲食試驗</strong>（除非症狀嚴重／進行性或<strong>低白蛋白</strong>）</li><li>犬貓十二指腸與胃至少 <strong>6 塊好樣本</strong>（犬樣本普通時要 10–15 塊）；<strong>迴腸 3–5 塊</strong>；用 <strong>2.8 mm 通道</strong>的大夾杯</li><li>好樣本：<strong>白到淡褐色、能填滿夾杯、可攤開</strong>；壞樣本：紅褐色、多為血塊、只有絨毛的碎片</li><li>用針輕輕取下，<strong>黏膜下面朝下、絨毛朝上</strong>貼在<strong>濕潤、小孔、柔軟</strong>的海綿（或濾紙、小黃瓜片）上，<strong>立刻倒放</strong>進 10% 中性緩衝福馬林；各段分開裝</li><li>冬天防凍：<strong>酒精：福馬林＝1：9</strong>；不要和乾冰冷凍樣本同箱</li><li>送檢單：症狀與病程、內視鏡病灶大小／數目／顏色／位置、影像（尤其<strong>腸壁分層消失</strong>）、貧血、低白蛋白、低鈷胺素、先前診斷、治療與飲食試驗</li><li><strong>合格樣本</strong>＝方向正確、<strong>≥ 3 個絨毛＋絨毛下／腺窩固有層</strong>；只有絨毛或只有腺窩＝不合格</li><li><strong>浸潤細胞種類無法預測治療反應</strong>；結構變化（上皮損傷、乳糜管擴張、腺窩擴張）與低白蛋白的相關性比淋巴漿細胞密度更強</li></ul>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🎯</div>
+      <h2>1. 什麼時候該切片</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>準確診斷需要飼主、臨床醫師、放射科、外科、組織技術員、病理醫師緊密合作</li><li>切片仍是診斷發炎、腫瘤、感染性腸胃病的基石，但要<strong>策略性</strong>使用</li><li>通常在<strong>排除腸道寄生蟲、異物、腸外疾病</strong>後，對慢性腸胃症狀的病患建議切片</li><li><strong>先做飲食試驗</strong>，除非症狀嚴重或進行性、或有<strong>低白蛋白血症</strong></li><li>內視鏡切片使用減少，部分因為水解或新蛋白飲食的反應率高；很多時候<strong>飲食有效既是診斷也是治療</strong></li><li>採樣技術、樣本品質、判讀差異都會明顯影響診斷可靠性與治療決策</li></ul></div></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🩻</div>
+      <h2>2. 採樣：內視鏡 vs 全層、要幾塊</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>內視鏡的限制</h3><ul class="notes"><li>可無創看黏膜並針對性採樣；但樣本<strong>小、脆弱、易有假象</strong>，通常只含<strong>黏膜層</strong></li><li>需要<strong>全層切片</strong>的情況：病變在黏膜下層、神經節、固有肌層、漿膜；<strong>運動障礙</strong>；<strong>壁內腫瘤</strong>；腸壁分層消失的疾病（<strong>局部脂肪肉芽腫性淋巴管炎</strong>、<strong>腐黴病</strong>）</li><li>貓 LGITL 在腸道分布不均，通常從<strong>空腸</strong>開始，再到迴腸與十二指腸；但一研究中<strong>十二指腸＋迴腸</strong>內視鏡採樣可正確診斷<strong>所有</strong> LGITL</li></ul></div><div class="subsection"><h3>什麼是好樣本（原文圖 1）</h3><div class="tbl-wrap"><table><tr><th>好樣本</th><th>不好的樣本</th></tr><tr><td><strong>白到淡褐色</strong>、完整</td><td>紅到褐色</td></tr><tr><td>大到能<strong>填滿夾杯</strong></td><td>主要是血塊</td></tr><tr><td>夠結實、可攤開操作</td><td>小、碎、只有絨毛</td></tr></table></div><ul class="notes"><li>犬：<strong>2.8 mm 通道</strong>用的大夾杯，樣本比 2.0 mm 通道或小兒夾子大、品質好</li></ul></div><div class="subsection"><h3>原文建議數量</h3><div class="tbl-wrap"><table><tr><th>部位</th><th>貓</th><th>犬</th></tr><tr><td>十二指腸、胃</td><td><strong>≥ 6 塊好樣本</strong></td><td>6 塊合格，或 <strong>10–15 塊</strong>普通樣本（依病灶類型）</td></tr><tr><td>迴腸</td><td><strong>3–5 塊</strong>好樣本</td><td><strong>3–5 塊</strong>好樣本</td></tr></table></div><ul class="notes"><li>品質依部位與物種不同：<strong>犬迴腸樣本較好</strong>（大型犬十二指腸黏膜較厚）；<strong>貓十二指腸樣本較好</strong>（貓迴腸操作困難、黏膜很薄易碎）</li><li><strong>迴腸</strong>切片可能找到十二指腸沒有的診斷，尤其貓 LGITL；也可能和十二指腸病變不同</li><li>經驗多的內視鏡醫師用較少塊就夠；經驗少的要多取幾塊</li></ul></div></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🧽</div>
+      <h2>3. 樣本處理、固定與運送</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>避免壓碎假象</h3><ul class="notes"><li>從夾子取下或貼放時被壓、刮、擠，最容易造成假象 → <strong>輕柔、最小壓力</strong></li></ul></div><div class="subsection"><h3>貼片固定</h3><ul class="notes"><li><strong>貼在載體上優於漂浮</strong>：漂浮的樣本會捲曲或摺疊，包埋時難以甚至無法定向</li><li>載體：合成泡棉海綿、濾紙、<strong>小黃瓜切片</strong></li><li>用<strong>針</strong>輕輕從夾子取下，<strong>黏膜下面朝載體、絨毛朝上</strong></li><li>海綿要<strong>柔軟、小孔</strong>，先用福馬林或生理食鹽水<strong>沾濕</strong>（原文圖 2：黑色小孔平滑海綿好；藍色大孔粗糙海綿會黏住組織造成假象）</li><li>貼片時保持濕潤；乾掉的樣本黏在載體上，實驗室取下時會受損</li><li>貼好後<strong>立刻把載體倒放</strong>進 10% 中性緩衝福馬林；或把海綿連同樣本放進標示好的包埋盒（樣本面朝上）再浸入福馬林</li><li>必須<strong>完全浸沒</strong>以立即固定、避免自溶</li><li>包埋盒可防止小樣本遺失、脫離載體或在運送中碎掉</li><li><strong>每個部位</strong>（十二指腸、迴腸…）要裝在<strong>分開標示</strong>的包埋盒或瓶子——小腸與大腸各段<strong>光靠組織學分不出來</strong></li></ul></div><div class="subsection"><h3>固定液</h3><ul class="notes"><li>10% 中性緩衝福馬林：適用常規染色（H&amp;E、Gram、PAS）與分子檢測（IHC、FISH）</li><li><strong>年輕拳師犬與法鬥</strong>懷疑 *E. coli* 相關肉芽腫性結腸炎：至少 <strong>2 塊新鮮結腸切片</strong>放運送培養基送微生物室做 *E. coli* 培養與藥敏（有 <strong>fluoroquinolone 抗藥性</strong>報告）</li></ul></div><div class="subsection"><h3>防凍</h3><ul class="notes"><li>冬天常見冷凍假象 → 用保溫容器運送</li><li>加酒精（異丙醇、甲醇或乙醇）<strong>1 份酒精：9 份福馬林</strong>可降低冰點；濃度再高會干擾固定</li><li>福馬林樣本<strong>絕不可</strong>和用乾冰運送的冷凍樣本（如血清）同箱</li></ul></div></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📝</div>
+      <h2>4. 送檢單</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>送檢單是臨床醫師和病理醫師溝通的主要管道；不完整或錯誤會導致誤診與延遲</li></ul></div><div class="subsection"><h3>腸胃組織病理送檢單應包含</h3><ul class="notes"><li>病患基本資料</li><li>臨床症狀與<strong>病程</strong></li><li>內視鏡看到的病灶：<strong>大小、數目、顏色、解剖位置</strong>（賁門、胃底、胃竇…）</li><li>影像發現</li><li>相關臨床病理：有無<strong>貧血</strong>與類型、<strong>低白蛋白</strong>、<strong>低鈷胺素</strong></li><li>先前診斷、先前治療與<strong>飲食試驗</strong></li></ul></div><div class="subsection"><h3>為什麼肉眼描述很重要</h3><ul class="notes"><li>例：<strong>幽門增生性息肉</strong>與<strong>肥厚性幽門胃病／胃竇幽門肥厚</strong>的組織學<strong>基本上一樣</strong>，差別在肉眼分布：息肉是獨立的息肉狀腫塊，肥厚性胃病是幽門黏膜瀰漫性增厚</li><li>超音波看到胃或腸<strong>正常分層消失</strong>一定要寫：會提高病理醫師對內視鏡切片可能沒取到的<strong>穿壁性病變</strong>（如潰瘍性癌、腐黴病）的警覺</li></ul></div></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🔧</div>
+      <h2>5. 組織實驗室處理</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>病理醫師的工作高度依賴組織技術員；病理醫師應投入時間教導技術員正確<strong>定向</strong>內視鏡切片、確保所有樣本都出現在玻片上</li><li>流程：福馬林固定 → 脫水、透明 → 石蠟浸潤 → 包埋成塊 → 切片 → 上片 → H&amp;E 染色 → 封片</li></ul></div><div class="subsection"><h3>收件</h3><ul class="notes"><li>小心處理避免壓碎；<strong>記錄每段送了幾塊</strong>，讓病理醫師之後能確認玻片上有大部分或全部</li><li>內視鏡樣本放進<strong>小孔網狀包埋盒</strong>或附濕海綿的包埋盒，避免處理中遺失</li><li><strong>≥ 4 mm</strong> 全層切片可用利刃垂直切半，做出平面利於包埋、增加評估面積</li><li>預染：可用 <strong>0.01% 亞甲藍乙醇溶液</strong>；避免 eosin 與 erythrocin B（干擾 H&amp;E 與 FISH）</li></ul></div><div class="subsection"><h3>脫水時間</h3><ul class="notes"><li>一般過夜批次處理 8–18 小時</li><li>處理不當 → 切片困難、形態受損、H&amp;E 染色差；<strong>細胞核染色差</strong>是處理不當的指標</li><li>內視鏡樣本常見邊緣「<strong>顫痕（chatter）</strong>」：<strong>脫水過度</strong>造成 → 應與大組織<strong>分開處理</strong></li><li>內視鏡樣本適合約 <strong>4 小時</strong>的短程處理，避免過度脫水、也縮短發報告時間</li></ul></div><div class="subsection"><h3>原文表 1：內視鏡切片快速自動處理流程範例</h3><div class="tbl-wrap"><table><tr><th>試劑</th><th>時間</th><th>溫度</th><th>真空</th></tr><tr><td>福馬林</td><td>30 分</td><td>37 °C</td><td>有</td></tr><tr><td>水</td><td>2 分</td><td>—</td><td>—</td></tr><tr><td>乙醇 70% → 80% → 95% → 100%</td><td>各 5 分</td><td>45 °C</td><td>有</td></tr><tr><td>乙醇 100% ×2</td><td>各 10 分</td><td>45 °C</td><td>有</td></tr><tr><td>二甲苯 ×3</td><td>各 10 分</td><td>45 °C</td><td>有</td></tr><tr><td>石蠟 ×3</td><td>各 10 分</td><td>62 °C</td><td>有</td></tr></table></div></div><div class="subsection"><h3>包埋方向</h3><ul class="notes"><li>正確定向 → 切面<strong>垂直於黏膜表面</strong>，可看清絨毛結構、腺窩、深層固有層</li><li>方向不對、絨毛被斜切 → 深層固有層與腺窩病變可能被漏掉</li><li>內視鏡樣本要<strong>立起來（on edge）</strong>包埋，讓所有層都出現（原文圖 3）</li><li>方法：熱板上模具倒少量熔蠟 → 用鑷子把樣本排成<strong>一直線</strong> → 移到冷板等蠟半凝固 → 用針尖鑷子把樣本<strong>側立</strong> → 再加蠟、放包埋盒、完全凝固</li><li>排成直線而非隨意散放：每塊易辨識、不漏看、切到相同深度；一次開一個包埋盒、樣本間清潔鑷子</li></ul></div><div class="subsection"><h3>切片</h3><ul class="notes"><li>小樣本在一開始「<strong>修面</strong>」時最容易被削掉；包埋不平寧可<strong>重新包埋</strong></li><li>顫痕：多因脫水過度，也可能是刀鈍、刀角太大、切太快；脫水過度可把蠟塊短暫泡冰水或對著冰盤恢復水分，預防方法是縮短乙醇時間</li></ul></div></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🔬</div>
+      <h2>6. 判讀：樣本品質與病理學家差異</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>系統化評估</h3><ul class="notes"><li>核對病患名稱／編號、<strong>數樣本數</strong>並與修片紀錄、送檢單比較；差太多要回去檢查蠟塊是否都修到面</li><li>應回饋樣本品質：</li></ul><div class="tbl-wrap"><table><tr><th>品質</th><th>小腸樣本定義（原文圖 4）</th></tr><tr><td><strong>合格（adequate）</strong></td><td>方向正確，<strong>≥ 3 個絨毛</strong>＋絨毛下／腺窩固有層</td></tr><tr><td><strong>邊緣（marginal）</strong></td><td>≥ 1 個絨毛＋部分絨毛下／腺窩固有層，但方向不正</td></tr><tr><td><strong>不合格（inadequate）</strong></td><td><strong>只有絨毛</strong>或<strong>只有絨毛下／腺窩固有層</strong>，沒有兩者</td></tr></table></div></div><div class="subsection"><h3>臨床與病理要溝通</h3><ul class="notes"><li>傳統上病理醫師自己看大體、選異常處取樣；內視鏡時是臨床醫師做肉眼評估，病理醫師卻要在沒看到病灶的情況下做完整判讀</li><li>內視鏡切片小、不一定代表整體病程 → 準確診斷靠兩者緊密合作</li></ul></div><div class="subsection"><h3>觀察者間差異</h3><ul class="notes"><li>腸胃組織判讀主觀，<strong>發炎變化</strong>尤其明顯</li><li>胃癌、大細胞淋巴瘤較直接；發炎浸潤的判讀、小細胞淋巴瘤 vs 淋巴球性腸炎較難</li><li>人類研究：一般病理醫師與腸胃專科病理醫師對腸胃發炎的診斷，<strong>重大差異（會影響治療或預後）6–43%</strong></li></ul></div><div class="subsection"><h3>分級系統</h3><ul class="notes"><li><strong>WSAVA 腸胃標準化小組</strong>指引最常用：以圖文定義犬胃、小腸、結腸的正常、輕、中、重度變化，減少主觀性</li><li>WSAVA 的限制：<strong>沒有納入結腸杯狀細胞</strong>（發炎時減少）、<strong>沒有迴腸</strong>；貓正常參考多來自實驗族群與年輕貓</li><li><strong>簡化組織病理模型</strong>：納入杯狀細胞、把十二指腸參數套用到迴腸；組織分數與<strong>臨床疾病活性分數相關性較好</strong></li></ul></div></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🐕</div>
+      <h2>7. 犬慢性腸病的組織學</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>CE＝腸胃症狀 <strong>&gt; 3 週</strong>，排除腸外疾病（Addison、胰臟與肝病）與特定原因（寄生蟲、感染、異物、腫瘤）</li><li>多數 CE 犬對水解或限制成分新蛋白飲食長期反應極好（有些需多次試驗）；<strong>部分飲食反應性腸病的組織學可以是正常的</strong></li></ul></div><div class="subsection"><h3>浸潤細胞</h3><ul class="notes"><li>最常見：<strong>淋巴漿細胞性</strong>發炎，常伴輕度嗜酸性球與嗜中性球；可在胃、小腸、大腸或合併</li><li>各類浸潤常重疊，見於多種疾病 → <strong>浸潤細胞種類不能預測治療反應</strong><ul class="notes"><li><strong>嗜酸性</strong>發炎：飲食反應性腸病常見，但類固醇反應性腸病、寄生蟲、<strong>腐黴病</strong>也常見</li></ul><ul class="notes"><li><strong>嗜中性</strong>發炎：犬 CE 常見，<strong>本身不構成用抗生素的理由</strong></li></ul><ul class="notes"><li>飲食反應性與類固醇反應性腸病的十二指腸 CD3 淋巴球數與淋巴漿細胞性腸炎頻率相似</li></ul></li></ul></div><div class="subsection"><h3>結構變化比細胞密度重要</h3><ul class="notes"><li>過度重視黏膜細胞密度，導致<strong>結構變化被低估</strong>（上皮損傷、淋巴管擴張、腺窩擴張）——這些與<strong>低白蛋白血症的相關性比淋巴漿細胞密度更強</strong></li><li>治療成功的狗，固有層淋巴球與漿細胞數可能<strong>沒有變少</strong></li><li>飲食反應性 CE 犬的十二指腸上皮有<strong>超微結構病變</strong>，治療後微絨毛數量與高度增加</li></ul></div><div class="subsection"><h3>病理醫師要找的結構變化</h3><ul class="notes"><li><strong>表層上皮退化</strong>：細胞質空泡化、嗜鹼性、細胞變扁</li><li><strong>糜爛</strong>：表層上皮缺失，常伴嗜中性球浸潤、充血，少見纖維化；旁邊上皮扁平嗜鹼、試圖覆蓋缺損（原文圖 5）</li><li><strong>絨毛變鈍</strong>：在內視鏡樣本難評估，需方向正確的切面；斜切會讓正常絨毛看起來變鈍</li><li>結腸<strong>杯狀細胞分化減少</strong></li><li><strong>腺窩擴張</strong>：與 <strong>PLE</strong> 相關；腺窩囊狀擴張，內含蛋白性嗜酸物質、脫落上皮、細胞碎屑，偶有白血球（原文圖 6）<ul class="notes"><li>有些病理醫師稱「<strong>腺窩膿瘍</strong>」，但與細菌感染無關、易誤導臨床醫師 → 較適當：<strong>腺窩炎、腺窩擴張、腺窩蛋白沉積</strong>；機制不明</li></ul></li><li><strong>乳糜管擴張（淋巴管擴張）</strong>：與犬低白蛋白相關；常續發於慢性腸胃病，也可為原發；H&amp;E 多可辨識絨毛中央乳糜管擴張；<strong>淋巴管標記 IHC</strong> 可發現 H&amp;E 沒認出的固有層淋巴管擴張</li></ul></div></div>
+  </div>
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🐈</div>
+      <h2>8. 貓慢性腸病：LPE vs LGITL</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>貓 CE：慢性腸胃症狀 ≥ 3 週，排除腸外疾病（甲亢、胰臟病等）與感染</li><li>老年 CE 貓最主要的兩種：<strong>淋巴漿細胞性腸炎（LPE）</strong>與 <strong>LGITL</strong>；臨床、檢驗、影像都重疊 → <strong>組織病理是黃金標準</strong></li><li>WSAVA 標準是為發炎病變設計，<strong>沒有處理</strong> LGITL 與 LPE 的區分；之後有新的貓 CE 組織評估方案</li><li><strong>逐步診斷</strong>：先看 H&amp;E → 需要時做 IHC → 再需要時做 B／T 細胞克隆性 PARR</li></ul></div><div class="subsection"><h3>組織特徵</h3><div class="tbl-wrap"><table><tr><th></th><th>LPE</th><th>LGITL</th></tr><tr><td>固有層浸潤</td><td><strong>異質性</strong>淋巴球群，常混漿細胞（原文圖 7）</td><td><strong>小型單形性</strong>淋巴球<strong>明顯瀰漫</strong>浸潤</td></tr><tr><td>固有層纖維化</td><td>常見（但不特異）</td><td>—</td></tr><tr><td>絨毛變鈍、上皮內巢狀（≥ 5 個淋巴球成群）</td><td>可見</td><td>可見</td></tr><tr><td><strong>確定診斷特徵</strong></td><td>—</td><td>全層切片見小型單形性淋巴球<strong>穿壁浸潤</strong>；<strong>廣泛上皮內斑塊</strong>（≥ 5 個相鄰上皮細胞被淋巴球遮蔽）；固有層明顯瀰漫單形性浸潤（原文圖 8）——<strong>H&amp;E 就足以確診</strong></td></tr><tr><td>固有層小淋巴球的頂端→基部梯度</td><td>較少</td><td><strong>較常見</strong></td></tr></table></div><ul class="notes"><li>LGITL 由成熟、分化良好、低分裂活性的小淋巴球組成，<strong>萌芽中的 LGITL</strong> 很難和發炎淋巴球區分</li><li>約 <strong>60%</strong> LGITL 貓同時有發炎病變 → 支持發炎與腫瘤之間有連續光譜</li></ul></div><div class="subsection"><h3>IHC</h3><ul class="notes"><li>模稜兩可病例的必要工具：發炎與腫瘤特徵並存（多形性背景中有巢狀與斑塊、只有少數絨毛有斑塊、多形性背景中出現單形性淋巴球區）</li><li>常用抗體：T 細胞 <strong>CD3</strong>；B 細胞 <strong>CD20、CD79a、PAX5</strong></li><li>LGITL：<strong>單形性 CD3 陽性 T 細胞</strong>（原文圖 9：CD3 標記 &gt; 80% 固有層細胞、CD20 &lt; 20%）；LPE：T 與 B 細胞混合</li><li>IHC 切點未標準化；一研究 LPE 中位 <strong>20% CD3 陽性、80% CD20 陽性</strong></li></ul><p class="p"><span class="src src-add">💡 補充</span> 「LPE 中 CD20（B 細胞）占 80%」與一般認為貓 LPE 也常以 T 細胞為主（本特刊 10 一文也這麼說）不太一致，引用時請回原文與其參考文獻確認。</p></div><div class="subsection"><h3>PARR</h3><ul class="notes"><li>H&amp;E 與 IHC 不明確時，可用福馬林固定石蠟包埋腸道樣本做 PARR</li><li>必須<strong>配合臨床、組織、IHC 一起解讀</strong>，<strong>不能單獨用來改判或判定免疫表型</strong></li><li><strong>健康貓</strong>及 H&amp;E、IHC 為發炎的病例都曾出現<strong>偽陽性克隆</strong></li></ul></div></div>
+  </div>
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🧪</div>
+      <h2>9. 輔助檢查與特殊染色</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>看完 H&amp;E 後，依病理醫師判斷或臨床懷疑加做</li><li>出現<strong>組織球性發炎、多核巨細胞、明顯嗜酸性發炎、大範圍潰瘍或壞死</strong> → 一定要找感染原</li></ul><div class="tbl-wrap"><table><tr><th>目標</th><th>染色</th></tr><tr><td>分枝桿菌</td><td>抗酸染色：<strong>Ziehl-Neelsen、Fite-Faraco</strong></td></tr><tr><td>*Histoplasma*、*Candida*、*Prototheca*（藻類）</td><td><strong>GMS、PAS</strong></td></tr><tr><td><strong>*Pythium</strong>*（菌絲無幾丁質，PAS 染色差）</td><td><strong>GMS 較佳</strong></td></tr><tr><td>組織內細菌</td><td>Gram；H&amp;E 看不到但仍懷疑時，<strong>Steiner 或 Warthin-Starry</strong> 較有幫助</td></tr></table></div><ul class="notes"><li>特殊染色敏感度有限，<strong>陰性不能排除感染</strong>；仍懷疑時做培養、組織漿菌尿抗原、腐黴血清學等</li></ul></div><div class="subsection"><h3>肉芽腫性結腸炎</h3><ul class="notes"><li><strong>年輕法鬥與拳師犬</strong>結腸組織球性發炎 → PAS 染色可見巨噬細胞內 <strong>PAS 陽性細胞質</strong>，是組織球性潰瘍性結腸炎（*E. coli* 相關肉芽腫性結腸炎）的特徵</li><li>確認巨噬細胞內有侵入性 *E. coli*：<strong>FISH</strong>、色原原位雜交或 IHC</li></ul></div><div class="subsection"><h3>IHC 的其他用途</h3><ul class="notes"><li>淋巴瘤免疫表型、區分模稜兩可的 LGITL 與 LPE、鑑定分化不良的腫瘤；通常由病理醫師判斷後執行</li></ul></div></div>
+  </div>
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📌</div>
+      <h2>10. 作者的 Clinics Care Points</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>採集<strong>足量、高品質</strong>的內視鏡切片，貼在品質好的<strong>濕潤海綿</strong>上，<strong>立刻</strong>放進福馬林</li><li>小心處理內視鏡樣本，避免<strong>壓碎假象</strong></li><li>送檢時附上<strong>詳細病史</strong>：症狀、相關生化與血液結果、影像與內視鏡發現</li></ul><p class="p"><span class="src src-add">💡 補充</span> 本特刊 10 貓 LPE vs LGITL 一文有臨床角度的同一議題（上＋下內視鏡、三位病理學家 34% 一致、PARR 判讀差異）。</p></div></div>
+  </div>
+  <div class="section" id="ref">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📚</div>
+      <h2>原文出處</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><div class="ref-list"><div class="ref-item">Paula R. Giaretta. The Path to Diagnosis: Best Practices in Gastrointestinal Histopathology Collection and Examination. <em>Vet Clin North Am Small Anim Pract</em> 2026;56(3):731–746. <a href="https://doi.org/10.1016/j.cvsm.2026.01.006" target="_blank" rel="noopener">doi:10.1016/j.cvsm.2026.01.006</a></div><div class="ref-item">特刊：Gastroenterology（主編 M. Katherine Tolbert、Sara A. Jablonski），<em>Vet Clin North Am Small Anim Pract</em> 2026 年 5 月號，第 56 卷第 3 期。© 2026 Elsevier Inc.</div></div></div></div>
+  </div>
+
+  <div class="next-up">
+    <p>同一期特刊的其他文章請回目錄。</p>
+    <a href="index.html">回到特刊目錄 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  navLinks.forEach(a => { a.classList.remove('active'); if (a.getAttribute('href') === '#' + cur) a.classList.add('active'); });
+});
+</script>
+</body>
+</html>

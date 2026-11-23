@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>膽酸失調：膽酸性腹瀉的病理生理與治療｜VCNA 腸胃學特刊 2026</title>
+<style>
+  :root {
+    --primary: #8A4B0F;
+    --primary-light: #F6EBDD;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2B1A0B;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E5C9A8; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A2E14;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E5C9A8; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E5C9A8;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A2E14;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #C9A27A;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #5A320C 0%, #C47F2B 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2B1A0B; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A2E14; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #5A320C; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+  .figlink { font-size: 12px; font-weight: 600; color: var(--primary); text-decoration: none; background: var(--primary-light); border-radius: 999px; padding: 2px 9px; margin-left: 4px; white-space: nowrap; }
+  .figlink:hover { text-decoration: underline; }
+  .fig.diagram svg { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; background: #fff; }
+  @media (max-width: 600px) { .fig.diagram { overflow-x: auto; } .fig.diagram svg { min-width: 560px; } .fig.diagram figcaption::before { content: "← 左右滑動看完整圖 →"; display: block; font-size: 11px; opacity: .6; margin-bottom: 2px; } }
+</style>
+
+</head>
+<body>
+
+<a class="home-link-fab" href="index.html">← 回到特刊目錄</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← VCNA 腸胃學特刊 2026</a>
+  <div class="logo">
+    <h2>07｜膽酸性腹瀉</h2>
+    <p>VCNA 2026;56(3) 論文整理</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div><a href="#s1">1. 為什麼要認識膽酸</a><a href="#s2">2. 膽酸生理</a><a href="#s3">3. 膽酸失調的病理生理</a><a href="#s4">4. 膽酸性腹瀉的臨床表現</a><a href="#s5">5. 診斷</a><a href="#s6">6. 治療</a><a href="#s7">7. 預後與長期管理</a><a href="#s8">8. 作者的 Clinics Care Points</a><a href="#ref">原文出處</a>
+  </nav>
+</nav>
+
+<div id="main">
+
+  <div class="page-header">
+    <h1>膽酸失調：膽酸性腹瀉的病理生理與治療</h1>
+    <p>作者：Jenessa A. Winston（論文整理）</p>
+    <p>Bile Acid Dysregulation：Pathophysiology and Therapeutic Approaches to Bile Acid Diarrhea｜Vet Clin Small Anim 2026;56(3):633–647</p>
+    <div class="tags"><span class="tag">膽酸</span><span class="tag">膽酸吸收不良</span><span class="tag">膽酸性腹瀉</span><span class="tag">BAD</span><span class="tag">FXR</span><span class="tag">TGR5</span><span class="tag">ASBT</span><span class="tag">C4</span><span class="tag">FGF19</span><span class="tag">cholestyramine</span><span class="tag">colesevelam</span><span class="tag">colestipol</span><span class="tag">膽酸螯合劑</span><span class="tag">牛磺酸</span><span class="tag">難治性腸病</span></div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📑 原文</span> 論文內容 <span class="src src-add">💡 補充</span> 整理者補充（臨床提醒、交叉參照；不是作者說的）
+    <br><span class="muted">依原文重點整理成中文，不是逐句翻譯；未標記的段落都是原文內容。原文的圖表版權屬 Elsevier，這裡沒有轉載，表格是依內文重新整理。藥物劑量請回原文與最新文獻確認。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記重點</h3>
+    <ul><li><strong>膽酸性腹瀉（BAD）</strong>：膽酸合成或分泌過多＋迴腸／結腸吸收不良造成的慢性腹瀉；犬 2016 年首次報告，<strong>貓尚未有臨床報告</strong></li><li>對傳統多模式治療<strong>無效的慢性腸病</strong>要想到 BAD；有些只表現<strong>腹脹、嗜睡、腹痛</strong>，偶爾腹瀉</li><li>約 <strong>95%</strong> 膽酸在迴腸經 <strong>ASBT</strong> 回收；回收的膽酸經 <strong>FXR–FGF15/19</strong> 抑制肝臟 CYP7A1 合成</li><li>結腸膽酸過多 → 清潔劑作用傷害上皮＋活化 <strong>TGR5</strong>（cAMP）→ 蠕動、分泌、通透性增加</li><li>獸醫缺乏驗證檢查，<strong>膽酸螯合劑（BAS）治療有反應</strong>是目前最實際的診斷；犬空腹血清 C4 &gt; <strong>187.2 nmol/L</strong> 高度特異，但正常不能排除</li><li><strong>Cholestyramine 起始 2–3 g/隻 PO q24h（不是 mg/kg）</strong>，3–4 週逐週加到約 64 mg/kg q12h；其他口服藥<strong>提前 1 小時或延後 4–6 小時</strong></li><li>回溯研究：難治 CE 犬 <strong>67%（16/24）</strong>對 BAS 有反應，部分可在 12 小時內見效；9/14 用類固醇者減量 33–67%</li><li>長期使用要監測<strong>膽固醇與牛磺酸</strong>；停藥易復發；BAS 反應者仍有 25% 最終因腸病安樂死</li></ul>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">💛</div>
+      <h2>1. 為什麼要認識膽酸</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>膽酸失調與吸收不良在小動物越來越受重視，但臨床很少討論</li><li>來源：肝臟合成與代謝、腸道菌的生物轉換、腸肝循環、宿主膽酸受體（<strong>FXR</strong>、<strong>TGR5</strong>）任何一環異常</li><li>已報告有膽酸代謝異常的情況：抗生素、飲食介入、犬貓慢性腸病、<strong>犬糖尿病、肥胖、MMVD、貓 CKD</strong>；多被認為是腸道菌相失調的直接結果，臨床意義仍不清楚</li><li>目前最明確有臨床意義的是 <strong>BAD</strong></li></ul></div></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">⚗️</div>
+      <h2>2. 膽酸生理</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>合成與結合</h3><ul class="notes"><li>肝細胞由膽固醇合成<strong>初級膽酸</strong>：cholic acid（CA）、chenodeoxycholic acid（CDCA）</li><li>經典路徑的速率限制酶是 <strong>CYP7A1</strong>：膽固醇 → 7α-hydroxycholesterol → 快速轉成穩定中間產物 <strong>C4（7α-hydroxy-4-cholesten-3-one）</strong></li><li><strong>C4 可作為肝臟膽酸合成速率的生物標記</strong></li><li>側鏈可接上牛磺酸或甘胺酸（結合作用）；<strong>犬貓偏好牛磺酸結合</strong>；結合型膽酸能乳化脂肪、幫助脂肪與脂溶性維生素吸收</li></ul></div><div class="subsection"><h3>腸道內</h3><ul class="notes"><li>膽汁儲存在膽囊，餐後釋放到十二指腸；膽酸與脂肪形成<strong>微膠粒</strong></li><li>膽酸也是<strong>訊號分子</strong>：經多種受體調節能量代謝與免疫</li><li>腸道菌把初級膽酸轉換成<strong>次級膽酸</strong>：DCA、LCA、UDCA，改變訊號作用</li></ul></div><div class="subsection"><h3>腸肝循環與回饋</h3><ul class="notes"><li>近 <strong>95%</strong> 分泌到腸腔的膽酸被回收，<strong>&lt; 5%</strong> 進入結腸</li><li>主要靠<strong>迴腸</strong>的<strong>頂端鈉依賴性膽酸轉運體（ASBT）</strong>主動運輸；空腸與結腸的被動吸收很少</li><li>回收的膽酸經門脈回肝，<strong>直接抑制 CYP7A1</strong></li><li>迴腸末端：膽酸活化 <strong>FXR</strong> → 分泌 <strong>FGF15/19</strong> → 經門脈到肝臟活化 <strong>FGFR4</strong> → 抑制 CYP7A1 合成</li><li>沒被吸收的膽酸隨糞便排出</li></ul></div></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🌀</div>
+      <h2>3. 膽酸失調的病理生理</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>膽酸怎麼造成腹瀉</h3><ul class="notes"><li><strong>清潔劑作用</strong>：上皮剝落、黏液層破壞、上皮通透性增加 → 黏膜刺激、低度發炎</li><li>活化 <strong>TGR5</strong> → cAMP 依賴的變化：結腸<strong>水通道蛋白</strong>表現上調、血清素誘發分泌增加、黏膜下膽鹼神經元活化（神經分泌）、黏膜通透性增加</li><li>結果：結腸蠕動加快、水與電解質分泌增加、通透性上升、菌相改變</li></ul></div><div class="subsection"><h3>菌相與膽酸池</h3><ul class="notes"><li>人類膽酸吸收不良伴隨菌群將初級轉成次級膽酸所需的酵素表現下降</li><li>部分 CE 犬：膽酸池改變，特別是<strong>微生物產生的次級膽酸減少</strong></li><li>CE 犬迴腸 <strong>ASBT 表現下降</strong>，可能導致膽酸吸收不良（BAM）</li><li>但不是所有 CE 犬都有 BAM／BAD；可能原因之一：<strong>類固醇</strong>（CE 主要療法）在囓齒類與健康人會增加 ASBT 表現，提高迴腸回收能力</li></ul></div><div class="subsection"><h3>三種 BAM 機制</h3><div class="tbl-wrap"><table><tr><th>機制</th><th>原因</th><th>犬貓</th></tr><tr><td>原發性</td><td>FXR–FGF15/19 回饋缺陷 → 肝臟過度合成</td><td><strong>尚未報告</strong></td></tr><tr><td>續發性</td><td>迴腸疾病或<strong>迴腸切除</strong> → 回收受損</td><td>迴腸切除、CE 影響迴腸回收</td></tr><tr><td>菌相失調相關</td><td>微生物去結合或生物轉換改變</td><td>膽酸代謝異常已多有記錄，但對 BAM 的貢獻不明</td></tr></table></div></div></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🐕</div>
+      <h2>4. 膽酸性腹瀉的臨床表現</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>主要症狀是<strong>腹瀉</strong>，多為<strong>大腸型或混合型</strong>；飼主常描述水樣、帶黏液、次數增加、急迫</li><li>其他：腹痛、<strong>腹脹</strong>、舔唇、腸鳴、噁心、嗜睡、<strong>夜間排便</strong></li><li>有些狗以<strong>腹脹、嗜睡、腹痛為主</strong>，只偶爾腹瀉</li><li>與 CE 或類腸躁症（腸腦互動障礙）重疊 → 容易被忽略；已在<strong>難治或無反應的 CE</strong> 犬被辨識出來</li></ul></div><div class="subsection"><h3>人類 BAD 四型</h3><div class="tbl-wrap"><table><tr><th>型別</th><th>機制</th><th>例子</th></tr><tr><td>第 1 型</td><td>迴腸疾病造成回收缺陷</td><td>Crohn 病、迴腸切除</td></tr><tr><td>第 2 型</td><td>原發（特發性）吸收不良</td><td>腹瀉型腸躁症；少見的 ASBT 功能喪失突變</td></tr><tr><td>第 3 型</td><td>非迴腸疾病造成吸收不良</td><td>膽囊切除後、顯微鏡下結腸炎</td></tr><tr><td>第 4 型</td><td>膽酸合成過多（無原發吸收不良）</td><td>高三酸甘油酯血症、metformin</td></tr></table></div><ul class="notes"><li>獸醫報告的病例多是 CE（推測迴腸或結腸疾病造成回收缺陷）或迴腸切除後</li><li><strong>貓尚未有 BAD 的臨床描述</strong></li></ul></div></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🔬</div>
+      <h2>5. 診斷</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><div class="tbl-wrap"><table><tr><th>檢查</th><th>原理</th><th>人類切點</th><th>獸醫現況</th></tr><tr><td>75SeHCAT</td><td>口服硒-75 標記的合成結合膽酸，第 7 天測滯留率</td><td>嚴重 &lt; 5%、中度 5–10%、輕度 10–15%</td><td>人類黃金標準，但需放射性同位素；<strong>獸醫未描述</strong></td></tr><tr><td>48 小時糞便膽酸</td><td>吃含 100 g 脂肪飲食 4 天後收集 48 小時糞便</td><td>總膽酸 &gt; 2337 µmol/48h 或初級膽酸 &gt; 10%；或 &gt; 1000 µmol/48h 且初級 &gt; 4%</td><td><strong>未用於獸醫</strong>；糞便膽酸檢測越來越普及，值得研究</td></tr><tr><td>空腹血清 <strong>C4</strong></td><td>肝臟膽酸合成活性的直接指標</td><td>&gt; 48.9 ng/mL</td><td>已建立健康犬參考範圍；17 隻 CE 犬中 <strong>3 隻（17.6%）</strong>高於健康犬，全部部分或完全難治；建議切點 <strong>187.2 nmol/L</strong> 高度特異；<strong>偽陰性可能，正常不能排除</strong></td></tr><tr><td>空腹血清 FGF19</td><td>BAM 時 FGF19 下降</td><td>&lt; 60 pg/mL（合併 C4 上升）</td><td><strong>未在獸醫評估</strong></td></tr><tr><td><strong>BAS 經驗治療</strong></td><td>有反應支持 BAM</td><td>其他檢查不可得時建議使用；cholestyramine 適口性差可能造成假陰性</td><td><strong>目前獸醫診斷的主力</strong></td></tr></table></div></div><div class="subsection"><h3>什麼時候懷疑</h3><ul class="notes"><li>慢性腹瀉和／或腹脹、腹痛等腸胃不適，對<strong>飲食與其他傳統多模式 CE 治療無效</strong></li><li>腹部影像（超音波）與腸道組織病理可能<strong>正常或只有輕度發炎</strong>，特別是迴腸</li><li>多數無法確診；對 BAS 有臨床反應被接受為支持 BAM 造成 BAD 的證據</li><li>要把 BAD 當成一個<strong>臨床症候群</strong>，列入難治性慢性腸胃症狀的鑑別</li></ul></div></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">💊</div>
+      <h2>6. 治療</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>依 BAM 原因而定：飲食、菌相調節、BAS、其他調節膽酸代謝的藥物</li><li>人類標準治療：cholestyramine、colesevelam</li><li><strong>CE 犬要先用傳統多模式治療（含洋車前子等纖維補充）</strong>，無效再開始經驗性 BAS 治療（BAST）</li></ul></div><div class="subsection"><h3>飲食</h3><ul class="notes"><li>人類：20% 熱量來自脂肪的飲食明顯減少腹痛、急迫、夜間腹瀉</li><li>獸醫：<strong>迴腸切除</strong>後可能受益於<strong>限脂</strong>和／或高消化率飲食；切到迴結腸交界者可能需長期飲食管理</li><li><strong>洋車前子</strong>能結合糞便膽酸、增加排出 → 可視為「<strong>較弱的 BAS</strong>」</li><li>獸醫沒有針對 BAD 的飲食或纖維臨床試驗；用 BAS 的 CE 犬都已經<strong>試過洋車前子無效</strong>（不代表洋車前子對 BAD 無效，只是不是每隻都夠）</li></ul></div><div class="subsection"><h3>膽酸螯合劑（BAS）</h3><ul class="notes"><li>與膽酸形成不溶複合物 → 失去滲透活性、無法被回收、從糞便排出（原文圖 2）</li><li>主要藥物：<strong>cholestyramine、colesevelam、colestipol</strong>；colesevelam 對膽酸親和力是 cholestyramine 的 <strong>4–6 倍</strong></li><li>健康米格魯：cholestyramine 1.4 g/隻（53–75 mg/kg/天）12 週，糞便膽酸排出增加、無明顯不良反應</li><li>Cholestyramine 也能結合有腸肝循環的藥物與毒素 → 獸醫曾用於<strong>藍綠藻毒素、NSAID 中毒</strong></li><li><strong>適口性極差</strong>（人類常因此停藥）；可改用第二代 colesevelam、colestipol</li><li>犬不良反應：嘔吐、腹脹、脹氣增加、腹瀉惡化</li><li>人類另有 ALT 上升、<strong>維生素 K 吸收不良與自發性出血</strong>；犬在極高劑量（3.0 g/kg q24h）有自發出血報告</li></ul></div><div class="subsection"><h3>回溯研究（難治 CE 犬）</h3><ul class="notes"><li>BAST 持續 5–47 個月；<strong>67%（16/24）</strong>臨床與糞便評分明顯改善</li><li>用類固醇的 14 隻反應者中 <strong>9 隻</strong>維持劑量可減 <strong>33–67%</strong>（之前做不到）</li><li>部分犬測膽固醇：變化輕微、無臨床意義；<strong>1 隻無症狀犬牛磺酸缺乏</strong></li></ul></div><div class="subsection"><h3>原文建議劑量（犬）</h3><div class="tbl-wrap"><table><tr><th>藥物</th><th>起始</th><th>維持／上限</th></tr><tr><td><strong>Cholestyramine</strong>（第一線）</td><td><strong>52（22–79）mg/kg q24h</strong>，約 <strong>2–3 g/隻 PO q24h</strong>，5–7 天</td><td>3–4 週內每週逐步增加到 <strong>64（44–133）mg/kg q12h</strong></td></tr><tr><td>Colesevelam</td><td><strong>11（5–24）mg/kg q24h</strong></td><td>逐步增加到 <strong>11（7–24）mg/kg q12h</strong>；受錠劑規格限制</td></tr><tr><td>Colestipol</td><td><strong>26 mg/kg q24h</strong></td><td>—</td></tr></table></div><ul class="notes"><li>明顯腸胃不良反應 → 停用 cholestyramine</li><li>其他口服藥<strong>在 BAS 前 1 小時或後 4–6 小時</strong>給</li><li>不耐受或無效 → 換 colesevelam 或 colestipol</li><li>長期使用：定期監測<strong>膽固醇與牛磺酸</strong>；有人建議補充牛磺酸，但未經前瞻試驗</li></ul></div><div class="subsection"><h3>菌相調節</h3><ul class="notes"><li>人類：菌相變化與糞便膽酸、血清 C4 相關；發酵豆漿恢復菌相、增加抗發炎的 ursocholic acid，緩解腹瀉</li><li>獸醫無臨床試驗；用 BAS 的 CE 犬都已<strong>試過 FMT 無效</strong>（不代表 FMT 對 BAD 無效）</li></ul></div><div class="subsection"><h3>人類新興藥物</h3><ul class="notes"><li><strong>FXR 促效劑</strong>（obeticholic acid、tropifexor）、FGF19 類似物（aldafermin）、eluxadoline、GLP-1 促效劑（liraglutide）</li><li>網絡統合分析（7 研究、213 人）：<strong>tropifexor</strong> 緩解 BAD 症狀最成功</li><li>獸醫尚未評估</li></ul></div></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📈</div>
+      <h2>7. 預後與長期管理</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>反應通常<strong>很快</strong>，有些在第一次給藥後 <strong>12 小時內</strong>糞便性狀、次數、活力明顯改善</li><li><strong>停藥通常復發</strong> → 是長期承諾</li><li>CE 犬要<strong>同時繼續</strong>飲食、菌相調節、免疫調節等原本的治療</li><li>有反應的 CE 犬仍可能腹瀉發作，需調整劑量與免疫調節藥；臨床觀察發現<strong>發作時只加 BAS 劑量不夠</strong></li><li>BAST 有<strong>節省類固醇</strong>效果，可能改善生活品質</li><li>唯一的長期回溯研究：BAST 反應者 <strong>25%（4/16）</strong>最終仍因腸胃病安樂死</li><li>迴腸切除犬：BAST 可減輕 BAD 症狀</li></ul></div><div class="subsection"><h3>跟飼主溝通</h3><ul class="notes"><li>BAST 通常是<strong>長期</strong>的，很少能停</li><li>有 CE 的話，用 BAST 仍會有發作</li><li>一般安全，但要定期驗<strong>血清膽固醇與牛磺酸</strong></li></ul><p class="p"><span class="src src-add">💡 補充</span> 相關：本特刊 06 菌相調節一文指出，<strong>缺乏 *P. hiranonis* 不等於 BAD</strong>，要在飲食、纖維、免疫調節、FMT 都失敗後才考慮 BAS；16 短腸症候群一文也討論迴腸切除後的膽酸性腹瀉。</p></div></div>
+  </div>
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📌</div>
+      <h2>8. 作者的 Clinics Care Points</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>對傳統多模式治療無效的慢性腸病要<strong>懷疑 BAD</strong></li><li><strong>BAS 治療試驗常常就是診斷</strong>：獸醫缺乏驗證檢查，對 BAS 有臨床反應是目前最實際的診斷方式</li><li>依證據給藥：cholestyramine 是第一線，<strong>起始 2–3 g/隻 PO q24h（注意：不是 mg/kg）</strong>，逐步調升、監測不良反應，並告知飼主是長期管理</li><li>監測長期風險：可能<strong>牛磺酸缺乏與低膽固醇血症</strong></li><li>提高警覺：BAD 在獸醫被低估，難治性慢性腹瀉與其他腸胃症狀都應列入鑑別</li></ul></div></div>
+  </div>
+  <div class="section" id="ref">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📚</div>
+      <h2>原文出處</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><div class="ref-list"><div class="ref-item">Jenessa A. Winston. Bile Acid Dysregulation: Pathophysiology and Therapeutic Approaches to Bile Acid Diarrhea. <em>Vet Clin North Am Small Anim Pract</em> 2026;56(3):633–647. <a href="https://doi.org/10.1016/j.cvsm.2026.01.010" target="_blank" rel="noopener">doi:10.1016/j.cvsm.2026.01.010</a></div><div class="ref-item">特刊：Gastroenterology（主編 M. Katherine Tolbert、Sara A. Jablonski），<em>Vet Clin North Am Small Anim Pract</em> 2026 年 5 月號，第 56 卷第 3 期。© 2026 Elsevier Inc.</div></div></div></div>
+  </div>
+
+  <div class="next-up">
+    <p>同一期特刊的其他文章請回目錄。</p>
+    <a href="index.html">回到特刊目錄 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  navLinks.forEach(a => { a.classList.remove('active'); if (a.getAttribute('href') === '#' + cur) a.classList.add('active'); });
+});
+</script>
+</body>
+</html>

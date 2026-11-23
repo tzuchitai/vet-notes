@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>獸醫的菌相調節：從飲食到糞便菌叢移植｜VCNA 腸胃學特刊 2026</title>
+<style>
+  :root {
+    --primary: #8A4B0F;
+    --primary-light: #F6EBDD;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2B1A0B;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E5C9A8; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A2E14;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E5C9A8; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E5C9A8;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A2E14;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #C9A27A;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #5A320C 0%, #C47F2B 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2B1A0B; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A2E14; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #5A320C; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+  .figlink { font-size: 12px; font-weight: 600; color: var(--primary); text-decoration: none; background: var(--primary-light); border-radius: 999px; padding: 2px 9px; margin-left: 4px; white-space: nowrap; }
+  .figlink:hover { text-decoration: underline; }
+  .fig.diagram svg { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; background: #fff; }
+  @media (max-width: 600px) { .fig.diagram { overflow-x: auto; } .fig.diagram svg { min-width: 560px; } .fig.diagram figcaption::before { content: "← 左右滑動看完整圖 →"; display: block; font-size: 11px; opacity: .6; margin-bottom: 2px; } }
+</style>
+
+</head>
+<body>
+
+<a class="home-link-fab" href="index.html">← 回到特刊目錄</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← VCNA 腸胃學特刊 2026</a>
+  <div class="logo">
+    <h2>06｜菌相調節與 FMT</h2>
+    <p>VCNA 2026;56(3) 論文整理</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div><a href="#s1">1. 健康菌相的功能</a><a href="#s2">2. 正常菌相組成</a><a href="#s3">3. 怎麼評估菌相</a><a href="#s4">4. 健康 vs 疾病中的菌相變化</a><a href="#s5">5. 治療總則與飲食、纖維</a><a href="#s6">6. 益生菌與抗生素</a><a href="#s7">7. 糞便菌叢移植（FMT）</a><a href="#s8">8. 原文表 2：FMT 供體篩檢與操作</a><a href="#s9">9. 作者的 Clinics Care Points</a><a href="#ref">原文出處</a>
+  </nav>
+</nav>
+
+<div id="main">
+
+  <div class="page-header">
+    <h1>獸醫的菌相調節：從飲食到糞便菌叢移植</h1>
+    <p>作者：Jan S. Suchodolski, Linda Toresson（論文整理）</p>
+    <p>Microbiome Modulation in Veterinary Medicine：From Diet to Fecal Microbiota Transplantation｜Vet Clin Small Anim 2026;56(3):619–632</p>
+    <div class="tags"><span class="tag">菌相失調</span><span class="tag">Dysbiosis Index</span><span class="tag">DI</span><span class="tag">P. hiranonis</span><span class="tag">短鏈脂肪酸</span><span class="tag">膽酸</span><span class="tag">色胺酸</span><span class="tag">益生菌</span><span class="tag">抗生素</span><span class="tag">糞便菌叢移植</span><span class="tag">FMT</span><span class="tag">供體篩檢</span></div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📑 原文</span> 論文內容 <span class="src src-add">💡 補充</span> 整理者補充（臨床提醒、交叉參照；不是作者說的）
+    <br><span class="muted">依原文重點整理成中文，不是逐句翻譯；未標記的段落都是原文內容。原文的圖表版權屬 Elsevier，這裡沒有轉載，表格是依內文重新整理。藥物劑量請回原文與最新文獻確認。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記重點</h3>
+    <ul><li>區分<strong>輕度與嚴重菌相失調</strong>很重要：長期預後不同；越失調，腸道功能改變越嚴重</li><li><strong>飲食＋纖維</strong>是急慢性腸病菌相失調的<strong>第一線</strong>處置</li><li><strong>臨床緩解 ≠ 菌相功能恢復</strong>：CIE 的 DI 上升與 *P. hiranonis* 減少可持續數月到數年</li><li>DI 分級：&lt; 0 但有菌超出參考範圍＝輕度；<strong>犬 0–2、貓 0–1＝中度</strong>；<strong>犬 &gt; 2、貓 &gt; 1＝明顯失調</strong>；*P. hiranonis* 下降即使 DI &lt; 0 也有意義</li><li>抗生素後 DI 多在 <strong>2–4 週</strong>恢復；PPI 讓 DI 暫時升到 0–2（*Streptococcus* 增加、*P. hiranonis* 正常），停藥數天恢復</li><li>急性腹瀉（含 AHDS）菌相變化輕微、會自己好 → <strong>通常不需要抗生素</strong></li><li>Tylosin 停藥 30 天內 <strong>9/14</strong> 隻狗腹瀉復發；抗生素應在飲食、抗發炎、菌相調節都失敗後才考慮</li><li>FMT：<strong>DI 越高越容易復發</strong>、常需重複；直腸 FMT 犬 ≤ 25 kg <strong>5 g/kg</strong>、&gt; 25 kg <strong>3 g/kg</strong>，間隔 10–14 天做 2–3 次</li></ul>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🦠</div>
+      <h2>1. 健康菌相的功能</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>菌相同時有<strong>免疫調節</strong>與<strong>代謝</strong>功能：把飲食與宿主分子轉換成影響腸道與其他器官的代謝物</li><li>部分飲食基質（碳水、胺基酸、脂肪酸）被細菌利用 → 提供能量、調節免疫與蠕動、強化屏障</li></ul></div><div class="subsection"><h3>短鏈脂肪酸（SCFA）</h3><ul class="notes"><li>主要是<strong>乙酸、丙酸、丁酸</strong>；需要多樣的菌群接力產生<ul class="notes"><li>*Prevotella*：把複雜碳水分解出的單醣轉成乙酸</li></ul><ul class="notes"><li>產丁酸菌（如 *Faecalibacterium*）：用乙酸產生丁酸</li></ul><ul class="notes"><li>*Veillonella*、*Megasphaera*：由乳酸產丙酸；*Megamonas*：經琥珀酸產丙酸，<strong>過程需要鈷胺素</strong></li></ul></li><li>SCFA 吸收時帶動水分吸收；<strong>丁酸</strong>是上皮的局部能量來源；最多 <strong>70%</strong> 乙酸與丙酸進入門脈，分別用於脂質代謝與糖質新生</li><li>SCFA 受體遍布上皮、免疫、內分泌、平滑肌細胞 → 減少促發炎細胞激素</li></ul></div><div class="subsection"><h3>膽酸路徑</h3><ul class="notes"><li>肝臟產生兩種主要<strong>初級膽酸</strong>（cholic、chenodeoxycholic acid），在迴腸進行腸肝循環</li><li>少量到結腸，被 <strong>*Peptacetobacter (Clostridium) hiranonis</strong>*（犬貓最主要的膽酸轉換菌）轉成<strong>次級膽酸</strong>（deoxycholic、lithocholic acid）</li><li>生理量的膽酸是訊號分子、具抗發炎作用；次級膽酸抑制潛在致病共生菌</li><li>例：犬的 <strong>*Clostridioides difficile* 通常只在 *P. hiranonis* 耗竭時出現</strong></li><li>*P. hiranonis* 下降、初級→次級膽酸轉換減少，和菌相失調<strong>高度相關</strong></li></ul></div><div class="subsection"><h3>色胺酸－吲哚路徑</h3><ul class="notes"><li>色胺酸經宿主與細菌代謝成血清素、吲哚、犬尿胺酸（能量、免疫、腸蠕動）</li><li><strong>吲哚只由細菌產生</strong>（如 *Bifidobacteria*）：抗發炎、促進黏液基因表現、強化緊密連接</li></ul></div><div class="subsection"><h3>其他</h3><ul class="notes"><li>細菌合成維生素 B、K，代謝外來藥物，產生甲烷與硫化氫，把植物多酚分解成可吸收的活性形式 → 菌相大幅改變會影響這些代謝</li></ul></div></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🧫</div>
+      <h2>2. 正常菌相組成</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>數百種細菌，但功能高度保守；每隻健康個體都有<strong>數十種核心菌</strong>負責主要功能</li><li>致病共生菌（pathobionts，如 *E. coli*、*C. perfringens*）：健康時量少，失調時增加</li><li><strong>乳酸菌</strong>（主要是 *Streptococcus*，其次 *Lactobacillus*、*Enterococcus*、*Bifidobacterium*）：未消化食物過度發酵使腸腔 pH 下降時會過度生長，可作為失調指標</li></ul></div><div class="subsection"><h3>原文表 1：重要核心菌與功能</h3><div class="tbl-wrap"><table><tr><th>細菌</th><th>健康時的功能</th><th>失調時的變化</th><th>臨床意義</th></tr><tr><td>*Faecalibacterium*</td><td>產 SCFA、抗發炎</td><td>↓</td><td>發炎、屏障受損</td></tr><tr><td>*P. hiranonis*</td><td>初級→次級膽酸轉換</td><td>↓</td><td>糞便初級膽酸增加</td></tr><tr><td>*Blautia*</td><td>產 SCFA</td><td>↓</td><td>屏障與菌相平衡受損</td></tr><tr><td>*Fusobacterium*</td><td>產 SCFA</td><td>↓ 或 ↔</td><td>丁酸減少</td></tr><tr><td>*Turicibacter*</td><td>產 SCFA</td><td>↓</td><td>SCFA 減少</td></tr><tr><td>*E. coli*</td><td>少量共生</td><td>↑</td><td>過度生長時促發炎</td></tr><tr><td>*Streptococcus*</td><td>共生</td><td>↑ 或 ↔</td><td>過度生長時增加</td></tr></table></div></div></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📊</div>
+      <h2>3. 怎麼評估菌相</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>糞便培養：不適合評估失調</h3><ul class="notes"><li>多數細菌是嚴格厭氧菌，需要特殊培養條件</li><li>只有懷疑特定可培養病原（*Salmonella*、確診肉芽腫性結腸炎的黏附侵入性 *E. coli*）時，培養＋藥敏才有用</li></ul></div><div class="subsection"><h3>次世代定序（NGS）：適合研究，不適合個體</h3><ul class="notes"><li>優點：發現新菌、看整體變化</li><li>限制：<strong>沒有標準化</strong>、實驗室間差異大（DNA 萃取、PCR、統計、生資方法都會影響），同一組資料不同實驗室報出不同結果</li><li>結果是<strong>相對百分比</strong>：一種菌增加，其他菌就「看起來」減少，即使實際沒變</li><li>分析敏感度較低，可能漏掉重要細菌；<strong>定量 PCR</strong> 敏感度與再現性較高</li></ul></div><div class="subsection"><h3>Dysbiosis Index（DI）</h3><ul class="notes"><li>經分析驗證的一組 qPCR，可用於<strong>個別病患</strong></li><li>量化所有健康犬貓都有的核心菌（*Faecalibacterium*、*P. hiranonis* 等，失調時下降）與 *E. coli*、*Streptococcus*（失調時上升），合成一個數字</li><li>DI 上升時許多其他核心菌也改變 → 嚴重失調伴隨微生物酵素減少、<strong>SCFA 下降、膽酸轉換異常、乳酸增加</strong></li><li>判讀要同時看個別細菌，尤其 *P. hiranonis*</li></ul><div class="tbl-wrap"><table><tr><th>分級</th><th>犬</th><th>貓</th><th>說明</th></tr><tr><td>輕度改變</td><td>DI &lt; 0，至少一種菌超出參考範圍</td><td>同左</td><td>常是暫時性，意義不明；但 <strong>*P. hiranonis* 下降即使 DI &lt; 0 也視為失調</strong></td></tr><tr><td>中度</td><td><strong>0–2</strong></td><td><strong>0–1</strong></td><td>即使所有菌都在參考範圍內：有益菌靠近下限、致病共生菌靠近上限</td></tr><tr><td>明顯失調</td><td><strong>&gt; 2</strong></td><td><strong>&gt; 1</strong></td><td>DI 越高越嚴重</td></tr></table></div></div></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🔍</div>
+      <h2>4. 健康 vs 疾病中的菌相變化</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>判讀先看病史</h3><ul class="notes"><li>要配合飲食與用藥史解讀</li><li>有相符腸胃症狀或非特異症狀，<strong>DI 持續上升</strong> → 懷疑慢性發炎性腸病（CIE），考慮進一步檢查</li><li><strong>抗生素</strong>：DI 上升的常見原因；多數 <strong>2–4 週</strong>內恢復，部分持續失調</li><li><strong>質子幫浦抑制劑（PPI）</strong>：DI 暫時、可逆地上升到 0–2，特徵是 *Streptococcus* 增加、*P. hiranonis* 正常；停藥<strong>數天內</strong>恢復</li></ul></div><div class="subsection"><h3>急性腹瀉</h3><ul class="notes"><li>單純或出血性急性腹瀉的菌相變化通常<strong>輕微</strong>：DI 正常或輕度上升（&lt; 2），*P. hiranonis* 通常正常</li><li>變化主要來自 *E. coli*，尤其 *C. perfringens* 增加</li><li><strong>急性出血性腹瀉症候群（AHDS）</strong>與帶 *netF* 毒素基因的 *C. perfringens* 有關：就診時最多 <strong>66%</strong> 檢出，單純或慢性腹瀉很少見</li><li>不論哪種急性腹瀉，*C. perfringens* 都會在數天內自行下降 → 急性腹瀉會自限，<strong>通常不需要抗生素</strong>；指引建議多數病例不要用</li></ul></div><div class="subsection"><h3>慢性發炎性腸病（CIE）</h3><ul class="notes"><li>部分 CIE 病患 DI 明顯上升：慢性發炎造成<strong>黏膜重塑</strong>，失去膽酸、脂肪酸、碳水的轉運體（原文圖 1）</li><li><strong>吸收不良是 CIE 的重要成分</strong>並驅動失調：DI 上升的 CIE 犬糞便中脂肪酸、碳水較多 → 某些菌過度生長、某些減少</li><li>不是每隻 CIE 都失調 → CIE 是<strong>異質性</strong>疾病，有無失調者的病理生理可能不同</li><li><strong>DI 明顯上升（尤其伴 *P. hiranonis* 耗竭）＝腸道功能改變較嚴重</strong>；持續上升可當作<strong>疾病嚴重度的分期指標</strong>：較難完全緩解、較可能需要反覆或終身治療</li><li>嚴重失調的 CIE 犬做 FMT 常只有短期改善，需要重複</li></ul></div><div class="subsection"><h3>菌相失調 ≠ 膽酸性腹瀉</h3><ul class="notes"><li>缺乏 *P. hiranonis* 本身<strong>不代表</strong>膽酸性腹瀉；很多失調犬對飲食、免疫調節、FMT 有反應</li><li>只有在<strong>飲食、纖維、免疫調節、FMT 合併都失敗</strong>後，才考慮膽酸性腹瀉；若仍持續失調，可把<strong>膽酸螯合劑</strong>當最後手段</li></ul></div><div class="subsection"><h3>健康動物的亞臨床失調</h3><ul class="notes"><li>最多 <strong>15%</strong> 臨床健康犬貓 DI 亞臨床上升 → <strong>1–2 個月後重測</strong>；持續上升可能代表早期亞臨床腸道功能改變</li><li>FMT <strong>供體</strong>要排除亞臨床失調</li></ul></div></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🥗</div>
+      <h2>5. 治療總則與飲食、纖維</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>總則</h3><ul class="notes"><li>先分清輕度或嚴重失調、找出原因</li><li>嚴重失調常是慢性黏膜變化的一部分 → <strong>多模式</strong>治療原發腸病與失調</li><li>順序：<strong>先改飲食</strong> → 視需要加纖維、益生菌、FMT、免疫調節，少數情況才用抗生素</li><li>CIE 臨床緩解後，DI 上升與 *P. hiranonis* 減少<strong>常持續數月到數年</strong>（反映持續的黏膜變化與功能異常）</li><li>營養介入改變細菌可用的基質、改善症狀，但<strong>常無法直接矯正失調</strong></li><li>一研究：CIE 犬用<strong>類固醇</strong>抗發炎，數個月內 DI 逐漸下降、*P. hiranonis* 恢復</li><li><strong>FMT 是唯一能持續快速改善菌相的介入</strong>，常在數天內降低 DI（尤其抗生素造成的失調）；但 CIE 若黏膜功能異常仍在，失調會再出現或持續</li></ul></div><div class="subsection"><h3>飲食對菌相的影響</h3><ul class="notes"><li>健康動物：巨量營養素會影響菌相，但 DI 多在參考範圍內變動<ul class="notes"><li><strong>高蛋白、高脂</strong> → *E. coli*、*C. perfringens*、*Fusobacteria*、*P. hiranonis* 增加</li></ul><ul class="notes"><li><strong>高纖</strong> → 分解醣類的菌（*Faecalibacterium*、*Megamonas*、*Prevotella*）增加</li></ul></li><li>參考範圍內，高纖飲食 DI 下降；<strong>低消化率蛋白</strong>和／或高脂飲食 DI 上升；<strong>蛋白消化率特別重要</strong></li><li>例：自製生食（大量難消化蛋白、高脂、低纖）的狗 DI 輕度上升（約 0–2），*E. coli*、*C. perfringens* 增加、*Faecalibacterium* 低、*P. hiranonis* 正常 → 可能解釋為何部分生食犬常有腸胃症狀；鮮食飲食也與 *C. perfringens*、*E. coli* 增加有關（原因不明）</li><li>益生元效果依種類與量而異；可發酵益生元在結腸轉成 SCFA</li><li>高消化率、水解、高纖、新蛋白飲食<strong>都能讓 CIE 緩解</strong>；可能機制是高消化率<strong>減少腸腔未消化基質 → 減少細菌過度生長</strong>（吸收不良是 CIE 病理的重要部分）</li><li>食物反應性腸病的臨床緩解只伴隨菌相<strong>部分</strong>、非完全正常化</li></ul></div></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">💊</div>
+      <h2>6. 益生菌與抗生素</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>益生菌</h3><ul class="notes"><li>用於抗生素治療中的動物，可減輕抗生素造成的失調症狀、<strong>加快菌相恢復</strong></li><li>部分急性腹瀉有幫助；可作 CIE 的<strong>輔助</strong>治療</li><li>效果<strong>依菌株而定</strong>：只用信譽良好廠商、<strong>有犬貓臨床研究證實效果</strong>的產品；目前只有少數市售產品被研究過</li><li>對整體菌相影響小（糞便中變化很少），但部分免疫指標改善；可作用於菌量較少的<strong>小腸</strong>、附著黏膜而產生效果</li><li>例：多菌株益生菌輔助 prednisone 治療 CIE 犬，<strong>緊密連接蛋白表現增加</strong></li></ul></div><div class="subsection"><h3>抗生素</h3><ul class="notes"><li>可改善症狀，但停藥後常復發、需長期使用</li><li>研究：停用 <strong>tylosin 後 30 天內 14 隻中 9 隻</strong>腹瀉復發</li><li>可能機制：降低總菌量 → 症狀改善；停藥後細菌回長；而且抗生素本身造成失調</li><li>建議：只在<strong>飲食、抗發炎、菌相調節試驗都失敗</strong>，或有<strong>全身性發炎</strong>時才考慮</li></ul></div></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🧪</div>
+      <h2>7. 糞便菌叢移植（FMT）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>適應症與機制</h3><ul class="notes"><li>把健康供體的糞便移到受體腸道；多研究顯示核心菌與其代謝物（膽酸、SCFA）改善</li><li>已證實有效：犬貓 <strong>CIE、小病毒、急性難治性腹瀉、抗生素造成的失調</strong></li><li>CIE 的失調反映慢性黏膜重塑；病理仍在，失調與症狀就會復發 → 多數 CIE 病患<strong>數天內改善，但常復發</strong>，時間因個體而異</li><li><strong>DI 越高（腸道變化越嚴重）復發越快</strong> → 這類病患仍需飲食與可能的抗發炎治療，重複 FMT 作為標準治療反應不佳時的輔助</li></ul></div><div class="subsection"><h3>臨床研究</h3><div class="tbl-wrap"><table><tr><th>研究</th><th>對象與方法</th><th>結果</th></tr><tr><td>前瞻</td><td>27 隻 CIE 犬，口服凍乾 FMT 膠囊 30 天</td><td>停止後 15 天 <strong>20/27</strong> 疾病活性下降；追蹤只有 15 天，復發率未知</td></tr><tr><td>前瞻</td><td>20 隻多次飲食試驗無效的犬，直腸 FMT 1–2 次、間隔約 14 天</td><td><strong>17/20</strong> 臨床活性下降至少 3 個月；長期追蹤 15 隻中 10 隻穩定 1 年（基線症狀與失調都輕）</td></tr><tr><td>回溯</td><td>41 隻難治性 CIE 犬，重複直腸 FMT 輔助，追蹤 3–41 個月</td><td><strong>31/41</strong> 有反應（26 隻 ≥ 3 個月長期、5 隻短期）</td></tr><tr><td>前瞻</td><td>39 隻反應不佳 CIE 犬，1 個月內直腸 FMT 2–3 次誘導</td><td><strong>28/39</strong> 有反應</td></tr></table></div><ul class="notes"><li>常見效果：<strong>腹瀉緩解、活力增加</strong>；過瘦者體重增加、食慾變好、發作減少、排便次數下降</li><li>最多 <strong>30%</strong> 的犬可減量或停用維持劑量類固醇；貓資料少，經驗與犬相似</li></ul></div><div class="subsection"><h3>DI 是預後指標</h3><ul class="notes"><li>兩個同方案研究合併：<strong>78% 長期反應者</strong>基線無或輕度失調（DI &lt; 2）；<strong>70% 短期反應或無反應者</strong>基線明顯失調</li><li>短期／無反應者 2 次 FMT 後失調不改善；長期反應者 2–3 次後 DI 明顯下降並穩定 6 個月</li><li>長期反應者在 FMT 前後 *E. coli* 都較低、次級非結合膽酸比例較高</li><li>直覺上失調越嚴重越該受益，但<strong>實際相反</strong>：嚴重失調伴隨腸道功能受損，黏膜層級的改變持續，FMT 難有長期效果</li><li>原文圖 2（4 隻接受 3 次 FMT 的難治 CIE 犬）：輕度失調長期反應；明顯失調短期反應需<strong>每 3 個月一次 FMT</strong>；嚴重失調長期反應但 2 個月後失調回來、12 個月後嚴重發作安樂死；持續明顯失調無反應、後來對 chlorambucil 有反應</li><li>觀念要改：CIE 的 FMT 不一定是「一次性」治療；作者經驗中有犬在初始 3 次後，<strong>每隔幾個月追加 FMT</strong> 維持穩定</li></ul></div><div class="subsection"><h3>劑量與重複</h3><ul class="notes"><li>Toresson 研究：直腸 FMT 犬 <strong>≤ 25 kg 用 5 g/kg</strong>、<strong>&gt; 25 kg 用 3 g/kg</strong>（受體體重）</li><li>59 隻反應者中 <strong>43 隻（73%）</strong>在第 2 或第 3 次 FMT 後進一步改善 → 支持難治 CIE 重複 FMT</li></ul></div><div class="subsection"><h3>抗生素造成的失調</h3><ul class="notes"><li>臨床與菌相通常反應很好</li><li>貓：amoxicillin-clavulanate 10 天後，<strong>一次直腸灌注（2 g/kg）</strong>就讓 DI 恢復</li><li>犬：metronidazole 後，用市售 FMT 膠囊製作器做成的<strong>自體</strong>糞便膠囊，DI 與膽酸代謝恢復較對照組好</li><li>作者經驗：曾用抗生素的病患 FMT 後菌相仍不恢復，通常是有其他因素（如潛在 CIE）</li></ul></div></div>
+  </div>
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📋</div>
+      <h2>8. 原文表 2：FMT 供體篩檢與操作</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>供體選擇與篩檢</h3><ul class="notes"><li>臨床健康、成年（<strong>≥ 12 月齡</strong>）、<strong>不吃生食</strong>、過去 <strong>6 個月沒用抗生素</strong>、沒有用藥、行為正常；貓要<strong>室內貓</strong></li><li><strong>DI 正常（&lt; 0）</strong></li><li>病原陰性：*Salmonella*、*C. jejuni*、*Giardia*、*Cryptosporidium*、寄生蟲；貓另加 <strong>*Tritrichomonas foetus*、腸道冠狀病毒、FIV/FeLV</strong></li><li><strong>每 6 個月重新篩檢</strong>；供體有急性腸胃發作 → 等 3 個月；用過抗生素 → 等 6 個月並以 DI 重篩</li></ul></div><div class="subsection"><h3>製備與保存</h3><div class="tbl-wrap"><table><tr><th>步驟</th><th>內容</th></tr><tr><td>製備</td><td>排便後 <strong>2–6 小時內</strong>處理；每 kg 受體體重用 <strong>2.5–5 g</strong> 供體糞便；與生理食鹽水混合、過濾、抽進針筒</td></tr><tr><td>保存</td><td>新鮮 FMT <strong>4 °C 可放 1 天</strong>，或 <strong>−20 °C 1 個月</strong>；要放更久（最多 3 個月）加甘油成 <strong>10%</strong> 溶液</td></tr></table></div></div><div class="subsection"><h3>給予與照護</h3><div class="tbl-wrap"><table><tr><th>步驟</th><th>內容</th></tr><tr><td>給予</td><td>量導管長度（<strong>尾根到胸骨</strong>）；接上導管尖頭針筒，把材料推到導管尖端；導管送入結腸後灌注</td></tr><tr><td>給予後</td><td>若 <strong>20–30 分鐘內</strong>就排便 → 重給；給予後<strong>禁食 4–6 小時</strong>；貓建議住院 4–6 小時</td></tr><tr><td>頻率</td><td><strong>重複 2–3 次，間隔 10–14 天</strong></td></tr></table></div></div></div>
+  </div>
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📌</div>
+      <h2>9. 作者的 Clinics Care Points</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>慢性腸病病患若明顯菌相失調，可能代表<strong>腸道功能異常持續存在</strong></li><li>治療目標是<strong>調節腸腔環境</strong></li><li>調節菌相通常要多模式：飲食、纖維、益生菌，可能加 FMT</li><li>一定要問詳細飲食史：消化率、纖維含量、巨量營養素是否均衡</li><li><strong>抗生素要有嚴格適應症</strong>才開</li><li>益生菌可加速抗生素失調的恢復</li><li><strong>FMT 前與最後一次 FMT 後 4–6 週</strong>評估失調嚴重度，可預測復發風險與是否需要重複</li></ul><p class="p"><span class="src src-add">💡 補充</span> 這篇是 open access（CC BY-NC-ND 4.0），全文可在 DOI 連結免費閱讀；作者 Suchodolski 任職的 Texas A&amp;M GI Lab 提供 DI 檢測（原文揭露）。</p></div></div>
+  </div>
+  <div class="section" id="ref">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📚</div>
+      <h2>原文出處</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><div class="ref-list"><div class="ref-item">Jan S. Suchodolski, Linda Toresson. Microbiome Modulation in Veterinary Medicine: From Diet to Fecal Microbiota Transplantation. <em>Vet Clin North Am Small Anim Pract</em> 2026;56(3):619–632. <a href="https://doi.org/10.1016/j.cvsm.2026.01.009" target="_blank" rel="noopener">doi:10.1016/j.cvsm.2026.01.009</a></div><div class="ref-item">特刊：Gastroenterology（主編 M. Katherine Tolbert、Sara A. Jablonski），<em>Vet Clin North Am Small Anim Pract</em> 2026 年 5 月號，第 56 卷第 3 期。© 2026 Elsevier Inc.</div></div></div></div>
+  </div>
+
+  <div class="next-up">
+    <p>同一期特刊的其他文章請回目錄。</p>
+    <a href="index.html">回到特刊目錄 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  navLinks.forEach(a => { a.classList.remove('active'); if (a.getAttribute('href') === '#' + cur) a.classList.add('active'); });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>犬貓大腸疾病：診斷、處置與預後｜VCNA 腸胃學特刊 2026</title>
+<style>
+  :root {
+    --primary: #8A4B0F;
+    --primary-light: #F6EBDD;
+    --secondary: #0891b2;
+    --accent: #be185d;
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: #2B1A0B;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 0 0 24px;
+  }
+  #sidebar .home-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin: 14px 20px 0;
+    color: #E5C9A8; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: color .15s;
+  }
+  #sidebar .home-link:hover { color: var(--primary-light); }
+  #sidebar .logo {
+    padding: 12px 20px 16px;
+    border-bottom: 1px solid #4A2E14;
+    margin-bottom: 8px;
+  }
+  #sidebar .logo h2 { color: #f1f5f9; font-size: 13px; font-weight: 600; line-height: 1.4; }
+  #sidebar .logo p { color: #E5C9A8; font-size: 11px; margin-top: 4px; }
+  #sidebar nav a {
+    display: block;
+    padding: 8px 20px;
+    color: #E5C9A8;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    background: #4A2E14;
+    color: #f1f5f9;
+    border-left-color: var(--primary-light);
+  }
+  #sidebar nav .nav-section {
+    padding: 12px 20px 4px;
+    color: #C9A27A;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    padding: 40px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #5A320C 0%, #C47F2B 100%);
+    border-radius: 16px;
+    padding: 32px 36px;
+    color: white;
+    margin-bottom: 36px;
+  }
+  .page-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .page-header p { opacity: .85; font-size: 14px; }
+  .page-header .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-header .tag {
+    background: rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  /* ── KEY POINTS BAR ── */
+  .keypoints {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .keypoints h3 { color: #92400e; font-size: 14px; margin-bottom: 10px; }
+  .keypoints ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .keypoints li { font-size: 13px; color: #78350f; padding-left: 18px; position: relative; }
+  .keypoints li::before { content: '★'; position: absolute; left: 0; color: #d97706; font-size: 11px; top: 2px; }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+  }
+  .section-header:hover { background: #f8fafc; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 17px; font-weight: 700; flex: 1; }
+  .section-header .toggle { color: var(--text-muted); font-size: 18px; transition: transform .2s; }
+  .section-header.collapsed .toggle { transform: rotate(-90deg); }
+  .section-body { padding: 24px; }
+  .section-body.hidden { display: none; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 24px; }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .subsection h4 {
+    font-size: 14px; font-weight: 600;
+    color: var(--text);
+    margin: 14px 0 6px;
+  }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: #f1f5f9;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .td-center { text-align: center; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    margin: 10px 0;
+    display: flex; gap: 10px;
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .alert-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+  .alert-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .alert-success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .alert-danger { background: #fef2f2; border: 1px solid #fecaca; color: #7f1d1d; }
+
+  /* ── GRID CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 10px 0; }
+  .card-mini {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-mini h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+  .card-mini ul { list-style: none; }
+  .card-mini li { font-size: 13px; padding: 2px 0 2px 14px; position: relative; }
+  .card-mini li::before { content: '·'; position: absolute; left: 4px; font-weight: 700; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--primary-light); color: var(--primary); }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-purple { background: #f3e8ff; color: #7e22ce; }
+
+  /* ── QUOTE ── */
+  .quote {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+  }
+
+  /* ── UL/OL ── */
+  ul.notes, ol.notes { padding-left: 20px; }
+  ul.notes li, ol.notes li { margin: 4px 0; font-size: 14px; }
+  ul.notes li::marker, ol.notes li::marker { color: var(--primary); }
+
+  /* ── REFERENCES ── */
+  .ref-list { counter-reset: ref; }
+  .ref-item {
+    counter-increment: ref;
+    display: flex; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px; line-height: 1.6;
+  }
+  .ref-item:last-child { border-bottom: none; }
+  .ref-item::before {
+    content: counter(ref) ".";
+    color: var(--primary); font-weight: 700;
+    min-width: 24px; flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .ref-item a { color: var(--primary); }
+
+  /* ── NEXT UP ── */
+  .next-up {
+    background: #f8fafc;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .next-up p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px; }
+  .next-up a {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+  }
+
+  .home-link-fab {
+    display: none;
+    position: fixed; top: 14px; left: 14px; z-index: 200;
+    align-items: center; gap: 5px;
+    background: #2B1A0B; color: #f1f5f9; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    border: 1px solid #4A2E14; border-radius: 20px;
+    padding: 6px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { margin-left: 0; padding: 20px 16px; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .keypoints ul { grid-template-columns: 1fr; }
+    .home-link-fab { display: inline-flex; }
+  }
+
+  /* ── PUPD NOTE EXTRAS ── */
+  .p { font-size: 14px; margin: 6px 0; }
+  .muted { color: var(--text-muted); font-size: 13.5px; }
+  .quote { font-weight: 600; font-style: italic; }
+  .quote-zh { display: block; font-style: normal; font-weight: 500; font-size: 13.5px; color: var(--text); opacity: .8; margin-top: 4px; }
+  .legend { font-size: 13px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; line-height: 2.1; }
+  .src { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-right: 4px; font-style: normal; line-height: 1.6; }
+  .src-rec { background: #ccfbf1; color: #0b4f49; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .src-hand { background: #fef3c7; color: #92400e; }
+  .src-add { background: #f3e8ff; color: #6b21a8; }
+  .src-fix { background: #fee2e2; color: #991b1b; }
+  .rec-link { display: inline-block; margin-top: 16px; background: #fff; color: #5A320C; text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 20px; }
+  .rec-link:hover { background: #ccfbf1; }
+  .qa { border: 1px solid var(--border); border-radius: 8px; margin: 10px 0; overflow: hidden; }
+  .qa .q { background: #f1f5f9; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+  .qa .a { padding: 10px 14px; font-size: 14px; }
+  .src-photo { background: #fce7f3; color: #9d174d; }
+  .cgm { font-family: ui-monospace, "SF Mono", monospace; font-weight: 700; }
+  .fig { margin: 14px 0; }
+  .fig img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+  .fig figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  .fig img { background: #fff; }
+  .src-slide { background: #e0f2fe; color: #075985; }
+  .formula { font-family: ui-monospace, "SF Mono", monospace; background: #f1f5f9; border-radius: 6px; padding: 8px 12px; display: inline-block; font-size: 13.5px; margin: 4px 0; }
+  .figlink { font-size: 12px; font-weight: 600; color: var(--primary); text-decoration: none; background: var(--primary-light); border-radius: 999px; padding: 2px 9px; margin-left: 4px; white-space: nowrap; }
+  .figlink:hover { text-decoration: underline; }
+  .fig.diagram svg { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; background: #fff; }
+  @media (max-width: 600px) { .fig.diagram { overflow-x: auto; } .fig.diagram svg { min-width: 560px; } .fig.diagram figcaption::before { content: "← 左右滑動看完整圖 →"; display: block; font-size: 11px; opacity: .6; margin-bottom: 2px; } }
+</style>
+
+</head>
+<body>
+
+<a class="home-link-fab" href="index.html">← 回到特刊目錄</a>
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← VCNA 腸胃學特刊 2026</a>
+  <div class="logo">
+    <h2>14｜犬貓大腸疾病</h2>
+    <p>VCNA 2026;56(3) 論文整理</p>
+  </div>
+  <nav>
+    <div class="nav-section">章節導覽</div><a href="#s1">1. 大腸的功能與臨床表現</a><a href="#s2">2. 大腸疾病的診斷（原文表 2）</a><a href="#s3">3. 急性結腸炎</a><a href="#s4">4. 特發性慢性結腸炎（ICC）</a><a href="#s5">5. 大腸腫瘤</a><a href="#s6">6. 血管畸形：血管發育不良</a><a href="#s7">7. 貓便秘與巨結腸</a><a href="#s8">8. 犬腸躁症（IBS）</a><a href="#s9">9. 大腸急症</a><a href="#s10">10. 作者的 Clinics Care Points</a><a href="#ref">原文出處</a>
+  </nav>
+</nav>
+
+<div id="main">
+
+  <div class="page-header">
+    <h1>犬貓大腸疾病：診斷、處置與預後</h1>
+    <p>作者：Sarah M. Schmid（論文整理）</p>
+    <p>Large-Intestinal Disorders in Dogs and Cats：Diagnosis, Management, and Clinical Outcomes｜Vet Clin Small Anim 2026;56(3):747–768</p>
+    <div class="tags"><span class="tag">大腸型腹瀉</span><span class="tag">急性結腸炎</span><span class="tag">特發性慢性結腸炎</span><span class="tag">洋車前子</span><span class="tag">sulfasalazine</span><span class="tag">結直腸腫瘤</span><span class="tag">腺癌</span><span class="tag">淋巴瘤</span><span class="tag">息肉</span><span class="tag">血管發育不良</span><span class="tag">貓便秘</span><span class="tag">巨結腸</span><span class="tag">結腸直徑/L5</span><span class="tag">腸躁症</span><span class="tag">腸套疊</span><span class="tag">結腸扭轉</span></div>
+  </div>
+
+  <div class="legend">
+    <strong>資料來源標記：</strong>
+    <span class="src src-slide">📑 原文</span> 論文內容 <span class="src src-add">💡 補充</span> 整理者補充（臨床提醒、交叉參照；不是作者說的）
+    <br><span class="muted">依原文重點整理成中文，不是逐句翻譯；未標記的段落都是原文內容。原文的圖表版權屬 Elsevier，這裡沒有轉載，表格是依內文重新整理。藥物劑量請回原文與最新文獻確認。</span>
+  </div>
+
+  <div class="keypoints">
+    <h3>⭐ 必記重點</h3>
+    <ul><li>大腸型腹瀉：<strong>次數多、量少、急迫、裡急後重、大量黏液、鮮血</strong>；便秘較少見</li><li>急性結腸炎多自限（<strong>78% ≤ 2 天</strong>）；高纖或高消化率飲食 ± 洋車前子比 metronidazole 恢復快；<strong>不用抗生素</strong></li><li>慢性大腸型腹瀉的<strong>食物反應性</strong>比例高 → 先用<strong>高纖／洋車前子</strong>，再試新蛋白或水解；<strong>2–3 次飲食試驗失敗</strong>才做大腸鏡</li><li>犬 <strong>≤ 60%</strong> 腸胃腫瘤在大腸（直腸最多），<strong>50–60% 惡性</strong>，以<strong>腺癌</strong>最多；直腸觸診可摸到 <strong>80%</strong> 犬直腸腫瘤</li><li>貓結腸腺癌診斷時 <strong>76% 已轉移</strong> → 廣泛切除＋輔助化療；大腸淋巴瘤多為 <strong>B 細胞</strong>、預後比小腸型好</li><li>迷你臘腸、傑克羅素的發炎性息肉可能進展為腺癌；原位癌息肉切除後 <strong>30% 復發</strong>、18–50% 惡化</li><li>血管發育不良：腸胃出血犬 <strong>5%</strong>；<strong>超音波看不到、探查手術常找不到</strong>，傳統上下內視鏡也可能漏掉 → 膠囊內視鏡</li><li>貓便秘 X 光：最大結腸直徑／L5 長度 <strong>&gt; 1.28 便秘、&gt; 1.48 巨結腸、&gt; 1.62 可能需結腸次全切除</strong>；切除時<strong>保留迴盲結腸交界</strong>預後較好</li></ul>
+  </div>
+
+  <div class="section" id="s1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🧭</div>
+      <h2>1. 大腸的功能與臨床表現</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>大腸＝盲腸、結腸、直腸、肛管；三大功能：<strong>近端結腸吸收水與電解質</strong>、暫存糞便、從遠端結腸與直腸<strong>排出糞便</strong></li><li>其他：黏液分泌、免疫監視、菌相發酵、蠕動</li><li>疾病時表現為<strong>腹瀉或便秘</strong></li></ul></div><div class="subsection"><h3>原文表 1：小腸型 vs 大腸型腹瀉</h3><div class="tbl-wrap"><table><tr><th></th><th>小腸</th><th>大腸</th></tr><tr><td>功能</td><td>消化與吸收</td><td>水與電解質吸收、儲存、控制排便</td></tr><tr><td>體重下降</td><td>慢性時可能有</td><td>少見</td></tr><tr><td>多食</td><td>可能有</td><td>無</td></tr><tr><td>嘔吐</td><td>可能有</td><td>少見</td></tr><tr><td>排便次數</td><td>正常或稍增</td><td><strong>明顯增加</strong></td></tr><tr><td>急迫</td><td>無</td><td><strong>有</strong></td></tr><tr><td>糞便量</td><td>大量</td><td><strong>少量</strong></td></tr><tr><td>裡急後重</td><td>無</td><td><strong>有</strong></td></tr><tr><td>性狀</td><td>水樣</td><td>「牛糞狀」到水樣</td></tr><tr><td>黏液</td><td>無或少量</td><td><strong>大量</strong></td></tr><tr><td>血</td><td>黑便</td><td><strong>鮮血便</strong></td></tr></table></div><ul class="notes"><li><strong>便秘</strong>：糞便滯留在結腸與直腸 → 排便少、困難或沒有；滯留越久水分被吸收越多 → 糞便乾硬、嵌塞</li></ul></div></div>
+  </div>
+  <div class="section" id="s2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🔎</div>
+      <h2>2. 大腸疾病的診斷（原文表 2）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><div class="tbl-wrap"><table><tr><th>步驟</th><th>重點</th></tr><tr><td>病史</td><td>飲食、旅遊、環境、飼養管理、共病、用藥、疫苗、驅蟲</td></tr><tr><td>一般理學</td><td>水合、體態、肌肉狀態</td></tr><tr><td>腹部觸診</td><td><strong>腫塊</strong>：阻塞、腸套疊、腫瘤、組織漿菌、腐黴；<strong>腹痛</strong>：異物、腸套疊、結腸炎、盲腸炎、頑固便秘、扭轉、穿孔；<strong>肝脾腫大</strong>：淋巴瘤、播散性真菌感染</td></tr><tr><td>直腸與會陰檢查</td><td>糞便性狀；直腸黏膜不規則、腫塊（<strong>可摸到 80% 犬直腸腫塊</strong>）、息肉；肛門腺膿瘍、嵌塞、腫瘤；會陰疝氣；肛周瘻管。犬直腸檢查異常分別改變 <strong>26% 診斷計畫、13% 治療計畫</strong></td></tr><tr><td>神經與骨科檢查</td><td>便秘病例很重要</td></tr><tr><td>眼科</td><td>葡萄膜炎、脈絡視網膜炎 → 原藻、組織漿菌、淋巴瘤、FIP、利什曼</td></tr><tr><td>CBC</td><td>貧血（常見、非特異）；<strong>嗜酸性球增多</strong>：Addison、寄生蟲、組織漿菌、血吸蟲、腐黴、慢性結腸炎、FIP、淋巴瘤；<strong>血小板減少</strong>：組織漿菌、血吸蟲、利什曼、腫瘤、FIP</td></tr><tr><td>生化</td><td><strong>高血鈣</strong>：血吸蟲、腫瘤（淋巴瘤）、腐黴（胃）；<strong>低鈉／高鉀</strong>：Addison、<strong>犬鞭蟲</strong>；<strong>高球蛋白</strong>：腫瘤、組織漿菌、血吸蟲、原藻、腐黴、利什曼</td></tr><tr><td>尿檢</td><td>腎功能；<strong>蛋白尿</strong>：利什曼、血吸蟲；尿中偶見原藻</td></tr><tr><td>直腸刮片細胞學</td><td><strong>組織漿菌、原藻</strong></td></tr><tr><td>糞便寄生蟲</td><td>濕抹片：*Tritrichomonas*、*Giardia*、*Balantidium*、*Entamoeba*；<strong>離心糖液漂浮</strong>：犬鞭蟲</td></tr><tr><td>分子診斷</td><td>肉芽腫性結腸炎的感染原因；<strong>細菌病原的糞便 PCR、ELISA 毒素、培養無法可靠區分病犬與健康犬</strong></td></tr><tr><td>腹部 X 光</td><td>結腸異物、腸套疊、腸繫膜或腰下淋巴結腫大、腔外壓迫</td></tr><tr><td>腹部超音波</td><td>結腸壁增厚、腫塊、息肉、腸繫膜淋巴結腫大；可導引抽吸</td></tr><tr><td>大腸鏡</td><td>需禁食 <strong>36–48 小時</strong>＋灌洗液（PEG 3350＋電解質）與灌腸；看結腸與迴腸黏膜；切片做組織學、FISH、培養</td></tr></table></div><ul class="notes"><li>原文圖 2 有大腸型腹瀉與便秘的診斷流程（改編自 BSAVA 手冊，未轉載）</li></ul></div></div>
+  </div>
+  <div class="section" id="s3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">⚡</div>
+      <h2>3. 急性結腸炎</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>犬常見的就診原因；可能原因：壓力、亂吃、毒素、原蟲、蠕蟲、磨蝕性異物——但<strong>常找不到原因</strong></li><li>多數自限，<strong>78% ≤ 2 天</strong></li><li>支持療法：輸液、飲食管理、高嶺土止瀉劑和／或益生菌</li><li><strong>高纖或高消化率飲食 ± 洋車前子</strong>與犬急性結腸炎緩解有關；一研究<strong>比 metronidazole 恢復更快</strong></li><li>貓：收容所急性腹瀉貓摘要研究，混合可溶纖維飲食比對照飲食緩解更快</li><li><strong>一般避免抗生素</strong>：破壞菌相、無證實效益、促進抗藥性；6 個 RCT 統合分析顯示對腹瀉天數、住院時間、死亡率無有意義效果</li><li><strong>益生菌</strong>可縮短恢復正常糞便的時間，並減少 metronidazole 使用</li><li>抗生素只留給懷疑<strong>細菌移位、菌血症或敗血症</strong>的重症</li><li>預後良好</li></ul></div></div>
+  </div>
+  <div class="section" id="s4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🔁</div>
+      <h2>4. 特發性慢性結腸炎（ICC）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>大腸症狀 <strong>≥ 3 週</strong>、找不到原因；推測為遺傳、環境、菌相失調、黏膜免疫失調交互作用；<strong>中年</strong>犬貓最常見</li><li>先篩檢：最低資料庫、<strong>基礎皮質醇（犬）</strong>、<strong>TT4（成貓）</strong>、糞便寄生蟲、<strong>*Tritrichomonas blagburni* PCR（貓）</strong>、地區性感染血清學／抗原、腹部影像</li></ul></div><div class="subsection"><h3>第一步：飲食試驗</h3><ul class="notes"><li>犬：大腸症狀在<strong>食物反應性</strong>比類固醇反應性更常見；貓：食物反應性貓的大腸型腹瀉比小腸症狀多</li><li>常建議<strong>高纖飲食</strong>，或在高消化率、水解、新蛋白飲食中加益生元纖維</li></ul></div><div class="subsection"><h3>原文表 3：犬特發性慢性結腸炎的飲食研究</h3><div class="tbl-wrap"><table><tr><th>研究</th><th>對象</th><th>介入</th><th>合併治療</th><th>組織學</th><th>結果</th></tr><tr><td>Fritsch 2022</td><td>31 隻慢性大腸型腹瀉</td><td>市售高纖飲食</td><td>2 隻 metronidazole；允許抗焦慮、止痛、皮膚藥</td><td>未做</td><td><strong>完全緩解 68%</strong>、改善 32%</td></tr><tr><td>Lecoindre &amp; Gaschen 2011</td><td>19 隻高消化率低脂飲食無效者</td><td>高纖飲食＋洋車前子（13 隻）或只用高纖飲食（6 隻）</td><td>可加抗生素、loperamide、sulfasalazine、解痙劑</td><td>正常</td><td>12/19 靠飲食可停藥；4 隻有行為問題需治療；3 隻無效</td></tr><tr><td>Leib 2000</td><td>37 隻</td><td><strong>洋車前子每天 2 大匙</strong></td><td>29 隻吃高消化率飲食</td><td>正常</td><td>持續使用且有追蹤的 27 隻：極佳 63%、很好 22%、好 11%、差 4%</td></tr><tr><td>Alves 2021</td><td>22 隻警犬</td><td><strong>洋車前子每天 4 大匙</strong></td><td>無</td><td>未做</td><td>很好 50%、好 40%、差 10%</td></tr><tr><td>Nelson 1988</td><td>13 隻</td><td>自製<strong>低殘渣、高消化率茅屋起司＋米</strong></td><td>無</td><td>淋巴漿細胞性結腸炎</td><td>11/13（85%）2 週內反應，另 2 隻 3 週與 6 週；9/11 換回原飲食後復發</td></tr><tr><td>Simpson 1994</td><td>11 隻</td><td>市售低過敏雞肉＋米</td><td>初期 sulfasalazine 20–40 mg/kg/天，控制後停</td><td>淋巴漿細胞性結腸炎</td><td>96% 一個月內糞便正常；2 個月內 90% 只靠飲食控制</td></tr></table></div></div><div class="subsection"><h3>貓</h3><ul class="notes"><li>12 隻慢性淋巴漿細胞性結腸炎貓：6 隻只靠飲食、6 隻飲食＋藥；最常見是<strong>加纖維</strong>（8 隻：6 隻高纖飲食、2 隻原飲食加洋車前子）→ 5 隻完全緩解並只靠飲食維持、3 隻部分反應</li><li>另一研究：5/6 淋巴漿細胞性結腸炎貓吃<strong>自製羊肉＋米</strong>2 週內腹瀉緩解</li><li>其他貓慢性腹瀉研究未分大小腸型，但高消化率、新蛋白、水解飲食都改善糞便評分</li></ul></div><div class="subsection"><h3>建議順序</h3><ul class="notes"><li><strong>先洋車前子或高纖飲食</strong> → 持續有症狀再試<strong>新蛋白或水解</strong>（單獨或加纖維）</li><li><strong>Tylosin、metronidazole</strong> 都會傷害菌相 → <strong>不建議例行使用</strong></li></ul></div><div class="subsection"><h3>什麼時候做大腸鏡</h3><ul class="notes"><li><strong>2–3 次飲食試驗失敗</strong>、發病時症狀嚴重、或超音波看到<strong>局部黏膜變化</strong></li><li>組織學可見淋巴漿細胞性、嗜酸性、嗜中性、肉芽腫性或混合發炎</li><li><strong>嗜中性結腸炎</strong> → 做 <strong>FISH</strong> 找侵入性細菌病原</li><li><strong>肉芽腫性結腸炎</strong> → 做感染檢查（見本特刊 15 感染性結腸炎）</li></ul></div><div class="subsection"><h3>飲食無效的淋巴漿細胞性或嗜酸性結腸炎</h3><div class="tbl-wrap"><table><tr><th>藥物</th><th>劑量</th><th>備註</th></tr><tr><td>Prednisone</td><td><strong>1–2 mg/kg PO q24h</strong>；&gt; 25 kg 犬 <strong>25–50 mg/m² PO q24h</strong></td><td>有反應支持免疫抑制劑反應性結腸炎</td></tr><tr><td>Chlorambucil（貓）</td><td><strong>2 mg/貓</strong></td><td>類固醇難治時加</td></tr><tr><td>Chlorambucil（犬）</td><td><strong>4–6 mg/m² PO q24h 2–3 週，之後 q48h</strong></td><td>類固醇難治</td></tr><tr><td>Cyclosporine（犬）</td><td><strong>5 mg/kg PO q12–24h</strong></td><td>類固醇難治</td></tr><tr><td>Azathioprine（犬）</td><td><strong>2 mg/kg PO q24h 2 週，之後 2 mg/kg q48h</strong></td><td>類固醇難治</td></tr><tr><td>Hydrocortisone 或 budesonide <strong>直腸栓劑</strong></td><td>—</td><td>無法耐受全身性類固醇的犬，效果不一</td></tr><tr><td><strong>Sulfasalazine</strong>（犬）</td><td><strong>10–25 mg/kg PO q8h 4–6 週</strong>，減到最低有效劑量</td><td>結腸細菌代謝成 <strong>5-ASA</strong>，局部抑制 COX → 減少前列腺素與白三烯；<strong>對小腸病無效</strong></td></tr><tr><td>Olsalazine（犬）</td><td><strong>5–20 mg/kg PO q8h 4–6 週</strong>，減到最低有效劑量</td><td>同上</td></tr></table></div><ul class="notes"><li>5-ASA 類副作用：厭食、嘔吐、膽汁淤積性黃疸、血液惡病質、過敏、<strong>乾眼症（KCS）</strong>、罕見特異性肝壞死 → <strong>監測血液與淚液分泌</strong>；犬缺乏藥動學資料</li><li><strong>貓缺乏葡萄糖醛酸轉移酶，無法有效代謝水楊酸類 → 不建議用</strong></li><li>預後不一，取決於症狀嚴重度與初始治療反應</li></ul></div></div>
+  </div>
+  <div class="section" id="s5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🎗️</div>
+      <h2>5. 大腸腫瘤</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>犬最多 <strong>60%</strong> 腸胃腫瘤長在大腸，<strong>直腸</strong>最常見；結直腸腫瘤 <strong>50–60% 惡性</strong>：<strong>腺癌</strong>最多，其次淋巴瘤</li><li>犬良性：腺瘤（腺瘤性息肉）、平滑肌瘤、纖維瘤</li><li>貓：腸胃腫瘤多在<strong>小腸</strong>；整體最常見是淋巴瘤，<strong>結腸</strong>最常見是腺癌</li><li>直腸觸診可發現 <strong>80%</strong> 犬直腸腫瘤；貓 <strong>&gt; 半數</strong>結腸腫塊可腹部觸診摸到</li><li>常見症狀：<strong>鮮血便、裡急後重、排便困難、糞便帶黏液</strong></li></ul></div><div class="subsection"><h3>腺癌</h3><ul class="notes"><li>犬：多在<strong>直腸與結直腸交界</strong>，老年公犬多；<strong>迷你臘腸、傑克羅素㹴</strong>好發；局部病變首選<strong>完整手術切除</strong></li><li>貓：多在小腸，但迴結腸交界與大腸的報告增加；<strong>暹羅貓</strong>可能好發；<strong>76% 診斷時已轉移</strong> → 常需輔助化療</li></ul></div><div class="subsection"><h3>淋巴瘤</h3><ul class="notes"><li>大腸淋巴瘤比小腸型少見，<strong>貓比狗多</strong></li><li>中高度消化道淋巴瘤（I/HGAL）：通常是小腸局部腫塊，較少在結腸，預後差；犬罕見瀰漫性小腸型並延伸到結腸，預後也差</li><li>低度淋巴瘤：較瀰漫、主要在小腸、預後較好</li><li><strong>大腸 I/HGAL 的特點</strong>：小腸型多源自黏膜相關淋巴組織、多為 <strong>T 細胞</strong>；大腸型源自 Peyer's patch 與黏膜結節等組織化淋巴組織，多為 <strong>B 細胞</strong></li><li>犬貓研究：<strong>結直腸 I/HGAL 預後比小腸型好</strong></li><li>化療是主軸；近期證據顯示貓<strong>完整手術切除可延長存活</strong>；但手術可能裂開，犬貓圍術期死亡率 <strong>10–18%</strong></li><li>只用<strong>類固醇</strong>也有不錯結果的報告 → 不手術時合理的緩和選項</li></ul></div><div class="subsection"><h3>息肉</h3><ul class="notes"><li>犬多在<strong>直腸</strong>（腺瘤性息肉），貓多在<strong>十二指腸</strong></li><li>易碎、分葉、無柄或有柄</li><li>犬直腸息肉最常見症狀是<strong>鮮血便</strong>，其次裡急後重、腹瀉、排便困難、直腸出血</li><li><strong>迷你臘腸、西高地白㹴</strong>好發</li><li>迷你臘腸與傑克羅素的<strong>結直腸發炎性息肉</strong>可能進展為腺癌</li><li><strong>原位癌息肉</strong>占犬直腸腫塊 <strong>25–29%</strong>，切除後預後通常好，但<strong>最多 30% 復發</strong>、<strong>18–50% 可能惡性轉化</strong></li><li>建議手術切除；犬貓都有<strong>套圈息肉切除</strong>（人類標準）的描述</li><li>切下的息肉<strong>都要送病理</strong>（增生性、發炎性、腺瘤性或原位癌）</li><li>復發一般不常見，西高地白㹴與大息肉較常；好發品種（西高地、迷你臘腸、傑克羅素）建議<strong>內視鏡追蹤</strong></li></ul></div><div class="subsection"><h3>原文表 4：犬貓結腸腫瘤存活時間</h3><div class="tbl-wrap"><table><tr><th>腫瘤</th><th>對象</th><th>型態</th><th>治療</th><th>中位存活</th></tr><tr><td>息肉</td><td>58 犬</td><td>結直腸</td><td>直腸拉出術（45）、內視鏡電燒（7）、結腸切除（6）</td><td>1640 天</td></tr><tr><td>原位癌</td><td>7 犬</td><td>直腸</td><td>直腸拉出術</td><td>1006 天（31–2331）</td></tr><tr><td>腺癌</td><td>31 犬</td><td>直腸</td><td>直腸拉出術</td><td>696 天（1–2018）</td></tr><tr><td>腺癌</td><td>9 犬</td><td><strong>有柄</strong>結直腸腫塊</td><td>多種</td><td><strong>32 個月</strong></td></tr><tr><td>腺癌</td><td>9 犬</td><td><strong>鵝卵石狀</strong></td><td>多種</td><td><strong>12 個月</strong></td></tr><tr><td>腺癌</td><td>5 犬</td><td><strong>環狀</strong></td><td>多種</td><td><strong>1.6 個月</strong></td></tr><tr><td>腺癌</td><td>58 貓</td><td>小腸與大腸</td><td>手術 ± 化療</td><td>203 天</td></tr><tr><td>腺癌</td><td>18 貓</td><td>結腸</td><td>結腸次全切除＋carboplatin</td><td>269 天（40–533）</td></tr><tr><td>腺癌</td><td>4 貓</td><td>結腸</td><td>結腸次全切除＋doxorubicin</td><td>280 天（210–354）</td></tr><tr><td>淋巴瘤</td><td>11 犬</td><td>B 細胞直腸</td><td>化療 ± 手術</td><td>未達中位（平均 1697 天）</td></tr><tr><td>淋巴瘤</td><td>9 貓</td><td>大腸 I/HGAL</td><td>手術 ± 化療</td><td>675 天</td></tr><tr><td>淋巴瘤</td><td>4 貓</td><td>結直腸 I/HGAL</td><td>手術＋化療</td><td>972 天（177–1210）</td></tr><tr><td>淋巴瘤</td><td>3 貓</td><td>結直腸 I/HGAL</td><td>只化療</td><td>29 天（29–105）</td></tr></table></div><p class="p"><span class="src src-add">💡 補充</span> 犬結直腸腺癌的<strong>外觀型態</strong>（有柄 &gt; 鵝卵石 &gt; 環狀）對預後影響很大，內視鏡報告與送檢單應描述清楚。</p></div></div>
+  </div>
+  <div class="section" id="s6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🩸</div>
+      <h2>6. 血管畸形：血管發育不良</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>腸胃血管畸形（血管發育不良、動靜脈畸形、神經肌肉與血管錯構瘤）在腸胃出血犬中<strong>罕見</strong></li><li><strong>血管擴張／血管發育不良</strong>：黏膜與黏膜下層異常擴張、薄壁、迂曲的血管，內皮下幾乎沒有平滑肌 → 易破裂，造成慢性或間歇出血</li><li>291 隻因腸胃出血做<strong>膠囊內視鏡</strong>的犬：<strong>5%</strong> 是血管發育不良</li><li>最年輕 7 月齡，多為 <strong>8–9 歲中老年</strong>，<strong>公犬多</strong>；胃與小腸也會有，但<strong>結腸最常見</strong></li><li>症狀：急性致命鮮血便，到持續數月至數年的間歇鮮血便與貧血；最常見鮮血便、嗜睡、腹瀉、黑便</li><li>貧血可為再生性、正球正色或<strong>小球低色（缺鐵）</strong>；出血可很嚴重：一研究 <strong>53%</strong> 犬中位輸血 <strong>3 次</strong></li></ul></div><div class="subsection"><h3>診斷</h3><ul class="notes"><li>靠內視鏡（傳統或膠囊）<strong>直接看到異常血管</strong>（原文圖 4：11 歲母犬嚴重鮮血便、缺鐵性貧血、輸了 4 次血，之前探查手術與結腸切片都沒發現）</li><li>看不清楚的原因：<strong>腸道準備不足、過度充氣、低血壓、用了會收縮血管的鴉片類</strong></li><li>一研究：傳統上下內視鏡漏掉、後來膠囊內視鏡才找到的有 <strong>8 隻</strong></li><li><strong>探查手術常無收穫</strong>：內視鏡診斷前做過探查手術的 6 隻全部沒找到病灶</li><li><strong>腹部超音波看不到</strong></li></ul></div><div class="subsection"><h3>治療</h3><ul class="notes"><li>手術切除、內視鏡輔助<strong>氬電漿凝固</strong>、荷爾蒙療法；存活 1–24 個月不等</li></ul></div></div>
+  </div>
+  <div class="section" id="s7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🐈</div>
+      <h2>7. 貓便秘與巨結腸</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li><strong>便秘</strong>：排便少或困難、糞便滯留；<strong>頑固便秘（obstipation）</strong>：需介入的難治便秘</li><li>多數<strong>特發性</strong>；<strong>過重、老年、慢性腎病</strong>的貓風險較高</li><li>慢性或反覆便秘 → 結腸異常擴張、低蠕動＝<strong>巨結腸</strong></li></ul></div><div class="subsection"><h3>原文 Box 1：貓便秘的原因</h3><div class="tbl-wrap"><table><tr><th>類別</th><th>原因</th></tr><tr><td>原發腸胃</td><td>慢性特發性結腸炎、低度消化道淋巴瘤</td></tr><tr><td>原發神經</td><td>無神經節／神經節過少、腰薦椎疾病、<strong>曼島貓</strong>薦椎脊髓畸形、自主神經失調、下腹或骨盆神經疾病</td></tr><tr><td>結腸平滑肌</td><td>特發性巨結腸</td></tr><tr><td>機械性阻塞</td><td>異物（砂礫、骨頭、毛）、肛門直腸狹窄、結腸腫塊（腫瘤、肉芽腫、息肉）、<strong>骨盆骨折</strong>、骨盆腔外壓迫腫塊</td></tr><tr><td>全身／代謝</td><td><strong>脫水、低血鉀、高血鈣、慢性腎病、肥胖</strong></td></tr><tr><td>內分泌</td><td>甲狀腺低下（先天或醫源性，如 I-131 後）、糖尿病、營養性續發副甲狀腺亢進</td></tr><tr><td>排便疼痛</td><td>肛門腺炎／膿瘍、肛周瘻管、咬傷、骨關節炎</td></tr><tr><td>藥物</td><td>鴉片類、抗膽鹼藥、利尿劑、氫氧化鋁</td></tr><tr><td>環境行為</td><td>貓砂盆髒、社交壓力與恐懼、不活動、住院、腸躁症</td></tr></table></div></div><div class="subsection"><h3>診斷</h3><ul class="notes"><li><strong>所有便秘貓都要拍腹部 X 光</strong>：評估嚴重度、排除解剖誘因（骨盆骨折、腫塊）</li></ul><div class="tbl-wrap"><table><tr><th>最大結腸直徑 ÷ L5 椎體長度</th><th>意義</th><th>敏感度／特異度</th></tr><tr><td><strong>&gt; 1.28</strong></td><td>便秘</td><td>96% / 87%</td></tr><tr><td><strong>&gt; 1.48</strong></td><td>巨結腸</td><td>77% / 85%</td></tr><tr><td><strong>&gt; 1.62</strong></td><td>可能內科治療失敗、需結腸次全切除</td><td>—</td></tr></table></div><ul class="notes"><li>最低資料庫＋<strong>TT4 與 TSH</strong> 篩檢代謝疾病</li></ul></div><div class="subsection"><h3>急性處理：糞便嵌塞</h3><ul class="notes"><li>第一步<strong>補水</strong>（皮下或靜脈）</li><li><strong>溫水或生理食鹽水灌腸 5–10 mL/kg</strong>：潤滑的紅色橡膠導管輕輕送入結腸數公分；可每 6–24 小時重複</li><li>灌腸前給 <strong>maropitant 1 mg/kg IV</strong>，降低嘔吐與吸入風險</li><li>嚴重者：<strong>全身麻醉下手指掏便</strong></li><li>替代：經<strong>鼻食道管</strong>緩慢定速給 <strong>PEG 3350 溶液 6–10 mL/kg/h</strong>，中位 <strong>8 小時</strong>排便（5–24 小時）</li></ul></div><div class="subsection"><h3>原文表 5：特發性便秘與巨結腸的長期治療</h3><div class="tbl-wrap"><table><tr><th>項目</th><th>便秘</th><th>巨結腸</th></tr><tr><td>水合</td><td>飲水機、罐頭確保足夠水分</td><td>同左</td></tr><tr><td>飲食</td><td><strong>高纖</strong>飲食</td><td><strong>高消化率</strong>飲食（減少糞便量）</td></tr><tr><td>纖維</td><td>可發酵纖維產 SCFA（丁酸刺激結腸縱走肌收縮、滲透拉水）；低溶解／不可溶纖維增量促蠕動；可溶纖維保水；<strong>含洋車前子飲食讓 82–93% 慢性便秘貓緩解</strong></td><td><strong>運動功能已喪失時禁用</strong></td></tr><tr><td>瀉劑</td><td><strong>PEG 3350（MiraLAX）1/8–1/4 茶匙拌食 q12h</strong>；<strong>Lactulose 0.5 mL/kg PO q8–12h</strong></td><td>同左</td></tr><tr><td>益生菌</td><td>多株 *Bifidobacterium* 與 *Lactobacillus* 專利配方（Sivoy SLAB51）改善慢性便秘或特發性巨結腸貓的糞便性狀、FCEAI、黏膜組織分數</td><td>同左</td></tr><tr><td>促動劑</td><td><strong>Cisapride 2.5–5 mg/貓 PO q8h</strong>（5-HT4 促效劑）</td><td>同左</td></tr><tr><td>手術</td><td>不需要</td><td>擴張的巨結腸或內科治療無效 → 考慮<strong>結腸次全切除</strong></td></tr></table></div><ul class="notes"><li>151 隻貓多中心回溯：結腸次全切除時<strong>保留迴盲結腸交界</strong>者長期存活與飼主滿意度高；切除者較常腹瀉、滿意度差</li></ul></div></div>
+  </div>
+  <div class="section" id="s8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🌀</div>
+      <h2>8. 犬腸躁症（IBS）</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>人類：慢性功能性腸道疾病，反覆腹痛、結腸蠕動改變、排便習慣改變，<strong>組織學無異常</strong>；壓力、焦慮、荷爾蒙、飲食誘發</li><li>犬：有類似但定義不清的疾病</li><li>兩研究：特發性大腸型腹瀉、大腸鏡正常的犬，約 <strong>40%</strong> 有<strong>行為異常</strong>（憂鬱、噪音敏感、攻擊）或可辨識的<strong>環境壓力源</strong></li><li>多數對飲食調整（<strong>洋車前子＋高消化率飲食</strong>）或行為疾病的藥物治療反應良好</li></ul><p class="p"><span class="src src-add">💡 補充</span> 本特刊 08 腸腦軸一文對壓力、行為與腸胃症狀的關係有更完整的討論。</p></div></div>
+  </div>
+  <div class="section" id="s9">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">🚨</div>
+      <h2>9. 大腸急症</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><h3>腸套疊</h3><ul class="notes"><li>一段腸道套入另一段，造成部分或完全阻塞：急性腹瀉、嘔吐、腹痛；腹部觸診常摸到<strong>硬的管狀構造</strong></li><li><strong>迴結腸型</strong>最常見；盲腸結腸（盲腸內翻）、結腸結腸型罕見</li><li>多為<strong>年輕動物</strong>、找不到原因；誘因：異物、腸道寄生蟲、病毒性腸炎、慢性腸病、腹部手術史、腸道腫瘤</li><li>原文圖 5：慢性腹瀉＋急性鮮血便的貓，X 光見降結腸軟組織腫塊、超音波見<strong>靶心狀</strong>同心層＝結腸結腸套疊</li><li><strong>外科急症</strong>：徒手復位或腸切除吻合；盲腸結腸型需切除盲腸</li><li>麻醉誘導後可能<strong>自行復位</strong>；有超音波導引<strong>水壓復位</strong>成功治療幼犬迴結腸套疊的報告</li><li>復發 <strong>3–22%</strong>；單純腸套疊術後預後通常好</li></ul></div><div class="subsection"><h3>結腸扭轉</h3><ul class="notes"><li>結腸扭轉＋扭結 → 腸缺血壞死、內毒素血症、敗血症、休克、死亡；<strong>外科急症</strong></li><li>犬大腸扭轉比小腸扭轉少見；病因不明，誘因：原有腸胃病、腸胃手術史、劇烈活動、外傷、<strong>曾做胃固定術</strong></li><li>多為急性表現，偶在慢性腸胃症狀後發生；最常見<strong>嘔吐</strong>，其次食慾差、嗜睡、腹瀉、裡急後重、不安、腹脹、呼吸費力</li><li>原文圖 6：7 歲母犬急性踱步、裡急後重、厭食，結腸充氣造影見結腸明顯擴張並突然變細，CT 確認扭轉</li><li>術後預後通常好：一研究 <strong>92% 存活出院</strong>、圍術期死亡率 <strong>7.2%</strong></li></ul></div></div>
+  </div>
+  <div class="section" id="s10">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📌</div>
+      <h2>10. 作者的 Clinics Care Points</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><ul class="notes"><li>大腸症狀在<strong>食物反應性</strong>犬貓較常見</li><li><strong>高纖飲食</strong>是急性結腸炎、慢性特發性結腸炎、貓特發性便秘（水合良好、結腸運動功能保留者）的治療基石</li><li>單純急性或特發性慢性結腸炎<strong>不需抗生素</strong>，只留給懷疑細菌移位的重症</li><li>犬局部結直腸腺癌首選<strong>完整手術切除</strong>；貓常在診斷時已轉移，通常需<strong>廣泛切除＋輔助化療</strong></li><li>鑑別總結：沒有找到病因時，組織學有發炎＝<strong>特發性發炎性結腸炎</strong>；犬黏膜沒有發炎＝<strong>腸躁症</strong></li></ul></div></div>
+  </div>
+  <div class="section" id="ref">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon" style="background:#f1f5f9">📚</div>
+      <h2>原文出處</h2>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="section-body"><div class="subsection"><div class="ref-list"><div class="ref-item">Sarah M. Schmid. Large-Intestinal Disorders in Dogs and Cats: Diagnosis, Management, and Clinical Outcomes. <em>Vet Clin North Am Small Anim Pract</em> 2026;56(3):747–768. <a href="https://doi.org/10.1016/j.cvsm.2026.01.005" target="_blank" rel="noopener">doi:10.1016/j.cvsm.2026.01.005</a></div><div class="ref-item">特刊：Gastroenterology（主編 M. Katherine Tolbert、Sara A. Jablonski），<em>Vet Clin North Am Small Anim Pract</em> 2026 年 5 月號，第 56 卷第 3 期。© 2026 Elsevier Inc.</div></div></div></div>
+  </div>
+
+  <div class="next-up">
+    <p>同一期特刊的其他文章請回目錄。</p>
+    <a href="index.html">回到特刊目錄 →</a>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('hidden');
+  header.classList.toggle('collapsed');
+}
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  navLinks.forEach(a => { a.classList.remove('active'); if (a.getAttribute('href') === '#' + cur) a.classList.add('active'); });
+});
+</script>
+</body>
+</html>

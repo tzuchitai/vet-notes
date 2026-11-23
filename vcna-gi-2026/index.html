@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VCNA 腸胃學特刊 2026｜獸醫讀書筆記</title>
+<style>
+  :root {
+    --accent:    #8A4B0F;
+    --accent-lt: #C47F2B;
+    --accent-dk: #5A320C;
+    --accent-bg: #F8F0E6;
+    --dark:      #2B1A0B;
+    --text:      #4A3A2C;
+    --border:    #EBDCC8;
+    --bg:        #FCF9F5;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, "Segoe UI", "Noto Sans TC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── HOME LINK ── */
+  .home-bar {
+    padding: 16px 24px 0;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .home-bar a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text);
+    opacity: .55;
+    text-decoration: none;
+    font-size: .85rem;
+    font-weight: 600;
+  }
+  .home-bar a:hover { opacity: .9; }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, #f8f0e6 0%, #efdcc4 100%);
+    border-bottom: 3px solid var(--accent);
+    color: var(--dark);
+    padding: 40px 24px 44px;
+    text-align: center;
+  }
+  .header-icon { font-size: 2.6rem; margin-bottom: 12px; }
+  header .kicker {
+    font-family: ui-monospace, "SF Mono", monospace;
+    font-size: .75rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent-dk);
+    opacity: .75;
+    margin-bottom: 10px;
+  }
+  header h1 { font-size: 2rem; font-weight: 800; letter-spacing: .02em; color: var(--accent-dk); }
+  header p.dek {
+    margin: 10px auto 0;
+    max-width: 500px;
+    opacity: .65;
+    font-size: .95rem;
+    line-height: 1.65;
+    color: var(--text);
+  }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 900px; margin: 0 auto; padding: 36px 20px 80px; }
+
+  .stats {
+    display: flex; gap: 20px; flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+  .stat {
+    background: #fff; border-radius: 12px;
+    padding: 14px 20px;
+    box-shadow: 0 2px 8px rgba(16,34,31,.06);
+    flex: 1; min-width: 120px; text-align: center;
+    border: 1px solid var(--border);
+  }
+  .stat-num  { font-size: 1.6rem; font-weight: 800; color: var(--accent); }
+  .stat-label{ font-size: .75rem; opacity: .55; margin-top: 2px; }
+
+  .section-label {
+    font-size: .78rem; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--text);
+    opacity: .55; margin: 0 0 14px;
+  }
+
+  /* ── CASE LIST ── */
+  .cases { display: flex; flex-direction: column; gap: 14px; }
+
+  .case-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(16,34,31,.06);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    gap: 18px;
+    padding: 20px 22px;
+    border: 1px solid var(--border);
+    transition: transform .16s, box-shadow .16s;
+  }
+  .case-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(16,34,31,.12);
+  }
+  .case-num {
+    font-family: ui-monospace, "SF Mono", monospace;
+    font-size: .8rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    width: 42px; height: 42px;
+    display: flex; align-items: center; justify-content: center;
+    flex: none;
+  }
+  .case-body { flex: 1; min-width: 0; }
+  .case-tag {
+    font-size: .72rem; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--accent-dk); opacity: .7;
+    margin-bottom: 4px;
+  }
+  .case-title { font-size: 1.05rem; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+  .case-desc  { font-size: .85rem; color: var(--text); opacity: .75; line-height: 1.55; }
+  .case-meta {
+    flex: none;
+    display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between;
+    gap: 10px;
+  }
+  .case-date { font-size: .76rem; color: var(--text); opacity: .5; white-space: nowrap; }
+  .case-arrow {
+    font-size: .85rem; color: #fff;
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--accent);
+  }
+
+  /* ── COMING SOON ── */
+  .case-soon {
+    background: #fffdfa;
+    border: 2px dashed var(--border);
+    box-shadow: none;
+    cursor: default;
+  }
+  .case-soon:hover { transform: none; box-shadow: none; }
+  .case-soon .case-num { color: var(--text); opacity: .4; background: transparent; }
+  .case-soon .case-title, .case-soon .case-tag { opacity: .4; }
+  .case-soon .case-desc { opacity: .35; }
+  .coming-badge {
+    font-size: .7rem; font-weight: 700;
+    background: var(--border); color: var(--text);
+    border-radius: 20px; padding: 3px 10px; opacity: .65;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.5rem; }
+    .header-icon { font-size: 2rem; }
+    .container { padding: 20px 14px 60px; }
+    .case-card { flex-direction: column; gap: 12px; }
+    .case-meta { flex-direction: row; align-items: center; width: 100%; }
+  }
+
+
+  .preface { background:#fff; border:1px solid var(--border); border-left:4px solid var(--accent); border-radius:12px; padding:18px 22px; margin-bottom:8px; line-height:1.75; font-size:.93rem; }
+  .preface h3 { color:var(--accent-dk); font-size:1rem; margin-bottom:8px; }
+  .preface ul { padding-left:1.2em; }
+  .preface li { margin:4px 0; }
+  .note { font-size:.82rem; opacity:.7; margin-top:10px; }
+  details.toc { margin-top:28px; background:#fff; border:1px solid var(--border); border-radius:12px; padding:12px 18px; }
+  details.toc summary { cursor:pointer; font-weight:700; color:var(--accent-dk); }
+  .toc table { width:100%; border-collapse:collapse; margin-top:10px; font-size:.85rem; }
+  .toc td { border-top:1px solid var(--border); padding:6px 6px; vertical-align:top; }
+  .toc a { color:var(--accent); }
+  @media (max-width:600px){ .toc td:nth-child(3){ display:none; } }
+</style>
+</head>
+<body>
+
+<div class="home-bar">
+  <a href="../index.html">← <img src="../assets/logo-mark-96.png" alt="" style="width:1.3em;height:1.3em;vertical-align:-.32em;margin-right:.2em">獸醫讀書筆記</a>
+</div>
+
+<header>
+  <div class="header-icon">🍽️</div>
+  <p class="kicker">Vet Clin North Am Small Anim Pract · May 2026 · Vol 56 No 3</p>
+  <h1>VCNA 腸胃學特刊 2026</h1>
+  <p class="dek">Veterinary Clinics: Small Animal Practice《Gastroenterology》特刊 16 篇綜述的中文重點整理（主編 M. Katherine Tolbert、Sara A. Jablonski）</p>
+</header>
+
+<div class="container">
+
+  <div class="stats">
+    <div class="stat"><div class="stat-num" id="case-count">16</div><div class="stat-label">篇綜述</div></div>
+    <div class="stat"><div class="stat-num">2026</div><div class="stat-label">5 月號</div></div>
+    <div class="stat"><div class="stat-num">🐕🐱</div><div class="stat-label">犬貓</div></div>
+  </div>
+
+  <div class="preface">
+    <h3>📖 主編序言重點：腸胃病的典範轉移</h3>
+    <ul>
+      <li>慢性腸病不再被看成幾個分開的診斷類別，而是<strong>宿主遺傳、菌相、代謝、免疫、環境</strong>交互作用的動態光譜</li>
+      <li>從人類借來的「IBD」改稱獸醫專用的「慢性腸病」，但隨之而來的大量重疊名詞與分類，反而可能妨礙溝通</li>
+      <li>食物反應性、類固醇反應性、菌相調節反應性（舊稱抗生素反應性）腸病臨床上好用，但可能<strong>低估了疾病的複雜度</strong>；多因子的病因可能需要多管齊下的治療</li>
+      <li>定序與代謝體學顯示：看似不同的疾病可能共用致病路徑，看似相同的疾病分子特徵卻可能很不一樣；菌相對致病、治療反應與預後都很重要</li>
+      <li>「<strong>無反應性腸病</strong>」可能不是一種獨立疾病，而是反映現行診斷與治療的極限 → 把治療失敗當作進一步研究的機會，並重視<strong>早期、個別化介入</strong></li>
+    </ul>
+    <p class="note">每篇都是依原文重點整理成中文，不是逐句翻譯；原文圖表版權屬 Elsevier，頁面沒有轉載，表格依內文重新整理。藥物劑量請回原文與最新文獻確認。標 💡 的段落是整理者補充或對原文疑似筆誤的提醒。</p>
+  </div>
+
+  <div class="section-label" style="margin-top:28px">🧭 疾病觀念與診斷</div>
+  <div class="cases">
+    <a class="case-card" href="subclinical-canine-ce.html">
+      <div class="case-num">01</div>
+      <div class="case-body">
+        <div class="case-tag">犬 · 慢性腸病 · 亞臨床期 · SCWT · pANCA · 預防</div>
+        <div class="case-title">犬亞臨床慢性腸病：早期偵測與預防才是治癒的關鍵</div>
+        <div class="case-desc">借鏡人類 IBD「臨床前期」：菌相失調、膽酸代謝異常、腸道通透性上升、免疫失調早於症狀數年出現；德牧、軟毛麥色㹴的證據，以及「高風險→亞臨床→臨床」三階段模型</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">Kylie Grady 等</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+    <a class="case-card" href="feline-lpe-vs-lgitl.html">
+      <div class="case-num">10</div>
+      <div class="case-body">
+        <div class="case-tag">貓 · LPE vs LGITL · 飲食試驗 2 週 · 超音波分不出來 · 上下消化道內視鏡 · IHC＋PARR</div>
+        <div class="case-title">診斷光譜：貓淋巴漿細胞性腸炎與低度腸道 T 細胞淋巴瘤</div>
+        <div class="case-desc">貓慢性腸病的命名與鑑別；飲食試驗是診斷工具（2 週見效）；超音波與鈷胺素都無法區分 LPE 與 LGITL；上＋下消化道內視鏡足以診斷；病理學家間一致性只有 34%；IHC 與 PARR 的價值與限制；從發炎到淋巴瘤的連續光譜假說</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">Craig B. Webb 等</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+    <a class="case-card" href="gi-histopathology.html">
+      <div class="case-num">13</div>
+      <div class="case-body">
+        <div class="case-tag">犬貓 · 切片要幾塊 · 海綿怎麼放 · 送檢單寫什麼 · 合格樣本定義 · 浸潤種類不能預測療效</div>
+        <div class="case-title">通往診斷之路：腸胃道切片採集與組織病理判讀的最佳實務</div>
+        <div class="case-desc">從採樣到判讀的每一步：什麼時候切片、內視鏡 vs 全層、犬貓十二指腸／迴腸各要幾塊、海綿或小黃瓜片固定、防凍、送檢單內容；組織實驗室處理與包埋方向；合格樣本定義、WSAVA 分級、犬 CE 與貓 LPE／LGITL 的組織特徵、特殊染色</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">Paula R. Giaretta 等</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+    <a class="case-card" href="feline-triaditis.html">
+      <div class="case-num">11</div>
+      <div class="case-body">
+        <div class="case-tag">貓 · 胰臟炎＋膽管炎＋腸炎 · 四種致病假說 · fPL ≥ 8.8 · 膽汁培養 · 分器官治療表</div>
+        <div class="case-title">貓三體炎：多面向症候群，還是方便的標籤？</div>
+        <div class="case-desc">三體炎各組成：胰臟炎（&gt; 95% 特發性）、膽管炎三型、CIE；解剖連續、胰臟起始、腸道起始、十二指腸乳頭中心四種假說；診斷表（症狀、血檢、fPL、B12 ≤ 400、超音波、細胞學與膽汁培養）；胰臟炎、膽管炎、CIE 的分項治療與劑量</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">Harry Cridge 等</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="section-label" style="margin-top:28px">🥗 飲食、纖維與菌相</div>
+  <div class="cases">
+    <a class="case-card" href="adverse-food-reactions.html">
+      <div class="case-num">03</div>
+      <div class="case-body">
+        <div class="case-tag">犬貓 · 食物過敏 · 排除飲食 · 水解飼料 · 過敏原檢測無效 · 非免疫性反應</div>
+        <div class="case-title">犬貓的食物不良反應</div>
+        <div class="case-desc">免疫性（過敏）與非免疫性（毒性、藥理、代謝）反應；血清 IgE／IgG、唾液、毛髮檢測都不可靠；排除飲食＋再激發仍是黃金標準；水解飼料的 T 細胞殘留抗原性、皮膚 8 週 vs 腸胃 2–6 週</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">Laura Udraite Vovk 等</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+    <a class="case-card" href="dietary-approach-ce.html">
+      <div class="case-num">04</div>
+      <div class="case-body">
+        <div class="case-tag">犬貓 · 食物反應性 · 腸胃／排除／高纖三類處方 · 低脂 g/100 kcal · 每種至少 2 週</div>
+        <div class="case-title">犬貓慢性腸病的飲食策略</div>
+        <div class="case-desc">能量密度、消化率、蛋白、脂肪、纖維的角色；腸胃處方、排除飲食、高纖飲食怎麼選；低脂與纖維分級（g/100 kcal）；至少試 3 種、每種 ≥ 2 週；補充品、零食 ≤ 10%、餵食方式</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">Cecilia Villaverde 等</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+    <a class="case-card" href="dietary-fiber.html">
+      <div class="case-num">05</div>
+      <div class="case-body">
+        <div class="case-tag">犬貓 · 可溶／不可溶 · 發酵性 · 洋車前子劑量 · 急慢性腹瀉 · 便秘 · 毛球</div>
+        <div class="case-title">膳食纖維的治療應用：纖維反應性腸胃疾病</div>
+        <div class="case-desc">纖維的發酵性、溶解度、黏度如何決定臨床效果；粗纖維低估 TDF 最多 50%、AAFCO 2030 改標 TDF；洋車前子劑量；高纖飲食治療急性結腸炎優於 metronidazole、慢性腹瀉、毛球、便秘的證據</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">Adam J. Rudinsky 等</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+    <a class="case-card" href="microbiome-modulation-fmt.html">
+      <div class="case-num">06</div>
+      <div class="case-body">
+        <div class="case-tag">犬貓 · Dysbiosis Index 判讀 · P. hiranonis · 益生菌 · tylosin 復發 · FMT 劑量與供體篩檢</div>
+        <div class="case-title">獸醫的菌相調節：從飲食到糞便菌叢移植</div>
+        <div class="case-desc">健康菌相的 SCFA、膽酸、色胺酸代謝；為什麼不能用糞便培養和 NGS 判斷個體；DI 的輕中重分級（犬 &gt; 2、貓 &gt; 1）；急性腹瀉 vs CIE 的菌相；飲食、益生菌、抗生素、FMT 的角色與 FMT 操作表</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">Jan S. Suchodolski 等</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+    <a class="case-card" href="bile-acid-diarrhea.html">
+      <div class="case-num">07</div>
+      <div class="case-body">
+        <div class="case-tag">犬 · 難治性慢性腸病 · 膽酸螯合劑試驗 · cholestyramine 2–3 g/隻 · 牛磺酸與膽固醇監測</div>
+        <div class="case-title">膽酸失調：膽酸性腹瀉的病理生理與治療</div>
+        <div class="case-desc">膽酸合成、腸肝循環與 FXR–FGF19 回饋；膽酸如何經 TGR5 造成腹瀉；三種膽酸吸收不良機制；犬 BAD 的表現、C4 切點、以膽酸螯合劑治療試驗作診斷，cholestyramine／colesevelam／colestipol 劑量與長期監測</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">Jenessa A. Winston 等</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+    <a class="case-card" href="gut-brain-axis.html">
+      <div class="case-num">08</div>
+      <div class="case-body">
+        <div class="case-tag">犬貓 · 行為 × 腸胃 · 迷走神經 · 壓力與 HPA · 異食癖 · 舔空氣／舔地板 · 合併治療</div>
+        <div class="case-title">雙向溝通：伴侶動物的腸腦軸</div>
+        <div class="case-desc">菌相–腸–腦軸的免疫、內分泌、神經、代謝路徑；慢性壓力如何破壞腸道屏障；攻擊、恐懼犬的菌相研究；行為異常可能是腸胃病徵（排泄改變、食物嫌惡、異食癖、舔空氣與舔表面）；生物心理社會合併治療與病例</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">Julia D. Albright 等</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="section-label" style="margin-top:28px">🩺 各論</div>
+  <div class="cases">
+    <a class="case-card" href="aerodigestive-esophageal.html">
+      <div class="case-num">02</div>
+      <div class="case-body">
+        <div class="case-tag">犬貓 · 吞嚥 · 隱性吸入 · VFSS · 巨食道 · LES-AS · 逆流 · 食道炎</div>
+        <div class="case-title">呼吸消化道疾病與食道疾病</div>
+        <div class="case-desc">氣道保護的基礎與反應機制、吞嚥三期、酸＋顆粒吸入的加乘發炎；只有呼吸症狀、胸片正常也可能是食道病；VFSS 與 P–A 評分、LES 失弛緩樣症候群、生理性 vs 病理性逆流、食道炎治療</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">Megan Grobman 等</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+    <a class="case-card" href="acute-diarrhea.html">
+      <div class="case-num">09</div>
+      <div class="case-body">
+        <div class="case-tag">犬貓 · ENOVAT 嚴重度分級 · 輸液計畫表 · 早期營養 · 不需抗生素（含 AHDS）</div>
+        <div class="case-title">從診斷到痊癒：犬貓急性腹瀉實務指南</div>
+        <div class="case-desc">急性腹瀉（&lt; 14 天）多會自限，78% 在 2 天內緩解；小腸 vs 大腸型、滲透性 vs 分泌性機制；ENOVAT 輕中重分級；哪些情況要檢查；輸液與電解質、飲食、益生菌、止吐與止瀉劑；為什麼連出血性腹瀉與 AHDS 都不需要例行抗生素</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">Sophia Amirsultan 等</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+    <a class="case-card" href="canine-ple.html">
+      <div class="case-num">12</div>
+      <div class="case-body">
+        <div class="case-tag">犬 · PLE · 淋巴管擴張被低估 · 飲食最關鍵 · 超低脂 ≤ 1.5 g/100 kcal · pred ≤ 1 mg/kg · 血栓預防</div>
+        <div class="case-title">犬蛋白質流失性腸病的新觀念與治療</div>
+        <div class="case-desc">PLE 是症候群不是診斷；淋巴管擴張可能被嚴重低估（膠囊內視鏡、LEC 染色）；飲食是最關鍵的治療（可單獨緩解、救回藥物失敗病例）；prednisolone 不需超過 1 mg/kg；第二線免疫抑制證據薄弱；B12、維生素 D、低血鈣、血栓預防與支持治療</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">Sara A. Jablonski 等</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+    <a class="case-card" href="large-intestinal-disorders.html">
+      <div class="case-num">14</div>
+      <div class="case-body">
+        <div class="case-tag">犬貓 · 大腸型腹瀉 · 慢性結腸炎飲食表 · 結直腸腫瘤存活表 · 貓便秘 結腸/L5 比值 · 血管發育不良</div>
+        <div class="case-title">犬貓大腸疾病：診斷、處置與預後</div>
+        <div class="case-desc">大小腸型腹瀉怎麼分、大腸病的診斷流程表；急性結腸炎與特發性慢性結腸炎（高纖／洋車前子、新蛋白、免疫抑制、5-ASA）；犬貓結直腸腫瘤、息肉與存活時間；血管發育不良；貓便秘的原因、X 光比值、灌腸與長期治療；犬腸躁症、腸套疊、結腸扭轉</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">Sarah M. Schmid 等</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+    <a class="case-card" href="infectious-colitis.html">
+      <div class="case-num">15</div>
+      <div class="case-body">
+        <div class="case-tag">犬貓 · 鞭蟲 · 貓毛滴蟲 · 細菌檢出≠致病 · 肉芽腫性結腸炎病原表 · 拳師犬／法鬥 E. coli</div>
+        <div class="case-title">犬貓感染性結腸炎：診斷、處置與預後</div>
+        <div class="case-desc">寄生蟲（鞭蟲、貓 *T. blagburni*）、細菌（各病原證據等級與處置表）、病毒（FIP）、造成肉芽腫性結腸炎的血吸蟲、組織漿菌、腐黴、原藻、利什曼，以及拳師犬與法鬥的 *E. coli* 相關肉芽腫性結腸炎：診斷、劑量與預後</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">Sarah M. Schmid 等</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+    <a class="case-card" href="short-bowel-syndrome.html">
+      <div class="case-num">16</div>
+      <div class="case-body">
+        <div class="case-tag">犬貓 · ≥ 50% 小腸切除 · 保留迴結腸瓣 · 熱量 2×RER 起 · 藥物劑量表 · 洋車前子劑量表 · 監測項目</div>
+        <div class="case-title">短腸症候群：犬貓的腸道適應機制與處置策略</div>
+        <div class="case-desc">定義（犬貓 ≥ 50% 小腸切除＋迴腸／迴結腸瓣切除風險高）、最常見原因是線性異物；吸收、迴結腸交界、腸道適應、蠕動的病理生理；急性期與藥物（止瀉、促動、制酸、膽酸螯合、UDCA、GLP、octreotide、抗生素）；熱量、飲食、脂肪與纖維分級、B12、牛磺酸；監測與預後</div>
+      </div>
+      <div class="case-meta">
+        <span class="case-date">Martha G. Cline 等</span>
+        <span class="case-arrow">→</span>
+      </div>
+    </a>
+  </div>
+
+  <details class="toc">
+    <summary>📑 依原刊頁碼排列的目錄</summary>
+    <table><tr><td>01</td><td><a href="subclinical-canine-ce.html">犬亞臨床慢性腸病</a></td><td>Subclinical Canine Chronic Enteropathy</td><td>549–561</td></tr><tr><td>02</td><td><a href="aerodigestive-esophageal.html">呼吸消化道與食道疾病</a></td><td>Aerodigestive and Esophageal Diseases</td><td>563–577</td></tr><tr><td>03</td><td><a href="adverse-food-reactions.html">食物不良反應</a></td><td>Adverse Food Reactions in Dogs and Cats</td><td>579–589</td></tr><tr><td>04</td><td><a href="dietary-approach-ce.html">慢性腸病飲食策略</a></td><td>Dietary Approach to Chronic Enteropathy in Dogs and Cats</td><td>591–602</td></tr><tr><td>05</td><td><a href="dietary-fiber.html">膳食纖維的治療應用</a></td><td>Therapeutic Applications of Dietary Fiber</td><td>603–617</td></tr><tr><td>06</td><td><a href="microbiome-modulation-fmt.html">菌相調節與 FMT</a></td><td>Microbiome Modulation in Veterinary Medicine</td><td>619–632</td></tr><tr><td>07</td><td><a href="bile-acid-diarrhea.html">膽酸性腹瀉</a></td><td>Bile Acid Dysregulation</td><td>633–647</td></tr><tr><td>08</td><td><a href="gut-brain-axis.html">腸腦軸</a></td><td>Bidirectional Communication</td><td>649–663</td></tr><tr><td>09</td><td><a href="acute-diarrhea.html">急性腹瀉實務</a></td><td>From Diagnosis to Resolution</td><td>665–679</td></tr><tr><td>10</td><td><a href="feline-lpe-vs-lgitl.html">貓 LPE vs 低度淋巴瘤</a></td><td>Navigating the Diagnostic Continuum</td><td>681–695</td></tr><tr><td>11</td><td><a href="feline-triaditis.html">貓三體炎</a></td><td>Triaditis in Cats</td><td>697–713</td></tr><tr><td>12</td><td><a href="canine-ple.html">犬蛋白質流失性腸病</a></td><td>Emerging Concepts in the Understanding and Treatment of Canine Protein-Losing Enteropathy</td><td>715–729</td></tr><tr><td>13</td><td><a href="gi-histopathology.html">腸胃道切片最佳實務</a></td><td>The Path to Diagnosis</td><td>731–746</td></tr><tr><td>14</td><td><a href="large-intestinal-disorders.html">犬貓大腸疾病</a></td><td>Large-Intestinal Disorders in Dogs and Cats</td><td>747–768</td></tr><tr><td>15</td><td><a href="infectious-colitis.html">感染性結腸炎</a></td><td>Infectious Colitis in Dogs and Cats</td><td>769–787</td></tr><tr><td>16</td><td><a href="short-bowel-syndrome.html">短腸症候群</a></td><td>Short Bowel Syndrome</td><td>789–807</td></tr></table>
+  </details>
+
+</div>
+
+</body>
+</html>
