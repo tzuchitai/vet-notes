@@ -59,6 +59,7 @@ SERIES = {
     'ophthalmology-study':      '眼科讀書會',
     'lu-ming-ortho':            '卓越講堂・呂明醫師骨關節系列',
     'excellence-neuro':         '卓越講堂・神經系列',
+    'excellence-surg-onc':      '卓越講堂・外科腫瘤系列',
     'ultrasound':              '超音波專區',
     'vcna-gi-2026':            'VCNA 腸胃學特刊 2026',
     'cardio-reading':          '臨床閱讀筆記',
@@ -94,6 +95,7 @@ FOLDER_SPECS = {
     'ophthalmology-study':   ['ophtho'],
     'lu-ming-ortho':         ['surg'],
     'excellence-neuro':      ['neuro'],
+    'excellence-surg-onc':   ['onc', 'surg'],
     'wu-yingchen-bacteria':  ['infect'],
 }
 
@@ -150,7 +152,7 @@ SPECS = {
 }
 
 # 有密碼保護的系列：只收標題，不收內文
-GATED = ('echocardiography/', 'fasava-2026/', 'lu-ming-ortho/', 'wu-yingchen-bacteria/', 'excellence-neuro/')
+GATED = ('echocardiography/', 'fasava-2026/', 'lu-ming-ortho/', 'wu-yingchen-bacteria/', 'excellence-neuro/', 'excellence-surg-onc/')
 
 SKIP_TAGS = {'head', 'title', 'script', 'style', 'noscript', 'svg', 'template'}
 HEADINGS = {'h1', 'h2', 'h3'}
